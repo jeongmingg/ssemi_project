@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인페이지</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        div{
+            box-sizing: border-box;
+            border: 1px solid red;
+            margin: 0;
+        }
+        .wrap{
+            
+            width: 1800px; height: 1400px; margin: auto;
+        }
+        
+
+        /* 전체 구조 비율 */
+        .wrap>div{width: 100%;}
+        #header{height: 12%;}
+        #navigator{height: 3%;}
+        #banner{height: 20%;}
+        #content{height: 55%;}
+        #footer{height: 10%;}
+
+        /* header 비율 */
+        #header>div{height: 100%; float: left;}
+        #header_1{width: 20%; padding-left: 50px;}
+        #header_2{width: 56%;}
+        #header_3{width: 8%;}
+        #header_4{width: 8%;}
+        #header_5{width: 8%; padding-top: 50px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;}
+
+
+        #navigator>div{height: 100%; float: left;}
+        #navigator_1{width: 20%;}
+        #navigator_2{
+            width: 70%; 
+            padding-left: 80px; padding-right: 80px;}
+        #navigator_3{width: 10%;}
+
+        /* content 비율 */
+        #content>div{height: 100%; float: left;}
+        #content_left_slideBtn{width: 15%;}
+        #content_box{width: 70%;}
+        #content_right_slideBtn{width: 15%;}
+        
+        #content_left_slideBtn>div, #content_right_slideBtn>div{width: 100%; height: 20%; float: left;}
+        #content_box>div{width: 100%; height: 20%; float: left;}
+
+        #content_bestSearch>div{width: 100%; float: left;}
+        #content_bestSearch_title{height: 15%;}
+        #content_bestSearch_content{height: 85%;}
+
+        #content_bestSearch_title>div{height: 100%; float: left;}
+        #content_bestSearch_title_tagname{width: 85%;}
+        #content_bestSearch_title_btn{width: 15%;}
+
+        #content_ko>div{width: 100%; float: left;}
+        #content_ko_title{height: 15%;}
+        #content_ko_content{height: 85%;}
+
+        #content_ko_title>div{height: 100%; float: left;}
+        #content_ko_title_tagname{width: 85%;}
+        #content_ko_title_btn{width: 15%;}
+
+        #content_we>div{width: 100%; float: left;}
+        #content_we_title{height: 15%;}
+        #content_we_content{height: 85%;}
+
+        #content_we_title>div{height: 100%; float: left;}
+        #content_we_title_tagname{width: 85%;}
+        #content_we_title_btn{width: 15%;}
+
+        #content_ch>div{width: 100%; float: left;}
+        #content_ch_title{height: 15%;}
+        #content_ch_content{height: 85%;}
+
+        #content_ch_title>div{height: 100%; float: left;}
+        #content_ch_title_tagname{width: 85%;}
+        #content_ch_title_btn{width: 15%;}
+
+        #content_ja>div{width: 100%; float: left;}
+        #content_ja_title{height: 15%;}
+        #content_ja_content{height: 85%;}
+
+        #content_ja_title>div{height: 100%; float: left;}
+        #content_ja_title_tagname{width: 85%;}
+        #content_ja_title_btn{width: 15%;}
+
+        #content_bestSearch_content>div{height: 100%; width: 20%; float: left;}
+        #content_ko_content>div{height: 100%; width: 20%; float: left;}
+        #content_we_content>div{height: 100%; width: 20%; float: left;}
+        #content_ch_content>div{height: 100%; width: 20%; float: left;}
+        #content_ja_content>div{height: 100%; width: 20%; float: left;}
+
+        /* footer 비율 */
+        #footer>div{height: 100%; float: left;}
+        #footer_1{width: 90%;}
+        #footer_2{width: 10%;}
+        
+        #footer_1>div{width: 100%; float: left;}
+        #footer_1_1{height: 30%;}
+        #footer_1_2{height: 70%;}
+
+        /* logo 스타일 */
+        #logo{width: 80%; height: 110%;}
+
+        /* 로그인, 회원가입 버튼 스타일 */
+
+        #header a{
+            text-decoration: none;
+            color: rgb(150, 150, 150);
+            font-size: 18px;
+            font-weight: 600;
+
+            width: 100%; height: 100%;
+            display: block;
+            line-height: 210px;
+            text-align: center;
+
+        }
+
+        #header_3{padding-left: 40px;}
+        #header_4{padding-right: 40px;}
+
+        /* navigator 스타일 */
+        #navi{
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            height: 100%;
+        }
+
+        #navi>li{
+            float: left;
+            width: 33%;
+            height: 100%;
+            text-align: center;
+        }
+
+        #navi a{
+            text-decoration: none;
+            color: rgb(150, 150, 150);
+            font-size: 18px;
+            font-weight: 600;
+
+            width: 100%;
+            height: 100%;
+            display: block;
+            line-height: 40px;
+        }
+
+        /* 푸터바 스타일 */
+        #p1{
+            width: 100%; 
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 15px;
+            color: rgb(58, 58, 58);
+            line-height: 45px;
+            padding-left: 20px;
+        }
+
+        #p2{
+            width: 100%; 
+            border: 1px solid white;
+            box-sizing: border-box;
+            margin: 0;
+            font-size: 14px;
+            color: rgb(58, 58, 58);
+            line-height: 30px;
+            padding-left: 20px;
+        }
+        
+        #topBtn{
+            padding-top: 10px;
+            padding-left: 100px;
+            cursor: pointer;
+
+
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div id="header">
+            <div id="header_1">
+                <img id="logo" src="resources/logo/투명배경로고.png">
+            </div>
+            <div id="header_2"></div>
+            <div id="header_3">
+                <a href="#">로그인</a>
+            </div>
+            <div id="header_4">
+                <a href="#">회원가입</a>
+            </div>
+            <div id="header_5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" data-svg-content="true" fill="#000000">
+                    <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
+                </svg>
+            </div>
+        </div>
+        <div id="navigator">
+            <div id="navigator_1"></div>
+            <div id="navigator_2">
+                <ul id="navi">
+                    <li><a href="#">맛집등록요청/삭제</a></li>
+                    <li><a href="#">명예의 전당</a></li>
+                    <li><a href="#">맛집랜덤추천기</a></li>
+                </ul>
+            </div>
+            <div id="navigator_3"></div>
+        </div>
+        <div id="banner"></div>
+        <div id="content">
+            <div id="content_left_slideBtn">
+                <div id="content_left_slideBtn1"></div>
+                <div id="content_left_slideBtn2"></div>
+                <div id="content_left_slideBtn3"></div>
+                <div id="content_left_slideBtn4"></div>
+                <div id="content_left_slideBtn5"></div>
+            </div>
+            <div id="content_box">
+                <div id="content_bestSearch">
+                    <div id="content_bestSearch_title">
+                        <div id="content_bestSearch_title_tagname"></div>
+                        <div id="content_bestSearch_title_btn"></div>
+                    </div>
+                    <div id="content_bestSearch_content">
+                        <div id="content_bestSearch_content_1"></div>
+                        <div id="content_bestSearch_content_2"></div>
+                        <div id="content_bestSearch_content_3"></div>
+                        <div id="content_bestSearch_content_4"></div>
+                        <div id="content_bestSearch_content_5"></div>
+                    </div>
+                </div>
+
+                <div id="content_ko">
+                    <div id="content_ko_title">
+                        <div id="content_ko_title_tagname"></div>
+                        <div id="content_ko_title_btn"></div>
+                    </div>
+                    <div id="content_ko_content">
+                        <div id="content_ko_content_1"></div>
+                        <div id="content_ko_content_2"></div>
+                        <div id="content_ko_content_3"></div>
+                        <div id="content_ko_content_4"></div>
+                        <div id="content_ko_content_5"></div>
+                    </div>
+                </div>
+
+                <div id="content_we">
+                    <div id="content_we_title">
+                        <div id="content_we_title_tagname"></div>
+                        <div id="content_we_title_btn"></div>
+                    </div>
+                    <div id="content_we_content">
+                        <div id="content_we_content_1"></div>
+                        <div id="content_we_content_2"></div>
+                        <div id="content_we_content_3"></div>
+                        <div id="content_we_content_4"></div>
+                        <div id="content_we_content_5"></div>
+                    </div>
+                </div>
+
+                <div id="content_ch">
+                    <div id="content_ch_title">
+                        <div id="content_ch_title_tagname"></div>
+                        <div id="content_ch_title_btn"></div>
+                    </div>
+                    <div id="content_ch_content">
+                        <div id="content_ch_content_1"></div>
+                        <div id="content_ch_content_2"></div>
+                        <div id="content_ch_content_3"></div>
+                        <div id="content_ch_content_4"></div>
+                        <div id="content_ch_content_5"></div>
+                    </div>
+                </div>
+
+                <div id="content_ja">
+                    <div id="content_ja_title">
+                        <div id="content_ja_title_tagname"></div>
+                        <div id="content_ja_title_btn"></div>
+                    </div>
+                    <div id="content_ja_content">
+                        <div id="content_ja_content_1"></div>
+                        <div id="content_ja_content_2"></div>
+                        <div id="content_ja_content_3"></div>
+                        <div id="content_ja_content_4"></div>
+                        <div id="content_ja_content_5"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="content_right_slideBtn">
+                <div id="content_right_slideBtn1"></div>
+                <div id="content_right_slideBtn2"></div>
+                <div id="content_right_slideBtn3"></div>
+                <div id="content_right_slideBtn4"></div>
+                <div id="content_right_slideBtn5"></div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="footer_1">
+                <div id="footer_1_1">
+                    <p id="p1">
+                        ㈜ 맛집의 민족  | 사업자 등록번호 : 267-12-11237 | ℡☎ : 02-111-2222 | email : matmin@gmail.com
+                    </p>
+                </div>
+                <div id="footer_1_2">
+                    <p id="p2">
+                        Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
+                    </p>
+                </div>
+            </div>
+            <div id="footer_2">
+                    <svg id="topBtn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
+                        <g>
+                            <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
+                        </g>
+                    </svg>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
