@@ -495,7 +495,7 @@
 	<div class="wrap">
         <div id="header">
             <div id="header_1">
-                <img id="logo" src="../src/resources/logo/투명배경로고.png">
+                <img id="logo" src="resources/logo/투명배경로고.png">
             </div>
 
                 <div id="header_2" class="sc-cmfmEs leAvxd" >
@@ -543,13 +543,13 @@
         <div id="banner">
             <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
             <div id="banner_2">
-                <!-- <img src="../src/resources/money/business-finance_1773444.png" width="50px" height="50px"> -->
-                <!-- <img src="../src/resources/money/money-bag_2396708.png" width="50px" height="50px"> -->
-                <img src="../src/resources/money/wallet_7155311.png" width="70px" height="70px">
-                <!-- <img src="../src/resources/money/dollar_3044876.png" width="50px" height="50px"> -->
+                <!-- <img src="resources/money/business-finance_1773444.png" width="50px" height="50px"> -->
+                <!-- <img src="resources/money/money-bag_2396708.png" width="50px" height="50px"> -->
+                <img src="resources/money/wallet_7155311.png" width="70px" height="70px">
+                <!-- <img src="resources/money/dollar_3044876.png" width="50px" height="50px"> -->
                 
-                <img src="../src/resources/money/funding_11794734.png" width="70px" height="70px">
-                <!-- <img src="../src/resources/money/cash_4418761.png" width="50px" height="50px"> -->
+                <img src="resources/money/funding_11794734.png" width="70px" height="70px">
+                <!-- <img src="resources/money/cash_4418761.png" width="50px" height="50px"> -->
             </div>
             <div id="banner_3">
                 <div id="banner_3_1">
