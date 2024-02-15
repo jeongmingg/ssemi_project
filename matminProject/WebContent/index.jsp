@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
@@ -17,18 +17,20 @@
             display: block;
         }
         .wrap{
-            width: 1800px; height: 1400px; margin: auto;
+            width: 1800px;
+            /* height: 1400px; */
+            margin: auto;
             box-sizing: border-box;
         }
         
 
         /* 전체 구조 비율 */
         .wrap>div{width: 100%;}
-        #header{height: 12%;}
-        #navigator{height: 3%;}
-        #banner{height: 20%;}
-        #content{height: 55%;}
-        #footer{height: 10%;}
+        #header{height: 170px;}
+        #navigator{height: 45px;}
+        #banner{height: 275px;} /* margin-bottom: 20px */
+        #content{height: 1800px;}
+        #footer{height: 120px;}
 
         /* header 비율 */
         #header>div{height: 100%; float: left;}
@@ -46,7 +48,9 @@
         #navigator_1{width: 20%;}
         #navigator_2{
             width: 70%; 
-            padding-left: 80px; padding-right: 80px;}
+            padding-left: 80px;
+            padding-right: 80px;
+        }
         #navigator_3{width: 10%;}
 
         /* banner 비율 */
@@ -56,18 +60,16 @@
         #banner_2{height: 20%;}
         #banner_3{height: 60%;}
         #banner_3>div{height: 100%; width: 20%; float: left;}
-        #banner_3_1>div{width: 100%; height: 50%; float: left;}
-        #banner_3_2>div{width: 100%; height: 50%; float: left;}
-        #banner_3_3>div{width: 100%; height: 50%; float: left;}
-        #banner_3_4>div{width: 100%; height: 50%; float: left;}
-        #banner_3_5>div{width: 100%; height: 50%; float: left;}
-
-
+        #banner_3_1>div{width: 100%; height: 45%; float: left;}
+        #banner_3_2>div{width: 100%; height: 45%; float: left;}
+        #banner_3_3>div{width: 100%; height: 45%; float: left;}
+        #banner_3_4>div{width: 100%; height: 45%; float: left;}
+        #banner_3_5>div{width: 100%; height: 45%; float: left;}
 
         /* content 비율 */
-        #content>div{height: 100%; float: left;}
+        #content>div:not(0){height: 100%; float: left;}
         #content_left_slideBtn{width: 15%;}
-        #content_box{width: 70%;}
+        #content_box{width: 70%; margin: auto;}
         #content_right_slideBtn{width: 15%;}
         
         #content_left_slideBtn>div, #content_right_slideBtn>div{width: 100%; height: 20%; float: left;}
@@ -122,14 +124,19 @@
         /* footer 비율 */
         #footer>div{height: 100%; float: left;}
         #footer_1{width: 90%;}
-        #footer_2{width: 10%;}
+        #footer_2{
+            position: fixed;
+            left: 93%;
+            top: 90%;
+            z-index: 999;
+        }
         
         #footer_1>div{width: 100%; float: left;}
         #footer_1_1{height: 30%;}
         #footer_1_2{height: 70%;}
 
         /* logo 스타일 */
-        #logo{width: 80%; height: 110%;}
+        #logo{width: 80%; height: 140%;}
 
         /* 검색창 스타일 */
         /* 검색창 div id="header_2" class="sc-cmfmEs leAvxd"
@@ -261,14 +268,14 @@
             font-weight: 600;
 
             width: 100%; height: 100%;
-            display: block;
+            /* display: block; */
             line-height: 210px;
             text-align: center;
 
         }
 
-        #header_3{padding-left: 40px;}
-        #header_4{padding-right: 40px;}
+        #header_3{padding-left: 90px;}
+        #header_4{padding-left: 40px;}
 
         /* navigator 스타일 */
         #navi{
@@ -300,7 +307,7 @@
         /* 배너 스타일 */
         #banner{
             background-color: #E4910D;
-            padding-bottom: 5px;
+            /* padding-bottom: 5px; */
             margin-bottom: 20px;
         }
         #banner_1>h1{
@@ -470,26 +477,25 @@
             margin: 0;
             font-size: 15px;
             color: rgb(58, 58, 58);
-            line-height: 1700px;
+            /* line-height: 1700px; */
             padding-left: 100px;
         }
 
         #p2{
             width: 100%; 
-            border: 1px solid white;
             box-sizing: border-box;
             margin: 0;
             font-size: 14px;
             color: rgb(58, 58, 58);
-            line-height: 1300px;
+            /* line-height: 1300px; */
             padding-left: 100px;
         }
         
         #topBtn{
-            padding-top: 850px;
-            padding-left: 200px;
+            /* padding-top: 850px; */
+            /* padding-left: 200px; */
             cursor: pointer;
-
+            position: sticky;
         }
     </style>
 </head>
@@ -689,6 +695,33 @@
             );
         </script>
         <div id="content">
+            <div id="footer_2">
+                <svg id="topBtn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
+                    <g>
+                        <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
+                    </g>
+                </svg>
+    
+                <script>
+                    // 기본 위치(top)값
+                    var floatPosition = parseInt($("#topBtn").css('top'))
+    
+                    // scroll 인식
+                    $(window).scroll(function() {
+                    
+                        // 현재 스크롤 위치
+                        var currentTop = $(window).scrollTop();
+                        var bannerTop = currentTop + floatPosition + "px";
+    
+                        //이동 애니메이션
+                        $("#topBtn").stop().animate({
+                        "top" : bannerTop
+                        }, 500);
+    
+                    }).scroll();
+                </script>
+            </div>
+            
             <div id="content_left_slideBtn">
                 <div id="content_left_slideBtn1"></div>
                 <div id="content_left_slideBtn2"></div>
@@ -741,7 +774,7 @@
                         <div id="content_bestSearch_content_4"></div>
                         <div id="content_bestSearch_content_5"></div> -->
                     <!-- </div> -->
-                <!-- </div> -->
+                </div>
                 
                 <div id="content_ko">
                     <div id="content_ko_title">
@@ -935,6 +968,7 @@
                 <div id="content_right_slideBtn5"></div>
             </div>
         </div>
+        
         <div id="footer">
             <div id="footer_1">
                 <div id="footer_1_1">
@@ -947,13 +981,6 @@
                         Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
                     </p>
                 </div>
-            </div>
-            <div id="footer_2">
-                    <svg id="topBtn" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
-                        <g>
-                            <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
-                        </g>
-                    </svg>
             </div>
         </div>
     </div>
