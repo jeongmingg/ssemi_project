@@ -70,7 +70,6 @@ NOCACHE;
 --------------------------------------------------
 --------------     LOCATION 관련   ------------------   
 --------------------------------------------------
-
 CREATE TABLE LOCATION(
     LOCAL_ID VARCHAR2(20) NOT NULL CONSTRAINT LID_PK PRIMARY KEY,
     LOCAL_NAME VARCHAR2(15) NOT NULL
@@ -94,11 +93,11 @@ CREATE TABLE REST(
     REST_TEL VARCHAR2(20) CONSTRAINT RESTTEL_UQ UNIQUE,
     REST_X NUMBER,
     REST_Y NUMBER,
-    REST_PARKING CHAR(1) CHECK (REST_PARKING IN ('Y','N')),
+    REST_PARKING CHAR(1) DEFAULT 'N' CHECK (REST_PARKING IN ('Y','N')),
     REST_GRADE NUMBER,
     REST_TIME VARCHAR2(20), 
     REST_AVG NUMBER, 
-    REST_STATUS CHAR(1) DEFAULT 'N' NOT NULL, 
+    REST_STATUS CHAR(1) DEFAULT 'Y' NOT NULL, 
     REST_IMG_URL VARCHAR2(2000) NOT NULL,
     CONSTRAINT RLID_FK FOREIGN KEY(REST_LOCAL_ID) REFERENCES LOCATION(LOCAL_ID),
     CONSTRAINT CTGID_FK FOREIGN KEY(CTG_ID) REFERENCES CATEGORY(CTG_ID)
@@ -125,7 +124,7 @@ CREATE SEQUENCE SEQ_RNO NOCACHE;
 ------------------  MENU 관련   ------------------   
 --------------------------------------------------
 CREATE TABLE MENU( 
-    MENU_NO VARCHAR2(2) CONSTRAINT MNNO_PK PRIMARY KEY, 
+    MENU_NO VARCHAR2(20) CONSTRAINT MNNO_PK PRIMARY KEY, 
     REST_NO VARCHAR2(20) NOT NULL,
     MENU_NAME VARCHAR2(50) NOT NULL, 
     MENU_PRICE VARCHAR2(50) NOT NULL, 
@@ -165,17 +164,9 @@ CREATE TABLE ALERT(
     MEM_NO VARCHAR2(20) NOT NULL,
     ALERT_CONTENT VARCHAR2(2000) NOT NULL,
     ALERT_DATE DATE DEFAULT SYSDATE NOT NULL,
-    STATUS CHAR(1) DEFAULT 'N' CHECK (STATUS IN('Y','N')),
+    STATUS CHAR(1) DEFAULT 'N' CHECK (STATUS IN('Y','N')) NOT NULL,
     FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO)
 );
---CREATE TABLE ALERT(
---    ALERT_NO VARCHAR2(20) NOT NULL CONSTRAINT ANO_PK PRIMARY KEY,
---    MEM_NO VARCHAR2(20) NOT NULL,
---    ALERT_CONTENT VARCHAR2(2000) NOT NULL,
---    ALERT_DATE DATE  DEFAULT SYSDATE NOT NULL,
---    STATUS CHAR(1) DEFAULT 'N' CHECK (STATUS IN('Y','N')),
---    CONSTRAINT A_MNO_FK FOREIGN KEY(MEM_NO) REFERENCES MEMBER(MEM_NO)
---);
 
 COMMENT ON COLUMN ALERT.ALERT_NO IS '알림번호 (ex.A1)';
 COMMENT ON COLUMN ALERT.MEM_NO IS '회원번호';
@@ -226,7 +217,6 @@ NOCACHE;
 
 --------------------------------------------------
 ------------------  BOARD 관련   ------------------   
-
 CREATE TABLE BOARD(
     BOARD_NO VARCHAR2(20) CONSTRAINT BNO_PK PRIMARY KEY,
     REST_ID VARCHAR2(20) NOT NULL,
@@ -242,7 +232,7 @@ CREATE TABLE BOARD(
 
 COMMENT ON COLUMN BOARD.BOARD_NO IS '게시글번호 (ex.B1)';
 COMMENT ON COLUMN BOARD.REST_ID IS '식당번호';
-COMMENT ON COLUMN BOARD.BOARD_WRITER IS '작성자';
+COMMENT ON COLUMN BOARD.BOARD_WRITER IS '작성자 (ex.M3)';
 COMMENT ON COLUMN BOARD.BOARD_TYPE IS '게시글유형 (등록요청:I, 삭제요청:D)';
 COMMENT ON COLUMN BOARD.BOARD_TITLE IS '게시글제목';
 COMMENT ON COLUMN BOARD.BOARD_CONT IS '게시글내용';
@@ -257,7 +247,7 @@ CREATE SEQUENCE SEQ_BNO NOCACHE;
 CREATE TABLE BOARD_COMMENT(
     COM_NO VARCHAR2(20) CONSTRAINT BCNO_PK PRIMARY KEY, 
     BOARD_NO VARCHAR2(20) NOT NULL UNIQUE,
-    COM_WRITER VARCHAR2(20) NOT NULL,
+    COM_WRITER VARCHAR2(20) DEFAULT 'M1' NOT NULL,
     COM_CONT VARCHAR2(500) NOT NULL,
     COM_DATE DATE DEFAULT SYSDATE NOT NULL,
     CONSTRAINT BC_MNO_FK FOREIGN KEY (COM_WRITER) REFERENCES MEMBER(MEM_NO),
@@ -275,24 +265,14 @@ CREATE SEQUENCE SEQ_BCNO NOCACHE;
 --------------------------------------------------
 ------------------  IMG_FILE관련   ------------------   
 --------------------------------------------------
---CREATE TABLE IMG_FILE(
---    IMG_FILE_NO VARCHAR2(20) CONSTRAINT FNO_PK PRIMARY KEY,
---    REF_NO NUMBER NOT NULL,
---    IMG_ORIGIN_NAME VARCHAR2(255),
---    IMG_CHANGE_NAME VARCHAR2(255),
---    IMG_FILE_PATH VARCHAR2(1000) NOT NULL,
---    UPLOAD_DATE DATE DEFAULT SYSDATE NOT NULL,
---    IMG_STATUS VARCHAR2(10) NOT NULL
---);
-
 CREATE TABLE IMG_FILE(
     IMG_FILE_NO VARCHAR2(20) PRIMARY KEY,
-    REF_NO NUMBER NOT NULL,
+    REF_NO VARCHAR2(20) NOT NULL,
     IMG_ORIGIN_NAME VARCHAR2(255),
     IMG_CHANGE_NAME VARCHAR2(255),
     IMG_FILE_PATH VARCHAR2(1000) NOT NULL,
     UPLOAD_DATE DATE DEFAULT SYSDATE NOT NULL,
-    IMG_STATUS VARCHAR2(10) NOT NULL
+    IMG_STATUS VARCHAR2(10) DEFAULT 'Y' CHECK (IMG_STATUS IN('Y', 'N')) NOT NULL
 );
 
 COMMENT ON COLUMN IMG_FILE.IMG_FILE_NO IS '파일번호(ex.F1)';
@@ -305,5 +285,207 @@ COMMENT ON COLUMN IMG_FILE.IMG_STATUS IS '파일상태';
 
 CREATE SEQUENCE SEQ_FNO
 NOCACHE;
+
+------------------------------------------------------
+-- MEMBER TABLE INSERT
+------------------------------------------------------
+INSERT INTO MEMBER
+VALUES('M'||SEQ_MNO.NEXTVAL, 'admin', 'admin', '관리자', 'admin', 'admin@naver.com', NULL, DEFAULT, DEFAULT, 'A', DEFAULT);
+
+INSERT INTO MEMBER
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user01', 'pass01', '노정민', 'njm', 'njm@naver.com', '서울시 강남구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO MEMBER
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user02', 'pass02', '김도현', 'kdh', 'kdh@gmail.com', NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO MEMBER
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user03', 'pass03', '신나리', 'snr', 'snr@daum.net', '서울시 영등포구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO MEMBER
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user04', 'pass04', '남지혜', 'njh', 'njh@jj.ac.kr', '서울시 관악구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+
+------------------------------------------------------
+-- CATEGORY TABLE INSERT
+------------------------------------------------------
+INSERT INTO CATEGORY (CTG_ID, CTG_NAME)
+VALUES ('C'||SEQ_CNO.NEXTVAL, '한식');
+
+INSERT INTO CATEGORY (CTG_ID, CTG_NAME)
+VALUES ('C'||SEQ_CNO.NEXTVAL, '일식');
+
+INSERT INTO CATEGORY (CTG_ID, CTG_NAME)
+VALUES ('C'||SEQ_CNO.NEXTVAL, '중식');
+
+INSERT INTO CATEGORY (CTG_ID, CTG_NAME)
+VALUES ('C'||SEQ_CNO.NEXTVAL, '양식');
+
+INSERT INTO CATEGORY (CTG_ID, CTG_NAME)
+VALUES ('C'||SEQ_CNO.NEXTVAL, '인기맛집');
+
+------------------------------------------------------
+-- LOCATION TABLE INSERT
+------------------------------------------------------
+INSERT INTO LOCATION (LOCAL_ID, LOCAL_NAME)
+VALUES ('L'||SEQ_LNO.NEXTVAL, '강남구');
+
+INSERT INTO LOCATION (LOCAL_ID, LOCAL_NAME)
+VALUES ('L'||SEQ_LNO.NEXTVAL, '강동구');
+
+INSERT INTO LOCATION (LOCAL_ID, LOCAL_NAME)
+VALUES ('L'||SEQ_LNO.NEXTVAL, '강북구');
+
+INSERT INTO LOCATION (LOCAL_ID, LOCAL_NAME)
+VALUES ('L'||SEQ_LNO.NEXTVAL, '강서구');
+
+INSERT INTO LOCATION (LOCAL_ID, LOCAL_NAME)
+VALUES ('L'||SEQ_LNO.NEXTVAL, '관악구');
+
+------------------------------------------------------
+-- REST TABLE INSERT
+------------------------------------------------------
+INSERT INTO REST
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L1', '역삼갈비', 'C1', '서울시 강남구 강남대로 64번길 15',
+        '02-111-1111', 35.11122, 48.22333, DEFAULT, 2, '12:00~22:00',
+        4.1, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg');
+
+INSERT INTO REST
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L2', '나이스샤워', 'C2', '서울시 강북구 강북대로 11길 78',
+        '02-222-2222', 38.78512, 40.15781, DEFAULT, 3, '12:00~21:00',
+        4.6, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg');
+        
+INSERT INTO REST
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L3', '노원김밥', 'C3', '서울시 노원구 노원대로 77번길 20',
+        '02-333-3333', 11.44521, 22.27843, DEFAULT, 1, '09:00~20:00',
+        2.2, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg');
+        
+INSERT INTO REST
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L4', '마포갈매기', 'C4', '서울시 마포구 마포대로 12번길 13',
+        '02-444-4444', 17.75122, 48.23557, 'Y', 3, '16:00~24:00',
+        4.8, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg');
+        
+INSERT INTO REST
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L5', '삼원명가', 'C5', '서울시 성북구 성북대로 44번길 10',
+        '02-555-5555', 25.96335, 31.27893, 'Y', 2, '11:00~20:00',
+        3.4, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg');
+
+------------------------------------------------------
+-- MENU TABLE INSERT
+------------------------------------------------------
+INSERT INTO MENU
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R1', '돼지갈비', 18000, 'Y');
+
+INSERT INTO MENU
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R2', '에비텐동', 15000, DEFAULT);
+
+INSERT INTO MENU
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R3', '참치김밥', 4000, DEFAULT);
+
+INSERT INTO MENU
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R4', '마포갈매기', 17000, 'Y');
+
+INSERT INTO MENU
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R5', '제육뚝배기', 9000, 'Y');
+
+------------------------------------------------------
+-- HEART TABLE INSERT
+------------------------------------------------------
+INSERT INTO HEART
+VALUES('R1', 'M2', SYSDATE);
+
+INSERT INTO HEART
+VALUES('R1', 'M3', SYSDATE);
+
+INSERT INTO HEART
+VALUES('R2', 'M2', SYSDATE);
+
+INSERT INTO HEART
+VALUES('R3', 'M4', SYSDATE);
+
+INSERT INTO HEART
+VALUES('R5', 'M5', SYSDATE);
+
+------------------------------------------------------
+-- ALERT TABLE INSERT
+------------------------------------------------------
+INSERT INTO ALERT (ALERT_NO, MEM_NO,ALERT_CONTENT,ALERT_DATE,STATUS)
+VALUES ('A'||SEQ_ANO.NEXTVAL,'M2','첫번째 경고입니다',SYSDATE,DEFAULT);
+
+INSERT INTO ALERT (ALERT_NO, MEM_NO,ALERT_CONTENT,ALERT_DATE,STATUS)
+VALUES ('A'||SEQ_ANO.NEXTVAL,'M2','회원님명으로 신고가 들어왔습니다',SYSDATE,DEFAULT);
+
+INSERT INTO ALERT (ALERT_NO, MEM_NO,ALERT_CONTENT,ALERT_DATE,STATUS)
+VALUES ('A'||SEQ_ANO.NEXTVAL,'M3','두번째 경고입니다',SYSDATE,DEFAULT);
+
+INSERT INTO ALERT (ALERT_NO, MEM_NO,ALERT_CONTENT,ALERT_DATE,STATUS)
+VALUES ('A'||SEQ_ANO.NEXTVAL,'M4','세번째 경고입니다',SYSDATE,DEFAULT);
+
+INSERT INTO ALERT (ALERT_NO, MEM_NO,ALERT_CONTENT,ALERT_DATE,STATUS)
+VALUES ('A'||SEQ_ANO.NEXTVAL,'M5','첫번째 경고입니다',SYSDATE,DEFAULT);
+
+------------------------------------------------------
+-- REVIEW TABLE INSERT
+------------------------------------------------------
+INSERT INTO REVIEW
+VALUES('RV'||SEQ_RVNO.NEXTVAL, 'R1', 'M2', '맛있어요맛있어', SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT, 4.5, 5, 4, DEFAULT);
+
+INSERT INTO REVIEW
+VALUES('RV'||SEQ_RVNO.NEXTVAL, 'R2', 'M2', '맛있다', SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT, 4.5, 5, 4, DEFAULT);
+
+INSERT INTO REVIEW
+VALUES('RV'||SEQ_RVNO.NEXTVAL, 'R2', 'M3', '오~굿', SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT, 2.5, 2, 1, DEFAULT);
+
+INSERT INTO REVIEW
+VALUES('RV'||SEQ_RVNO.NEXTVAL, 'R3', 'M5', '배고파', SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT, 2.5, 2, 1, DEFAULT);
+
+INSERT INTO REVIEW
+VALUES('RV'||SEQ_RVNO.NEXTVAL, 'R4', 'M4', '가성비 굿', SYSDATE, SYSDATE, DEFAULT, DEFAULT, DEFAULT, 2.5, 2, 1, DEFAULT);
+
+------------------------------------------------------
+-- BOARD TABLE INSERT
+------------------------------------------------------
+INSERT INTO BOARD 
+VALUES('B'||SEQ_BNO.NEXTVAL, 'R1', 'M1', DEFAULT, '맛집 등록 요청합니다', '강남역 멧돌순두부 식당 등록요청합니다~', DEFAULT, DEFAULT);
+INSERT INTO BOARD 
+VALUES('B'||SEQ_BNO.NEXTVAL, 'R2', 'M3', DEFAULT, '맛집 등록 요청합니다', '칠보칼국수 식당 등록요청해주세요 맛나요!', DEFAULT, DEFAULT);
+INSERT INTO BOARD 
+VALUES('B'||SEQ_BNO.NEXTVAL, 'R5', 'M2', 'D', '맛집 삭제 요청합니다', '역삼역 맥도날드 기계고장나서 폐업했습니다 삭제해주세요', DEFAULT, 'N');
+INSERT INTO BOARD 
+VALUES('B'||SEQ_BNO.NEXTVAL, 'R3', 'M5', DEFAULT, '맛집 등록 요청합니다', '선릉역 바게트케이 새로 개업했습니다 등록 부탁드려요', DEFAULT, DEFAULT);
+INSERT INTO BOARD 
+VALUES('B'||SEQ_BNO.NEXTVAL, 'R4', 'M4', 'D', '맛집 삭제 요청합니다', '요술포차 강남역 사라졌어요 이제 어디가서 술먹죠', DEFAULT, 'N');
+
+------------------------------------------------------
+-- BOARD_COMMENT TABLE INSERT
+------------------------------------------------------
+
+INSERT INTO BOARD_COMMENT
+VALUES('BC'||SEQ_BCNO.NEXTVAL, 'B1', 'M1', '감사합니다 요청하신 식당이 등록됐습니다!', DEFAULT);
+INSERT INTO BOARD_COMMENT
+VALUES('BC'||SEQ_BCNO.NEXTVAL, 'B2', 'M1', '감사합니다 요청하신 식당이 등록됐습니다!', DEFAULT);
+INSERT INTO BOARD_COMMENT
+VALUES('BC'||SEQ_BCNO.NEXTVAL, 'B3', 'M1', '감사합니다 요청하신 식당이 삭제됐습니다.', '2024-02-17');
+INSERT INTO BOARD_COMMENT
+VALUES('BC'||SEQ_BCNO.NEXTVAL, 'B4', 'M1', '감사합니다 요청하신 식당이 등록됐습니다!', '2024-02-17');
+INSERT INTO BOARD_COMMENT
+VALUES('BC'||SEQ_BCNO.NEXTVAL, 'B5', 'M1', '감사합니다 요청하신 식당이 삭제됐습니다.', '2024-02-18');
+
+------------------------------------------------------
+-- IMG_FILE TABLE INSERT
+------------------------------------------------------
+INSERT INTO IMG_FILE
+VALUES('F'||SEQ_FNO.NEXTVAL, 'B1', '파일원본명1', '파일수정명1', '파일저장경로1', SYSDATE, 'Y');
+
+INSERT INTO IMG_FILE
+VALUES('F'||SEQ_FNO.NEXTVAL, 'B2', '파일원본명2', '파일수정명2', '파일저장경로2', SYSDATE, 'Y');
+
+INSERT INTO IMG_FILE
+VALUES('F'||SEQ_FNO.NEXTVAL, 'RV1', '파일원본명3', '파일수정명3', '파일저장경로3', SYSDATE, 'Y');
+
+INSERT INTO IMG_FILE
+VALUES('F'||SEQ_FNO.NEXTVAL, 'RV2', '파일원본명4', '파일수정명4', '파일저장경로4', SYSDATE, 'Y');
+
+INSERT INTO IMG_FILE
+VALUES('F'||SEQ_FNO.NEXTVAL, 'M2', '파일원본명5', '파일수정명5', '파일저장경로5', SYSDATE, 'Y');
+
 
 COMMIT;
