@@ -18,7 +18,6 @@
         }
         .wrap{
             width: 1800px;
-            /* height: 1400px; */
             margin: auto;
             box-sizing: border-box;
         }
@@ -29,7 +28,7 @@
         #header{height: 170px;}
         #navigator{height: 45px;}
         #banner{height: 275px;} /* margin-bottom: 20px */
-        #content{height: 1800px;}
+        #content{height: 1600px;}
         #footer{height: 120px;}
 
         /* header 비율 */
@@ -38,7 +37,8 @@
         #header_2{width: 56%;}
         #header_3{width: 8%;}
         #header_4{width: 8%;}
-        #header_5{width: 8%; padding-top: 50px; 
+        #header_5{
+            width: 8%; padding-top: 50px; 
             display: flex;
             justify-content: center;
             align-items: center;}
@@ -68,12 +68,9 @@
 
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
-        #content_left_slideBtn{width: 15%;}
+        /* #content_left{width: 15%;} */
         #content_box{width: 70%; margin: auto;}
-        #content_right_slideBtn{width: 15%;}
-        
-        #content_left_slideBtn>div, #content_right_slideBtn>div{width: 100%; height: 20%; float: left;}
-        /* #content_box>div{width: 100%; height: 20%; float: left;} */
+        /* #content_right{width: 15%;} */
 
         #content_bestSearch>div{width: 100%; float: left;}
         #content_bestSearch_title{height: 15%;}
@@ -115,15 +112,15 @@
         #content_ja_title_tagname{width: 85%;}
         #content_ja_title_btn{width: 15%;}
 
-        #content_bestSearch_content>div{height: 100%; width: 20%; float: left;}
+        /* #content_bestSearch_content>div{height: 100%; width: 20%; float: left;}
         #content_ko_content>div{height: 100%; width: 20%; float: left;}
         #content_we_content>div{height: 100%; width: 20%; float: left;}
         #content_ch_content>div{height: 100%; width: 20%; float: left;}
-        #content_ja_content>div{height: 100%; width: 20%; float: left;}
+        #content_ja_content>div{height: 100%; width: 20%; float: left;} */
 
         /* footer 비율 */
         #footer>div{height: 100%; float: left;}
-        #footer_1{width: 90%;}
+        #footer_1{width: 100%;}
         #topBtn{
             position: fixed;
             left: 93%;
@@ -132,8 +129,8 @@
         }
         
         #footer_1>div{width: 100%; float: left;}
-        #footer_1_1{height: 30%;}
-        #footer_1_2{height: 70%;}
+        #footer_1_1{height: 20%;}
+        #footer_1_2{height: 40%;}
 
         /* logo 스타일 */
         #logo{width: 80%; height: 140%;}
@@ -477,7 +474,6 @@
             margin: 0;
             font-size: 15px;
             color: rgb(58, 58, 58);
-            /* line-height: 1700px; */
             padding-left: 100px;
         }
 
@@ -487,7 +483,6 @@
             margin: 0;
             font-size: 14px;
             color: rgb(58, 58, 58);
-            /* line-height: 1300px; */
             padding-left: 100px;
         }
         
@@ -551,13 +546,8 @@
         <div id="banner">
             <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
             <div id="banner_2">
-                <!-- <img src="resources/money/business-finance_1773444.png" width="50px" height="50px"> -->
-                <!-- <img src="resources/money/money-bag_2396708.png" width="50px" height="50px"> -->
                 <img src="resources/money/wallet_7155311.png" width="70px" height="70px">
-                <!-- <img src="resources/money/dollar_3044876.png" width="50px" height="50px"> -->
-                
                 <img src="resources/money/funding_11794734.png" width="70px" height="70px">
-                <!-- <img src="resources/money/cash_4418761.png" width="50px" height="50px"> -->
             </div>
             <div id="banner_3">
                 <div id="banner_3_1">
@@ -703,12 +693,7 @@
                 </svg>
             </div>
             
-            <div id="content_left_slideBtn">
-                <div id="content_left_slideBtn1"></div>
-                <div id="content_left_slideBtn2"></div>
-                <div id="content_left_slideBtn3"></div>
-                <div id="content_left_slideBtn4"></div>
-                <div id="content_left_slideBtn5"></div>
+            <div id="content_left">
             </div>
             <div id="content_box">
                 <div id="content_bestSearch">
@@ -725,7 +710,7 @@
                             <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
+                            <div class="swiper-slide"> <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
                             <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
                             <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
                             <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
@@ -749,12 +734,6 @@
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                     </div>
-                        
-                        <!-- <div id="content_bestSearch_content_2"></div>
-                        <div id="content_bestSearch_content_3"></div>
-                        <div id="content_bestSearch_content_4"></div>
-                        <div id="content_bestSearch_content_5"></div> -->
-                    <!-- </div> -->
                 </div>
                 
                 <div id="content_ko">
@@ -792,15 +771,6 @@
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                         </div>
-                    
-                    <!-- <div id="content_ko_content">
-                        <div id="content_ko_content_1"></div>
-                        <div id="content_ko_content_2"></div>
-                        <div id="content_ko_content_3"></div>
-                        <div id="content_ko_content_4"></div>
-                        <div id="content_ko_content_5"></div>
-                    </div> -->
-                  
                 </div>
 
                 <div id="content_we">
@@ -840,13 +810,6 @@
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                         </div>
-                    <!-- <div id="content_we_content">
-                        <div id="content_we_content_1"></div>
-                        <div id="content_we_content_2"></div>
-                        <div id="content_we_content_3"></div>
-                        <div id="content_we_content_4"></div>
-                        <div id="content_we_content_5"></div>
-                    </div> -->
                 </div>
 
                 <div id="content_ch">
@@ -886,13 +849,6 @@
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                         </div>
-                    <!-- <div id="content_ch_content">
-                        <div id="content_ch_content_1"></div>
-                        <div id="content_ch_content_2"></div>
-                        <div id="content_ch_content_3"></div>
-                        <div id="content_ch_content_4"></div>
-                        <div id="content_ch_content_5"></div>
-                    </div> -->
                 </div>
 
                 <div id="content_ja">
@@ -932,21 +888,9 @@
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                         </div>
-                    <!-- <div id="content_ja_content">
-                        <div id="content_ja_content_1"></div>
-                        <div id="content_ja_content_2"></div>
-                        <div id="content_ja_content_3"></div>
-                        <div id="content_ja_content_4"></div>
-                        <div id="content_ja_content_5"></div>
-                    </div> -->
                 </div>
             </div>
-            <div id="content_right_slideBtn">
-                <div id="content_right_slideBtn1"></div>
-                <div id="content_right_slideBtn2"></div>
-                <div id="content_right_slideBtn3"></div>
-                <div id="content_right_slideBtn4"></div>
-                <div id="content_right_slideBtn5"></div>
+            <div id="content_right">
             </div>
         </div>
         
@@ -968,8 +912,8 @@
     <script>
         new Swiper('.swiper-container', {
 
-            slidesPerView : 4, // 동시에 보여줄 슬라이드 갯수
-            spaceBetween : 20, // 슬라이드간 간격
+            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
+            spaceBetween : 10, // 슬라이드간 간격
             slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
         
             // 그룹수가 맞지 않을 경우 빈칸으로 메우기
