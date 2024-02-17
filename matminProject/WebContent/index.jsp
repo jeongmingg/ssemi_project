@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
+        
         div{
             box-sizing: border-box;
             /* border: 1px solid red; */
@@ -22,7 +22,6 @@
             box-sizing: border-box;
         }
         
-
         /* 전체 구조 비율 */
         .wrap>div{width: 100%;}
         #header{height: 170px;}
@@ -42,7 +41,145 @@
             display: flex;
             justify-content: center;
             align-items: center;}
-
+		
+		/* header 스타일 - 로고, 검색창, 로그인, 회원가입, 최근본식당 */
+			/* logo 스타일 */
+	        #logo{width: 80%; height: 140%;}
+	
+	        /* 검색창 스타일 */
+	        /* 검색창 div id="header_2" class="sc-cmfmEs leAvxd"
+	            그안에 div class="sc-UFtxY OqZgF Input__Wrap" */
+	        /* input 클래스 : sc-hnmMDg bccLDB Search__Input */
+	        /* button 클래스 : sc-jPQLIr gZgnOG search */
+	        .leAvxd {  
+	                    padding-left: 300px;
+	                    padding-top: 80px;  
+	                    min-width: 430px;
+	                }
+	
+	        .OqZgF {
+	                border: 2px solid #E4910D;
+	                position: relative;
+	                box-sizing: border-box;
+	                display: grid;
+	                grid-auto-flow: column;
+	                grid-auto-columns: auto 18px 22px;
+	                gap: 20px;
+	                -webkit-box-align: center;
+	                align-items: center;
+	                width: 100%;
+	                max-width: 506px;
+	                min-width: 430px;
+	                height: 42px;
+	                padding-right: 20px;
+	                border-radius: 21px;
+	                background-color: rgb(245, 245, 245); 
+	            }
+	
+	        .bccLDB {
+	            display: block;
+	            max-width: 72.5%;
+	            width: 100%;
+	            height: 30px;
+	            margin-left: 24px;
+	            padding: 0px 0px 2px;
+	            background-color: transparent;
+	            outline: transparent;
+	            border: transparent;
+	            font-size: 0.9375rem;
+	            line-height: 1.3125rem;
+	            letter-spacing: -0.0469rem;
+	            color: rgb(32, 32, 32);
+	            padding-top: 6px;
+	        }
+	
+	        input {
+	                text-rendering: auto;
+	                color: fieldtext;
+	                letter-spacing: normal;
+	                word-spacing: normal;
+	                line-height: normal;
+	                text-transform: none;
+	                text-indent: 0px;
+	                text-shadow: none;
+	                display: inline-block;
+	                text-align: start;
+	                appearance: auto;
+	                -webkit-rtl-ordering: logical;
+	                cursor: text;
+	                background-color: field;
+	                margin: 0em;
+	                padding: 1px 0px;
+	                border-width: 2px;
+	                border-style: inset;
+	                border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+	                border-image: initial;
+	                padding-block: 1px;
+	                padding-inline: 2px;
+	            }
+	
+	        /* 검색버튼 */
+	        .gZgnOG {
+	                    width: 22px;
+	                    height: 22px;
+	                    background-image: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/web/react_components/SearchQueryInput/search.png);
+	                    background-size: 100%;
+	                }
+	                
+	        * {
+	            letter-spacing: -.0437rem;
+	            outline: none;
+	        }
+	        
+	        button {
+	                background-color: transparent;
+	                border: transparent;
+	                cursor: pointer;
+	            }
+	
+	        /* button {
+	                appearance: auto;
+	                text-rendering: auto;
+	                color: buttontext;
+	                letter-spacing: normal;
+	                word-spacing: normal;
+	                line-height: normal;
+	                text-transform: none;
+	                text-indent: 0px;
+	                text-shadow: none;
+	                display: inline-block;
+	                text-align: center;
+	                align-items: flex-start;
+	                cursor: default;
+	                box-sizing: border-box;
+	                background-color: buttonface;
+	                margin: 0em;
+	                padding-block: 1px;
+	                padding-inline: 6px;
+	                border-width: 2px;
+	                border-style: outset;
+	                border-color: buttonborder;
+	                border-image: initial;
+	            } */
+	         
+	        /* 로그인, 회원가입 버튼 스타일 */
+	
+	        #header a{
+	            text-decoration: none;
+	            color: rgb(150, 150, 150);
+	            font-size: 18px;
+	            font-weight: 600;
+	
+	            width: 100%; height: 100%;
+	            /* display: block; */
+	            line-height: 210px;
+	            text-align: center;
+	
+	        }
+	
+	        #header_3{padding-left: 90px;}
+	        #header_4{padding-left: 40px;}
+			
         /* navigator 비율 */
         #navigator>div{height: 100%; float: left;}
         #navigator_1{width: 20%;}
@@ -52,6 +189,33 @@
             padding-right: 80px;
         }
         #navigator_3{width: 10%;}
+        
+        /* navigator 스타일 */
+	        #navi{
+	            list-style-type: none;
+	            padding: 0;
+	            margin: 0;
+	            height: 100%;
+	        }
+	
+	        #navi>li{
+	            float: left;
+	            width: 33%;
+	            height: 100%;
+	            text-align: center;
+	        }
+	
+	        #navi a{
+	            text-decoration: none;
+	            color: rgb(150, 150, 150);
+	            font-size: 18px;
+	            font-weight: 600;
+	
+	            width: 100%;
+	            height: 100%;
+	            display: block;
+	            line-height: 40px;
+	        }
 
         /* banner 비율 */
 
@@ -65,6 +229,43 @@
         #banner_3_3>div{width: 100%; height: 45%; float: left;}
         #banner_3_4>div{width: 100%; height: 45%; float: left;}
         #banner_3_5>div{width: 100%; height: 45%; float: left;}
+
+		/* 배너 스타일 */
+        #banner{
+            background-color: #E4910D;
+            /* padding-bottom: 5px; */
+            margin-bottom: 20px;
+        }
+        #banner_1>h1{
+            text-align: center;
+            color: white;
+            line-height: 15px;
+        }
+
+        #banner_2{
+            padding-left: 830px;
+            padding-top: 5px;
+        }
+        #banner_3>div{
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        #banner_3_1{padding-left: 200px;}
+        #banner_3_2{padding-left: 100px; padding-right: 50px;}
+        #banner_3_3{padding-left: 80px; padding-right: 80px;}
+        #banner_3_4{padding-right: 100px;}
+        #banner_3_5{padding-right: 200px;}
+
+        #banner_3 button {
+            background-color: white;
+            color: #E4910D;
+            border-radius: 20px;
+            font-weight: 1000;
+            width: 100px;
+            height: 50px;
+            
+        }
 
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
@@ -112,12 +313,59 @@
         #content_ja_title_tagname{width: 85%;}
         #content_ja_title_btn{width: 15%;}
 
-        /* #content_bestSearch_content>div{height: 100%; width: 20%; float: left;}
-        #content_ko_content>div{height: 100%; width: 20%; float: left;}
-        #content_we_content>div{height: 100%; width: 20%; float: left;}
-        #content_ch_content>div{height: 100%; width: 20%; float: left;}
-        #content_ja_content>div{height: 100%; width: 20%; float: left;} */
+		/* content 스타일 */
+        	/* 태그 이름 스타일 */
+	        #content_bestSearch_title_tagname, #content_ko_title_tagname, #content_we_title_tagname,
+	        #content_ch_title_tagname, #content_ja_title_tagname
+	        {
+	            color: #E4910D;
+	            font-size: 14px;
+	            font-weight: 600;
+	            padding-left: 20px;
+	        }
+		
+			/* 더보기 버튼 스타일 */
+			
+	        #bestSearchBtn, #koBtn, #weBtn, #chBtn, #jaBtn{
+	            background-color: #E4910D;
+	            border: none;
+	            color: white;
+	            border-radius: 8px;
+	        }
+	        
+	        #content_bestSearch_title_btn, #content_ko_title_btn, #content_we_title_btn,
+	        #content_ch_title_btn, #content_ja_title_btn
+	        {
+	            padding-left: 120px;
+	            line-height: 15px;
+	        }
+	      
+	      	/* 슬라이더 스타일 */
 
+	        .swiper-container {
+	            height:250px;
+	            border:2px solid silver;
+	            border-radius:7px;
+	            margin-top: 20px;
+	            margin-bottom: 20px;
+	            /* box-shadow:0 0 20px #ccc inset; */
+	            
+	        }
+	        .swiper-slide {
+	            text-align:center;
+	            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	            align-items:center; /* 위아래 기준 중앙정렬 */
+	            justify-content:center; /* 좌우 기준 중앙정렬 */
+	        }
+	        .swiper-slide img {
+	            /* box-shadow:0 0 5px #555; */
+	            /*max-width:100%; 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+	            width: 100%;
+	            height: 100%;
+	            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+	            border-radius: 10px;
+	        }
+			
         /* footer 비율 */
         #footer>div{height: 100%; float: left;}
         #footer_1{width: 100%;}
@@ -132,342 +380,7 @@
         #footer_1_1{height: 20%;}
         #footer_1_2{height: 40%;}
 
-        /* logo 스타일 */
-        #logo{width: 80%; height: 140%;}
-
-        /* 검색창 스타일 */
-        /* 검색창 div id="header_2" class="sc-cmfmEs leAvxd"
-            그안에 div class="sc-UFtxY OqZgF Input__Wrap" */
-
-        /* input 클래스 : sc-hnmMDg bccLDB Search__Input */
-        /* button 클래스 : sc-jPQLIr gZgnOG search */
-        .leAvxd {  
-                    padding-left: 300px;
-                    padding-top: 80px;  
-                    min-width: 430px;
-                }
-
-        .OqZgF {
-                border: 2px solid #E4910D;
-                position: relative;
-                box-sizing: border-box;
-                display: grid;
-                grid-auto-flow: column;
-                grid-auto-columns: auto 18px 22px;
-                gap: 20px;
-                -webkit-box-align: center;
-                align-items: center;
-                width: 100%;
-                max-width: 506px;
-                min-width: 430px;
-                height: 42px;
-                padding-right: 20px;
-                border-radius: 21px;
-                background-color: rgb(245, 245, 245);
-                
-            }
-
-        .bccLDB {
-            display: block;
-            max-width: 72.5%;
-            width: 100%;
-            height: 30px;
-            margin-left: 24px;
-            padding: 0px 0px 2px;
-            background-color: transparent;
-            outline: transparent;
-            border: transparent;
-            font-size: 0.9375rem;
-            line-height: 1.3125rem;
-            letter-spacing: -0.0469rem;
-            color: rgb(32, 32, 32);
-            padding-top: 6px;
-        }
-
-        input {
-                text-rendering: auto;
-                color: fieldtext;
-                letter-spacing: normal;
-                word-spacing: normal;
-                line-height: normal;
-                text-transform: none;
-                text-indent: 0px;
-                text-shadow: none;
-                display: inline-block;
-                text-align: start;
-                appearance: auto;
-                -webkit-rtl-ordering: logical;
-                cursor: text;
-                background-color: field;
-                margin: 0em;
-                padding: 1px 0px;
-                border-width: 2px;
-                border-style: inset;
-                border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-                border-image: initial;
-                padding-block: 1px;
-                padding-inline: 2px;
-            }
-
-        /* 검색버튼 */
-        .gZgnOG {
-                    width: 22px;
-                    height: 22px;
-                    background-image: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/web/react_components/SearchQueryInput/search.png);
-                    background-size: 100%;
-                }
-
-        * {
-            letter-spacing: -.0437rem;
-            outline: none;
-        }
-        
-        button {
-                background-color: transparent;
-                border: transparent;
-                cursor: pointer;
-            }
-
-        /* button {
-                appearance: auto;
-                text-rendering: auto;
-                color: buttontext;
-                letter-spacing: normal;
-                word-spacing: normal;
-                line-height: normal;
-                text-transform: none;
-                text-indent: 0px;
-                text-shadow: none;
-                display: inline-block;
-                text-align: center;
-                align-items: flex-start;
-                cursor: default;
-                box-sizing: border-box;
-                background-color: buttonface;
-                margin: 0em;
-                padding-block: 1px;
-                padding-inline: 6px;
-                border-width: 2px;
-                border-style: outset;
-                border-color: buttonborder;
-                border-image: initial;
-            } */
-                            
-
-
-
-        /* 로그인, 회원가입 버튼 스타일 */
-
-        #header a{
-            text-decoration: none;
-            color: rgb(150, 150, 150);
-            font-size: 18px;
-            font-weight: 600;
-
-            width: 100%; height: 100%;
-            /* display: block; */
-            line-height: 210px;
-            text-align: center;
-
-        }
-
-        #header_3{padding-left: 90px;}
-        #header_4{padding-left: 40px;}
-
-        /* navigator 스타일 */
-        #navi{
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            height: 100%;
-        }
-
-        #navi>li{
-            float: left;
-            width: 33%;
-            height: 100%;
-            text-align: center;
-        }
-
-        #navi a{
-            text-decoration: none;
-            color: rgb(150, 150, 150);
-            font-size: 18px;
-            font-weight: 600;
-
-            width: 100%;
-            height: 100%;
-            display: block;
-            line-height: 40px;
-        }
-
-        /* 배너 스타일 */
-        #banner{
-            background-color: #E4910D;
-            /* padding-bottom: 5px; */
-            margin-bottom: 20px;
-        }
-        #banner_1>h1{
-            text-align: center;
-            color: white;
-            line-height: 15px;
-        }
-
-        #banner_2{
-            padding-left: 830px;
-            padding-top: 5px;
-        }
-        #banner_3>div{
-            text-align: center;
-            padding-top: 30px;
-        }
-
-        #banner_3_1{padding-left: 200px;}
-        #banner_3_2{padding-left: 100px; padding-right: 50px;}
-        #banner_3_3{padding-left: 80px; padding-right: 80px;}
-        #banner_3_4{padding-right: 100px;}
-        #banner_3_5{padding-right: 200px;}
-
-        #banner_3 button {
-            background-color: white;
-            color: #E4910D;
-            border-radius: 20px;
-            font-weight: 1000;
-            width: 100px;
-            height: 50px;
-            
-        }
-
-        /* content 스타일 */
-        /* 인기 맛집 스타일 */
-        #content_bestSearch_title_tagname{
-            color: #E4910D;
-            font-size: 14px;
-            font-weight: 600;
-            padding-left: 20px;
-        }
-
-        #bestSearchBtn{
-            background-color: #E4910D;
-            border: none;
-            color: white;
-            border-radius: 8px;
-        }
-        #content_bestSearch_title_btn{
-            padding-left: 120px;
-            line-height: 15px;
-        }
-
-        .swiper-container{
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        /* 한식 스타일 */
-        #content_ko_title_tagname{
-            color: #E4910D;
-            font-size: 14px;
-            font-weight: 600;
-            padding-left: 20px;
-        }
-
-        #koBtn{
-            background-color: #E4910D;
-            border: none;
-            color: white;
-            border-radius: 8px;
-        }
-
-        #content_ko_title_btn{
-            padding-left: 120px;
-            line-height: 15px;
-        }
-
-        /* 양식 스타일 */
-        #content_we_title_tagname{
-            color: #E4910D;
-            font-size: 14px;
-            font-weight: 600;
-            padding-left: 20px;
-        }
-
-        #weBtn{
-            background-color: #E4910D;
-            border: none;
-            color: white;
-            border-radius: 8px;
-        }
-
-        #content_we_title_btn{
-            padding-left: 120px;
-            line-height: 15px;
-        }
-
-        /* 중식 스타일 */
-        #content_ch_title_tagname{
-            color: #E4910D;
-            font-size: 14px;
-            font-weight: 600;
-            padding-left: 20px;
-        }
-
-        #chBtn{
-            background-color: #E4910D;
-            border: none;
-            color: white;
-            border-radius: 8px;
-        }
-
-        #content_ch_title_btn{
-            padding-left: 120px;
-            line-height: 15px;
-        }
-
-        /* 일식 스타일 */
-        #content_ja_title_tagname{
-            color: #E4910D;
-            font-size: 14px;
-            font-weight: 600;
-            padding-left: 20px;
-        }
-
-        #jaBtn{
-            background-color: #E4910D;
-            border: none;
-            color: white;
-            border-radius: 8px;
-        }
-
-        #content_ja_title_btn{
-            padding-left: 120px;
-            line-height: 15px;
-        }
-
-        /* 슬라이더 스타일 */
-
-        .swiper-container {
-            height:250px;
-            border:2px solid silver;
-            border-radius:7px;
-            /* box-shadow:0 0 20px #ccc inset; */
-            
-        }
-        .swiper-slide {
-            text-align:center;
-            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
-            align-items:center; /* 위아래 기준 중앙정렬 */
-            justify-content:center; /* 좌우 기준 중앙정렬 */
-        }
-        .swiper-slide img {
-            /* box-shadow:0 0 5px #555; */
-            /*max-width:100%; 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-            width: 100%;
-            height: 100%;
-            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-            border-radius: 10px;
-        }
-
-        /* 푸터바 스타일 */
+		 /* 푸터바 스타일 */
         #p1{
             width: 100%; 
             box-sizing: border-box;
@@ -492,6 +405,7 @@
             cursor: pointer;
             position: sticky;
         }
+       
     </style>
 </head>
 <body>
@@ -524,7 +438,7 @@
             <div id="navigator_1"></div>
             <div id="navigator_2">
                 <ul id="navi">
-                    <li><a href="#" id="navi1">맛집등록/삭제 요청</a></li>
+                    <li><a href="#" id="navi1">맛집등록/삭제</a></li>
                     <li><a href="#" id="navi2">맛슐랭</a></li>
                     <li><a href="#" id="navi3">맛집뺑뺑이</a></li>
                 </ul>
@@ -534,14 +448,14 @@
 
         <script>
             // $("#navi").children().children().mouseenter("color","#E4910D");
-            $("#navi a").mouseenter(function(){
+            $("#navi a, #header_3 a, #header_4 a").mouseenter(function(){
                 $(this).css("color","#E4910D");
             });
 
-            $("#navi a").mouseout(function(){
+            $("#navi a, #header_3 a, #header_4 a").mouseout(function(){
                 $(this).css("color", "rgb(150, 150, 150)");
             });
-          
+
         </script>
         <div id="banner">
             <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
@@ -727,10 +641,11 @@
                             <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
                             <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
                         </div>
+                        
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
                         <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-
+						
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
                     </div>
@@ -893,6 +808,29 @@
             <div id="content_right">
             </div>
         </div>
+			        <script>
+			        new Swiper('.swiper-container', {
+			
+			            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
+			            spaceBetween : 10, // 슬라이드간 간격
+			            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+			        
+			            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+			            // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+			            loopFillGroupWithBlank : true,
+			        
+			            loop : true, // 무한 반복
+			        
+			            pagination : { // 페이징
+			                el : '.swiper-pagination',
+			                clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+			            },
+			            navigation : { // 네비게이션
+			                nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+			                prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+			            },
+			        });
+			    </script>
         
         <div id="footer">
             <div id="footer_1">
@@ -909,28 +847,6 @@
             </div>
         </div>
     </div>
-    <script>
-        new Swiper('.swiper-container', {
-
-            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
-            spaceBetween : 10, // 슬라이드간 간격
-            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-        
-            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
-            // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-            loopFillGroupWithBlank : true,
-        
-            loop : true, // 무한 반복
-        
-            pagination : { // 페이징
-                el : '.swiper-pagination',
-                clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-            },
-            navigation : { // 네비게이션
-                nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-                prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-            },
-        });
-    </script>
+  
 </body>
 </html>
