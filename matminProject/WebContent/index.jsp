@@ -11,7 +11,7 @@
     
         div{
                 box-sizing: border-box;
-                border: 1px solid red;
+                /* border: 1px solid red; */
                 margin: 0;
                 padding: 0;
                 display: block;
@@ -24,27 +24,24 @@
         
         /* 전체 구조 비율 */
         .wrap>div{width: 100%;}
-        #header{height: 170px;}
-        #navigator{height: 45px;}
-        #banner{height: 275px;} /* margin-bottom: 20px */
+        #banner{height: 450px; margin-bottom: 10px; margin-top: 10px;}
         #content{height: 1600px;}
-        #footer{height: 120px;}
 
         /* banner 비율 */
         #banner>div{height: 100%; float: left;}
         #banner_1, #banner_3{width: 10%;}
         #banner_2{width: 80%;}
 
-        #banner_2>div{width: 100%;float: left;}
-        #banner_2_1{height: 50%;}
-        #banner_2_2{height: 40%;}
-        #banner_2_3{height: 10%;}
+        #banner_2>div{width: 100%; float: left;}
+        #banner_2_1{height: 60%;}
+        #banner_2_2{height: 25%;}
+        #banner_2_3{height: 15%;}
 
         #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left;}
         
         /* banner 스타일 */
         #banner{
-            background-color: #E4910D;
+            background-color: rgb(255, 170, 28);
         }
 
         #banner_2_2 {
@@ -58,71 +55,25 @@
             margin: 0 auto;
         }
 
-        #ban_btn{
+        #banner_2_3 button{
             width: 50%;
+            height: 70%;
             background-color: white;
-            color: rgb(58, 58, 58);
+            color: rgb(118, 114, 115);
+            
+            border-radius: 30px;
+            font-size: 25px;
+            font-weight: 1000;
+            display: inline-block;
             margin: auto;
-            border-radius: 10px;
-            font-size: 50px;
-            font-weight: 500;
         }
         
-
-        /* banner 비율
-
-        #banner>div{width: 100%; float: left;}
-        #banner_1{height: 20%;}
-        #banner_2{height: 20%;}
-        #banner_3{height: 60%;}
-        #banner_3>div{height: 100%; width: 20%; float: left;}
-        #banner_3_1>div{width: 100%; height: 45%; float: left;}
-        #banner_3_2>div{width: 100%; height: 45%; float: left;}
-        #banner_3_3>div{width: 100%; height: 45%; float: left;}
-        #banner_3_4>div{width: 100%; height: 45%; float: left;}
-        #banner_3_5>div{width: 100%; height: 45%; float: left;}
-
-        */
-
-		/* 배너 스타일
-        #banner{
-            background-color: #E4910D;
-            padding-bottom: 5px;
-            margin-bottom: 20px;
-        } 
-        #banner_1>h1{
+        #banner_2_3>div{
             text-align: center;
-            color: white;
-            line-height: 15px;
-        }
-
-        #banner_2{
-            padding-left: 830px;
-            padding-top: 5px;
-        }
-        #banner_3>div{
-            text-align: center;
-            padding-top: 30px;
-        }
-
-        #banner_3_1{padding-left: 200px;}
-        #banner_3_2{padding-left: 100px; padding-right: 50px;}
-        #banner_3_3{padding-left: 80px; padding-right: 80px;}
-        #banner_3_4{padding-right: 100px;}
-        #banner_3_5{padding-right: 200px;}
-
-        #banner_3 button {
-            background-color: white;
-            color: #E4910D;
-            border-radius: 20px;
-            font-weight: 1000;
-            width: 100px;
-            height: 50px;
-            
-        } 
-        */
-
-
+            display: flex;
+            align-items: center;
+            }
+        
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
         /* #content_left{width: 15%;} */
@@ -275,82 +226,71 @@
                     </div>
                 </div>
                 <div id="banner_2_3">
-                        <div id="banner_2_3_1">
-                            <button id="ban_btn">사원</button>
-                        </div>
-                        <div id="banner_2_3_2">
-                            <button id="ban_btn">대리</button>
-                        </div>
-                        <div id="banner_2_3_3">
-                            <button id="ban_btn">과장</button>
-                        </div>
-                        <div id="banner_2_3_4">
-                            <button id="ban_btn">차장</button>
-                        </div>
-                        <div id="banner_2_3_5">
-                            <button id="ban_btn">부장</button>
-                        </div>
+                    <div id="banner_2_3_1">
+                        <button id="ban_btn1">사원</button>
+                    </div>
+                    <div id="banner_2_3_2">
+                        <button id="ban_btn2">대리</button>
+                    </div>
+                    <div id="banner_2_3_3">
+                        <button id="ban_btn3">과장</button>
+                    </div>
+                    <div id="banner_2_3_4">
+                        <button id="ban_btn4">차장</button>
+                    </div>
+                    <div id="banner_2_3_5">
+                        <button id="ban_btn5">부장</button>
+                    </div>
                 </div>
             </div>
             
         </div>
-        <!-- 
-     	<div id="banner">
-            <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
-            <div id="banner_2">
-                <img src="resources/money/wallet_7155311.png" width="70px" height="70px">
-                <img src="resources/money/funding_11794734.png" width="70px" height="70px">
-            </div>
-            <div id="banner_3">
-                <div id="banner_3_1">
-                    <div id="banner_3_1_1"><button id="bannerBtn1">사원</button></div>
-                    <div id="banner_3_1_2"></div>
-                    
-                </div>
-                <div id="banner_3_2">
-                    <div id="banner_3_2_1"><button id="bannerBtn2">대리</button></div>
-                    <div id="banner_3_2_2"></div>
-                    
-                </div>
-                <div id="banner_3_3">
-                    <div id="banner_3_3_1"><button id="bannerBtn3">과장</button></div>
-                    <div id="banner_3_3_2"></div>
-                    
-                </div>
-                <div id="banner_3_4">
-                    <div id="banner_3_4_1"><button id="bannerBtn4">차장</button></div>
-                    <div id="banner_3_4_2"></div>
-                    
-                </div>
-                <div id="banner_3_5">
-                    <div id="banner_3_5_1"><button id="bannerBtn5">부장</button></div>
-                    <div id="banner_3_5_2"></div>
-                    
-                </div>  
-            </div>
-        </div>
 
         <script>
-            $("#bannerBtn1").hover(
+            $("#ban_btn1").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_1_2").css({
-                        "background-color": "white",
+                    $("#ban_btn1").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "20px"
                     }).text("7000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_1_2").css({
-                        "background-color": "",
+                    $("#ban_btn1").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("사원");
                 }
             );
+
+            $("#ban_btn2").hover(
+                // mouseenter
+                function () {
+                    $("#ban_btn2").css({
+                        "color": "#E4910D",
+                        "font-size": "15px"
+                    }).text("7000원 초과 12000원 이하");
+                },
+                // mouseout
+                function () {
+                    $("#ban_btn2").css({
+                        "color": "",
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("대리");
+                }
+            );
+
+
+
+        </script>
+        <!-- 
+     	
+        <script>
+            
+           
 
             $("#bannerBtn2").hover(
                 // mouseenter
