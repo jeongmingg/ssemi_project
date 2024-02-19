@@ -11,7 +11,7 @@
     
         div{
                 box-sizing: border-box;
-                /* border: 1px solid red; */
+                border: 1px solid red;
                 margin: 0;
                 padding: 0;
                 display: block;
@@ -175,27 +175,8 @@
                 border-radius: 10px;
 	        }
             
-            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 13px;}
-			.cWtbst .Card_Rest_Name {
-                display: inline-block;
-                width: 100%;
-                font-size: 1rem;
-                font-weight: bold;
-                letter-spacing: -0.05rem;
-                color: rgb(32, 32, 32);
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            p {
-                display: block;
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-                margin-inline-start: 0px;
-                margin-inline-end: 0px;
-            }
-
+            /* 식당이름 스타일 */
+            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 14px;}
     </style>
 </head>
 <body>
@@ -210,19 +191,19 @@
                 <div id="banner_2_1"></div>
                 <div id="banner_2_2">
                     <div id="banner_2_2_1">
-                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
+                        <img id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
                     </div>
                     <div id="banner_2_2_2">
-                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
+                        <img id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
                     </div>
                     <div id="banner_2_2_3">
-                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
+                        <img id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
                     </div>
                     <div id="banner_2_2_4">
-                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
+                        <img id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
                     </div>
                     <div id="banner_2_2_5">
-                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
+                        <img id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
                     </div>
                 </div>
                 <div id="banner_2_3">
@@ -247,7 +228,26 @@
         </div>
 
         <script>
+            // 사원 hover style
             $("#ban_btn1").hover(
+                // mouseenter
+                function () {
+                    $(this).css({
+                        "color": "#E4910D",
+                        "font-size": "20px"
+                    }).text("7000원 이하");
+                },
+                // mouseout
+                function () {
+                    $(this).css({
+                        "color": "",
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("사원");
+                }
+            );
+            
+            $("#ban_img1").hover(
                 // mouseenter
                 function () {
                     $("#ban_btn1").css({
@@ -265,12 +265,13 @@
                 }
             );
 
+            // 대리 hover style
             $("#ban_btn2").hover(
                 // mouseenter
                 function () {
                     $("#ban_btn2").css({
                         "color": "#E4910D",
-                        "font-size": "15px"
+                        "font-size": "17px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
@@ -283,100 +284,137 @@
                 }
             );
 
-
-
-        </script>
-        <!-- 
-     	
-        <script>
-            
-           
-
-            $("#bannerBtn2").hover(
+            $("#ban_img2").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_2_2").css({
-                        "background-color": "white",
+                    $("#ban_btn2").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "17px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_2_2").css({
-                        "background-color": "",
+                    $("#ban_btn2").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("대리");
                 }
             );
 
-            $("#bannerBtn3").hover(
+            // 과장 hover style
+            $("#ban_btn3").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_3_2").css({
-                        "background-color": "white",
+                    $("#ban_btn3").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "17px"
                     }).text("12000원 초과 20000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_3_2").css({
-                        "background-color": "",
+                    $("#ban_btn3").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("과장");
                 }
             );
-            
-            $("#bannerBtn4").hover(
+
+            $("#ban_img3").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_4_2").css({
-                        "background-color": "white",
+                    $("#ban_btn3").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "17px"
+                    }).text("12000원 초과 20000원 이하");
+                },
+                // mouseout
+                function () {
+                    $("#ban_btn3").css({
+                        "color": "",
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("과장");
+                }
+            );
+
+            // 차장 hover style
+            $("#ban_btn4").hover(
+                // mouseenter
+                function () {
+                    $("#ban_btn4").css({
+                        "color": "#E4910D",
+                        "font-size": "17px"
                     }).text("20000원 초과 35000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_4_2").css({
-                        "background-color": "",
+                    $("#ban_btn4").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("차장");
                 }
             );
 
-            $("#bannerBtn5").hover(
+            $("#ban_img4").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_5_2").css({
-                        "background-color": "white",
+                    $("#ban_btn4").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "17px"
+                    }).text("20000원 초과 35000원 이하");
+                },
+                // mouseout
+                function () {
+                    $("#ban_btn4").css({
+                        "color": "",
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("차장");
+                }
+            );
+
+            // 부장 hover style
+            $("#ban_btn5").hover(
+                // mouseenter
+                function () {
+                    $("#ban_btn5").css({
+                        "color": "#E4910D",
+                        "font-size": "20px"
                     }).text("35000원 초과");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_5_2").css({
-                        "background-color": "",
+                    $("#ban_btn5").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("부장");
                 }
             );
+
+            $("#ban_img5").hover(
+                // mouseenter
+                function () {
+                    $("#ban_btn5").css({
+                        "color": "#E4910D",
+                        "font-size": "20px"
+                    }).text("35000원 초과");
+                },
+                // mouseout
+                function () {
+                    $("#ban_btn5").css({
+                        "color": "",
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("부장");
+                }
+            );
+
         </script>
-        -->
+       
         <div id="content">
             <div  id="topBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
@@ -406,7 +444,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>대련집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>
                             </div>
                             <div class="swiper-slide">
@@ -524,7 +562,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -643,7 +681,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -762,7 +800,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -881,7 +919,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
