@@ -362,14 +362,13 @@
 	        .swiper-slide img {
 	            /* box-shadow:0 0 5px #555; */
 	            /*max-width:100%; 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-	            width: 220px;
-	            height: 220px;
+	            width: 210px;
+	            height: 210px;
 	            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-	            padding-top: 10px;
                 border-radius: 10px;
 	        }
             
-            /* .swiper-slide figcaption{font-weight: 800;} */
+            .swiper-slide figcaption{font-weight: 800;}
 			.cWtbst .Card_Rest_Name {
                 display: inline-block;
                 width: 100%;
