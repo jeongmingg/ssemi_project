@@ -8,215 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-        
-        div{
-            box-sizing: border-box;
-            /* border: 1px solid red; */
-            margin: 0;
-            padding: 0;
-            display: block;
-        }
-        .wrap{
-            width: 1800px;
-            margin: auto;
-            box-sizing: border-box;
-        }
-        
-        /* 전체 구조 비율 */
-        .wrap>div{width: 100%;}
-        #header{height: 170px;}
-        #navigator{height: 45px;}
-        #banner{height: 275px;} /* margin-bottom: 20px */
-        #content{height: 1600px;}
-        #footer{height: 120px;}
-
-        /* header 비율 */
-        #header>div{height: 100%; float: left;}
-        #header_1{width: 20%; padding-left: 50px;}
-        #header_2{width: 56%;}
-        #header_3{width: 8%;}
-        #header_4{width: 8%;}
-        #header_5{
-            width: 8%; padding-top: 50px; 
-            display: flex;
-            justify-content: center;
-            align-items: center;}
-		
-		/* header 스타일 - 로고, 검색창, 로그인, 회원가입, 최근본식당 */
-			/* logo 스타일 */
-	        #logo{width: 80%; height: 140%;}
-	
-	        /* 검색창 스타일 */
-	        /* 검색창 div id="header_2" class="sc-cmfmEs leAvxd"
-	            그안에 div class="sc-UFtxY OqZgF Input__Wrap" */
-	        /* input 클래스 : sc-hnmMDg bccLDB Search__Input */
-	        /* button 클래스 : sc-jPQLIr gZgnOG search */
-	        .leAvxd {  
-	                    padding-left: 300px;
-	                    padding-top: 80px;  
-	                    min-width: 430px;
-	                }
-	
-	        .OqZgF {
-	                border: 2px solid #E4910D;
-	                position: relative;
-	                box-sizing: border-box;
-	                display: grid;
-	                grid-auto-flow: column;
-	                grid-auto-columns: auto 18px 22px;
-	                gap: 20px;
-	                -webkit-box-align: center;
-	                align-items: center;
-	                width: 100%;
-	                max-width: 506px;
-	                min-width: 430px;
-	                height: 42px;
-	                padding-right: 20px;
-	                border-radius: 21px;
-	                background-color: rgb(245, 245, 245); 
-	            }
-	
-	        .bccLDB {
-	            display: block;
-	            max-width: 72.5%;
-	            width: 100%;
-	            height: 30px;
-	            margin-left: 24px;
-	            padding: 0px 0px 2px;
-	            background-color: transparent;
-	            outline: transparent;
-	            border: transparent;
-	            font-size: 0.9375rem;
-	            line-height: 1.3125rem;
-	            letter-spacing: -0.0469rem;
-	            color: rgb(32, 32, 32);
-	            padding-top: 6px;
-	        }
-	
-	        input {
-	                text-rendering: auto;
-	                color: fieldtext;
-	                letter-spacing: normal;
-	                word-spacing: normal;
-	                line-height: normal;
-	                text-transform: none;
-	                text-indent: 0px;
-	                text-shadow: none;
-	                display: inline-block;
-	                text-align: start;
-	                appearance: auto;
-	                -webkit-rtl-ordering: logical;
-	                cursor: text;
-	                background-color: field;
-	                margin: 0em;
-	                padding: 1px 0px;
-	                border-width: 2px;
-	                border-style: inset;
-	                border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
-	                border-image: initial;
-	                padding-block: 1px;
-	                padding-inline: 2px;
-	            }
-	
-	        /* 검색버튼 */
-	        .gZgnOG {
-	                    width: 22px;
-	                    height: 22px;
-	                    background-image: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/web/react_components/SearchQueryInput/search.png);
-	                    background-size: 100%;
-	                }
-	                
-	        * {
-	            letter-spacing: -.0437rem;
-	            outline: none;
-	        }
-	        
-	        button {
-	                background-color: transparent;
-	                border: transparent;
-	                cursor: pointer;
-	            }
-	
-	        /* button {
-	                appearance: auto;
-	                text-rendering: auto;
-	                color: buttontext;
-	                letter-spacing: normal;
-	                word-spacing: normal;
-	                line-height: normal;
-	                text-transform: none;
-	                text-indent: 0px;
-	                text-shadow: none;
-	                display: inline-block;
-	                text-align: center;
-	                align-items: flex-start;
-	                cursor: default;
-	                box-sizing: border-box;
-	                background-color: buttonface;
-	                margin: 0em;
-	                padding-block: 1px;
-	                padding-inline: 6px;
-	                border-width: 2px;
-	                border-style: outset;
-	                border-color: buttonborder;
-	                border-image: initial;
-	            } */
-	         
-	        /* 로그인, 회원가입 버튼 스타일 */
-	
-	        #header a{
-	            text-decoration: none;
-	            color: rgb(150, 150, 150);
-	            font-size: 18px;
-	            font-weight: 600;
-	
-	            width: 100%; height: 100%;
-	            /* display: block; */
-	            line-height: 210px;
-	            text-align: center;
-	
-	        }
-	
-	        #header_3{padding-left: 90px;}
-	        #header_4{padding-left: 40px;}
-			
-        /* navigator 비율 */
-        #navigator>div{height: 100%; float: left;}
-        #navigator_1{width: 20%;}
-        #navigator_2{
-            width: 70%; 
-            padding-left: 80px;
-            padding-right: 80px;
-        }
-        #navigator_3{width: 10%;}
-        
-        /* navigator 스타일 */
-	        #navi{
-	            list-style-type: none;
-	            padding: 0;
-	            margin: 0;
-	            height: 100%;
-	        }
-	
-	        #navi>li{
-	            float: left;
-	            width: 33%;
-	            height: 100%;
-	            text-align: center;
-	        }
-	
-	        #navi a{
-	            text-decoration: none;
-	            color: rgb(150, 150, 150);
-	            font-size: 18px;
-	            font-weight: 600;
-	
-	            width: 100%;
-	            height: 100%;
-	            display: block;
-	            line-height: 40px;
-	        }
-
+    
         /* banner 비율 */
 
         #banner>div{width: 100%; float: left;}
@@ -368,7 +160,7 @@
                 border-radius: 10px;
 	        }
             
-            .swiper-slide figcaption{font-weight: 800;}
+            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 13px;}
 			.cWtbst .Card_Rest_Name {
                 display: inline-block;
                 width: 100%;
@@ -389,98 +181,15 @@
                 margin-inline-end: 0px;
             }
 
-        /* footer 비율 */
-        #footer>div{height: 100%; float: left;}
-        #footer_1{width: 100%;}
-        #topBtn{
-            position: fixed;
-            left: 93%;
-            top: 90%;
-            z-index: 999;
-        }
-        
-        #footer_1>div{width: 100%; float: left;}
-        #footer_1_1{height: 20%;}
-        #footer_1_2{height: 40%;}
-
-		 /* 푸터바 스타일 */
-        #p1{
-            width: 100%; 
-            box-sizing: border-box;
-            margin: 0;
-            font-size: 15px;
-            color: rgb(58, 58, 58);
-            padding-left: 100px;
-        }
-
-        #p2{
-            width: 100%; 
-            box-sizing: border-box;
-            margin: 0;
-            font-size: 14px;
-            color: rgb(58, 58, 58);
-            padding-left: 100px;
-        }
-        
-        #topBtn>svg{
-            /* padding-top: 850px; */
-            /* padding-left: 200px; */
-            cursor: pointer;
-            position: sticky;
-        }
-       
     </style>
 </head>
 <body>
+	
+	<%@ include file="views/common/header.jsp" %>
+    <%@ include file="views/common/navigator.jsp" %>
+	
 	<div class="wrap">
-        <div id="header">
-            <div id="header_1">
-                <img id="logo" src="resources/logo/투명배경로고.png">
-            </div>
-
-                <div id="header_2" class="sc-cmfmEs leAvxd" >
-                <div class="sc-UFtxY OqZgF Input__Wrap">
-                    <input id="searchInput" class="sc-hnmMDg bccLDB Search__Input" placeholder="지역, 음식 또는 식당명 입력" value="">
-                    <button id="searchBtn" class="sc-jPQLIr gZgnOG search" type="button" aria-label="검색하기 버튼"></button>
-                </div>
-            </div>
-            
-            <div id="header_3">
-                <a href="#">로그인</a>
-            </div>
-            <div id="header_4">
-                <a href="#">회원가입</a>
-            </div>
-            <div id="header_5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" data-svg-content="true" fill="#000000">
-                    <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
-                </svg>
-            </div>
-        </div>
-        <div id="navigator">
-            <div id="navigator_1"></div>
-            <div id="navigator_2">
-                <ul id="navi">
-                    <li><a href="#" id="navi1">맛집등록/삭제</a></li>
-                    <li><a href="#" id="navi2">맛슐랭</a></li>
-                    <li><a href="#" id="navi3">맛집뺑뺑이</a></li>
-                </ul>
-            </div>
-            <div id="navigator_3"></div>
-        </div>
-
-        <script>
-            // $("#navi").children().children().mouseenter("color","#E4910D");
-            $("#navi a, #header_3 a, #header_4 a").mouseenter(function(){
-                $(this).css("color","#E4910D");
-            });
-
-            $("#navi a, #header_3 a, #header_4 a").mouseout(function(){
-                $(this).css("color", "rgb(150, 150, 150)");
-            });
-
-        </script>
-        <div id="banner">
+     	<div id="banner">
             <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
             <div id="banner_2">
                 <img src="resources/money/wallet_7155311.png" width="70px" height="70px">
@@ -648,8 +357,10 @@
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                <p class="Card_Rest_Name">대련집</p>  
+                                <figure>
+                                    <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                    <figcaption>대련집</figcaption>
+                                </figure>
                             </div>
                             <div class="swiper-slide">
                                 <figure>
@@ -1233,7 +944,7 @@
 			        new Swiper('.swiper-container', {
 			
 			            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
-			            spaceBetween : 5, // 슬라이드간 간격
+			            spaceBetween : 1, // 슬라이드간 간격
 			            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 			        
 			            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
@@ -1253,20 +964,7 @@
 			        });
 			    </script>
         
-        <div id="footer">
-            <div id="footer_1">
-                <div id="footer_1_1">
-                    <p id="p1">
-                        ㈜ 맛집의 민족  | 사업자 등록번호 : 267-12-11237 | ℡☎ : 02-111-2222 | email : matmin@gmail.com
-                    </p>
-                </div>
-                <div id="footer_1_2">
-                    <p id="p2">
-                        Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
-                    </p>
-                </div>
-            </div>
-        </div>
+        <%@ include file="views/common/footer.jsp" %>
     </div>
   
 </body>
