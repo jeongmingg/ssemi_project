@@ -339,7 +339,7 @@
 	            padding-left: 120px;
 	            line-height: 15px;
 	        }
-	      
+            
 	      	/* 슬라이더 스타일 */
 
 	        .swiper-container {
@@ -356,16 +356,40 @@
 	            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
 	            align-items:center; /* 위아래 기준 중앙정렬 */
 	            justify-content:center; /* 좌우 기준 중앙정렬 */
+                position: relative;
+                z-index: -2;
 	        }
 	        .swiper-slide img {
 	            /* box-shadow:0 0 5px #555; */
 	            /*max-width:100%; 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-	            width: 100%;
-	            height: 100%;
+	            width: 220px;
+	            height: 220px;
 	            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-	            border-radius: 10px;
+	            padding-top: 10px;
+                border-radius: 10px;
 	        }
-			
+            
+            /* .swiper-slide figcaption{font-weight: 800;} */
+			.cWtbst .Card_Rest_Name {
+                display: inline-block;
+                width: 100%;
+                font-size: 1rem;
+                font-weight: bold;
+                letter-spacing: -0.05rem;
+                color: rgb(32, 32, 32);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            p {
+                display: block;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+            }
+
         /* footer 비율 */
         #footer>div{height: 100%; float: left;}
         #footer_1{width: 100%;}
@@ -624,22 +648,100 @@
                             <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"> <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
+                            <div class="swiper-slide">
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                <p class="Card_Rest_Name">대련집</p>  
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
+                                <figcaption>양고기엔 칭따오</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
+                                <figcaption>나이스샤워</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
+                                <figcaption>왕돈가스</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg">
+                                <figcaption>파슷하</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg">
+                                <figcaption>마초쉐프</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg">
+                                <figcaption>J bar</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg">
+                                <figcaption>오늘 와인어때</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg">
+                                <figcaption>운멜로</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg">
+                                <figcaption>정돈</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg">
+                                <figcaption>똠양꿍</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg">
+                                <figcaption>Garibi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg">
+                                <figcaption>아웃백</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg">
+                                <figcaption>파인다이닝</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg">
+                                <figcaption>스시스시</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg">
+                                <figcaption>왕돈가스먹어</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         
                         <!-- 네비게이션 -->
@@ -662,22 +764,102 @@
                     </div>
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                    <figcaption>삼겹살집</figcaption>
+                                </figure>     
+                                </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
+                                <figcaption>양고기엔 칭따오</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
+                                <figcaption>나이스샤워</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
+                                <figcaption>왕돈가스</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg">
+                                <figcaption>파슷하</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg">
+                                <figcaption>마초쉐프</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg">
+                                <figcaption>J bar</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg">
+                                <figcaption>오늘 와인어때</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg">
+                                <figcaption>운멜로</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg">
+                                <figcaption>정돈</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg">
+                                <figcaption>똠양꿍</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg">
+                                <figcaption>Garibi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg">
+                                <figcaption>아웃백</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg">
+                                <figcaption>파인다이닝</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg">
+                                <figcaption>스시스시</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg">
+                                <figcaption>왕돈가스먹어</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
@@ -701,22 +883,102 @@
                     <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                    <figcaption>삼겹살집</figcaption>
+                                </figure>     
+                                </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
+                                <figcaption>양고기엔 칭따오</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
+                                <figcaption>나이스샤워</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
+                                <figcaption>왕돈가스</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg">
+                                <figcaption>파슷하</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg">
+                                <figcaption>마초쉐프</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg">
+                                <figcaption>J bar</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg">
+                                <figcaption>오늘 와인어때</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg">
+                                <figcaption>운멜로</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg">
+                                <figcaption>정돈</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg">
+                                <figcaption>똠양꿍</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg">
+                                <figcaption>Garibi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg">
+                                <figcaption>아웃백</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg">
+                                <figcaption>파인다이닝</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg">
+                                <figcaption>스시스시</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg">
+                                <figcaption>왕돈가스먹어</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
@@ -740,22 +1002,102 @@
                     <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                    <figcaption>삼겹살집</figcaption>
+                                </figure>     
+                                </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
+                                <figcaption>양고기엔 칭따오</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
+                                <figcaption>나이스샤워</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
+                                <figcaption>왕돈가스</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg">
+                                <figcaption>파슷하</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg">
+                                <figcaption>마초쉐프</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg">
+                                <figcaption>J bar</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg">
+                                <figcaption>오늘 와인어때</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg">
+                                <figcaption>운멜로</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg">
+                                <figcaption>정돈</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg">
+                                <figcaption>똠양꿍</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg">
+                                <figcaption>Garibi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg">
+                                <figcaption>아웃백</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg">
+                                <figcaption>파인다이닝</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg">
+                                <figcaption>스시스시</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg">
+                                <figcaption>왕돈가스먹어</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
@@ -779,22 +1121,102 @@
                     <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg"></div>
-                            <div class="swiper-slide"><img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg"></div>
+                            <div class="swiper-slide">
+                                <figure>
+                                    <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
+                                    <figcaption>삼겹살집</figcaption>
+                                </figure>     
+                                </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
+                                <figcaption>양고기엔 칭따오</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
+                                <figcaption>나이스샤워</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
+                                <figcaption>왕돈가스</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231106095944_photo1_f769c663e6ec.jpg">
+                                <figcaption>파슷하</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231230165122_photo1_8847da7f1f72.jpg">
+                                <figcaption>마초쉐프</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230112044337_photo3_0c355c4fe535.jpg">
+                                <figcaption>J bar</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20210702100024643_photo_Fq7SKl7ZXsiR.jpg">
+                                <figcaption>오늘 와인어때</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20221030075729_photo1_f845b5a58a5c.jpg">
+                                <figcaption>운멜로</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240118030819_photo1_3661b9018bc4.jpg">
+                                <figcaption>정돈</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231229103113_photo1_2361cbab2346.jpg">
+                                <figcaption>똠양꿍</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220322054308_photo1_a34786fb2510.jpg">
+                                <figcaption>Garibi</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg">
+                                <figcaption>아웃백</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg">
+                                <figcaption>파인다이닝</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20220327022445420_photo_d05e684f1a83.jpg">
+                                <figcaption>스시스시</figcaption>
+                                </figure>
+                            </div>
+                            <div class="swiper-slide">
+                                <figure>
+                                <img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20240129165655_photo1_f5829e5fe9a2.jpg">
+                                <figcaption>왕돈가스먹어</figcaption>
+                                </figure>
+                            </div>
                         </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
@@ -812,7 +1234,7 @@
 			        new Swiper('.swiper-container', {
 			
 			            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
-			            spaceBetween : 10, // 슬라이드간 간격
+			            spaceBetween : 5, // 슬라이드간 간격
 			            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
 			        
 			            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
