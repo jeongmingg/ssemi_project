@@ -175,7 +175,7 @@
 	
 	        }
 	
-	        #header_3{padding-left: 90px;}
+	        #header_3{padding-left: 80px;}
 	        #header_4{padding-left: 40px;}
 
 </style>
