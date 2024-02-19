@@ -9,7 +9,67 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
     
+        div{
+                box-sizing: border-box;
+                border: 1px solid red;
+                margin: 0;
+                padding: 0;
+                display: block;
+            }
+        .wrap{
+            width: 1800px;
+            margin: auto;
+            box-sizing: border-box;
+        }
+        
+        /* 전체 구조 비율 */
+        .wrap>div{width: 100%;}
+        #header{height: 170px;}
+        #navigator{height: 45px;}
+        #banner{height: 275px;} /* margin-bottom: 20px */
+        #content{height: 1600px;}
+        #footer{height: 120px;}
+
         /* banner 비율 */
+        #banner>div{height: 100%; float: left;}
+        #banner_1, #banner_3{width: 10%;}
+        #banner_2{width: 80%;}
+
+        #banner_2>div{width: 100%;float: left;}
+        #banner_2_1{height: 50%;}
+        #banner_2_2{height: 40%;}
+        #banner_2_3{height: 10%;}
+
+        #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left;}
+        
+        /* banner 스타일 */
+        #banner{
+            background-color: #E4910D;
+        }
+
+        #banner_2_2 {
+            text-align: center;
+        }
+
+        #banner_2_2 img{
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        #ban_btn{
+            width: 50%;
+            background-color: white;
+            color: rgb(58, 58, 58);
+            margin: auto;
+            border-radius: 10px;
+            font-size: 50px;
+            font-weight: 500;
+        }
+        
+
+        /* banner 비율
 
         #banner>div{width: 100%; float: left;}
         #banner_1{height: 20%;}
@@ -22,12 +82,14 @@
         #banner_3_4>div{width: 100%; height: 45%; float: left;}
         #banner_3_5>div{width: 100%; height: 45%; float: left;}
 
-		/* 배너 스타일 */
+        */
+
+		/* 배너 스타일
         #banner{
             background-color: #E4910D;
-            /* padding-bottom: 5px; */
+            padding-bottom: 5px;
             margin-bottom: 20px;
-        }
+        } 
         #banner_1>h1{
             text-align: center;
             color: white;
@@ -57,7 +119,9 @@
             width: 100px;
             height: 50px;
             
-        }
+        } 
+        */
+
 
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
@@ -189,6 +253,48 @@
     <%@ include file="views/common/navigator.jsp" %>
 	
 	<div class="wrap">
+        <div id="banner">
+            <div id="banner_1"></div>
+            <div id="banner_2">
+                <div id="banner_2_1"></div>
+                <div id="banner_2_2">
+                    <div id="banner_2_2_1">
+                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
+                    </div>
+                    <div id="banner_2_2_2">
+                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
+                    </div>
+                    <div id="banner_2_2_3">
+                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
+                    </div>
+                    <div id="banner_2_2_4">
+                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
+                    </div>
+                    <div id="banner_2_2_5">
+                        <img src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
+                    </div>
+                </div>
+                <div id="banner_2_3">
+                        <div id="banner_2_3_1">
+                            <button id="ban_btn">사원</button>
+                        </div>
+                        <div id="banner_2_3_2">
+                            <button id="ban_btn">대리</button>
+                        </div>
+                        <div id="banner_2_3_3">
+                            <button id="ban_btn">과장</button>
+                        </div>
+                        <div id="banner_2_3_4">
+                            <button id="ban_btn">차장</button>
+                        </div>
+                        <div id="banner_2_3_5">
+                            <button id="ban_btn">부장</button>
+                        </div>
+                </div>
+            </div>
+            
+        </div>
+        <!-- 
      	<div id="banner">
             <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
             <div id="banner_2">
@@ -330,6 +436,7 @@
                 }
             );
         </script>
+        -->
         <div id="content">
             <div  id="topBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
