@@ -15,9 +15,20 @@
 			text-align: center;
 		}
 
-		form>input{
+		.login-form>h3{
+			color: #E4910D;
+			font-weight: bold;
+			font-size: 40px;
+			margin-bottom: 20px;
+		}
+
+		form>input[type=text], form>input[type=password]{
 			width: 300px;
-			height: 50px;
+			height: 45px;
+			margin: 5px;
+			border-radius: 5px;
+			border: 1px solid gray;
+			padding-left: 5px;
 		}
 
 		#loginBtn{
@@ -26,28 +37,41 @@
 			width: 300px;
 			height: 40px;
 			line-height: 25px;
+			margin: 15px;
+		}
+
+		#click_other>a{
+			color: #E4910D;
+			margin: 20px;
+			font-size: 13px;
 		}
 
 		#hr{
 			width: 400px;
 			border-top: 2px solid darkgray;
+			margin-top: 20px;
+		}
+
+		#sns-login>p{
+			color: #E4910D;
+		}
+
+		#sns-login>a{
+			width: 300px;
+			height: 40px;
+			line-height: 25px;
+			margin: 5px;
 		}
 
 		#naver-login-btn{
 			background-color: #03c75a;
 			border: #03c75a;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
 		}
 
 		#kakao-login-btn{
 			background-color: #f9e003;
 			border: #f9e003;
 			color: black;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
 		}
 	</style>
 
@@ -69,10 +93,14 @@
 	<%@ include file="../common/navigator.jsp" %>
 
 	<div class="login-form">
+		<h3>Login</h3>
+
 		<div id="input_id_pwd">
 			<form action="#" method="post">
-				<input type="text" name="userId"> <br>
-				<input type="password" name="userPwd"> <br>
+				<input type="text" name="userId" placeholder="ID"> <br>
+				<input type="password" name="userPwd" placeholder="Password"> <br>
+				<input type="checkbox" name="autoLogin" id="autoLogin">
+				<label for="autoLogin" style="font-size: 13px;">자동 로그인</label> <br>
 				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
 			</form>
 		</div>
@@ -86,10 +114,8 @@
 		<div id="sns-login">
 			<p><b>간편 로그인</b></p>
 
-			<br>
-
 			<a href="#" id="naver-login-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
-			<br><br>
+			<br>
 			<a href="#" id="kakao-login-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
 		</div>
 	</div>
