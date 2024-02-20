@@ -26,7 +26,7 @@
 		
         /* header 비율 */
         #header>div{height: 100%; float: left;}
-        #header_1{width: 20%; padding-left: 50px;}
+        #header_1{width: 20%; padding-left: 50px; cursor: pointer;}
         #header_2{width: 56%;}
         #header_3{width: 8%;}
         #header_4{width: 8%;}
@@ -34,7 +34,8 @@
             width: 8%; padding-top: 50px; 
             display: flex;
             justify-content: center;
-            align-items: center;}
+            align-items: center;
+			cursor: pointer;}
 		
 		/* header 스타일 - 로고, 검색창, 로그인, 회원가입, 최근본식당 */
 			/* logo 스타일 */
