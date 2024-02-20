@@ -16,14 +16,13 @@
                 padding: 0;
                 display: block;
             }
-        .wrap{
+        .main-content{
             width: 1800px;
             margin: auto;
             box-sizing: border-box;
         }
         
         /* 전체 구조 비율 */
-        .wrap>div{width: 100%;}
         #banner{height: 450px; margin-bottom: 20px; margin-top: 10px;}
         #content{height: 1600px;}
 
@@ -182,7 +181,7 @@
 	<%@ include file="views/common/header.jsp" %>
     <%@ include file="views/common/navigator.jsp" %>
 	
-	<div class="wrap">
+	<div class="main-content">
         <div id="banner">
             <div id="banner_1"></div>
             <div id="banner_2">
