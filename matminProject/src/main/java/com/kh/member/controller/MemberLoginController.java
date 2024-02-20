@@ -30,8 +30,8 @@ public class MemberLoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = (String)request.getAttribute("userId");
-		String userPwd = (String)request.getAttribute("userPwd");
+		String userId = (String)request.getParameter("userId");
+		String userPwd = (String)request.getParameter("userPwd");
 		
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
 		

@@ -44,7 +44,19 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			
-			System.out.println(rset.next());
+			if(rset.next()) {
+				m = new Member(rset.getString("mem_no"),
+							   rset.getString("mem_id"),
+							   rset.getString("mem_pwd"),
+							   rset.getString("mem_name"),
+							   rset.getString("nickname"),
+							   rset.getString("email"),
+							   rset.getString("address"),
+							   rset.getInt("mem_warning"),
+							   rset.getDate("enroll_date"),
+							   rset.getString("mem_level"),
+							   rset.getString("mem_status"));
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
