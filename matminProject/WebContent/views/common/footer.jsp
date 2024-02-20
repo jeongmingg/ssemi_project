@@ -80,7 +80,7 @@
                 </div>
                 <div id="footer_1_2">
                     <p id="p2">
-                        Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
+                        Copyright © 2023 - 2024 The Nation Of Delicious Restaurants All Right Reserved
                     </p>
                 </div>
             </div>
