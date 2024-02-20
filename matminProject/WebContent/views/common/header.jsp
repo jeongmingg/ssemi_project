@@ -131,31 +131,6 @@
 	                border: transparent;
 	                cursor: pointer;
 	            }
-	
-	        /* button {
-	                appearance: auto;
-	                text-rendering: auto;
-	                color: buttontext;
-	                letter-spacing: normal;
-	                word-spacing: normal;
-	                line-height: normal;
-	                text-transform: none;
-	                text-indent: 0px;
-	                text-shadow: none;
-	                display: inline-block;
-	                text-align: center;
-	                align-items: flex-start;
-	                cursor: default;
-	                box-sizing: border-box;
-	                background-color: buttonface;
-	                margin: 0em;
-	                padding-block: 1px;
-	                padding-inline: 6px;
-	                border-width: 2px;
-	                border-style: outset;
-	                border-color: buttonborder;
-	                border-image: initial;
-	            } */
 	         
 	        /* 로그인, 회원가입 버튼 스타일 */
 	
@@ -174,6 +149,8 @@
 	
 	        #header_3{padding-left: 80px;}
 	        #header_4{padding-left: 40px;}
+
+			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
 </style>
 </head>
@@ -198,7 +175,7 @@
                 <a href="#">회원가입</a>
             </div>
             <div id="header_5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" data-svg-content="true" fill="#000000">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000">
                     <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
                 </svg>
             </div>

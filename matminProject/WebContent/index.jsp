@@ -10,11 +10,11 @@
     <style>
     
         div{
-                box-sizing: border-box;
-                /*border: 1px solid red;*/
-                margin: 0;
-                padding: 0;
-                display: block;
+            box-sizing: border-box;
+            /*border: 1px solid red;*/
+            margin: 0;
+            padding: 0;
+            display: block;
             }
         .main-content{
             width: 1800px;
@@ -24,7 +24,7 @@
         
         /* 전체 구조 비율 */
         #banner{height: 450px; margin-bottom: 20px; margin-top: 10px;}
-        #content{height: 1600px;}
+        #content{height: 1620px;}
 
         /* banner 비율 */
         #banner>div{height: 100%; float: left;}
@@ -41,15 +41,19 @@
         /* banner 스타일 */
         #banner{
             background-color: rgb(255, 170, 28);
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
         #banner_2_1, #banner_2_2 {text-align: center;}
 
+        #ban_img0{margin-top: 6px;}
         #banner_2_2 img{
             width: 100px;
             height: 100px;
             display: inline-block;
             margin: 0 auto;
+            cursor: pointer;
         }
 
         #banner_2_3 button{
@@ -186,7 +190,7 @@
             <div id="banner_1"></div>
             <div id="banner_2">
                 <div id="banner_2_1">
-                    <img id="ban_img0" src="resources/banner/todayYourWaletStatus.png">
+                    <img id="ban_img0" src="resources/banner/walet-small.png">
                 </div>
                 <div id="banner_2_2">
                     <div id="banner_2_2_1">
@@ -252,7 +256,7 @@
                 function () {
                     $("#ban_btn2").css({
                         "color": "#E4910D",
-                        "font-size": "17px"
+                        "font-size": "16px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
@@ -271,7 +275,7 @@
                 function () {
                     $("#ban_btn3").css({
                         "color": "#E4910D",
-                        "font-size": "17px"
+                        "font-size": "16px"
                     }).text("12000원 초과 20000원 이하");
                 },
                 // mouseout
@@ -290,7 +294,7 @@
                 function () {
                     $("#ban_btn4").css({
                         "color": "#E4910D",
-                        "font-size": "17px"
+                        "font-size": "16px"
                     }).text("20000원 초과 35000원 이하");
                 },
                 // mouseout
@@ -325,7 +329,7 @@
         </script>
        
         <div id="content">
-            <div  id="topBtn">
+            <div id="topBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
                     <g>
                         <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
@@ -934,29 +938,29 @@
             <div id="content_right">
             </div>
         </div>
-			        <script>
-			        new Swiper('.swiper-container', {
-			
-			            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
-			            spaceBetween : 1, // 슬라이드간 간격
-			            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-			        
-			            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
-			            // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-			            loopFillGroupWithBlank : true,
-			        
-			            loop : true, // 무한 반복
-			        
-			            pagination : { // 페이징
-			                el : '.swiper-pagination',
-			                clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-			            },
-			            navigation : { // 네비게이션
-			                nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-			                prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-			            },
-			        });
-			    </script>
+                <script>
+                new Swiper('.swiper-container', {
+        
+                    slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
+                    spaceBetween : 1, // 슬라이드간 간격
+                    slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+                
+                    // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+                    // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+                    loopFillGroupWithBlank : true,
+                
+                    loop : true, // 무한 반복
+                
+                    pagination : { // 페이징
+                        el : '.swiper-pagination',
+                        clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                    },
+                    navigation : { // 네비게이션
+                        nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+                        prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+                    },
+                });
+            </script>
         
         <%@ include file="views/common/footer.jsp" %>
     </div>
