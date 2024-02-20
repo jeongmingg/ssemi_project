@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
+<<<<<<< HEAD
     div{
             box-sizing: border-box;
             border: 1px solid red;
@@ -19,14 +20,12 @@
         margin: auto;
         box-sizing: border-box;
     }
+=======
+
+>>>>>>> jeongmin-mainPage
         
     /* 전체 구조 비율 */
-    .wrap>div{width: 100%;}
-    #header{height: 170px;}
     #navigator{height: 45px;}
-    #banner{height: 275px;} /* margin-bottom: 20px */
-    #content{height: 1600px;}
-    #footer{height: 120px;}
 
     /* navigator 비율 */
     #navigator>div{height: 100%; float: left;}
