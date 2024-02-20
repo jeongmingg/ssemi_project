@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here2</title>
+	<title>로그인</title>
 	<style>
 		.login-form{
 			width: 1800px;
