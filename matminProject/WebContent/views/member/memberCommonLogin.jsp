@@ -15,25 +15,30 @@
 			text-align: center;
 		}
 
+		form>input{
+			width: 300px;
+			height: 50px;
+		}
+
 		#loginBtn{
 			background-color: #E4910D;
 			border: #E4910D;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
 		}
 
-		hr{
-			width: 500px;
-			border-top: 1px solid gray;
+		#hr{
+			width: 400px;
+			border-top: 2px solid darkgray;
 		}
 
 		#naver-login-btn{
 			background-color: #03c75a;
 			border: #03c75a;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
 		}
 
 		#kakao-login-btn{
@@ -41,8 +46,8 @@
 			border: #f9e003;
 			color: black;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
 		}
 	</style>
 
@@ -65,16 +70,18 @@
 
 	<div class="login-form">
 		<div id="input_id_pwd">
-			<input type="text"> <br>
-			<input type="password"> <br>
-			<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
+			<form action="#" method="post">
+				<input type="text" name="userId"> <br>
+				<input type="password" name="userPwd"> <br>
+				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
+			</form>
 		</div>
 		<div id="click_other">
 			<a href="#">ID/PWD 찾기</a>
 			<a href="#">회원가입</a>
 		</div>
 
-		<hr>
+		<hr id="hr">
 
 		<div id="sns-login">
 			<p><b>간편 로그인</b></p>
