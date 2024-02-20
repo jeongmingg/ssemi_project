@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>푸터바</title>
 <style>
     div{
             box-sizing: border-box;
