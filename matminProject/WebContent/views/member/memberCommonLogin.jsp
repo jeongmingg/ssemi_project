@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>Insert title here2</title>
 	<style>
 		.login-form{
 			width: 1800px;
