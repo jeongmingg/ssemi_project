@@ -43,14 +43,15 @@
     	background: #e4910d;
     	cursor:pointer;
     }
-	.paging-area button{		
+	* .paging-area button{		
 		background-color: #F4F4F4;
 		border-radius: 2px;
 	}
 	.paging-area button:hover{		
 		background-color: #e4910d;
 		color: white;
-	}
+	} 
+
 
 	</style>
 		<!-- Latest compiled and minified CSS -->
@@ -73,7 +74,7 @@
 
 	<br><br>
 	<div class="outer">
-		<h3 align="center" style="font-weight: 700;">맛집 등록 요청 / 삭제 </h3>
+		<h3 align="center" style="font-weight: 700;">맛집등록요청 / 삭제 </h3>
 		<br>
 			<div align="right" style="width: 1350px;">
 				
