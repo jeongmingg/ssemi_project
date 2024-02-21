@@ -9,56 +9,72 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
     
+        div{
+            box-sizing: border-box;
+            /*border: 1px solid red;*/
+            margin: 0;
+            padding: 0;
+            display: block;
+            }
+        .main-content{
+            width: 1800px;
+            margin: auto;
+            box-sizing: border-box;
+        }
+        
+        /* 전체 구조 비율 */
+        #banner{height: 450px; margin-bottom: 20px; margin-top: 10px;}
+        #content{height: 1620px;}
+
         /* banner 비율 */
+        #banner>div{height: 100%; float: left;}
+        #banner_1, #banner_3{width: 10%;}
+        #banner_2{width: 80%;}
 
-        #banner>div{width: 100%; float: left;}
-        #banner_1{height: 20%;}
-        #banner_2{height: 20%;}
-        #banner_3{height: 60%;}
-        #banner_3>div{height: 100%; width: 20%; float: left;}
-        #banner_3_1>div{width: 100%; height: 45%; float: left;}
-        #banner_3_2>div{width: 100%; height: 45%; float: left;}
-        #banner_3_3>div{width: 100%; height: 45%; float: left;}
-        #banner_3_4>div{width: 100%; height: 45%; float: left;}
-        #banner_3_5>div{width: 100%; height: 45%; float: left;}
+        #banner_2>div{width: 100%; float: left;}
+        #banner_2_1{height: 60%;}
+        #banner_2_2{height: 25%;}
+        #banner_2_3{height: 15%;}
 
-		/* 배너 스타일 */
+        #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left;}
+        
+        /* banner 스타일 */
         #banner{
-            background-color: #E4910D;
-            /* padding-bottom: 5px; */
-            margin-bottom: 20px;
-        }
-        #banner_1>h1{
-            text-align: center;
-            color: white;
-            line-height: 15px;
+            background-color: rgb(255, 170, 28);
+            padding-top: 10px;
+            padding-bottom: 10px;
         }
 
-        #banner_2{
-            padding-left: 830px;
-            padding-top: 5px;
-        }
-        #banner_3>div{
-            text-align: center;
-            padding-top: 30px;
-        }
+        #banner_2_1, #banner_2_2 {text-align: center;}
 
-        #banner_3_1{padding-left: 200px;}
-        #banner_3_2{padding-left: 100px; padding-right: 50px;}
-        #banner_3_3{padding-left: 80px; padding-right: 80px;}
-        #banner_3_4{padding-right: 100px;}
-        #banner_3_5{padding-right: 200px;}
-
-        #banner_3 button {
-            background-color: white;
-            color: #E4910D;
-            border-radius: 20px;
-            font-weight: 1000;
+        #ban_img0{margin-top: 6px;}
+        #banner_2_2 img{
             width: 100px;
-            height: 50px;
-            
+            height: 100px;
+            display: inline-block;
+            margin: 0 auto;
+            cursor: pointer;
         }
 
+        #banner_2_3 button{
+            width: 50%;
+            height: 70%;
+            background-color: white;
+            color: rgb(118, 114, 115);
+            
+            border-radius: 30px;
+            font-size: 25px;
+            font-weight: 1000;
+            display: inline-block;
+            margin: auto;
+        }
+        
+        #banner_2_3>div{
+            text-align: center;
+            display: flex;
+            align-items: center;
+            }
+        
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
         /* #content_left{width: 15%;} */
@@ -132,7 +148,7 @@
 	            line-height: 15px;
 	        }
             
-	      	/* 슬라이더 스타일 */
+	      	/* 슬라이더(slide) 스타일 */
 
 	        .swiper-container {
 	            height:250px;
@@ -160,27 +176,8 @@
                 border-radius: 10px;
 	        }
             
-            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 13px;}
-			.cWtbst .Card_Rest_Name {
-                display: inline-block;
-                width: 100%;
-                font-size: 1rem;
-                font-weight: bold;
-                letter-spacing: -0.05rem;
-                color: rgb(32, 32, 32);
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-
-            p {
-                display: block;
-                margin-block-start: 1em;
-                margin-block-end: 1em;
-                margin-inline-start: 0px;
-                margin-inline-end: 0px;
-            }
-
+            /* 식당이름 스타일 */
+            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 14px;}
     </style>
 </head>
 <body>
@@ -188,150 +185,151 @@
 	<%@ include file="views/common/header.jsp" %>
     <%@ include file="views/common/navigator.jsp" %>
 	
-	<div class="wrap">
-     	<div id="banner">
-            <div id="banner_1"><h1>오늘 당신의 지갑 상태는?!</h1></div>
+	<div class="main-content">
+        <div id="banner">
+            <div id="banner_1"></div>
             <div id="banner_2">
-                <img src="resources/money/wallet_7155311.png" width="70px" height="70px">
-                <img src="resources/money/funding_11794734.png" width="70px" height="70px">
+                <div id="banner_2_1">
+                    <img id="ban_img0" src="resources/banner/walet-small.png">
+                </div>
+                <div id="banner_2_2">
+                    <div id="banner_2_2_1">
+                        <img class="banner_1" id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
+                    </div>
+                    <div id="banner_2_2_2">
+                        <img class="banner_2" id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
+                    </div>
+                    <div id="banner_2_2_3">
+                        <img class="banner_3"id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
+                    </div>
+                    <div id="banner_2_2_4">
+                        <img class="banner_4" id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
+                    </div>
+                    <div id="banner_2_2_5">
+                        <img class="banner_5" id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
+                    </div>
+                </div>
+                <div id="banner_2_3">
+                    <div id="banner_2_3_1">
+                        <button class="banner_1" id="ban_btn1">사원</button>
+                    </div>
+                    <div id="banner_2_3_2">
+                        <button class="banner_2" id="ban_btn2">대리</button>
+                    </div>
+                    <div id="banner_2_3_3">
+                        <button class="banner_3" id="ban_btn3">과장</button>
+                    </div>
+                    <div id="banner_2_3_4">
+                        <button class="banner_4" id="ban_btn4">차장</button>
+                    </div>
+                    <div id="banner_2_3_5">
+                        <button class="banner_5" id="ban_btn5">부장</button>
+                    </div>
+                </div>
             </div>
-            <div id="banner_3">
-                <div id="banner_3_1">
-                    <div id="banner_3_1_1"><button id="bannerBtn1">사원</button></div>
-                    <div id="banner_3_1_2"></div>
-                    
-                </div>
-                <div id="banner_3_2">
-                    <div id="banner_3_2_1"><button id="bannerBtn2">대리</button></div>
-                    <div id="banner_3_2_2"></div>
-                    
-                </div>
-                <div id="banner_3_3">
-                    <div id="banner_3_3_1"><button id="bannerBtn3">과장</button></div>
-                    <div id="banner_3_3_2"></div>
-                    
-                </div>
-                <div id="banner_3_4">
-                    <div id="banner_3_4_1"><button id="bannerBtn4">차장</button></div>
-                    <div id="banner_3_4_2"></div>
-                    
-                </div>
-                <div id="banner_3_5">
-                    <div id="banner_3_5_1"><button id="bannerBtn5">부장</button></div>
-                    <div id="banner_3_5_2"></div>
-                    
-                </div>  
-            </div>
+            
         </div>
 
         <script>
-            $("#bannerBtn1").hover(
+            // 사원 hover style
+            $(".banner_1").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_1_2").css({
-                        "background-color": "white",
+                    $("#ban_btn1").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "20px"
                     }).text("7000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_1_2").css({
-                        "background-color": "",
+                    $("#ban_btn1").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("사원");
                 }
             );
-
-            $("#bannerBtn2").hover(
+            
+            // 대리 hover style
+            $(".banner_2").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_2_2").css({
-                        "background-color": "white",
+                    $("#ban_btn2").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "16px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_2_2").css({
-                        "background-color": "",
+                    $("#ban_btn2").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("대리");
                 }
             );
 
-            $("#bannerBtn3").hover(
+            // 과장 hover style
+            $(".banner_3").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_3_2").css({
-                        "background-color": "white",
+                    $("#ban_btn3").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "16px"
                     }).text("12000원 초과 20000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_3_2").css({
-                        "background-color": "",
+                    $("#ban_btn3").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("과장");
                 }
             );
-            
-            $("#bannerBtn4").hover(
+
+            // 차장 hover style
+            $(".banner_4").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_4_2").css({
-                        "background-color": "white",
+                    $("#ban_btn4").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "16px"
                     }).text("20000원 초과 35000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_4_2").css({
-                        "background-color": "",
+                    $("#ban_btn4").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("차장");
                 }
             );
 
-            $("#bannerBtn5").hover(
+            // 부장 hover style
+            $(".banner_5").hover(
                 // mouseenter
                 function () {
-                    $("#banner_3_5_2").css({
-                        "background-color": "white",
+                    $("#ban_btn5").css({
                         "color": "#E4910D",
-                        "border-radius": "10px",
-                        "line-height": "60px"
+                        "font-size": "20px"
                     }).text("35000원 초과");
                 },
                 // mouseout
                 function () {
-                    $("#banner_3_5_2").css({
-                        "background-color": "",
+                    $("#ban_btn5").css({
                         "color": "",
-                        "border-radius": "",
-                        "line-height": ""
-                    }).text("");
+                        "font-size": "25px",
+                        "font-weight": 1000
+                    }).text("부장");
                 }
             );
+
         </script>
+       
         <div id="content">
-            <div  id="topBtn">
+            <div id="topBtn">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
                     <g>
                         <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
@@ -359,7 +357,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>대련집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>
                             </div>
                             <div class="swiper-slide">
@@ -477,7 +475,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -596,7 +594,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -715,7 +713,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -834,7 +832,7 @@
                             <div class="swiper-slide">
                                 <figure>
                                     <img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-                                    <figcaption>삼겹살집</figcaption>
+                                    <figcaption>돼지삼겹살</figcaption>
                                 </figure>     
                                 </div>
                             <div class="swiper-slide">
@@ -940,29 +938,29 @@
             <div id="content_right">
             </div>
         </div>
-			        <script>
-			        new Swiper('.swiper-container', {
-			
-			            slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
-			            spaceBetween : 1, // 슬라이드간 간격
-			            slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
-			        
-			            // 그룹수가 맞지 않을 경우 빈칸으로 메우기
-			            // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
-			            loopFillGroupWithBlank : true,
-			        
-			            loop : true, // 무한 반복
-			        
-			            pagination : { // 페이징
-			                el : '.swiper-pagination',
-			                clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
-			            },
-			            navigation : { // 네비게이션
-			                nextEl : '.swiper-button-next', // 다음 버튼 클래스명
-			                prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
-			            },
-			        });
-			    </script>
+                <script>
+                new Swiper('.swiper-container', {
+        
+                    slidesPerView : 5, // 동시에 보여줄 슬라이드 갯수
+                    spaceBetween : 1, // 슬라이드간 간격
+                    slidesPerGroup : 4, // 그룹으로 묶을 수, slidesPerView 와 같은 값을 지정하는게 좋음
+                
+                    // 그룹수가 맞지 않을 경우 빈칸으로 메우기
+                    // 3개가 나와야 되는데 1개만 있다면 2개는 빈칸으로 채워서 3개를 만듬
+                    loopFillGroupWithBlank : true,
+                
+                    loop : true, // 무한 반복
+                
+                    pagination : { // 페이징
+                        el : '.swiper-pagination',
+                        clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+                    },
+                    navigation : { // 네비게이션
+                        nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+                        prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+                    },
+                });
+            </script>
         
         <%@ include file="views/common/footer.jsp" %>
     </div>
