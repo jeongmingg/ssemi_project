@@ -9,20 +9,30 @@
     .outer{
 
         width: 1000px;
-        height: 600px;
-        position: absolute;
+        height: 700px;
+        /* position: absolute; */
         border: 1px solid gray;
+        margin: 0 auto;
+        /* display: flex; */
+        justify-content: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
-   
+   .table1{
+    height: 200px;
+   }
     #best2{
-        border: 1px solid gray;
-        width: 350px;
+        /* border: 1px solid gray; */
+        width: 500px;
         height: 350px;
+        /* float: left; */
+        /* display: flex; */
     }
 
     #best3{
-        border: 1px solid gray;
-        float: right;
+        width: 500px;
+        /* border: 1px solid gray; */
+        margin-bottom: 150px;
     }
     
 
@@ -30,16 +40,14 @@
 
 </head>
 <body>
-<<<<<<< Updated upstream:matminProject/WebContent/views/admin/adminStatisticPage.jsp
-    <%@ include file "../common/header"%> 
-=======
-    <%@ include file="../common/header.jsp"%>
->>>>>>> Stashed changes:matminProject/WebContent/views/admin/statisticPage.jsp
 
+    <%@ include file="../common/header.jsp"%>
+    <%@ include file="../common/navigator.jsp"%>
+ 
 <div class="outer" border="1">
 
         <br><br><br>
-        <div class="table1" style="clear: both; padding: 5%;">
+        <div class="table1" >
             <table align="center" style="border: 1px solid gray;">
                 <tr>
                     <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
@@ -55,7 +63,7 @@
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" style="width: 100;">
+            <table border="1" style="width: 450px;">
                 <tr>
                     <th width="70">순위</th>
                     <th>식당명</th>
@@ -103,7 +111,7 @@
         </div>
 
         <div id="best3" style="float: right;">
-            <canvas width='350' height='350' id='canvas'></canvas>
+            <canvas width='550' height='550' id='canvas'></canvas>
         </div>    
 
             <script>
