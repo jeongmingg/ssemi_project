@@ -8,7 +8,6 @@
 	<style>
 		.login-form{
 			width: 1800px;
-			height: 1000px;
 			margin: auto;
 			margin-top: 50px;
 			margin-bottom: 50px;
@@ -52,9 +51,7 @@
 			margin-top: 20px;
 		}
 
-		#sns-login>p{
-			color: #E4910D;
-		}
+		#sns-login>p{color: #E4910D;}
 
 		#sns-login>a{
 			width: 300px;
