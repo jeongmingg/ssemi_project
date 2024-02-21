@@ -9,7 +9,7 @@
 <style>
     div{
             box-sizing: border-box;
-            border: 1px solid red;
+            /* border: 1px solid red; */
             margin: 0;
             padding: 0;
             display: block;
@@ -21,12 +21,7 @@
     }
         
     /* 전체 구조 비율 */
-    .wrap>div{width: 100%;}
-    #header{height: 170px;}
     #navigator{height: 45px;}
-    #banner{height: 275px;} /* margin-bottom: 20px */
-    #content{height: 1600px;}
-    #footer{height: 120px;}
 
     /* navigator 비율 */
     #navigator>div{height: 100%; float: left;}
