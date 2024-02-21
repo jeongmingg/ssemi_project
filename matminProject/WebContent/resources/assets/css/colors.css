@@ -1,0 +1,65 @@
+:root {
+  --white: #ffffff;
+  --wd-primary-orange-01: #f6f1e7;
+  --wd-primary-orange-02: #f2d6c0;
+  --wd-primary-orange-03: #f0bc9a;
+  --wd-primary-orange-04: #ec9769;
+  --wd-primary-orange-05: #e7713d;
+  --wd-primary-orange-06: #e54e2b;
+  --w-primary-orange-07: #bf321c;
+  --w-primary-orange-08: #922412;
+  --w-primary-orange-09: #531006;
+  --w-primary-orange-10: #190200;
+  --d-primary-orange-07: #c64733;
+  --d-primary-orange-08: #9d3a2a;
+  --d-primary-orange-09: #65281f;
+  --d-primary-orange-10: #301c1a;
+
+  --wd-primary-gray-01: #efeff0;
+  --wd-primary-gray-02: #dcdfe0;
+  --wd-primary-gray-03: #b6bdc1;
+  --wd-primary-gray-04: #8f989e;
+  --wd-primary-gray-05: #5d6a71;
+  --wd-primary-gray-06: #3b4951;
+  --w-primary-gray-07: #293840;
+  --w-primary-gray-08: #17282e;
+  --w-primary-gray-09: #0c1b21;
+  --w-primary-gray-10: #111315;
+  --d-primary-gray-07: #313f46;
+  --d-primary-gray-08: #233339;
+  --d-primary-gray-09: #1e2629;
+  --d-primary-gray-10: #1d1f21;
+
+  --wd-background-01: #f8f8f8;
+  --wd-background-02: #e9e9e9;
+  --wd-background-03: #d8d8d8;
+  --wd-background-04: #cacaca;
+  --wd-background-05: #a7a7a7;
+  --wd-background-06: #8d8d8d;
+  --wd-background-07: #6e6e6e;
+  --wd-background-08: #4c4c4c;
+  --wd-background-09: #2e3031;
+  --wd-background-10: #101314;
+
+  /*--primary-gray-05: #687177;*/
+  /*--black-06: #b7b7b7;*/
+
+  --w-status-red: #e51313;
+  --w-status-red-hover: #ba1b22;
+  --w-status-red-active: #8d0a10;
+  --w-status-blue: #2675ff;
+  --w-status-blue-hover: #115ad9;
+  --w-status-blue-active: #003ba2;
+  --w-status-yellow: #f0c11b;
+  --w-status-yellow-hover: #d3a70b;
+  --w-status-yellow-active: #a38000;
+  --d-status-red: #e82b2b;
+  --d-status-red-hover: #c13239;
+  --d-status-red-active: #992328;
+  --d-status-blue: #3c83ff;
+  --d-status-blue-hover: #296bdd;
+  --d-status-blue-active: #1a4fac;
+  --d-status-yellow: #f2c732;
+  --d-status-yellow-hover: #d8b024;
+  --d-status-yellow-active: #ac8d1a;
+}

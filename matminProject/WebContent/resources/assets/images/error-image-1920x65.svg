@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920px" height="65px" viewBox="0 0 1920 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>error-image-1920x65</title>
+    <g id="error-image-1920x65" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="BgBox" fill="#EFEFEF" x="0" y="0" width="1920" height="65"></rect>
+        <g id="Group" transform="translate(853.000000, 18.000000)" fill="#E54E2B">
+            <path d="M0,12.2161538 L28.7084615,28.2615385 C31.4512101,29.7973194 34.7955492,29.7949881 37.5361538,28.2553846 L37.5361538,28.2615385 L62.8438462,13.8938462 C64.545369,12.8433194 65.116609,10.6384144 64.1392308,8.89384615 L59.1307692,0 L37.5330769,12.1538462 C34.7924405,13.6938739 31.4476298,13.6956226 28.7053846,12.1584615 L10.04,1.69692308 C9.22423836,1.21985805 8.25012233,1.09326855 7.33952292,1.34598742 C6.42892352,1.59870628 5.65937468,2.20921551 5.20615385,3.03846154 L0,12.2161538 Z" id="Logo" fill-rule="nonzero"></path>
+            <text id="Image-not-found…" font-family="NanumGothicBold, Nanum Gothic" font-size="16" font-weight="bold">
+                <tspan x="74.336" y="20">Image not found…</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

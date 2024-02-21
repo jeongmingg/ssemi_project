@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-solter-increase -on_dark</title>
+    <g id="icon-solter-increase--on_dark" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9.51637017,2.08 L9.516,9.079 L11.1323702,9.07999966 C11.2070792,9.07986195 11.2756366,9.12137451 11.310137,9.18764046 C11.3446373,9.25390641 11.339328,9.33387658 11.2963702,9.395 L8.18037017,13.846 C8.14296192,13.8995931 8.08172766,13.9315273 8.01637017,13.9315273 C7.95101267,13.9315273 7.88977841,13.8995931 7.85237017,13.846 L4.73637017,9.395 C4.6934123,9.33387658 4.68810301,9.25390641 4.72260337,9.18764046 C4.75710374,9.12137451 4.82566118,9.07986195 4.90037017,9.07999966 L6.516,9.079 L6.51637017,2.08 L9.51637017,2.08 Z" id="icon" fill="#A7A7A7" fill-rule="nonzero" transform="translate(8.016370, 8.005764) rotate(-180.000000) translate(-8.016370, -8.005764) "></path>
+        <rect id="guide-box" x="0" y="0" width="16" height="16"></rect>
+    </g>
+</svg>
