@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+	String alertMsg = (String)session.getAttribute("alertMsg");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +13,7 @@
 <style>
     div{
             box-sizing: border-box;
-            border: 1px solid red;
+            /* border: 1px solid red; */
             margin: 0;
             padding: 0;
             display: block;
@@ -41,17 +45,21 @@
 		
 		/* header 스타일 - 로고, 검색창, 로그인, 회원가입, 최근본식당 */
 			/* logo 스타일 */
-	        #logo{width: 80%; height: 140%;}
-	
+
+			#logo{
+				width: 80%;
+				height: 140%;
+			}
+
 	        /* 검색창 스타일 */
 	        /* 검색창 div id="header_2" class="sc-cmfmEs leAvxd"
 	            그안에 div class="sc-UFtxY OqZgF Input__Wrap" */
 	        /* input 클래스 : sc-hnmMDg bccLDB Search__Input */
 	        /* button 클래스 : sc-jPQLIr gZgnOG search */
 	        .leAvxd {  
-	                    padding-left: 300px;
-	                    padding-top: 80px;  
-	                    min-width: 430px;
+					padding-left: 300px;
+					padding-top: 80px;  
+					min-width: 430px;
 	                }
 	
 	        .OqZgF {
@@ -114,7 +122,7 @@
 	                padding-block: 1px;
 	                padding-inline: 2px;
 	            }
-	
+				
 	        /* 검색버튼 */
 	        .gZgnOG {
 	                    width: 22px;
@@ -157,12 +165,19 @@
 </style>
 </head>
 <body>
+
+	<% if(alertMsg != null) {%>
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
+	
     <div class="wrap">
         <div id="header">
             <div id="header_1">
                 <img id="logo" src="resources/logo/투명배경로고.png">
             </div>
-
                 <div id="header_2" class="sc-cmfmEs leAvxd" >
                 <div class="sc-UFtxY OqZgF Input__Wrap">
                     <input id="searchInput" class="sc-hnmMDg bccLDB Search__Input" placeholder="지역, 음식 또는 식당명 입력" value="">

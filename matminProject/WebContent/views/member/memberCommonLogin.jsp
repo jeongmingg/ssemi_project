@@ -96,12 +96,15 @@
 		<h3>Login</h3>
 
 		<div id="input_id_pwd">
-			<form action="#" method="post">
-				<input type="text" name="userId" placeholder="ID"> <br>
-				<input type="password" name="userPwd" placeholder="Password"> <br>
+			<form action="<%= contextPath %>/login.me" method="post">
+			
+				<input type="text" name="userId" placeholder="ID" required> <br>
+				<input type="password" name="userPwd" placeholder="Password" required> <br>
 				<input type="checkbox" name="autoLogin" id="autoLogin">
 				<label for="autoLogin" style="font-size: 13px;">자동 로그인</label> <br>
+				
 				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
+				
 			</form>
 		</div>
 		<div id="click_other">
