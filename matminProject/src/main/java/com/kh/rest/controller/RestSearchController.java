@@ -27,7 +27,6 @@ public class RestSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("zzz");
 		request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
 	}
 
