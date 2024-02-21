@@ -1,0 +1,47 @@
+/* Works for IE 10 & IE 11 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .input-box {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 38px !important;
+    height: 40px;
+  }
+  .input-container-sm .input-box {
+    line-height: 32px !important;
+    height: 34px;
+  }
+  .input-container-lg .input-box {
+    line-height: 46px !important;
+    height: 48px;
+  }
+
+  .input-box::-ms-clear, .input-box::-ms-reveal {
+    display: none;
+  }
+
+  .btn:active .label,
+  .btn:active .icon,
+  .btn:active > i { transform: translate(0px, 0px) }
+
+  .sheet .sheet-contents:after {
+    content: '';
+    display: block;
+    height: 18px;
+  }
+
+
+  .stepper-wrapper .stepper .stepper-input {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 38px;
+    height: 40px;
+  }
+  .stepper-wrapper.stepper-sm .stepper .stepper-input {
+    line-height: 32px;
+    height: 34px;
+  }
+  .stepper-wrapper.stepper-lg .stepper .stepper-input {
+    line-height: 46px;
+    height: 48px;
+  }
+}

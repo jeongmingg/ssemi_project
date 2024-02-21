@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="332px" height="222px" viewBox="0 0 332 222" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>image-error-rectangle</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="332" height="222"></rect>
+    </defs>
+    <g id="image-error-rectangle" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <mask id="mask-2" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <use id="Rectangle" fill="#A7A7A7" xlink:href="#path-1"></use>
+        <circle id="타원_1006" fill="#CACACA" fill-rule="nonzero" mask="url(#mask-2)" cx="123.124" cy="86.139" r="38"></circle>
+        <path d="M336.122,222.748 L336.122,142.866 L255.135,81.418 L129.483,176.754 L93.16,149.189 L-4.003,222.918 C-3.89,229.628 3.302,235.042 12.17,235.042 L319.925,235.042 C328.874,235.038 336.122,229.538 336.122,222.748 Z" id="패스_33751" fill="#CACACA" fill-rule="nonzero" mask="url(#mask-2)"></path>
+    </g>
+</svg>
