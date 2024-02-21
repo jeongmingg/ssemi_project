@@ -29,19 +29,26 @@
 	.listView-area tr>th{
 		text-align: right ;
 	}
-	input{
+	.listView-area input{
 		border-radius: 5px;
-		border: 1.5px solid lightgray;
-		opacity: 0.4;
+		border: 1px solid lightgray;
 		height: 35px;
 	}
-
+	.listView-area input:focus{
+		outline: solid #e4910d;
+	}
+	.listView-area #enroll:focus{
+		outline: none;
+	}
 	.listView-area tr>td textarea{
 		width: 89%;
 		height: 200px;
 		resize: none;
 		border-radius: 5px;
 		border: 1.5px solid lightgray;
+	}
+	.listView-area tr>td textarea:focus{
+		outline: solid #e4910d;
 	}
 	.listView-area tr>td{
 		width: 10px;
@@ -71,7 +78,7 @@
 
 	<div class="outer">
 		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
-		<div style="border: 2px solid lightgray; width: 1200px; height: 600px; border-radius: 5px;">
+		<div style="border: 2px solid lightgray; width: 1200px; height: 650px; border-radius: 5px;">
 		
 			<form action="#">
 				<table class="listView-area" style="width: 1200px">
@@ -79,29 +86,30 @@
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
-						<td style="width: 80px;"><input type="radio" style="vertical-align: -13px;"> 맛집 등록 요청</td>
-						<td style="width: 80px;"><input type="radio" style="vertical-align: -13px;"> 맛집 등록 삭제</td>
+						<td style="width: 80px;">
+							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll" style="color: #e4910d;"> 맛집 등록 요청</td>
+						<td style="width: 80px;">
+							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll"> 맛집 등록 삭제</td>
 					</tr>
 					<tr>
 						<th height="50">제목</th>
 						<td></td>
-						<td colspan="2" align="left" style="width: 100px;">
-							<input type="text" style="width: 100%;">
+						<td colspan="2" align="left">
+							<input type="text" name="title" style="width: 100%;" required>
 						</td>
 						<th style="text-align: center; width: 150px";>닉네임
-							<input style="width: 150px; font-weight: lighter;">
-							</input>
+							<input type="text" neme="name" style="width: 150px; font-weight: lighter;" required>
 						</th>
 						
 						<th style="width: 150px; text-align: left;">작성일자
-							<input style="width: 180px; font-weight: lighter; text-align: center;"></input>
+							<input type="text" neme="enrollDate" style="width: 180px; font-weight: lighter; text-align: center;">
 						</th>
 					</tr>
 					<tr>
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;">
+							<input type="text" name="restName" style="width: 100%;" required>
 						</td>
 
 					</tr>
@@ -109,7 +117,7 @@
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;">
+							<input type="text" style="width: 100%;" name="restAdd" required>
 						</td>
 						<td colspan="2"></td>
 					</tr>
@@ -117,17 +125,23 @@
 						<th height="40" >내용</th>
 						<td></td>
 						<td colspan="4" align="left">
-							<textarea></textarea>
+							<textarea name="content" required></textarea>
 						</td>
 					</tr>
 					<tr>
 						<th height="0">사진</th>
 						<td></td>
 						<td colspan="4">
-							<input type="file" style="width: 100%; border-style: none; background-color: transparent; opacity: 100%;">
+							<input type="file" name="file" style="width: 100%; border-style: none; background-color: transparent; opacity: 100%;" required>
 						</td>
 					</tr>
 				</table>
+
+				<div align="center">
+					<br>
+					<button type="submit" class="btn btn-sm btn-secondary">등록</button>
+					<button type="submit" class="btn btn-sm btn-secondary">취소</button>
+				</div>
 			</form>
 		</div>
 	</div>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
 <style>
 	.outer {
 	    width: 1500px;
@@ -15,7 +16,7 @@
 		color: #e4910d;
 		border: 2px solid;
 		border-width: 0 0 2px;
-		width: 300px;
+		width: 260px;
 		margin: auto;
 	}
 
@@ -40,18 +41,11 @@
 		height: 40px;
 	}
 	.list-area>tbody>tr:hover{
-    	background: #e4910d;
+    	color: #e4910d;
     	cursor:pointer;
+		font-weight: bolder;
     }
-	* .paging-area button{		
-		background-color: #F4F4F4;
-		border-radius: 2px;
-	}
-	.paging-area button:hover{		
-		background-color: #e4910d;
-		color: white;
-	} 
-
+    .pagination{width: 350px;}
 
 	</style>
 		<!-- Latest compiled and minified CSS -->
@@ -65,6 +59,7 @@
 	
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	 	
 
 		<title>Insert title here</title>
 </head>
@@ -121,12 +116,31 @@
 
 		<br><br>
 		<!-- 페이징바-->
+              <div class="pagination">
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group">
+                  <ul>
+                    <li class="on"><a href="#" class="pagination-item">1</a></li>
+                    <li class=""><a href="#" class="pagination-item">2</a></li>
+                    <li class=""><a href="#" class="pagination-item">3</a></li>
+                    <li class=""><a href="#" class="pagination-item">4</a></li>
+                    <li class=""><a href="#" class="pagination-item">5</a></li>
+                  </ul>
+                </div>
+                <div class="pagination-group direction">
+                  <ul>
+                    <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
 
-		<div class="paging-area" align="center">
-			<button>&lt</button>
-			<button>&gt</button>
-		</div>
 
+		<!-- -->
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
 				<g>
