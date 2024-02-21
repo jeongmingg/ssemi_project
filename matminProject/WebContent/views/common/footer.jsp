@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>푸터바</title>
 <style>
     div{
             box-sizing: border-box;
@@ -20,11 +20,6 @@
     }
     
     /* 전체 구조 비율 */
-    .wrap>div{width: 100%;}
-    #header{height: 170px;}
-    #navigator{height: 45px;}
-    #banner{height: 275px;} /* margin-bottom: 20px */
-    #content{height: 1600px;}
     #footer{height: 120px;}
 
     /* footer 비율 */
@@ -70,19 +65,17 @@
 </style>
 </head>
 <body>
-    <div class="wrap">
-        <div id="footer">
-            <div id="footer_1">
-                <div id="footer_1_1">
-                    <p id="p1">
-                        ㈜ 맛집의 민족  | 사업자 등록번호 : 267-12-11237 | ℡☎ : 02-111-2222 | email : matmin@gmail.com
-                    </p>
-                </div>
-                <div id="footer_1_2">
-                    <p id="p2">
-                        Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
-                    </p>
-                </div>
+    <div id="footer">
+        <div id="footer_1">
+            <div id="footer_1_1">
+                <p id="p1">
+                    ㈜ 맛집의 민족  | 사업자 등록번호 : 267-12-11237 | ℡☎ : 02-111-2222 | email : matmin@gmail.com
+                </p>
+            </div>
+            <div id="footer_1_2">
+                <p id="p2">
+                    Copyright © 2024 - 2024 The Nation Of Delicious Restaurants All Right Reserved
+                </p>
             </div>
         </div>
     </div>
