@@ -30,7 +30,11 @@
 
 </head>
 <body>
+<<<<<<< Updated upstream:matminProject/WebContent/views/admin/adminStatisticPage.jsp
     <%@ include file "../common/header"%> 
+=======
+    <%@ include file="../common/header.jsp"%>
+>>>>>>> Stashed changes:matminProject/WebContent/views/admin/statisticPage.jsp
 
 <div class="outer" border="1">
 
@@ -317,6 +321,6 @@
       
 </div>
         
-
+	<%@ include file="../common/footer.jsp" %>
     </body>
     </html>
