@@ -16,8 +16,8 @@
    
     #best2{
         border: 1px solid gray;
-        width: 400px;
-        height: 400px;
+        width: 350px;
+        height: 350px;
     }
 
     #best3{
@@ -30,13 +30,13 @@
 
 </head>
 <body>
-    <!-- <%@ include file "../common/header"%> -->
+    <%@ include file "../common/header"%> 
 
 <div class="outer" border="1">
 
         <br><br><br>
         <div class="table1" style="clear: both; padding: 5%;">
-            <table align="center" border="1" >
+            <table align="center" style="border: 1px solid gray;">
                 <tr>
                     <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
                     <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
@@ -51,7 +51,7 @@
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" style="width: ;">
+            <table border="1" style="width: 100;">
                 <tr>
                     <th width="70">순위</th>
                     <th>식당명</th>
