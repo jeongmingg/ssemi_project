@@ -8,7 +8,7 @@
 <style>
     div{
             box-sizing: border-box;
-            border: 1px solid red;
+            /* border: 1px solid red; */
             margin: 0;
             padding: 0;
             display: block;
