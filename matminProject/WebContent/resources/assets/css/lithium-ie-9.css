@@ -1,0 +1,19 @@
+.input-box {
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 38px !important;
+    height: 40px;
+}
+.input-container-sm .input-box {
+    line-height: 32px !important;
+    height: 34px;
+}
+.input-container-lg .input-box {
+    line-height: 46px !important;
+    height: 48px;
+}
+
+.card-wrap.skeleton .card .thumb-area:after,
+.card-wrap.skeleton .card .contents-area .title:empty:after,
+.card-wrap.skeleton .card .contents-area .description:empty:after,
+.card-wrap.skeleton .card .contents-area .meta:empty:after { filter: none; }

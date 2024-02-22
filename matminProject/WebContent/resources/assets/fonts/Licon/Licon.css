@@ -1,0 +1,282 @@
+@font-face {
+  font-family: 'Licon';
+  src:  url('Licon.eot?d1k1wu');
+  src:  url('Licon.eot?d1k1wu#iefix') format('embedded-opentype'),
+    url('Licon.ttf?d1k1wu') format('truetype'),
+    url('Licon.woff?d1k1wu') format('woff'),
+    url('Licon.svg?d1k1wu#Licon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.Licon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Licon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  position: relative;
+  font-size: 24px;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.Licon:after {
+	position: relative;
+	color: inherit;
+  font-size: inherit;
+}
+
+.Licon:before {
+	position: absolute;
+	/*top:50%;*/
+	/*left: 50%;*/
+	/*transform: translate(-50%, -50%);*/
+	color: #E54E2B;
+  font-size: inherit;
+}
+
+.Licon.single-tone:before {
+	color: inherit;
+}
+
+.Licon.size-12 { font-size: 12px; }
+.Licon.size-16 { font-size: 16px; }
+.Licon.size-20 { font-size: 20px; }
+.Licon.size-24 { font-size: 24px; }
+.Licon.size-32 { font-size: 32px; }
+
+.Licon.ico-add:before { content: "\e971"; }
+.Licon.ico-approval:before { content: "\e972"; }
+.Licon.ico-board:before { content: "\e973"; }
+.Licon.ico-bookmark:before { content: "\e974"; }
+.Licon.ico-calender:before { content: "\e975"; }
+.Licon.ico-call:before { content: "\e976"; }
+.Licon.ico-camera:before { content: "\e977"; }
+.Licon.ico-check:before { content: "\e978"; }
+.Licon.ico-circlegraph:before { content: "\e979"; }
+.Licon.ico-close:before { content: "\e97a"; }
+.Licon.ico-comment:before { content: "\e97b"; }
+.Licon.ico-community:before { content: "\e97c"; }
+.Licon.ico-contact:before { content: "\e97d"; }
+.Licon.ico-copy:before { content: "\e97e"; }
+.Licon.ico-datareset:before { content: "\e97f"; }
+.Licon.ico-delete:before { content: "\e980"; }
+.Licon.ico-download:before { content: "\e981"; }
+.Licon.ico-drop:before { content: "\e982"; }
+.Licon.ico-edit:before { content: "\e983"; }
+.Licon.ico-elearning:before { content: "\e984"; }
+.Licon.ico-elipsis:before { content: "\e985"; }
+.Licon.ico-error:before { content: "\e986"; }
+.Licon.ico-excel:before { content: "\e987"; }
+.Licon.ico-file:before { content: "\e988"; }
+.Licon.ico-filter:before { content: "\e989"; }
+.Licon.ico-folder:before { content: "\e98a"; }
+.Licon.ico-help:before { content: "\e98b"; }
+.Licon.ico-hide:before { content: "\e98c"; }
+.Licon.ico-home:before { content: "\e98d"; }
+.Licon.ico-info:before { content: "\e98e"; }
+.Licon.ico-internalinfo:before { content: "\e98f"; }
+.Licon.ico-left:before { content: "\e990"; }
+.Licon.ico-like:before { content: "\e991"; }
+.Licon.ico-linecopy:before { content: "\e992"; }
+.Licon.ico-linegraph:before { content: "\e993"; }
+.Licon.ico-list:before { content: "\e994"; }
+.Licon.ico-login:before { content: "\e995"; }
+.Licon.ico-logout:before { content: "\e996"; }
+.Licon.ico-magazine:before { content: "\e997"; }
+.Licon.ico-mail:before { content: "\e998"; }
+.Licon.ico-manager:before { content: "\e999"; }
+.Licon.ico-memo:before { content: "\e99a"; }
+.Licon.ico-menu:before { content: "\e99b"; }
+.Licon.ico-message:before { content: "\e99c"; }
+.Licon.ico-minus:before { content: "\e99d"; }
+.Licon.ico-multiboard:before { content: "\e99e"; }
+.Licon.ico-music:before { content: "\e99f"; }
+.Licon.ico-my:before { content: "\e9a0"; }
+.Licon.ico-myworks:before { content: "\e9a1"; }
+.Licon.ico-necessary:before { content: "\e9a2"; }
+.Licon.ico-new:before { content: "\e9a3"; }
+.Licon.ico-next:before { content: "\e9a4"; }
+.Licon.ico-notice:before { content: "\e9a5"; }
+.Licon.ico-notification:before { content: "\e9a6"; }
+.Licon.ico-password:before { content: "\e9a7"; }
+.Licon.ico-pause:before { content: "\e9a8"; }
+.Licon.ico-personalmenu:before { content: "\e9a9"; }
+.Licon.ico-personalmenusetting:before { content: "\e9aa"; }
+.Licon.ico-pic:before { content: "\e9ab"; }
+.Licon.ico-pin:before { content: "\e9ac"; }
+.Licon.ico-play:before { content: "\e9ad"; }
+.Licon.ico-popup:before { content: "\e9ae"; }
+.Licon.ico-prev:before { content: "\e9af"; }
+.Licon.ico-prevcell:before { content: "\e9b0"; }
+.Licon.ico-preview:before { content: "\e9b1"; }
+.Licon.ico-print:before { content: "\e9b2"; }
+.Licon.ico-recentmenu:before { content: "\e9b3"; }
+.Licon.ico-recommend:before { content: "\e9b4"; }
+.Licon.ico-reload:before { content: "\e9b5"; }
+.Licon.ico-restart:before { content: "\e9b6"; }
+.Licon.ico-restore:before { content: "\e9b7"; }
+.Licon.ico-right:before { content: "\e9b8"; }
+.Licon.ico-save:before { content: "\e9b9"; }
+.Licon.ico-screenreset:before { content: "\e9ba"; }
+.Licon.ico-screensave:before { content: "\e9bb"; }
+.Licon.ico-seahin:before { content: "\e9bc"; }
+.Licon.ico-search:before { content: "\e9bd"; }
+.Licon.ico-send:before { content: "\e9be"; }
+.Licon.ico-setting:before { content: "\e9bf"; }
+.Licon.ico-share:before { content: "\e9c0"; }
+.Licon.ico-show:before { content: "\e9c1"; }
+.Licon.ico-smallview:before { content: "\e9c2"; }
+.Licon.ico-sms:before { content: "\e9c3"; }
+.Licon.ico-solid-login:before { content: "\e9c4"; }
+.Licon.ico-solid-logout:before { content: "\e9c5"; }
+.Licon.ico-solid-multiboard:before { content: "\e9c6"; }
+.Licon.ico-solid-my:before { content: "\e9c7"; }
+.Licon.ico-solid-notice:before { content: "\e9c8"; }
+.Licon.ico-solid-restore:before { content: "\e9c9"; }
+.Licon.ico-solid-screenreset:before { content: "\e9ca"; }
+.Licon.ico-solid-screensave:before { content: "\e9d1"; }
+.Licon.ico-solid-seahin:before { content: "\e9d2"; }
+.Licon.ico-solid-setting:before { content: "\e9d3"; }
+.Licon.ico-sound:before { content: "\e9d4"; }
+.Licon.ico-standard:before { content: "\e9d5"; }
+.Licon.ico-startmenu:before { content: "\e9d6"; }
+.Licon.ico-startmenusetting:before { content: "\e9d7"; }
+.Licon.ico-stop:before { content: "\e9d8"; }
+.Licon.ico-support:before { content: "\e9d9"; }
+.Licon.ico-table:before { content: "\e9da"; }
+.Licon.ico-table-fill:before { content: "\e9db"; }
+.Licon.ico-text:before { content: "\e9dc"; }
+.Licon.ico-time:before { content: "\e9dd"; }
+.Licon.ico-top:before { content: "\e9de"; }
+.Licon.ico-treemenu:before { content: "\e9df"; }
+.Licon.ico-upload:before { content: "\e9e0"; }
+.Licon.ico-usermenu:before { content: "\e9e1"; }
+.Licon.ico-video:before { content: "\e9cb"; }
+.Licon.ico-viewall:before { content: "\e9cc"; }
+.Licon.ico-warning:before { content: "\e9cd"; }
+.Licon.ico-wifi:before { content: "\e9ce"; }
+.Licon.ico-zoomin:before { content: "\e9cf"; }
+.Licon.ico-zoomout:before { content: "\e9d0"; }
+
+
+.Licon.ico-add:after { content: "\e900"; }
+.Licon.ico-approval:after { content: "\e901"; }
+.Licon.ico-board:after { content: "\e902"; }
+.Licon.ico-bookmark:after { content: "\e903"; }
+.Licon.ico-calender:after { content: "\e904"; }
+.Licon.ico-call:after { content: "\e905"; }
+.Licon.ico-camera:after { content: "\e906"; }
+.Licon.ico-check:after { content: "\e907"; }
+.Licon.ico-circlegraph:after { content: "\e908"; }
+.Licon.ico-close:after { content: "\e909"; }
+.Licon.ico-comment:after { content: "\e90a"; }
+.Licon.ico-community:after { content: "\e90b"; }
+.Licon.ico-contact:after { content: "\e90c"; }
+.Licon.ico-copy:after { content: "\e90d"; }
+.Licon.ico-datareset:after { content: "\e90e"; }
+.Licon.ico-delete:after { content: "\e90f"; }
+.Licon.ico-download:after { content: "\e910"; }
+.Licon.ico-drop:after { content: "\e911"; }
+.Licon.ico-edit:after { content: "\e912"; }
+.Licon.ico-elearning:after { content: "\e913"; }
+.Licon.ico-elipsis:after { content: "\e914"; }
+.Licon.ico-error:after { content: "\e915"; }
+.Licon.ico-excel:after { content: "\e916"; }
+.Licon.ico-file:after { content: "\e917"; }
+.Licon.ico-filter:after { content: "\e918"; }
+.Licon.ico-folder:after { content: "\e919"; }
+.Licon.ico-help:after { content: "\e91a"; }
+.Licon.ico-hide:after { content: "\e91b"; }
+.Licon.ico-home:after { content: "\e91c"; }
+.Licon.ico-info:after { content: "\e91d"; }
+.Licon.ico-internalinfo:after { content: "\e91e"; }
+.Licon.ico-left:after { content: "\e91f"; }
+.Licon.ico-like:after { content: "\e920"; }
+.Licon.ico-linecopy:after { content: "\e921"; }
+.Licon.ico-linegraph:after { content: "\e922"; }
+.Licon.ico-list:after { content: "\e923"; }
+.Licon.ico-login:after { content: "\e924"; }
+.Licon.ico-logout:after { content: "\e925"; }
+.Licon.ico-magazine:after { content: "\e926"; }
+.Licon.ico-mail:after { content: "\e927"; }
+.Licon.ico-manager:after { content: "\e928"; }
+.Licon.ico-memo:after { content: "\e929"; }
+.Licon.ico-menu:after { content: "\e92a"; }
+.Licon.ico-message:after { content: "\e92b"; }
+.Licon.ico-minus:after { content: "\e92c"; }
+.Licon.ico-multiboard:after { content: "\e92d"; }
+.Licon.ico-music:after { content: "\e92e"; }
+.Licon.ico-my:after { content: "\e92f"; }
+.Licon.ico-myworks:after { content: "\e930"; }
+.Licon.ico-necessary:after { content: "\e931"; }
+.Licon.ico-new:after { content: "\e932"; }
+.Licon.ico-next:after { content: "\e933"; }
+.Licon.ico-notice:after { content: "\e934"; }
+.Licon.ico-notification:after { content: "\e935"; }
+.Licon.ico-password:after { content: "\e936"; }
+.Licon.ico-pause:after { content: "\e937"; }
+.Licon.ico-personalmenu:after { content: "\e938"; }
+.Licon.ico-personalmenusetting:after { content: "\e939"; }
+.Licon.ico-pic:after { content: "\e93a"; }
+.Licon.ico-pin:after { content: "\e93b"; }
+.Licon.ico-play:after { content: "\e93c"; }
+.Licon.ico-popup:after { content: "\e93d"; }
+.Licon.ico-prev:after { content: "\e93e"; }
+.Licon.ico-prevcell:after { content: "\e93f"; }
+.Licon.ico-preview:after { content: "\e940"; }
+.Licon.ico-print:after { content: "\e941"; }
+.Licon.ico-recentmenu:after { content: "\e942"; }
+.Licon.ico-recommend:after { content: "\e943"; }
+.Licon.ico-reload:after { content: "\e944"; }
+.Licon.ico-restart:after { content: "\e945"; }
+.Licon.ico-restore:after { content: "\e946"; }
+.Licon.ico-right:after { content: "\e947"; }
+.Licon.ico-save:after { content: "\e948"; }
+.Licon.ico-screenreset:after { content: "\e949"; }
+.Licon.ico-screensave:after { content: "\e94a"; }
+.Licon.ico-seahin:after { content: "\e94b"; }
+.Licon.ico-search:after { content: "\e94c"; }
+.Licon.ico-send:after { content: "\e94d"; }
+.Licon.ico-setting:after { content: "\e94e"; }
+.Licon.ico-share:after { content: "\e94f"; }
+.Licon.ico-show:after { content: "\e950"; }
+.Licon.ico-smallview:after { content: "\e951"; }
+.Licon.ico-sms:after { content: "\e952"; }
+.Licon.ico-solid-login:after { content: "\e953"; }
+.Licon.ico-solid-logout:after { content: "\e954"; }
+.Licon.ico-solid-multiboard:after { content: "\e955"; }
+.Licon.ico-solid-my:after { content: "\e956"; }
+.Licon.ico-solid-notice:after { content: "\e957"; }
+.Licon.ico-solid-restore:after { content: "\e958"; }
+.Licon.ico-solid-screenreset:after { content: "\e959"; }
+.Licon.ico-solid-screensave:after { content: "\e95a"; }
+.Licon.ico-solid-seahin:after { content: "\e95b"; }
+.Licon.ico-solid-setting:after { content: "\e95c"; }
+.Licon.ico-sound:after { content: "\e95d"; }
+.Licon.ico-standard:after { content: "\e95e"; }
+.Licon.ico-startmenu:after { content: "\e95f"; }
+.Licon.ico-startmenusetting:after { content: "\e960"; }
+.Licon.ico-stop:after { content: "\e961"; }
+.Licon.ico-support:after { content: "\e962"; }
+.Licon.ico-table:after { content: "\e963"; }
+.Licon.ico-table-fill:after { content: "\e964"; }
+.Licon.ico-text:after { content: "\e965"; }
+.Licon.ico-time:after { content: "\e966"; }
+.Licon.ico-top:after { content: "\e967"; }
+.Licon.ico-treemenu:after { content: "\e968"; }
+.Licon.ico-upload:after { content: "\e969"; }
+.Licon.ico-usermenu:after { content: "\e96a"; }
+.Licon.ico-video:after { content: "\e96b"; }
+.Licon.ico-viewall:after { content: "\e96c"; }
+.Licon.ico-warning:after { content: "\e96d"; }
+.Licon.ico-wifi:after { content: "\e96e"; }
+.Licon.ico-zoomin:after { content: "\e96f"; }
+.Licon.ico-zoomout:after { content: "\e970"; }
