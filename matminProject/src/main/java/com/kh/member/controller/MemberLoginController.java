@@ -40,9 +40,8 @@ public class MemberLoginController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/loginForm.me");
 			
 		} else {
-			request.getSession().setAttribute("alertMsg", "로그인 성공");
 			request.getSession().setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath() + "/loginForm.me");
+			response.sendRedirect(request.getContextPath());
 		}
 		
 	}

@@ -15,7 +15,7 @@
 <style>
     div{
             box-sizing: border-box;
-            /* border: 1px solid red; */
+            border: 1px solid red;
             margin: 0;
             padding: 0;
             display: block;
@@ -164,6 +164,14 @@
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
+			#hoverNickname{
+				display: none;
+			}
+			
+			#nickname:hover + #hoverNickname{
+				display: block;
+			}
+
 </style>
 </head>
 <body>
@@ -187,12 +195,27 @@
                 </div>
             </div>
             
-            <div id="header_3">
-                <a href="<%= contextPath %>/loginForm.me">로그인</a>
-            </div>
-            <div id="header_4">
-                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
-            </div>
+            <% if(loginUser == null) { %>
+	           	<div id="header_3">
+	                <a href="<%= contextPath %>/loginForm.me">로그인</a>
+	            </div>
+	            <div id="header_4">
+	                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
+	            </div>
+            <% } else { %>
+            	<div id="userNickname">
+            		<p id="nickname"><%= loginUser.getNickname() %>님</p>
+            	</div>
+            	
+            	<div id="hoverNickname">
+					<ul>
+						<li><a href="">마이페이지</a></li>
+						<li><a href="">회원정보수정</a></li>
+						<li><a href="">로그아웃</a></li>
+					</ul>
+            	</div>
+            <% } %>
+            
             <div id="header_5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
                     <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
@@ -206,6 +229,10 @@
     				$("#logo").click(function(){
     					location.href="/mm";
 					})
+
+					// $("#nickname").hover(function() {
+					// 	$("#hoverNickname").attr("display", "block");
+					// })
    				})
             
             	// 로그인, 회원가입 스타일
@@ -217,7 +244,6 @@
                 $("#header_3 a, #header_4 a").mouseout(function(){
                     $(this).css("color", "rgb(150, 150, 150)");
                 });
-    
             </script>
         </div>
     </div>
