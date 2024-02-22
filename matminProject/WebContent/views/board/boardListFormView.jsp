@@ -224,8 +224,8 @@
 
 				<div align="center">
 					<br>
-					<button type="submit" class="btn btn-sm btn-secondary">등록</button>
-					<button type="submit" class="btn btn-sm btn-secondary">취소</button>
+					<a href="#" class="btn btn-sm btn-secondary">등록</a>
+					<a href="#" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
 		</div>
