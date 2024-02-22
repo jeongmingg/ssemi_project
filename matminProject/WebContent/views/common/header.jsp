@@ -209,9 +209,9 @@
             	
             	<div id="hoverNickname">
 					<ul>
-						<li><a href="">마이페이지</a></li>
-						<li><a href="">회원정보수정</a></li>
-						<li><a href="">로그아웃</a></li>
+						<li><a href="#">마이페이지</a></li>
+						<li><a href="#">회원정보수정</a></li>
+						<li><a href="#">로그아웃</a></li>
 					</ul>
             	</div>
             <% } %>
@@ -243,6 +243,14 @@
     
                 $("#header_3 a, #header_4 a").mouseout(function(){
                     $(this).css("color", "rgb(150, 150, 150)");
+                });
+                
+                $("#userNickname").mouseenter(function(){
+                	$("#hoverNickname").css("display", "block");
+                });
+
+				$("#userNickname").mouseout(function(){
+                	$("#hoverNickname").css("display", "none");
                 });
             </script>
         </div>
