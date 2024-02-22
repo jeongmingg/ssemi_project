@@ -12,7 +12,7 @@
 
     div{
         box-sizing: border-box;
-        /* border: 1px solid red; */
+        border: 1px solid red;
         margin: 0;
         padding: 0;
         display: block;
@@ -25,7 +25,7 @@
     }
     
     .content{
-        height: 1000px;
+        height: 1800px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -44,15 +44,33 @@
         padding: 30px;
     }
 
-    #content_1>div{width: 100%;}
+    #function{margin-top: 300px;}
+
+    /* 사이드바 비율, 스타일 */
+    #content_1>div{width: 100%; margin-bottom: 30px;}
     #social{height: 20%;}
     #category{height: 30%;}
     #location{height: 20%;}
     #function{height: 30%;}
 
+    /* 큰 content */
     #content_2{
         width: 900px;
         border: 1px solid #E4910D;
+        padding-left: 20px;
+        padding-right: 40px;
+        padding-bottom: 40px;
+    }
+
+    #content_2>div{width: 100%; float: left;}
+    /* 검색결과 div */
+    #search-list{height: 80%;}
+    /* 맛집등록요청 div */
+    #rest-rq{
+        height: 20%;
+        border: 2px solid rgb(230, 126, 34);
+        border-radius: 20px;
+        margin: 20px;
     }
 
     #content_1 p {
@@ -66,13 +84,13 @@
         align-items: center;
     }
 
+    /* 카테고리 스타일 */
     #category_content ul {
         display: flex;
         flex-wrap: wrap; /* 여러 행을 만들 수 있도록 허용하는 속성 */
         list-style: none;
         padding: 0;
         margin: 0;
-        
     }
 
     #category_list1 li, #category_list2 li{
@@ -85,17 +103,117 @@
     }
     #category_content li label{
         cursor: pointer;
-        
     }
 
+    /* 펼치기 버튼 */
     #list-Btn button {
         width:85%;
         height: 35px;
         margin: 10px;
         border-radius: 5px;
         cursor: pointer;
+        background-color: lightgray;
+        font-weight: 500;
+        border-color: lightgray;
     }
+
+    /* 지역검색 스타일 */
+
+    .ll>ul{
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 지역검색 창 */
+    .ll{
+    width: 250px;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px 13px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    background: url(./img/Polygon_up.png) 93% no-repeat; /*화살표 이미지 삽입*/
+    appearance: none;
+    text-align: left;
+    }
+
+
+    .ll:focus{
+        border: 1px solid #9B51E0;
+        box-sizing: border-box;
+        border-radius: 10px;
+        outline: 3px solid #F8E4FF;
+        border-radius: 10px;
+    }
+
+    /* ul 스타일 */
+    .location-list{
+        width: 250px;
+        list-style: none;
+        background: #FFFFFF;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.15);
+        border-radius: 10px;
+        margin-top: 9px;
+    }
+
+    /* li 스타일 */
+    .list{
+        border: none;
+        background-color: #FFFFFF;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        padding: 7px 10px;
+        margin: 5px 7px;
+        box-sizing: border-box;
+    }
+
+    .list:hover{
+        background: #F8E4FF;
+        width: 184px;
+        border-radius: 8px;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    
+    /* 맛집등록요청 버튼 div */
+    #rsrq-btn-div{
+        display: flex;
+        justify-content: center;
+    }
+
+    /* 맛집등록 요청하기 버튼 */
+    #rest-rq-btn{
+        width: 350px;
+        height: 80px;
+        background-color: rgb(246, 184, 84);
+        border: none;
+        border-radius: 20px;
+    }
+
+  
 </style>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
 </head>
 <body>
 	<%@ include file="../common/header.jsp" %>
@@ -145,7 +263,7 @@
                             <li><input type="radio" name="category" id="ff"><label for="ff">패스트푸드</label></li>
                         </ul>
                         </div>
-                        <div id="list-Btn"><button type="button" id="listBtn">펼치기</button></div>
+                        <div id="list-Btn"><button type="button" id="listBtn" class="btn">펼치기</button></div>
                     </div>  
                 </div>
                 <div id="location">
@@ -153,8 +271,44 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
                         <p>지역</p>
                     </div>
+                    <button class="ll on" onclick="select();">지역 검색</button>
+                        <ul class="location-list" id="location-list">
+                            <li><button class="list">강남구</button></li>
+                            <li><button class="list">강동구</button></li>
+                            <li><button class="list">강북구</button></li>
+                            <li><button class="list">강서구</button></li>
+                            <li><button class="list">관악구</button></li>
+                        </ul>
                     <div id="location_content">
                         
+                        <!-- <select name="" id="" width="500px">
+                            <option value="" selected>지역 검색</option>
+                             <option value="">강남구</option>
+                             <option value="">강동구</option>
+                             <option value="">강북구</option>
+                             <option value="">강서구</option>
+                             <option value="">관악구</option>
+                             <option value="">광진구</option>
+                             <option value="">구로구</option>
+                             <option value="">금천구</option>
+                             <option value="">노원구</option>
+                             <option value="">도봉구</option>
+                             <option value="">동대문구</option>
+                             <option value="">동작구</option>
+                             <option value="">마포구</option>
+                             <option value="">서대문구</option>
+                             <option value="">서초구</option>
+                             <option value="">성동구</option>
+                             <option value="">성북구</option>
+                             <option value="">송파구</option>
+                             <option value="">양천구</option>
+                             <option value="">영등포구</option>
+                             <option value="">용산구</option>
+                             <option value="">은평구</option>
+                             <option value="">종로구</option>
+                             <option value="">중구</option>
+                             <option value="">중랑구</option>
+                        </select> -->
                     </div>
                 </div>
                 <div id="function">
@@ -166,7 +320,16 @@
                 </div>
             </div>
             <div id="content_2">
-    
+                <div id="search-list"></div>
+                <div id="rest-rq">
+                    <br>
+                    <br>
+                    <h4 align="center">찾으시는 식당이 없으신가요?</h4>
+                    <br>
+                    <div id="rsrq-btn-div">
+                    <button id="rest-rq-btn">맛집 등록 요청하기</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -183,6 +346,7 @@
                         // 보이는 상태 => 안보여지게
                         $ul2.slideUp();
                         $("#listBtn").text("펼치기");
+                        
                     }
                 })
             })
