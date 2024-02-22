@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
+	<link rel="stylesheet" href="resources/arssets/fonts/material-icons/material-icons.css" />
 <style>
 	.outer {
 		width: 1500px;
@@ -13,7 +15,11 @@
 	}
 	.outer div{
 		margin: auto;
-
+	}
+	.outerin-area{
+		border: 2px solid lightgray; 
+		width: 1200px; 
+		height: 650px; border-radius: 5px;
 	}
 	h3 {
 		color: #e4910d;
@@ -29,7 +35,7 @@
 	.listView-area tr>th{
 		text-align: right ;
 	}
-	.listView-area input{
+	[type="text"]{
 		border-radius: 5px;
 		border: 1px solid lightgray;
 		height: 35px;
@@ -38,6 +44,9 @@
 		outline: solid #e4910d;
 	}
 	.listView-area #enroll:focus{
+		outline: none;
+	}
+	.listView-area #delete:focus{
 		outline: none;
 	}
 	.listView-area tr>td textarea{
@@ -53,7 +62,53 @@
 	.listView-area tr>td{
 		width: 10px;
 	}
-
+	ul.tag-group {
+		display: block;
+		width: auto;
+		height: auto;
+		font-size: 0;
+		margin: 0px;
+	}
+	.tag-group .btn{
+		width: 30px;
+	}
+	.btn > .label {
+		vertical-align: 0;
+	}
+	
+	/*라디오버튼 색상 변경*/
+	[type="radio"]{
+		appearance: none; 
+		width: 15px;
+		height: 15px;
+		border: 2px solid #ccc; 
+		border-radius: 50%;
+		outline: none;
+		cursor: pointer;
+		margin-right: 6px;
+		margin-bottom: 10px;
+		accent-color: #e4910d;
+		vertical-align: -13px
+		}
+	[type='radio']:checked {
+ 		background-color: #e4910d;
+  		border: 3px solid white;
+  		box-shadow: 0 0 0 1.6px #e4910d;
+	}
+	label{
+		margin-top: 13px;
+	}
+	textarea::placeholder{
+		font-size: 0.8em;
+		color: gray;
+		padding-top: 8px;
+		padding-left: 3px;
+		}
+	[type="text"]::placeholder{
+		font-size: 0.8em;
+		color: gray;
+	}
+	
 </style>
 
 
@@ -78,38 +133,47 @@
 
 	<div class="outer">
 		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
-		<div style="border: 2px solid lightgray; width: 1200px; height: 650px; border-radius: 5px;">
-		
+		<div class= "outerin-area" >
+
+		<!-- 맛집 등록 요청시 -->
 			<form action="#">
 				<table class="listView-area" style="width: 1200px">
-
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
 						<td style="width: 80px;">
-							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll" style="color: #e4910d;"> 맛집 등록 요청</td>
+						  <label>
+							<input type="radio" name="enroll" value="enroll" id="enroll" checked onclick="enrollF();">맛집 등록 요청</td>
+						  </label>	
 						<td style="width: 80px;">
-							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll"> 맛집 등록 삭제</td>
-					</tr>
+						  <label>
+							<input type="radio" name="enroll" value="delete" id="delete" onclick="deleteF();"">맛집 등록 삭제</td>
+						  </label>
+						</tr>
 					<tr>
 						<th height="50">제목</th>
 						<td></td>
 						<td colspan="2" align="left">
+
+						<!-- 라디오 버튼클릭시 변경-->
 							<input type="text" name="title" style="width: 100%;" required>
+							<!-- <input type="text" name="title" style="width: 100%;"required> -->
 						</td>
+
 						<th style="text-align: center; width: 150px";>닉네임
-							<input type="text" neme="name" style="width: 150px; font-weight: lighter;" required>
+							<input type="text" nme="name" style="width: 150px; font-weight: lighter;" required>
 						</th>
 						
 						<th style="width: 150px; text-align: left;">작성일자
-							<input type="text" neme="enrollDate" style="width: 180px; font-weight: lighter; text-align: center;">
+							<input type="text" name="enrollDate" style="width: 180px; font-weight: lighter; text-align: center;">
 						</th>
 					</tr>
 					<tr>
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" name="restName" style="width: 100%;" required>
+							
+							<input type="text" name="restName" style="width: 100%;" placeholder="  식당이름을 입력하세요." required>
 						</td>
 
 					</tr>
@@ -117,7 +181,7 @@
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;" name="restAdd" required>
+							<input type="text" style="width: 100%;" name="restAdd" placeholder="  식당주소를 입력하세요." required>
 						</td>
 						<td colspan="2"></td>
 					</tr>
@@ -125,14 +189,35 @@
 						<th height="40" >내용</th>
 						<td></td>
 						<td colspan="4" align="left">
-							<textarea name="content" required></textarea>
+
+							<!-- 라디오 버튼클릭시 변경-->
+							<textarea name="content" placeholder="  추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>
+							
+							<!-- <textarea name="content" placeholder="  식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내)."  required></textarea> -->
 						</td>
 					</tr>
+
+					<!-- 사진 
+					-->
 					<tr>
 						<th height="0">사진</th>
 						<td></td>
-						<td colspan="4">
-							<input type="file" name="file" style="width: 100%; border-style: none; background-color: transparent; opacity: 100%;" required>
+						<td colspan="4">	
+							<ul class="tag-group">
+								<li>
+								<button class="btn btn-sm btn-container" style="color: #e4910d;">
+									<span class="label" style="font-size: 30px;" align="center">+</span>
+								  </button>
+								<li>
+								<li></li>
+								  <span class="tag tag-with-tools tag-sm">
+									<span class="label">Document.png</span>
+									<span class="tools">
+									  <span class="tools-item error"><i class="material-icons">error_outline</i></span>
+									</span>
+								  </span>
+								</li>
+							  </ul>
 						</td>
 					</tr>
 				</table>

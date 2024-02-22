@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
+	<link rel="stylesheet" href="resources/assets/fonts/material-icons/material-icons.css" />
 <style>
 	.outer {
 	    width: 1500px;
