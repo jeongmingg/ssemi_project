@@ -197,6 +197,16 @@
                 </svg>
             </div>
             <script>
+            
+            	// 로고 누르면 메인가기
+            	
+            	$(function(){
+    				$("#logo").click(function(){
+    					location.href="/mm";
+					})
+   				})
+            
+            	// 로그인, 회원가입 스타일
                 // $("#navi").children().children().mouseenter("color","#E4910D");
                 $("#header_3 a, #header_4 a").mouseenter(function(){
                     $(this).css("color","#E4910D");
