@@ -24,9 +24,17 @@
         border: 1px solid gray;
         float: right;
     }
-    
-
-</style>
+  
+    #best3 {
+      float: right; /* Float canvas to the right */
+    }
+  
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
 
 </head>
 <body>
@@ -57,7 +65,7 @@
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" style="width: ;">
+            <table border="1">
                 <tr>
                     <th width="70">순위</th>
                     <th>식당명</th>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-alert</title>
+    <g id="icon-alert" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M11.8665,15.78 C12.4265167,15.78 12.8805,16.2339833 12.8805,16.794 C12.8805,17.3540167 12.4265167,17.808 11.8665,17.808 C11.3064833,17.808 10.8525,17.3540167 10.8525,16.794 C10.8525,16.2339833 11.3064833,15.78 11.8665,15.78 Z M12.8805,5.136 L12.8805,12.7395 C12.8805,13.5795251 12.1995251,14.2605 11.3595,14.2605 L10.8525,14.2605 L10.8525,6.657 C10.8525,5.8169749 11.5334749,5.136 12.3735,5.136 L12.8805,5.136 Z" id="Combined-Shape" fill="#F8F8F8" fill-rule="nonzero"></path>
+        <rect id="icon_Guide" x="0" y="0" width="24" height="24"></rect>
+    </g>
+</svg>
