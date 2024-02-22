@@ -6,37 +6,37 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    .outer{
-
-        width: 1000px;
-        height: 700px;
-        /* position: absolute; */
-        border: 1px solid gray;
-        margin: 0 auto;
-        /* display: flex; */
-        justify-content: center;
-        margin-top: 50px;
-        margin-bottom: 50px;
+    .outer {
+      width: 1000px;
+      height: 700px;
+      border: 1px solid gray;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
     }
-   .table1{
-    height: 200px;
-   }
-    #best2{
-        /* border: 1px solid gray; */
-        width: 500px;
-        height: 350px;
-        /* float: left; */
-        /* display: flex; */
+  
+    .table1 {
+      width: 100%;
+      box-sizing: border-box; /* Include padding and border in the total width */
     }
-
-    #best3{
-        width: 500px;
-        /* border: 1px solid gray; */
-        margin-bottom: 150px;
+  
+    #best2,
+    #best3 {
+      width: 48%; /* Adjust width based on your preference */
+      box-sizing: border-box;
+      margin: 10px; /* Add margin for spacing */
     }
-    
-
-</style>
+  
+    #best3 {
+      float: right; /* Float canvas to the right */
+    }
+  
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
 
 </head>
 <body>
