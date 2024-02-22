@@ -15,7 +15,7 @@
 <style>
     div{
             box-sizing: border-box;
-            border: 1px solid red;
+            /* border: 1px solid red; */
             margin: 0;
             padding: 0;
             display: block;
@@ -146,7 +146,7 @@
 	         
 	        /* 로그인, 회원가입 버튼 스타일 */
 	
-	        #header a{
+	        #header_3 a, #header_4 a{
 	            text-decoration: none;
 	            color: rgb(150, 150, 150);
 	            font-size: 18px;
@@ -164,24 +164,50 @@
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
-			#userNickname>ul{
+			#nnList-div{
 				display: none;
 			}
 			
-			#userNickname>p:hover+ul{
+			/* #userNickname>p:hover #nnList>ul{
 				list-style-type: none;
 				padding: 0;
 				display: block;
-			}
+				font-size: 10px;
+			} */
 			
+			/* p태그 */
 			#nickname{cursor: pointer;}
 
-			/* .hoverNn{
+			/* hover시 li 스타일 */
+			.hoverNn{
 				list-style: none;
-				width: 150px;
+				width: 120px;
 				height: 30px;
-				font-size: 5px;
-			} */
+			}
+
+			.hoverNn>a{
+				width: 100%; height: 100%;
+				font-size: 15px;
+				color: rgb(150, 150, 150);
+				text-decoration: none;
+			}
+
+			#after-login{
+				width: 280px; 
+			}
+
+			#userNickname{
+				width: 100%;
+				height: 50%;
+				padding-left: 50px;
+				padding-top: 50px;
+			}
+
+			#nnList-div{
+				width: 100%;
+				height: 50%;
+			}
+
 
 </style>
 </head>
@@ -214,14 +240,29 @@
 	                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
 	            </div>
             <% } else { %>
-            	<div id="userNickname">
-            		<p id="nickname"><%= loginUser.getNickname() %>님</p>
-					<ul id="hoverNnList">
-						<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
-						<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
-						<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
-					</ul>
-            	</div>
+
+				<div id="header_3">
+	                <a href="#"><%= loginUser.getNickname() %>님</a>
+	            </div>
+	            <div id="header_4">
+	                <a href="<%= contextPath %>/logout.me">로그아웃</a>
+	            </div>
+
+
+
+
+				<!-- <div id="after-login">
+					<div id="userNickname">
+						<p id="nickname"><%= loginUser.getNickname() %>님</p>
+					</div>
+					<div id="nnList-div">
+						<ul id="nnList-ul">
+							<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
+							<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
+							<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
+						</ul>
+					</div>
+				</div> -->
             <% } %>
             
             <div id="header_5">
@@ -249,13 +290,34 @@
                     $(this).css("color", "rgb(150, 150, 150)");
                 });
                 
-                // $("#nickname").mouseenter(function(){
-                // 	$("#hoverNickname").css("display", "block");
-                // });
+				/*
+                $("#nickname").hover(function(){
+					$("#nickname").mouseenter(function(){
+                		$("#nnList-div").css("display", "block");
+                	}),
 
-				// $("#nickname").mouseout(function(){
-                // 	$("#hoverNickname").css("display", "none");
-                // });
+					$("#nickname").mouseout(function(){
+						$("#nnList-div").css("display", "none");
+					})
+				});
+				*/
+
+				/*
+				$(".hoverNn>a").hover(function(){
+					$(".hoverNn>a").mouseenter(function(){
+                		$("#nnList-div").css("display", "block");
+                	}),
+
+					$(".hoverNn>a").mouseout(function(){
+						$("#nnList-div").css("display", "none");
+					})
+				})
+				*/
+
+				// $(".hoverNn>a").hover(function(){
+				// 	$("#nnList-div").css("display", "block");
+				// })
+
             </script>
         </div>
     </div>

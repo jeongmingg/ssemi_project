@@ -94,8 +94,7 @@
 
     #category_list1 li, #category_list2 li{
         width: 50%; /* 한 행에 두 개의 아이템을 표시하도록 설정 */
-        list-style: none; 
-        
+        list-style: none;  
     }
     #category_content li input {
         margin-right: 5px;
