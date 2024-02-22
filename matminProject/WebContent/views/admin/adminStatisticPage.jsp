@@ -6,25 +6,23 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    .outer {
-      width: 1000px;
-      height: 700px;
-      border: 1px solid gray;
-      margin: 0 auto;
-      display: flex;
-      flex-wrap: wrap; /* Allow items to wrap to the next line if needed */
+    .outer{
+
+        width: 1000px;
+        height: 600px;
+        position: absolute;
+        border: 1px solid gray;
     }
-  
-    .table1 {
-      width: 100%;
-      box-sizing: border-box; /* Include padding and border in the total width */
+   
+    #best2{
+        border: 1px solid gray;
+        width: 400px;
+        height: 400px;
     }
-  
-    #best2,
-    #best3 {
-      width: 48%; /* Adjust width based on your preference */
-      box-sizing: border-box;
-      margin: 10px; /* Add margin for spacing */
+
+    #best3{
+        border: 1px solid gray;
+        float: right;
     }
   
     #best3 {
@@ -41,29 +39,32 @@
 </head>
 <body>
 
-    <%@ include file="../common/header.jsp"%>
-    <%@ include file="../common/navigator.jsp"%>
- 
+    <!-- <%@ include file "../common/header"%> -->
+
+   <%@ include file "../common/header"%>
+
 <div class="outer" border="1">
 
         <br><br><br>
-        <div class="table1" >
-            <table align="center" style="border: 1px solid gray;">
-                <tr>
-                    <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
-                    <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
-                </tr>
-                <tr>
-                    <th>150개</th>
-                    <th>300명</th>
-                </tr>            
-            </table>
+        <div class="table1" style="clear: both; padding: 5%;">
+            <form id="" action="<%= contextPath%>/update.me" method="get">
+                <table align="center" border="1" >
+                    <tr>
+                        <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
+                        <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
+                    </tr>
+                    <tr>
+                        <th>150개</th>
+                        <th>300명</th>
+                    </tr>            
+                </table>
+            </form>
         </div>
         
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" style="width: 450px;">
+            <table border="1">
                 <tr>
                     <th width="70">순위</th>
                     <th>식당명</th>
@@ -111,7 +112,7 @@
         </div>
 
         <div id="best3" style="float: right;">
-            <canvas width='550' height='550' id='canvas'></canvas>
+            <canvas width='350' height='350' id='canvas'></canvas>
         </div>    
 
             <script>
@@ -326,9 +327,9 @@
                 ctx.restore();
              }
          </script>
-      
 </div>
+<!-- <%@ include file="../common/footer.jsp" %> -->
         
-	<%@ include file="../common/footer.jsp" %>
+
     </body>
     </html>
