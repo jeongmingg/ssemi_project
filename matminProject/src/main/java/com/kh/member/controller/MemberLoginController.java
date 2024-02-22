@@ -38,8 +38,10 @@ public class MemberLoginController extends HttpServlet {
 		if(loginUser == null) {
 			request.getSession().setAttribute("alertMsg", "로그인 실패");
 			response.sendRedirect(request.getContextPath() + "/loginForm.me");
+			
 		} else {
 			request.getSession().setAttribute("alertMsg", "로그인 성공");
+			request.getSession().setAttribute("loginUser", loginUser);
 			response.sendRedirect(request.getContextPath() + "/loginForm.me");
 		}
 		
