@@ -8,30 +8,30 @@
 	<style>
 		.choose-enroll-form{
 			width: 1500px;
-			height: 500px;
 			margin: auto;
 			margin-top: 50px;
 			margin-bottom: 50px;
+			text-align: center;
+		}
+
+		.choose-enroll-form>p{
+			color: #E4910D;
+			text-align: center;
+			font-size: 40px;
+			margin-bottom: 20px
 		}
 
 		.choose-enroll-form>div{
 			width: 50%;
-			height: 100%;
-			float: left;
+			margin: auto;
 		}
 		
-		#common-enroll>div{
-			width: 600px;
-			height: 470px;
-			margin-top: 25px;
-			padding-top: 30px;
-			border: 2px solid #E4910D;
-			border-radius: 20px;
-		}
+		#common-enroll>div{width: 600px;}
 
 		#common-enroll>div>p{
-			font-size: 20px;
+			font-size: 30px;
 			color: #E4910D;
+			margin-bottom: 30px;
 		}
 
 		#agree-content{
@@ -44,36 +44,35 @@
 		#agree-content>p{
 			text-align: left;
 			font-size: 14px;
+			margin: 10px;
 		}
 
 		#common-enroll-btn{
 			background-color: #E4910D;
 			border: #E4910D;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
+			margin: 15px;
 		}
 
-		#sns-enroll>div{
+		#hr{
 			width: 600px;
-			height: 300px;
-			margin-top: 25px;
-			padding-top: 30px;
-			border: 2px solid #E4910D;
-			border-radius: 20px;
+			border-top: 2px solid darkgray;
+			margin-top: 20px;
 		}
 
-		#sns-enroll>div>p{
-			font-size: 20px;
-			color: #E4910D;
-		}
+		#sns-enroll>div{width: 600px;}
+
+		#sns-enroll>div>p{color: #E4910D;}
 
 		#naver-enroll-btn{
 			background-color: #03c75a;
 			border: #03c75a;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
+			margin: 5px;
 		}
 
 		#kakao-enroll-btn{
@@ -81,8 +80,9 @@
 			border: #f9e003;
 			color: black;
 			width: 300px;
-			height: 50px;
-			line-height: 35px;
+			height: 40px;
+			line-height: 25px;
+			margin: 5px;
 		}
 	</style>
 
@@ -184,24 +184,25 @@
 					</p>
 				</div>
 
-				<br><br>
+				<br>
 
 				<input type="checkbox" id="agree">
 				<label for="agree">위 모든 약관을 확인하고 전체 동의합니다.</label>
 
-				<br><br>
+				<br>
 
 				<a href="#" id="common-enroll-btn" class="btn btn-primary"><b>맛집의 민족 회원가입</b></a>
 			</div>
 		</div>
+
+		<hr id="hr">
+
 		<div id="sns-enroll" align="center">
 			<div>
 				<p><b>간편 회원가입</b></p>
 
-				<br>
-
 				<a href="#" id="naver-enroll-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
-				<br><br>
+				<br>
 				<a href="#" id="kakao-enroll-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
 			</div>
 		</div>

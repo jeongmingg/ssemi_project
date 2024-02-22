@@ -25,11 +25,11 @@
     }
     
     .content{
-        height: 1800px;
+        height: 2000px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
     }
     
     .content>div{
@@ -44,22 +44,21 @@
         padding: 30px;
     }
 
-    #function{margin-top: 300px;}
-
     /* 사이드바 비율, 스타일 */
-    #content_1>div{width: 100%; margin-bottom: 30px;}
-    #social{height: 20%;}
-    #category{height: 30%;}
-    #location{height: 20%;}
-    #function{height: 30%;}
+    #content_1>div{width: 100%; margin-bottom: 50px;}
+    #social{height: 250px;}
+    #category{height: 300px;}
+    #location{height: 400px;}
+    #function{height: 400px;}
 
     /* 큰 content */
     #content_2{
         width: 900px;
         border: 1px solid #E4910D;
-        padding-left: 20px;
+        padding: 30px;
+        /* padding-left: 20px;
         padding-right: 40px;
-        padding-bottom: 40px;
+        padding-bottom: 40px; */
     }
 
     #content_2>div{width: 100%; float: left;}
@@ -324,7 +323,7 @@
                 <div id="rest-rq">
                     <br>
                     <br>
-                    <h4 align="center">찾으시는 식당이 없으신가요?</h4>
+                    <h5 align="center">찾으시는 식당이 없으신가요?</h5>
                     <br>
                     <div id="rsrq-btn-div">
                     <button id="rest-rq-btn">맛집 등록 요청하기</button>
@@ -353,12 +352,6 @@
         </script>
 
     </div>
-	
-    
-	
-	
-	
-	
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

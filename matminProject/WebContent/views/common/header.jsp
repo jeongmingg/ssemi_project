@@ -186,10 +186,10 @@
             </div>
             
             <div id="header_3">
-                <a href="#">로그인</a>
+                <a href="<%= contextPath %>/loginForm.me">로그인</a>
             </div>
             <div id="header_4">
-                <a href="#">회원가입</a>
+                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
             </div>
             <div id="header_5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
@@ -197,6 +197,16 @@
                 </svg>
             </div>
             <script>
+            
+            	// 로고 누르면 메인가기
+            	
+            	$(function(){
+    				$("#logo").click(function(){
+    					location.href="/mm";
+					})
+   				})
+            
+            	// 로그인, 회원가입 스타일
                 // $("#navi").children().children().mouseenter("color","#E4910D");
                 $("#header_3 a, #header_4 a").mouseenter(function(){
                     $(this).css("color","#E4910D");

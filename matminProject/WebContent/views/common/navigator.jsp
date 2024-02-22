@@ -7,19 +7,7 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
-    div{
-            box-sizing: border-box;
-            /* border: 1px solid red; */
-            margin: 0;
-            padding: 0;
-            display: block;
-    }
-    .wrap{
-        width: 1800px;
-        margin: auto;
-        box-sizing: border-box;
-    }
-        
+       
     /* 전체 구조 비율 */
     #navigator{height: 45px;}
 
