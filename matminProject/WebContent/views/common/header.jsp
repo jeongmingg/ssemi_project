@@ -172,6 +172,13 @@
 				display: block;
 			}
 
+			.hoverNn{
+				list-style: none;
+				width: 150px;
+				height: 30px;
+				font-size: 5px;
+			}
+
 </style>
 </head>
 <body>
@@ -208,10 +215,10 @@
             	</div>
             	
             	<div id="hoverNickname">
-					<ul>
-						<li><a href="#">마이페이지</a></li>
-						<li><a href="#">회원정보수정</a></li>
-						<li><a href="#">로그아웃</a></li>
+					<ul id="hoverNnList">
+						<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
+						<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
+						<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
 					</ul>
             	</div>
             <% } %>
