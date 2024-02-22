@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="42px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>image-error-square</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="42" height="42"></rect>
+    </defs>
+    <g id="image-error-square" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Rectangle" fill="#A7A7A7" fill-rule="nonzero" xlink:href="#path-1"></use>
+            <circle id="타원_1003" fill="#CACACA" fill-rule="nonzero" mask="url(#mask-2)" cx="15.186" cy="14.139" r="5.11"></circle>
+            <path d="M41.9210061,41.5 L41.9210061,28.219 L31.7,18 L15.847,33.855 L11.264,29.271 L-1,41.532 C-0.985773943,42.6492094 -0.0762998495,43.5475434 1.041,43.5480002 L39.877,43.5480002 C40.419878,43.5482674 40.9405394,43.3324544 41.3240367,42.9482066 C41.707534,42.5639588 41.9223287,42.0428764 41.9210061,41.5 Z" id="패스_33748" fill="#CACACA" fill-rule="nonzero" mask="url(#mask-2)"></path>
+        </g>
+    </g>
+</svg>

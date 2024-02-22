@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="90px" height="90px" viewBox="0 0 90 90" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>loading-progress</title>
+    <g id="loading-progress" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M3,41.881 L40.321,62.74 C43.8865731,64.7365153 48.2342139,64.7334845 51.797,62.732 L51.797,62.74 L84.697,44.062 C86.9089797,42.6963152 87.6515917,39.8299387 86.381,37.562 L79.87,26 L51.793,41.8 C48.2301727,43.802036 43.8819188,43.8043094 40.317,41.806 L16.052,28.206 C14.9915099,27.5858155 13.725159,27.4212491 12.5413798,27.7497836 C11.3576006,28.0783182 10.3571871,28.8719802 9.768,29.95 L3,41.881 Z" id="symbole" fill="#E54E2B" fill-rule="nonzero"></path>
+        <rect id="guide-box" x="0" y="0" width="90" height="90"></rect>
+    </g>
+</svg>

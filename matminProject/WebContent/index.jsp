@@ -8,14 +8,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
-    
-        div{
-            box-sizing: border-box;
-            /*border: 1px solid red;*/
-            margin: 0;
-            padding: 0;
-            display: block;
-            }
         .main-content{
             width: 1800px;
             margin: auto;

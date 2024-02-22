@@ -1,19 +1,21 @@
+<%@page import="com.kh.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	Member loginUser = (Member)session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>header</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
     div{
             box-sizing: border-box;
-            /* border: 1px solid red; */
+            border: 1px solid red;
             margin: 0;
             padding: 0;
             display: block;
@@ -162,6 +164,18 @@
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
+			#userNickname>ul{
+				display: none;
+			}
+			
+			#userNickname>p:hover+ul{
+				list-style-type: none;
+				padding: 0;
+				display: block;
+			}
+			
+			#nickname{cursor: pointer;}
+
 </style>
 </head>
 <body>
@@ -185,18 +199,49 @@
                 </div>
             </div>
             
-            <div id="header_3">
-                <a href="#">로그인</a>
-            </div>
-            <div id="header_4">
-                <a href="#">회원가입</a>
-            </div>
+            <% if(loginUser == null) { %>
+	           	<div id="header_3">
+	                <a href="<%= contextPath %>/loginForm.me">로그인</a>
+	            </div>
+	            <div id="header_4">
+	                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
+	            </div>
+            <% } else { %>
+            	<div id="userNickname">
+            		<p id="nickname"><%= loginUser.getNickname() %>님</p>
+
+					<ul>
+						<li><a href="#">마이페이지</a></li>
+						<li><a href="#">회원정보수정</a></li>
+						<li><a href="#">로그아웃</a></li>
+					</ul>
+            	</div>
+            	
+            	<!-- <div id="hoverNickname">
+					<ul>
+						<li><a href="#">마이페이지</a></li>
+						<li><a href="#">회원정보수정</a></li>
+						<li><a href="#">로그아웃</a></li>
+					</ul>
+            	</div> -->
+            <% } %>
+            
             <div id="header_5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
                     <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
                 </svg>
             </div>
             <script>
+            
+            	// 로고 누르면 메인가기
+            	
+            	$(function(){
+    				$("#logo").click(function(){
+    					location.href="/mm";
+					})
+   				})
+            
+            	// 로그인, 회원가입 스타일
                 // $("#navi").children().children().mouseenter("color","#E4910D");
                 $("#header_3 a, #header_4 a").mouseenter(function(){
                     $(this).css("color","#E4910D");
@@ -205,7 +250,14 @@
                 $("#header_3 a, #header_4 a").mouseout(function(){
                     $(this).css("color", "rgb(150, 150, 150)");
                 });
-    
+                
+                // $("#nickname").mouseenter(function(){
+                // 	$("#hoverNickname").css("display", "block");
+                // });
+
+				// $("#nickname").mouseout(function(){
+                // 	$("#hoverNickname").css("display", "none");
+                // });
             </script>
         </div>
     </div>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon-check</title>
+    <g id="icon-check" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <path d="M17.5886555,8.33499072 L17.2166659,8 L11.1058351,14.786812 L6.84295316,10.2119387 L6.47696329,10.5529293 C5.87113494,11.1179061 5.83800526,12.0670267 6.40296534,12.6728706 L10.4308538,16.991751 C10.806853,17.3642732 11.4107155,17.370914 11.794816,17.0067506 L17.6946526,10.4489322 C18.2472811,9.83525439 18.1998998,8.89030971 17.5886555,8.33499072 L17.5886555,8.33499072 Z" id="패스_28388" fill="#F8F8F8" fill-rule="nonzero"></path>
+            <rect id="icon_Guide" x="-2.26137949e-13" y="0" width="24" height="24"></rect>
+        </g>
+    </g>
+</svg>
