@@ -164,20 +164,24 @@
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
-			#hoverNickname{
+			#userNickname>ul{
 				display: none;
 			}
 			
-			#nickname:hover + #hoverNickname{
+			#userNickname>p:hover+ul{
+				list-style-type: none;
+				padding: 0;
 				display: block;
 			}
+			
+			#nickname{cursor: pointer;}
 
-			.hoverNn{
+			/* .hoverNn{
 				list-style: none;
 				width: 150px;
 				height: 30px;
 				font-size: 5px;
-			}
+			} */
 
 </style>
 </head>
@@ -212,9 +216,6 @@
             <% } else { %>
             	<div id="userNickname">
             		<p id="nickname"><%= loginUser.getNickname() %>님</p>
-            	</div>
-            	
-            	<div id="hoverNickname">
 					<ul id="hoverNnList">
 						<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
 						<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
@@ -236,10 +237,6 @@
     				$("#logo").click(function(){
     					location.href="/mm";
 					})
-
-					// $("#nickname").hover(function() {
-					// 	$("#hoverNickname").attr("display", "block");
-					// })
    				})
             
             	// 로그인, 회원가입 스타일
@@ -252,13 +249,13 @@
                     $(this).css("color", "rgb(150, 150, 150)");
                 });
                 
-                $("#userNickname").mouseenter(function(){
-                	$("#hoverNickname").css("display", "block");
-                });
+                // $("#nickname").mouseenter(function(){
+                // 	$("#hoverNickname").css("display", "block");
+                // });
 
-				$("#userNickname").mouseout(function(){
-                	$("#hoverNickname").css("display", "none");
-                });
+				// $("#nickname").mouseout(function(){
+                // 	$("#hoverNickname").css("display", "none");
+                // });
             </script>
         </div>
     </div>
