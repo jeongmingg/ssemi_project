@@ -25,7 +25,7 @@
     }
     
     .content{
-        height: 2000px;
+        height: 1700px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -66,10 +66,10 @@
     #search-list{height: 80%;}
     /* 맛집등록요청 div */
     #rest-rq{
-        height: 20%;
+        height: 300px;
         border: 2px solid rgb(230, 126, 34);
         border-radius: 20px;
-        margin: 20px;
+        margin-top: 30px;
     }
 
     #content_1 p {
@@ -197,6 +197,13 @@
         border-radius: 20px;
     }
 
+    /* 맛집등록 요청 밑에 p태그 */
+    #rest-rq-p{
+        text-align: center;
+        color: rgb(185, 185, 185);
+        font-weight: bold;
+    }
+
   
 </style>
 
@@ -318,15 +325,29 @@
                 </div>
             </div>
             <div id="content_2">
-                <div id="search-list"></div>
+                <div id="search-list">
+                   
+                    <div class="arrayList"></div>
+                    <div class="location-name"></div>
+                    <div class="rs-content">
+
+
+                        
+                    </div>
+                    <div class=""></div>
+                    <div class=""></div>
+
+                </div>
                 <div id="rest-rq">
                     <br>
                     <br>
                     <h5 align="center">찾으시는 식당이 없으신가요?</h5>
-                    <br>
+                    <br><br>
                     <div id="rsrq-btn-div">
                     <button id="rest-rq-btn">맛집 등록 요청하기</button>
                     </div>
+                    <br>
+                    <p id="rest-rq-p">보통 당일 등록이 이루어지며, 등록시 푸시 알림을 드립니다.</p>
                 </div>
             </div>
         </div>
