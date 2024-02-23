@@ -108,6 +108,15 @@
 		font-size: 0.8em;
 		color: gray;
 	}
+	.file{
+		display: none;
+	}
+	.btnOfInput{
+		display: none;
+	}
+	
+	
+	
 	
 </style>
 
@@ -203,21 +212,8 @@
 						<th height="0">사진</th>
 						<td></td>
 						<td colspan="4">	
-							<ul class="tag-group">
-								<li>
-								<button class="btn btn-sm btn-container" style="color: #e4910d;">
-									<span class="label" style="font-size: 30px;" align="center">+</span>
-								  </button>
-								<li>
-								<li></li>
-								  <span class="tag tag-with-tools tag-sm">
-									<span class="label">Document.png</span>
-									<span class="tools">
-									  <span class="tools-item error"><i class="material-icons">error_outline</i></span>
-									</span>
-								  </span>
-								</li>
-							  </ul>
+							<input type="file" id="file" className="btnOfInput" multiple>
+							<label for="file">업로드버튼</label>
 						</td>
 					</tr>
 				</table>
