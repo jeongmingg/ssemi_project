@@ -15,12 +15,28 @@
 		}
 
 		.enroll-form>div{
-			width: 1000px;
+			width: 700px;
 			margin: auto;
+		}
+
+		.enroll-form>h3{
+			color: #E4910D;
+			font-weight: bold;
+			font-size: 30px;
+			margin-bottom: 20px;
+		}
+
+		.enroll-form p{
+			font-weight: bold;
+			font-size: 18px;
+			padding-left: 10px;
+			margin-bottom: 10px;
+			color: #E4910D;
 		}
 
 		#hr{
 			border-top: 2px solid #E4910D;
+			margin-top: 10px;
 		}
 
 		.enroll-form input{
@@ -34,6 +50,23 @@
 
 		input[name=email], input[name=domain]{
 			width: 150px;
+		}
+
+		#selectDomain{
+			height: 45px;
+			border-radius: 5px;
+		}
+
+		#check-email{
+			height: 45px;
+		}
+
+		#required-area>div{
+			padding-left: 100px;
+		}
+
+		#additional-area>table{
+			margin-left: 100px;
 		}
 	</style>
 	
@@ -111,6 +144,8 @@
 
 			}
 		</script>
+
+		<br>
 
 		<div id="additional-area">
 			<p>추가정보<small>(선택)</small></p>
