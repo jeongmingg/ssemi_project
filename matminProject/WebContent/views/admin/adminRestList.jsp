@@ -9,8 +9,8 @@ table, th, td {
   border: 1px solid gray;
   border-collapse: collapse;
 }
-th, td {
-  
+table, th, td {
+  border: 1px solid;
   color: orange;
 }
 
@@ -18,7 +18,7 @@ th, td {
 </head>
 <body>
    
-    <table>
+    <table style="border: 1px solid gray;">
         <tr>
           <th width="50">1</th>
           <td width="200" height="100">img</td>

@@ -5,37 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-    
-
-</style>
 </head>
 <body>
-    <ul class="left_side_tabs active">
-        <li data-ids="stats" class="active">
-            <a href="">Statistics</a>
-        </li>
+		<%@ include file="../common/header.jsp" %>
+		<%@ include file="../common/navigator.jsp" %>
 
-        <li data-ids="Restaurant" class="active">
-            <a href="">Restaurant</a>
-        </li>
-
-        
-        <li data-ids="member" class="active">
-            <a href="">Member</a>
-        </li>
-
-        
-        <li data-ids="Community" class="active">
-            <a href="">Community</a>
-        </li>
-
-        
-
-
-
-
-    </ul>
-
+		
 </body>
 </html>

@@ -12,36 +12,36 @@
         width: 1000px;
         height: 600px;
         border: 1px solid gray;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        margin: auto;
     }
    
     #best2{
-        border: 1px solid gray;
+        /* border: 1px solid gray; */
         width: 400px;
-        height: 400px;
+        height: 350px;
+        margin-left: 50px;
     }
 
     #best3{
-        border: 1px solid gray;
+        /* border: 1px solid gray; */
         float: right;
+        margin-right: 50px;
+        margin-bottom: 20px;
+        /* float: right; Float canvas to the right */
     }
-  
-    #best3 {
-      float: right; /* Float canvas to the right */
-    }
-  
     canvas {
       width: 100%;
-      height: 100%;
+      height: 80%;
       display: block;
     }
   </style>
 
 </head>
 <body>
-
-
-	<%@ include file="../common/header.jsp" %>
-	<%@ include file="../common/navigator.jsp" %>
+<%@ include file="../common/header.jsp"%>
+<%@ include file="../common/navigator.jsp"%>
 
 
 <div class="outer" border="1">
@@ -65,9 +65,9 @@
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1">
+            <table border="1" width="400" height="300">
                 <tr>
-                    <th width="70">순위</th>
+                    <th>순위</th>
                     <th>식당명</th>
                     <th>리뷰수</th>
                     <th>찜꽁수</th>
@@ -113,7 +113,7 @@
         </div>
 
         <div id="best3" style="float: right;">
-            <canvas width='350' height='350' id='canvas'></canvas>
+            <canvas width='400' height='350' id='canvas'></canvas>
         </div>    
 
             <script>
