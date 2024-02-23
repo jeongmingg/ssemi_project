@@ -22,6 +22,19 @@
 		#hr{
 			border-top: 2px solid #E4910D;
 		}
+
+		.enroll-form input{
+			width: 300px;
+			height: 45px;
+			margin: 5px;
+			border-radius: 5px;
+			border: 1px solid gray;
+			padding-left: 5px;
+		}
+
+		input[name=email], input[name=domain]{
+			width: 150px;
+		}
 	</style>
 	
 	<!-- Latest compiled and minified CSS -->
@@ -67,24 +80,60 @@
 				<input type="text" name="email" placeholder="이메일" required>
 				@
 				<input type="text" name="domain" required>
-				<select name="domain" id="selectDomain">
-					<option value="">직접입력</option>
-					<option>naver.com</option>
-					<option>gmail.com</option>
-					<option>daum.net</option>
+				<select name="domain" id="selectDomain" onchange="input_domain();">
+					<option value="input-self">직접입력</option>
+					<option value="naver.com">naver.com</option>
+					<option value="gmail.com">gmail.com</option>
+					<option value="daum.net">daum.net</option>
 				</select>
+
+				<button class="btn btn-sm btn-secondary" id="check-email">인증하기</button>
 			</div>
 		</div>
 
 		<script>
-			$(function() {
-				$("#selectDomain").va
-			})
+			function input_domain() {
+				// 직접입력인 경우에는 input에 입력한 값으로 넘겨주고
+				// 직접입력 외의 경우에는 선택한 값을 input에 넣어주자
+				// 직접입력 외의 경우에는 input 수정 불가하게 하자 (readonly)
+
+				const domainInput = $("input[name=domain]");
+
+				if($("#selectDomain").val() == "input-self") {
+					domainInput.val("");
+					domainInput.removeAttr("readonly");
+					domainInput.select();
+
+				} else {
+					domainInput.val($("#selectDomain").val());
+					domainInput.attr("readonly", true);
+				}
+
+			}
 		</script>
 
 		<div id="additional-area">
+			<p>추가정보<small>(선택)</small></p>
+			<hr id="hr">
 
+			<table>
+				<tr>
+					<th width="70">거주지</th>
+					<td>
+						서울특별시
+						<select name="address" id="selectAddress">
+							<option value="">강남구</option>
+							<option value="">강북구</option>
+							<option value="">강서구</option>
+							<option value="">강동구</option>
+							<option value="">관악구</option>
+						</select>
+					</td>
+				</tr>
+			</table>
 		</div>
+
+		<button type="submit" class="btn btn-sm btn-secondary" id="enroll-btn">회원가입</button>
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
