@@ -25,7 +25,7 @@
     }
     
     .content{
-        height: 1700px;
+        height: 1600px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -64,6 +64,7 @@
     #content_2>div{width: 100%; float: left;}
     /* 검색결과 div */
     #search-list{height: 80%;}
+
     /* 맛집등록요청 div */
     #rest-rq{
         height: 300px;
@@ -74,7 +75,7 @@
 
     #content_1 p {
         font-weight: bold;
-        font-size: 18px;
+        font-size: 25px;
         padding-left: 10px;
     }
 
@@ -82,6 +83,8 @@
         display: flex;
         align-items: center;
     }
+
+    
 
     /* 카테고리 스타일 */
     #category_content ul {
@@ -94,7 +97,8 @@
 
     #category_list1 li, #category_list2 li{
         width: 50%; /* 한 행에 두 개의 아이템을 표시하도록 설정 */
-        list-style: none;  
+        list-style: none;
+        font-size: 18px;
     }
     #category_content li input {
         margin-right: 5px;
@@ -124,27 +128,27 @@
 
     /* 지역검색 창 */
     .ll{
-    width: 250px;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 10px;
-    padding: 12px 13px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    background: url(./img/Polygon_up.png) 93% no-repeat; /*화살표 이미지 삽입*/
-    appearance: none;
-    text-align: left;
+        width: 250px;
+        border: 1px solid #C4C4C4;
+        box-sizing: border-box;
+        border-radius: 10px;
+        padding: 12px 13px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        background: url(./img/Polygon_up.png) 93% no-repeat; /*화살표 이미지 삽입*/
+        appearance: none;
+        text-align: left;
     }
 
 
-    .ll:focus{
-        border: 1px solid #9B51E0;
+    .ll:hover{
+        border: 1px solid #E4910D;
         box-sizing: border-box;
         border-radius: 10px;
-        outline: 3px solid #F8E4FF;
+        /* outline: 3px solid #F8E4FF; */
         border-radius: 10px;
     }
 
@@ -175,11 +179,19 @@
     }
 
     .list:hover{
-        background: #F8E4FF;
+        background: #FFE9D2;
         width: 184px;
         border-radius: 8px;
         box-sizing: border-box;
         text-align: left;
+    }
+
+    /* 편의기능 스타일 */
+
+    #function_content label{
+        width: 45%;
+        font-size: 18px;
+        cursor: pointer;
     }
     
     /* 맛집등록요청 버튼 div */
@@ -249,23 +261,23 @@
                     <div id="category_content">
                         <div id="category_list1">
                         <ul>
-                            <li><input type="radio" name="category" id="rest"><label for="rest">밥집</label></li>
-                            <li><input type="radio" name="category" id="cafe"><label for="cafe">카페</label></li>
-                            <li><input type="radio" name="category" id="ko"><label for="ko">한식</label></li>
-                            <li><input type="radio" name="category" id="ch"><label for="ch">중식</label></li>
-                            <li><input type="radio" name="category" id="we"><label for="we">양식</label></li>
-                            <li><input type="radio" name="category" id="ja"><label for="ja">일식</label></li>
+                            <li><input type="radio" name="category" id="rest"><label for="rest">&nbsp;&nbsp;밥집</label></li>
+                            <li><input type="radio" name="category" id="cafe"><label for="cafe">&nbsp;&nbsp;카페</label></li>
+                            <li><input type="radio" name="category" id="ko"><label for="ko">&nbsp;&nbsp;한식</label></li>
+                            <li><input type="radio" name="category" id="ch"><label for="ch">&nbsp;&nbsp;중식</label></li>
+                            <li><input type="radio" name="category" id="we"><label for="we">&nbsp;&nbsp;양식</label></li>
+                            <li><input type="radio" name="category" id="ja"><label for="ja">&nbsp;&nbsp;일식</label></li>
                         </ul>
                         </div>
                         
                         <div id="category_list2">
                         <ul>
-                            <li><input type="radio" name="category" id="bs"><label for="bs">분식</label></li>
-                            <li><input type="radio" name="category" id="vf"><label for="vf">뷔페</label></li>
-                            <li><input type="radio" name="category" id="soju"><label for="soju">술집</label></li>
-                            <li><input type="radio" name="category" id="meat"><label for="meat">고깃집</label></li>
-                            <li><input type="radio" name="category" id="fish"><label for="fish">횟집</label></li>
-                            <li><input type="radio" name="category" id="ff"><label for="ff">패스트푸드</label></li>
+                            <li><input type="radio" name="category" id="bs"><label for="bs">&nbsp;&nbsp;분식</label></li>
+                            <li><input type="radio" name="category" id="vf"><label for="vf">&nbsp;&nbsp;뷔페</label></li>
+                            <li><input type="radio" name="category" id="soju"><label for="soju">&nbsp;&nbsp;술집</label></li>
+                            <li><input type="radio" name="category" id="meat"><label for="meat">&nbsp;&nbsp;고깃집</label></li>
+                            <li><input type="radio" name="category" id="fish"><label for="fish">&nbsp;&nbsp;횟집</label></li>
+                            <li><input type="radio" name="category" id="ff"><label for="ff">&nbsp;&nbsp;패스트푸드</label></li>
                         </ul>
                         </div>
                         <div id="list-Btn"><button type="button" id="listBtn" class="btn">펼치기</button></div>
@@ -321,23 +333,68 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(39, 174, 96)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
                         <p>편의기능</p>
                     </div>
-                    <div id="function_content"></div>
+                    <div id="function_content">
+                        <input type="checkbox" id="pk"><label for="pk">&nbsp;&nbsp;주차</label>
+                        <input type="checkbox" id="bl"><label for="bl">&nbsp;&nbsp;발렛</label>
+                        <input type="checkbox" id="24"><label for="24">&nbsp;&nbsp;24시</label>
+                        <input type="checkbox" id="pl"><label for="pl">&nbsp;&nbsp;놀이방</label>
+                        <input type="checkbox" id="er"><label for="er">&nbsp;&nbsp;개별룸</label>
+                        <input type="checkbox" id="br"><label for="br">&nbsp;&nbsp;대형룸</label>
+                        <input type="checkbox" id="ot"><label for="ot">&nbsp;&nbsp;야외좌석</label>
+                        <input type="checkbox" id="ck"><label for="ck">&nbsp;&nbsp;콜키지 무료</label>
+                        <input type="checkbox" id="dt"><label for="dt">&nbsp;&nbsp;드라이브 스루</label>
+                        <input type="checkbox" id="an"><label for="an">&nbsp;&nbsp;반려동물 동반</label>
+                    </div>
                 </div>
             </div>
             <div id="content_2">
                 <div id="search-list">
                    
-                    <div class="arrayList"></div>
-                    <div class="location-name"></div>
-                    <div class="rs-content">
-
-
-                        
+                    <div id="rs-arr">정렬 거리순 평점순 찜꽁많은순</div>
+                    <div id="lc-name">강남구</div>
+                    <div id="rs-content">
+                        <div id="rs-title">
+                            <div id="kw-title">강남구 삼겹살 맛집</div>
+                            <div id="share-div">
+                                <div id="share">공유하기</div>
+                                <div id="kakao-icon">
+                                    <img src="data:image/png;base64,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">
+                                </div>
+                                <div id="copy-icon">
+                                    
+                                </div>
+                                <div id="kakao">카카오톡 공유</div>
+                                <div id="copy">링크복사</div>
+                            </div>
+                            <div id="share-btn"><div data-obj-type="group" data-obj-id="9wUZ8" class="" style="position: absolute; left: 1021.13px; top: 339.087px; width: 100px; height: 70px;"><div data-obj-id="3emRF" data-obj-type="element" data-text-editable="true" class="" style="position: absolute; top: 0px; left: 0px; width: 100px; height: 70px;"><div data-text-content="true" style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2em; border-radius: 4px; background-color: rgb(243, 156, 18);" class="" spellcheck="false">&nbsp;&nbsp;&nbsp;공유</div></div><div data-obj-id="r2XD6" data-obj-type="icon" class="" style="position: absolute; top: 5.997px; left: 10px; width: 25px; height: 25px; padding-bottom: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(255, 255, 255)"><path d="M42 6.02H6c-2.21 0-4 1.79-4 4V18h4V9.98h36v28.06H6V30H2v8.02c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zM22 32l8-8-8-8v6H2v4h20v6z"></path></svg></div></div></div>
+                            
+                        </div>
+                        <div id="map"></div>
+                        <div id="rest"></div>
+                        <div id="moreBtn"></div>   
                     </div>
-                    <div class=""></div>
-                    <div class=""></div>
-
                 </div>
+
+                /* 큰div 비율 */
+                #search-list>div{width:100%;}
+                #rs-arr{}
+                #lc-name{}
+                #rs-content{}
+
+                #rs-content>div{width:100%;}
+                #rs-title{}
+                #map{}
+                #rest{}
+                #moreBtn{}
+
+
+                /* 식당정보 타이틀 스타일 */
+                #rs-title>div{}
+                #kw-title{}
+                #share{}
+                #share-btn{}
+
+
                 <div id="rest-rq">
                     <br>
                     <br>
