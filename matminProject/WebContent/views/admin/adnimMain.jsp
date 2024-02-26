@@ -7,35 +7,70 @@
 <title>Insert title here</title>
 <style>
     
+        .outer {
+            border: 1px solid orange;
+            color: gray;
+            width: 700px;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
 
-</style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px; /* Adjusted margin */
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 20px; /* Adjusted margin */
+        }
+    </style>
 </head>
 <body>
-    <ul class="left_side_tabs active">
-        <li data-ids="stats" class="active">
-            <a href="">Statistics</a>
-        </li>
+    <%@ include file="../common/header.jsp" %>
+    <%@ include file="../common/navigator.jsp" %>
 
-        <li data-ids="Restaurant" class="active">
-            <a href="">Restaurant</a>
-        </li>
+    <div class="outer">
+        <br>
+        <h2 align="center">회원목록</h2>
+        <br>
+        <table class="list-area" align="center">
+            <tr>
+                <th width="100">회원번호</th>
+                <th width="100">회원이름</th>
+                <th width="100">회원닉네임</th>
+                <th width="200">회원이메일</th>
+                <th width="200">회원거주지</th>
+            </tr>
 
-        
-        <li data-ids="member" class="active">
-            <a href="">Member</a>
-        </li>
+            <tr>
+                <td>matmin01</td>
+                <td>현빈</td>
+                <td>현이</td>
+                <td>hyun@naver.com</td>
+                <td>서울 강남구</td>
+            </tr>
 
-        
-        <li data-ids="Community" class="active">
-            <a href="">Community</a>
-        </li>
+            <!-- Add more rows as needed -->
 
-        
+        </table>
 
+        <button align="center">Back</button>
+    </div>
 
-
-
-    </ul>
-
+    <%@ include file="../common/footer.jsp" %>
 </body>
 </html>

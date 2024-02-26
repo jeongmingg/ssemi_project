@@ -1,122 +1,79 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-    .outer{
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        .outer {
+            width: 1000px;
+            height: 600px;
+            position: absolute;
+            border: 1px solid gray;
+        }
 
-        width: 1000px;
-        height: 600px;
-        position: absolute;
-        border: 1px solid gray;
-    }
-   
-    #best2{
-        border: 1px solid gray;
-        width: 400px;
-        height: 400px;
-    }
+        #best2 {
+            border: 1px solid gray;
+            width: 400px;
+            height: 350px;
+            margin-left: 50px;
+        }
 
-    #best3{
-        border: 1px solid gray;
-        float: right;
-    }
-    
+        #best3 {
+            margin-right: 50px;
+            border: 1px solid gray;
+            float: right;
+        }
 
-</style>
+        .table1 {
+            clear: both;
+            padding: 5%;
+        }
 
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: orange;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-   <%@ include file "../common/header"%>
-   <%@ include file "../common/novigator"%>
-	<div class="outer">
-        <br><br>
+    <%@ include file="../common/header" %>
+    <%@ include file="../common/navigator" %>
 
-        <table align="center" border="1">
-            <tr>
-                <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
-                <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
-            </tr>
-            <tr>
-                <th>150개</th>
-                <th>300명</th>
-            </tr>            
-        </table>
-<br><br><br>
-        <table border="1">
-            <tr>
-                <th width="70">순위</th>
-                <th>식당명</th>
-                <th>리뷰수</th>
-                <th>찜꽁수</th>
-                <th>공유수</th>
-            </tr>
-            <tr>
-                <th>1</th>
-                <th>스즈란테이</th>
-                <th>100</th>
-                <th>700</th>
-                <th>50</th>
-            </tr>
-            <tr>
-                <th>2</th>
-                <th>한우사랑</th>
-                <th>90</th>
-                <th>603</th>
-                <th>45</th>
-            </tr>
-            <tr>
-                <th>3</th>
-                <th>돈까스</th>
-                <th>87</th>
-                <th>600</th>
-                <th>43</th>
-            </tr>
-            <tr>
-                <th>4</th>
-                <th>신라마라탕</th>
-                <th>79</th>
-                <th>589</th>
-                <th>37</th>
-            </tr>
+    <br><br><br>
 
-            <tr>
-                <th>5</th>
-                <th>온기정</th>
-                <th>72</th>
-                <th>550</th>
-                <th>35</th>
-            </tr>
-        </table>
-
-       
->>>>>>> Stashed changes
-
-<div class="outer" border="1">
-
+    <div class="outer" border="1">
         <br><br><br>
-        <div class="table1" style="clear: both; padding: 5%;">
-            <table align="center" border="1" >
+
+        <div class="table1">
+            <table align="center" border="1">
                 <tr>
-                    <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
-                    <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
+                    <th width="200">총 등록 식당 수</th>
+                    <th width="200">총 회원 수</th>
                 </tr>
                 <tr>
                     <th>150개</th>
                     <th>300명</th>
-                </tr>            
+                </tr>
             </table>
         </div>
-        
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" style="width: ;">
+            <table border="1">
                 <tr>
-                    <th width="70">순위</th>
+                    <th>순위</th>
                     <th>식당명</th>
                     <th>리뷰수</th>
                     <th>찜꽁수</th>
@@ -162,11 +119,11 @@
         </div>
 
         <div id="best3" style="float: right;">
-            <canvas width='350' height='350' id='canvas'></canvas>
-        </div>    
+            <canvas width='400' height='350' id='canvas'></canvas>
+        </div>
 
-            <script>
-                const canvas = document.getElementById('canvas');
+        <script>
+            const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
             
                 var width = canvas.clientWidth;
@@ -376,10 +333,7 @@
                 ctx.fillText(total, width/2 - minus, height/2 * 1.1);
                 ctx.restore();
              }
-         </script>
-      
-</div>
-        
-
-    </body>
-    </html>
+        </script>
+    </div>
+</body>
+</html>
