@@ -25,7 +25,7 @@
     }
     
     .content{
-        height: 1600px;
+        height: 2000px;
         margin: 0 auto;
         display: flex;
         justify-content: center;
@@ -46,10 +46,10 @@
 
     /* 사이드바 비율, 스타일 */
     #content_1>div{width: 100%; margin-bottom: 50px;}
-    #social{height: 250px;}
-    #category{height: 300px;}
+    #social{height: 220px;}
+    #category{height: 400px;}
     #location{height: 400px;}
-    #function{height: 400px;}
+    #function{height: 500px;}
 
     /* 큰 content */
     #content_2{
@@ -63,7 +63,7 @@
 
     #content_2>div{width: 100%; float: left;}
     /* 검색결과 div */
-    #search-list{height: 80%;}
+    #search-list{height: 1520px;}
 
     /* 맛집등록요청 div */
     #rest-rq{
@@ -194,6 +194,111 @@
         cursor: pointer;
     }
     
+    /* 큰div 비율 */
+    #search-list>div{width:100%;}
+    #rs-arr{height:50px;}
+    #lc-name{height:70px;}
+    #rs-content{height:1400px;}
+
+    /* 정렬 비율 및 스타일 */
+    #rs-arr>div{height: 100%; float: left;}
+    #rs-arr1{width: 80%;}
+    #rs-arr2{width: 20%;}
+    
+    #rs-arr1-ul>li{
+        float: left;
+        width: 14%;
+        height: 100%;
+        line-height: 45px;
+        list-style: none;
+    }
+
+    #rs-arr1-ul a{
+        color: rgb(58, 58, 58);
+        text-decoration: none;
+        font-weight: 800;
+    }
+
+    #rs-arr2 a{
+        color: rgb(58, 58, 58);
+        line-height: 45px;
+    }
+
+
+
+    /* 검색결과 비율 */
+    #rs-content>div{width:100%;}
+    #rs-title{height:150px;}
+    #map{height:400px;}
+    #search-rest{height:700px;}
+    #moreBtn{height:50px;}
+    
+    /* 식당정보 타이틀 스타일*/
+    #rs-title>div{height:100%; float:left;}
+    #kw-title{width:30%;}
+    #share-div{width:50%;}
+    #share-btn{
+        width:20%;
+        position: relative;
+        display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
+        align-items: center; /* 수직 정렬을 위한 스타일 */
+        justify-content: center; /* 수평 정렬을 위한 스타일 */
+    }
+    
+    #share-btn > .group {
+        width: 80px;
+        height: 70px;
+        position: relative;
+        display: flex; /* 자식 요소를 플렉스박스로 설정 */
+        flex-direction: column; /* 자식 요소들을 수직으로 배치 */
+        align-items: center; /* 수직 정렬을 위한 스타일 */
+        justify-content: center; /* 수평 정렬을 위한 스타일 */
+    }
+
+    /* 공유하기 box 비율 및 스타일 */
+    #share-div>div{width:100%;}
+    #share{
+        height:50px;
+        line-height: 50px;
+        color: rgb(228, 145, 13);
+        font-weight: bold;
+        font-size: large;
+        text-align: center;
+        
+    }
+    #icon{height:100px;}
+
+
+    #icon>div{height:100px; width:50%; float: left;}
+    
+    #kakao-div>div{width:100%;}
+    #kakao-icon{
+        height:70px;
+        display: flex;
+        justify-content: center;
+    }
+    #kakao, #copy{
+        height:30px;
+        font-weight: 500;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    #kakaoImg{
+        width:68px; height: 68px;
+    }
+
+    #copy-div>div{width:100%;}
+    #copy-icon{height:70px;}
+    
+    
+
+    /* 검색결과 더보기 버튼 스타일 */
+    #moreBtn>#more-btn{
+        width: 80%; height: 100%;
+        background-color: gray;
+    }
+
     /* 맛집등록요청 버튼 div */
     #rsrq-btn-div{
         display: flex;
@@ -349,51 +454,70 @@
             </div>
             <div id="content_2">
                 <div id="search-list">
-                   
-                    <div id="rs-arr">정렬 거리순 평점순 찜꽁많은순</div>
+                    <div id="rs-arr">
+                        <div id="rs-arr1">
+                            <ul id="rs-arr1-ul">
+                                <li><a href="#" id="rest-li1">정렬</a></li>
+                                <li><a href="#" id="rest-li2">거리순</a></li>
+                                <li><a href="#" id="rest-li3">평점순</a></li>
+                                <li><a href="#" id="rest-li4">찜꽁많은순</a></li>
+                            </ul>
+                        </div>
+                        <div id="rs-arr2">
+                            <a href="#">현위치 : 위치없음</a>
+                        </div>
+                    </div>
                     <div id="lc-name">강남구</div>
                     <div id="rs-content">
                         <div id="rs-title">
-                            <div id="kw-title">강남구 삼겹살 맛집</div>
+                            <div id="kw-title">강남구 삼겹살 맛집(547곳)</div>
                             <div id="share-div">
                                 <div id="share">공유하기</div>
-                                <div id="kakao-icon">
-                                    <img src="data:image/png;base64,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">
+                                <div id="icon">
+                                    <div id="kakao-div">
+                                        <div id="kakao-icon">
+                                            <a href="#"><img id="kakaoImg" src="data:image/png;base64,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"></a>
+                                        </div>
+                                        <div id="kakao">카카오톡 공유</div> 
+                                    </div>
+                                    <div id="copy-div">
+                                        <div id="copy-icon">
+                                            
+                                        </div>
+                                        <div id="copy">링크복사</div>
+                                    </div>
                                 </div>
-                                <div id="copy-icon">
-                                    
-                                </div>
-                                <div id="kakao">카카오톡 공유</div>
-                                <div id="copy">링크복사</div>
+                                
                             </div>
-                            <div id="share-btn"><div data-obj-type="group" data-obj-id="9wUZ8" class="" style="position: absolute; left: 1021.13px; top: 339.087px; width: 100px; height: 70px;"><div data-obj-id="3emRF" data-obj-type="element" data-text-editable="true" class="" style="position: absolute; top: 0px; left: 0px; width: 100px; height: 70px;"><div data-text-content="true" style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2em; border-radius: 4px; background-color: rgb(243, 156, 18);" class="" spellcheck="false">&nbsp;&nbsp;&nbsp;공유</div></div><div data-obj-id="r2XD6" data-obj-type="icon" class="" style="position: absolute; top: 5.997px; left: 10px; width: 25px; height: 25px; padding-bottom: 5px;"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(255, 255, 255)"><path d="M42 6.02H6c-2.21 0-4 1.79-4 4V18h4V9.98h36v28.06H6V30H2v8.02c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zM22 32l8-8-8-8v6H2v4h20v6z"></path></svg></div></div></div>
-                            
+                            <div id="share-btn">
+                                <div data-obj-type="group" data-obj-id="9wUZ8" class="" style="width: 80px; height: 40px;">
+                                    <!-- <div data-obj-id="3emRF" data-obj-type="element" data-text-editable="true" class="" style="position: absolute; top: 0px; left: 0px; width: 80px; height: 70px;"> -->
+                                        <div data-text-content="true" style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.3em; border-radius: 4px; background-color: rgb(243, 156, 18);" class="" spellcheck="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(255, 255, 255)">
+                                                <path d="M42 6.02H6c-2.21 0-4 1.79-4 4V18h4V9.98h36v28.06H6V30H2v8.02c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zM22 32l8-8-8-8v6H2v4h20v6z"></path>
+                                            </svg>
+                                            &nbsp;&nbsp;공유
+                                        </div>
+                                    <!-- </div> -->
+                                    <!-- <div data-obj-id="r2XD6" data-obj-type="icon" class="" style="position: absolute; top: 3px; left: 4px; width: 25px; height: 25px; padding-bottom: 5px;"> -->
+                                        
+                                    <!-- </div> -->
+                                </div>
+                            </div>
                         </div>
-                        <div id="map"></div>
-                        <div id="rest"></div>
-                        <div id="moreBtn"></div>   
+                        <div id="map">
+                            <img src="../../resources/search/map.png">
+                        </div>
+                        <div id="search-rest"></div>
+                        <div id="moreBtn">
+                            <button type="button" id="more-btn">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg> -->
+                            검색 결과 더보기
+                            </button>
+                        </div>   
                     </div>
                 </div>
-
-                /* 큰div 비율 */
-                #search-list>div{width:100%;}
-                #rs-arr{}
-                #lc-name{}
-                #rs-content{}
-
-                #rs-content>div{width:100%;}
-                #rs-title{}
-                #map{}
-                #rest{}
-                #moreBtn{}
-
-
-                /* 식당정보 타이틀 스타일 */
-                #rs-title>div{}
-                #kw-title{}
-                #share{}
-                #share-btn{}
-
+           
 
                 <div id="rest-rq">
                     <br>
