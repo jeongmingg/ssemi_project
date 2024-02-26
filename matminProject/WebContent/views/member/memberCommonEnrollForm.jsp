@@ -34,6 +34,11 @@
 			color: #E4910D;
 		}
 
+		.enroll-form small{
+			font-weight: bold;
+			color: gray;
+		}
+
 		#hr{
 			border-top: 2px solid #E4910D;
 			margin-top: 10px;
@@ -56,17 +61,33 @@
 			height: 45px;
 			border-radius: 5px;
 		}
-
-		#check-email{
+		
+		#check-email-btn{
 			height: 45px;
+			margin: 15px;
 		}
-
+		
 		#required-area>div{
 			padding-left: 100px;
 		}
 
 		#additional-area>table{
 			margin-left: 100px;
+		}
+
+		#enroll-btn{
+			background-color: #E4910D;
+			border: #E4910D;
+			/* width: 300px; */
+			/* height: 40px; */
+			/* line-height: 25px; */
+			margin: 15px;
+		}
+
+		#selectAddress{
+			height: 45px;
+    		border-radius: 5px;
+			margin-left: 5px;
 		}
 	</style>
 	
@@ -102,7 +123,7 @@
 		<h3 align="center">회원가입</h3>
 
 		<div id="required-area">
-			<p>기본정보<small>(필수)</small></p>
+			<p>기본정보 <small>(필수)</small></p>
 			<hr id="hr">
 			<div>
 				<input type="text" name="userId" placeholder="아이디" required> <br>
@@ -120,7 +141,7 @@
 					<option value="daum.net">daum.net</option>
 				</select>
 
-				<button class="btn btn-sm btn-secondary" id="check-email">인증하기</button>
+				<button class="btn btn-secondary" id="check-email-btn">인증하기</button>
 			</div>
 		</div>
 
@@ -148,7 +169,7 @@
 		<br>
 
 		<div id="additional-area">
-			<p>추가정보<small>(선택)</small></p>
+			<p>추가정보 <small>(선택)</small></p>
 			<hr id="hr">
 
 			<table>
@@ -157,6 +178,7 @@
 					<td>
 						서울특별시
 						<select name="address" id="selectAddress">
+							<option value="">선택안함</option>
 							<option value="">강남구</option>
 							<option value="">강북구</option>
 							<option value="">강서구</option>
@@ -168,7 +190,11 @@
 			</table>
 		</div>
 
-		<button type="submit" class="btn btn-sm btn-secondary" id="enroll-btn">회원가입</button>
+		<br>
+
+		<div id="btn-area" align="center">
+			<button type="submit" class="btn btn-secondary" id="enroll-btn">회원가입</button>
+		</div>
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
