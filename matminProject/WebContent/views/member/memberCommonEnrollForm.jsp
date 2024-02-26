@@ -5,91 +5,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<style>
-		.enroll-form{
-			width: 1500px;
-			margin: auto;
-			margin-top: 50px;
-			margin-bottom: 50px;
-			/* text-align: center; */
-		}
 
-		.enroll-form>div{
-			width: 700px;
-			margin: auto;
-		}
-
-		.enroll-form>h3{
-			color: #E4910D;
-			font-weight: bold;
-			font-size: 30px;
-			margin-bottom: 20px;
-		}
-
-		.enroll-form p{
-			font-weight: bold;
-			font-size: 18px;
-			padding-left: 10px;
-			margin-bottom: 10px;
-			color: #E4910D;
-		}
-
-		.enroll-form small{
-			font-weight: bold;
-			color: gray;
-		}
-
-		#hr{
-			border-top: 2px solid #E4910D;
-			margin-top: 10px;
-		}
-
-		.enroll-form input{
-			width: 300px;
-			height: 45px;
-			margin: 5px;
-			border-radius: 5px;
-			border: 1px solid gray;
-			padding-left: 5px;
-		}
-
-		input[name=email], input[name=domain]{
-			width: 150px;
-		}
-
-		#selectDomain{
-			height: 45px;
-			border-radius: 5px;
-		}
-		
-		#check-email-btn{
-			height: 45px;
-			margin: 15px;
-		}
-		
-		#required-area>div{
-			padding-left: 100px;
-		}
-
-		#additional-area>table{
-			margin-left: 100px;
-		}
-
-		#enroll-btn{
-			background-color: #E4910D;
-			border: #E4910D;
-			/* width: 300px; */
-			height: 40px;
-			/* line-height: 25px; */
-			margin: 15px;
-		}
-
-		#selectAddress{
-			height: 45px;
-    		border-radius: 5px;
-			margin-left: 5px;
-		}
-	</style>
+	<!-- css -->
+	<link rel="stylesheet" href="resources/css/member/memberCommonEnrollForm.css">
 	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">

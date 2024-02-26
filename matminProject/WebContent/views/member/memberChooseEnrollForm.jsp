@@ -5,93 +5,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here ww</title>
-	<style>
-		.choose-enroll-form{
-			width: 1500px;
-			margin: auto;
-			margin-top: 50px;
-			margin-bottom: 50px;
-			text-align: center;
-		}
 
-		.choose-enroll-form>p{
-			color: #E4910D;
-			text-align: center;
-			font-size: 40px;
-			margin-bottom: 20px
-		}
-
-		.choose-enroll-form>div:not(0){
-			width: 50%;
-			margin: auto;
-		}
-		
-		#common-enroll>div{width: 600px;}
-
-		#common-enroll>div>p{
-			font-size: 30px;
-			color: #E4910D;
-			margin-bottom: 30px;
-		}
-
-		#agree-content{
-			width: 500px;
-			height: 200px;
-			border: 1px solid black;
-			overflow-y: scroll;
-		}
-
-		#agree-content>p{
-			text-align: left;
-			font-size: 14px;
-			margin: 10px;
-		}
-
-		#common-enroll-btn{
-			background-color: #E4910D;
-			border: #E4910D;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 15px;
-		}
-
-		#hr{
-			width: 600px;
-			border-top: 2px solid darkgray;
-			margin-top: 20px;
-		}
-
-		#sns-enroll>div{width: 600px;}
-
-		#sns-enroll>div>p{color: #E4910D;}
-
-		#naver-enroll-btn{
-			background-color: #03c75a;
-			border: #03c75a;
-			width: 300px;
-			height: 45px;
-			line-height: 44px;
-			margin: 5px;
-			padding: 0;
-			font-size: 14px;
-    		font-weight: bold;
-		}
-
-		#naver-enroll-btn>span{
-			padding-right: 27px;
-		}
-
-		#kakao-enroll-btn{
-			margin: 5px;
-		}
-
-		#click-agree{
-			color: red;
-			font-size: 13px;
-			font-weight: bold;
-		}
-	</style>
+	<!-- css -->
+	<link rel="stylesheet" href="resources/css/member/memberChooseEnrollForm.css">
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -208,17 +124,14 @@
 				<input type="checkbox" id="agree" style="cursor: pointer;">
 				<label for="agree" style="cursor: pointer;">위 모든 약관을 확인하고 전체 동의합니다.</label>
 
-				<br>
-
-				<span id="click-agree"></span>
-
-				<br>
+				<span id="click-agree" style="display: none;"></span>
 
 				<a href="<%= contextPath %>/commonEnrollForm.me" id="common-enroll-btn" class="btn btn-primary" onclick="return checkAgree();"><b>맛집의 민족 회원가입</b></a>
 
 				<script>
 					function checkAgree() {
 						if(!$("#agree").is(":checked")) {
+							$("#click-agree").css("display", "block");
 							$("#click-agree").text("* 약관 확인 후 동의해주세요.");
 							return false;
 						}
