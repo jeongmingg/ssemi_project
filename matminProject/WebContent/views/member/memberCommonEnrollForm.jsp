@@ -79,7 +79,7 @@
 			background-color: #E4910D;
 			border: #E4910D;
 			/* width: 300px; */
-			/* height: 40px; */
+			height: 40px;
 			/* line-height: 25px; */
 			margin: 15px;
 		}
@@ -193,7 +193,7 @@
 		<br>
 
 		<div id="btn-area" align="center">
-			<button type="submit" class="btn btn-secondary" id="enroll-btn">회원가입</button>
+			<button type="submit" class="btn btn-secondary" id="enroll-btn">가입하기</button>
 		</div>
 	</div>
 	

@@ -107,8 +107,8 @@
 			
 				<input type="text" name="userId" placeholder="ID" required> <br>
 				<input type="password" name="userPwd" placeholder="Password" required> <br>
-				<input type="checkbox" name="autoLogin" id="autoLogin">
-				<label for="autoLogin" style="font-size: 13px;">자동 로그인</label> <br>
+				<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
+				<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
 				
 				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
 				
@@ -116,7 +116,7 @@
 		</div>
 		<div id="click_other">
 			<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
-			<a href="#">회원가입</a>
+			<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
 		</div>
 
 		<hr id="hr">

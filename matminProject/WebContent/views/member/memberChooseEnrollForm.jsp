@@ -84,6 +84,12 @@
 			line-height: 25px;
 			margin: 5px;
 		}
+
+		#click-agree{
+			color: red;
+			font-size: 13px;
+			font-weight: bold;
+		}
 	</style>
 
 	<!-- Latest compiled and minified CSS -->
@@ -198,12 +204,25 @@
 
 				<br>
 
-				<input type="checkbox" id="agree">
-				<label for="agree">위 모든 약관을 확인하고 전체 동의합니다.</label>
+				<input type="checkbox" id="agree" style="cursor: pointer;">
+				<label for="agree" style="cursor: pointer;">위 모든 약관을 확인하고 전체 동의합니다.</label>
 
 				<br>
 
-				<a href="#" id="common-enroll-btn" class="btn btn-primary"><b>맛집의 민족 회원가입</b></a>
+				<span id="click-agree"></span>
+
+				<br>
+
+				<a href="<%= contextPath %>/commonEnrollForm.me" id="common-enroll-btn" class="btn btn-primary" onclick="return checkAgree();"><b>맛집의 민족 회원가입</b></a>
+
+				<script>
+					function checkAgree() {
+						if(!$("#agree").is(":checked")) {
+							$("#click-agree").text("* 약관 확인 후 동의해주세요.");
+							return false;
+						}
+					}
+				</script>
 			</div>
 		</div>
 
