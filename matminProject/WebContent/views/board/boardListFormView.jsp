@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
+	<link rel="stylesheet" href="resources/arssets/fonts/material-icons/material-icons.css" />
 <style>
 	.outer {
 		width: 1500px;
@@ -13,7 +15,11 @@
 	}
 	.outer div{
 		margin: auto;
-
+	}
+	.outerin-area{
+		border: 2px solid lightgray; 
+		width: 1200px; 
+		height: 650px; border-radius: 10px;
 	}
 	h3 {
 		color: #e4910d;
@@ -23,16 +29,18 @@
 		margin: auto;
 		margin-top: 50px;
 		text-align: center;
-		border-radius: 5px;
+		border-radius: 10px;
 		height: 500px;
 	}
 	.listView-area tr>th{
 		text-align: right ;
 	}
-	.listView-area input{
-		border-radius: 5px;
+	[type="text"]{
+		border-radius: 10px;
 		border: 1px solid lightgray;
 		height: 35px;
+		padding-left: 0.6em;
+		padding-bottom: 0.2em;
 	}
 	.listView-area input:focus{
 		outline: solid #e4910d;
@@ -40,12 +48,17 @@
 	.listView-area #enroll:focus{
 		outline: none;
 	}
+	.listView-area #delete:focus{
+		outline: none;
+	}
 	.listView-area tr>td textarea{
 		width: 89%;
 		height: 200px;
 		resize: none;
-		border-radius: 5px;
+		border-radius: 10px;
 		border: 1.5px solid lightgray;
+		padding-left: 0.6em;
+		padding-top: 0.3em;
 	}
 	.listView-area tr>td textarea:focus{
 		outline: solid #e4910d;
@@ -53,7 +66,88 @@
 	.listView-area tr>td{
 		width: 10px;
 	}
-
+	ul.tag-group {
+		display: block;
+		width: auto;
+		height: auto;
+		font-size: 0;
+		margin: 0px;
+	}
+	.tag-group .btn{
+		width: 30px;
+	}
+	.btn > .label {
+		vertical-align: 0;
+	}
+	
+	/*라디오버튼 색상 변경*/
+	[type="radio"]{
+		appearance: none; 
+		width: 15px;
+		height: 15px;
+		border: 2px solid #ccc; 
+		border-radius: 50%;
+		outline: none;
+		cursor: pointer;
+		margin-right: 6px;
+		margin-bottom: 10px;
+		accent-color: #e4910d;
+		vertical-align: -13px
+		}
+	[type='radio']:checked {
+ 		background-color: #e4910d;
+  		border: 3px solid white;
+  		box-shadow: 0 0 0 1.6px #e4910d;
+	}
+	label{
+		margin-top: 13px;
+	}
+	textarea::placeholder{
+		font-size: 0.8em;
+		color: gray;
+		padding-top: 8px;
+		padding-left: 3px;
+		}
+	[type="text"]::placeholder{
+		font-size: 0.8em;
+		color: gray;
+	}
+	.file{
+		display: none;
+	}
+	.btnOfInput{
+		display: none;
+	}
+	.file-area{
+		border-radius: 10px;
+		box-sizing: border-box;
+		border: 1px solid lightgray;
+		height: 45px;
+		width: 89%;
+		float: left;
+	}
+	#file_label{
+		margin-top: 7px;
+		cursor: pointer;
+		margin-left: 88%;
+		margin-top:8px;
+		background-color: #e4910d;
+		border: solid 1px #e4910d;
+		color: white;
+		text-align: center;
+		border-radius: 8px;
+		width: 80px;
+		height: 27px;
+	}
+	.count-area {
+		font-size: 0.8em;
+		color: gray;
+		font-weight: 600;
+	}
+	
+	
+	
+	
 </style>
 
 
@@ -61,7 +155,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -78,38 +172,46 @@
 
 	<div class="outer">
 		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
-		<div style="border: 2px solid lightgray; width: 1200px; height: 650px; border-radius: 5px;">
-		
+		<div class= "outerin-area" >
+
+		<!-- 맛집 등록 요청시 -->
 			<form action="#">
 				<table class="listView-area" style="width: 1200px">
-
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
 						<td style="width: 80px;">
-							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll" style="color: #e4910d;"> 맛집 등록 요청</td>
+						  <label>
+							<input type="radio" name="enroll" value="enroll" id="enroll" checked>맛집 등록 요청</td>
+						  </label>	
 						<td style="width: 80px;">
-							<input type="radio" style="vertical-align: -13px;" name="enroll" id="enroll"> 맛집 등록 삭제</td>
-					</tr>
+						  <label>
+							<input type="radio" name="enroll" value="delete" id="delete">맛집 등록 삭제</td>
+						  </label>
+						</tr>
 					<tr>
 						<th height="50">제목</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" name="title" style="width: 100%;" required>
+
+						<!-- 라디오 버튼클릭시 변경-->
+							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
 						</td>
+
 						<th style="text-align: center; width: 150px";>닉네임
-							<input type="text" neme="name" style="width: 150px; font-weight: lighter;" required>
+							<input type="text" nme="name" style="width: 150px; font-weight: lighter;" required>
 						</th>
 						
-						<th style="width: 150px; text-align: left;">작성일자
-							<input type="text" neme="enrollDate" style="width: 180px; font-weight: lighter; text-align: center;">
+						<th style="width: 150px; text-align:left;">작성일자
+							<input type="text" name="enrollDate" style="width: 180px; font-weight: lighter; text-align: left;">
 						</th>
 					</tr>
 					<tr>
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" name="restName" style="width: 100%;" required>
+							
+							<input type="text" name="restName" style="width: 100%;" placeholder="식당이름을 입력하세요." required>
 						</td>
 
 					</tr>
@@ -117,34 +219,90 @@
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;" name="restAdd" required>
+							<input type="text" style="width: 100%;" name="restAdd" placeholder="식당주소를 입력하세요." required>
 						</td>
 						<td colspan="2"></td>
 					</tr>
 					<tr>
-						<th height="40" >내용</th>
+						<th height="40" style="vertical-align: top; padding-top: 6px;">내용 
+							<br>
+							<div class="count-area">
+								<span id="count">0</span>/300
+							</div>
+						</th>
 						<td></td>
 						<td colspan="4" align="left">
-							<textarea name="content" required></textarea>
+							<!-- 라디오 버튼클릭시 변경-->
+							<textarea id="content" name="content" maxlength="300" placeholder="추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>	
 						</td>
 					</tr>
+
+					<!-- 사진 
+					-->
 					<tr>
 						<th height="0">사진</th>
 						<td></td>
-						<td colspan="4">
-							<input type="file" name="file" style="width: 100%; border-style: none; background-color: transparent; opacity: 100%;" required>
+						<td colspan="4">	
+							<div class="file-area">
+								<input type="file" id="file" className="btnOfInput" multiple style="display: none;">
+								<label for="file" id="file_label">업로드</label>
+							</div>
 						</td>
 					</tr>
 				</table>
 
 				<div align="center">
 					<br>
-					<button type="submit" class="btn btn-sm btn-secondary">등록</button>
-					<button type="submit" class="btn btn-sm btn-secondary">취소</button>
+					<a href="#" class="btn btn-sm btn-secondary">등록</a>
+					<a href="#" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
 		</div>
 	</div>
+	
+	<script>
+
+		// 내용 밑에 글자수 세기
+
+		$(function(){
+       		 $("#content").keyup(function(){ 
+				let length = $(this).val().length;
+				$("#count").text(length);
+       		 })
+       })
+
+
+		</script>
+
+	<script>
+
+		// 라디오버튼 클릭시 title/content 값 변경
+		
+		var lastCheckedValue = ""; // 마지막으로 체크된 값 저장 변수
+
+			$("input[type=radio]").on("click", function(){
+				var chkValue = $("input[type=radio]:checked").val();
+				
+				console.log(chkValue);
+				if(chkValue == "delete"){
+					// $("#title").attr("value", "  맛집 삭제 요청합니다");
+					$("#title").val("맛집 삭제 요청합니다")
+					$("#content").attr("placeholder", "식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내).");
+					lastCheckedValue = "delete"; // 'delete' 값 기억
+				} else{
+					if(lastCheckedValue == "delete"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
+						$("#title").val("맛집 등록 요청합니다.") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
+						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
+					}
+				}
+			})
+		</script>
+
+		
+
+		
+
+
 
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">

@@ -17,6 +17,10 @@ table, th, td {
     </style>
 </head>
 <body>
+
+  <%@ include file="../common/header.jsp" %>
+	<%@ include file="../common/navigator.jsp" %>
+
    
     <table style="border: 1px solid gray;">
         <tr>

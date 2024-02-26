@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
+	<link rel="stylesheet" href="resources/assets/fonts/material-icons/material-icons.css" />
 <style>
 	.outer {
 	    width: 1500px;
@@ -27,6 +28,11 @@
 		border-color: rgb(177, 177, 177);
 	}
 	
+	.list-area tr{
+		border-top: 1.5px solid darkgray;
+		border-bottom: 1.5px solid darkgray;
+	}
+
 	.list-area th{
 		background-color:rgba(231, 231, 231, 0.842)
 	}
@@ -41,7 +47,7 @@
 		height: 40px;
 	}
 	.list-area>tbody>tr:hover{
-    	color: #e4910d;
+		background-color: rgba(92, 92, 92, 0.342);
     	cursor:pointer;
 		font-weight: bolder;
     }
@@ -85,7 +91,7 @@
 			<br>
 
 			<!-- 게시판 목록-->
-			<table class="list-area" align="center" border="1px">
+			<table class="list-area" align="center">
 				<thead>
 					<tr>
 						<th width="150">작성번호</th>
