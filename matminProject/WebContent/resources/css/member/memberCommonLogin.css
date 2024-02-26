@@ -1,0 +1,72 @@
+.login-form{
+    width: 1800px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.login-form>h3{
+    color: #E4910D;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+form>input[type=text], form>input[type=password]{
+    width: 300px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding-left: 5px;
+}
+
+#loginBtn{
+    background-color: #E4910D;
+    border: #E4910D;
+    width: 300px;
+    height: 40px;
+    line-height: 25px;
+    margin: 15px;
+}
+
+#click_other>a{
+    color: #E4910D;
+    margin: 20px;
+    font-size: 13px;
+}
+
+#hr{
+    width: 400px;
+    border-top: 2px solid darkgray;
+    margin-top: 20px;
+}
+
+#sns-login>p{color: #E4910D;}
+
+#naver-login-btn{
+    background-color: #03c75a;
+    border: #03c75a;
+    width: 300px;
+    height: 45px;
+    line-height: 44px;
+    margin: 5px;
+    padding: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#naver-login-btn>span{
+    padding-right: 27px;
+}
+
+#kakao-login-btn{
+    margin: 5px;
+}
+
+#message{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+}

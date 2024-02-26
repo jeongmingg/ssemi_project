@@ -6172,7 +6172,7 @@ input[type=number] {
 .pagination .pagination-group > ul > li + li { margin-left: 28px; }
 .pagination .pagination-group.direction > ul > li + li { margin-left: 8px; }
 .pagination .pagination-group > ul > li.on .pagination-item { font-weight: 700; }
-.pagination .pagination-group > ul > li.on .pagination-item:after {
+.pagination .pagination-group > ul > li.on .pagination-item:after{
   position: absolute;
   bottom: -2px;
   left: 0;
