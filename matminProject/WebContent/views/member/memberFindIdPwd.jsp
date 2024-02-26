@@ -4,71 +4,55 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>로그인</title>
+	<title>Insert title here</title>
 	<style>
-		.login-form{
-			width: 1800px;
+		.find-id-pwd{
+			width: 1400px;
+			height: 500px;
 			margin: auto;
 			margin-top: 50px;
 			margin-bottom: 50px;
-			text-align: center;
+		}
+		
+		#findId, #findPwd{
+			/* width: 750px; */
+			width: 50%;
+			height: 100%;
+			float: left;
+		}
+		
+		#findId>div, #findPwd>div{
+			width: 600px;
+			height: 400px;
+			margin-top: 25px;
+			/* border: 2px solid #E4910D; */
+			/* border-radius: 20px; */
+			padding-top: 30px;
 		}
 
-		.login-form>h3{
-			color: #E4910D;
-			font-weight: bold;
-			font-size: 40px;
-			margin-bottom: 20px;
+		/* #findId>div{padding-top: 50px;} */
+		/* #findPwd>div{padding-top: 30px;} */
+		
+		#findIdBtn, #findPwdBtn{
+			background-color: #E4910D;
+			border: #E4910D;
+			width: 300px;
+			height: 50px;
+			line-height: 35px;
 		}
-
-		form>input[type=text], form>input[type=password]{
+		
+		form>input{
 			width: 300px;
 			height: 45px;
-			margin: 5px;
+			margin: 10px;
 			border-radius: 5px;
 			border: 1px solid gray;
 			padding-left: 5px;
 		}
 
-		#loginBtn{
-			background-color: #E4910D;
-			border: #E4910D;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 15px;
-		}
-
-		#click_other>a{
+		p{
+			font-size: 30px;
 			color: #E4910D;
-			margin: 20px;
-			font-size: 13px;
-		}
-
-		#hr{
-			width: 400px;
-			border-top: 2px solid darkgray;
-			margin-top: 20px;
-		}
-
-		#sns-login>p{color: #E4910D;}
-
-		#sns-login>a{
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 5px;
-		}
-
-		#naver-login-btn{
-			background-color: #03c75a;
-			border: #03c75a;
-		}
-
-		#kakao-login-btn{
-			background-color: #f9e003;
-			border: #f9e003;
-			color: black;
 		}
 	</style>
 
@@ -78,6 +62,7 @@
 	<!-- jQuery library -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 	<!-- Popper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
@@ -89,7 +74,7 @@
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 
-	<div class="login-form">
+	<div class="find-id-pwd">
 		<div id="topBtn">
 			<a href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
@@ -100,36 +85,48 @@
 			</a>
 		</div>
 		
-		<h3>Login</h3>
+		<div id="findId" align="center">
+			<div>
 
-		<div id="input_id_pwd">
-			<form action="<%= contextPath %>/login.me" method="post">
-			
-				<input type="text" name="userId" placeholder="ID" required> <br>
-				<input type="password" name="userPwd" placeholder="Password" required> <br>
-				<input type="checkbox" name="autoLogin" id="autoLogin">
-				<label for="autoLogin" style="font-size: 13px;">자동 로그인</label> <br>
-				
-				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
-				
-			</form>
+				<p><b>아이디 찾기</b></p>
+	
+				<form action="#" method="post">
+	
+					<input type="text" name="userName" placeholder="이름"> <br>
+					<input type="text" name="email" placeholder="이메일"> <br>
+	
+					<br>
+
+					<button type="submit" id="findIdBtn" class="btn btn-primary"><b>아이디 찾기</b></button>
+	
+				</form>
+
+			</div>
 		</div>
-		<div id="click_other">
-			<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
-			<a href="#">회원가입</a>
-		</div>
 
-		<hr id="hr">
+		<!-- <div style="width: 1px; height: 400px; float: left; border-left: 1px solid gray;"></div> -->
 
-		<div id="sns-login">
-			<p><b>간편 로그인</b></p>
+		<div id="findPwd" align="center">
+			<div>
 
-			<a href="#" id="naver-login-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
-			<br>
-			<a href="#" id="kakao-login-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
+				<p><b>비밀번호 찾기</b></p>
+	
+				<form action="#" method="post">
+	
+					<input type="text" name="userName" placeholder="이름"> <br>
+					<input type="text" name="userId" placeholder="아이디"> <br>
+					<input type="text" name="email" placeholder="이메일"> <br>
+	
+					<br>
+
+					<button type="submit" id="findPwdBtn" class="btn btn-primary"><b>비밀번호 찾기</b></button>
+	
+				</form>
+
+			</div>
 		</div>
 	</div>
-
+	
 	<%@ include file="../common/footer.jsp" %>
 
 </body>

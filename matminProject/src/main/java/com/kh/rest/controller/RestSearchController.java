@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.rest.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberLoginController
+ * Servlet implementation class RestSearchController
  */
-@WebServlet("/login.me")
-public class MemberLoginController extends HttpServlet {
+@WebServlet("/search.rs")
+public class RestSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginController() {
+    public RestSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +27,7 @@ public class MemberLoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = (String)request.getParameter("userId");
-		String userPwd = (String)request.getParameter("userPwd");
-		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
-		
-		if(loginUser == null) {
-			request.getSession().setAttribute("alertMsg", "로그인 실패");
-			response.sendRedirect(request.getContextPath() + "/loginForm.me");
-			
-		} else {
-			request.getSession().setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath());
-		}
-		
+		request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
 	}
 
 	/**
