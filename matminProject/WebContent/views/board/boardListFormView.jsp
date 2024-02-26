@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<link rel="stylesheet" href="resources/arssets/fonts/material-icons/material-icons.css" />
 <style>
 	.outer {
@@ -144,7 +145,7 @@
 		color: gray;
 		font-weight: 600;
 	}
-	
+
 	
 	
 	
@@ -210,18 +211,21 @@
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							
-							<input type="text" name="restName" style="width: 100%;" placeholder="식당이름을 입력하세요." required>
+							<input type="text" id="restName" name="restName" style="width: 100%;" placeholder="식당이름을 입력하세요." required>
 						</td>
-
+						<td colspan="2">
+							<div id="check1" align="left" style="margin-left: 5px;"></div>
+						</td>
 					</tr>
 					<tr>
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;" name="restAdd" placeholder="식당주소를 입력하세요." required>
+							<input type="text" style="width: 100%;" name="restAdd" id="restAdd" placeholder="식당주소를 입력하세요." required>
 						</td>
-						<td colspan="2"></td>
+						<td colspan="2">
+							<div id="check2" align="left" style="margin-left: 5px;"></div>
+						</td>
 					</tr>
 					<tr>
 						<th height="40" style="vertical-align: top; padding-top: 6px;">내용 
@@ -253,7 +257,7 @@
 
 				<div align="center">
 					<br>
-					<a href="#" class="btn btn-sm btn-secondary">등록</a>
+					<a href="#" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
 					<a href="#" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
@@ -296,6 +300,42 @@
 					}
 				}
 			})
+		</script>
+
+		<script>
+			// 필수입력사항 작성안할시 오류 메시지 출력
+
+			$(function(){
+				$($("#restAdd")).click(function(){
+					if($("#restName").val() == ""){
+						$("#check1").html("* 필수입력 사항입니다.").css({color:"red"}).css("font-size", "12px");
+					}});
+
+				$($("#content")).click(function(){
+					if($("#restAdd").val() == ""){
+						$("#check2").html("* 필수입력 사항입니다.").css({color:"red"}).css("font-size", "12px");
+					}
+				})
+
+				$($("#btn-enroll")).click(function(){
+					if($("#restName").val() == "" || $("#restAdd").val() == "" || $("#content").val() == ""){
+						Swal.fire({
+						title: "필수사항을 모두 입력해주세요",
+						icon: "warning",
+						confirmButtonColor: "#e4910d",
+						confirmButtonText: "확인"
+						});
+					}
+				}) 
+
+				$($("#restName")).change(function(){
+					$("#check1").html("");
+				})
+
+				$($("#restAdd")).change(function(){
+					$("#check2").html("");
+				})
+			});
 		</script>
 
 		
