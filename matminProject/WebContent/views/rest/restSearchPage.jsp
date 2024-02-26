@@ -224,19 +224,43 @@
         line-height: 45px;
     }
 
+    /* 지역이름 버튼 스타일 */
+    #lc-name{
+        display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
+        align-items: center; 
+        padding-left: 40px;
+    }
+    #lc-name-btn{
+        width: 150px;
+        height: 45px;
+        background-color: rgb(243, 156, 18);
+        color: rgb(255, 255, 255);
+        border-radius: 10px;
 
+    }
 
+    #lc-name-btn>a{
+        padding-left: 30px;
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+        text-decoration: none;
+
+    }
     /* 검색결과 비율 */
     #rs-content>div{width:100%;}
     #rs-title{height:150px;}
     #map{height:400px;}
     #search-rest{height:700px;}
-    #moreBtn{height:50px;}
+    #moreBtn{
+        height:50px;
+        display: flex;
+        justify-content: center;
+    }
     
     /* 식당정보 타이틀 스타일*/
     #rs-title>div{height:100%; float:left;}
-    #kw-title{width:30%;}
-    #share-div{width:50%;}
+    #kw-title{width:40%;}
+    #share-div{width:40%;}
     #share-btn{
         width:20%;
         position: relative;
@@ -257,6 +281,9 @@
 
     /* 공유하기 box 비율 및 스타일 */
     #share-div>div{width:100%;}
+    #share-div{
+        background-color: rgb(240, 240, 240);
+    }
     #share{
         height:50px;
         line-height: 50px;
@@ -266,11 +293,20 @@
         text-align: center;
         
     }
+
     #icon{height:100px;}
-
-
     #icon>div{height:100px; width:50%; float: left;}
     
+    #kw-title-p{
+
+        font-size: 20px;
+        font-weight: bold;
+        padding-left: 40px;
+        line-height: 150px;
+
+    }
+
+    /* 카카오톡 공유 스타일 */
     #kakao-div>div{width:100%;}
     #kakao-icon{
         height:70px;
@@ -286,17 +322,26 @@
 
     #kakaoImg{
         width:68px; height: 68px;
+        
     }
 
+    /* 링크복사 스타일 */
     #copy-div>div{width:100%;}
-    #copy-icon{height:70px;}
-    
-    
+    #copy-icon{
 
+        height:70px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #copySvg{
+        width:30px; height: 30px;
+    }
+    
     /* 검색결과 더보기 버튼 스타일 */
     #moreBtn>#more-btn{
         width: 80%; height: 100%;
-        background-color: gray;
+        background-color: rgb(224, 224, 224);
     }
 
     /* 맛집등록요청 버튼 div */
@@ -467,22 +512,34 @@
                             <a href="#">현위치 : 위치없음</a>
                         </div>
                     </div>
-                    <div id="lc-name">강남구</div>
+                    <div id="lc-name">
+                        <button type="button" id="lc-name-btn">
+                            강남구
+                            <a href="#">x</a>
+                        </button>
+                        
+                    </div>
                     <div id="rs-content">
                         <div id="rs-title">
-                            <div id="kw-title">강남구 삼겹살 맛집(547곳)</div>
+                            <div id="kw-title">
+                                <p id="kw-title-p">강남구 삼겹살 맛집(547곳)</p>
+                            </div>
                             <div id="share-div">
                                 <div id="share">공유하기</div>
                                 <div id="icon">
                                     <div id="kakao-div">
                                         <div id="kakao-icon">
-                                            <a href="#"><img id="kakaoImg" src="data:image/png;base64,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"></a>
+                                            <a href="#">
+                                                <img id="kakaoImg" src="data:image/png;base64,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">
+                                            </a>
                                         </div>
                                         <div id="kakao">카카오톡 공유</div> 
                                     </div>
                                     <div id="copy-div">
                                         <div id="copy-icon">
-                                            
+                                            <svg id="copySvg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32.06999969482422 33.58000183105469" fill="rgb(228, 145, 13)" data-svg-content="true">
+                                                <g><path d="M 7.54,15.77c 1.278,1.278, 3.158,1.726, 4.868,1.216L 2.96,7.54C 2.652,7.232, 2.49,6.786, 2.49,6.254 c0-0.88, 0.46-2.004, 1.070-2.614c 0.8-0.8, 2.97-1.686, 3.98-0.682l 9.446,9.448c 0.138-0.462, 0.208-0.942, 0.208-1.422 c0-1.304-0.506-2.526-1.424-3.446L 9.364,1.134C 7.44-0.79, 3.616-0.068, 1.734,1.814C 0.642,2.906-0.036,4.598-0.036,6.23 c0,1.268, 0.416,2.382, 1.17,3.136L 7.54,15.77zM 24.46,16.23c-1.278-1.278-3.158-1.726-4.868-1.216l 9.448,9.448c 0.308,0.308, 0.47,0.752, 0.47,1.286 c0,0.88-0.46,2.004-1.070,2.614c-0.8,0.8-2.97,1.686-3.98,0.682L 15.014,19.594c-0.138,0.462-0.208,0.942-0.208,1.422 c0,1.304, 0.506,2.526, 1.424,3.446l 6.404,6.404c 1.924,1.924, 5.748,1.202, 7.63-0.68c 1.092-1.092, 1.77-2.784, 1.77-4.416 c0-1.268-0.416-2.382-1.17-3.136L 24.46,16.23zM 9.164,9.162C 8.908,9.416, 8.768,9.756, 8.768,10.116s 0.14,0.698, 0.394,0.952l 11.768,11.77 c 0.526,0.524, 1.38,0.524, 1.906,0c 0.256-0.254, 0.394-0.594, 0.394-0.954s-0.14-0.698-0.394-0.952L 11.068,9.162 C 10.544,8.638, 9.688,8.638, 9.164,9.162z"></path></g>
+                                            </svg>
                                         </div>
                                         <div id="copy">링크복사</div>
                                     </div>
@@ -506,12 +563,12 @@
                             </div>
                         </div>
                         <div id="map">
-                            <img src="../../resources/search/map.png">
+                            <img src="../../resources/search/map.png" width="100%" height="400px">
                         </div>
                         <div id="search-rest"></div>
                         <div id="moreBtn">
                             <button type="button" id="more-btn">
-                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg>
                             검색 결과 더보기
                             </button>
                         </div>   
