@@ -53,22 +53,24 @@
 
 		#sns-login>p{color: #E4910D;}
 
-		#sns-login>a{
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 5px;
-		}
-
 		#naver-login-btn{
 			background-color: #03c75a;
 			border: #03c75a;
+			width: 300px;
+			height: 45px;
+			line-height: 44px;
+			margin: 5px;
+			padding: 0;
+			font-size: 14px;
+    		font-weight: bold;
+		}
+
+		#naver-login-btn>span{
+			padding-right: 27px;
 		}
 
 		#kakao-login-btn{
-			background-color: #f9e003;
-			border: #f9e003;
-			color: black;
+			margin: 5px;
 		}
 	</style>
 
@@ -124,9 +126,9 @@
 		<div id="sns-login">
 			<p><b>간편 로그인</b></p>
 
-			<a href="#" id="naver-login-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
-			<br>
-			<a href="#" id="kakao-login-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
+			<a href="#" id="naver-login-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
+				<br>
+				<a href="#" id="kakao-login-btn"><img src="resources/loginImg/kakao_login.png"></a>
 		</div>
 	</div>
 

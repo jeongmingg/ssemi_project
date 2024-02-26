@@ -70,18 +70,19 @@
 			background-color: #03c75a;
 			border: #03c75a;
 			width: 300px;
-			height: 40px;
-			line-height: 25px;
+			height: 45px;
+			line-height: 44px;
 			margin: 5px;
+			padding: 0;
+			font-size: 14px;
+    		font-weight: bold;
+		}
+
+		#naver-enroll-btn>span{
+			padding-right: 27px;
 		}
 
 		#kakao-enroll-btn{
-			background-color: #f9e003;
-			border: #f9e003;
-			color: black;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
 			margin: 5px;
 		}
 
@@ -232,9 +233,9 @@
 			<div>
 				<p><b>간편 회원가입</b></p>
 
-				<a href="#" id="naver-enroll-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
+				<a href="#" id="naver-enroll-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
 				<br>
-				<a href="#" id="kakao-enroll-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
+				<a href="#" id="kakao-enroll-btn"><img src="resources/loginImg/kakao_login.png"></a>
 			</div>
 		</div>
 	</div>
