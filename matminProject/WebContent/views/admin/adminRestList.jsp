@@ -18,10 +18,16 @@ table, th, td {
 </head>
 <body>
 
+<<<<<<< Updated upstream
   <%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 
    
+=======
+    <%@ include file="../common/header.jsp"%>
+    <%@ include file="../common/navigator.jsp"%>
+  <div id="list1">
+>>>>>>> Stashed changes
     <table style="border: 1px solid gray;">
         <tr>
           <th width="50">1</th>
@@ -61,7 +67,7 @@ table, th, td {
          
           </tr>
       </table>
-      
+  </div>  
       
     
 

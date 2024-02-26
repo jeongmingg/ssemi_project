@@ -26,7 +26,7 @@ public class AdminRestListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("view/admin/adminResrList");
+		request.getRequestDispatcher("views/admin/adminRestList.jsp").forward(request,response);
 	}
 
 	/**
