@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    
     .outer{
 
         width: 1000px;
         height: 600px;
+        position: absolute;
         border: 1px solid gray;
     }
    
@@ -24,48 +24,97 @@
         border: 1px solid gray;
         float: right;
     }
-  
-    #best3 {
-      float: right; /* Float canvas to the right */
-    }
-  
-    canvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-  </style>
+    
+
+</style>
 
 </head>
 <body>
+   <%@ include file "../common/header"%>
+   <%@ include file "../common/novigator"%>
+	<div class="outer">
+        <br><br>
 
+        <table align="center" border="1">
+            <tr>
+                <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
+                <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
+            </tr>
+            <tr>
+                <th>150개</th>
+                <th>300명</th>
+            </tr>            
+        </table>
+<br><br><br>
+        <table border="1">
+            <tr>
+                <th width="70">순위</th>
+                <th>식당명</th>
+                <th>리뷰수</th>
+                <th>찜꽁수</th>
+                <th>공유수</th>
+            </tr>
+            <tr>
+                <th>1</th>
+                <th>스즈란테이</th>
+                <th>100</th>
+                <th>700</th>
+                <th>50</th>
+            </tr>
+            <tr>
+                <th>2</th>
+                <th>한우사랑</th>
+                <th>90</th>
+                <th>603</th>
+                <th>45</th>
+            </tr>
+            <tr>
+                <th>3</th>
+                <th>돈까스</th>
+                <th>87</th>
+                <th>600</th>
+                <th>43</th>
+            </tr>
+            <tr>
+                <th>4</th>
+                <th>신라마라탕</th>
+                <th>79</th>
+                <th>589</th>
+                <th>37</th>
+            </tr>
 
-	<%@ include file="../common/header.jsp" %>
-	<%@ include file="../common/navigator.jsp" %>
+            <tr>
+                <th>5</th>
+                <th>온기정</th>
+                <th>72</th>
+                <th>550</th>
+                <th>35</th>
+            </tr>
+        </table>
 
+       
+>>>>>>> Stashed changes
 
 <div class="outer" border="1">
 
         <br><br><br>
         <div class="table1" style="clear: both; padding: 5%;">
-            
-                <table align="center" border="1" >
-                    <tr>
-                        <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
-                        <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
-                    </tr>
-                    <tr>
-                        <th>150개</th>
-                        <th>300명</th>
-                    </tr>            
-                </table>
-           
+            <table align="center" border="1" >
+                <tr>
+                    <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
+                    <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
+                </tr>
+                <tr>
+                    <th>150개</th>
+                    <th>300명</th>
+                </tr>            
+            </table>
         </div>
         
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1">
+            <table border="1" style="width: ;">
                 <tr>
                     <th width="70">순위</th>
                     <th>식당명</th>
@@ -328,8 +377,8 @@
                 ctx.restore();
              }
          </script>
+      
 </div>
-<%@ include file="../common/footer.jsp" %>
         
 
     </body>
