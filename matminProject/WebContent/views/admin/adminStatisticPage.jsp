@@ -38,11 +38,16 @@
 
 </head>
 <body>
+<<<<<<< Updated upstream
 
 
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 
+=======
+	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../common/navigator.jsp" %>
+>>>>>>> Stashed changes
 
 <div class="outer" border="1">
 
@@ -329,7 +334,11 @@
              }
          </script>
 </div>
+<<<<<<< Updated upstream
 <%@ include file="../common/footer.jsp" %>
+=======
+ <%@ include file="../common/footer.jsp" %> 
+>>>>>>> Stashed changes
         
 
     </body>
