@@ -21,4 +21,11 @@
 		   AND MEM_STATUS = 'Y'
 	</entry>
 	
+	<entry key="idCheck">
+		SELECT
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+	</entry>
+	
 </properties>
