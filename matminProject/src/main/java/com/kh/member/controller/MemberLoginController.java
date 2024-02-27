@@ -36,8 +36,8 @@ public class MemberLoginController extends HttpServlet {
 		Member loginUser = new MemberService().loginMember(userId, userPwd);
 		
 		if(loginUser == null) {
-			request.getSession().setAttribute("alertMsg", "로그인 실패");
-			response.sendRedirect(request.getContextPath() + "/loginForm.me");
+			request.setAttribute("loginSuccess", "실패");
+			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
 			
 		} else {
 			request.getSession().setAttribute("loginUser", loginUser);

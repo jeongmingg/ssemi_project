@@ -1,76 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String loginSuccess = (String)request.getAttribute("loginSuccess");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<title>로그인</title>
-	<style>
-		.login-form{
-			width: 1800px;
-			margin: auto;
-			margin-top: 50px;
-			margin-bottom: 50px;
-			text-align: center;
-		}
 
-		.login-form>h3{
-			color: #E4910D;
-			font-weight: bold;
-			font-size: 40px;
-			margin-bottom: 20px;
-		}
-
-		form>input[type=text], form>input[type=password]{
-			width: 300px;
-			height: 45px;
-			margin: 5px;
-			border-radius: 5px;
-			border: 1px solid gray;
-			padding-left: 5px;
-		}
-
-		#loginBtn{
-			background-color: #E4910D;
-			border: #E4910D;
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 15px;
-		}
-
-		#click_other>a{
-			color: #E4910D;
-			margin: 20px;
-			font-size: 13px;
-		}
-
-		#hr{
-			width: 400px;
-			border-top: 2px solid darkgray;
-			margin-top: 20px;
-		}
-
-		#sns-login>p{color: #E4910D;}
-
-		#sns-login>a{
-			width: 300px;
-			height: 40px;
-			line-height: 25px;
-			margin: 5px;
-		}
-
-		#naver-login-btn{
-			background-color: #03c75a;
-			border: #03c75a;
-		}
-
-		#kakao-login-btn{
-			background-color: #f9e003;
-			border: #f9e003;
-			color: black;
-		}
-	</style>
+	<!-- css -->
+	<link rel="stylesheet" href="resources/css/member/memberCommonLogin.css">
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -107,16 +47,43 @@
 			
 				<input type="text" name="userId" placeholder="ID" required> <br>
 				<input type="password" name="userPwd" placeholder="Password" required> <br>
-				<input type="checkbox" name="autoLogin" id="autoLogin">
-				<label for="autoLogin" style="font-size: 13px;">자동 로그인</label> <br>
+				<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
+				<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
+
+				<% if(loginSuccess != null && loginSuccess.equals("실패")) { 	%>
+					<span id="message" style="display: block;">아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
+				<% } %>
+				<span id="message" style="display: none;"></span>
 				
-				<button type="submit" id="loginBtn" class="btn btn-primary"><b>로그인</b></button>
+				<button type="submit" id="loginBtn" class="btn btn-primary" onclick="return validate();"><b>로그인</b></button>
 				
 			</form>
 		</div>
+
+		<script>
+			function validate() {
+				const userId = $("input[name=userId]").val();
+				const userPwd = $("input[name=userPwd]").val();
+				const messageArea = $("#message");
+
+				if(userId == "") {
+					messageArea.css("display", "block");
+					messageArea.text("아이디를 입력해주세요.");
+
+					return false;
+
+				} else if(userPwd == "") {
+					messageArea.css("display", "block");
+					messageArea.text("비밀번호를 입력해주세요.");
+
+					return false;
+				}
+			}
+		</script>
+
 		<div id="click_other">
 			<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
-			<a href="#">회원가입</a>
+			<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
 		</div>
 
 		<hr id="hr">
@@ -124,9 +91,9 @@
 		<div id="sns-login">
 			<p><b>간편 로그인</b></p>
 
-			<a href="#" id="naver-login-btn" class="btn btn-primary"><b>네이버로 시작하기</b></a>
-			<br>
-			<a href="#" id="kakao-login-btn" class="btn btn-primary"><b>카카오로 시작하기</b></a>
+			<a href="#" id="naver-login-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
+				<br>
+				<a href="#" id="kakao-login-btn"><img src="resources/loginImg/kakao_login.png"></a>
 		</div>
 	</div>
 
