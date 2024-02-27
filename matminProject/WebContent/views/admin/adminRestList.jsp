@@ -1,22 +1,34 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-table, th, td {
-  border: 1px solid gray;
-  border-collapse: collapse;
-}
-table, th, td {
-  border: 1px solid;
-  color: orange;
-}
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
 
+	<%@ include file="../common/header.jsp" %>
+	<%@ include file="../common/navigator.jsp" %>
+
+	<style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
+<<<<<<< HEAD
       <%@ include file="../common/header.jsp"%>
       <%@ include file="../common/navigator.jsp"%>
   <div id="list1">
@@ -40,31 +52,56 @@ table, th, td {
           <td>content</td>
        
         </tr>
+=======
 
-        <tr>
-            <th width="50">4</th>
-            <td width="200" height="100">img</td>
-            <td width="500">content</td>
-           
-          </tr>
-          <tr>
-            <th width="50">5</th>
-            <td width="200" height="100">img</td>
-            <td>content</td>
-         
-          </tr>
-          <tr>
-            <th width="50">6</th>
-            <td width="200" height="100">img</td>
-            <td>content</td>
-         
-          </tr>
-      </table>
-  </div>  
-      
-    
+<h2 align="center">Restaurant List</h2>
 
-       
-    
+<button onclick="showRestaurants()">Show All Restaurants</button>
+>>>>>>> db1a16904e1e88c2dfdeec09b64206a1c941e36c
+
+<table id="subscribersTable">
+    <tr>
+        <th>RestNo</th>
+        <th>RestImg</th>
+        <th>RestName</th>
+        <th>Category</th>
+        <th>Address</th>
+        <th>PhoneNumber</th>
+        <th>Grade</th>
+        
+
+        <!-- Add more columns as needed -->
+    </tr>
+  
+    <tr>
+        <td>R1</td>
+        <td>대표img</td>
+        <td>스즈란테이</td>
+        <td>(C3)일식</td>
+        <td>서울시 용산구</td>
+        <td>02-1234-9874</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>R2</td>
+        <td>대표img</td>
+        <td>한우사랑</td>
+        <td>(C1)한식</td>
+        <td>서울시 강남구</td>
+        <td>02-9874-3214</td>
+        <td>1</td>
+    </tr>
+    <!-- Add more rows as needed -->
+</table>
+
+<script>
+    function showRestaurans() {
+        // Code to fetch and display subscribers
+        // You can use AJAX or any other method to fetch data dynamically
+        alert("현재 등록된 식당목록");
+    }
+</script>
+
+</body>
 </body>
 </html>

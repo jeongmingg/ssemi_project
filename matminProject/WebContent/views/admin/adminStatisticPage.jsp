@@ -317,13 +317,13 @@
                 ctx.closePath();
                 ctx.restore();
 
-                var total = 0;
-                value.forEach( (arg)=> total+=arg.number);
+                var total = 5;//fixed value in the circle 
+                // value.forEach( (arg)=> total+=arg.number);
                 var minus = ctx.measureText(total).width; 
                 ctx.save();
                 ctx.font = "normal 20px sans-serif";
                 ctx.fillStyle = '#656565';
-                ctx.fillText("Total", width/2 - ctx.measureText("Total").width/2, height/2);
+                ctx.fillText("TOP", width/2 - ctx.measureText("Total").width/2, height/2);
                 ctx.fillText(total, width/2 - minus, height/2 * 1.1);
                 ctx.restore();
              }
