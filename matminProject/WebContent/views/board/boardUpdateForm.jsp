@@ -130,7 +130,7 @@
 	#file_label{
 		margin-top: 7px;
 		cursor: pointer;
-		margin-left: 88%;
+		margin-left: 90%;
 		margin-top:8px;
 		background-color: #e4910d;
 		border: solid 1px #e4910d;
@@ -158,6 +158,10 @@
 	.cancel-area{
 		padding-right: 10px;
 		padding-top: 10px;
+	}
+	#cancel{
+		width: 30px;
+		height: 30px;
 	}
 	
 
@@ -188,11 +192,11 @@
 		<div class= "outerin-area" >
 			<div class="cancel-area">
 				<a href="#" id="btn-cancel">
-					<img src="../../resources/assets/images/cancel-logo.png" id="cancel">
+					<img src="resources/assets/images/cancel-logo.png" id="cancel">
 				</a>
 			</div>
 
-		<!-- 맛집 등록 요청시 -->
+		<!-- 맛집 등록 요청  -->
 			<form action="#">
 				<table class="listView-area" style="width: 1200px">
 					<tr>

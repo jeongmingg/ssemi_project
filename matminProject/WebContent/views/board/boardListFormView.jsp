@@ -152,7 +152,7 @@
 </style>
 
 
-<!-- Latest compiled and minified CSS -->
+Latest compiled and minified CSS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -337,11 +337,6 @@
 				})
 			});
 		</script>
-
-		
-
-		
-
 
 
 		<div id="topBtn">
