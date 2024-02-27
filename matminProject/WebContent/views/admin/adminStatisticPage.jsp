@@ -1,71 +1,102 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-    
-    .outer{
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+        <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <style>
+        .outer {
+            width: 1000px;
+            height: 600px;
+            position: absolute;
+            border: 1px solid gray;
+        }
 
-        width: 1000px;
-        height: 600px;
-        border: 1px solid gray;
-        margin-bottom: 50px;
-        margin-top: 50px;
-        margin: auto;
-    }
-   
-    #best2{
-        /* border: 1px solid gray; */
-        width: 400px;
-        height: 350px;
-        margin-left: 50px;
-    }
+        #best2 {
+            border: 1px solid gray;
+            width: 400px;
+            height: 350px;
+            margin-left: 50px;
+        }
 
-    #best3{
-        /* border: 1px solid gray; */
-        float: right;
-        margin-right: 50px;
-        margin-bottom: 20px;
-        /* float: right; Float canvas to the right */
-    }
-    canvas {
-      width: 100%;
-      height: 80%;
-      display: block;
-    }
-  </style>
+        #best3 {
+            margin-right: 50px;
+            border: 1px solid gray;
+            float: right;
+        }
 
+        .table1 {
+            clear: both;
+            padding: 5%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: orange;
+            color: gray;
+        }
+    </style>
 </head>
 <body>
-<%@ include file="../common/header.jsp"%>
-<%@ include file="../common/navigator.jsp"%>
+    <%@ include file="../common/header.jsp" %>
+    <%@ include file="../common/navigator.jsp" %>
+
+    <br><br><br>
+
+    <div class="container">
+        <!-- <p>Justified tabs:</p> -->
+        <br><br>
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item" >
+            <a class="nav-link active" style="color: orange; font-size: 30px;" >Statistics</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" style="color: orange;font-size: 30px;">Restaurants</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" style="color: orange;font-size: 30px;">Member</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" style="color: orange;font-size: 30px;">Board</a>
+            </li>
+        </ul>
+    </div>
 
 
-<div class="outer" border="1">
-
+    <div class="outer" border="1">
         <br><br><br>
-        <div class="table1" style="clear: both; padding: 5%;">
-            
-                <table align="center" border="1" >
-                    <tr>
-                        <th width="200" style="background-color: orange; color:gray">총 등록 식당 수</th>
-                        <th width="200"  style="background-color: orange; color:gray">총 회원 수</th>
-                    </tr>
-                    <tr>
-                        <th>150개</th>
-                        <th>300명</th>
-                    </tr>            
-                </table>
-           
+
+        <div class="table1">
+            <table align="center" border="1">
+                <tr>
+                    <th width="200">총 등록 식당 수</th>
+                    <th width="200">총 회원 수</th>
+                </tr>
+                <tr>
+                    <th>150개</th>
+                    <th>300명</th>
+                </tr>
+            </table>
         </div>
-        
 
         <div id="best2" style="float: left;">
             <br><br>
-            <table border="1" width="400" height="300">
+            <table border="1">
                 <tr>
                     <th>순위</th>
                     <th>식당명</th>
@@ -114,10 +145,10 @@
 
         <div id="best3" style="float: right;">
             <canvas width='400' height='350' id='canvas'></canvas>
-        </div>    
+        </div>
 
-            <script>
-                const canvas = document.getElementById('canvas');
+        <script>
+            const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
             
                 var width = canvas.clientWidth;
@@ -317,7 +348,7 @@
                 ctx.closePath();
                 ctx.restore();
 
-                var total = 5;//fixed value in the circle 
+                var total = 5;
                 // value.forEach( (arg)=> total+=arg.number);
                 var minus = ctx.measureText(total).width; 
                 ctx.save();
@@ -327,11 +358,7 @@
                 ctx.fillText(total, width/2 - minus, height/2 * 1.1);
                 ctx.restore();
              }
-         </script>
-</div>
-
-<%@ include file="../common/footer.jsp" %>
-
-
-    </body>
-    </html>
+        </script>
+    </div>
+</body>
+</html>

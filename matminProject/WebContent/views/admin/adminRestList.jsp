@@ -28,36 +28,17 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
+
       <%@ include file="../common/header.jsp"%>
       <%@ include file="../common/navigator.jsp"%>
   <div id="list1">
 
     <table style="border: 1px solid gray;">
-        <tr>
-          <th width="50">1</th>
-          <td width="200" height="100">img</td>
-          <td width="500">content</td>
-         
-        </tr>
-        <tr>
-          <th width="50">2</th>
-          <td width="200" height="100">img</td>
-          <td>content</td>
-       
-        </tr>
-        <tr>
-          <th width="50">3</th>
-          <td width="200" height="100">img</td>
-          <td>content</td>
-       
-        </tr>
-=======
 
 <h2 align="center">Restaurant List</h2>
 
 <button onclick="showRestaurants()">Show All Restaurants</button>
->>>>>>> db1a16904e1e88c2dfdeec09b64206a1c941e36c
+
 
 <table id="subscribersTable">
     <tr>
