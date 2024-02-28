@@ -12,7 +12,7 @@ import com.kh.search.model.vo.Search;
 public class RestService {
 
 	public ArrayList<Search> searchKeywordList(String keyword){
-		
+		System.out.println("dlrjdd");
 		Connection conn = getConnection();
 		ArrayList<Search> list = new RestDao().searchKeywordList(conn, keyword);
 		close(conn); 

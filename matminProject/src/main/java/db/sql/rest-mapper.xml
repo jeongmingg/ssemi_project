@@ -37,7 +37,7 @@
 		             GROUP
 		                BY REST_NO
 		            ) USING(REST_NO)
-		 WHERE REST_NAME LIKE ?
+		 WHERE REST_NAME LIKE '%' || ? || '%'
 		 ORDER
 		    BY REST_NO
 	</entry>
