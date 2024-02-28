@@ -28,4 +28,14 @@
 		 WHERE MEM_ID = ?
 	</entry>
 	
+	<entry key="selectMemberId">
+		SELECT
+		       MEM_NO
+		     , MEM_ID
+		     , ENROLL_DATE
+		  FROM MEMBER
+		 WHERE MEM_NAME = ?
+		   AND EMAIL = ?
+	</entry>
+	
 </properties>

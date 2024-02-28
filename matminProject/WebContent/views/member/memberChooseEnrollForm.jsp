@@ -21,6 +21,9 @@
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- js -->
+	<script src="resources/js/member/memberChooseEnrollForm.js"></script>
 </head>
 <body>
 
@@ -127,16 +130,6 @@
 				<span id="click-agree" style="display: none;"></span>
 
 				<a href="<%= contextPath %>/commonEnrollForm.me" id="common-enroll-btn" class="btn btn-primary" onclick="return checkAgree();"><b>맛집의 민족 회원가입</b></a>
-
-				<script>
-					function checkAgree() {
-						if(!$("#agree").is(":checked")) {
-							$("#click-agree").css("display", "block");
-							$("#click-agree").text("* 약관 확인 후 동의해주세요.");
-							return false;
-						}
-					}
-				</script>
 			</div>
 		</div>
 
