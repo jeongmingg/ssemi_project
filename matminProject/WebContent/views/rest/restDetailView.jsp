@@ -78,25 +78,18 @@
 	/* 찜꽁 스타일 */
 	.heart-count-area, .btn-share-area{
 		display: inline-block;
-		padding: 0px 10px;
+		padding: 0px px;
 	}
 	.heart-count-area{
-		padding-left: 530px;
+		padding-left: 580px;
 		font-weight: 700px;
 		color: rgb(88, 88, 88);
 	}
 
 	/* 공유버튼 스타일 */
+
 	.btn-share-area{
-		float:inline-end;
-	}
-	#btn-share{
-		background-color: #e4910d;
-		border: none;
-		font-size: 18px;
-		height: 30px;
-		width: 80px;
-		line-height: 1.2;
+		padding-left: 48px;
 	}
 
 	/* 구분선 */
@@ -181,8 +174,8 @@
 	/* 메뉴 추천 버튼 스타일*/
 	.icon {
 		line-height: 26px;
-		border: 2px solid #e4910d;
-		background-color: #e4910d;
+		border: 2px solid rgb(243, 156, 18);
+		background-color: rgb(243, 156, 18);
 		border-radius: 10px;
 		color: aliceblue;
 		font-size: 13px;
@@ -246,12 +239,12 @@
 		padding-right: 10px;	
 	}
 	#btn-review{
-		background-color: #e4910d;
+		background-color: rgb(243, 156, 18);
 		border: none;
 		font-size: 18px;
-		height: 30px;
+		height: 35px;
 		width: 100px;
-		line-height: 1.2;
+		line-height: 1.5;
 		margin-top: 6px;
 		text-align: center;
 	}
@@ -293,9 +286,51 @@
 		height: 20px;
 		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png) repeat-x left;
 		background-size: 20px;
-		margin-top: ;
+		margin-top: 10px;
 		margin-left: 85px;
 	}
+	.star i{
+		display: inline-block;
+		width: 100px;
+		height: 20px;
+		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-on@2x.png) repeat-x left;
+   		background-size: 20px;
+	}
+	.avg-num{
+		font-size: 20px;
+		font-weight: 600;
+		text-align: center;
+	}
+	.star-detail>ul>li{
+		list-style: none;
+		display: flex;
+		display: inline-block;
+		font-size: 13px;
+		padding-left: 2px;
+	}
+	.star-detail{
+		padding-left: 10px;
+	}
+	.score-graph>ul>li{
+		list-style: none;
+	}
+
+	.graph{
+		width: 100px;
+		height: 10px;
+		vertical-align: middle;
+		background: #e6e6eb;
+	}
+	.graph span{
+		height: 10px;
+    	display: block;
+		background: #2483ff;
+	}
+	
+
+
+
+
 </style>
 </head>
 <body>
@@ -325,13 +360,16 @@
 			<div>
 				<span class="short-add">서울-강남 > 청남동</span>
 				<div class="heart-count-area">
-					<img src="">
+					<img src="" alt="">
 					<span>찜꽁()</span>
 				</div>
 				<div class="btn-share-area">
-					<a href="" id="btn-share" class="btn btn-sm btn-secondary">
-						<img src="" alt="">
-						<span>공유</span>
+					<a href="" class="btn-share">
+						<div style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.3em; border-radius: 4px; background-color: rgb(243, 156, 18); padding-right: 7px;">
+							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" viewBox="0 0 48 55" data-svg-content="true" fill="rgb(255, 255, 255)">
+								<path d="M42 6.02H6c-2.21 0-4 1.79-4 4V18h4V9.98h36v28.06H6V30H2v8.02c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zM22 32l8-8-8-8v6H2v4h20v6z"></path>
+							</svg>공유
+						</div>
 					</a>
 				</div>
 			</div>
@@ -413,11 +451,14 @@
 						</div>
 				</div>
 			</div>
-		   </div>
-		   <br>
+			<br>
+
+			
 		<div class="review">
 			<div class="review title-area">
-				<div class="review-title">13건의 맛민이들 리뷰</div>
+				<div class="review-title">13건의 맛민이들 리뷰
+					
+				</div>
 				<div class="btn-review-area">
 				<a href="" id="btn-review" class="btn btn-sm btn-secondary">리뷰작성</a>
 				</div>
@@ -428,9 +469,55 @@
 			<div class="score-area">
 				<div class="score-img">
 					<div class="avg-title">총 별점 평균</div>
-					<span class="star"></span>
+					<span class="star">
+						<i style="width: 70%;"></i>
+					</span>
+					<div class="avg-num">4.5</div>
+					<div class="star-detail">
+						<ul class="graph-aria">
+							<li>
+								<p class="btxt">매우만족(5)</p>
+								<p class="graph">
+									<span style="width:50%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">만족(10)</p>
+								<p class="graph">
+									<span style="width:37%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">보통(1)</p>
+								<p class="graph">
+									<span style="width:17%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">불만(1)</p>
+								<p class="graph">
+									<span style="width:5%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">매우불만(0)</p>
+								<p class="graph">
+									<span style="width:0%"></span>
+								</p>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="score-graph">
+					<ul>
+						<li>
+							
+						</li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
 
 				</div>
 
