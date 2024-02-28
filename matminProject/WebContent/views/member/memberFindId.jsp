@@ -50,7 +50,7 @@
 				<table align="center">
 					<tr>
 						<th width="100"><%= m.getMemId() %></th>
-						<td>가입입자 : <%= m.getEnrollDate() %></td>
+						<td>가입일자 : <%= m.getEnrollDate() %></td>
 					</tr>
 				</table>
 			</div>

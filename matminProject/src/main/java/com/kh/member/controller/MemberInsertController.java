@@ -39,8 +39,10 @@ public class MemberInsertController extends HttpServlet {
 		String email = request.getParameter("email") + "@" + request.getParameter("domain");
 		String address = request.getParameter("address");
 		
-		if(address.equals("")) {
+		if("".equals(address)) {
 			address = null;
+		} else {
+			address = "서울시 " + address;
 		}
 		
 		Member m = new Member(memId, memPwd, memName, nickname, email, address);
