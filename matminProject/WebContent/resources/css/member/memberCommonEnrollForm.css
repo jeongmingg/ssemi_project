@@ -6,7 +6,7 @@
     /* text-align: center; */
 }
 
-.enroll-form>div{
+#required-area, #additional-area{
     width: 700px;
     margin: auto;
 }
@@ -56,7 +56,7 @@ input[name=email], input[name=domain]{
 
 #check-email-btn{
     height: 45px;
-    margin: 15px;
+    margin-left: 15px;
 }
 
 #required-area>div{
@@ -80,4 +80,10 @@ input[name=email], input[name=domain]{
     height: 45px;
     border-radius: 5px;
     margin-left: 5px;
+}
+
+.message{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
 }

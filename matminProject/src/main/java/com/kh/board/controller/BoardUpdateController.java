@@ -1,4 +1,4 @@
-package com.kh.map;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class MapTestController
+ * Servlet implementation class BoardUpdateController
  */
-@WebServlet("/test.map")
-public class MapTestController extends HttpServlet {
+@WebServlet("/update.bo")
+public class BoardUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MapTestController() {
+    public BoardUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,9 +26,7 @@ public class MapTestController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getRequestDispatcher("views/map/RestDetailMap.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

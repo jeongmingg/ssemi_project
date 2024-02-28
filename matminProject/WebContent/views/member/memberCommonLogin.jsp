@@ -62,19 +62,21 @@
 
 		<script>
 			function validate() {
-				const userId = $("input[name=userId]").val();
-				const userPwd = $("input[name=userPwd]").val();
+				const userIdInput = $("input[name=userId]");
+				const userPwdInput = $("input[name=userPwd]");
 				const messageArea = $("#message");
 
-				if(userId == "") {
+				if(userIdInput.val() == "") {
 					messageArea.css("display", "block");
 					messageArea.text("아이디를 입력해주세요.");
+					userIdInput.focus();
 
 					return false;
 
-				} else if(userPwd == "") {
+				} else if(userPwdInput.val() == "") {
 					messageArea.css("display", "block");
 					messageArea.text("비밀번호를 입력해주세요.");
+					userPwdInput.focus();
 
 					return false;
 				}
