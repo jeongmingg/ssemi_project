@@ -19,7 +19,7 @@
 
     div{
         box-sizing: border-box;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         margin: 0;
         padding: 0;
         display: block;
@@ -251,6 +251,7 @@
         display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
         align-items: center; 
         padding-left: 40px;
+        padding-top: 40px;
     }
     #lc-name-btn{
         width: 150px;
@@ -277,7 +278,7 @@
         display: flex;
         justify-content: center;
     }
-    #search-rest{height:900px; padding-top: 20px;}
+    #search-rest{height:900px; padding-top: 50px;}
     #moreBtn{
         height:50px;
         display: flex;
@@ -286,7 +287,7 @@
     
     /* 식당정보 타이틀 스타일*/
     #rs-title>div{height:100%; float:left;}
-    #kw-title{width:40%;}
+    #kw-title{width:40%; padding-top: 10px;}
 
     /* 공유버튼 */
     #share-btn{
@@ -295,6 +296,7 @@
         display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
         align-items: center; /* 수직 정렬을 위한 스타일 */
         justify-content: center; /* 수평 정렬을 위한 스타일 */
+        padding-top: 11px;
         
     }
     
@@ -314,6 +316,8 @@
     #share-div{
         background-color: rgb(240, 240, 240);
         width: 40%;
+        border-radius: 10px;
+        margin-bottom: 15px;
     }
     #share{
         height:50px;
@@ -377,9 +381,10 @@
 
     /* 맛집리스트테이블 */
     #rest-table{
-        border: 1px solid blue;
+        /* border: 1px solid blue; */
         width: 750px;
         height: 150px;
+        border-bottom: 1px solid lightgray;
         
     }
 
@@ -596,7 +601,7 @@
                             <img src="resources/search/map.png">
                         </div>
                         <div id="search-rest">
-                            <table id="rest-table" align="center" border="1px solid blue">
+                            <table id="rest-table" align="center">
                             	<% if(list.isEmpty()) { %>
 	                            	<!-- 게시글이 없는 경우 -->
 	                            	<tr>
@@ -606,19 +611,19 @@
 	                            	<!-- 게시글이 있는 경우 -->
 		                            	<% for(Search s : list) { %>
 			                               <tr>
-			                                    <td rowspan="2" width="150" style="padding-left: 15px; padding-right: 15px; padding-top: 10px; padding-bottom: 10px;"><img class="rest-img" src="<%= s.getRestImgUrl() %>"></td>
-			                                    <th colspan="4" width="600" height="50" style="padding-left: 15px; font-size: 20px;"> <%= s.getRestName() %></th>
+			                                    <td rowspan="2" width="150" height="80" style="padding-left: 15px; padding-right: 15px; padding-top: 10px; padding-bottom: 10px;"><img class="rest-img" src="<%= s.getRestImgUrl() %>"></td>
+			                                    <th colspan="4" width="600" style="padding-top: 15px; padding-left: 15px; font-size: 22px;"> <%= s.getRestName() %></th>
 			                               </tr>
 			                               <tr>  
-			                                    <td colspan="3" height="50" style="padding-left: 15px; font-size: 18px;"> <img id="star" src="resources/star, heart/star.png">&nbsp;&nbsp;<%= s.getRestAvg() %> (80개)&nbsp;&nbsp;|&nbsp;&nbsp;<img id="heart" src="resources/star, heart/heart.png"> <%= s.getHeart() %></td>
+			                                    <td colspan="3" style="padding-left: 15px; padding-bottom: 15px; font-size: 20px;"> <img id="star" src="resources/star, heart/star.png">&nbsp;&nbsp;<%= s.getRestAvg() %> (80개)&nbsp;&nbsp;|&nbsp;&nbsp;<img id="heart" src="resources/star, heart/heart.png"> <%= s.getHeart() %></td>
 			                               </tr>
 			                               <tr>
-			                                    <td colspan="3" height="50" style="padding-left: 15px; font-size: 15px;"> "여기 진짜 너무 맛있어요!!! 삼겹살하면 돼지삼겹살이져 진짜 꼭가세요~~"</td>
+			                                    <td colspan="3" height="45" style="padding-left: 15px; font-size: 15px;"> "여기 진짜 너무 맛있어요!!! 삼겹살하면 돼지삼겹살이져 진짜 꼭가세요~~"</td>
 			                               </tr>
+							
 	                               		<% } %>
                              	<% } %>
                             </table>
-
                         </div>
                         <div id="moreBtn">
                             <button type="button" id="more-btn">
