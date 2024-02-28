@@ -29,8 +29,8 @@ public class MemberDao {
 	}
 	
 	public Member loginMember(Connection conn, String userId, String userPwd) {
-		
 		Member m = null;
+		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -98,6 +98,41 @@ public class MemberDao {
 		}
 		
 		return count;
+	}
+	
+	public Member selectMemberId(Connection conn, String userName, String email) {
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMemberId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userName);
+			pstmt.setString(2, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member();
+				
+				m.setMemNo(rset.getString("mem_no"));
+				m.setMemId(rset.getString("mem_id"));
+				m.setEnrollDate(rset.getDate("enroll_date"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
 	}
 
 }

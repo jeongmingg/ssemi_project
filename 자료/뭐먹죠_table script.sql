@@ -38,7 +38,7 @@ CREATE TABLE MEMBER(
     MEM_WARNING NUMBER DEFAULT 0 NOT NULL,
     ENROLL_DATE DATE DEFAULT SYSDATE NOT NULL,
     MEM_LEVEL CHAR(1) DEFAULT 'U' NOT NULL CHECK (MEM_LEVEL IN('A', 'U')),
-    MEM_STATUS CHAR(1) DEFAULT 'Y' NOT NULL CHECK (MEM_STATUS IN('Y', 'N'))
+    MEM_STATUS CHAR(1) DEFAULT 'Y' NOT NULL CHECK (MEM_STATUS IN('Y', 'N', 'B'))
 );
 
 COMMENT ON COLUMN MEMBER.MEM_NO IS '회원번호(ex.M1)';
@@ -51,7 +51,7 @@ COMMENT ON COLUMN MEMBER.ADDRESS IS '거주지';
 COMMENT ON COLUMN MEMBER.MEM_WARNING IS '경고횟수';
 COMMENT ON COLUMN MEMBER.ENROLL_DATE IS '회원가입일';
 COMMENT ON COLUMN MEMBER.MEM_LEVEL IS '회원등급(관리자:A, 일반회원:U)';
-COMMENT ON COLUMN MEMBER.MEM_STATUS IS '회원상태(가입상태:Y, 탈퇴상태:N)';
+COMMENT ON COLUMN MEMBER.MEM_STATUS IS '회원상태(가입:Y, 탈퇴:N, 강퇴:B)';
 
 CREATE SEQUENCE SEQ_MNO
 NOCACHE;
@@ -102,6 +102,10 @@ CREATE TABLE REST(
     REST_AVG NUMBER, 
     REST_STATUS CHAR(1) DEFAULT 'Y' NOT NULL, 
     REST_IMG_URL VARCHAR2(2000) NOT NULL,
+    DT CHAR(1) DEFAULT 'N' CHECK (DT IN ('Y','N')),
+    ANIMAL CHAR(1) DEFAULT 'N' CHECK (ANIMAL IN ('Y','N')),
+    ROOM CHAR(1) DEFAULT 'N' CHECK (ROOM IN ('Y','N')),
+    BIG_ROOM CHAR(1) DEFAULT 'N' CHECK (BIG_ROOM IN ('Y','N')),
     CONSTRAINT RLID_FK FOREIGN KEY(REST_LOCAL_ID) REFERENCES LOCATION(LOCAL_ID),
     CONSTRAINT CTGID_FK FOREIGN KEY(CTG_ID) REFERENCES CATEGORY(CTG_ID)
 );
@@ -120,7 +124,10 @@ COMMENT ON COLUMN REST.REST_TIME IS '영업시간';
 COMMENT ON COLUMN REST.REST_AVG IS '총 별점 평균';
 COMMENT ON COLUMN REST.REST_STATUS IS '등록상태(등록:Y, 미등록:N)';
 COMMENT ON COLUMN REST.REST_IMG_URL IS '대표이미지';
-
+COMMENT ON COLUMN REST.DT IS '드라이브스루';
+COMMENT ON COLUMN REST.ANIMAL IS '반려동물 동반';
+COMMENT ON COLUMN REST.ROOM IS '개별룸';
+COMMENT ON COLUMN REST.BIG_ROOM IS '대형룸';
 CREATE SEQUENCE SEQ_RNO NOCACHE;
 
 --------------------------------------------------
@@ -349,42 +356,47 @@ VALUES ('L'||SEQ_LNO.NEXTVAL, '관악구');
 INSERT INTO REST
 VALUES('R'||SEQ_RNO.NEXTVAL, 'L1', '역삼갈비', 'C1', '서울시 강남구 강남대로 64번길 15',
         '02-111-1111', 35.11122, 48.22333, DEFAULT, 2, '12:00~22:00',
-        4.1, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg');
+        4.1, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg',
+        DEFAULT, DEFAULT, 'Y', DEFAULT);
 
 INSERT INTO REST
 VALUES('R'||SEQ_RNO.NEXTVAL, 'L2', '나이스샤워', 'C2', '서울시 강북구 강북대로 11길 78',
         '02-222-2222', 38.78512, 40.15781, DEFAULT, 3, '12:00~21:00',
-        4.6, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg');
+        4.6, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg',
+        DEFAULT, 'Y', DEFAULT, DEFAULT);
         
 INSERT INTO REST
-VALUES('R'||SEQ_RNO.NEXTVAL, 'L3', '노원김밥', 'C3', '서울시 노원구 노원대로 77번길 20',
+VALUES('R'||SEQ_RNO.NEXTVAL, 'L3', '멱도날드', 'C3', '서울시 노원구 노원대로 77번길 20',
         '02-333-3333', 11.44521, 22.27843, DEFAULT, 1, '09:00~20:00',
-        2.2, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg');
+        2.2, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg',
+        'Y', DEFAULT, DEFAULT, DEFAULT);
         
 INSERT INTO REST
 VALUES('R'||SEQ_RNO.NEXTVAL, 'L4', '마포갈매기', 'C4', '서울시 마포구 마포대로 12번길 13',
         '02-444-4444', 17.75122, 48.23557, 'Y', 3, '16:00~24:00',
-        4.8, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg');
+        4.8, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20210401120511281_photo_0c8f0ee03560.jpg',
+        DEFAULT, DEFAULT, 'Y', 'Y');
         
 INSERT INTO REST
 VALUES('R'||SEQ_RNO.NEXTVAL, 'L5', '삼원명가', 'C5', '서울시 성북구 성북대로 44번길 10',
         '02-555-5555', 25.96335, 31.27893, 'Y', 2, '11:00~20:00',
-        3.4, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg');
+        3.4, 'Y', 'https://d12zq4w4guyljn.cloudfront.net/20231002092833980_photo_f8089d108807.jpg',
+        DEFAULT, DEFAULT, 'Y', 'Y');
 
 ------------------------------------------------------
 -- MENU TABLE INSERT
 ------------------------------------------------------
 INSERT INTO MENU
-VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R1', '돼지갈비', 18000, 'Y');
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R1', '양념갈비', 18000, 'Y');
 
 INSERT INTO MENU
-VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R2', '에비텐동', 15000, DEFAULT);
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R2', '에비텐동', 14000, DEFAULT);
 
 INSERT INTO MENU
-VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R3', '참치김밥', 4000, DEFAULT);
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R3', '멱따는 치킨버거', 9000, DEFAULT);
 
 INSERT INTO MENU
-VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R4', '마포갈매기', 17000, 'Y');
+VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R4', '갈매기살', 17000, 'Y');
 
 INSERT INTO MENU
 VALUES('MN'||SEQ_MNNO.NEXTVAL, 'R5', '제육뚝배기', 9000, 'Y');

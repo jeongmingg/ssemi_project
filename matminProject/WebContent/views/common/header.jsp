@@ -13,6 +13,15 @@
 <title>header</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style>
+	@font-face {
+	    font-family: 'LINESeedKR-Bd';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+	    font-weight: 700;
+	    font-style: normal;
+	}
+	body *{
+			font-family: 'LINESeedKR-Bd';
+	}
     div{
             box-sizing: border-box;
             /* border: 1px solid red; */
@@ -221,105 +230,107 @@
 	<% } %>
 	
     <div class="wrap">
-        <div id="header">
-            <div id="header_1">
-                <img id="logo" src="resources/logo/투명배경로고.png">
-            </div>
-                <div id="header_2" class="sc-cmfmEs leAvxd" >
-                <div class="sc-UFtxY OqZgF Input__Wrap">
-                    <input id="searchInput" class="sc-hnmMDg bccLDB Search__Input" placeholder="지역, 음식 또는 식당명 입력" value="">
-                    <button id="searchBtn" class="sc-jPQLIr gZgnOG search" type="button" aria-label="검색하기 버튼"></button>
-                </div>
-            </div>
-            
-            <% if(loginUser == null) { %>
-	           	<div id="header_3">
-	                <a href="<%= contextPath %>/loginForm.me">로그인</a>
-	            </div>
-	            <div id="header_4">
-	                <a href="<%= contextPath %>/chooseForm.me">회원가입</a>
-	            </div>
-            <% } else { %>
-
-				<div id="header_3">
-	                <a href="#"><%= loginUser.getNickname() %>님</a>
-	            </div>
-	            <div id="header_4">
-	                <a href="<%= contextPath %>/logout.me">로그아웃</a>
-	            </div>
-
-
-
-
-				<!-- <div id="after-login">
-					<div id="userNickname">
-						<p id="nickname"><%= loginUser.getNickname() %>님</p>
+		<form action="<%= contextPath %>/search.rs">
+			<div id="header">
+				<div id="header_1">
+					<img id="logo" src="resources/logo/투명배경로고.png">
+				</div>
+					<div id="header_2" class="sc-cmfmEs leAvxd" >
+					<div class="sc-UFtxY OqZgF Input__Wrap">
+						<input id="searchInput" class="sc-hnmMDg bccLDB Search__Input" placeholder="지역, 음식 또는 식당명 입력" name="keyword">
+						<button id="searchBtn" class="sc-jPQLIr gZgnOG search" type="submit" aria-label="검색하기 버튼"></button>
 					</div>
-					<div id="nnList-div">
-						<ul id="nnList-ul">
-							<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
-							<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
-							<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
-						</ul>
+				</div>
+				
+				<% if(loginUser == null) { %>
+					<div id="header_3">
+						<a href="<%= contextPath %>/loginForm.me">로그인</a>
 					</div>
-				</div> -->
-            <% } %>
-            
-            <div id="header_5">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
-                    <path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
-                </svg>
-            </div>
-            <script>
-            
-            	// 로고 누르면 메인가기
-            	
-            	$(function(){
-    				$("#logo").click(function(){
-    					location.href="/mm";
+					<div id="header_4">
+						<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
+					</div>
+				<% } else { %>
+
+					<div id="header_3">
+						<a href="#"><%= loginUser.getNickname() %>님</a>
+					</div>
+					<div id="header_4">
+						<a href="<%= contextPath %>/logout.me">로그아웃</a>
+					</div>
+
+
+
+
+					<!-- <div id="after-login">
+						<div id="userNickname">
+							<p id="nickname"><%= loginUser.getNickname() %>님</p>
+						</div>
+						<div id="nnList-div">
+							<ul id="nnList-ul">
+								<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
+								<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
+								<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
+							</ul>
+						</div>
+					</div> -->
+				<% } %>
+				
+				<div id="header_5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
+						<path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
+					</svg>
+				</div>
+				<script>
+				
+					// 로고 누르면 메인가기
+					
+					$(function(){
+						$("#logo").click(function(){
+							location.href="/mm";
+						});
+					});
+				
+					// 로그인, 회원가입 스타일
+					// $("#navi").children().children().mouseenter("color","#E4910D");
+					$("#header_3 a, #header_4 a").mouseenter(function(){
+						$(this).css("color","#E4910D");
+					});
+		
+					$("#header_3 a, #header_4 a").mouseout(function(){
+						$(this).css("color", "rgb(150, 150, 150)");
+					});
+					
+					/*
+					$("#nickname").hover(function(){
+						$("#nickname").mouseenter(function(){
+							$("#nnList-div").css("display", "block");
+						}),
+
+						$("#nickname").mouseout(function(){
+							$("#nnList-div").css("display", "none");
+						})
+					});
+					*/
+
+					/*
+					$(".hoverNn>a").hover(function(){
+						$(".hoverNn>a").mouseenter(function(){
+							$("#nnList-div").css("display", "block");
+						}),
+
+						$(".hoverNn>a").mouseout(function(){
+							$("#nnList-div").css("display", "none");
+						})
 					})
-   				})
-            
-            	// 로그인, 회원가입 스타일
-                // $("#navi").children().children().mouseenter("color","#E4910D");
-                $("#header_3 a, #header_4 a").mouseenter(function(){
-                    $(this).css("color","#E4910D");
-                });
-    
-                $("#header_3 a, #header_4 a").mouseout(function(){
-                    $(this).css("color", "rgb(150, 150, 150)");
-                });
-                
-				/*
-                $("#nickname").hover(function(){
-					$("#nickname").mouseenter(function(){
-                		$("#nnList-div").css("display", "block");
-                	}),
+					*/
 
-					$("#nickname").mouseout(function(){
-						$("#nnList-div").css("display", "none");
-					})
-				});
-				*/
+					// $(".hoverNn>a").hover(function(){
+					// 	$("#nnList-div").css("display", "block");
+					// })
 
-				/*
-				$(".hoverNn>a").hover(function(){
-					$(".hoverNn>a").mouseenter(function(){
-                		$("#nnList-div").css("display", "block");
-                	}),
-
-					$(".hoverNn>a").mouseout(function(){
-						$("#nnList-div").css("display", "none");
-					})
-				})
-				*/
-
-				// $(".hoverNn>a").hover(function(){
-				// 	$("#nnList-div").css("display", "block");
-				// })
-
-            </script>
-        </div>
+				</script>
+			</div>
+		</form>
     </div>
 </body>
 </html>

@@ -41,7 +41,7 @@
 
 #common-enroll-btn{
     background-color: #E4910D;
-    border: #E4910D;
+    border-color: #E4910D;
     width: 300px;
     height: 40px;
     line-height: 25px;
@@ -60,7 +60,7 @@
 
 #naver-enroll-btn{
     background-color: #03c75a;
-    border: #03c75a;
+    border-color: #03c75a;
     width: 300px;
     height: 45px;
     line-height: 44px;

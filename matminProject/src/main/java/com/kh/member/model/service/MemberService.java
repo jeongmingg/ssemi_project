@@ -30,5 +30,17 @@ public class MemberService {
 		return count;
 		
 	}
+	
+	public Member selectMemberId(String userName, String email) {
+		
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().selectMemberId(conn, userName, email);
+		
+		close(conn);
+		
+		return m;
+		
+	}
 
 }

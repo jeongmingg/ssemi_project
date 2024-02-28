@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<entry key="searchKeywordList">
+		SELECT
+		       REST_NO
+		     , REST_NAME
+		     , REST_AVG
+		     , NVL(HEART,0) "HEART"
+             , REST_IMG_URL
+		  FROM (
+		        SELECT
+		               REST_NO
+		             , REST_NAME
+		             , AVG(REVIEW_AVG) "REST_AVG"
+                     , REST_IMG_URL
+		          FROM (
+		               SELECT
+		                      REST_NO
+		                    , REST_NAME
+		                    , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+                            , REST_IMG_URL
+		                 FROM REST
+		                 LEFT JOIN REVIEW USING(REST_NO)
+		               )
+		         GROUP
+		            BY REST_NO
+		             , REST_NAME
+                     , REST_IMG_URL
+		        )
+		  LEFT JOIN (
+		            SELECT
+		                   REST_NO
+		                 , COUNT(*) "HEART"
+		              FROM HEART
+		             GROUP
+		                BY REST_NO
+		            ) USING(REST_NO)
+		 WHERE REST_NAME LIKE '%' || ? || '%'
+		 ORDER
+		    BY REST_NO
+	</entry>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</properties>
