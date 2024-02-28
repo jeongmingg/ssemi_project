@@ -27,7 +27,7 @@ public class AdminStatController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/admin/adminStatisticPage.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
 	}
 
 	/**

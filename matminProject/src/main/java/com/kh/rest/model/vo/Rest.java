@@ -40,6 +40,19 @@ public class Rest {
 		this.restImgUrl = restImgUrl;
 	}
 
+	
+	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			int restGrade) {
+		super();
+		this.restNo = restNo;
+		this.restLocalId = restLocalId;
+		this.restName = restName;
+		this.ctgId = ctgId;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restGrade = restGrade;
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}

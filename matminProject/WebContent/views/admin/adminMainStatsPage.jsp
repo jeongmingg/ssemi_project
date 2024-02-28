@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard</title>
+    <title>AdminDashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
@@ -69,7 +69,8 @@
     padding: 0;
     display: none;
     position: absolute;
-    background-color: lightgrey; /* submenu color */
+    text-align: center;
+    /* background-color: lightgrey; submenu color */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); submenu shadow color*/
     z-index: 1; /*submenu 보이게*/
 }
@@ -141,8 +142,8 @@
             <li class="nav-item">
             <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="">게시판 등록</a></li>
-                    <li><a href="">게시판 조회</a></li>
+                    <li><a href="">식당 등록/삭제 게시판</a></li>
+                    <li><a href=""> 신고 게시판</a></li>
                 </ul>
             
             </li>

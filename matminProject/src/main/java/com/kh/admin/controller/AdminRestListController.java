@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
+
 /**
  * Servlet implementation class AdminRestListController
  */
@@ -29,10 +32,12 @@ public class AdminRestListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList <Rest> list = new RestService().selectRest();
+		//용청시 전달 값 뽑기
+		//요청처리 응답페이지에 필요한 데이터를 조회
+    	ArrayList <Rest> list = new RestService().selectRestList(); // 이 list에다가 필요한 데이터 담기
 		
 		
-		
+    	request.setAttribute("list", list);
 		request.getRequestDispatcher("views/admin/adminRestList.jsp").forward(request,response);
 	}
 

@@ -42,6 +42,22 @@
 		    BY REST_NO
 	</entry>
 
+	<entry key="selectRestList">
+	SELECT  
+	    REST_NO
+	    ,REST_LOCAL_ID
+	    ,REST_NAME
+	    ,CTG_ID
+	    ,REST_ADDRESS
+	    ,REST_TEL
+	    ,REST_GRADE
+	FROM REST
+	    WHERE REST_STATUS = 'Y'
+		
+	
+	
+	
+	</entry>
 
 
 

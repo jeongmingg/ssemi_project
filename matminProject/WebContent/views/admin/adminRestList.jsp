@@ -1,5 +1,9 @@
+<%@page import="com.kh.rest.model.vo.Rest"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%ArrayList<Rest> list = (ArrayList<Rest>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,52 +33,53 @@
 </head>
 <body>
 
-  <div id="list1">
-
-    <table style="border: 1px solid gray;">
-
-<h2 align="center">Restaurant List</h2>
-
-<button onclick="showRestaurants()">Show All Restaurants</button>
+<div id="list1">
 
 
-<table id="subscribersTable">
-    <tr>
-        <th>RestNo</th>
-        <th>RestImg</th>
-        <th>RestName</th>
-        <th>Category</th>
-        <th>Address</th>
-        <th>PhoneNumber</th>
-        <th>Grade</th>
-        
+	<h2 align="center">Restaurant List</h2>
 
-        <!-- Add more columns as needed -->
-    </tr>
-  
-    <tr>
-        <td>R1</td>
-        <td>대표img</td>
-        <td>스즈란테이</td>
-        <td>(C3)일식</td>
-        <td>서울시 용산구</td>
-        <td>02-1234-9874</td>
-        <td>2</td>
-    </tr>
-    <tr>
-        <td>R2</td>
-        <td>대표img</td>
-        <td>한우사랑</td>
-        <td>(C1)한식</td>
-        <td>서울시 강남구</td>
-        <td>02-9874-3214</td>
-        <td>1</td>
-    </tr>
-    <!-- Add more rows as needed -->
-</table>
+	<button onclick="showRestaurants()">Show All Restaurants</button>
 
+		
+        <table id="restsTable">
+            <thead>
+                <tr>
+                    <th>RestNo</th>
+                    <th>Location</th>
+                    <th>RestName</th>
+                    <th>Category</th>
+                    <th>Address</th>
+                    <th>PhoneNumber</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (list != null && !list.isEmpty()) { %>
+                    <% for (Rest r : list) { %>
+                        <tr>
+                            <td><%= r.getRestNo() %></td>
+                            <td><%= r.getRestLocalId() %></td>
+                            <td><%= r.getRestName() %></td>
+                            <td><%= r.getCtgId() %></td>
+                            <td><%= r.getRestAddress() %></td>
+                            <td><%= r.getRestTel() %></td>
+                            <td><%= r.getRestGrade() %></td>
+                        </tr>
+                    <% } %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="7">No restaurants found</td>
+                    </tr>
+                <% } %>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+
+
+
+</div>
 <script>
-    function showRestaurans() {
+    function showRestaurants() {
         // Code to fetch and display subscribers
         // You can use AJAX or any other method to fetch data dynamically
         alert("현재 등록된 식당목록");
