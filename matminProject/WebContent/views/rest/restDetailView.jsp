@@ -70,6 +70,9 @@
 		padding: 5px 0px;
 	}
 
+	.rest-add{
+		display: flex;
+	}
 	/*식당 부제목 위치 스타일*/
 	.short-add{
 		font-weight: 800;
@@ -81,7 +84,8 @@
 		padding: 0px px;
 	}
 	.heart-count-area{
-		padding-left: 580px;
+		padding-left: 560px;
+		padding-top: 4px;
 		font-weight: 700px;
 		color: rgb(88, 88, 88);
 	}
@@ -89,7 +93,7 @@
 	/* 공유버튼 스타일 */
 
 	.btn-share-area{
-		padding-left: 48px;
+		padding-left: 30px;
 	}
 
 	/* 구분선 */
@@ -143,17 +147,20 @@
 		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-location@2x.png) no-repeat top left;
 	}
 	.list-tel{
-		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-pnum@2x.png)
-   		 no-repeat left;
+		background: url(https://img.icons8.com/ios-filled/100/737373/phone.png) no-repeat left;
+		background-position: 0px 3px;
+		/* background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-pnum@2x.png)
+   		 no-repeat left; */
 	}	
 	.list-time{
-		background: url(https://e7.pngegg.com/pngimages/8/839/png-clipart-telephone-computer-icons-windows-phone-store-iphone-iphone-electronics-mobile-phones-thumbnail.png) no-repeat left;
-	}
+		background: url(https://img.icons8.com/ios/50/737373/time--v1.png) no-repeat left;
+		/* background: url(http://localhost:8085/mm/detail.rs) no-repeat left;		 */
+	}	
 	.list-park{
-		background: url(https://e7.pngegg.com/pngimages/836/364/png-clipart-the-daily-dot-internet-online-newspaper-queerbaiting-actor-parking-miscellaneous-text-thumbnail.png) no-repeat left;
+		background: url(https://img.icons8.com/external-regular-kawalan-studio/96/737373/external-parking-location-map-regular-kawalan-studio.png) no-repeat left;
 	}
 	.list-menu{
-		background: url(https://e7.pngegg.com/pngimages/648/123/png-clipart-computer-icons-computer-file-apple-icon-format-room-menu-para-restaurante-hand-room-thumbnail.png) no-repeat top left;
+		background: url(https://img.icons8.com/ios-filled/100/737373/restaurant--v1.png) no-repeat top left;
 		height: auto;
 		
 	}
@@ -180,7 +187,7 @@
 		color: aliceblue;
 		font-size: 13px;
 		font-weight: 600;
-		padding: 0px 11px;
+		padding: 2px 11px;
 		margin-left: 8px;
 		vertical-align: top;
 		}
@@ -278,7 +285,7 @@
 		text-align: center;
 		font-weight: 600;
 		margin: auto;
-		margin-top: 5px;
+		margin-top: 15px;
 	}
 	.star {
 		display: inline-block;
@@ -287,13 +294,13 @@
 		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png) repeat-x left;
 		background-size: 20px;
 		margin-top: 10px;
-		margin-left: 85px;
+		margin-left: 80px;
 	}
 	.star i{
 		display: inline-block;
 		width: 100px;
 		height: 20px;
-		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-on@2x.png) repeat-x left;
+		background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
    		background-size: 20px;
 	}
 	.avg-num{
@@ -311,20 +318,33 @@
 	.star-detail{
 		padding-left: 10px;
 	}
-	.score-graph>ul>li{
+	.graph-aria>li{
 		list-style: none;
+    	display: flex;
+    	flex-direction: row;
+		align-content: center;
+		justify-content: flex-end;
+		align-items: baseline;
+		margin-right: 100px;
+		height: 30px;
 	}
-
 	.graph{
-		width: 100px;
+		width: 340px;
 		height: 10px;
 		vertical-align: middle;
 		background: #e6e6eb;
+		border-radius: 50px;
 	}
 	.graph span{
 		height: 10px;
     	display: block;
-		background: #2483ff;
+		border-radius: 50px;
+		background: rgb(243, 156, 18);
+		
+	}
+	.btxt{
+		padding-right: 40px;
+		padding-top: 2px;
 	}
 	
 
@@ -357,15 +377,15 @@
 				<span class="score">4.0</span>
 			</div>
 				<span class="short-menu">간단 메뉴 소개</span>
-			<div>
+			<div class="rest-add">
 				<span class="short-add">서울-강남 > 청남동</span>
 				<div class="heart-count-area">
-					<img src="" alt="">
-					<span>찜꽁()</span>
+					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
+					<span>찜꽁(20)</span>
 				</div>
 				<div class="btn-share-area">
 					<a href="" class="btn-share">
-						<div style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.3em; border-radius: 4px; background-color: rgb(243, 156, 18); padding-right: 7px;">
+						<div style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.3em; border-radius: 4px; background-color: rgb(243, 156, 18); padding-right: 8px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="40" height="25" viewBox="0 0 48 55" data-svg-content="true" fill="rgb(255, 255, 255)">
 								<path d="M42 6.02H6c-2.21 0-4 1.79-4 4V18h4V9.98h36v28.06H6V30H2v8.02c0 2.21 1.79 3.96 4 3.96h36c2.21 0 4-1.76 4-3.96v-28c0-2.21-1.79-4-4-4zM22 32l8-8-8-8v6H2v4h20v6z"></path>
 							</svg>공유
@@ -375,6 +395,7 @@
 			</div>
 		</div>
 		<div class="text-line"></div>
+
 
 		<!-- 식당상세정보 -->
 
@@ -457,75 +478,67 @@
 		<div class="review">
 			<div class="review title-area">
 				<div class="review-title">13건의 맛민이들 리뷰
-					
 				</div>
 				<div class="btn-review-area">
 				<a href="" id="btn-review" class="btn btn-sm btn-secondary">리뷰작성</a>
 				</div>
 			</div> 
 			<br>
-			<div class="text-line"></div>
+		<div class="text-line" style="margin-left:-10px"></div>
 			<br>
 			<div class="score-area">
 				<div class="score-img">
-					<div class="avg-title">총 별점 평균</div>
-					<span class="star">
-						<i style="width: 70%;"></i>
-					</span>
-					<div class="avg-num">4.5</div>
 					<div class="star-detail">
-						<ul class="graph-aria">
-							<li>
-								<p class="btxt">매우만족(5)</p>
-								<p class="graph">
-									<span style="width:50%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">만족(10)</p>
-								<p class="graph">
-									<span style="width:37%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">보통(1)</p>
-								<p class="graph">
-									<span style="width:17%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">불만(1)</p>
-								<p class="graph">
-									<span style="width:5%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">매우불만(0)</p>
-								<p class="graph">
-									<span style="width:0%"></span>
-								</p>
-							</li>
-						</ul>
+						<div class="avg-title">총 별점 평균</div>
+						<span class="star">
+							<i style="width: 70%;"></i>
+						</span>
+						<div class="avg-num">4.5</div>
+							<ul>
+								<li>
+								</li>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
 					</div>
 				</div>
 				<div class="score-graph">
-					<ul>
+					<ul class="graph-aria">
 						<li>
-							
+							<p class="btxt">매우만족 (5)</p>
+							<p class="graph">
+								<span style="width:50%"></span>
+							</p>
 						</li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
+						<li>
+							<p class="btxt">만족 (10)</p>
+							<p class="graph">
+								<span style="width:37%"></span>
+							</p>
+						</li>
+						<li>
+							<p class="btxt">보통 (1)</p>
+							<p class="graph">
+								<span style="width:17%"></span>
+							</p>
+						</li>
+						<li>
+							<p class="btxt">불만 (1)</p>
+							<p class="graph">
+								<span style="width:17%"></span>
+							</p>
+						</li>
+						<li>
+							<p class="btxt">매우불만(0)</p>
+							<p class="graph">
+								<span style="width:0%"></span>
+							</p>
+						</li>
 					</ul>
-
 				</div>
-
-
-
-
 			</div>
-
 		</div>
 		<br>
 		</div>
@@ -533,8 +546,6 @@
 	<br><br><br>
 	</div>
 
-
-	
 	<script>
 	 
 	 /* 더보기 버튼 클릭시 접기*/
@@ -554,6 +565,11 @@
 				if ($(".list-menu-2").is(":visible")) {
 					$(".list-menu-2").hide(); // 보이는 상태라면 숨깁니다.
 					$(".btn-more").text("더보기"); // 버튼 텍스트를 다시 '더보기'로 변경합니다.
+					$(".r").css({'text-align': 'right' 
+								,position: 'relative'
+								,right: '-3px'
+								,background: 'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right'
+								,'background-size': '20px'});
 				} else {
 					$(".list-menu-2").show(); // 숨겨진 상태라면 보이게 합니다.
 					$(".btn-more").text("접기"); // 버튼 텍스트를 '접기'로 변경합니다.
