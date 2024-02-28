@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-Latest compiled and minified CSS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -50,10 +49,10 @@ Latest compiled and minified CSS
 		display: block;
 		color: gray;
 	}
-	.short-menu, .short-locate{
+	.short-menu, .short-add{
 		padding: 5px 0px;
 	}
-	.short-locate{
+	.short-add{
 		font-weight: 800;
 	}
 	.heart-count-area, .btn-share-area{
@@ -85,38 +84,34 @@ Latest compiled and minified CSS
 		width: 1020px;
 		margin: auto
 	}
+
+	/* 식당상세정보 */
+
 	.rest-detail{
 		height: 1000px;
 		width: 1000px;
 		margin: auto;
 		padding-top: 30px;
+		color: rgb(87, 87, 87);
+
 	}
 	.list{
 		padding: 40px 80px;
 	}
-
 	.list>div{
 		background-size: 25px;
 		padding-left: 35px;
-		padding-bottom: 0px;
 		box-sizing: border-box;
 		font-size: 18px;
-		margin-bottom: 7px;
+		margin-bottom: 15px;
 	}
-	.list-locate{
+	.list-add{
 		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-location@2x.png) no-repeat top left;
 	}
 	.list-tel{
 		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/profile/profile-pnum@2x.png)
    		 no-repeat left;
-	}
-	.list-tel>span{
-		padding-left:56px 
-	}
-	.list-time>span, .list-menu>span{
-		padding-left: 37px;
-	}
-		
+	}	
 	.list-time{
 		background: url(https://e7.pngegg.com/pngimages/8/839/png-clipart-telephone-computer-icons-windows-phone-store-iphone-iphone-electronics-mobile-phones-thumbnail.png) no-repeat left;
 	}
@@ -125,23 +120,31 @@ Latest compiled and minified CSS
 	}
 	.list-menu{
 		background: url(https://e7.pngegg.com/pngimages/648/123/png-clipart-computer-icons-computer-file-apple-icon-format-room-menu-para-restaurante-hand-room-thumbnail.png) no-repeat top left;
-		
-	}
-	.list-menu{
 		height: auto;
 	}
-
-	.menu-item{
-		margin: 0px;
+	.list-add-1, .list-tel-1, .list-time-1, .list-park-1{
+		float: left;
+		font-weight: 700;
 	}
-
-	ul>li{
+	.list-add>span, .list-park>span{
+		padding-left: 60px;
+	}
+	.list-tel>span{
+		padding-left: 43px;
+	}
+	.list-time>span{
+		padding-left: 25px;
+	}
+	.list-menu-name-title{
+		font-weight: 700;
+	}
+	.menu-item{
+		margin: 2px;
+	}
+	.list-menu-detail>ul>li{
 		list-style: none;
 		border-bottom: dashed 0.8px gray; 
 		padding-top: 5px;
-	}
-	.menu>span{
-		padding-left: 34px;
 	}
 	.icon {
 		line-height: 26px;
@@ -166,6 +169,23 @@ Latest compiled and minified CSS
 		width: 100px;
 		display: none;
 	}
+	.btn-more{
+		margin-right: 20px;
+		font-size: 15px;
+	}
+	.r{
+		text-align: right; 
+		position: relative;
+		right: -3px;
+		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right;
+    	background-size: 20px;
+	}
+	.menu-item{
+		display: none;
+		
+	}
+
+	
 
 </style>
 </head>
@@ -173,6 +193,7 @@ Latest compiled and minified CSS
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 	<br>
+
 	<div class="outer">
 		<div class="slide-area">
 			<div class="btn-left"></div>
@@ -181,6 +202,9 @@ Latest compiled and minified CSS
 
 		</div>
 		<br>
+
+		<!-- 식당이름 -->
+
 			<div class="rest-title">
 				<div class="rest-name">
 					<h1 style="display: contents;">홍루이젠</h1> 
@@ -188,7 +212,7 @@ Latest compiled and minified CSS
 				</div>
 					<span class="short-menu">간단 메뉴 소개</span>
 				<div>
-					<span class="short-locate">서울-강남 > 청남동</span>
+					<span class="short-add">서울-강남 > 청남동</span>
 					<div class="heart-count-area">
 						<img src="">
 						<span>찜꽁()</span>
@@ -203,19 +227,27 @@ Latest compiled and minified CSS
 			</div>
 			<div class="text-line"></div>
 
+			<!-- 식당상세정보 -->
+
 			<div class="rest-detail">
 				<div class="list">
-					<div class="list-locate">주소
+					<div class="list-add">
+						<div class="list-add-1">주소</div>
 						<span>서울특별시 블라블라</span>
 					</div>
-					<div class="list-add"><img src="https://m.imaeil.com/photos/2019/01/17/2019011721343483904_l.jpg"></div>
-					<div class="list-tel">연락처
+					<div class="list-map">
+						<%@ include file = "../map/restDetailMap.jsp" %>
+					</div>
+					<div class="list-tel">
+						<div class="list-tel-1">연락처</div>
 						<span>02-999-9999</span>
 					</div>
-					<div class="list-time">영업시간
+					<div class="list-time">
+						<div class="list-time-1">영업시간</div>
 						<span>09:00 - 17:00</span>
 					</div>
-					<div class="list-park">주차
+					<div class="list-park">
+						<div class="list-park-1">주차</div>
 						<span>가능</span>
 					</div>
 					<div class="list-menu">
@@ -228,14 +260,12 @@ Latest compiled and minified CSS
 											<p class="menu-item">
 												<span class="rest-menu">햄치즈샌드위치</span>
 												<span class="icon">추천</span>
-												<span class="text-line2">-------------------------------------------------------------------</span>
 												<span class="menu-price">3,900원</span>
 											</p>
 										<li>
 											<p class="menu-item">
 												<span class="rest-menu">감자샌드위치</span>
 												<span class="icon">추천</span>
-												<span class="text-line2">-------------------------------------------------------------------</span>
 												<span class="menu-price">3,900원</span>
 											</p>
 										</li>
@@ -243,14 +273,12 @@ Latest compiled and minified CSS
 										<li>
 											<p class="menu-item">
 												<span class="rest-menu">치즈샌드위치</span>
-												<span class="text-line2">-------------------------------------------------------------------</span>
 												<span class="menu-price">3,900원</span>
 											</p>
 										</li>
 										<li>
 											<p class="menu-item">
 												<span class="rest-menu">토마토샌드위치</span>
-												<span class="text-line2">-------------------------------------------------------------------</span>
 												<span class="menu-price">3,900원</span>
 											</p>
 										</li>
@@ -258,10 +286,13 @@ Latest compiled and minified CSS
 											<p class="menu-item">
 												<span class="rest-menu">베이컨샌드위치</span>
 												<span class="icon">추천</span>
-												<span class="text-line2">-------------------------------------------------------------------</span>
 												<span class="menu-price">3,900원</span>
 											</p>
 										</li>
+										<!-- 버튼 클릭시 접기로 변경됨-->
+										<p class="r">
+											<span class="btn-more">더보기</span>
+										</p>
 									</ul>
 								</div>
 							</div>

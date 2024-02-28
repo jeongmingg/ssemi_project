@@ -257,8 +257,8 @@ Latest compiled and minified CSS
 
 				<div align="center">
 					<br>
-					<a href="#" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
-					<a href="#" class="btn btn-sm btn-secondary">취소</a>
+					<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
+					<a href="<%= contextPath %>/list.bo" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
 		</div>
