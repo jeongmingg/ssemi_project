@@ -1,6 +1,8 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +28,11 @@ public class AdminRestListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList <Rest> list = new RestService().selectRest();
+		
+		
+		
 		request.getRequestDispatcher("views/admin/adminRestList.jsp").forward(request,response);
 	}
 

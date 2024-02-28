@@ -127,14 +127,14 @@
             <li class="nav-item">
             <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
-                    <li><a href="">식당등록</a></li>
-                    <li><a href="">식당전체조회</a></li>
+                    <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
+                    <li><a href="<%= contextPath %>/rest.list">식당전체조회</a></li>
                 </ul>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Member</a>
                 <ul>
-                    <li><a href="">회원전체조회</a></li>
+                    <li><a href="<%= contextPath %>/memList.ad">회원전체조회</a></li>
                    
                 </ul>
             </li>
