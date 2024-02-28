@@ -1,29 +1,25 @@
-package com.kh.rest.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
-import com.kh.search.model.vo.Search;
+import com.kh.member.model.service.MemberService;
 
 /**
- * Servlet implementation class RestSearchController
+ * Servlet implementation class AjaxIdCheckController
  */
-@WebServlet("/search.rs")
-public class RestSearchController extends HttpServlet {
+@WebServlet("/idCheck.me")
+public class AjaxIdCheckController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestSearchController() {
+    public AjaxIdCheckController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,14 +29,16 @@ public class RestSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String keyword = request.getParameter("keyword");
+		String checkId = request.getParameter("checkId");
 		
-		ArrayList<Search> list = new RestService().searchKeywordList(keyword);
+		int count = new MemberService().idCheck(checkId);
 		
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("list", list);
+		if(count > 0) { // 존재하는 아이디가 있을 경우 => 사용 불가 => "NNNNN"
+			response.getWriter().print("NNNNN");
+		} else { // 존재하는 아이디가 없을 경우 => 사용 가능 => "NNNNY"
+			response.getWriter().print("NNNNY");
+		}
 		
-		request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
 	}
 
 	/**

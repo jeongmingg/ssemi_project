@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="UTF-8">
 	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<link rel="stylesheet" href="resources/arssets/fonts/material-icons/material-icons.css" />
@@ -130,29 +130,45 @@
 	#file_label{
 		margin-top: 7px;
 		cursor: pointer;
-		margin-left: 88%;
+		margin-left: 90%;
 		margin-top:8px;
 		background-color: #e4910d;
 		border: solid 1px #e4910d;
 		color: white;
 		text-align: center;
+		font-size: 15px;
 		border-radius: 8px;
-		width: 80px;
-		height: 27px;
+		width: 70px;
+		height: 28px;
 	}
 	.count-area {
 		font-size: 0.8em;
 		color: gray;
 		font-weight: 600;
 	}
+	#btn-update{
+		background-color: #e4910d;
+		border:1px solid #e4910d;
+	}
+	#btn-cancel{
+		width: 30px;
+		height: 30px;
+		float: right;	
+	}
+	.cancel-area{
+		padding-right: 10px;
+		padding-top: 10px;
+	}
+	#cancel{
+		width: 30px;
+		height: 30px;
+	}
+	
 
-	
-	
-	
 </style>
 
 
-Latest compiled and minified CSS
+<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -174,8 +190,13 @@ Latest compiled and minified CSS
 	<div class="outer">
 		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
 		<div class= "outerin-area" >
+			<div class="cancel-area">
+				<a href="#" id="btn-cancel">
+					<img src="resources/assets/images/cancel-logo.png" id="cancel">
+				</a>
+			</div>
 
-		<!-- 맛집 등록 요청시 -->
+		<!-- 맛집 등록 요청  -->
 			<form action="#">
 				<table class="listView-area" style="width: 1200px">
 					<tr>
@@ -211,7 +232,7 @@ Latest compiled and minified CSS
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" id="restName" name="restName" style="width: 100%;" placeholder="식당이름을 입력하세요." required>
+							<input type="text" id="restName" name="restName" style="width: 100%;" required>
 						</td>
 						<td colspan="2">
 							<div id="check1" align="left" style="margin-left: 5px;"></div>
@@ -221,7 +242,7 @@ Latest compiled and minified CSS
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;" name="restAdd" id="restAdd" placeholder="식당주소를 입력하세요." required>
+							<input type="text" style="width: 100%;" name="restAdd" id="restAdd" required>
 						</td>
 						<td colspan="2">
 							<div id="check2" align="left" style="margin-left: 5px;"></div>
@@ -237,7 +258,7 @@ Latest compiled and minified CSS
 						<td></td>
 						<td colspan="4" align="left">
 							<!-- 라디오 버튼클릭시 변경-->
-							<textarea id="content" name="content" maxlength="300" placeholder="추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>	
+							<textarea id="content" name="content" maxlength="300" required></textarea>	
 						</td>
 					</tr>
 
@@ -257,8 +278,8 @@ Latest compiled and minified CSS
 
 				<div align="center">
 					<br>
-					<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
-					<a href="<%= contextPath %>/list.bo" class="btn btn-sm btn-secondary">취소</a>
+					<a href="#" class="btn btn-sm btn-secondary" id="btn-update">수정</a>
+					<a href="#" class="btn btn-sm btn-secondary" id="btn-delete">삭제</a>
 				</div>
 			</form>
 		</div>
@@ -278,28 +299,49 @@ Latest compiled and minified CSS
 
 		</script>
 
-	<script>
+		// 버튼 클릭시 알람
 
-		// 라디오버튼 클릭시 title/content 값 변경
-		
-		var lastCheckedValue = ""; // 마지막으로 체크된 값 저장 변수
+		<script>
+			$(function(){
+				$($("#btn-update")).click(function(){
+					Swal.fire({
+						title: "수정하시겠습니까?",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#e4910d",
+						cancelButtonColor: "#gray",
+						confirmButtonText: "yes"
+						}).then((result) => {
+						if (result.isConfirmed) {
+							Swal.fire({
+							title: "수정이 완료됐습니다.",
+							icon: "success",
+							confirmButtonColor: "#e4910d"
+							});
+						}
+						});
+				})
 
-			$("input[type=radio]").on("click", function(){
-				var chkValue = $("input[type=radio]:checked").val();
-				
-				console.log(chkValue);
-				if(chkValue == "delete"){
-					// $("#title").attr("value", "  맛집 삭제 요청합니다");
-					$("#title").val("맛집 삭제 요청합니다")
-					$("#content").attr("placeholder", "식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내).");
-					lastCheckedValue = "delete"; // 'delete' 값 기억
-				} else{
-					if(lastCheckedValue == "delete"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
-						$("#title").val("맛집 등록 요청합니다.") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
-						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
-					}
-				}
+				$($("#btn-delete")).click(function(){
+					Swal.fire({
+						title: "삭제하시겠습니까?",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#e4910d",
+						cancelButtonColor: "gray",
+						confirmButtonText: "yes"
+						}).then((result) => {
+						if (result.isConfirmed) {
+							Swal.fire({
+							title: "삭제가 완료됐습니다.",
+							icon: "success",
+							confirmButtonColor: "#e4910d"
+							});
+						}
+						});
+				})
 			})
+
 		</script>
 
 		<script>
@@ -337,7 +379,6 @@ Latest compiled and minified CSS
 				})
 			});
 		</script>
-
 
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">

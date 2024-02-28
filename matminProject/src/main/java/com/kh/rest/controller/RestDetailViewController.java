@@ -1,29 +1,23 @@
 package com.kh.rest.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
-import com.kh.search.model.vo.Search;
-
 /**
- * Servlet implementation class RestSearchController
+ * Servlet implementation class RestDetailViewController
  */
-@WebServlet("/search.rs")
-public class RestSearchController extends HttpServlet {
+@WebServlet("/detail.rs")
+public class RestDetailViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestSearchController() {
+    public RestDetailViewController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +26,7 @@ public class RestSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String keyword = request.getParameter("keyword");
-		
-		ArrayList<Search> list = new RestService().searchKeywordList(keyword);
-		
-		request.setAttribute("keyword", keyword);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
+		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
 	}
 
 	/**

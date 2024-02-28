@@ -117,7 +117,7 @@
 		</table>
 		<br>
 		<div class="insert-area" align="right" style="width: 1350px;">
-			<a href="#" class="btn btn-sm btn-secondary">등록</a>
+			<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
 		</div>
 
 		<br><br>

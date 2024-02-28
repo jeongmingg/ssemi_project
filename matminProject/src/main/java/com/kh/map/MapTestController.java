@@ -27,7 +27,7 @@ public class MapTestController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/map/mapTest.jsp").forward(request, response);
+		request.getRequestDispatcher("views/map/RestDetailMap.jsp").forward(request, response);
 		
 	}
 

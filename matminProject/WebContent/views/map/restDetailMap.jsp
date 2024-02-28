@@ -6,20 +6,17 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<style>
-		#map{
+		/* #map{
 			width: 1500px;
 			margin: auto;
 			margin-top: 50px;
 			margin-bottom: 50px;
 			text-align: center;
-		}
+		} */
 	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7d6385a8a7dfdf43946676701124222d&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
-
-	<%@ include file="../common/header.jsp" %>
-	<%@ include file="../common/navigator.jsp" %>
 
 	<div id="map" style="width:800px; height:400px;"></div>
 
@@ -62,7 +59,5 @@
 		});
 	</script>
 	
-	<%@ include file="../common/footer.jsp" %>
-
 </body>
 </html>

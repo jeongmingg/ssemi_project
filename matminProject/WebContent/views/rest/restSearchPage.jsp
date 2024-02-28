@@ -1,5 +1,12 @@
+<%@page import="com.kh.search.model.vo.Search"%>
+<%@page import="com.kh.rest.model.vo.Rest"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String keyword = (String)request.getAttribute("keyword");
+	ArrayList<Search> list = (ArrayList<Search>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +19,7 @@
 
     div{
         box-sizing: border-box;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         margin: 0;
         padding: 0;
         display: block;
@@ -28,7 +35,7 @@
         height: 2000px;
         margin: 0 auto;
         display: flex;
-        justify-content: center;
+        justify-content: center; 
         margin-bottom: 50px;
     }
     
@@ -39,6 +46,7 @@
     }
     #content_1{
         width: 400px;
+        height: 1960px;
         border: 1px solid #E4910D;
         margin-right: 40px;
         padding: 30px;
@@ -46,24 +54,29 @@
 
     /* 사이드바 비율, 스타일 */
     #content_1>div{width: 100%; margin-bottom: 50px;}
-    #social{height: 220px;}
-    #category{height: 400px;}
-    #location{height: 400px;}
-    #function{height: 500px;}
+    #category{height: 330px;}
+    #location{height: 1150px;}
+    #function{height: 170px;}
+
+    /* 사이드바 p 태그 있는 div */
+    .content-title{
+        display: flex;
+        align-items: center;
+        height: 50px;
+    }
 
     /* 큰 content */
     #content_2{
         width: 900px;
+        height: 1960px;
         border: 1px solid #E4910D;
         padding: 30px;
-        /* padding-left: 20px;
-        padding-right: 40px;
-        padding-bottom: 40px; */
+
     }
 
-    #content_2>div{width: 100%; float: left;}
+    #content_2>div{width: 100%;}
     /* 검색결과 div */
-    #search-list{height: 1520px;}
+    #search-list{height: 1570px; margin-bottom: 30px;}
 
     /* 맛집등록요청 div */
     #rest-rq{
@@ -79,14 +92,13 @@
         padding-left: 10px;
     }
 
-    .content-title{
-        display: flex;
-        align-items: center;
-    }
-
     
 
-    /* 카테고리 스타일 */
+    /* 사이드바 카테고리 스타일 */
+
+    #category>div{width: 100%;}
+    #category_content{height: 280px;}
+
     #category_content ul {
         display: flex;
         flex-wrap: wrap; /* 여러 행을 만들 수 있도록 허용하는 속성 */
@@ -119,6 +131,11 @@
         border-color: lightgray;
     }
 
+
+    /* 사이드바 location 비율 및 스타일 */
+    #location>div{width: 100%; float: left;}
+    #location_content{height: 1100px;}
+    
     /* 지역검색 스타일 */
 
     .ll>ul{
@@ -188,6 +205,11 @@
 
     /* 편의기능 스타일 */
 
+    #function>div{width: 100%;}
+    #function_content{height: 120px;}
+    #function_content{
+        padding-top: 10px;
+    }
     #function_content label{
         width: 45%;
         font-size: 18px;
@@ -198,7 +220,7 @@
     #search-list>div{width:100%;}
     #rs-arr{height:50px;}
     #lc-name{height:70px;}
-    #rs-content{height:1400px;}
+    #rs-content{height:1450px;}
 
     /* 정렬 비율 및 스타일 */
     #rs-arr>div{height: 100%; float: left;}
@@ -229,6 +251,7 @@
         display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
         align-items: center; 
         padding-left: 40px;
+        padding-top: 40px;
     }
     #lc-name-btn{
         width: 150px;
@@ -249,8 +272,13 @@
     /* 검색결과 비율 */
     #rs-content>div{width:100%;}
     #rs-title{height:150px;}
-    #map{height:400px;}
-    #search-rest{height:700px;}
+    #map{
+        width: 90%;
+        height:350px;
+        display: flex;
+        justify-content: center;
+    }
+    #search-rest{height:900px; padding-top: 50px;}
     #moreBtn{
         height:50px;
         display: flex;
@@ -259,20 +287,24 @@
     
     /* 식당정보 타이틀 스타일*/
     #rs-title>div{height:100%; float:left;}
-    #kw-title{width:40%;}
-    #share-div{width:40%;}
+    #kw-title{width:40%; padding-top: 10px;}
+
+    /* 공유버튼 */
     #share-btn{
         width:20%;
         position: relative;
         display: flex; /* 부모 컨테이너를 플렉스박스로 설정 */
         align-items: center; /* 수직 정렬을 위한 스타일 */
         justify-content: center; /* 수평 정렬을 위한 스타일 */
+        padding-top: 11px;
+        
     }
     
+    /* 공유버튼 */
     #share-btn > .group {
         width: 80px;
         height: 70px;
-        position: relative;
+        position: fixed;
         display: flex; /* 자식 요소를 플렉스박스로 설정 */
         flex-direction: column; /* 자식 요소들을 수직으로 배치 */
         align-items: center; /* 수직 정렬을 위한 스타일 */
@@ -283,6 +315,9 @@
     #share-div>div{width:100%;}
     #share-div{
         background-color: rgb(240, 240, 240);
+        width: 40%;
+        border-radius: 10px;
+        margin-bottom: 15px;
     }
     #share{
         height:50px;
@@ -312,6 +347,7 @@
         height:70px;
         display: flex;
         justify-content: center;
+        padding-top: 4px;
     }
     #kakao, #copy{
         height:30px;
@@ -321,8 +357,7 @@
     }
 
     #kakaoImg{
-        width:68px; height: 68px;
-        
+        width:60px; height: 60px;
     }
 
     /* 링크복사 스타일 */
@@ -336,8 +371,33 @@
     }
     #copySvg{
         width:30px; height: 30px;
+        cursor: pointer;
     }
     
+    /* 공유버튼 스타일 */
+    #share-group{
+        cursor: pointer;
+    }
+
+    /* 맛집리스트테이블 */
+    #rest-table{
+        /* border: 1px solid blue; */
+        width: 750px;
+        height: 150px;
+        border-bottom: 1px solid lightgray;
+        
+    }
+
+    /* 맛집 대표 이미지 */
+    .rest-img{
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+    }
+
+    /* 리뷰별 이미지 */
+    #star, #heart{width: 15px; height: 15px;}
+
     /* 검색결과 더보기 버튼 스타일 */
     #moreBtn>#more-btn{
         width: 80%; height: 100%;
@@ -357,6 +417,13 @@
         background-color: rgb(246, 184, 84);
         border: none;
         border-radius: 20px;
+    }
+
+    #rest-rq-btn>a{
+        text-decoration: none;
+        color: rgb(58, 58, 58);
+        font-size: 17px;
+        font-weight: bold;
     }
 
     /* 맛집등록 요청 밑에 p태그 */
@@ -389,20 +456,6 @@
     <div class="wrap">
         <div class="content">
             <div id="content_1">
-                <div id="social">
-                    <div id="social_title" class="content-title">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(242, 24, 24)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
-                        <p>소셜</p>
-                    </div>
-                    <div id="social_content">
-                        <div class="myHeartList1">
-                            
-                            나의 찜꽁목록
-                        </div>
-                        <div class="myHeartList2"></div>
-                    </div>
-                    
-                </div>
                 <div id="category">
                     <div id="category_title" class="content-title">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(230, 126, 34)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
@@ -420,7 +473,7 @@
                         </ul>
                         </div>
                         
-                        <div id="category_list2">
+                        <div id="category_list2" style="display: none;">
                         <ul>
                             <li><input type="radio" name="category" id="bs"><label for="bs">&nbsp;&nbsp;분식</label></li>
                             <li><input type="radio" name="category" id="vf"><label for="vf">&nbsp;&nbsp;뷔페</label></li>
@@ -438,46 +491,38 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
                         <p>지역</p>
                     </div>
-                    <button class="ll on" onclick="select();">지역 검색</button>
-                        <ul class="location-list" id="location-list">
-                            <li><button class="list">강남구</button></li>
-                            <li><button class="list">강동구</button></li>
-                            <li><button class="list">강북구</button></li>
-                            <li><button class="list">강서구</button></li>
-                            <li><button class="list">관악구</button></li>
-                        </ul>
                     <div id="location_content">
-                        
-                        <!-- <select name="" id="" width="500px">
-                            <option value="" selected>지역 검색</option>
-                             <option value="">강남구</option>
-                             <option value="">강동구</option>
-                             <option value="">강북구</option>
-                             <option value="">강서구</option>
-                             <option value="">관악구</option>
-                             <option value="">광진구</option>
-                             <option value="">구로구</option>
-                             <option value="">금천구</option>
-                             <option value="">노원구</option>
-                             <option value="">도봉구</option>
-                             <option value="">동대문구</option>
-                             <option value="">동작구</option>
-                             <option value="">마포구</option>
-                             <option value="">서대문구</option>
-                             <option value="">서초구</option>
-                             <option value="">성동구</option>
-                             <option value="">성북구</option>
-                             <option value="">송파구</option>
-                             <option value="">양천구</option>
-                             <option value="">영등포구</option>
-                             <option value="">용산구</option>
-                             <option value="">은평구</option>
-                             <option value="">종로구</option>
-                             <option value="">중구</option>
-                             <option value="">중랑구</option>
-                        </select> -->
+                        <button class="ll on" onclick="select();">지역 검색</button>
+                            <ul class="location-list" id="location-list">
+                                <li><button class="list">강남구</button></li>
+                                <li><button class="list">강동구</button></li>
+                                <li><button class="list">강북구</button></li>
+                                <li><button class="list">강서구</button></li>
+                                <li><button class="list">관악구</button></li>
+                                <li><button class="list">광진구</button></li>
+                                <li><button class="list">구로구</button></li>
+                                <li><button class="list">금천구</button></li>
+                                <li><button class="list">노원구</button></li>
+                                <li><button class="list">도봉구</button></li>
+                                <li><button class="list">동대문구</button></li>
+                                <li><button class="list">동작구</button></li>
+                                <li><button class="list">마포구</button></li>
+                                <li><button class="list">서대문구</button></li>
+                                <li><button class="list">서초구</button></li>
+                                <li><button class="list">성동구</button></li>
+                                <li><button class="list">성북구</button></li>
+                                <li><button class="list">송파구</button></li>
+                                <li><button class="list">양천구</button></li>
+                                <li><button class="list">영등포구</button></li>
+                                <li><button class="list">용산구</button></li>
+                                <li><button class="list">은평구</button></li>
+                                <li><button class="list">종로구</button></li>
+                                <li><button class="list">중구</button></li>
+                                <li><button class="list">중랑구</button></li>
+                            </ul>
                     </div>
                 </div>
+            
                 <div id="function">
                     <div id="function_title" class="content-title">
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(39, 174, 96)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
@@ -485,24 +530,21 @@
                     </div>
                     <div id="function_content">
                         <input type="checkbox" id="pk"><label for="pk">&nbsp;&nbsp;주차</label>
-                        <input type="checkbox" id="bl"><label for="bl">&nbsp;&nbsp;발렛</label>
                         <input type="checkbox" id="24"><label for="24">&nbsp;&nbsp;24시</label>
-                        <input type="checkbox" id="pl"><label for="pl">&nbsp;&nbsp;놀이방</label>
                         <input type="checkbox" id="er"><label for="er">&nbsp;&nbsp;개별룸</label>
                         <input type="checkbox" id="br"><label for="br">&nbsp;&nbsp;대형룸</label>
-                        <input type="checkbox" id="ot"><label for="ot">&nbsp;&nbsp;야외좌석</label>
-                        <input type="checkbox" id="ck"><label for="ck">&nbsp;&nbsp;콜키지 무료</label>
                         <input type="checkbox" id="dt"><label for="dt">&nbsp;&nbsp;드라이브 스루</label>
                         <input type="checkbox" id="an"><label for="an">&nbsp;&nbsp;반려동물 동반</label>
                     </div>
                 </div>
             </div>
+            
             <div id="content_2">
                 <div id="search-list">
                     <div id="rs-arr">
                         <div id="rs-arr1">
                             <ul id="rs-arr1-ul">
-                                <li><a href="#" id="rest-li1">정렬</a></li>
+                                <li><a href="#" id="rest-li1">⇅ 정렬</a></li>
                                 <li><a href="#" id="rest-li2">거리순</a></li>
                                 <li><a href="#" id="rest-li3">평점순</a></li>
                                 <li><a href="#" id="rest-li4">찜꽁많은순</a></li>
@@ -522,15 +564,15 @@
                     <div id="rs-content">
                         <div id="rs-title">
                             <div id="kw-title">
-                                <p id="kw-title-p">강남구 삼겹살 맛집(547곳)</p>
+                                <p id="kw-title-p"><%= keyword %> 검색결과(<%= list.size() %>건)</p>
                             </div>
-                            <div id="share-div">
+                            <div id="share-div" style="visibility: hidden;">
                                 <div id="share">공유하기</div>
                                 <div id="icon">
                                     <div id="kakao-div">
                                         <div id="kakao-icon">
                                             <a href="#">
-                                                <img id="kakaoImg" src="data:image/png;base64,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">
+                                                <img id="kakaoImg" src="resources/logo/kakao-logo.png">
                                             </a>
                                         </div>
                                         <div id="kakao">카카오톡 공유</div> 
@@ -547,7 +589,7 @@
                                 
                             </div>
                             <div id="share-btn">
-                                <div data-obj-type="group" data-obj-id="9wUZ8" class="" style="width: 80px; height: 40px;">
+                                <div id="share-group" data-obj-type="group" data-obj-id="9wUZ8" class="" style="width: 80px; height: 40px;">
                                     <!-- <div data-obj-id="3emRF" data-obj-type="element" data-text-editable="true" class="" style="position: absolute; top: 0px; left: 0px; width: 80px; height: 70px;"> -->
                                         <div data-text-content="true" style="font-size: 16px; color: rgb(255, 255, 255); text-align: center; line-height: 2.3em; border-radius: 4px; background-color: rgb(243, 156, 18);" class="" spellcheck="false">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(255, 255, 255)">
@@ -563,9 +605,33 @@
                             </div>
                         </div>
                         <div id="map">
-                            <img src="../../resources/search/map.png" width="100%" height="400px">
+                            <img src="resources/search/map.png">
                         </div>
-                        <div id="search-rest"></div>
+                        <div id="search-rest">
+                            <table id="rest-table" align="center">
+                            	<% if(list.isEmpty()) { %>
+	                            	<!-- 게시글이 없는 경우 -->
+	                            	<tr>
+	                            		<td colspan="3">조회된 결과가 없습니다.  다시 검색해주세요!</td>
+	                            	</tr>
+                            	<% }else { %>
+	                            	<!-- 게시글이 있는 경우 -->
+		                            	<% for(Search s : list) { %>
+			                               <tr>
+			                                    <td rowspan="2" width="150" height="80" style="padding-left: 15px; padding-right: 15px; padding-top: 10px; padding-bottom: 10px;"><img class="rest-img" src="<%= s.getRestImgUrl() %>"></td>
+			                                    <th colspan="4" width="600" style="padding-top: 15px; padding-left: 15px; font-size: 22px;"> <%= s.getRestName() %></th>
+			                               </tr>
+			                               <tr>  
+			                                    <td colspan="3" style="padding-left: 15px; padding-bottom: 15px; font-size: 20px;"> <img id="star" src="resources/star, heart/star.png">&nbsp;&nbsp;<%= s.getRestAvg() %> (80개)&nbsp;&nbsp;|&nbsp;&nbsp;<img id="heart" src="resources/star, heart/heart.png"> <%= s.getHeart() %></td>
+			                               </tr>
+			                               <tr>
+			                                    <td colspan="3" height="45" style="padding-left: 15px; font-size: 15px;"> "여기 진짜 너무 맛있어요!!! 삼겹살하면 돼지삼겹살이져 진짜 꼭가세요~~"</td>
+			                               </tr>
+							
+	                               		<% } %>
+                             	<% } %>
+                            </table>
+                        </div>
                         <div id="moreBtn">
                             <button type="button" id="more-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg>
@@ -574,15 +640,13 @@
                         </div>   
                     </div>
                 </div>
-           
-
                 <div id="rest-rq">
                     <br>
                     <br>
                     <h5 align="center">찾으시는 식당이 없으신가요?</h5>
                     <br><br>
                     <div id="rsrq-btn-div">
-                    <button id="rest-rq-btn">맛집 등록 요청하기</button>
+                    <button id="rest-rq-btn"><a href="<%= contextPath %>/listForm.bo">맛집 등록 요청하기</a></button>
                     </div>
                     <br>
                     <p id="rest-rq-p">보통 당일 등록이 이루어지며, 등록시 푸시 알림을 드립니다.</p>
@@ -592,6 +656,8 @@
 
         <script>
             $(function(){
+
+                // 카테고리 리스트 펼치기 버튼 눌렀을때
                 $("#listBtn").click(function(){
                     const $ul2 = $("#category_list2");
 
@@ -605,7 +671,22 @@
                         $("#listBtn").text("펼치기");
                         
                     }
-                })
+                });
+
+                // 공유버튼 눌렀을때
+                $("#share-group").click(function(){
+                    const $shareDiv = $("#share-div");
+
+                    if($shareDiv.css("visibility") == "hidden"){
+                   
+                        $shareDiv.css("visibility", "visible");
+                    }else {
+                        $shareDiv.css("visibility", "hidden");
+                        
+                    }
+                });
+
+              
             })
         </script>
 
