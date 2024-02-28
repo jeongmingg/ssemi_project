@@ -6,28 +6,40 @@
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
-        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .outer {
             width: 1000px;
-            height: 600px;
-            position: absolute;
-            border: 1px solid gray;
+            height: 800px;
+            /* position: absolute; */
+            border: 1px solid orange;
+            text-align:center; 
+            margin-bottom: 50px;
+            position: fixed;
+            /* bottom: 0; */
+          
+            align-items:center; /* 위아래 기준 중앙정렬 */
+            justify-content:center; /* 좌우 기준 중앙정렬 */
+            position: relative;
+            
+         
         }
 
         #best2 {
-            border: 1px solid gray;
+            /* border: 1px solid gray; */
             width: 400px;
             height: 350px;
             margin-left: 50px;
+            margin-bottom: 50px;
         }
 
         #best3 {
+            /* border: 1px solid gray; */
             margin-right: 50px;
-            border: 1px solid gray;
             float: right;
+            margin-bottom: 50px;
         }
 
         .table1 {
@@ -47,9 +59,56 @@
         }
 
         th {
-            background-color: orange;
-            color: gray;
+            /* background-color: #dddddd; */
+            color: orange;
         }
+
+
+#navi>li>ul {
+    list-style-type: none;
+    padding: 0;
+    display: none;
+    position: absolute;
+    background-color: lightgrey; /* submenu color */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); submenu shadow color*/
+    z-index: 1; /*submenu 보이게*/
+}
+
+#navi>li>ul a {
+    font-size: 15px;
+    color: orange;
+    display: block;
+    padding: 10px;
+    transition: all 0.3s; /* Плавный переход при изменении стилей */
+}
+
+#navi>li>ul a:hover {
+    background-color: lightgray; /* horver시 backgrd-color*/
+    color: orange; /* hover시 text color */
+    transition: opacity 0.3s; /* opacity transition */
+    text-decoration: none;
+}
+
+#navi>li:hover>ul {
+    display: block;
+    opacity: 1; /*hover시 submenu 나옴*/
+}
+
+#navi>li>a {
+    color: orange;
+    font-size: 5px;
+    position: relative;
+    display: block;
+    padding: 20px;
+    transition: all 0.3s; /* Плавный переход при изменении стилей */
+}
+
+#navi>li>a:hover {
+    background-color: lightgrey; /* Цвет фона при наведении на основной пункт меню */
+    color: orange; /* Цвет текста при наведении на основной пункт меню */
+    cursor: pointer;
+}
+        
     </style>
 </head>
 <body>
@@ -61,18 +120,31 @@
     <div class="container">
         <!-- <p>Justified tabs:</p> -->
         <br><br>
-        <ul class="nav nav-tabs nav-justified">
+        <ul id="navi" class="nav nav-tabs nav-justified">
             <li class="nav-item" >
-            <a class="nav-link active" style="color: orange; font-size: 30px;" >Statistics</a>
+            <a class=" nav-link active" href="#" style="color: orange; font-size: 30px;" >Statistics</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" style="color: orange;font-size: 30px;">Restaurants</a>
+            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Restaurants</a>
+                <ul>
+                    <li><a href="">식당등록</a></li>
+                    <li><a href="">식당전체조회</a></li>
+                </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" style="color: orange;font-size: 30px;">Member</a>
+            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Member</a>
+                <ul>
+                    <li><a href="">회원전체조회</a></li>
+                   
+                </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" style="color: orange;font-size: 30px;">Board</a>
+            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
+                <ul>
+                    <li><a href="">게시판 등록</a></li>
+                    <li><a href="">게시판 조회</a></li>
+                </ul>
+            
             </li>
         </ul>
     </div>
@@ -360,5 +432,6 @@
              }
         </script>
     </div>
+    <%@ include file="../common/footer.jsp"%>
 </body>
 </html>

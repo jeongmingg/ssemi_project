@@ -29,8 +29,6 @@
 </head>
 <body>
 
-      <%@ include file="../common/header.jsp"%>
-      <%@ include file="../common/navigator.jsp"%>
   <div id="list1">
 
     <table style="border: 1px solid gray;">
@@ -84,5 +82,5 @@
 </script>
 
 </body>
-</body>
+
 </html>
