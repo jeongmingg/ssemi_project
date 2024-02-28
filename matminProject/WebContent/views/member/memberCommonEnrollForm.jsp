@@ -43,7 +43,7 @@
 
 		<h3 align="center">회원가입</h3>
 
-		<form action="#">
+		<form action="<%= contextPath %>/insert.me" method="post">
 			<div id="required-area">
 				<p>기본정보 <small>(필수)</small></p>
 				<hr id="hr">
@@ -60,7 +60,7 @@
 					<input type="text" name="userName" placeholder="이름"> <br>
 					<span id="nameMsg" class="message" style="display: none;"></span>
 
-					<input type="text" name="nickname" placeholder="닉네임"> <br>
+					<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();"> <br>
 					<span id="nicknameMsg" class="message" style="display: none;"></span>
 
 					<input type="text" name="email" placeholder="이메일">

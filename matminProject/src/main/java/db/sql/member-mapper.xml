@@ -28,6 +28,13 @@
 		 WHERE MEM_ID = ?
 	</entry>
 	
+	<entry key="nickCheck">
+		SELECT
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE NICKNAME = ?
+	</entry>
+	
 	<entry key="selectMemberId">
 		SELECT
 		       MEM_NO
@@ -36,6 +43,30 @@
 		  FROM MEMBER
 		 WHERE MEM_NAME = ?
 		   AND EMAIL = ?
+	</entry>
+	
+	<entry key="insertMember">
+		INSERT
+		  INTO MEMBER
+		  (
+		    MEM_NO
+		  , MEM_ID
+		  , MEM_PWD
+		  , MEM_NAME
+		  , NICKNAME
+		  , EMAIL
+		  , ADDRESS
+		  )
+		  VALUES
+		  (
+		    'M' || SEQ_MNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
 	</entry>
 	
 </properties>
