@@ -564,7 +564,7 @@
                     <div id="rs-content">
                         <div id="rs-title">
                             <div id="kw-title">
-                                <p id="kw-title-p">강남구 <%= keyword %> 맛집(<%= list.size() %>곳)</p>
+                                <p id="kw-title-p"><%= keyword %> 검색결과(<%= list.size() %>건)</p>
                             </div>
                             <div id="share-div" style="visibility: hidden;">
                                 <div id="share">공유하기</div>
@@ -612,7 +612,7 @@
                             	<% if(list.isEmpty()) { %>
 	                            	<!-- 게시글이 없는 경우 -->
 	                            	<tr>
-	                            		<td colspan="3">조회된 식당이 없습니다.</td>
+	                            		<td colspan="3">조회된 결과가 없습니다.  다시 검색해주세요!</td>
 	                            	</tr>
                             	<% }else { %>
 	                            	<!-- 게시글이 있는 경우 -->
