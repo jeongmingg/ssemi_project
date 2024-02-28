@@ -24,7 +24,7 @@ form>input[type=text], form>input[type=password]{
 
 #loginBtn{
     background-color: #E4910D;
-    border-color: #E4910D;
+    border: none;
     width: 300px;
     height: 40px;
     line-height: 25px;
@@ -47,7 +47,7 @@ form>input[type=text], form>input[type=password]{
 
 #naver-login-btn{
     background-color: #03c75a;
-    border-color: #03c75a;
+    border: none;
     width: 300px;
     height: 45px;
     line-height: 44px;
