@@ -32,8 +32,6 @@ public class RestDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		System.out.println(keyword);
-		
 		String sql = prop.getProperty("searchKeywordList");
 		
 		
@@ -45,7 +43,7 @@ public class RestDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				System.out.println("eddd");
+
 				list.add(new Search(rset.getString("rest_no"),
 								  rset.getString("rest_name"),
 								  rset.getDouble("rest_avg"),
