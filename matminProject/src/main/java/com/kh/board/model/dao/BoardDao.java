@@ -72,7 +72,7 @@ public class BoardDao {
 			pstmt.setInt(2, endRow);
 			
 			while(rset.next()) {
-				list.add(new Board(rset.getInt("board_no"),
+				list.add(new Board(rset.getString("board_no"),
 								   rset.getString("board_type"),
 								   rset.getString("board_title"),
 								   rset.getString("nickname"),

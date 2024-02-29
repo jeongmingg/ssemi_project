@@ -6,17 +6,17 @@ public class Board {
 	private String boardNo;	
 	private String restId;			
 	private String boardWriter;			
-	private char boardType;			
+	private String boardType;			
 	private String boardTitle;	
 	private String boardContent;
 	private int boardCount;			
 	private String boardDate;			
-	private char boardStatus;			
+	private String boardStatus;			
 	
 	public Board () {}
 
-	public Board(String boardNo, String restId, String boardWriter, char boardType, String boardTitle,
-			String boardContent, int boardCount, String boardDate, char boardStatus) {
+	public Board(String boardNo, String restId, String boardWriter, String boardType, String boardTitle,
+			String boardContent, int boardCount, String boardDate, String boardStatus) {
 		super();
 		this.boardNo = boardNo;
 		this.restId = restId;
@@ -28,10 +28,9 @@ public class Board {
 		this.boardDate = boardDate;
 		this.boardStatus = boardStatus;
 	}
+	
 
-	
-	
-	public Board(String boardNo, String boardWriter, char boardType, String boardTitle, int boardCount,
+	public Board(String boardNo, String boardWriter, String boardType, String boardTitle, int boardCount,
 			String boardDate) {
 		super();
 		this.boardNo = boardNo;
@@ -66,11 +65,11 @@ public class Board {
 		this.boardWriter = boardWriter;
 	}
 
-	public char getBoardType() {
+	public String getBoardType() {
 		return boardType;
 	}
 
-	public void setBoardType(char boardType) {
+	public void setBoardType(String boardType) {
 		this.boardType = boardType;
 	}
 
@@ -106,11 +105,11 @@ public class Board {
 		this.boardDate = boardDate;
 	}
 
-	public char getBoardStatus() {
+	public String getBoardStatus() {
 		return boardStatus;
 	}
 
-	public void setBoardStatus(char boardStatus) {
+	public void setBoardStatus(String boardStatus) {
 		this.boardStatus = boardStatus;
 	}
 
@@ -120,8 +119,7 @@ public class Board {
 				+ boardType + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardCount="
 				+ boardCount + ", boardDate=" + boardDate + ", boardStatus=" + boardStatus + "]";
 	}
-	
-	
 
+	
 	
 }
