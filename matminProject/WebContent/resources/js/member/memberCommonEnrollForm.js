@@ -158,6 +158,7 @@ function validate() {
         emailInput.select();
 
         return false;
+        
     } else if(msg.text() != "") {
         emailInput.select();
 
@@ -230,12 +231,12 @@ function nickCheck() {
             }
         },
         error: function() {
-            console.log("아이디 중복체크용 ajax 통신 실패");
+            console.log("닉네임 중복체크용 ajax 통신 실패");
         }
     });
 }
 
-// 이메일 인증하기 버튼 클릭 시, 체크
+// 이메일 실시간 체크
 function emailCheck() {
     const email = $("input[name=email]");
     const domain = $("input[name=domain]");
@@ -261,7 +262,7 @@ function emailCheck() {
                 }
             },
             error: function() {
-                console.log("아이디 중복체크용 ajax 통신 실패");
+                console.log("이메일 중복체크용 ajax 통신 실패");
             }
         });
     }
@@ -283,5 +284,8 @@ function input_domain() {
         domainInput.val($("#selectDomain").val());
         domainInput.attr("readonly", true);
     }
+
+    // 이메일 실시간 체크 함수 호출
+    emailCheck();
 
 }

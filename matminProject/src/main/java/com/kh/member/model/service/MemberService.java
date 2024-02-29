@@ -84,5 +84,35 @@ public class MemberService {
 		return result;
 		
 	}
+	
+	public int updateMemberAuth(String email) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMemberAuth(conn, email);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+//	public Member selectMemberEmail(String memId) {
+//		
+//		Connection conn = getConnection();
+//		
+//		Member m = new MemberDao().selectMemberEmail(conn, memId);
+//		
+//		close(conn);
+//		
+//		return m;
+//		
+//	}
 
 }

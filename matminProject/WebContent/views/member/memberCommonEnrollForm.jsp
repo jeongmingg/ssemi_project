@@ -63,16 +63,16 @@
 					<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();"> <br>
 					<span id="nicknameMsg" class="message" style="display: none;"></span>
 
-					<input type="text" name="email" placeholder="이메일">
+					<input type="text" name="email" placeholder="이메일" oninput="emailCheck();">
 					@
-					<input type="text" name="domain">
+					<input type="text" name="domain" oninput="emailCheck();">
 					<select id="selectDomain" onchange="input_domain();">
 						<option value="input-self">직접입력</option>
 						<option value="naver.com">naver.com</option>
 						<option value="gmail.com">gmail.com</option>
 						<option value="daum.net">daum.net</option>
 					</select>
-					<button type="button" class="btn btn-secondary" id="check-email-btn" onclick="emailCheck();">인증하기</button>
+					<!-- <button type="button" class="btn btn-secondary" id="check-email-btn" onclick="emailCheck();">인증하기</button> -->
 					<span id="emailMsg" class="message" style="display: none;"></span>
 				</div>
 			</div>

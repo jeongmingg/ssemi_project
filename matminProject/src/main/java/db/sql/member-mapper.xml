@@ -10,6 +10,7 @@
 		     , MEM_NAME
 		     , NICKNAME
 		     , EMAIL
+		     , EMAIL_AUTH
 		     , ADDRESS
 		     , MEM_WARNING
 		     , ENROLL_DATE
@@ -52,6 +53,15 @@
 		   AND EMAIL = ?
 	</entry>
 	
+	<entry key="selectMemberEmail">
+		SELECT
+		       MEM_NO
+		     , EMAIL
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+		   AND STATUS = 'Y'
+	</entry>
+	
 	<entry key="insertMember">
 		INSERT
 		  INTO MEMBER
@@ -74,6 +84,12 @@
 		  , ?
 		  , ?
 		  )
+	</entry>
+	
+	<entry key="updateMemberAuth">
+		UPDATE MEMBER
+		   SET EMAIL_AUTH = 1
+		 WHERE EMAIL = ?
 	</entry>
 	
 </properties>

@@ -51,6 +51,7 @@ public class MemberDao {
 							   rset.getString("mem_name"),
 							   rset.getString("nickname"),
 							   rset.getString("email"),
+							   rset.getInt("email_auth"),
 							   rset.getString("address"),
 							   rset.getInt("mem_warning"),
 							   rset.getDate("enroll_date"),
@@ -231,5 +232,61 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	public int updateMemberAuth(Connection conn, String email) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberAuth");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, email);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+//	public Member selectMemberEmail(Connection conn, String memId) {
+//		Member m = null;
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectMemberEmail");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setString(1, memId);
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				m = new Member();
+//				
+//				m.setMemNo(rset.getString("mem_no"));
+//				m.setEmail(rset.getString("email"));
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//			
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		}
+//		
+//		return m;
+//	}
 
 }
