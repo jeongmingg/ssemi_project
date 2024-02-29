@@ -77,7 +77,7 @@ public class BoardDao {
 								   rset.getString("board_title"),
 								   rset.getString("nickname"),
 								   rset.getInt("board_count"),
-								   rset.getString("create_date")
+								   rset.getString("board_date")
 								   ));
 			}
 		} catch (SQLException e) {

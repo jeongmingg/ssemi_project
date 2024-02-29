@@ -7,13 +7,121 @@ public class Board {
 	private String restId;			
 	private String boardWriter;			
 	private char boardType;			
-	private String boardTitle;			
-	private String boardCount;			
-	private String boarddate;			
+	private String boardTitle;	
+	private String boardContent;
+	private int boardCount;			
+	private String boardDate;			
 	private char boardStatus;			
 	
 	public Board () {}
 
+	public Board(String boardNo, String restId, String boardWriter, char boardType, String boardTitle,
+			String boardContent, int boardCount, String boardDate, char boardStatus) {
+		super();
+		this.boardNo = boardNo;
+		this.restId = restId;
+		this.boardWriter = boardWriter;
+		this.boardType = boardType;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardCount = boardCount;
+		this.boardDate = boardDate;
+		this.boardStatus = boardStatus;
+	}
+
+	
+	
+	public Board(String boardNo, String boardWriter, char boardType, String boardTitle, int boardCount,
+			String boardDate) {
+		super();
+		this.boardNo = boardNo;
+		this.boardWriter = boardWriter;
+		this.boardType = boardType;
+		this.boardTitle = boardTitle;
+		this.boardCount = boardCount;
+		this.boardDate = boardDate;
+	}
+
+	public String getBoardNo() {
+		return boardNo;
+	}
+
+	public void setBoardNo(String boardNo) {
+		this.boardNo = boardNo;
+	}
+
+	public String getRestId() {
+		return restId;
+	}
+
+	public void setRestId(String restId) {
+		this.restId = restId;
+	}
+
+	public String getBoardWriter() {
+		return boardWriter;
+	}
+
+	public void setBoardWriter(String boardWriter) {
+		this.boardWriter = boardWriter;
+	}
+
+	public char getBoardType() {
+		return boardType;
+	}
+
+	public void setBoardType(char boardType) {
+		this.boardType = boardType;
+	}
+
+	public String getBoardTitle() {
+		return boardTitle;
+	}
+
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
+	}
+
+	public String getBoardContent() {
+		return boardContent;
+	}
+
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
+	}
+
+	public int getBoardCount() {
+		return boardCount;
+	}
+
+	public void setBoardCount(int boardCount) {
+		this.boardCount = boardCount;
+	}
+
+	public String getBoardDate() {
+		return boardDate;
+	}
+
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
+	}
+
+	public char getBoardStatus() {
+		return boardStatus;
+	}
+
+	public void setBoardStatus(char boardStatus) {
+		this.boardStatus = boardStatus;
+	}
+
+	@Override
+	public String toString() {
+		return "Board [boardNo=" + boardNo + ", restId=" + restId + ", boardWriter=" + boardWriter + ", boardType="
+				+ boardType + ", boardTitle=" + boardTitle + ", boardContent=" + boardContent + ", boardCount="
+				+ boardCount + ", boardDate=" + boardDate + ", boardStatus=" + boardStatus + "]";
+	}
+	
+	
 
 	
 }
