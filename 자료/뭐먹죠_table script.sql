@@ -34,6 +34,7 @@ CREATE TABLE MEMBER(
     MEM_NAME VARCHAR2(20) NOT NULL,
     NICKNAME VARCHAR2(30) NOT NULL UNIQUE,
     EMAIL VARCHAR2(50) NOT NULL UNIQUE,
+    EMAIL_AUTH NUMBER DEFAULT 0 NOT NULL CHECK(EMAIL_AUTH IN (0,1)),
     ADDRESS VARCHAR2(100),
     MEM_WARNING NUMBER DEFAULT 0 NOT NULL,
     ENROLL_DATE DATE DEFAULT SYSDATE NOT NULL,
@@ -47,6 +48,7 @@ COMMENT ON COLUMN MEMBER.MEM_PWD IS '회원비밀번호';
 COMMENT ON COLUMN MEMBER.MEM_NAME IS '회원명';
 COMMENT ON COLUMN MEMBER.NICKNAME IS '닉네임';
 COMMENT ON COLUMN MEMBER.EMAIL IS '이메일';
+COMMENT ON COLUMN MEMBER.EMAIL_AUTH IS '이메일인증여부(미인증:0, 인증:1)';
 COMMENT ON COLUMN MEMBER.ADDRESS IS '거주지';
 COMMENT ON COLUMN MEMBER.MEM_WARNING IS '경고횟수';
 COMMENT ON COLUMN MEMBER.ENROLL_DATE IS '회원가입일';
@@ -321,19 +323,19 @@ NOCACHE;
 -- MEMBER TABLE INSERT
 ------------------------------------------------------
 INSERT INTO MEMBER
-VALUES('M'||SEQ_MNO.NEXTVAL, 'admin', 'admin', '관리자', 'admin', 'admin@naver.com', NULL, DEFAULT, DEFAULT, 'A', DEFAULT);
+VALUES('M'||SEQ_MNO.NEXTVAL, 'admin', 'admin', '관리자', 'admin', 'admin@naver.com', 1, NULL, DEFAULT, DEFAULT, 'A', DEFAULT);
 
 INSERT INTO MEMBER
-VALUES('M'||SEQ_MNO.NEXTVAL, 'user01', 'pass01', '노정민', 'njm', 'njm@naver.com', '서울시 강남구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user01', 'pass01', '노정민', 'njm', 'njm@naver.com', 1, '서울특별시 강남구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO MEMBER
-VALUES('M'||SEQ_MNO.NEXTVAL, 'user02', 'pass02', '김도현', 'kdh', 'kdh@gmail.com', NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user02', 'pass02', '김도현', 'kdh', 'kdh@gmail.com', 1, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO MEMBER
-VALUES('M'||SEQ_MNO.NEXTVAL, 'user03', 'pass03', '신나리', 'snr', 'snr@daum.net', '서울시 영등포구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user03', 'pass03', '신나리', 'snr', 'snr@daum.net', 1, '서울특별시 영등포구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO MEMBER
-VALUES('M'||SEQ_MNO.NEXTVAL, 'user04', 'pass04', '남지혜', 'njh', 'njh@jj.ac.kr', '서울시 관악구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+VALUES('M'||SEQ_MNO.NEXTVAL, 'user04', 'pass04', '남지혜', 'njh', 'njh@jj.ac.kr', 1, '서울특별시 관악구', DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
 ------------------------------------------------------
 -- CATEGORY TABLE INSERT

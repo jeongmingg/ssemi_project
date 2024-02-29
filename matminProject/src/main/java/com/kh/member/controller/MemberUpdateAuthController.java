@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberLoginController
+ * Servlet implementation class MemberUpdateAuthController
  */
-@WebServlet("/login.me")
-public class MemberLoginController extends HttpServlet {
+@WebServlet("/updateAuth.me")
+public class MemberUpdateAuthController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginController() {
+    public MemberUpdateAuthController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +29,12 @@ public class MemberLoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = (String)request.getParameter("userId");
-		String userPwd = (String)request.getParameter("userPwd");
+		String email = request.getParameter("email");
 		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		int result = new MemberService().updateMemberAuth(email);
 		
-		if(loginUser == null) {
-			request.setAttribute("loginSuccess", "실패");
-			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
-			
-		} else {
-			if(loginUser.getEmailAuth() == 1) {
-				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath());
-				
-			} else {
-				response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
-			}
+		if(result > 0) {
+			response.sendRedirect(request.getContextPath() + "/loginForm.me");
 		}
 		
 	}

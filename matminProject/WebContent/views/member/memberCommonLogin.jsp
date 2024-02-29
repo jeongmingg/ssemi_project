@@ -48,8 +48,8 @@
 		<div id="input_id_pwd">
 			<form action="<%= contextPath %>/login.me" method="post">
 			
-				<input type="text" name="userId" placeholder="ID" required> <br>
-				<input type="password" name="userPwd" placeholder="Password" required> <br>
+				<input type="text" name="userId" placeholder="ID"> <br>
+				<input type="password" name="userPwd" placeholder="Password"> <br>
 				<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
 				<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
 
