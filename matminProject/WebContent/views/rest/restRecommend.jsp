@@ -57,8 +57,13 @@
 		font-size: 22px;
 	}
 
-	/* 옵션선택 멘트 스타일 div h350 */
 	#menu-P-div{
+		display: flex;
+		justify-content: center;
+	}
+
+	/* 옵션선택 멘트 스타일 div h350 */
+	#menu-P{
 		background-color: rgb(244, 244, 244);
 		width: 750px;
 		height: 300px;
@@ -69,7 +74,7 @@
 	}
 
 	/* 옵션선택 p 멘트 스타일 div h350*/
-	#menu-P-div>p{
+	#menu-P>p{
 		
 		text-align: center;
 		font-weight: bold;
@@ -94,8 +99,8 @@
 					맛집 뺑뺑이가 추천해 드릴게요!
 				</p>
 			</div>
-			<div id="menu-recom-div">
-				<div id="menu-P-div">
+			<div id="menu-P-div">
+				<div id="menu-P">
 					<p>
 						옵션을 선택하고 <br><br>
 						"메뉴 추천" 버튼을 눌러주세요!
