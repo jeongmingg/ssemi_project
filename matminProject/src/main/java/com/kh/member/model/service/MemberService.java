@@ -43,6 +43,18 @@ public class MemberService {
 		
 	}
 	
+	public int emailCheck(String checkEmail) {
+		
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().emailCheck(conn, checkEmail);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
 	public Member selectMemberId(String userName, String email) {
 		
 		Connection conn = getConnection();

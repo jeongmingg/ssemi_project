@@ -72,7 +72,7 @@
 						<option value="gmail.com">gmail.com</option>
 						<option value="daum.net">daum.net</option>
 					</select>
-					<button type="button" class="btn btn-secondary" id="check-email-btn">인증하기</button>
+					<button type="button" class="btn btn-secondary" id="check-email-btn" onclick="emailCheck();">인증하기</button>
 					<span id="emailMsg" class="message" style="display: none;"></span>
 				</div>
 			</div>

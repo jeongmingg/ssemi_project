@@ -35,6 +35,13 @@
 		 WHERE NICKNAME = ?
 	</entry>
 	
+	<entry key="emailCheck">
+		SELECT
+		       COUNT(*) "COUNT"
+		  FROM MEMBER
+		 WHERE EMAIL = ?
+	</entry>
+	
 	<entry key="selectMemberId">
 		SELECT
 		       MEM_NO

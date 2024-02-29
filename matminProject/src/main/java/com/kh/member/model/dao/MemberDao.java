@@ -130,6 +130,36 @@ public class MemberDao {
 		return count;
 	}
 	
+	public int emailCheck(Connection conn, String checkEmail) {
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("emailCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, checkEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+	}
+	
 	public Member selectMemberId(Connection conn, String userName, String email) {
 		Member m = null;
 		

@@ -158,6 +158,10 @@ function validate() {
         emailInput.select();
 
         return false;
+    } else if(msg.text() != "") {
+        emailInput.select();
+
+        return false;
     }
 
 }
@@ -199,7 +203,7 @@ function idCheck() {
 
 // 닉네임 실시간 체크
 function nickCheck() {
-    const $nickInput = $("input[name=nickname");
+    const $nickInput = $("input[name=nickname]");
 
     $.ajax({
         url: "nickCheck.me",
@@ -207,7 +211,7 @@ function nickCheck() {
         success: function(result) {
             if(result == "NNNNN") {
                 $("#nicknameMsg").css("display", "block");
-                $("#nicknameMsg").text("* 이미 사용 중인 아이디입니다.");
+                $("#nicknameMsg").text("* 이미 사용 중인 닉네임입니다.");
 
             } else {
                 // 닉네임: 영문, 한글, 숫자, _ 포함 2자 이상 10자 이내
@@ -229,6 +233,38 @@ function nickCheck() {
             console.log("아이디 중복체크용 ajax 통신 실패");
         }
     });
+}
+
+// 이메일 인증하기 버튼 클릭 시, 체크
+function emailCheck() {
+    const email = $("input[name=email]");
+    const domain = $("input[name=domain]");
+    const fullEmail = email.val() + "@" + domain.val();
+    const msg = $("#emailMsg");
+
+    if(email.val() == "" || domain.val() == "") {
+        msg.css("display", "block");
+        msg.text("* 이메일을 입력해주세요");
+
+    } else {
+        $.ajax({
+            url: "emailCheck.me",
+            data: {checkEmail: fullEmail},
+            success: function(result) {
+                if(result == "NNNNN") {
+                    msg.css("display", "block");
+                    msg.text("* 이미 사용 중인 이메일입니다.");
+    
+                } else {
+                    msg.css("display", "none");
+                    msg.text("");
+                }
+            },
+            error: function() {
+                console.log("아이디 중복체크용 ajax 통신 실패");
+            }
+        });
+    }
 }
 
 function input_domain() {
