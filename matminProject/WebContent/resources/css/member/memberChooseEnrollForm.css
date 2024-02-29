@@ -41,11 +41,11 @@
 
 #common-enroll-btn{
     background-color: #E4910D;
-    border-color: #E4910D;
+    border: none;
     width: 300px;
-    height: 40px;
-    line-height: 25px;
-    margin: 15px;
+    height: 45px;
+    line-height: 35px;
+    margin: 15px 18px;
 }
 
 #hr{
@@ -60,13 +60,13 @@
 
 #naver-enroll-btn{
     background-color: #03c75a;
-    border-color: #03c75a;
+    border: none;
     width: 300px;
     height: 45px;
-    line-height: 44px;
+    line-height: 45px;
     margin: 5px;
     padding: 0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
 }
 

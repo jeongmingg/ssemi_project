@@ -31,6 +31,30 @@ public class MemberService {
 		
 	}
 	
+	public int nickCheck(String checkNick) {
+		
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().nickCheck(conn, checkNick);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
+	public int emailCheck(String checkEmail) {
+		
+		Connection conn = getConnection();
+		
+		int count = new MemberDao().emailCheck(conn, checkEmail);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
 	public Member selectMemberId(String userName, String email) {
 		
 		Connection conn = getConnection();
@@ -42,5 +66,53 @@ public class MemberService {
 		return m;
 		
 	}
+	
+	public int insertMember(Member m) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().insertMember(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int updateMemberAuth(String email) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMemberAuth(conn, email);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+//	public Member selectMemberEmail(String memId) {
+//		
+//		Connection conn = getConnection();
+//		
+//		Member m = new MemberDao().selectMemberEmail(conn, memId);
+//		
+//		close(conn);
+//		
+//		return m;
+//		
+//	}
 
 }

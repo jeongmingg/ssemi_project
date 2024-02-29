@@ -10,6 +10,7 @@ public class Member {
 	private String memName;
 	private String nickname;
 	private String email;
+	private int emailAuth;
 	private String address;
 	private int memWarning;
 	private Date enrollDate;
@@ -19,7 +20,7 @@ public class Member {
 	public Member() {}
 
 	public Member(String memNo, String memId, String memPwd, String memName, String nickname, String email,
-			String address, int memWarning, Date enrollDate, String memLevel, String memStatus) {
+			int emailAuth, String address, int memWarning, Date enrollDate, String memLevel, String memStatus) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -27,11 +28,22 @@ public class Member {
 		this.memName = memName;
 		this.nickname = nickname;
 		this.email = email;
+		this.emailAuth = emailAuth;
 		this.address = address;
 		this.memWarning = memWarning;
 		this.enrollDate = enrollDate;
 		this.memLevel = memLevel;
 		this.memStatus = memStatus;
+	}
+
+	public Member(String memId, String memPwd, String memName, String nickname, String email, String address) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickname = nickname;
+		this.email = email;
+		this.address = address;
 	}
 
 	public String getMemNo() {
@@ -82,6 +94,14 @@ public class Member {
 		this.email = email;
 	}
 
+	public int getEmailAuth() {
+		return emailAuth;
+	}
+
+	public void setEmailAuth(int emailAuth) {
+		this.emailAuth = emailAuth;
+	}
+
 	public String getAddress() {
 		return address;
 	}
@@ -125,8 +145,9 @@ public class Member {
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
-				+ ", nickname=" + nickname + ", email=" + email + ", address=" + address + ", memWarning=" + memWarning
-				+ ", enrollDate=" + enrollDate + ", memLevel=" + memLevel + ", memStatus=" + memStatus + "]";
+				+ ", nickname=" + nickname + ", email=" + email + ", emailAuth=" + emailAuth + ", address=" + address
+				+ ", memWarning=" + memWarning + ", enrollDate=" + enrollDate + ", memLevel=" + memLevel
+				+ ", memStatus=" + memStatus + "]";
 	}
 	
 }
