@@ -71,7 +71,15 @@ public class BoardDao {
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
 			
-			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("board_no"),
+								   rset.getString("board_type"),
+								   rset.getString("board_title"),
+								   rset.getString("nickname"),
+								   rset.getInt("board_count"),
+								   rset.getString("create_date")
+								   ));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
