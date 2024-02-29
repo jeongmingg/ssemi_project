@@ -1,5 +1,17 @@
+<%@page import="com.kh.common.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <% PageInfo pi = (PageInfo)request.getAttribute("pi"); 
+ 
+ 	// 페이징바 변수
+ 	int currentPage = pi.getCurrentPage();
+ 	int startPage = pi.getStartPage();
+ 	int endPage = pi.getEndPage();
+ 	int maxPage = pi.getMaxPage();
+ 
+ %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +36,7 @@
 	.list-area{
 		width: 1200px;
 		margin: auto;
+		height: auto;
 		text-align: center;
 		border-color: rgb(177, 177, 177);
 	}
@@ -117,14 +130,14 @@
 					</tr>
 				</tbody>
 		</table>
+
 		
-		<script>
+		<!--
 			$(function(){
 				$(".list-area>thead>tr").click(function(){
 					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
 				})
 			})
-		
 		
 		<br>
 		<div class="insert-area" align="right" style="width: 1350px;">
@@ -133,15 +146,33 @@
 
 		<br><br>
 		<!-- 페이징바-->
+		
+			<div class="paging-area" align="center">
+			
+			<% if(currentPage != 1) { %>
+           	 <button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= currentPage -1 %>'"> &lt; </button>
+            <% } %>
+            
+	            <% for(int p=startPage; p<=endPage; p++){ %>
+	            	<% if(p == currentPage){ %>
+	            		<button disabled><%= p %></button>
+	            	<% } else { %>
+	            		<button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= p %>'"><%= p %></button>
+	            	<% } %>
+	            <% } %>
+	        <% if(currentPage != maxPage){ %>
+           	 <button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= currentPage + 1 %>'"> &gt; </button>
+			<% } %>
+			
+        	</div>
+		
+		
+		<!-- 
               <div class="pagination">
                 <div class="pagination-group direction">
+                  <ul>              
                   <ul>
-                    <li class="disabled"><a href="<%= contextPath %>/list.bo?cpage=<%= " class="pagination-item left"><i class="Licon ico-left"></i></a></li>
-                  </ul>
-                </div>
-                <div class="pagination-group">
-                  <ul>
-                    <li class="on"><a href="#" class="pagination-item">1</a></li>
+                    <li class=""><a href="#" class="pagination-item">1</a></li>
                     <li class=""><a href="#" class="pagination-item">2</a></li>
                     <li class=""><a href="#" class="pagination-item">3</a></li>
                     <li class=""><a href="#" class="pagination-item">4</a></li>
@@ -155,7 +186,7 @@
                 </div>
               </div>
             </div>
-
+		 -->
 
 		<!-- -->
 		<div id="topBtn">
