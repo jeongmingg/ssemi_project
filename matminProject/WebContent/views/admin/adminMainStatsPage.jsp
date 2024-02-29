@@ -140,12 +140,12 @@
                 </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
+                <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%= contextpath %/adminupdate.bo">식당 등록/삭제 게시판</a></li>
                     <li><a href=""> 신고 게시판</a></li>
                 </ul>
-            
+
             </li>
         </ul>
     </div>
