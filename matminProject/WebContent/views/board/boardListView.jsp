@@ -96,14 +96,15 @@
 					<tr>
 						<th width="150">작성번호</th>
 						<th width="300">게시판유형</th>
-						<th width="380">제목</th>
-						<th width="190">작성자</th>
+						<th width="350">제목</th>
+						<th width="150">작성자</th>
+						<th>조회수</th>
 						<th>작성일자</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td colspan="5">존재하는 공지사항이 없습니다.</td>
+						<td colspan="6">존재하는 공지사항이 없습니다.</td>
 					</tr>
 
 					<tr>
@@ -111,10 +112,20 @@
 						<td>게시판유형</td>
 						<td>제목</td>
 						<td>사용자닉네임</td>
+						<td>조회수</td>
 						<td>작성일자</td>
 					</tr>
 				</tbody>
 		</table>
+		
+		<script>
+			$(function(){
+				$(".list-area>thead>tr").click(function(){
+					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
+				})
+			})
+		
+		
 		<br>
 		<div class="insert-area" align="right" style="width: 1350px;">
 			<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
@@ -125,7 +136,7 @@
               <div class="pagination">
                 <div class="pagination-group direction">
                   <ul>
-                    <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
+                    <li class="disabled"><a href="<%= contextPath %>/list.bo?cpage=<%= " class="pagination-item left"><i class="Licon ico-left"></i></a></li>
                   </ul>
                 </div>
                 <div class="pagination-group">

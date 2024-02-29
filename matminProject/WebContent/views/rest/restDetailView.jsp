@@ -932,12 +932,6 @@
 								<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
 								<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
 								
-								<!-- 팝업사진창 -->
-								 <div id="rvModal" class="modal">
-									<span class="close">&times;</span>
-									<img class="modal-content" id="img01">
-									<div id="caption"></div>
-								</div> 
 							</div>
 						</div>
 						<div class="review-like">
@@ -1022,18 +1016,6 @@
 
 	<script>
 	 
-	 /* 더보기 버튼 클릭시 접기*/
-
-			// $(".btn-more").click(function(){
-			// 		$(".list-menu-2").show();
-			// 		$(".btn-more").text("접기");
-			// 		$(".r").css({background:'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-up@2x.png) no-repeat right'
-			// 					,position: 'relative'
-			// 					,right: '-3px'
-			// 					,'text-align': 'right'
-			// 					,'background-size': '20px'
-			// 					});
-			// }) 
 			$(".btn-more").click(function(){
 				// 현재 상태를 확인하여 숨김/보임을 토글합니다.
 				if ($(".list-menu-2").is(":visible")) {
@@ -1057,31 +1039,6 @@
 			});
 			
 	</script>
-
-	<!--
-	<script>
-		// 모달관련 변수 만들기 
-		var rv_modal = document.getElementById("rvModal");
-
-		// Get the image and insert it inside the modal - use its "alt" text as a caption
-		var img = document.getElementById("rvImg");
-		var modalImg = document.getElementById("img01");
-		// var captionText = document.getElementById("caption");
-		img.onclick = function(){
-		rv_modal.style.display = "block";
-		modalImg.src = this.src;
-		// captionText.innerHTML = this.alt;
-		}
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() { 
-		rv_modal.style.display = "none";
-		}
-	</script>
-	-->
 
 		<!-- 공유 모달 -->
 		<script>
@@ -1117,20 +1074,7 @@
 			})
 			</script>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
