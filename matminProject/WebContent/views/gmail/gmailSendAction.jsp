@@ -13,7 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	String host = "http://localhost:8085" + request.getContextPath();
+	String host = "http://192.168.20.6:8085" + request.getContextPath();
 	String from = "works.jhnam@gmail.com";
 	String to = (String)request.getAttribute("email");
 	String code = SHA256.getEncrypt(to, "cos");
@@ -78,7 +78,10 @@
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 	
-	<h1 id="h1">이메일 주소 인증 메일이 전송되었습니다. 이메일에 들어가서 인증해주세요.</h1>
+	<h1 id="h1">
+		이메일 주소 인증 메일이 전송되었습니다. <br>
+		회원가입 시 입력한 이메일(<%= to %>)에 들어가서 인증해주세요.
+	</h1>
 	
 	<%@ include file="../common/footer.jsp" %>
 

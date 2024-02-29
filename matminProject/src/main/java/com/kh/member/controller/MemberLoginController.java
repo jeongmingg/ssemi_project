@@ -40,8 +40,13 @@ public class MemberLoginController extends HttpServlet {
 			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
 			
 		} else {
-			request.getSession().setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath());
+			if(loginUser.getEmailAuth() == 1) {
+				request.getSession().setAttribute("loginUser", loginUser);
+				response.sendRedirect(request.getContextPath());
+				
+			} else {
+				response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
+			}
 		}
 		
 	}
