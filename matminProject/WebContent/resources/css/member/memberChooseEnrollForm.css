@@ -43,8 +43,8 @@
     background-color: #E4910D;
     border: none;
     width: 300px;
-    height: 40px;
-    line-height: 25px;
+    height: 45px;
+    line-height: 35px;
     margin: 15px 18px;
 }
 
@@ -63,10 +63,10 @@
     border: none;
     width: 300px;
     height: 45px;
-    line-height: 44px;
+    line-height: 45px;
     margin: 5px;
     padding: 0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
 }
 
