@@ -34,6 +34,16 @@ public class Member {
 		this.memStatus = memStatus;
 	}
 
+	public Member(String memId, String memPwd, String memName, String nickname, String email, String address) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickname = nickname;
+		this.email = email;
+		this.address = address;
+	}
+
 	public String getMemNo() {
 		return memNo;
 	}
