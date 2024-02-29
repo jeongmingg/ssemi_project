@@ -33,6 +33,18 @@ public class Member {
 		this.memLevel = memLevel;
 		this.memStatus = memStatus;
 	}
+	
+	
+
+	public Member(String memNo, String memId, String memName, String nickname, int memWarning, Date enrollDate) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memName = memName;
+		this.nickname = nickname;
+		this.memWarning = memWarning;
+		this.enrollDate = enrollDate;
+	}
 
 	public String getMemNo() {
 		return memNo;

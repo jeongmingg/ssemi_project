@@ -1,55 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AdminDashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>AdminDashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
+        body {
+            padding-top: 70px;
+        }
+
         .outer {
-            width: 1000px;
-            height: 800px;
-            /* position: absolute; */
-            border: 1px solid orange;
-            text-align:center; 
-            margin-bottom: 50px;
-            position: fixed;
-            /* bottom: 0; */
-          
-            align-items:center; /* 위아래 기준 중앙정렬 */
-            justify-content:center; /* 좌우 기준 중앙정렬 */
-            position: relative;
-            
-         
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
         }
 
-        #best2 {
-            /* border: 1px solid gray; */
-            width: 400px;
-            height: 350px;
-            margin-left: 50px;
-            margin-bottom: 50px;
-        }
-
-        #best3 {
-            /* border: 1px solid gray; */
-            margin-right: 50px;
-            float: right;
-            margin-bottom: 50px;
+        #best2, #best3 {
+            margin-top: 20px;
         }
 
         .table1 {
-            clear: both;
-            padding: 5%;
+            margin: 20px auto;
         }
 
         table {
-            border-collapse: collapse;
             width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
         }
 
         th, td {
@@ -59,81 +42,74 @@
         }
 
         th {
-            /* background-color: #dddddd; */
             color: orange;
         }
 
+        #navi {
+            list-style-type: none;
+            max-width: 1200px;
+            margin: 0;
+            height: 100%;
+        }
 
-#navi>li>ul {
-    list-style-type: none;
-    padding: 0;
-    display: none;
-    position: absolute;
-    text-align: center;
-    /* background-color: lightgrey; submenu color */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); submenu shadow color*/
-    z-index: 1; /*submenu 보이게*/
-}
+        #navi > li > a {
+            color: orange;
+            font-size: 16px;
+            position: relative;
+            display: block;
+            padding: 15px;
+        }
 
-#navi>li>ul a {
-    font-size: 15px;
-    color: orange;
-    display: block;
-    padding: 10px;
-    transition: all 0.3s; /* Плавный переход при изменении стилей */
-}
+        #navi > li > ul {
+            list-style-type: none;
+            padding: 0;
+            display: none;
+            position: absolute;
+            text-align: center;
+            z-index: 1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-#navi>li>ul a:hover {
-    background-color: lightgray; /* horver시 backgrd-color*/
-    color: orange; /* hover시 text color */
-    transition: opacity 0.3s; /* opacity transition */
-    text-decoration: none;
-}
+        #navi > li > ul a {
+            font-size: 15px;
+            color: orange;
+            display: block;
+            padding: 10px;
+            transition: all 0.3s;
+        }
 
-#navi>li:hover>ul {
-    display: block;
-    opacity: 1; /*hover시 submenu 나옴*/
-}
+        #navi > li > ul a:hover {
+            background-color: lightgray;
+            color: orange;
+            text-decoration: none;
+        }
 
-#navi>li>a {
-    color: orange;
-    font-size: 5px;
-    position: relative;
-    display: block;
-    padding: 20px;
-    transition: all 0.3s; /* Плавный переход при изменении стилей */
-}
-
-#navi>li>a:hover {
-    background-color: lightgrey; /* Цвет фона при наведении на основной пункт меню */
-    color: orange; /* Цвет текста при наведении на основной пункт меню */
-    cursor: pointer;
-}
-        
+        #navi > li:hover > ul {
+            display: block;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
     <%@ include file="../common/navigator.jsp" %>
 
-    <br><br><br>
-
-    <div class="container">
+    <div class="container" width="82%">
         <!-- <p>Justified tabs:</p> -->
         <br><br>
         <ul id="navi" class="nav nav-tabs nav-justified">
             <li class="nav-item" >
-            <a class=" nav-link active" href="#" style="color: orange; font-size: 30px;" >Statistics</a>
+            <a class=" nav-link active" style="color: orange; font-size: 30px;" >Statistics</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Restaurants</a>
+            <a href="<%= contextPath %>/rest.list" class="nav-link" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
                     <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
                     <li><a href="<%= contextPath %>/rest.list">식당전체조회</a></li>
                 </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Member</a>
+            <a class="nav-link" href="<%= contextPath %>/memList.ad" style="color: orange;font-size: 30px;">Member</a>
                 <ul>
                     <li><a href="<%= contextPath %>/memList.ad">회원전체조회</a></li>
                    
@@ -219,7 +195,8 @@
         <div id="best3" style="float: right;">
             <canvas width='400' height='350' id='canvas'></canvas>
         </div>
-
+       
+        
         <script>
             const canvas = document.getElementById('canvas');
                 const ctx = canvas.getContext('2d');
@@ -432,7 +409,8 @@
                 ctx.restore();
              }
         </script>
-    </div>
-    <%@ include file="../common/footer.jsp"%>
+        <%@ include file="../common/footer.jsp"%>
+
+    </div>         
 </body>
 </html>

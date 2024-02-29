@@ -280,7 +280,18 @@
 							location.href="/mm";
 						});
 					});
-				
+
+					//로그인한 사람이 admin이면, 닉네임 누르면 앧믄 매인페이지로 가기
+					var loginUser  = "admin";
+					$("#header_3").click(function(){
+						if(loginUser ==="admin"){
+							location.href ="/mm/stat.ad";
+						}else{
+							alert('관리자만 사용할 수 있는 페이지입니다');
+						}
+					});
+
+
 					// 로그인, 회원가입 스타일
 					// $("#navi").children().children().mouseenter("color","#E4910D");
 					$("#header_3 a, #header_4 a").mouseenter(function(){

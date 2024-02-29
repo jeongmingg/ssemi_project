@@ -40,10 +40,15 @@ public class MemberLoginController extends HttpServlet {
 			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
 			
 		} else {
-			request.getSession().setAttribute("loginUser", loginUser);
-			response.sendRedirect(request.getContextPath());
+			 if(loginUser.getMemId().equals("admin")) {
+				 request.getSession().setAttribute("loginUser", loginUser);
+				 request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
+			 }else {
+				 request.getSession().setAttribute("loginUser", loginUser);
+				 response.sendRedirect(request.getContextPath());
+				 
+			 }
 		}
-		
 	}
 
 	/**
