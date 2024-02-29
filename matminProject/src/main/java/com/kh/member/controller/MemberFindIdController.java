@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
+
 /**
- * Servlet implementation class MemberFindIdPwdController
+ * Servlet implementation class MemberFindIdController
  */
-@WebServlet("/findAccountForm.me")
-public class MemberFindIdPwdController extends HttpServlet {
+@WebServlet("/findId.me")
+public class MemberFindIdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberFindIdPwdController() {
+    public MemberFindIdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +29,17 @@ public class MemberFindIdPwdController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/member/memberFindIdPwd.jsp").forward(request, response);
+		
+		request.setCharacterEncoding("utf-8");
+		
+		String userName = request.getParameter("userName");
+		String email = request.getParameter("email");
+		
+		Member m = new MemberService().selectMemberId(userName, email);
+		
+		request.setAttribute("m", m);
+		request.getRequestDispatcher("views/member/memberFindId.jsp").forward(request, response);
+		
 	}
 
 	/**

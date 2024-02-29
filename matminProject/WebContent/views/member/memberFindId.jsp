@@ -1,38 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String loginSuccess = (String)request.getAttribute("loginSuccess");
+	Member m = (Member)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>로그인</title>
+	<title>Insert title here</title>
 
 	<!-- css -->
-	<link rel="stylesheet" href="resources/css/member/memberCommonLogin.css">
-
+	<link rel="stylesheet" href="resources/css/member/memberFindId.css">
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 	<!-- jQuery library -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 	<!-- Popper JS -->
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
 	<!-- Latest compiled JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-	<!-- js -->
-	<script src="resources/js/member/memberCommonLogin.js"></script>
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 
-	<div class="login-form">
+	<div class="find-id-area">
 		<div id="topBtn">
 			<a href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
@@ -42,43 +40,38 @@
 	    		</svg>
 			</a>
 		</div>
+
+		<div class="result-area">
 		
-		<h3>Login</h3>
+		<% if(m != null) { %>
+			<!-- 1. 조회됐을 경우 -->
+			<span><strong>고객님의 정보와 일치하는 아이디입니다.</strong></span>
+			<div id="id-list">
+				<table align="center">
+					<tr>
+						<th width="100"><%= m.getMemId() %></th>
+						<td>가입입자 : <%= m.getEnrollDate() %></td>
+					</tr>
+				</table>
+			</div>
 
-		<div id="input_id_pwd">
-			<form action="<%= contextPath %>/login.me" method="post">
+			<div class="btn-area">
+				<a href="<%= contextPath %>/loginForm.me" class="btn btn-sm btn-secondary" id="loginBtn">로그인하기</a>
+				<a href="#" class="btn btn-sm btn-secondary" id="findPwdBtn">비밀번호 찾기</a>
+			</div>
 			
-				<input type="text" name="userId" placeholder="ID" required> <br>
-				<input type="password" name="userPwd" placeholder="Password" required> <br>
-				<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
-				<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
-
-				<% if(loginSuccess != null && loginSuccess.equals("실패")) { 	%>
-					<span id="message" style="display: block;">아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
-				<% } %>
-				<span id="message" style="display: none;"></span>
-				
-				<button type="submit" id="loginBtn" class="btn btn-primary" onclick="return validate();"><b>로그인</b></button>
-				
-			</form>
-		</div>
-
-		<div id="click_other">
-			<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
-			<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
-		</div>
-
-		<hr id="hr">
-
-		<div id="sns-login">
-			<p><b>간편 로그인</b></p>
-
-			<a href="#" id="naver-login-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
-				<br>
-				<a href="#" id="kakao-login-btn"><img src="resources/loginImg/kakao_login.png"></a>
+		<% } else { %>
+			<!-- 2. 조회되지 않았을 경우 -->
+			<span><strong>고객님의 정보와 일치하는 아이디가 존재하지 않습니다.</strong></span>
+			<div class="btn-area">
+				<a href="<%= contextPath %>/chooseForm.me" class="btn btn-sm btn-secondary" id="enrollBtn">회원가입</a>
+				<a href="<%= contextPath %>/findAccountForm.me" class="btn btn-sm btn-secondary" id="mainPageBtn">ID/PWD 찾기</a>
+			</div>
+		<% } %>
+		
 		</div>
 	</div>
-
+	
 	<%@ include file="../common/footer.jsp" %>
 
 </body>
