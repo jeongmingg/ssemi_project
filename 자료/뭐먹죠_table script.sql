@@ -298,6 +298,27 @@ COMMENT ON COLUMN IMG_FILE.IMG_STATUS IS '파일상태';
 CREATE SEQUENCE SEQ_FNO
 NOCACHE;
 
+--------------------------------------------------
+------------------  REPORT관련  ------------------   
+--------------------------------------------------
+-- 리뷰번호, 신고자, 신고분류, 신고날짜
+CREATE TABLE REPORT(
+    REPORT_NO VARCHAR2(20) PRIMARY KEY,
+    REVIEW_NO VARCHAR2(20) NOT NULL,
+    REPORT_WRITER VARCHAR2(20) NOT NULL,
+    REPORT_CTG VARCHAR2(300) NOT NULL,
+    REPORT_DATE DATE DEFAULT SYSDATE NOT NULL
+);
+
+COMMENT ON COLUMN REPORT.REPORT_NO IS '신고번호(ex.RP1)';
+COMMENT ON COLUMN REPORT.REVIEW_NO IS '리뷰번호(ex.RV1)';
+COMMENT ON COLUMN REPORT.REPORT_WRITER IS '신고자';
+COMMENT ON COLUMN REPORT.REPORT_CTG IS '신고 사유';
+COMMENT ON COLUMN REPORT.REPORT_DATE IS '신고 날짜';
+
+CREATE SEQUENCE SEQ_RPNO
+NOCACHE;
+
 ------------------------------------------------------
 -- MEMBER TABLE INSERT
 ------------------------------------------------------
