@@ -1,28 +1,23 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
-
 /**
- * Servlet implementation class AdminMemberListController
+ * Servlet implementation class RestStatsController
  */
-@WebServlet("/memList.ad")
-public class AdminMemberListController extends HttpServlet {
+@WebServlet("/stats.ad")
+public class RestStatsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberListController() {
+    public RestStatsController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +27,7 @@ public class AdminMemberListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Member> list = new MemberService().selectMemberList();
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/adminMemList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/adnim/adminMainStatsPage.jsp").forward(request, response);
 	}
 
 	/**
