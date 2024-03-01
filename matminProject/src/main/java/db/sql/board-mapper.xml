@@ -24,7 +24,6 @@
 						              , TO_CHAR(BOARD_DATE, 'YYYY.MM.DD') "BOARD_DATE"
 						           FROM BOARD 
 						           JOIN MEMBER ON (BOARD_WRITER = MEM_NO)
-						          WHERE BOARD_STATUS = 'Y'
 						          ORDER 
 						             BY 
 						                TO_NUMBER(REGEXP_REPLACE(BOARD_NO, '[^0-9]+', '')) DESC

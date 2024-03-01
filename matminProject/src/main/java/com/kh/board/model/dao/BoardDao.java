@@ -88,7 +88,6 @@ public class BoardDao {
 			close(rset);
 			close(pstmt);
 			
-			System.out.println(list);
 		} return list;
 		
 		}
