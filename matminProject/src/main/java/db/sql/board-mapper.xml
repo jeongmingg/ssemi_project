@@ -11,27 +11,26 @@
 		
 		
 		<entry key="selectBoardList">
-		SELECT *
-		  FROM
-		    (SELECT ROWNUM RNUM, A.*
-		      FROM
-		        (SELECT
-		               BOARD_NO
-		             , CATEGORY_NAME
-		             , BOARD_TITLE
-		             , USER_ID
-		             , COUNT
-		             , TO_CHAR(CREATE_DATE, 'YYYY/MM/DD') "CREATE_DATE"
-		          FROM BOARD B
-		          JOIN CATEGORY USING (CATEGORY_NO)
-		          JOIN MEMBER ON (BOARD_WRITER = USER_NO)
-		         WHERE BOARD_TYPE = 1
-		           AND B.STATUS = 'Y'
-		         ORDER 
-		            BY BOARD_NO DESC
-		         ) A
-		     )
-		  WHERE RNUM BETWEEN ? AND ?
+			SELECT *
+				 	 FROM
+				   		(SELECT ROWNUM RNUM, A.*
+						   FROM
+						        (SELECT
+						                CAST(SUBSTR(BOARD_NO, 2) AS NUMBER) "BOARD_NO"
+						              , BOARD_TYPE
+						           	  , BOARD_TITLE
+						              , NICKNAME
+						              , BOARD_COUNT
+						              , TO_CHAR(BOARD_DATE, 'YYYY.MM.DD') "BOARD_DATE"
+						           FROM BOARD 
+						           JOIN MEMBER ON (BOARD_WRITER = MEM_NO)
+						          WHERE BOARD_STATUS = 'Y'
+						          ORDER 
+						             BY 
+						                TO_NUMBER(REGEXP_REPLACE(BOARD_NO, '[^0-9]+', '')) DESC
+						    ) A
+						)
+			 WHERE RNUM BETWEEN ? AND ?
 		</entry>
 		
 
