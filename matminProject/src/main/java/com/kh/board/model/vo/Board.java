@@ -30,13 +30,13 @@ public class Board {
 	}
 	
 
-	public Board(String boardNo, String boardWriter, String boardType, String boardTitle, int boardCount,
+	public Board(String boardNo, String boardType, String boardTitle, String boardWriter, int boardCount,
 			String boardDate) {
 		super();
 		this.boardNo = boardNo;
-		this.boardWriter = boardWriter;
 		this.boardType = boardType;
 		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
 		this.boardCount = boardCount;
 		this.boardDate = boardDate;
 	}

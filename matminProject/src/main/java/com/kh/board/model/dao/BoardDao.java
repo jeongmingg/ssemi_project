@@ -22,7 +22,6 @@ public class BoardDao {
 		try {
 			prop.loadFromXML(new FileInputStream(BoardDao.class.getResource("/db/sql/board-mapper.xml").getPath()));
 		} catch (IOException e) {
-			
 			e.printStackTrace();
 		}
 	}
@@ -41,10 +40,9 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				listCount = rset.getInt("count");
+				listCount = rset.getInt("board_count");
 			}
 			
-			System.out.println(listCount);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -55,7 +53,7 @@ public class BoardDao {
 		
 	}
 	
-	public void selectBoardList(Connection conn, PageInfo pi) {
+	public ArrayList<Board> selectBoardList(Connection conn, PageInfo pi) {
 		ArrayList<Board> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -65,11 +63,13 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			int startRow = (pi.getCurrentPage() -1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit() -1;
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() - 1;
 			
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
+			
+			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Board(rset.getString("board_no"),
@@ -80,8 +80,16 @@ public class BoardDao {
 								   rset.getString("board_date")
 								   ));
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-	}
+		} finally {
+			close(rset);
+			close(pstmt);
+			
+			System.out.println(list);
+		} return list;
+		
+		}
 }
