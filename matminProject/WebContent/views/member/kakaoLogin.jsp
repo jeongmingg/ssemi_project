@@ -21,11 +21,12 @@
 		width="222" alt="카카오 로그인 버튼" />
 	</a>
 	<p id="token-result"></p>
-
+	<button class="api-btn" onclick="requestUserInfo()" style="visibility:hidden">사용자 정보 가져오기</button>
+	
 	<script>
 	  function loginWithKakao() {
 	    Kakao.Auth.authorize({
-	      redirectUri: 'https://developers.kakao.com/tool/demo/oauth',
+	      redirectUri: 'http://localhost:8085/mm',
 	    });
 	  }
 	
