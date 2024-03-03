@@ -22,7 +22,6 @@
             color: gray;
             width: 1100px;
             margin: auto;
-            margin-top: 50px;
             margin-bottom: 50px;
         }
 
@@ -41,7 +40,13 @@
         th {
             background-color: #f2f2f2;
         }
-
+  
+		.list-area>tbody>tr:hover{
+		background-color: rgba(92, 92, 92, 0.342);
+    	cursor:pointer;
+		font-weight: bolder;
+		}
+		
         #navi {
             list-style-type: none;
             max-width: 1200px;
@@ -114,10 +119,10 @@
                 </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
+            <a class="nav-link" href="<%= contextPath %>/list.bo" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="">식당 등록/삭제 게시판</a></li>
-                    <li><a href=""> 신고 게시판</a></li>
+                    <li><a href="<%=contextPath%>/list.bo">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%=contextPath%>/report.bo"> 신고 게시판</a></li>
                 </ul>
             
             </li>

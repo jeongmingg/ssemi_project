@@ -10,15 +10,11 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        body {
-            padding-top: 70px;
-        }
-
+    
         .outer {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
-            text-align: center;
         }
 
         #best2, #best3 {
@@ -31,13 +27,12 @@
 
         table {
             width: 100%;
-            margin-top: 20px;
             border-collapse: collapse;
         }
 
         th, td {
             border: 1px solid #dddddd;
-            text-align: left;
+            text-align: center;
             padding: 8px;
         }
 
@@ -99,27 +94,27 @@
         <br><br>
         <ul id="navi" class="nav nav-tabs nav-justified">
             <li class="nav-item" >
-            <a class=" nav-link active" style="color: orange; font-size: 30px;" >Statistics</a>
+            <a href="<%= contextPath %>/stat.ad" class=" nav-link active"  style="color: orange; font-size: 30px;">Statistics</a>
             </li>
             <li class="nav-item">
             <a href="<%= contextPath %>/rest.list" class="nav-link" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
                     <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
-                    <li><a href="<%= contextPath %>/rest.list">식당전체조회</a></li>
+                    <!-- <li><a href="<%= contextPath %>/rest.list">식당전체조회</a></li> -->
                 </ul>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="<%= contextPath %>/memList.ad" style="color: orange;font-size: 30px;">Member</a>
                 <ul>
-                    <li><a href="<%= contextPath %>/memList.ad">회원전체조회</a></li>
+                    <li align="center"><a href="<%= contextPath %>/memList.ad">회원전체조회</a></li>
                    
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
+                <a class="nav-link" href="<%= contextPath%>/list.bo" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="<%= contextpath %/adminupdate.bo">식당 등록/삭제 게시판</a></li>
-                    <li><a href=""> 신고 게시판</a></li>
+                    <li align="center"><a href="<%= contextPath%>/list.bo">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
 
             </li>
@@ -128,7 +123,6 @@
 
 
     <div class="outer" border="1">
-        <br><br><br>
 
         <div class="table1">
             <table align="center" border="1">
@@ -144,7 +138,7 @@
         </div>
 
         <div id="best2" style="float: left;">
-            <br><br>
+            
             <table border="1">
                 <tr>
                     <th>순위</th>

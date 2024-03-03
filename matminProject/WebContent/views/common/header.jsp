@@ -281,7 +281,7 @@
 						});
 					});
 
-					//로그인한 사람이 admin이면, 닉네임 누르면 앧믄 매인페이지로 가기
+					//로그인한 사람이 admin이면, 닉네임 클릭 시 에드민 매인페이지로 가기
 					var loginUser  = "admin";
 					$("#header_3").click(function(){
 						if(loginUser ==="admin"){

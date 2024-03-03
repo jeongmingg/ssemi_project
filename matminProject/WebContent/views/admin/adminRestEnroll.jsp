@@ -17,7 +17,7 @@
     .outer{
         border: 1px solid orange;
         color: orange;
-        width: 1000px;
+        width: 1100px;
         margin: auto;
         margin-bottom: 50px;
     }
@@ -101,10 +101,10 @@
                 </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="#" style="color: orange;font-size: 30px;">Board</a>
+            <a class="nav-link" href="<%= contextPath %>/list.bo" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="">식당 등록/삭제 게시판</a></li>
-                    <li><a href=""> 신고 게시판</a></li>
+                    <li><a href="<%= contextPath %>/list.bo">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
             
             </li>
