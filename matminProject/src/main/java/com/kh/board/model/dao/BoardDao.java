@@ -13,6 +13,7 @@ import java.util.Properties;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.member.model.dao.MemberDao;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -105,10 +106,10 @@ public class BoardDao {
 			
 			pstmt.setString(1, b.getRestName());
 			pstmt.setString(2, b.getRestAddress());
-			pstmt.setInt(1, Integer.parseInt(b.getBoardWriter()));
-			pstmt.setString(2, b.getBoardType());
-			pstmt.setString(3, b.getBoardTitle());
-			pstmt.setString(4, b.getBoardContent());
+			pstmt.setString(3, b.getBoardWriter());
+			pstmt.setString(4, b.getBoardType());
+			pstmt.setString(5, b.getBoardTitle());
+			pstmt.setString(6, b.getBoardContent());
 		
 			result = pstmt.executeUpdate();
 			

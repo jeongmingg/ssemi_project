@@ -17,6 +17,7 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
+import com.kh.member.model.dao.MemberDao;
 import com.oreilly.servlet.MultipartRequest;
 
 
@@ -50,22 +51,24 @@ public class BoardInsertController extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			String boardType = request.getParameter("type");
-			String boardTitle = request.getParameter("title");
-			String nickname = request.getParameter("name");
-			String boardDate = request.getParameter("enrollDate");
-			String restName = request.getParameter("restName");
-			String restAdd = request.getParameter("restAdd");
-			String boardContent = request.getParameter("content");
-			
+			String boardType = multiRequest.getParameter("type");
+			String boardTitle = multiRequest.getParameter("title");
+			String memNo = multiRequest.getParameter("userNo");
+			String boardDate = multiRequest.getParameter("enrollDate");
+			String restName = multiRequest.getParameter("restName");
+			String restAdd = multiRequest.getParameter("restAdd");
+			String boardContent = multiRequest.getParameter("content");
+		
+					
 			Board b = new Board();
+
+			b.setRestName(restName);
+			b.setRestAddress(restAdd);
+			b.setBoardWriter(memNo);
 			b.setBoardType(boardType);
 			b.setBoardTitle(boardTitle);
-			b.setBoardWriter(nickname);
-			b.setBoardDate(boardDate);
-			b.setRestId(restName);
-			b.setRestId(restAdd);
 			b.setBoardContent(boardContent);
+			b.setBoardDate(boardDate);
 			
 			ImgFile img = null;
 			
@@ -83,7 +86,7 @@ public class BoardInsertController extends HttpServlet {
 				
 				LocalDate currentDate = LocalDate.now();
 				request.setAttribute("currentDate", currentDate);
-				
+			
 				request.getRequestDispatcher(request.getContextPath()+"/list.bo?cpage=1").forward(request, response);
 			
 			} else {
@@ -91,7 +94,7 @@ public class BoardInsertController extends HttpServlet {
 				// 첨부파일이 있으면 업로드된 파일을 찾아서 삭제시킨 후 에러페이지 이동
 				
 				if(img != null) {
-					new File(savePath + img.getImgOriginName()).delete(); 
+					new File(savePath + img.getImgChangeName()).delete(); 
 				}
 				
 				HttpSession session = request.getSession();
