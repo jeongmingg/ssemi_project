@@ -6,10 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.PageInfo;
 
 import static com.kh.common.JDBCTemplate.*;
@@ -91,4 +93,110 @@ public class BoardDao {
 		} return list;
 		
 		}
-}
+	
+	public int insertBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getRestName());
+			pstmt.setString(2, b.getRestAddress());
+			pstmt.setInt(1, Integer.parseInt(b.getBoardWriter()));
+			pstmt.setString(2, b.getBoardType());
+			pstmt.setString(3, b.getBoardTitle());
+			pstmt.setString(4, b.getBoardContent());
+		
+			result = pstmt.executeUpdate();
+			
+			LocalDate currentDate = LocalDate.now();
+			System.out.println(currentDate);
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);	
+		} return result;
+	}
+		
+	
+	public int insertBImgFile(Connection conn, Board b, ImgFile img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertBImgFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getBoardNo());
+			pstmt.setString(2, img.getImgOriginName());
+			pstmt.setString(3, img.getImgChangeName());
+			pstmt.setString(4, img.getImgFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public Board selectBoard(Connection conn, int boardNo) {
+//		Board b = new Board();
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectBoard");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			pstmt.setInt(1, boardNo);
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			if(rset.next()) {
+//				b = new Board(rset.getString("nickname"),
+//						      rset.getString("board_type"),
+//						      rset.getString("board_title"),
+//						      rset.getString("board_content"),
+//						      rset.getString("board_date"),
+//						      rset.getString("rest_name"),
+//						      rset.getString("rest_address")
+//						     );
+//				
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			close(rset);
+//			close(pstmt);
+//		} return b;
+//		
+//		
+//		
+		
+		
+	}
+

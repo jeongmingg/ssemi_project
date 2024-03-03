@@ -93,6 +93,18 @@
 	<%@ include file="../common/navigator.jsp" %>
 
 	<br><br>
+	
+		<script>
+			<% if(alertMsg != null){%>
+				
+					alert("<%= alertMsg %>");
+				
+					<% session.removeAttribute("alertMsg"); %>
+				
+			<% } %>
+		</script>
+	
+	
 	<div class="outer">
 
 		<h3 align="center" style="font-weight: 700;">맛집등록요청 / 삭제 </h3>
@@ -144,13 +156,13 @@
 				</tbody>
 		</table>
 
-		
-		<!--
+		<script>
 			$(function(){
 				$(".list-area>thead>tr").click(function(){
 					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
 				})
 			})
+		</script>
 		
 		<br>
 		<div class="insert-area" align="right" style="width: 1350px;">

@@ -1,5 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,18 +179,22 @@ Latest compiled and minified CSS
 		<div class= "outerin-area" >
 
 		<!-- 맛집 등록 요청시 -->
-			<form action="#">
-				<table class="listView-area" style="width: 1200px">
+			<form id="enroll-form" action="<%= contextPath %>/insert.bo"  method="post" enctype="multipart/form-data">
+				
+				<!-- 게시판 유형, 제목, 식당이름, 식당주소, 내용, 닉네임, 첨부파일, 로그인한회원번호  -->
+				<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>>">
+
+				<table class="listView-area" style="width: 1200px">				
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="enroll" value="enroll" id="enroll" checked>맛집 등록 요청</td>
+							<input type="radio" name="type" value="enroll" id="enroll" checked>맛집 등록 요청</td>
 						  </label>	
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="enroll" value="delete" id="delete">맛집 등록 삭제</td>
+							<input type="radio" name="type" value="delete" id="delete">맛집 등록 삭제</td>
 						  </label>
 						</tr>
 					<tr>
@@ -200,11 +207,11 @@ Latest compiled and minified CSS
 						</td>
 
 						<th style="text-align: center; width: 150px";>닉네임
-							<input type="text" nme="name" style="width: 150px; font-weight: lighter;" required>
+							<input type="text" name="name" value="<%= loginUser.getNickname() %>" style="width: 150px; font-weight: lighter;" required readonly>
 						</th>
 						
 						<th style="width: 150px; text-align:left;">작성일자
-							<input type="text" name="enrollDate" style="width: 180px; font-weight: lighter; text-align: left;">
+							<input type="text" name="enrollDate" value=<%= request.getAttribute("currentDate") %>  style="width: 180px; font-weight: lighter; text-align: left;" readonly>
 						</th>
 					</tr>
 					<tr>
@@ -248,7 +255,7 @@ Latest compiled and minified CSS
 						<td></td>
 						<td colspan="4">	
 							<div class="file-area">
-								<input type="file" id="file" className="btnOfInput" multiple style="display: none;">
+								<input type="file" id="upfile" className="btnOfInput" multiple style="display: none;">
 								<label for="file" id="file_label">업로드</label>
 							</div>
 						</td>
@@ -257,7 +264,7 @@ Latest compiled and minified CSS
 
 				<div align="center">
 					<br>
-					<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
+					<a href="<%= contextPath %>/list.bo?cpage=1" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
 					<a href="<%= contextPath %>/list.bo" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
