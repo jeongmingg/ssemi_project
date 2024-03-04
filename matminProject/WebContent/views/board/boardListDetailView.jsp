@@ -154,8 +154,14 @@
 		color: gray;
 		font-weight: 600;
 	}
-
-	
+	.uploadFile{
+		color: gray;
+		font-style: none;
+	}
+	.uploadFile:hover{
+		color:#e4910d;
+		text-decoration: none;
+	}
 	
 	
 </style>
@@ -264,7 +270,7 @@
 							<div class="file-area">
 								<span>첨부파일이 없습니다</span>
 						<% } else { %>
-							<a href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" style="align=left"><%= img.getImgOriginName() %></a>
+								<a class="uploadFile" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>
 							</div>
 						</td>
 						<% } %>
@@ -278,13 +284,8 @@
 			</form>
 		</div>
 	</div>
-	
-	<script>
-
-	</script>
 
 	<script>
-
 
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
@@ -295,7 +296,8 @@
 		</div>
 
 
-	</div>
+	
+	</script>
 
 	<%@ include file="../common/footer.jsp" %>
 </body>

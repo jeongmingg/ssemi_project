@@ -122,27 +122,50 @@
 	.btnOfInput{
 		display: none;
 	}
-	.file-area{
+	/* .file-area{
 		border-radius: 10px;
 		box-sizing: border-box;
 		border: 1px solid lightgray;
 		height: 45px;
 		width: 89%;
 		float: left;
+	} */
+	.file_name{
+		border-radius: 10px;
+		box-sizing: border-box;
+		border: 1px solid lightgray;
+		height: 40px;
+		width: 820px;
+		padding-left: 0.6em;
+		padding-top: 0.5em;
+		display: inline-block;
+    	text-align: left;
+		margin-right: 5px;
+		color: gray;
 	}
-	#file_label{
-		margin-top: 7px;
+	.file_btn{
+		border-radius: 10px;
+		background-color: #e4910d;
+		box-sizing: border-box;
+		color: white;
+		height: 40px;
+		width: 100px;
+		padding-top: 0.6em;
+		display: inline-block;
+		margin-right: 118px;
+	}
+	/* #file_label{
 		cursor: pointer;
 		margin-left: 88%;
-		margin-top:8px;
+		margin-top:4px;
 		background-color: #e4910d;
 		border: solid 1px #e4910d;
 		color: white;
-		text-align: center;
 		border-radius: 8px;
 		width: 80px;
-		height: 27px;
-	}
+		height: 35px;
+		padding-top: 6px;
+	} */
 	.count-area {
 		font-size: 0.8em;
 		color: gray;
@@ -257,9 +280,15 @@
 						<td></td>
 						<td colspan="4">	
 							<div class="file-area">
-								<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
-								<label for="file" id="file_label">업로드</label>
+								<label>
+									<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
+									<span class="file_name">파일을 선택해주세요</span>
+									<span class="file_btn">파일선택</span>
+								</label>
 							</div>
+						<td>
+
+						</td>
 						</td>
 					</tr>
 				</table>
@@ -347,6 +376,16 @@
 			});
 		</script>
 
+		<script>
+		
+		$(function() {
+			 $("input[type=file]").on("change", function() {
+			        const fileName = $(this).val().split("\\").pop();
+			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
+		 	});
+		});
+		
+		</script>
 
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
