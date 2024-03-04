@@ -95,6 +95,7 @@ public class BoardDao {
 		
 		}
 	
+	
 	public int insertBoard(Connection conn, Board b) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -113,9 +114,7 @@ public class BoardDao {
 		
 			result = pstmt.executeUpdate();
 			
-			LocalDate currentDate = LocalDate.now();
-			System.out.println(currentDate);
-			
+			System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -134,10 +133,9 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, b.getBoardNo());
-			pstmt.setString(2, img.getImgOriginName());
-			pstmt.setString(3, img.getImgChangeName());
-			pstmt.setString(4, img.getImgFilePath());
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
 			
 			result = pstmt.executeUpdate();
 			
@@ -149,55 +147,93 @@ public class BoardDao {
 		} return result;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public Board selectBoard(Connection conn, int boardNo) {
-//		Board b = new Board();
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectBoard");
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			pstmt.setInt(1, boardNo);
-//			
-//			rset = pstmt.executeQuery();
-//			
-//			if(rset.next()) {
-//				b = new Board(rset.getString("nickname"),
-//						      rset.getString("board_type"),
-//						      rset.getString("board_title"),
-//						      rset.getString("board_content"),
-//						      rset.getString("board_date"),
-//						      rset.getString("rest_name"),
-//						      rset.getString("rest_address")
-//						     );
-//				
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			close(rset);
-//			close(pstmt);
-//		} return b;
-//		
-//		
-//		
+
+	public int increaseCount(Connection conn, int boardNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String bno = "B" + boardNo;
+		
+		String  sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
 		
 		
 	}
+	
+	public Board selectBoard(Connection conn, int boardNo) {
+		Board b = null;
+		String bno = "B" + boardNo;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		System.out.println(bno);
+		
+		String sql = prop.getProperty("selectBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bno);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				b = new Board(rset.getString("nickname"),
+						      rset.getString("board_type"),
+						      rset.getString("board_title"),
+						      rset.getString("board_content"),
+						      rset.getString("board_date"),
+						      rset.getString("rest_name"),
+						      rset.getString("rest_address")
+						      );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return b;
+	}
+	
+	public ImgFile selectImgFile(Connection conn, int boardNo) {
+		ImgFile img = null;
+		String bno = "B" + boardNo;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectImgFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bno);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				img = new ImgFile(rset.getString("img_file_no"),
+								  rset.getString("img_origin_name"),
+								  rset.getString("img_change_name"),
+								  rset.getString("img_file_path")
+								  );
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return img;
+
+	}
+		
+		
+}
 

@@ -69,19 +69,21 @@
 			       VALUES
 			       (
 			         'F'||SEQ_FNO.NEXTVAL
-			       , ?
+			       , 'B'||SEQ_BNO.CURRVAL
 			       , ?
 			       , ?
 			       , ?
 			       )
 		
 		</entry>
-		
-		
-		
-		
-		
-		
+
+		<entry key="increaseCount">
+		UPDATE 
+		       BOARD
+		   SET BOARD_COUNT = BOARD_COUNT + 1
+		 WHERE BOARD_NO = ?
+		   AND BOARD_STATUS = 'Y'
+		</entry>
 		
 		<entry key="selectBoard">
 		SELECT 
@@ -89,15 +91,25 @@
 		     , BOARD_TYPE
 		     , BOARD_TITLE
 		     , BOARD_CONTENT
-		     , TO_CHAR(BOARD_DATE, 'YYYY.MM.DD') "CREATE_DATE"
+		     , TO_CHAR(BOARD_DATE, 'YYYY.MM.DD') "BOARD_DATE"
 		     , REST_NAME
 		     , REST_ADDRESS
 		  FROM BOARD
 		  JOIN MEMBER ON (BOARD_WRITER = MEM_NO) 
-		  JOIN REST ON (REST_ID = REST_NO)
 		 WHERE BOARD_NO = ?
 		</entry>
-
-
+		
+		<entry key="selectImgFile">
+		SELECT 
+		       IMG_FILE_NO
+		     , IMG_ORIGIN_NAME
+		     , IMG_CHANGE_NAME
+		     , IMG_FILE_PATH
+		  FROM IMG_FILE
+		 WHERE REF_NO = ?
+		
+		</entry>
+		
+		
 
 </properties>

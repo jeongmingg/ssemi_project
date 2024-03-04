@@ -28,15 +28,6 @@ public class BoardService {
 		return list;
 	}
 	
-//	public Board selectBoard(int boardNo) {
-//		Connection conn = getConnection();
-//		
-//		Board b = new BoardDao().selectBoard(conn, boardNo);
-//	
-//		close(conn);
-//		return b;
-//	}
-	
 	public int insertBoard(Board b, ImgFile img) {
 			Connection conn = getConnection();
 			
@@ -58,4 +49,35 @@ public class BoardService {
 		
 			return result1 * result2;
 	}
+
+	public int increaseCount(int boardNo) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().increaseCount(conn, boardNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else { 
+			rollback(conn);
+		} return result;
+	}
+	
+	public Board selectBoard(int boardNo) {
+	Connection conn = getConnection();
+	
+	Board b = new BoardDao().selectBoard(conn, boardNo);
+
+	close(conn);
+	return b;
+}
+	
+	public ImgFile selectImgFile(int boardNo) {
+		Connection conn = getConnection();
+		
+		ImgFile img = new BoardDao().selectImgFile(conn, boardNo);
+		
+		close(conn);
+		return img;
+	}
+	
 }

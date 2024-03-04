@@ -3,6 +3,7 @@ package com.kh.board.controller;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,9 +52,11 @@ public class BoardInsertController extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
+	
+			
+			String boardWriter = multiRequest.getParameter("userNo");
 			String boardType = multiRequest.getParameter("type");
 			String boardTitle = multiRequest.getParameter("title");
-			String memNo = multiRequest.getParameter("userNo");
 			String boardDate = multiRequest.getParameter("enrollDate");
 			String restName = multiRequest.getParameter("restName");
 			String restAdd = multiRequest.getParameter("restAdd");
@@ -64,18 +67,19 @@ public class BoardInsertController extends HttpServlet {
 
 			b.setRestName(restName);
 			b.setRestAddress(restAdd);
-			b.setBoardWriter(memNo);
+			b.setBoardWriter(boardWriter);
 			b.setBoardType(boardType);
 			b.setBoardTitle(boardTitle);
 			b.setBoardContent(boardContent);
 			b.setBoardDate(boardDate);
 			
+			
 			ImgFile img = null;
 			
-			if(multiRequest.getOriginalFileName("upfile") != null) {
+			if(multiRequest.getOriginalFileName("file") != null) {
 				img = new ImgFile();
-				img.setImgOriginName(multiRequest.getOriginalFileName("upfile"));
-				img.setImgChangeName(multiRequest.getFilesystemName("upfile"));
+				img.setImgOriginName(multiRequest.getOriginalFileName("file"));
+				img.setImgChangeName(multiRequest.getFilesystemName("file"));
 				img.setImgFilePath("resources/board_upfiles/");
 			}
 			
@@ -83,10 +87,6 @@ public class BoardInsertController extends HttpServlet {
 		
 			
 			if(result > 0){
-				
-				LocalDate currentDate = LocalDate.now();
-				request.setAttribute("currentDate", currentDate);
-			
 				request.getRequestDispatcher(request.getContextPath()+"/list.bo?cpage=1").forward(request, response);
 			
 			} else {

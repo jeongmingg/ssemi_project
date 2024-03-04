@@ -28,6 +28,16 @@ public class ImgFile {
 		this.imgStatus = imgStatus;
 	}
 
+	
+	
+	public ImgFile(String imgFileNo, String imgOriginName, String imgChangeName, String imgFilePath) {
+		super();
+		this.imgFileNo = imgFileNo;
+		this.imgOriginName = imgOriginName;
+		this.imgChangeName = imgChangeName;
+		this.imgFilePath = imgFilePath;
+	}
+
 
 	public String getImgFileNo() {
 		return imgFileNo;

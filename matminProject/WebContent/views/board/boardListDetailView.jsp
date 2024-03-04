@@ -1,5 +1,11 @@
+<%@page import="com.kh.board.model.vo.ImgFile"%>
+<%@page import="com.kh.board.model.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Board b = (Board)request.getAttribute("b");
+    ImgFile img = (ImgFile)request.getAttribute("img");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +37,6 @@
 	.listView-area{
 		margin: auto;
 		margin-top: 50px;
-		text-align: center;
 		border-radius: 10px;
 		height: 500px;
 	}
@@ -43,10 +48,10 @@
 		border: 1px solid lightgray;
 		height: 35px;
 		padding-left: 0.6em;
-		padding-bottom: 0.2em;
+		padding-top: 5px;
 	}
 	.listView-area input:focus{
-		outline: solid #e4910d;
+		outline: none
 	}
 	.listView-area #enroll:focus{
 		outline: none;
@@ -64,7 +69,7 @@
 		padding-top: 0.3em;
 	}
 	.listView-area tr>td textarea:focus{
-		outline: solid #e4910d;
+		outline: none;
 	}
 	.listView-area tr>td{
 		width: 10px;
@@ -95,7 +100,7 @@
 		margin-right: 6px;
 		margin-bottom: 10px;
 		accent-color: #e4910d;
-		vertical-align: -13px
+		vertical-align: -13px;
 		}
 	[type='radio']:checked {
  		background-color: #e4910d;
@@ -128,6 +133,8 @@
 		height: 45px;
 		width: 89%;
 		float: left;
+		padding-left: 0.6em;
+   		padding-top: 10px 
 	}
 	#file_label{
 		margin-top: 7px;
@@ -183,37 +190,44 @@ Latest compiled and minified CSS
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
-						<td style="width: 80px;">
+						<td style="width: 80px; padding-top: 5px;" >
+						
+						<% if(b.getBoardType().equals("맛집 등록")){ %>
 						  <label>
-							<input type="radio" name="enroll" value="enroll" id="enroll" checked>맛집 등록 요청</td>
-						  </label>	
-						<td style="width: 80px;">
-						  <label>
-							<input type="radio" name="enroll" value="delete" id="delete">맛집 등록 삭제</td>
-						  </label>
+							<input type="radio" name="type" value="enroll" id="enroll" checked>맛집 등록 요청</td>
+						 
+						  <% } else { %>
+							<input type="radio" name="type" value="delete" id="delete" checked>맛집 삭제 요청</td>
+						   </label>	
+						  <% } %>
 						</tr>
 					<tr>
 						<th height="50">제목</th>
 						<td></td>
-						<td colspan="2" align="left">
-
-						<!-- 라디오 버튼클릭시 변경-->
-							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
-						</td>
-
+						
+						<% if(b.getBoardType().equals("맛집 등록")){ %>
+							<td colspan="2" align="left">
+								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
+							</td>
+						<% } else { %>
+							<td colspan="2" align="left">
+								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 삭제 요청 합니다." readonly>
+							</td>
+						<% } %>
+						
 						<th style="text-align: center; width: 150px";>닉네임
-							<input type="text" nme="name" style="width: 150px; font-weight: lighter;" required>
+							<input type="text" name="name" value="<%= b.getBoardWriter() %>" style="width: 150px; font-weight: lighter;" readonly>
 						</th>
 						
 						<th style="width: 150px; text-align:left;">작성일자
-							<input type="text" name="enrollDate" style="width: 180px; font-weight: lighter; text-align: left;">
+							<input type="text" name="enrollDate" value="<%= b.getBoardDate() %>" style="width: 180px; font-weight: lighter; text-align: left;" readonly>
 						</th>
 					</tr>
 					<tr>
 						<th height=50>식당이름</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" id="restName" name="restName" style="width: 100%;" placeholder="식당이름을 입력하세요." required>
+							<input type="text" id="restName" value="<%= b.getRestName() %>" name="restName" style="width: 100%;" readonly>
 						</td>
 						<td colspan="2">
 							<div id="check1" align="left" style="margin-left: 5px;"></div>
@@ -223,7 +237,7 @@ Latest compiled and minified CSS
 						<th height=50>식당주소</th>
 						<td></td>
 						<td colspan="2" align="left">
-							<input type="text" style="width: 100%;" name="restAdd" id="restAdd" placeholder="식당주소를 입력하세요." required>
+							<input type="text" value="<%= b.getRestAddress() %>"  style="width: 100%;" name="restAdd" id="restAdd" readonly>
 						</td>
 						<td colspan="2">
 							<div id="check2" align="left" style="margin-left: 5px;"></div>
@@ -237,9 +251,8 @@ Latest compiled and minified CSS
 							</div>
 						</th>
 						<td></td>
-						<td colspan="4" align="left">
-							<!-- 라디오 버튼클릭시 변경-->
-							<textarea id="content" name="content" maxlength="300" placeholder="추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>	
+						<td colspan="4" align="left">			
+							<textarea id="content" name="content" maxlength="300" required readonly><%= b.getBoardContent() %></textarea>	
 						</td>
 					</tr>
 
@@ -249,18 +262,20 @@ Latest compiled and minified CSS
 						<th height="0">사진</th>
 						<td></td>
 						<td colspan="4">	
+						<% if (img == null){ %>
 							<div class="file-area">
-								<input type="file" id="file" className="btnOfInput" multiple style="display: none;">
-								<label for="file" id="file_label">업로드</label>
+								<span>첨부파일이 없습니다</span>
+						<% } else { %>
+							<a href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" style="align=left"><%= img.getImgOriginName() %></a>
 							</div>
 						</td>
+						<% } %>
 					</tr>
 				</table>
 
 				<div align="center">
 					<br>
-					<a href="<%= contextPath %>/update.bo" class="btn btn-sm btn-secondary" id="btn-enroll">수정</a>
-					<a href="<%= contextPath %>/list.bo" class="btn btn-sm btn-secondary">취소</a>
+					<a onclick="history.back()" class="btn btn-sm btn-secondary" id="btn-enroll">목록가기</a>
 				</div>
 			</form>
 		</div>

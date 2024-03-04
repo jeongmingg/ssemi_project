@@ -1,7 +1,7 @@
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<% String currentDate = (String)request.getAttribute("currentDate"); %>
     
 <!DOCTYPE html>
 <html>
@@ -191,11 +191,11 @@ Latest compiled and minified CSS
 						<td></td>
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="type" value="맛집 등록" id="enroll" checked>맛집 등록</td>
+							<input type="radio" name="type" value="enroll" id="enroll" checked>맛집 등록 요청</td>
 						  </label>	
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="type" value="맛집 삭제" id="delete">맛집 삭제</td>
+							<input type="radio" name="type" value="delete" id="delete">맛집 삭제 요청</td>
 						  </label>
 						</tr>
 					<tr>
@@ -215,7 +215,7 @@ Latest compiled and minified CSS
 						</th>
 						
 						<th style="width: 150px; text-align:left;">작성일자
-							<input type="text" name="enrollDate" value=<%= request.getAttribute("currentDate") %>  style="width: 180px; font-weight: lighter; text-align: left;" readonly>
+							<input type="text" name="enrollDate" value="<%= currentDate %>"  style="width: 180px; font-weight: lighter; text-align: left;" readonly>
 						</th>
 					</tr>
 					<tr>
@@ -259,7 +259,7 @@ Latest compiled and minified CSS
 						<td></td>
 						<td colspan="4">	
 							<div class="file-area">
-								<input type="file" id="upfile" name="upfile" className="btnOfInput" multiple style="display: none;">
+								<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
 								<label for="file" id="file_label">업로드</label>
 							</div>
 						</td>
@@ -299,13 +299,13 @@ Latest compiled and minified CSS
 				var chkValue = $("input[type=radio]:checked").val();
 				
 				console.log(chkValue);
-				if(chkValue == "delete"){
+				if(chkValue == "맛집 삭제"){
 					// $("#title").attr("value", "  맛집 삭제 요청합니다");
 					$("#title").val("맛집 삭제 요청합니다")
 					$("#content").attr("placeholder", "식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내).");
 					lastCheckedValue = "delete"; // 'delete' 값 기억
 				} else{
-					if(lastCheckedValue == "delete"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
+					if(lastCheckedValue == "맛집 삭제"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
 						$("#title").val("맛집 등록 요청합니다.") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
 						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
 					}

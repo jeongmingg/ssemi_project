@@ -157,17 +157,21 @@
 		</table>
 
 		<script>
-			$(function(){
-				$(".list-area>thead>tr").click(function(){
-					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
-				})
-			})
+				$(".list-area tbody tr").click(function(){
+		            var boardNo = $(this).find('td:first').text();
+		            window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
+		        });
 		</script>
 		
 		<br>
-		<div class="insert-area" align="right" style="width: 1350px;">
-			<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
-		</div>
+		
+		<!--  로그인 회원만 창 보이게 지정 -->
+		
+		<% if(loginUser != null) { %>
+			<div class="insert-area" align="right" style="width: 1350px;">
+				<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
+			</div>
+		<% } %>
 
 		<br><br>
 		

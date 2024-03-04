@@ -48,16 +48,16 @@ public class Board {
 	}
 	
 	
-	public Board(String boardType, String boardTitle, String boardWriter, String boardDate, String restName, String restAddress,
-			String boardContent) {
+	public Board(String boardWriter, String boardType, String boardTitle, String boardContent, String boardDate, String restName, String restAddress
+				) {
 		super();
+		this.boardWriter = boardWriter;
 		this.boardType = boardType;
 		this.boardTitle = boardTitle;
-		this.boardWriter = boardWriter;
+		this.boardContent = boardContent;
 		this.boardDate = boardDate;
 		this.restName = restName;
 		this.restAddress = restAddress;
-		this.boardContent = boardContent;
 	}
 
 

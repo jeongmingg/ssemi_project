@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
+import com.kh.board.model.vo.ImgFile;
 
 /**
  * Servlet implementation class BoardDetailController
@@ -32,11 +33,29 @@ public class BoardDetailController extends HttpServlet {
 		
 		int boardNo =  Integer.parseInt(request.getParameter("bno"));
 		
+		System.out.println(boardNo);
+		
 		BoardService bService = new BoardService();
 		
-		Board b = bService.selectBoard(boardNo);
+		int result = bService.increaseCount(boardNo);
 		
-		request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
+		if(result > 0) {
+			
+			Board b = bService.selectBoard(boardNo);
+			ImgFile img = bService.selectImgFile(boardNo);
+			
+			request.setAttribute("b", b);
+			request.setAttribute("img", img);
+			
+			System.out.println(b);
+			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
+			
+		} else {
+			request.setAttribute("alertMsg", "조회를 실패하였습니다.");
+			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
+			
+		}
+		
 		
 		
 	}
