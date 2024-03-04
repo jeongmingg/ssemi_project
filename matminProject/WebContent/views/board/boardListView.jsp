@@ -1,5 +1,21 @@
+<%@page import="com.kh.board.model.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.common.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ <% PageInfo pi = (PageInfo)request.getAttribute("pi"); 
+ 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+ 	// 작성번호, 게시판타입, 게시판제목, 작성자닉네임, 게시판조회수, 게시판작성일
+ 
+ 	// 페이징바 변수
+ 	int currentPage = pi.getCurrentPage();
+ 	int startPage = pi.getStartPage();
+ 	int endPage = pi.getEndPage();
+ 	int maxPage = pi.getMaxPage();
+ 
+ %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +40,7 @@
 	.list-area{
 		width: 1200px;
 		margin: auto;
+		height: auto;
 		text-align: center;
 		border-color: rgb(177, 177, 177);
 	}
@@ -51,7 +68,9 @@
     	cursor:pointer;
 		font-weight: bolder;
     }
-    .pagination{width: 350px;}
+    .paging-area button{
+		margin: 15px;
+	}
 
 	</style>
 		<!-- Latest compiled and minified CSS -->
@@ -96,57 +115,87 @@
 					<tr>
 						<th width="150">작성번호</th>
 						<th width="300">게시판유형</th>
-						<th width="380">제목</th>
-						<th width="190">작성자</th>
+						<th width="350">제목</th>
+						<th width="150">작성자</th>
+						<th>조회수</th>
 						<th>작성일자</th>
 					</tr>
 				</thead>
 				<tbody>
+				<% if(list.isEmpty()){ %>
+				<!-- 게시글 없을 경우 -->
 					<tr>
-						<td colspan="5">존재하는 공지사항이 없습니다.</td>
+						<td colspan="6">존재하는 공지사항이 없습니다.</td>
 					</tr>
-
-					<tr>
-						<td>작성번호</td>
-						<td>게시판유형</td>
-						<td>제목</td>
-						<td>사용자닉네임</td>
-						<td>작성일자</td>
-					</tr>
+				<% }else{ %>
+				<!--  게시글 있을 경우 -->
+					
+					<% for(Board b : list) { %>
+						<tr>
+							<td><%= b.getBoardNo() %></td>
+							<td><%= b.getBoardType() %></td>
+							<td><%= b.getBoardTitle() %></td>
+							<td><%= b.getBoardWriter() %></td>
+							<td><%= b.getBoardCount() %></td>
+							<td><%= b.getBoardDate() %></td>
+						</tr>
+					<% } %>
+				<% } %>
 				</tbody>
 		</table>
+
+		
+		<!--
+			$(function(){
+				$(".list-area>thead>tr").click(function(){
+					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
+				})
+			})
+		
 		<br>
 		<div class="insert-area" align="right" style="width: 1350px;">
 			<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
 		</div>
 
 		<br><br>
+		
+		
 		<!-- 페이징바-->
-              <div class="pagination">
-                <div class="pagination-group direction">
-                  <ul>
-                    <li class="disabled"><a href="#" class="pagination-item left"><i class="Licon ico-left"></i></a></li>
-                  </ul>
-                </div>
-                <div class="pagination-group">
-                  <ul>
-                    <li class="on"><a href="#" class="pagination-item">1</a></li>
-                    <li class=""><a href="#" class="pagination-item">2</a></li>
-                    <li class=""><a href="#" class="pagination-item">3</a></li>
-                    <li class=""><a href="#" class="pagination-item">4</a></li>
-                    <li class=""><a href="#" class="pagination-item">5</a></li>
-                  </ul>
-                </div>
-                <div class="pagination-group direction">
-                  <ul>
-                    <li class=""><a href="#" class="pagination-item right"><i class="Licon ico-right"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+		<br><br>
+		  
+			<div class="paging-area" align="center">
+			
+			<% if(currentPage != 1) { %>
+           	 <button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= currentPage -1 %>'"> &lt; </button>
+            <% } %>
+            
+	            <% for(int p=startPage; p<=endPage; p++){ %>
+	            	<% if(p == currentPage){ %>
+	            		<button disabled><%= p %></button>
+	            	<% } else { %>
+	            		<button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= p %>'"><%= p %></button>
+	            	<% } %>
+	            <% } %>
+	        <% if(currentPage != maxPage){ %>
+           	 <button onclick="location.href='<%= contextPath %>/list.bo?cpage=<%= currentPage + 1 %>'"> &gt; </button>
+			<% } %>
+			
+        	</div>
 
+		<script>
+			$("button").hover(
+				function(){
+					$(this).css("color", "#e4910d");
+				},
+				function(){
+					$(this).css("color", ""); 
+				}
+       		 );
 
-		<!-- -->
+		</script>
+		
+
+		<!-- 탑버튼 -->
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
 				<g>

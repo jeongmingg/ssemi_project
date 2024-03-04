@@ -56,7 +56,7 @@
         <div id="navigator_1"></div>
         <div id="navigator_2">
             <ul id="navi">
-                <li><a href="<%= request.getContextPath() %>/list.bo" id="navi1">맛집등록/삭제</a></li>
+                <li><a href="<%= request.getContextPath() %>/list.bo?cpage=1" id="navi1">맛집등록/삭제</a></li>
                 <li><a href="#" id="navi2">맛슐랭</a></li>
                 <li><a href="<%= request.getContextPath() %>/recommend.rs" id="navi3">맛집뺑뺑이</a></li>
             </ul>
