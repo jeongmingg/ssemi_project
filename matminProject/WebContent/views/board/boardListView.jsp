@@ -93,6 +93,18 @@
 	<%@ include file="../common/navigator.jsp" %>
 
 	<br><br>
+	
+		<script>
+			<% if(alertMsg != null){%>
+				
+					alert("<%= alertMsg %>");
+				
+					<% session.removeAttribute("alertMsg"); %>
+				
+			<% } %>
+		</script>
+	
+	
 	<div class="outer">
 
 		<h3 align="center" style="font-weight: 700;">맛집등록요청 / 삭제 </h3>
@@ -144,18 +156,22 @@
 				</tbody>
 		</table>
 
-		
-		<!--
-			$(function(){
-				$(".list-area>thead>tr").click(function(){
-					location.href = '<%= contextPath %>/detail.bo?bno=' + &(this).children().eq(0).text();
-				})
-			})
+		<script>
+				$(".list-area tbody tr").click(function(){
+		            var boardNo = $(this).find('td:first').text();
+		            window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
+		        });
+		</script>
 		
 		<br>
-		<div class="insert-area" align="right" style="width: 1350px;">
-			<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
-		</div>
+		
+		<!--  로그인 회원만 창 보이게 지정 -->
+		
+		<% if(loginUser != null) { %>
+			<div class="insert-area" align="right" style="width: 1350px;">
+				<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary">등록</a>
+			</div>
+		<% } %>
 
 		<br><br>
 		
