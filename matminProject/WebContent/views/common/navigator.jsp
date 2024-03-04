@@ -83,8 +83,8 @@
     
     /* 확인버튼 */
     #modal-btn{
-        width: 100px;
-        height: 30px;
+        width: 150px;
+        height: 40px;
         background-color: rgb(228, 145, 13);
         color: white;
         border: none;
@@ -93,10 +93,12 @@
 
     /* 로고 스타일 */
     #logo{
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 15px;
 
     }
+
 
     /* 지역검색 selectBox 스타일 */
     /* 위에꺼 */
@@ -150,15 +152,15 @@
 } */
 
     /* 밑에거 */
-    .selectBox * { box-sizing: border-box; }
+    .selectBox * { box-sizing: border-box;}
     .selectBox {
         position: relative;
-        width: 150px;
-        height: 35px;
+        width: 250px;
+        height: 50px;
         border-radius: 4px;
         border: 2px solid #E4910D;
-        background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat;
-        background-size: 20px;
+        /* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
+        /* background-size: 20px; */
         cursor: pointer;
     }
 
@@ -176,7 +178,7 @@
 
     .selectBox .optionList {
         position: absolute; 
-        top: 28px;
+        top: 50px;
         left: 0;
         width: 100%;
         border: 1px solid #E4910D;
@@ -196,7 +198,7 @@
     .selectBox .optionList::-webkit-scrollbar-thumb:hover {background: #303030;}
 
     .selectBox.active .optionList {
-    max-height: 500px;
+      /* max-height: 900px; */
     }
 
     .selectBox .optionItem {
@@ -206,126 +208,181 @@
     }
 
     .selectBox .optionItem:hover {
-    background: #E4910D;
+    background: rgb(242, 210, 173);
     }
 
     .selectBox .optionItem:last-child {
     border-bottom: 0 none;
     }
 
+    .modal-body{
+      padding-top: 60px;
+    }
 </style>
 </head>
 <body>
-    <div class="wrap">
-    <div id="navigator">
-        <div id="navigator_1"></div>
-        <div id="navigator_2">
-            <ul id="navi">
-                <li><a href="<%= request.getContextPath() %>/list.bo?cpage=1" id="navi1">맛집등록/삭제</a></li>
-                <li><button id="navi2" type="button" data-toggle="modal" data-target="#myModal">맛슐랭</button></li>
-                <li><a href="<%= request.getContextPath() %>/recommend.rs" id="navi3">맛집뺑뺑이</a></li>
-            </ul>
-        </div>
-        <div id="navigator_3"></div>
-        
-        <!-- The Modal -->
-  <div class="modal" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content" align="center">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">우리 지역 맛슐랭</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
+	<div class="wrap">
+		<div id="navigator">
+			<div id="navigator_1"></div>
+			<div id="navigator_2">
+				<ul id="navi">
+					<li><a href="<%=request.getContextPath()%>/list.bo?cpage=1"
+						id="navi1">맛집등록/삭제</a></li>
+					<li><button id="navi2" type="button" data-toggle="modal"
+							data-target="#myModal">맛슐랭</button></li>
+					<li><a href="<%=request.getContextPath()%>/recommend.rs"
+						id="navi3">맛집뺑뺑이</a></li>
+				</ul>
+			</div>
+			<div id="navigator_3"></div>
 
-        
+			<!-- The Modal -->
+			<div class="modal" id="myModal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content" align="center">
 
-        <div class="modal-body" >
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<h4 class="modal-title">우리 지역 맛슐랭</h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
 
-            <!-- 위에꺼 -->
-            <!-- <div class="box">
-                <div class="selectBox">
-                  <select name="fruits" class="select">
-                    <option disabled selected>fruits 🍊</option>
-                    <option value="apple">apple</option>
-                    <option value="orange">orange</option>
-                    <option value="grape">grape</option>
-                    <option value="melon">melon</option>
-                  </select>
-                  <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
-                </div>
-              </div> -->
+						<!-- Modal body -->
 
-              <!-- 밑에꺼 -->
-          <img src="resources/matchelin/matchelin1.png" id="logo">
-          <div class="box">
-            <div class="selectBox ">
-              <button class="label">지역 검색</button>
-              <ul class="optionList">
-                <li class="optionItem">강남구</li>
-                <li class="optionItem">강동구</li>
-                <li class="optionItem">강북구</li>
-                <li class="optionItem">강서구</li>
-              </ul>
-            </div>
-            </div>
-        </div>
+						<div class="modal-body" style="height: 300px;">
+							<img src="resources/matchelin/matchelin1.png" id="logo"> <br>
+							<br>
+							<!-- 위에꺼 -->
+							<!-- <div class="box">
+					                  <div class="selectBox">
+					                    <select name="fruits" class="select">
+					                      <option disabled selected>지역 검색 🍊</option>
+					                      <option value="apple">강남구</option>
+					                      <option value="orange">강동구</option>
+					                      <option value="grape">강북구</option>
+					                      <option value="melon">강서구</option>
+					                    </select>
+					                    <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
+					                  </div>
+					                  </div> -->
 
-       
-          
-        
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button id="modal-btn" type="button" class="btn" data-dismiss="modal">확인</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-    </div>
+							<!-- 밑에꺼 -->
+							<div class="box">
+								<div class="selectBox ">
+									<button class="label" type="button">지역 선택</button>
+									<ul class="optionList">
+										<li class="optionItem">강남구</li>
+										<li class="optionItem">강동구</li>
+										<li class="optionItem">강북구</li>
+										<li class="optionItem">강서구</li>
+										<li class="optionItem">관악구</li>
+										<li class="optionItem">광진구</li>
+										<li class="optionItem">구로구</li>
+										<li class="optionItem">금천구</li>
+										<li class="optionItem">노원구</li>
+										<li class="optionItem">도봉구</li>
+										<li class="optionItem">동대문구</li>
+										<li class="optionItem">동작구</li>
+										<li class="optionItem">마포구</li>
+										<li class="optionItem">서대문구</li>
+										<li class="optionItem">서초구</li>
+										<li class="optionItem">성동구</li>
+										<li class="optionItem">성북구</li>
+										<li class="optionItem">송파구</li>
+										<li class="optionItem">양천구</li>
+										<li class="optionItem">영등포구</li>
+										<li class="optionItem">용산구</li>
+										<li class="optionItem">은평구</li>
+										<li class="optionItem">종로구</li>
+										<li class="optionItem">중구</li>
+										<li class="optionItem">중랑구</li>
+									</ul>
+								</div>
+							</div>
 
-    <script>
-        // $("#navi").children().children().mouseenter("color","#E4910D");
-        $("#navi a").mouseenter(function(){
-            $(this).css("color","#E4910D");
+						</div>
+
+						<!-- Modal footer -->
+						<div class="modal-footer">
+							<button id="modal-btn" type="submit" class="btn" data-dismiss="modal">확인</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script>
+				// $("#navi").children().children().mouseenter("color","#E4910D");
+				$("#navi a").mouseenter(function() {
+					$(this).css("color", "#E4910D");
+				});
+
+				$("#navi a").mouseout(function() {
+					$(this).css("color", "rgb(150, 150, 150)");
+				});
+
+				$("#navi button").mouseenter(function() {
+					$(this).css("color", "#E4910D");
+				});
+
+				$("#navi button").mouseout(function() {
+					$(this).css("color", "rgb(150, 150, 150)");
+				});
+
+				// select box css1
+				/*
+				const label = document.querySelector('.label');
+				const options = document.querySelectorAll('.optionItem');
+				const handleSelect = function(item) {
+				label.innerHTML = item.textContent;
+				label.parentNode.classList.remove('active');
+				}
+				options.forEach(function(option){
+				option.addEventListener('click', function(){handleSelect(option)})
+				})
+
+				label.addEventListener('click', function(){
+				if(label.parentNode.classList.contains('active')) {
+				    label.parentNode.classList.remove('active');
+				} else {
+				    label.parentNode.classList.add('active');
+				}
+				});
+				 */
+
+				$(document).ready(function() {
+          const label = $('.label');
+          const options = $('.optionItem');
+          const selectBox = $('.selectBox');
+          const optionList = $('.optionList');
+          const modalBody = $('.modal-body'); // modal-body 클래스 선택
+
+          const handleSelect = function(item) {
+            label.text(item.text());
+            label.parent().removeClass('active');
+          }
+
+          options.on('click', function() {
+            handleSelect($(this));
+          });
+
+          label.on('click', function() {
+            label.parent().toggleClass('active');
+          });
+
+          // 지역 선택 박스를 클릭했을 때 이벤트 처리
+          selectBox.on('click', function() {
+            optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
+
+            // modal-body 클래스의 높이 변경
+            modalBody.css('height', modalBody.css('height') === '300px' ? '1170px' : '300px');
+          });
+
+          // 확인 버튼 클릭 시 모달 닫기 및 페이지 이동
+          $('#modal-btn').on('click', function () {
+              window.location.href = '<%= request.getContextPath() %>/select.rs'; // 페이지 이동
+          });
         });
-
-        $("#navi a").mouseout(function(){
-            $(this).css("color", "rgb(150, 150, 150)");
-        });
-
-        $("#navi button").mouseenter(function(){
-            $(this).css("color","#E4910D");
-        });
-
-        $("#navi button").mouseout(function(){
-            $(this).css("color", "rgb(150, 150, 150)");
-        });
-
-
-        const label = document.querySelector('.label');
-        const options = document.querySelectorAll('.optionItem');
-        const handleSelect = function(item) {
-        label.innerHTML = item.textContent;
-        label.parentNode.classList.remove('active');
-        }
-        options.forEach(function(option){
-        option.addEventListener('click', function(){handleSelect(option)})
-        })
-
-        label.addEventListener('click', function(){
-        if(label.parentNode.classList.contains('active')) {
-            label.parentNode.classList.remove('active');
-        } else {
-            label.parentNode.classList.add('active');
-        }
-        });
-
-    </script>
-    </div>
+			</script>
+	</div>
 </body>
 </html>
