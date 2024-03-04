@@ -44,7 +44,7 @@
 		border: 1px solid lightgray;
 		height: 35px;
 		padding-left: 0.6em;
-		padding-bottom: 0.2em;
+		padding-top: 5px;
 	}
 	.listView-area input:focus{
 		outline: solid #e4910d;
@@ -154,8 +154,6 @@
 	
 </style>
 
-
-Latest compiled and minified CSS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -182,7 +180,7 @@ Latest compiled and minified CSS
 			<form id="enroll-form" action="<%= contextPath %>/insert.bo"  method="post" enctype="multipart/form-data">
 				
 				<!-- 게시판 유형, 제목, 식당이름, 식당주소, 내용, 닉네임, 첨부파일, 로그인한회원번호  -->
-				<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>>">
+				<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
 
 				<table class="listView-area" style="width: 1200px">			
 					
@@ -191,11 +189,11 @@ Latest compiled and minified CSS
 						<td></td>
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="type" value="enroll" id="enroll" checked>맛집 등록 요청</td>
+							<input type="radio" name="type" value="맛집 등록" id="enroll" checked>맛집 등록 요청</td>
 						  </label>	
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="type" value="delete" id="delete">맛집 삭제 요청</td>
+							<input type="radio" name="type" value="맛집 삭제" id="delete">맛집 삭제 요청</td>
 						  </label>
 						</tr>
 					<tr>
@@ -209,7 +207,7 @@ Latest compiled and minified CSS
 							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
 						</td>
 
-						<th style="text-align: center; width: 150px";>닉네임
+						<th style="text-align: center; width: 150px;">닉네임
 							
 							<input type="text" name="name" value="<%= loginUser.getNickname() %>" style="width: 150px; font-weight: lighter;" required readonly>
 						</th>

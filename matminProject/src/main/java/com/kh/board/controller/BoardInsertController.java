@@ -60,9 +60,8 @@ public class BoardInsertController extends HttpServlet {
 			String boardDate = multiRequest.getParameter("enrollDate");
 			String restName = multiRequest.getParameter("restName");
 			String restAdd = multiRequest.getParameter("restAdd");
-			String boardContent = multiRequest.getParameter("content");
-		
-					
+			String boardContent = multiRequest.getParameter("content");	
+			
 			Board b = new Board();
 
 			b.setRestName(restName);
@@ -87,7 +86,7 @@ public class BoardInsertController extends HttpServlet {
 		
 			
 			if(result > 0){
-				request.getRequestDispatcher(request.getContextPath()+"/list.bo?cpage=1").forward(request, response);
+				response.sendRedirect(request.getContextPath()+"/list.bo?cpage=1");
 			
 			} else {
 				

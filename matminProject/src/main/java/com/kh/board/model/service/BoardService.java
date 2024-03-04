@@ -32,12 +32,13 @@ public class BoardService {
 			Connection conn = getConnection();
 			
 			// Board테이블 인서트
-			
 			int result1 = new BoardDao().insertBoard(conn, b);
+			
+			// ImgFile테이블
 			int result2 = 1;
 			
 			if(img != null) {
-				result2 = new BoardDao().insertBImgFile(conn, b, img);
+				result2 = new BoardDao().insertBImgFile(conn, img);
 			}
 			
 			if(result1 > 0 && result2 > 0) {

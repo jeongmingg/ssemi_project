@@ -66,7 +66,7 @@
 		border-radius: 10px;
 		border: 1.5px solid lightgray;
 		padding-left: 0.6em;
-		padding-top: 0.3em;
+		padding-top: 0.6em;
 	}
 	.listView-area tr>td textarea:focus{
 		outline: none;
@@ -160,8 +160,6 @@
 	
 </style>
 
-
-Latest compiled and minified CSS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->

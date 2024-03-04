@@ -114,8 +114,6 @@ public class BoardDao {
 		
 			result = pstmt.executeUpdate();
 			
-			System.out.println(result);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -124,7 +122,7 @@ public class BoardDao {
 	}
 		
 	
-	public int insertBImgFile(Connection conn, Board b, ImgFile img) {
+	public int insertBImgFile(Connection conn, ImgFile img) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -173,8 +171,6 @@ public class BoardDao {
 		String bno = "B" + boardNo;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		System.out.println(bno);
 		
 		String sql = prop.getProperty("selectBoard");
 		
