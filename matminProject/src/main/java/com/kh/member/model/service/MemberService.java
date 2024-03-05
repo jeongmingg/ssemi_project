@@ -19,8 +19,17 @@ public class MemberService {
 		return m;
 	}
 	
-	public int idCheck(String checkId) {
+	public Member kakaoLoginMember(String userId) {
+		Connection conn = getConnection();
 		
+		Member m = new MemberDao().kakaoLoginMember(conn, userId);
+		
+		close(conn);
+		
+		return m;
+	}
+	
+	public int idCheck(String checkId) {
 		Connection conn = getConnection();
 		
 		int count = new MemberDao().idCheck(conn, checkId);
@@ -28,11 +37,9 @@ public class MemberService {
 		close(conn);
 		
 		return count;
-		
 	}
 	
 	public int nickCheck(String checkNick) {
-		
 		Connection conn = getConnection();
 		
 		int count = new MemberDao().nickCheck(conn, checkNick);
@@ -40,11 +47,9 @@ public class MemberService {
 		close(conn);
 		
 		return count;
-		
 	}
 	
 	public int emailCheck(String checkEmail) {
-		
 		Connection conn = getConnection();
 		
 		int count = new MemberDao().emailCheck(conn, checkEmail);
@@ -52,11 +57,9 @@ public class MemberService {
 		close(conn);
 		
 		return count;
-		
 	}
 	
 	public Member selectMemberId(String userName, String email) {
-		
 		Connection conn = getConnection();
 		
 		Member m = new MemberDao().selectMemberId(conn, userName, email);
@@ -64,11 +67,9 @@ public class MemberService {
 		close(conn);
 		
 		return m;
-		
 	}
 	
 	public int insertMember(Member m) {
-		
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().insertMember(conn, m);
@@ -82,11 +83,25 @@ public class MemberService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public int insertKakaoMember(Member m) {
+		Connection conn = getConnection();
 		
+		int result = new MemberDao().insertKakaoMember(conn, m);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 	
 	public int updateMemberAuth(String email) {
-		
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().updateMemberAuth(conn, email);
@@ -100,19 +115,6 @@ public class MemberService {
 		close(conn);
 		
 		return result;
-		
 	}
 	
-//	public Member selectMemberEmail(String memId) {
-//		
-//		Connection conn = getConnection();
-//		
-//		Member m = new MemberDao().selectMemberEmail(conn, memId);
-//		
-//		close(conn);
-//		
-//		return m;
-//		
-//	}
-
 }
