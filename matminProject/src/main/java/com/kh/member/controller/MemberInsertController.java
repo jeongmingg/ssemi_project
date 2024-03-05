@@ -36,11 +36,17 @@ public class MemberInsertController extends HttpServlet {
 		String memPwd = request.getParameter("userPwd");
 		String memName = request.getParameter("userName");
 		String nickname = request.getParameter("nickname");
-		String email = request.getParameter("email") + "@" + request.getParameter("domain");
-		String address = request.getParameter("address");
+		String email = "";
+		String address = "";
 		String kakaoUser = request.getParameter("kakaoUser");
-		
-		System.out.println(kakaoUser);
+
+		if(kakaoUser == null) {
+			email = request.getParameter("email") + "@" + request.getParameter("domain");
+			address = request.getParameter("address");
+			
+		} else {
+			email = request.getParameter("email");
+		}
 		
 		if("".equals(address)) {
 			address = null;
