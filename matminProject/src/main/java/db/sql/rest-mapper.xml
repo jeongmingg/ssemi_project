@@ -72,19 +72,26 @@
 		    BY REST_AVG DESC , REVIEW_COUNT DESC
 	</entry>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<entry key="selectAllRestList">
+		SELECT  
+			REST_NO
+			,REST_LOCAL_ID
+			,REST_NAME
+			,CTG_ID
+			,REST_ADDRESS
+			,REST_TEL
+			,REST_GRADE
+		FROM REST
+			WHERE REST_STATUS = 'Y'
+				
+		</entry>
+	
+		<entry key="selectRestCount">
+		SELECT 
+			COUNT(*) count
+			FROM REST
+		WHERE REST_STATUS = 'Y'
+		
+		</entry>
 
 </properties>

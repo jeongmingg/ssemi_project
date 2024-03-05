@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.common.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
 
@@ -64,6 +65,69 @@ public class RestDao {
 		
 	}
 	
+	public ArrayList<Rest> selectAllRestList(Connection conn , PageInfo pi){
+		//데이터 담을 객체 만들기
+		ArrayList<Rest> list = new ArrayList<Rest>();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_No"),
+									rset.getString("rest_Local_Id"),
+									rset.getString("rest_Name"),
+									rset.getString("ctg_Id"),
+									rset.getString("rest_Address"),
+									rset.getString("rest_Tel"),
+									rset.getInt("rest_Grade")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
+	
+	public int selectRestCount (Connection conn) {
+		int restCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				restCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return restCount;
+		
+		
+	}
+
 	public ArrayList<Rest> selectRestList(Connection conn, String lname) {
 		
 		// select문 => ResultSet(여러행) => ArrayList<Rest>에 담기
