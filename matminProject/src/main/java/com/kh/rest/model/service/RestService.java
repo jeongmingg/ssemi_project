@@ -18,4 +18,12 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
+	
+	public ArrayList<Rest> selectRestList(String lname){
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().selectRestList(conn, lname);
+		close(conn); 
+		return list;
+	}
 }

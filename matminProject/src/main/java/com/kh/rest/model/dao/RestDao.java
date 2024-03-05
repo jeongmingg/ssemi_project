@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
 
 public class RestDao {
@@ -59,6 +61,44 @@ public class RestDao {
 		}
 			return list;
 		
+		
+	}
+	
+	public ArrayList<Rest> selectRestList(Connection conn, String lname) {
+		
+		// select문 => ResultSet(여러행) => ArrayList<Rest>에 담기
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, lname);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("local_name"),
+								  rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			return list;
 		
 	}
 }
