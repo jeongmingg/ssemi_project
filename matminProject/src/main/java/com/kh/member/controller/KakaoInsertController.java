@@ -11,16 +11,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberInsertController
+ * Servlet implementation class KakaoInsertController
  */
-@WebServlet("/insert.me")
-public class MemberInsertController extends HttpServlet {
+@WebServlet("/kakaoInsert.me")
+public class KakaoInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInsertController() {
+    public KakaoInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,30 +33,32 @@ public class MemberInsertController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		String memId = request.getParameter("userId");
-		String memPwd = request.getParameter("userPwd");
+		String memPwd = null;
 		String memName = request.getParameter("userName");
 		String nickname = request.getParameter("nickname");
-		String email = request.getParameter("email") + "@" + request.getParameter("domain");
-		int emailAuth = 0;
-		String address = request.getParameter("address");
-		
-		if("".equals(address)) {
-			address = null;
-		} else {
-			address = "서울특별시 " + address;
-		}
+		String email = request.getParameter("email");
+		int emailAuth = 1;
+		String address = null;
 		
 		Member m = new Member(memId, memPwd, memName, nickname, email, emailAuth, address);
 		
-		int result = new MemberService().insertMember(m);
+		int result = new MemberService().insertKakaoMember(m);
 		
 		if(result > 0) {
-			response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + email);
+			Member loginUser = new MemberService().kakaoLoginMember(memId);
 			
+			if(loginUser == null) {
+				request.getSession().setAttribute("alertMsg", "카카오 로그인 실패");
+				response.sendRedirect(request.getContextPath());
+				
+			} else {
+				request.getSession().setAttribute("loginUser", loginUser);
+				response.sendRedirect(request.getContextPath());
+			}
 		} else {
-			request.getSession().setAttribute("alertMsg", "회원가입을 실패했습니다.");
-			response.sendRedirect(request.getContextPath() + "/chooseForm.me");
-		}		
+			
+		}
+		
 	}
 
 	/**

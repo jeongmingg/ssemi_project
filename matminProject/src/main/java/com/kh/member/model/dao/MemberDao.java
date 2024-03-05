@@ -71,6 +71,47 @@ public class MemberDao {
 		
 	}
 	
+	public Member kakaoLoginMember(Connection conn, String userId) {
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("kakaoLoginMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getString("mem_no"),
+							   rset.getString("mem_id"),
+							   rset.getString("mem_pwd"),
+							   rset.getString("mem_name"),
+							   rset.getString("nickname"),
+							   rset.getString("email"),
+							   rset.getInt("email_auth"),
+							   rset.getString("address"),
+							   rset.getInt("mem_warning"),
+							   rset.getDate("enroll_date"),
+							   rset.getString("mem_level"),
+							   rset.getString("mem_status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+	}
+	
 	public int idCheck(Connection conn, String checkId) {
 		int count = 0;
 		
@@ -211,15 +252,38 @@ public class MemberDao {
 			pstmt.setString(3, m.getMemName());
 			pstmt.setString(4, m.getNickname());
 			pstmt.setString(5, m.getEmail());
-			pstmt.setString(6, m.getAddress());
+			pstmt.setInt(6, m.getEmailAuth());
+			pstmt.setString(7, m.getAddress());
 			
-			/*
-			if(m.getAddress().equals("")) {
-				pstmt.setString(6, "null");
-			} else {
-				pstmt.setString(6, m.getAddress());
-			}
-			*/
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int insertKakaoMember(Connection conn, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemId());
+			pstmt.setString(2, m.getMemPwd());
+			pstmt.setString(3, m.getMemName());
+			pstmt.setString(4, m.getNickname());
+			pstmt.setString(5, m.getEmail());
+			pstmt.setInt(6, m.getEmailAuth());
+			pstmt.setString(7, m.getAddress());
 			
 			result = pstmt.executeUpdate();
 			
@@ -256,38 +320,5 @@ public class MemberDao {
 		
 		return result;
 	}
-	
-//	public Member selectMemberEmail(Connection conn, String memId) {
-//		Member m = null;
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectMemberEmail");
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			pstmt.setString(1, memId);
-//			rset = pstmt.executeQuery();
-//			
-//			if(rset.next()) {
-//				m = new Member();
-//				
-//				m.setMemNo(rset.getString("mem_no"));
-//				m.setEmail(rset.getString("email"));
-//			}
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			
-//		} finally {
-//			close(rset);
-//			close(pstmt);
-//		}
-//		
-//		return m;
-//	}
-
 	
 }

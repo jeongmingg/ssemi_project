@@ -18,18 +18,12 @@
 	String to = (String)request.getAttribute("email");
 	String code = SHA256.getEncrypt(to, "cos");
 	
-	System.out.println("============= " + host + " =============");
-	System.out.println("============= gmailSendAction에 받아온 email: " + to + "=============");
-	
 	//사용자에게 보낼 메시지
 	String subject = "회원가입을 위한 이메일 인증 메일입니다.";
 	String content = "다음 링크에 접속하여 이메일 인증을 진행해주세요. " 
 	        + "<a href='" + host + "/gmailCheckAction?email=" + to + "&code=" + code
 			+ "'>이메일 인증하기</a>";
 	
-	System.out.println("============= 사용자한테 보내는 메시지 =============");
-	System.out.println(content);
-
 	Properties p = new Properties();
 	p.put("mail.smtp.user", from);
 	p.put("mail.smtp.host", "smtp.googlemail.com");
