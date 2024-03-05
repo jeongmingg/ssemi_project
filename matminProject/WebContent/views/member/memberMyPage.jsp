@@ -62,27 +62,57 @@
 				<div id="myInfo" class="info active">
 					<table>
 						<tr>
-							<td width="100">이름</td>
-							<td><input type="text" value="<%= loginUser.getMemName() %>" disabled></td>
+							<td width="100">아이디</td>
+							<td><input type="text" value="<%= loginUser.getMemId() %>" disabled></td>
+							<!-- <td><span><%= loginUser.getMemId() %></span></td> -->
 						</tr>
 						<tr>
-							<td>아이디</td>
-							<td><input type="text" value="<%= loginUser.getMemId() %>" disabled></td>
+							<td>이&nbsp;&nbsp;&nbsp;름</td>
+							<td><input type="text" value="<%= loginUser.getMemName() %>"></td>
+							<!-- <td><span><%= loginUser.getMemName() %></span></td> -->
 						</tr>
 						<tr>
 							<td>닉네임</td>
-							<td><input type="text" value="<%= loginUser.getNickname() %>" disabled></td>
+							<td><input type="text" value="<%= loginUser.getNickname() %>"></td>
+							<!-- <td><span><%= loginUser.getNickname() %></span></td> -->
 						</tr>
 						<tr>
 							<td>이메일</td>
 							<td><input type="text" value="<%= loginUser.getEmail() %>" disabled></td>
+							<!-- <td><span><%= loginUser.getEmail() %></span></td> -->
 						</tr>
 						<tr>
 							<td>거주지</td>
 							<% if(loginUser.getAddress() != null) { %>
-								<td><input type="text" value="<%= loginUser.getAddress() %>" disabled></td>
+								<td>
+									<span>
+										서울특별시
+										<select name="address" id="selectAddress">
+											<option value="">선택안함</option>
+											<option selected>강남구</option>
+											<option>강북구</option>
+											<option>강서구</option>
+											<option>강동구</option>
+											<option>관악구</option>
+										</select>
+									</span>
+								</td>
+								<!-- <td><span><%= loginUser.getAddress() %></span></td> -->
 							<% } else { %>
-								<td><input type="text" value="선택안함" disabled></td>
+								<td>
+									<span>
+										서울특별시
+										<select name="address" id="selectAddress">
+											<option value="" selected>선택안함</option>
+											<option>강남구</option>
+											<option>강북구</option>
+											<option>강서구</option>
+											<option>강동구</option>
+											<option>관악구</option>
+										</select>
+									</span>
+								</td>
+								<!-- <td><span>선택안함</span></td> -->
 							<% } %>
 						</tr>
 					</table>
