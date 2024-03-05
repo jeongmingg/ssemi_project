@@ -92,7 +92,7 @@
     }
 
     /* 로고 스타일 */
-    #logo{
+    #matchelin-logo{
         width: 120px;
         height: 120px;
         margin-bottom: 15px;
@@ -181,7 +181,7 @@
         top: 50px;
         left: 0;
         width: 100%;
-        border: 1px solid #E4910D;
+        border: none;
         background: #fff;
         color: black;
         list-style-type: none;
@@ -201,18 +201,22 @@
       /* max-height: 900px; */
     }
 
+    .selectBox.active .optionList {
+      border: 1px solid #E4910D; /* 지역 선택 시 border 보임 */
+    }
+
     .selectBox .optionItem {
-    border-bottom: 1px dashed #E4910D;
-    padding: 5px 15px 5px;
-    transition: .1s;
+      border-bottom: 1px dashed #E4910D;
+      padding: 5px 15px 5px;
+      transition: .1s;
     }
 
     .selectBox .optionItem:hover {
-    background: rgb(242, 210, 173);
+      background: rgb(242, 210, 173);
     }
 
     .selectBox .optionItem:last-child {
-    border-bottom: 0 none;
+      border-bottom: 0 none;
     }
 
     .modal-body{
@@ -250,7 +254,7 @@
 						<!-- Modal body -->
 
 						<div class="modal-body" style="height: 300px;">
-							<img src="resources/matchelin/matchelin1.png" id="logo"> <br>
+							<img src="resources/matchelin/matchelin1.png" id="matchelin-logo"> <br>
 							<br>
 							<!-- 위에꺼 -->
 							<!-- <div class="box">

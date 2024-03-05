@@ -158,6 +158,7 @@
 	            justify-content:center; /* 좌우 기준 중앙정렬 */
                 position: relative;
                 z-index: -2;
+                padding-top: 30px;
 	        }
 	        .swiper-slide img {
 	            /* box-shadow:0 0 5px #555; */
@@ -169,7 +170,11 @@
 	        }
             
             /* 식당이름 스타일 */
-            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 14px;}
+            .swiper-slide figcaption{
+                text-align: left; 
+                font-weight: 600; font-size: 14px;
+                padding-top: 2px;
+            }
     </style>
 </head>
 <body>
