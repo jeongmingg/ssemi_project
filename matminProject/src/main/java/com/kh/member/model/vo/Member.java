@@ -16,8 +16,27 @@ public class Member {
 	private Date enrollDate;
 	private String memLevel;
 	private String memStatus;
+	private String kakaoUser;
 	
 	public Member() {}
+
+	public Member(String memNo, String memId, String memPwd, String memName, String nickname, String email,
+			int emailAuth, String address, int memWarning, Date enrollDate, String memLevel, String memStatus, String kakaoUser) {
+		super();
+		this.memNo = memNo;
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickname = nickname;
+		this.email = email;
+		this.emailAuth = emailAuth;
+		this.address = address;
+		this.memWarning = memWarning;
+		this.enrollDate = enrollDate;
+		this.memLevel = memLevel;
+		this.memStatus = memStatus;
+		this.kakaoUser = kakaoUser;
+	}
 
 	public Member(String memNo, String memId, String memPwd, String memName, String nickname, String email,
 			int emailAuth, String address, int memWarning, Date enrollDate, String memLevel, String memStatus) {
@@ -43,6 +62,18 @@ public class Member {
 		this.memName = memName;
 		this.nickname = nickname;
 		this.email = email;
+		this.address = address;
+	}
+
+	public Member(String memId, String memPwd, String memName, String nickname, String email, int emailAuth,
+			String address) {
+		super();
+		this.memId = memId;
+		this.memPwd = memPwd;
+		this.memName = memName;
+		this.nickname = nickname;
+		this.email = email;
+		this.emailAuth = emailAuth;
 		this.address = address;
 	}
 
@@ -142,12 +173,20 @@ public class Member {
 		this.memStatus = memStatus;
 	}
 
+	public String getKakaoUser() {
+		return kakaoUser;
+	}
+
+	public void setKakaoUser(String kakaoUser) {
+		this.kakaoUser = kakaoUser;
+	}
+
 	@Override
 	public String toString() {
 		return "Member [memNo=" + memNo + ", memId=" + memId + ", memPwd=" + memPwd + ", memName=" + memName
 				+ ", nickname=" + nickname + ", email=" + email + ", emailAuth=" + emailAuth + ", address=" + address
 				+ ", memWarning=" + memWarning + ", enrollDate=" + enrollDate + ", memLevel=" + memLevel
-				+ ", memStatus=" + memStatus + "]";
+				+ ", memStatus=" + memStatus + ", kakaoUser=" + kakaoUser + "]";
 	}
 	
 }
