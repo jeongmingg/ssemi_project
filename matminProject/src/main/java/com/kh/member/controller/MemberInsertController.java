@@ -38,6 +38,9 @@ public class MemberInsertController extends HttpServlet {
 		String nickname = request.getParameter("nickname");
 		String email = request.getParameter("email") + "@" + request.getParameter("domain");
 		String address = request.getParameter("address");
+		String kakaoUser = request.getParameter("kakaoUser");
+		
+		System.out.println(kakaoUser);
 		
 		if("".equals(address)) {
 			address = null;

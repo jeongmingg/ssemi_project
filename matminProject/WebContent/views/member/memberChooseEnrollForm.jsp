@@ -185,15 +185,16 @@
 
 		function insertKakaoUser(id, email, name, nickname) {
 			$.ajax({
-				url: "insertKakao.me",
+				url: "insert.me",
 				data: {
-					id: id,
+					userId: id,
 					email: email,
-					name: name,
-					nickname: nickname
+					userName: name,
+					nickname: nickname,
+					kakaoUser: 'Y'
 				},
 				success: function() {
-
+					console.log("kakao user ajax 호출 성공");
 				},
 				error: function() {
 					console.log("kakao user ajax 호출 실패");
