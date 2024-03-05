@@ -162,6 +162,18 @@
 		color:#e4910d;
 		text-decoration: none;
 	}
+	#btn-update{
+		background-color: #e4910d;
+		color: white;
+		border: 1px solid #e4910d;
+		margin-right: 3px;
+    	margin-left: 3px;
+	}
+	#btn-delete{
+		background-color: rgb(85, 85, 85);
+		color: white;
+		border: 1px solid rgb(85, 85, 85);
+	}
 	
 	
 </style>
@@ -211,11 +223,11 @@
 						
 						<% if(b.getBoardType().equals("맛집 등록")){ %>
 							<td colspan="2" align="left">
-								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
+								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다" readonly>
 							</td>
 						<% } else { %>
 							<td colspan="2" align="left">
-								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 삭제 요청 합니다." readonly>
+								<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 삭제 요청 합니다" readonly>
 							</td>
 						<% } %>
 						
@@ -277,13 +289,31 @@
 					</tr>
 				</table>
 
-				<div align="center">
+				<div id="btn" align="center">
 					<br>
-					<a onclick="history.back()" class="btn btn-sm btn-secondary" id="btn-enroll">목록가기</a>
+					<a onclick="history.back()" class="btn btn-sm btn-secondary" id="btn-back">목록가기</a>
+						
+				<% if(loginUser != null && loginUser.getNickname().equals(b.getBoardWriter())){ %>	
+						<%
+						// 기존 boardNo 문자열에서 숫자만 추출
+						String boardNo =  b.getBoardNo().replaceAll("\\D", "");
+						// System.out.println(extractedNumber);
+						%>
+					
+					<a href="<%= contextPath %>/updateForm.bo?bno=<%= boardNo %>" class="btn btn-sm btn-secondary" id="btn-update">수정</a>
+					<a href="<%= contextPath %>/delete.bo?bno=<%= boardNo %>" class="btn btn-sm btn-secondary" id="btn-delete">삭제</a>
+				<% } %>
 				</div>
 			</form>
 		</div>
 	</div>
+
+	<script>
+	
+	
+	</script>
+
+
 
 	<script>
 
@@ -294,9 +324,6 @@
 				</g>
 			</svg>
 		</div>
-
-
-	
 	</script>
 
 	<%@ include file="../common/footer.jsp" %>

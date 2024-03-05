@@ -33,8 +33,6 @@ public class BoardDetailController extends HttpServlet {
 		
 		int boardNo =  Integer.parseInt(request.getParameter("bno"));
 		
-		System.out.println(boardNo);
-		
 		BoardService bService = new BoardService();
 		
 		int result = bService.increaseCount(boardNo);
@@ -44,10 +42,10 @@ public class BoardDetailController extends HttpServlet {
 			Board b = bService.selectBoard(boardNo);
 			ImgFile img = bService.selectImgFile(boardNo);
 			
+			
 			request.setAttribute("b", b);
 			request.setAttribute("img", img);
-			
-			System.out.println(b);
+
 			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
 			
 		} else {
