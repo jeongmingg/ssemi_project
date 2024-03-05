@@ -42,9 +42,9 @@
         /* header 비율 */
         #header>div{height: 100%; float: left;}
         #header_1{width: 20%; padding-left: 50px; cursor: pointer;}
-        #header_2{width: 56%;}
-        #header_3{width: 8%;}
-        #header_4{width: 8%;}
+        #header_2{width: 55%;}
+        #header_3{width: 10%;}
+        #header_4{width: 7%;}
         #header_5{
             width: 8%; 
 			padding-top: 50px;
@@ -169,7 +169,7 @@
 	        }
 	
 	        #header_3{padding-left: 80px;}
-	        #header_4{padding-left: 40px;}
+	        #header_4{padding-left: 30px;}
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
