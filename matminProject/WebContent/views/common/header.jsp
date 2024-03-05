@@ -5,6 +5,7 @@
 	String contextPath = request.getContextPath();
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	// 회원번호, 회원아이디, 비밀번호, 이름, 닉네임, 이메일, 이메일인증여부, 주소, 경고횟수, 가입일자, 회원레벨(관리자 or 회원), 회원상태
 %>
 <!DOCTYPE html>
 <html>

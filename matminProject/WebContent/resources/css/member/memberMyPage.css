@@ -1,0 +1,87 @@
+/* div{border: 1px solid red;} */
+/* .myPage{height: 700px;} */
+/* #myPage-tab ul li{border: 1px solid black;} */
+
+.myPage{
+    width: 1200px;
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 50px;
+}
+
+#myPage-tab{
+    height: 40px;
+    border-bottom: 1px solid gray;
+}
+
+#myPage-tab ul{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#myPage-tab ul li{
+    list-style-type: none;
+    float: left;
+    width: 220px;
+    height: 100%;
+    text-align: center;
+    line-height: 40px;
+}
+
+#alert{margin-left: 25px;}
+#alert, #mark, #review{margin-right: 25px;}
+
+#myPage-tab ul li a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+#myPage-tab ul li a.active{
+    border-radius: 5px 5px 0px 0px;
+    background-color: #E4910D;
+    color: white;
+}
+
+#myPage-tab ul li a:hover{
+    border-radius: 5px 5px 0px 0px;
+    background-color: #E4910D;
+    color: white;
+}
+
+/* .myPage-info{height: 500px;} */
+
+#myInfo{text-align: center;}
+
+#myInfo>table{
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: #E4910D;
+    font-size: 18px;
+}
+
+#myInfo input{
+    width: 300px;
+    height: 45px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    /* border: none; */
+    padding-left: 10px;
+}
+
+#myInfo a{color: #E4910D;}
+
+.info{
+    display: none;
+}
+
+.info.active{
+    display: block;
+}
