@@ -112,5 +112,18 @@
 		   SET EMAIL_AUTH = 1
 		 WHERE EMAIL = ?
 	</entry>
+
+	<entry key="selectMemberList">
+		
+		SELECT 
+		    MEM_NO
+		    ,MEM_ID
+		    ,MEM_NAME
+		    ,NICKNAME
+		    ,MEM_WARNING
+		    ,ENROLL_DATE
+	   	 FROM MEMBER
+		WHERE MEM_LEVEL = 'U'
+	</entry>
 	
 </properties>
