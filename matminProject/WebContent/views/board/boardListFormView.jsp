@@ -1,5 +1,8 @@
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String currentDate = (String)request.getAttribute("currentDate"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +44,7 @@
 		border: 1px solid lightgray;
 		height: 35px;
 		padding-left: 0.6em;
-		padding-bottom: 0.2em;
+		padding-top: 5px;
 	}
 	.listView-area input:focus{
 		outline: solid #e4910d;
@@ -119,27 +122,50 @@
 	.btnOfInput{
 		display: none;
 	}
-	.file-area{
+	/* .file-area{
 		border-radius: 10px;
 		box-sizing: border-box;
 		border: 1px solid lightgray;
 		height: 45px;
 		width: 89%;
 		float: left;
+	} */
+	.file_name{
+		border-radius: 10px;
+		box-sizing: border-box;
+		border: 1px solid lightgray;
+		height: 40px;
+		width: 820px;
+		padding-left: 0.6em;
+		padding-top: 0.5em;
+		display: inline-block;
+    	text-align: left;
+		margin-right: 5px;
+		color: gray;
 	}
-	#file_label{
-		margin-top: 7px;
+	.file_btn{
+		border-radius: 10px;
+		background-color: #e4910d;
+		box-sizing: border-box;
+		color: white;
+		height: 40px;
+		width: 100px;
+		padding-top: 0.6em;
+		display: inline-block;
+		margin-right: 118px;
+	}
+	/* #file_label{
 		cursor: pointer;
 		margin-left: 88%;
-		margin-top:8px;
+		margin-top:4px;
 		background-color: #e4910d;
 		border: solid 1px #e4910d;
 		color: white;
-		text-align: center;
 		border-radius: 8px;
 		width: 80px;
-		height: 27px;
-	}
+		height: 35px;
+		padding-top: 6px;
+	} */
 	.count-area {
 		font-size: 0.8em;
 		color: gray;
@@ -151,8 +177,6 @@
 	
 </style>
 
-
-Latest compiled and minified CSS
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -176,21 +200,28 @@ Latest compiled and minified CSS
 		<div class= "outerin-area" >
 
 		<!-- 맛집 등록 요청시 -->
-			<form action="#">
-				<table class="listView-area" style="width: 1200px">
+			<form id="enroll-form" action="<%= contextPath %>/insert.bo"  method="post" enctype="multipart/form-data">
+				
+				<!-- 게시판 유형, 제목, 식당이름, 식당주소, 내용, 닉네임, 첨부파일, 로그인한회원번호  -->
+				<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
+
+				<table class="listView-area" style="width: 1200px">			
+					
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
 						<td></td>
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="enroll" value="enroll" id="enroll" checked>맛집 등록 요청</td>
+							<input type="radio" name="type" value="맛집 등록" id="enroll" checked>맛집 등록 요청</td>
 						  </label>	
 						<td style="width: 80px;">
 						  <label>
-							<input type="radio" name="enroll" value="delete" id="delete">맛집 등록 삭제</td>
+							<input type="radio" name="type" value="맛집 삭제" id="delete">맛집 삭제 요청</td>
 						  </label>
 						</tr>
 					<tr>
+					
+					
 						<th height="50">제목</th>
 						<td></td>
 						<td colspan="2" align="left">
@@ -199,12 +230,13 @@ Latest compiled and minified CSS
 							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
 						</td>
 
-						<th style="text-align: center; width: 150px";>닉네임
-							<input type="text" nme="name" style="width: 150px; font-weight: lighter;" required>
+						<th style="text-align: center; width: 150px;">닉네임
+							
+							<input type="text" name="name" value="<%= loginUser.getNickname() %>" style="width: 150px; font-weight: lighter;" required readonly>
 						</th>
 						
 						<th style="width: 150px; text-align:left;">작성일자
-							<input type="text" name="enrollDate" style="width: 180px; font-weight: lighter; text-align: left;">
+							<input type="text" name="enrollDate" value="<%= currentDate %>"  style="width: 180px; font-weight: lighter; text-align: left;" readonly>
 						</th>
 					</tr>
 					<tr>
@@ -248,17 +280,23 @@ Latest compiled and minified CSS
 						<td></td>
 						<td colspan="4">	
 							<div class="file-area">
-								<input type="file" id="file" className="btnOfInput" multiple style="display: none;">
-								<label for="file" id="file_label">업로드</label>
+								<label>
+									<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
+									<span class="file_name">파일을 선택해주세요</span>
+									<span class="file_btn">파일선택</span>
+								</label>
 							</div>
+						<td>
+
+						</td>
 						</td>
 					</tr>
 				</table>
 
 				<div align="center">
 					<br>
-					<a href="<%= contextPath %>/listForm.bo" class="btn btn-sm btn-secondary" id="btn-enroll">등록</a>
-					<a href="<%= contextPath %>/list.bo" class="btn btn-sm btn-secondary">취소</a>
+					<button type="submit" class="btn btn-sm btn-secondary" id="btn-enroll">등록</button>
+					<a href="<%= contextPath %>/list.bo?cpage=1" class="btn btn-sm btn-secondary">취소</a>
 				</div>
 			</form>
 		</div>
@@ -288,13 +326,13 @@ Latest compiled and minified CSS
 				var chkValue = $("input[type=radio]:checked").val();
 				
 				console.log(chkValue);
-				if(chkValue == "delete"){
+				if(chkValue == "맛집 삭제"){
 					// $("#title").attr("value", "  맛집 삭제 요청합니다");
 					$("#title").val("맛집 삭제 요청합니다")
 					$("#content").attr("placeholder", "식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내).");
 					lastCheckedValue = "delete"; // 'delete' 값 기억
 				} else{
-					if(lastCheckedValue == "delete"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
+					if(lastCheckedValue == "맛집 삭제"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
 						$("#title").val("맛집 등록 요청합니다.") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
 						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
 					}
@@ -338,6 +376,16 @@ Latest compiled and minified CSS
 			});
 		</script>
 
+		<script>
+		
+		$(function() {
+			 $("input[type=file]").on("change", function() {
+			        const fileName = $(this).val().split("\\").pop();
+			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
+		 	});
+		});
+		
+		</script>
 
 		<div id="topBtn">
 			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
