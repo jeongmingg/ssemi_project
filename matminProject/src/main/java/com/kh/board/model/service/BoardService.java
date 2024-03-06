@@ -118,4 +118,14 @@ public class BoardService {
 		} return result;
 	}
 	
+	public ArrayList<Board> selectBoardListByMem(String memNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectBoardListByMem(conn, memNo);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 }

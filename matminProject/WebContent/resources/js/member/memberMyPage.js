@@ -7,15 +7,6 @@ $(function() {
         infoList.removeClass('active');
 
         $(this).addClass('active');
-
-        // console.log($(this).parent().attr('id'));
-        // if($(this).parent().attr("id") == "board") {
-        //     $.ajax({
-        //         url: "boList.me",
-        //         data: {}
-        //     });
-        // }
-
         infoList.eq(tabList.index(this)).addClass('active');
     });
 
@@ -75,6 +66,41 @@ function validate() {
     }
 }
 
-function boardList() {
-    
+function boardList(memNo) {
+    $.ajax({
+        url: "boList.me",
+        data: {memNo: memNo},
+        success: function(result) {
+            let str = "";
+            if(result.length == 0) {
+                str += "<tr>"
+                    + "<td>"
+                    + "작성한 게시글이 없습니다."
+                    + "</td>"
+                    + "</tr>";
+            } else {
+                for(let i in result) {
+                    str += "<tr>"
+                        + "<td>" + result[i].boardNo.substr(1) + "</td>"
+                        + "<td>" + result[i].boardType + "</td>"
+                        + "<td>" + result[i].boardTitle + "</td>"
+                        + "<td>" + result[i].boardWriter + "</td>"
+                        + "<td>" + result[i].boardCount + "</td>"
+                        + "<td>" + result[i].boardDate.substr(0,10) + "</td>"
+                        + "</tr>";
+                }
+            }
+
+            $("#myBoard>span").text("총 " + result.length + "개");
+            $("#myBoard>table>tbody").html(str);
+        },
+        error: function() {
+            console.log("마이페이지(내가 쓴 게시글) ajax 실패");
+        }
+    });
 }
+
+// $(".list-area tbody tr").click(function(){
+//     var boardNo = $(this).find('td:first').text();
+//     window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
+// });

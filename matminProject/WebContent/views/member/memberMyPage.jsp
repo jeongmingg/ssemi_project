@@ -31,6 +31,7 @@
 		
 		<% if(loginUser != null) { %>
 			<%
+				String memNo = loginUser.getMemNo();
 				String address = (loginUser.getAddress() == null) ? "" : loginUser.getAddress();
 				String nickname = loginUser.getNickname();
 			%>
@@ -55,7 +56,7 @@
 						<!-- <a href="#myReview" class="tab">내가 쓴 리뷰</a> -->
 					</li>
 					<li id="board">
-						<a onclick="boardList();" class="tab">작성한 게시글</a>
+						<a onclick="boardList('<%= memNo %>');" class="tab">작성한 게시글</a>
 						<!-- <a href="#myBoard" class="tab">작성한 게시글</a> -->
 					</li>
 				</ul>
@@ -243,7 +244,7 @@
 				<!-- 작성한 게시글 -->
 				<div id="myBoard" class="info">
 					<!-- 게시판 목록-->
-					<span>총 3개</span>
+					<span></span>
 					<br>
 					<table class="list-area" align="center">
 						<thead>
@@ -256,27 +257,17 @@
 								<th>작성일자</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td colspan="6">작성한 게시글이 없습니다.</td>
-							</tr>
-							<tr>
-								<td>룰ㄹ</td>
-								<td>ㅁㄴㅇ</td>
-								<td>ㄴㅇ</td>
-								<td>ㄴㅇ</td>
-								<td>ㅁㄴ</td>
-								<td>ㅈㅂㄷㄱ</td>
-							</tr>
-						</tbody>
+						<tbody></tbody>
 					</table>
 
-					<!-- <script>
-							$(".list-area tbody tr").click(function(){
-								var boardNo = $(this).find('td:first').text();
-								window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
-							});
-					</> -->
+					<script>
+						$(".list-area tbody tr").click(function(){
+							var boardNo = $(this).find('td:first').text();
+							console.log($(this));
+							console.log(boardNo);
+							window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
+						});
+					</script>
 				
 					<br>
 				

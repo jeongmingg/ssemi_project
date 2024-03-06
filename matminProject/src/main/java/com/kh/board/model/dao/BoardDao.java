@@ -332,6 +332,44 @@ public class BoardDao {
 
 	}
 	
+	public ArrayList<Board> selectBoardListByMem(Connection conn, String memNo) {
+		ArrayList<Board> list = new ArrayList<Board>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBoardListByMem");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, memNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Board b = new Board();
+				b.setBoardNo(rset.getString("board_no"));
+				b.setBoardWriter(rset.getString("nickname"));
+				b.setBoardType(rset.getString("board_type"));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardCount(rset.getInt("board_count"));
+				b.setBoardDate(rset.getString("board_date"));
+				
+				list.add(b);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
 	
 	
 	
