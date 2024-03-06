@@ -59,6 +59,8 @@
             font-weight: 1000;
             display: inline-block;
             margin: auto;
+            padding-top: 7px;
+            padding-bottom: 2px;
         }
         
         #banner_2_3>div{
@@ -234,7 +236,7 @@
                 function () {
                     $("#ban_btn1").css({
                         "color": "#E4910D",
-                        "font-size": "20px"
+                        "font-size": "19px"
                     }).text("7000원 이하");
                 },
                 // mouseout
@@ -253,13 +255,15 @@
                 function () {
                     $("#ban_btn2").css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
                 function () {
                     $("#ban_btn2").css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("대리");
@@ -272,13 +276,15 @@
                 function () {
                     $("#ban_btn3").css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("12000원 초과 20000원 이하");
                 },
                 // mouseout
                 function () {
                     $("#ban_btn3").css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("과장");
@@ -291,13 +297,15 @@
                 function () {
                     $("#ban_btn4").css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("20000원 초과 35000원 이하");
                 },
                 // mouseout
                 function () {
                     $("#ban_btn4").css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("차장");
@@ -310,7 +318,7 @@
                 function () {
                     $("#ban_btn5").css({
                         "color": "#E4910D",
-                        "font-size": "20px"
+                        "font-size": "19px"
                     }).text("35000원 초과");
                 },
                 // mouseout

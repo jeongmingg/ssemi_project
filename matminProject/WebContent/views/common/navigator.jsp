@@ -381,9 +381,26 @@
             modalBody.css('height', modalBody.css('height') === '300px' ? '1170px' : '300px');
           });
 
-          // 확인 버튼 클릭 시 모달 닫기 및 페이지 이동
+          // 선택한 지역이름 가지고 페이지 이동하기
+          // 선택된 지역을 저장할 변수 초기화
+          var selectedLocation = '';
+
+          // 목록 아이템 클릭 이벤트 핸들러
+          $('.optionItem').on('click', function () {
+              // 클릭된 li의 텍스트를 가져와서 변수에 저장
+              selectedLocation = $(this).text();
+          });
+
+          // 확인 버튼 클릭 시 선택된 지역이름 가지고 페이지 이동
           $('#modal-btn').on('click', function () {
-              window.location.href = '<%= request.getContextPath() %>/select.rs'; // 페이지 이동
+            // 선택된 지역이 있는지 확인
+            if (selectedLocation) {
+              // 선택된 지역을 가지고 페이지 이동
+              window.location.href = '<%= request.getContextPath() %>/select.rs?lname=' + encodeURIComponent(selectedLocation); // 페이지 이동
+            } else {
+                // 선택된 지역이 없을 경우 사용자에게 알림 등을 표시하거나 다른 동작 수행
+                alert('지역을 선택해주세요.');
+            }
           });
         });
 			</script>

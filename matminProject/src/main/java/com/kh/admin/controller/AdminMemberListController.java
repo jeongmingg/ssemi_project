@@ -1,4 +1,4 @@
-package com.kh.rest.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
+import com.kh.member.model.service.MemberService;
+import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class RestSelectController
+ * Servlet implementation class AdminMemberListController
  */
-@WebServlet("/select.rs")
-public class RestSelectController extends HttpServlet {
+@WebServlet("/memList.ad")
+public class AdminMemberListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestSelectController() {
+    public AdminMemberListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,10 @@ public class RestSelectController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String lname = request.getParameter("lname");
+		ArrayList<Member> list = new MemberService().selectMemberList();
 		
-		ArrayList<Rest> list = new RestService().selectRestList(lname);
-		
-		request.setAttribute("lname", lname);
 		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/rest/restSelect.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/adminMemList.jsp").forward(request, response);
 	}
 
 	/**

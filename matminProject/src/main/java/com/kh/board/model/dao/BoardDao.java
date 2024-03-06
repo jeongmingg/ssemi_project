@@ -135,6 +135,7 @@ public class BoardDao {
 			pstmt.setString(2, img.getImgChangeName());
 			pstmt.setString(3, img.getImgFilePath());
 			
+			
 			result = pstmt.executeUpdate();
 			
 			
@@ -181,7 +182,9 @@ public class BoardDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				b = new Board(rset.getString("nickname"),
+				b = new Board(
+							  rset.getString("board_no"),
+							  rset.getString("nickname"),
 						      rset.getString("board_type"),
 						      rset.getString("board_title"),
 						      rset.getString("board_content"),
@@ -190,6 +193,8 @@ public class BoardDao {
 						      rset.getString("rest_address")
 						      );
 			}
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -230,6 +235,106 @@ public class BoardDao {
 
 	}
 		
+	public int updateBoard(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt = null; 
 		
+		String sql = prop.getProperty("updateBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, b.getRestName());
+			pstmt.setString(2, b.getRestAddress() );
+			pstmt.setString(3, b.getBoardContent());
+			pstmt.setString(4, b.getBoardNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+	
+	public int updateImgFile(Connection conn, ImgFile img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateImgFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
+			pstmt.setString(4, img.getImgFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	} 
+	
+	public int insertUpdateImgFile(Connection conn, ImgFile img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertUpdateImgFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "B" + img.getRefNo());
+			pstmt.setString(2, img.getImgOriginName());
+			pstmt.setString(3, img.getImgChangeName());
+			pstmt.setString(4, img.getImgFilePath());
+			
+			System.out.println("B" + img.getRefNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+	
+	public int deleteBoard(Connection conn, String bno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, bno);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("boardDao"+result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+
+	}
+	
+	
+	
+	
+	
 }
 
