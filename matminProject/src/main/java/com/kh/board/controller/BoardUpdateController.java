@@ -65,19 +65,22 @@ public class BoardUpdateController extends HttpServlet {
 			String bno = boardNo.replaceAll("\\D", "");
 			
 
-			if(multiRequest.getOriginalFileName("file") != null) {
+			if(multiRequest.getOriginalFileName("file") != null) { // 넘어온 첨부파일 있을 경우
+				System.out.println("!@#$#%^^");
+				System.out.println(multiRequest.getOriginalFileName("file"));
+				
 				img = new ImgFile();
 				img.setImgOriginName(multiRequest.getOriginalFileName("file"));
 				img.setImgChangeName(multiRequest.getFilesystemName("file"));
 				img.setImgFilePath("resources/board_upfiles/");
 				img.setRefNo(bno);
-			
-				System.out.println(img);
 				
 				if(multiRequest.getParameter("originFileNo") != null) {
-					img.setImgFileNo(multiRequest.getParameter("originFileno"));
+					// update
+					img.setImgFileNo(multiRequest.getParameter("originFileNo"));
 					//img.setRefNo(bno);
 				} else {
+					// insert
 					img.setRefNo(bno);
 				}
 			
@@ -86,7 +89,9 @@ public class BoardUpdateController extends HttpServlet {
 			int result = new BoardService().updateBoard(b, img);
 			
 			if(result > 0) {
+				System.out.println("here");
 				request.setAttribute("img", img);
+				System.out.println(request.getAttribute("img"));
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
 				response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + bno);

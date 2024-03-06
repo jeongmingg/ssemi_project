@@ -1033,6 +1033,40 @@
 	</div>
 
 	<script>
+	
+	$(function(){
+		selectReviewList();
+		
+		// 최초조회후 1초마다 계속 실행시켜줌 
+		setInterval(selectReviewList, 1000);
+	})
+	
+	function selectReviewList(){
+		$.ajax({
+			url:"review.rs",
+			data:{rpage:<%= r.getRestNo()%>},
+			success:function(){
+				
+				
+				
+				
+				
+				
+				
+			},
+			error:function(){
+				console.log("ajax 통신실패");
+			}
+		});
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	 
 			$(".btn-more").click(function(){
 				// 현재 상태를 확인하여 숨김/보임을 토글합니다.
