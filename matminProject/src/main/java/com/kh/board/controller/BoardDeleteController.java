@@ -32,20 +32,19 @@ public class BoardDeleteController extends HttpServlet {
 			String boardNo = request.getParameter("bno");
 			String bno = "B" + boardNo;
 			
-			System.out.println(bno);
-			
 			int result = new BoardService().deleteBoard(bno);
+			HttpSession session = request.getSession();
+		
 			
 			if(result > 0) {
-				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
 			} else {
-				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "삭제에 실패했습니다.");
 			}
 			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
-		
-	}
+	
+			}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

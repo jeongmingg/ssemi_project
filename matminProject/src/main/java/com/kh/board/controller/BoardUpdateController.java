@@ -72,6 +72,8 @@ public class BoardUpdateController extends HttpServlet {
 				img.setImgFilePath("resources/board_upfiles/");
 				img.setRefNo(bno);
 			
+				System.out.println(img);
+				
 				if(multiRequest.getParameter("originFileNo") != null) {
 					img.setImgFileNo(multiRequest.getParameter("originFileno"));
 					//img.setRefNo(bno);
@@ -85,6 +87,8 @@ public class BoardUpdateController extends HttpServlet {
 			
 			if(result > 0) {
 				request.setAttribute("img", img);
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
 				response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + bno);
 			} else {
 				HttpSession session = request.getSession();

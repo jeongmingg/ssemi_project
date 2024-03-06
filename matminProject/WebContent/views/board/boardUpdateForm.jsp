@@ -370,51 +370,9 @@
        		 })
        })
 
-	   
-
 	</script>
 
-		// 버튼 클릭시 알람
-
-		<script>
-				function updateSuccess(){
-					Swal.fire({
-						title: "수정하시겠습니까?",
-						icon: "warning",
-						showCancelButton: true,
-						confirmButtonColor: "#e4910d",
-						cancelButtonColor: "#gray",
-						confirmButtonText: "수정",
-						cancelButtinText: "취소"
-					 }).then((result) => {
-				            if (result.isConfirmed) {
-				                // 확인 버튼이 클릭되었을 때 페이지를 업데이트
-				                window.location.href = "<%= contextPath %>;
-				            }
-				        });
-				    }
-
-				$($("#btn-delete")).click(function(){
-					Swal.fire({
-						title: "삭제하시겠습니까?",
-						icon: "warning",
-						showCancelButton: true,
-						confirmButtonColor: "#e4910d",
-						cancelButtonColor: "gray",
-						confirmButtonText: "yes"
-						}).then((result) => {
-						if (result.isConfirmed) {
-							Swal.fire({
-							title: "삭제가 완료됐습니다.",
-							icon: "success",
-							confirmButtonColor: "#e4910d"
-							});
-						}
-						});
-				})
-			})
-
-		</script>
+	
 
 		<script>
 			// 필수입력사항 작성안할시 오류 메시지 출력
