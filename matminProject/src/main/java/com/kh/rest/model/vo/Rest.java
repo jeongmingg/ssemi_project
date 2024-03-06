@@ -1,5 +1,13 @@
 package com.kh.rest.model.vo;
 
+/**
+ * @author user1
+ *
+ */
+/**
+ * @author user1
+ *
+ */
 public class Rest {
 	
 	private String restNo;
@@ -19,6 +27,8 @@ public class Rest {
 	private int heart;
 	private String localName;
 	private int reviewCount;
+	private int menuPrice;
+	private char repMenu;
 	
 	
 	public Rest() {}
@@ -63,6 +73,18 @@ public class Rest {
 		this.restAddress = restAddress;
 		this.restTel = restTel;
 		this.restGrade = restGrade;
+	}
+	
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, int menuPrice,
+			char repMenu) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
+		this.reviewCount = reviewCount;
+		this.menuPrice = menuPrice;
+		this.repMenu = repMenu;
 	}
 
 	public String getRestNo() {
@@ -199,6 +221,22 @@ public class Rest {
 
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
+	}
+
+	public int getMenuPrice() {
+		return menuPrice;
+	}
+
+	public void setMenuPrice(int menuPrice) {
+		this.menuPrice = menuPrice;
+	}
+
+	public char getRepMenu() {
+		return repMenu;
+	}
+
+	public void setRepMenu(char repMenu) {
+		this.repMenu = repMenu;
 	}
 
 	@Override
