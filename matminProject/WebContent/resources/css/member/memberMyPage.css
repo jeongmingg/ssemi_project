@@ -58,17 +58,17 @@
 
 #myInfo{text-align: center;}
 
-#myInfo>table{
+#myInfo table{
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    color: #E4910D;
+    color: gray;
     font-size: 18px;
 }
 
-#myInfo>table td{height: 58px;}
+#myInfo table td{height: 58px;}
 
-#myInfo>table span{
+#myInfo table span{
     display: block;
     color: black;
     text-align: left;
@@ -95,7 +95,10 @@
     background-color: lightgray;
 }
 
-#myInfo a{color: #E4910D;}
+#myInfo a{
+    color: #E4910D;
+    margin: 0px 20px;
+}
 
 .info{
     display: none;
