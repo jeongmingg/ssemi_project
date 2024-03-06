@@ -19,6 +19,12 @@
 		margin: auto;
 		box-sizing: border-box;
 	}
+
+	#content{
+		width: 80%;
+		height: 1000px;
+		margin: 0 auto;
+	}
 </style>
 </head>
 <body>
@@ -36,9 +42,9 @@
 				</svg>
 			</a>
 		 </div>
-		냥
+		
 	</div>
 	
-	<%@ include file="../common/fotter.jsp" %>
+	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
