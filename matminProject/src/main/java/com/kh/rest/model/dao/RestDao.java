@@ -165,4 +165,50 @@ public class RestDao {
 			return list;
 		
 	}
+	
+	// 식당상세테이블용
+	public Rest selectRestDetail(Connection conn, String rpage){
+		Rest r = new Rest();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rpage);
+			
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				 r = new Rest(
+						 	  rset.getString("rest_no"),
+					          rset.getString("local_name"),
+					          rset.getString("rest_name"),
+					          rset.getString("ctg_name"),
+					          rset.getString("rest_address"),
+					          rset.getString("rest_tel"),
+					          rset.getDouble("rest_x"),
+					          rset.getDouble("rest_y"),
+					          rset.getString("rest_parking"),
+					          rset.getInt("rest_grade"),
+					          rset.getString("rest_time"),
+					          rset.getDouble("rest_avg"),
+					          rset.getString("dt"),
+					          rset.getString("animal"),
+					          rset.getString("room"),
+					          rset.getString("big_room"),
+					          rset.getString("menu_name"),
+					          rset.getString("menu_price"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return r;
+		
+	}
 }

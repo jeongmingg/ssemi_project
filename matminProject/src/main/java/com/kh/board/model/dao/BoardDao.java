@@ -194,6 +194,7 @@ public class BoardDao {
 						      );
 			}
 			
+			System.out.println(b);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

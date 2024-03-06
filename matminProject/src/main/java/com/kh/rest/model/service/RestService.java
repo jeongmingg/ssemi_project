@@ -43,4 +43,13 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
+	
+	public Rest selectRestDetail(String rpage){
+		Connection conn = getConnection();
+		Rest r = new RestDao().selectRestDetail(conn, rpage);
+		
+		close(conn);
+		return r;
+		}
+	
 }

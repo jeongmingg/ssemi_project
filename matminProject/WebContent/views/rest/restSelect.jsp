@@ -142,6 +142,10 @@
 		font-weight: 600; font-size: 14px;
 		padding-top: 2px;
 	}
+	
+	.restImg:hover{
+		cursor: pointer;
+	}
 
 </style>
 </head>
@@ -182,6 +186,7 @@
 		                                <figure>
 		                                    <img src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                     <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 		                            </div>
                             	<% } %>
@@ -213,8 +218,9 @@
                             	<% if(r.getRestAvg() >= 4.0 && r.getRestAvg() < 4.5){ %>
 		                            <div class="swiper-slide">
 		                                <figure>
-		                                    <img src="<%= r.getRestImgUrl()%>">
+		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 		                            </div>
                             	<% } %>
@@ -246,8 +252,9 @@
                             	<% if(r.getRestAvg() >= 3.0 && r.getRestAvg() < 4.0){ %>
 		                            <div class="swiper-slide">
 		                                <figure>
-		                                    <img src="<%= r.getRestImgUrl()%>">
+		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                     <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 		                            </div>
                             	<% } %>
@@ -289,7 +296,20 @@
 		});
 	</script>
 
+	<!-- 슬라이드 이미지 클릭시 상세페이지로 이동 -->
+	
+	<script>
+	
+	 
+	 $('.swiper-slide').click(function(){
+		 var restNo = $(this).find('.restNo').text();
+		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
+	 })
+	
+	</script>
+
 	<%@ include file="../common/footer.jsp" %>
 	
 </body>
+
 </html>
