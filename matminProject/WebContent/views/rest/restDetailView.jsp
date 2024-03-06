@@ -29,11 +29,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <style>
 
@@ -680,6 +680,11 @@
         margin-left: 40px;
         padding-top: 9px;
     }
+	/* 리뷰작성 모달 스타일 */
+	.rv-modal-content{
+		background-color: white;
+		
+	}
 
 </style>
 </head>
@@ -722,10 +727,9 @@
 		</div>
 		<div class="text-line"></div>
 
-		<!-- 공유하기 모달 -->
+		<!--공유하기 모달-->
 		
 		<div id="shareModal" class="modal">
-           
             <div class="modal-content" id="share-modal" style="height: 200px; width: 500px; align-items: center;">
                 <div class="modal-content-detail">
                     <span id="share-close-btn" class="close" style="color: gray;">&times;</span>
@@ -830,13 +834,13 @@
 			</div>
 			<br>
 			
-
+		<!-- 평균 리뷰 창 --->
 			<div class="review">
 				<div class="review title-area">
 					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
 					</div>
 					<div class="btn-review-area">
-					<a href="" id="btn-review" class="btn btn-sm btn-secondary">리뷰작성</a>
+					<button type="button" id="btn-review" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">리뷰작성</button>
 					</div>
 				</div> 
 				<br>
@@ -903,7 +907,29 @@
 				</div>
 			</div>
 			<br>
-			
+		
+		<!-- 리뷰작성 모달 창 -->
+		<!-- Modal -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="rv-modal-content">
+					<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+					...
+					</div>
+					<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 세부적인 리뷰 창 -->
 			<div class="review-detail">
 				<div class="review-div">
 					<div class="rv1">
@@ -968,8 +994,12 @@
 					</div>
 				</div>
 			</div>
-			
-			
+		</div>	
+	</div>
+
+	<br><br>
+		<%@ include file="../common/footer.jsp" %>		
+
 	<script>
 		function selectReviewList(){
 			$.ajax({
@@ -1051,8 +1081,16 @@
 
 			})
 			</script>
+			
+	<script>
+		
+
+
+		
+	</script>
+
+	
 	
 
-	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>
