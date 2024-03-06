@@ -67,7 +67,7 @@
             text-align: center;
             display: flex;
             align-items: center;
-            }
+        }
         
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
