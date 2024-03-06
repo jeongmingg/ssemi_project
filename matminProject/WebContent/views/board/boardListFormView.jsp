@@ -130,6 +130,7 @@
 		width: 89%;
 		float: left;
 	} */
+
 	.file_name{
 		border-radius: 10px;
 		box-sizing: border-box;
@@ -227,7 +228,7 @@
 						<td colspan="2" align="left">
 
 						<!-- 라디오 버튼클릭시 변경-->
-							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다." readonly>
+							<input type="text" id="title" name="title" style="width: 100%;" required value="맛집 등록 요청 합니다" readonly>
 						</td>
 
 						<th style="text-align: center; width: 150px;">닉네임
@@ -281,7 +282,7 @@
 						<td colspan="4">	
 							<div class="file-area">
 								<label>
-									<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
+									<input type="file" id="file" name="file" className="btnOfInput"  style="display: none;">
 									<span class="file_name">파일을 선택해주세요</span>
 									<span class="file_btn">파일선택</span>
 								</label>
@@ -333,7 +334,7 @@
 					lastCheckedValue = "delete"; // 'delete' 값 기억
 				} else{
 					if(lastCheckedValue == "맛집 삭제"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
-						$("#title").val("맛집 등록 요청합니다.") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
+						$("#title").val("맛집 등록 요청합니다") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
 						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
 					}
 				}

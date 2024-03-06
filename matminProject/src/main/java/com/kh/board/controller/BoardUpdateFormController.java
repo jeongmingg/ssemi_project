@@ -1,6 +1,9 @@
 package com.kh.board.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,16 +15,16 @@ import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.ImgFile;
 
 /**
- * Servlet implementation class BoardDetailController
+ * Servlet implementation class BoardUpdateFormController
  */
-@WebServlet("/detail.bo")
-public class BoardDetailController extends HttpServlet {
+@WebServlet("/updateForm.bo")
+public class BoardUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardDetailController() {
+    public BoardUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,32 +33,22 @@ public class BoardDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int boardNo =  Integer.parseInt(request.getParameter("bno"));
+		int boardNo = Integer.parseInt(request.getParameter("bno"));
 		
 		BoardService bService = new BoardService();
 		
-		int result = bService.increaseCount(boardNo);
+		Board b = bService.selectBoard(boardNo);
+		ImgFile img = bService.selectImgFile(boardNo);
 		
-		if(result > 0) {
-			
-			Board b = bService.selectBoard(boardNo);
-			ImgFile img = bService.selectImgFile(boardNo);
-			
-			
-			request.setAttribute("b", b);
-			request.setAttribute("img", img);
-
-			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
-			
-		} else {
-			request.setAttribute("alertMsg", "조회를 실패하였습니다.");
-			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
-			
-		}
+		LocalDate today = LocalDate.now();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    String currentDate = today.format(formatter);
+	        
+	    request.setAttribute("currentDate", currentDate);	
+		request.setAttribute("b", b);
+		request.setAttribute("img", img);
 		
-		
-		
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

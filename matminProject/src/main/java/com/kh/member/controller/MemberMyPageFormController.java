@@ -1,29 +1,23 @@
-package com.kh.admin.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.Category;
-import com.kh.rest.model.service.RestService;
-
 /**
- * Servlet implementation class AdminRestEnrollForm
+ * Servlet implementation class MemberMyPageFormController
  */
-@WebServlet("/restEnroll.ad")
-public class AdminRestEnrollFormController extends HttpServlet {
+@WebServlet("/myPage.me")
+public class MemberMyPageFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminRestEnrollFormController() {
+    public MemberMyPageFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +26,7 @@ public class AdminRestEnrollFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ArrayList<Category>list = new RestService().selectCategoryList();
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/admin/adminRestEnroll.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/memberMyPage.jsp").forward(request, response);
 	}
 
 	/**

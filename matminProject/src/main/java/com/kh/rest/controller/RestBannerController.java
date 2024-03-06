@@ -1,8 +1,7 @@
-package com.kh.admin.controller;
+package com.kh.rest.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.model.vo.Category;
 import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class AdminRestEnrollForm
+ * Servlet implementation class RestBannerController
  */
-@WebServlet("/restEnroll.ad")
-public class AdminRestEnrollFormController extends HttpServlet {
+@WebServlet("/banner.rs")
+public class RestBannerController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminRestEnrollFormController() {
+    public RestBannerController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,10 +32,14 @@ public class AdminRestEnrollFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Category>list = new RestService().selectCategoryList();
+		String grade = request.getParameter("grade");
+				
+		ArrayList<Rest> list = new RestService().selectRestList(grade);
 		
+		request.setAttribute("grade", grade);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("/views/admin/adminRestEnroll.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/rest/restBannerSearch.jsp").forward(request, response);
 	}
 
 	/**

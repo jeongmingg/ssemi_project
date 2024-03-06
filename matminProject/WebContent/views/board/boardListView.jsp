@@ -7,7 +7,7 @@
  <% PageInfo pi = (PageInfo)request.getAttribute("pi"); 
  	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
  	// 작성번호, 게시판타입, 게시판제목, 작성자닉네임, 게시판조회수, 게시판작성일
- 
+
  	// 페이징바 변수
  	int currentPage = pi.getCurrentPage();
  	int startPage = pi.getStartPage();
@@ -93,18 +93,7 @@
 	<%@ include file="../common/navigator.jsp" %>
 
 	<br><br>
-	
-		<script>
-			<% if(alertMsg != null){%>
-				
-					alert("<%= alertMsg %>");
-				
-					<% session.removeAttribute("alertMsg"); %>
-				
-			<% } %>
-		</script>
-	
-	
+
 	<div class="outer">
 
 		<h3 align="center" style="font-weight: 700;">맛집등록요청 / 삭제 </h3>

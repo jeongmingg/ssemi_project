@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.common.vo.PageInfo;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 
@@ -47,7 +47,7 @@ public class AdminRestListController extends HttpServlet {
 		
     	currentPage = Integer.parseInt(request.getParameter("cpage"));
     	
-    	pageLimit = 2;
+    	pageLimit = 3;
     	
     	boardLimit = 2;
     	
@@ -66,7 +66,7 @@ public class AdminRestListController extends HttpServlet {
     	
     	//용청시 전달 값 뽑기
     			//요청처리 응답페이지에 필요한 데이터를 조회
-    	ArrayList <Rest> list = new RestService().selectRestList(pi); // 이 list에다가 필요한 데이터 담기
+    	ArrayList <Rest> list = new RestService().selectAllRestList(pi); // 이 list에다가 필요한 데이터 담기
     	
     	request.setAttribute("pi", pi);
     	request.setAttribute("list", list);
