@@ -11,7 +11,9 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
-import com.kh.common.vo.PageInfo;
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Category;
+import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
 
@@ -165,4 +167,28 @@ public class RestDao {
 			return list;
 		
 	}
+	
+	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		return list;
+	}
+	
+	
+	
+	public ArrayList<Category> selectCategoryList(Connection conn){
+		ArrayList<Category> list = new ArrayList<Category>();
+		return list;
+	}
+	
+	
+	public int insertRest(Connection conn, Rest r) {
+		return 0;
+	}
+
+	public int insertRestAt(Connection conn, Attachment at) {
+		return 0;
+	}
+	
+	
 }
