@@ -42,21 +42,56 @@
 		    BY REST_NO
 	</entry>
 
+	<entry key="selectRestList">
+		SELECT
+		       REST_NO
+		     , REST_NAME
+		     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
+		     , REST_IMG_URL
+		     , LOCAL_NAME
+		     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+		  FROM (
+		       SELECT
+		              REST_NO
+		            , REST_NAME
+		            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+		            , REST_IMG_URL
+		            , LOCAL_NAME
+		            , REVIEW_NO
+		         FROM REST
+		         LEFT JOIN REVIEW USING(REST_NO)
+		         JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+		       )
+		 GROUP
+		    BY REST_NO
+		     , REST_NAME
+		     , REST_IMG_URL
+		     , LOCAL_NAME
+		HAVING LOCAL_NAME = ?
+		 ORDER
+		    BY REST_AVG DESC , REVIEW_COUNT DESC
+	</entry>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	<entry key="selectAllRestList">
+		SELECT  
+			REST_NO
+			,REST_LOCAL_ID
+			,REST_NAME
+			,CTG_ID
+			,REST_ADDRESS
+			,REST_TEL
+			,REST_GRADE
+		FROM REST
+			WHERE REST_STATUS = 'Y'
+				
+		</entry>
+	
+		<entry key="selectRestCount">
+		SELECT 
+			COUNT(*) count
+			FROM REST
+		WHERE REST_STATUS = 'Y'
+		
+		</entry>
 
 </properties>

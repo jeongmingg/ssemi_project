@@ -17,6 +17,9 @@ public class Rest {
 	private char restStatus;
 	private String restImgUrl;
 	private int heart;
+	private String localName;
+	private int reviewCount;
+	
 	
 	public Rest() {}
 
@@ -38,6 +41,28 @@ public class Rest {
 		this.restAvg = restAvg;
 		this.restStatus = restStatus;
 		this.restImgUrl = restImgUrl;
+	}
+
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, String localName, int reviewCount) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
+		this.localName = localName;
+		this.reviewCount = reviewCount;
+	}
+
+	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			int restGrade) {
+		super();
+		this.restNo = restNo;
+		this.restLocalId = restLocalId;
+		this.restName = restName;
+		this.ctgId = ctgId;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restGrade = restGrade;
 	}
 
 	public String getRestNo() {
@@ -152,12 +177,37 @@ public class Rest {
 		this.restImgUrl = restImgUrl;
 	}
 
+	public int getHeart() {
+		return heart;
+	}
+
+	public void setHeart(int heart) {
+		this.heart = heart;
+	}
+
+	public String getLocalName() {
+		return localName;
+	}
+
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Rest [restNo=" + restNo + ", restLocalId=" + restLocalId + ", restName=" + restName + ", ctgId=" + ctgId
 				+ ", restAddress=" + restAddress + ", restTel=" + restTel + ", restX=" + restX + ", restY=" + restY
 				+ ", restParking=" + restParking + ", restGrade=" + restGrade + ", restTime=" + restTime + ", restAvg="
-				+ restAvg + ", restStatus=" + restStatus + ", restImgUrl=" + restImgUrl + "]";
+				+ restAvg + ", restStatus=" + restStatus + ", restImgUrl=" + restImgUrl + ", heart=" + heart
+				+ ", localName=" + localName + ", reviewCount=" + reviewCount + "]";
 	}
 	
 }

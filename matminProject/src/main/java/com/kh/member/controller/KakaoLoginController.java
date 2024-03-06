@@ -11,16 +11,16 @@ import com.kh.member.model.service.MemberService;
 import com.kh.member.model.vo.Member;
 
 /**
- * Servlet implementation class MemberLoginController
+ * Servlet implementation class KakaoLoginController
  */
-@WebServlet("/login.me")
-public class MemberLoginController extends HttpServlet {
+@WebServlet("/kakaoLogin.me")
+public class KakaoLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberLoginController() {
+    public KakaoLoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,28 +31,18 @@ public class MemberLoginController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String userId = (String)request.getParameter("userId");
-		String userPwd = (String)request.getParameter("userPwd");
 		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
+		Member loginUser = new MemberService().kakaoLoginMember(userId);
 		
 		if(loginUser == null) {
-			request.setAttribute("loginSuccess", "실패");
-			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
+			request.getSession().setAttribute("alertMsg", "카카오 로그인 실패");
+			response.sendRedirect(request.getContextPath());
 			
 		} else {
-			if (loginUser.getMemId().equals("admin")) {
-				request.getSession().setAttribute("loginUser", loginUser);
-				request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
-			} else {
-				if (loginUser.getEmailAuth() == 1) {
-					request.getSession().setAttribute("loginUser", loginUser);
-					response.sendRedirect(request.getContextPath());
-	
-				} else {
-					response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
-				}
-			}
+			request.getSession().setAttribute("loginUser", loginUser);
+			response.sendRedirect(request.getContextPath());
 		}
+		
 	}
 
 	/**
