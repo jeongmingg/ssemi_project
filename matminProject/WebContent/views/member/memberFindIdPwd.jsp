@@ -41,49 +41,53 @@
 			</a>
 		</div>
 		
-		<div id="findId" align="center">
-			<div>
-
-				<p><b>아이디 찾기</b></p>
+		<% if(loginUser == null) { %>
+			<div id="findId" align="center">
+				<div>
 	
-				<form action="<%= contextPath %>/findId.me" method="post">
+					<p><b>아이디 찾기</b></p>
+		
+					<form action="<%= contextPath %>/findId.me" method="post">
+		
+						<input type="text" name="userName" id="nameInput1" placeholder="이름"> <br>
+						<span class="message" id="nameMsg1" style="display: none;"></span>
 	
-					<input type="text" name="userName" id="nameInput1" placeholder="이름"> <br>
-					<span class="message" id="nameMsg1" style="display: none;"></span>
-
-					<input type="text" name="email" id="emailInput1" placeholder="이메일"> <br>
-					<span class="message" id="emailMsg1" style="display: none;"></span>
+						<input type="text" name="email" id="emailInput1" placeholder="이메일"> <br>
+						<span class="message" id="emailMsg1" style="display: none;"></span>
+		
+						<br>
 	
-					<br>
-
-					<button type="submit" id="findIdBtn" class="btn btn-primary" onclick="return findId();"><b>아이디 찾기</b></button>
+						<button type="submit" id="findIdBtn" class="btn btn-primary" onclick="return findId();"><b>아이디 찾기</b></button>
+		
+					</form>
 	
-				</form>
-
+				</div>
 			</div>
-		</div>
-
-		<!-- <div style="width: 1px; height: 400px; float: left; border-left: 1px solid gray;"></div> -->
-
-		<div id="findPwd" align="center">
-			<div>
-
-				<p><b>비밀번호 찾기</b></p>
 	
-				<form action="#" method="post">
+			<!-- <div style="width: 1px; height: 400px; float: left; border-left: 1px solid gray;"></div> -->
 	
-					<input type="text" name="userName" placeholder="이름"> <br>
-					<input type="text" name="userId" placeholder="아이디"> <br>
-					<input type="text" name="email" placeholder="이메일"> <br>
+			<div id="findPwd" align="center">
+				<div>
 	
-					<br>
-
-					<button type="submit" id="findPwdBtn" class="btn btn-primary"><b>비밀번호 찾기</b></button>
+					<p><b>비밀번호 찾기</b></p>
+		
+					<form action="#" method="post">
+		
+						<input type="text" name="userName" placeholder="이름"> <br>
+						<input type="text" name="userId" placeholder="아이디"> <br>
+						<input type="text" name="email" placeholder="이메일"> <br>
+		
+						<br>
 	
-				</form>
-
+						<button type="submit" id="findPwdBtn" class="btn btn-primary"><b>비밀번호 찾기</b></button>
+		
+					</form>
+	
+				</div>
 			</div>
-		</div>
+		<% } else { %>
+			<h3>이미 로그인 상태입니다.</h3>
+		<% } %>
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
