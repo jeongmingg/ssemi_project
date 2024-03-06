@@ -81,4 +81,41 @@ public class BoardService {
 		return img;
 	}
 	
+	public int updateBoard(Board b, ImgFile img) {
+		Connection conn = getConnection();
+		
+		int result1 = new BoardDao().updateBoard(conn, b);
+		
+		int result2 = 1;
+		
+		if(img != null) { // 새로운 첨부파일이 있을경우 
+			if(img.getImgFileNo() != null) { // 원래있는데 수정
+				result2 = new BoardDao().updateImgFile(conn, img);
+			} else { // 없는상태에서 추가
+				result2 = new BoardDao().insertUpdateImgFile(conn, img);
+			}
+			
+		}
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} close(conn);
+		
+		return result1 * result2;
+		
+	}
+	
+	public int deleteBoard(String bno) {
+		Connection conn = getConnection();
+		
+		int result = new BoardDao().deleteBoard(conn, bno);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			close(conn);
+		} return result;
+	}
+	
 }

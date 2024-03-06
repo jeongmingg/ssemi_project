@@ -24,6 +24,7 @@
 						              , TO_CHAR(BOARD_DATE, 'YYYY.MM.DD') "BOARD_DATE"
 						           FROM BOARD 
 						           JOIN MEMBER ON (BOARD_WRITER = MEM_NO)
+						          WHERE BOARD_STATUS = 'Y'
 						          ORDER 
 						             BY 
 						                TO_NUMBER(REGEXP_REPLACE(BOARD_NO, '[^0-9]+', '')) DESC
@@ -87,7 +88,8 @@
 		
 		<entry key="selectBoard">
 		SELECT 
-		       NICKNAME
+			   BOARD_NO
+		     , NICKNAME
 		     , BOARD_TYPE
 		     , BOARD_TITLE
 		     , BOARD_CONTENT
@@ -110,6 +112,48 @@
 		
 		</entry>
 		
+		<entry key="updateBoard">
+		UPDATE 
+			   BOARD
+		   SET REST_NAME = ?
+		     , REST_ADDRESS = ?
+		     , BOARD_CONTENT = ?
+		 WHERE BOARD_NO = ?
+		</entry>
 		
-
+		<entry key="updateImgFile">
+		 UPDATE 
+		        IMG_FILE
+		    SET IMG_ORIGIN_NAME = ?
+		      , IMG_CHANGE_NAME = ?
+		      , IMG_FILE_PATH = ?
+		  WHERE IMG_FILE_NO = ?
+		</entry>
+		
+		<entry key="insertUpdateImgFile">
+			INSERT 
+			       INTO IMG_FILE
+			       (
+			         IMG_FILE_NO
+			       , REF_NO
+			       , IMG_ORIGIN_NAME
+			       , IMG_CHANGE_NAME
+			       , IMG_FILE_PATH
+			       )
+			       VALUES
+			       (
+			         'F'||SEQ_FNO.NEXTVAL
+			       , ?
+			       , ?
+			       , ?
+			       , ?
+			       )
+		
+		</entry>
+		
+		<entry key="deleteBoard">
+			UPDATE BOARD
+			   SET BOARD_STATUS = 'N'
+			 WHERE BOARD_NO = ?
+		</entry>
 </properties>
