@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.dao.RestDao;
 import com.kh.rest.model.vo.Rest;
@@ -42,5 +44,32 @@ public class RestService {
 		ArrayList<Rest> list = new RestDao().selectRestList(conn, lname);
 		close(conn); 
 		return list;
+	}
+	
+	public ArrayList<Category> selectCategoryList(){
+		Connection conn = getConnection();
+		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
+		close(conn);
+		return list;
+	}
+	
+	public int insertRest(Rest r, Attachment at ) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new RestDao().insertRest(conn,r);
+		
+		int result2 = 1;
+		
+		if(at !=null) {
+//			result2 = new RestDao().insertRestAt(conn,at);
+		}
+		if(result1 >0 && result2 >0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1*result2;
 	}
 }

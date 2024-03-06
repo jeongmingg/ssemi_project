@@ -11,6 +11,8 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
@@ -165,4 +167,59 @@ public class RestDao {
 			return list;
 		
 	}
+	
+	public ArrayList<Category> selectCategoryList(Connection conn){
+		
+		ArrayList<Category> list = new ArrayList<Category>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCategoryList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Category(rset.getInt("ctg_id"),
+										rset.getString("ctg_name")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int insertRest(Connection conn, Rest r) {
+		
+		int result = 0;
+		 PreparedStatement pstmt = null;
+		 
+		 String sql = prop.getProperty("insertRest");
+		 
+		 try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRestName());
+			pstmt.setString(2, r.getCtgId());
+			pstmt.setString(3, r.getRestAddress());
+			pstmt.setString(4, r.getRestTel());
+			pstmt.setString(5, String.valueOf(r.getRestParking()));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		 return result;
+		
+	}
+	
+	
 }

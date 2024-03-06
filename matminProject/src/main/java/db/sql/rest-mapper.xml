@@ -93,5 +93,39 @@
 		WHERE REST_STATUS = 'Y'
 		
 		</entry>
+		
+		<entry key="selectCategoryList">
+		
+		SELECT 
+		    CTG_ID
+		    ,CTG_NAME
+		FROM CATEGORY
+		
+		</entry>
+		
+		<entry key="insertRest">
+		INSERT 
+			INTO REST
+			(
+			REST_NO
+			,REST_NAME
+			,CTG_ID
+			,REST_ADDRESS
+			,REST_TEL
+			,REST_PARKING			
+			)
+			VALUES
+			(
+			SEQ_RNO.NEXTVAL
+			,?
+			,?
+			,?
+			,?
+			,?
+					
+			)
+		
+		</entry>
+		
 
 </properties>
