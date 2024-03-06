@@ -64,10 +64,15 @@
         cursor: pointer;
     }
 
+    /* 모달 스타일 */
     .modal-header>h4{
         padding-left: 150px;
     }
 
+    .modal-body{
+      padding-top: 60px;
+    }
+    
     /* modal 타이틀 */
     .modal-title{
         text-align: center;
@@ -219,9 +224,7 @@
       border-bottom: 0 none;
     }
 
-    .modal-body{
-      padding-top: 60px;
-    }
+    
 </style>
 </head>
 <body>
@@ -353,6 +356,7 @@
 				});
 				 */
 
+        //  modal jQuery
 				$(document).ready(function() {
           const label = $('.label');
           const options = $('.optionItem');
