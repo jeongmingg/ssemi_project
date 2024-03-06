@@ -48,9 +48,10 @@ public class Board {
 	}
 	
 	
-	public Board(String boardWriter, String boardType, String boardTitle, String boardContent, String boardDate, String restName, String restAddress
+	public Board(String boardNo, String boardWriter, String boardType, String boardTitle, String boardContent, String boardDate, String restName, String restAddress
 				) {
 		super();
+		this.boardNo = boardNo;
 		this.boardWriter = boardWriter;
 		this.boardType = boardType;
 		this.boardTitle = boardTitle;

@@ -8,6 +8,7 @@
     PageInfo pi = (PageInfo)request.getAttribute("pi");
     ArrayList<Rest> list = (ArrayList<Rest>)request.getAttribute("list"); 
 
+    //페이징바 변수
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -117,10 +118,10 @@
             <a href="<%= contextPath %>/stat.ad" class=" nav-link"  style="color: orange; font-size: 30px;" >Statistics</a>
             </li>
             <li class="nav-item">
-            <a href="<%= contextPath %>/rest.list" class="nav-link active" style="color: orange;font-size: 30px;">Restaurants</a>
+            <a href="<%= contextPath %>/rest.list?cpage=1" class="nav-link active" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
                     <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
-                    <li><a href="<%= contextPath %>/rest.list">식당전체조회</a></li>
+                    <li><a href="<%= contextPath %>/rest.list?cpage=1">식당전체조회</a></li>
                 </ul>
             </li>
             <li class="nav-item">
@@ -131,9 +132,9 @@
                 </ul>
             </li>
             <li class="nav-item">
-        <a class="nav-link" href="<%=contextPath%>/list.bo>" style="color: orange;font-size: 30px;">Board</a>
+        <a class="nav-link" href="<%=contextPath%>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
             <ul>
-                <li><a href="<%=contextPath%>/list.bo">식당 등록/삭제 게시판</a></li>
+                <li><a href="<%=contextPath%>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
                 <li><a href="<%=contextPath%>/report.bo"> 신고 게시판</a></li>
             </ul>
         
