@@ -7,7 +7,7 @@ public class Review {
 	private String restNo;
 	private String reviewWriter;
 	private String reviewCont;
-	private Date reviewDate;
+	private String reviewDate;
 	private Date updateDate;
 	private int reviewLike;
 	private int reviewDislike;
@@ -21,7 +21,7 @@ public class Review {
 	
 	public Review() {}
 
-	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, Date reviewDate,
+	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
 			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int rateTaste, int ratePrice,
 			int rateService, String reviewStatus) {
 		super();
@@ -41,7 +41,7 @@ public class Review {
 	}
 	
 	
-	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, Date reviewDate,
+	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
 			int reviewLike, int reviewDislike, int rateTaste, int ratePrice, int rateService, int rateAvg) {
 		super();
 		this.reviewNo = reviewNo;
@@ -90,11 +90,11 @@ public class Review {
 		this.reviewCont = reviewCont;
 	}
 
-	public Date getReviewDate() {
+	public String getReviewDate() {
 		return reviewDate;
 	}
 
-	public void setReviewDate(Date reviewDate) {
+	public void setReviewDate(String reviewDate) {
 		this.reviewDate = reviewDate;
 	}
 
@@ -169,6 +169,8 @@ public class Review {
 	public void setReviewStatus(String reviewStatus) {
 		this.reviewStatus = reviewStatus;
 	}
+	
+	
 	
 	
 

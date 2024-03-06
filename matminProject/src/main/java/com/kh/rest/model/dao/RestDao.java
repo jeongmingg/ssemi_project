@@ -166,7 +166,24 @@ public class RestDao {
 		
 	}
 	
-	// 식당상세테이블용
+//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+//		
+//		ArrayList<Rest> list = new ArrayList<Rest>();
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectBannerRestList");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+		
 	public Rest selectRestDetail(Connection conn, String rpage){
 		Rest r = new Rest();
 		PreparedStatement pstmt = null;
@@ -176,9 +193,7 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, rpage);
-			
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
@@ -195,13 +210,16 @@ public class RestDao {
 					          rset.getInt("rest_grade"),
 					          rset.getString("rest_time"),
 					          rset.getDouble("rest_avg"),
+					          rset.getString("menu_name"),
+					          rset.getString("menu_price"),
 					          rset.getString("dt"),
 					          rset.getString("animal"),
 					          rset.getString("room"),
-					          rset.getString("big_room"),
-					          rset.getString("menu_name"),
-					          rset.getString("menu_price"));
+					          rset.getString("big_room"));
+				 
 			}
+			
+			System.out.println("dao" + r);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

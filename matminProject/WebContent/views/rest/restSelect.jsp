@@ -305,6 +305,7 @@
 		 var restNo = $(this).find('.restNo').text();
 		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
 	 })
+	 
 	
 	</script>
 

@@ -94,8 +94,42 @@
 		
 		</entry>
 		
-		<!-- 식당상세테이블용 -->
+		<entry key="selectBannerRestList">
+			SELECT
+			       REST_NO
+			     , REST_NAME
+			     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
+			     , REST_IMG_URL
+			     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+			     , MENU_PRICE
+			     , REP_MENU
+			  FROM (
+			       SELECT
+			              REST_NO
+			            , REST_NAME
+			            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+			            , REST_IMG_URL
+			            , REVIEW_NO
+			            , MENU_NO
+			            , MENU_PRICE
+			            , MENU_NAME
+			            , REP_MENU
+			         FROM REVIEW
+			         RIGHT JOIN REST USING(REST_NO)
+			         LEFT JOIN MENU USING(REST_NO)
+			        WHERE REP_MENU = 'Y'
+			       )
+			 GROUP
+			    BY REST_NO
+			     , REST_NAME
+			     , REST_IMG_URL
+			     , MENU_PRICE
+			     , REP_MENU
+			 ORDER
+			    BY REST_AVG DESC , REVIEW_COUNT DESC
+		</entry>
 
+		<!-- 식당상세테이블용 -->
 		<entry key="selectRestDetail">
 		SELECT
 		        REST_NO
@@ -110,12 +144,12 @@
 		      , REST_GRADE
 		      , REST_TIME
 		      , REST_AVG
+		      , MENU_NAME
+		      , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
 		      , DT
 		      , ANIMAL
 		      , ROOM
 		      , BIG_ROOM
-		      , MENU_NAME
-		      , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
 		   FROM REST
 		   JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
 		   JOIN CATEGORY USING (CTG_ID)

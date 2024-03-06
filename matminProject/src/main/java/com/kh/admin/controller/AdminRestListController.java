@@ -47,7 +47,7 @@ public class AdminRestListController extends HttpServlet {
 		
     	currentPage = Integer.parseInt(request.getParameter("cpage"));
     	
-    	pageLimit = 2;
+    	pageLimit = 3;
     	
     	boardLimit = 2;
     	

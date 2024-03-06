@@ -905,7 +905,6 @@
 			<br>
 			
 			<div class="review-detail">
-			<% for (int i=0; i<3; i++){ %>
 				<div class="review-div">
 					<div class="rv1">
 						<div class="profile">
@@ -913,12 +912,12 @@
 								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
 							</div>
 							<div class="profile-name">
-								<div id="writer"><%= rv.get(i).getReviewWriter()%></div>
+								<div id="writer">차은우지망생</div>
 								<div style="display: flex;">
 									<div id="w-star">
-										<i style="width:<%= rv.get(i).getRateAvg() %>%;"></i>
+										<i style="width:80%;"></i>
 									</div>
-									<span id="write-date"><%= rv.get(i).getReviewDate() %></span>
+									<span id="write-date">2024-02-05</span>
 								</div>
 							</div>
 							<div class="warn">
@@ -933,11 +932,11 @@
 							<ul>
 								<li>맛
 									<li class="rv-star-s"></li>
-									<li id="rv-flv-star"><%= rv.get(i).getRateTaste() %></li>
+									<li id="rv-flv-star">5</li>
 								</li>
 								<li>가격
 									<li class="rv-star-s"></li>
-									<li id="rv-pri-star"><%= rv.get(i).getRateService() %></li>
+									<li id="rv-pri-star">4</li>
 								</li>
 								<li>서비스
 									<li class="rv-star-s"></li>
@@ -970,10 +969,25 @@
 				</div>
 			</div>
 			
-			<% }  %>
 			
 	<script>
-
+		function selectReviewList(){
+			$.ajax({
+				url:"review.rs",
+				data:{rpage:<%= r.getRestNo()%>},
+				success:function(r, img){
+					
+				console.log("ajax 성공")
+				console.log(r);
+				console.log(img);
+					
+				}, error:function(){
+					console.log("ajax 통신실패")
+				}
+				
+				
+			})
+		}
 			
 	</script>		
 			

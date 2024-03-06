@@ -1,5 +1,13 @@
 package com.kh.rest.model.vo;
 
+/**
+ * @author user1
+ *
+ */
+/**
+ * @author user1
+ *
+ */
 public class Rest {
 	
 	private String restNo;
@@ -14,23 +22,26 @@ public class Rest {
 	private int restGrade;
 	private String restTime;
 	private double restAvg;
-	private char restStatus;
+	private String restStatus;
 	private String restImgUrl;
 	private int heart;
 	private String localName;
 	private int reviewCount;
-	private String dt;
-	private String animal;
-	private String room;
-	private String bigRoom;
 	private String menuName;
 	private String menuPrice;
+	private char repMenu;
+	private String dt;
+	private String anmial;
+	private String room;
+	private String bigRoom;
+	
+	
 	
 	public Rest() {}
 
 	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
 			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
-			char restStatus, String restImgUrl) {
+			String restStatus, String restImgUrl) {
 		super();
 		this.restNo = restNo;
 		this.restLocalId = restLocalId;
@@ -69,18 +80,24 @@ public class Rest {
 		this.restTel = restTel;
 		this.restGrade = restGrade;
 	}
-
 	
-
-	public String getRestNo() {
-		return restNo;
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, String menuPrice,
+			char repMenu) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
+		this.reviewCount = reviewCount;
+		this.menuPrice = menuPrice;
+		this.repMenu = repMenu;
 	}
 
-
-
+	
+	
 	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
-			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg, String dt,
-			String animal, String room, String bigRoom, String menuName, String menuPrice) {
+			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
+			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom) {
 		super();
 		this.restNo = restNo;
 		this.restLocalId = restLocalId;
@@ -94,15 +111,18 @@ public class Rest {
 		this.restGrade = restGrade;
 		this.restTime = restTime;
 		this.restAvg = restAvg;
-		this.dt = dt;
-		this.animal = animal;
-		this.room = room;
-		this.bigRoom = bigRoom;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
+		this.dt = dt;
+		this.anmial = anmial;
+		this.room = room;
+		this.bigRoom = bigRoom;
 	}
 
-	
+	public String getRestNo() {
+		return restNo;
+	}
+
 	public void setRestNo(String restNo) {
 		this.restNo = restNo;
 	}
@@ -195,11 +215,11 @@ public class Rest {
 		this.restAvg = restAvg;
 	}
 
-	public char getRestStatus() {
+	public String getRestStatus() {
 		return restStatus;
 	}
 
-	public void setRestStatus(char restStatus) {
+	public void setRestStatus(String restStatus) {
 		this.restStatus = restStatus;
 	}
 
@@ -234,7 +254,32 @@ public class Rest {
 	public void setReviewCount(int reviewCount) {
 		this.reviewCount = reviewCount;
 	}
+
+	public String getMenuPrice() {
+		return menuPrice;
+	}
+
+	public void setMenuPrice(String menuPrice) {
+		this.menuPrice = menuPrice;
+	}
+
+	public char getRepMenu() {
+		return repMenu;
+	}
+
+	public void setRepMenu(char repMenu) {
+		this.repMenu = repMenu;
+	}
+
 	
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
 	public String getDt() {
 		return dt;
 	}
@@ -243,12 +288,12 @@ public class Rest {
 		this.dt = dt;
 	}
 
-	public String getAnimal() {
-		return animal;
+	public String getAnmial() {
+		return anmial;
 	}
 
-	public void setAnimal(String animal) {
-		this.animal = animal;
+	public void setAnmial(String anmial) {
+		this.anmial = anmial;
 	}
 
 	public String getRoom() {
@@ -267,22 +312,7 @@ public class Rest {
 		this.bigRoom = bigRoom;
 	}
 
-	public String getMenuName() {
-		return menuName;
-	}
-
-	public void setMenuName(String menuName) {
-		this.menuName = menuName;
-	}
-
-	public String getMenuPrice() {
-		return menuPrice;
-	}
-
-	public void setMenuPrice(String menuPrice) {
-		this.menuPrice = menuPrice;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Rest [restNo=" + restNo + ", restLocalId=" + restLocalId + ", restName=" + restName + ", ctgId=" + ctgId

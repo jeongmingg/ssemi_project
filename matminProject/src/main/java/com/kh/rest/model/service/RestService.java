@@ -44,6 +44,14 @@ public class RestService {
 		return list;
 	}
 	
+//	public ArrayList<Rest> selectBannerRestList(String grade){
+//		
+//		Connection conn = getConnection();
+//		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, grade);
+//		close(conn); 
+//		return list;
+//	}
+	
 	public Rest selectRestDetail(String rpage){
 		Connection conn = getConnection();
 		Rest r = new RestDao().selectRestDetail(conn, rpage);
@@ -51,5 +59,4 @@ public class RestService {
 		close(conn);
 		return r;
 		}
-	
 }

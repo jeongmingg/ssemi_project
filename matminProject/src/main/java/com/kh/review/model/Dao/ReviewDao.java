@@ -37,27 +37,26 @@ public class ReviewDao {
 		String sql = prop.getProperty("selectReviewList");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql);			
+			rset=pstmt.executeQuery();
 			
-			pstmt.setString(1, rpage);
+			pstmt.setString(1, rpage);			
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getString("review_no"),
 						            rset.getString("rest_no"),
 						            rset.getString("nickname"),
 						            rset.getString("review_cont"),
-						            rset.getDate("review_date"),
+						            rset.getString("review_date"),
 						            rset.getInt("review_like"),
 						            rset.getInt("review_dislike"),
-						            rset.getDouble("rate_taste"),
-						            rset.getDouble("rate_price"),
-						            rset.getDouble("rate_service"),
+						            rset.getInt("rate_taste"),
+						            rset.getInt("rate_price"),
+						            rset.getInt("rate_service"),
 						            rset.getInt("rate_avg")));
-				
+
+			System.out.println("reviewDao" + list);
 			}
-			
-			System.out.println(list);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -87,7 +86,10 @@ public class ReviewDao {
 						             rset.getString("img_change_name"),
 						             rset.getString("img_file_path")));
 			}
-
+			
+			System.out.println("reviewimgDao" + list);
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -95,6 +97,9 @@ public class ReviewDao {
 			close(pstmt);
 		} return list;
 
+		
+		
+		
 	}
 	
 }

@@ -26,6 +26,12 @@
 
 	<!-- js -->
 	<script src="resources/js/member/memberCommonLogin.js"></script>
+
+	<!-- kakao login -->
+	<script type="text/javascript" src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+		Kakao.init('07b8e08ffb38a692cd2c2144e0dfa010'); // 사용하려는 앱의 JavaScript 키 입력
+	</script>
 </head>
 <body>
 
@@ -43,41 +49,122 @@
 			</a>
 		</div>
 		
-		<h3>Login</h3>
-
-		<div id="input_id_pwd">
-			<form action="<%= contextPath %>/login.me" method="post">
-			
-				<input type="text" name="userId" placeholder="ID"> <br>
-				<input type="password" name="userPwd" placeholder="Password"> <br>
-				<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
-				<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
-
-				<% if(loginSuccess != null && loginSuccess.equals("실패")) { 	%>
-					<span id="message" style="display: block;">아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
-				<% } %>
-				<span id="message" style="display: none;"></span>
+		<% if(loginUser == null) { %>
+			<h3>Login</h3>
+	
+			<div id="input_id_pwd">
+				<form action="<%= contextPath %>/login.me" method="post">
 				
-				<button type="submit" id="loginBtn" class="btn btn-primary" onclick="return validate();"><b>로그인</b></button>
-				
-			</form>
-		</div>
-
-		<div id="click_other">
-			<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
-			<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
-		</div>
-
-		<hr id="hr">
-
-		<div id="sns-login">
-			<p><b>간편 로그인</b></p>
-
-			<a href="#" id="naver-login-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
-				<br>
-				<a href="#" id="kakao-login-btn"><img src="resources/loginImg/kakao_login.png"></a>
-		</div>
+					<input type="text" name="userId" placeholder="ID"> <br>
+					<input type="password" name="userPwd" placeholder="Password"> <br>
+					<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
+					<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
+	
+					<% if(loginSuccess != null && loginSuccess.equals("실패")) { 	%>
+						<span id="message" style="display: block;">아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
+					<% } %>
+					<span id="message" style="display: none;"></span>
+					
+					<button type="submit" id="loginBtn" class="btn btn-primary" onclick="return validate();"><b>로그인</b></button>
+					
+				</form>
+			</div>
+	
+			<div id="click_other">
+				<a href="<%= contextPath %>/findAccountForm.me">ID/PWD 찾기</a>
+				<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
+			</div>
+	
+			<hr id="hr">
+	
+			<div id="sns-login">
+				<p><b>간편 로그인</b></p>
+	
+				<a href="#" id="naver-login-btn" class="btn btn-primary"><img src="resources/loginImg/naver_login_logo.png" align="left"><span>네이버 로그인</span></a>
+					<br>
+				<a href="javascript:kakaoLogin()" id="kakao-login-btn"><img src="resources/loginImg/kakao_login.png"></a>
+			</div>
+		<% } else { %>
+			<h3>이미 로그인 상태입니다.</h3>
+		<% } %>
 	</div>
+
+	<script>
+		function kakaoLogin() {
+	        Kakao.Auth.login({
+	            success: function (response) {
+	                Kakao.API.request({
+	                    url: '/v2/user/me',
+	                    success: function (response) {
+	                        // alert(JSON.stringify(response))
+							// console.log(response);
+							// console.log("아이디 : " + response.id);
+							// console.log("이메일 : " + response.kakao_account.email);
+							// console.log("이름 : " + response.kakao_account.name);
+							// console.log("닉네임 : " + response.properties.nickname);
+							
+							$.ajax({
+								url: 'idCheck.me',
+								data: {checkId: response.id},
+								success: function(result) {
+									if(result == "NNNNN") {
+										// 카카오로그인
+										loginKakaoUser(response.id);
+									} else {
+										// 카카오 회원가입
+										insertKakaoUser(response.id, response.kakao_account.email, response.kakao_account.name, response.properties.nickname);
+									}
+								},
+								error: function() {
+									console.log("카카오 로그인/회원가입용 ajax 통신 실패");
+								}
+							});
+
+	                    },
+	                    fail: function (error) {
+	                        alert(JSON.stringify(error));
+	                    },
+	                })
+	            },
+	            fail: function (error) {
+	                alert(JSON.stringify(error));
+	            },
+	        })
+	    }
+
+		function loginKakaoUser(id) {
+			$.ajax({
+				url: "kakaoLogin.me",
+				type: "post",
+				data: {userId: id},
+				success: function() {
+					location.href="<%= contextPath %>";
+				},
+				error: function() {
+					console.log("kakao user login ajax 실패");
+				}
+			});
+		}
+
+		function insertKakaoUser(id, email, name, nickname) {
+			$.ajax({
+				url: "kakaoInsert.me",
+				type: "post",
+				data: {
+					userId: id,
+					email: email,
+					userName: name,
+					nickname: nickname
+				},
+				success: function() {
+					location.href="<%= contextPath %>";
+				},
+				error: function() {
+					console.log("kakao user insert ajax 호출 실패");
+				}
+			});
+		}
+	</script>
 
 	<%@ include file="../common/footer.jsp" %>
 

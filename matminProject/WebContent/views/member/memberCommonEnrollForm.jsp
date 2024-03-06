@@ -41,72 +41,76 @@
 			</a>
 		</div>
 
-		<h3 align="center">회원가입</h3>
-
-		<form action="<%= contextPath %>/insert.me" method="post">
-			<div id="required-area">
-				<p>기본정보 <small>(필수)</small></p>
-				<hr id="hr">
-				<div>
-					<input type="text" name="userId" placeholder="아이디" oninput="idCheck();"> <br>
-					<span id="idMsg" class="message" style="display: none;"></span>
-
-					<input type="password" name="userPwd" placeholder="비밀번호"> <br>
-					<span id="pwdMsg" class="message" style="display: none;"></span>
-
-					<input type="password" placeholder="비밀번호 확인"> <br>
-					<span id="pwdCheckMsg" class="message" style="display: none;"></span>
-
-					<input type="text" name="userName" placeholder="이름"> <br>
-					<span id="nameMsg" class="message" style="display: none;"></span>
-
-					<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();"> <br>
-					<span id="nicknameMsg" class="message" style="display: none;"></span>
-
-					<input type="text" name="email" placeholder="이메일" oninput="emailCheck();">
-					@
-					<input type="text" name="domain" oninput="emailCheck();">
-					<select id="selectDomain" onchange="input_domain();">
-						<option value="input-self">직접입력</option>
-						<option value="naver.com">naver.com</option>
-						<option value="gmail.com">gmail.com</option>
-						<option value="daum.net">daum.net</option>
-					</select>
-					<!-- <button type="button" class="btn btn-secondary" id="check-email-btn" onclick="emailCheck();">인증하기</button> -->
-					<span id="emailMsg" class="message" style="display: none;"></span>
+		<% if(loginUser == null) { %>
+			<h3 align="center">회원가입</h3>
+	
+			<form action="<%= contextPath %>/insert.me" method="post">
+				<div id="required-area">
+					<p>기본정보 <small>(필수)</small></p>
+					<hr id="hr">
+					<div>
+						<input type="text" name="userId" placeholder="아이디" oninput="idCheck();"> <br>
+						<span id="idMsg" class="message" style="display: none;"></span>
+	
+						<input type="password" name="userPwd" placeholder="비밀번호"> <br>
+						<span id="pwdMsg" class="message" style="display: none;"></span>
+	
+						<input type="password" placeholder="비밀번호 확인"> <br>
+						<span id="pwdCheckMsg" class="message" style="display: none;"></span>
+	
+						<input type="text" name="userName" placeholder="이름"> <br>
+						<span id="nameMsg" class="message" style="display: none;"></span>
+	
+						<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();"> <br>
+						<span id="nicknameMsg" class="message" style="display: none;"></span>
+	
+						<input type="text" name="email" placeholder="이메일" oninput="emailCheck();">
+						@
+						<input type="text" name="domain" oninput="emailCheck();">
+						<select id="selectDomain" onchange="input_domain();">
+							<option value="input-self">직접입력</option>
+							<option value="naver.com">naver.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="daum.net">daum.net</option>
+						</select>
+						<!-- <button type="button" class="btn btn-secondary" id="check-email-btn" onclick="emailCheck();">인증하기</button> -->
+						<span id="emailMsg" class="message" style="display: none;"></span>
+					</div>
 				</div>
-			</div>
-	
-			<br>
-	
-			<div id="additional-area">
-				<p>추가정보 <small>(선택)</small></p>
-				<hr id="hr">
-	
-				<table>
-					<tr>
-						<th width="70">거주지</th>
-						<td>
-							서울특별시
-							<select name="address" id="selectAddress">
-								<option value="">선택안함</option>
-								<option>강남구</option>
-								<option>강북구</option>
-								<option>강서구</option>
-								<option>강동구</option>
-								<option>관악구</option>
-							</select>
-						</td>
-					</tr>
-				</table>
-			</div>
-	
-			<br>
-	
-			<div id="btn-area" align="center">
-				<button type="submit" class="btn btn-secondary" id="enroll-btn" onclick="return validate();">가입하기</button>
-			</div>
-		</form>
+		
+				<br>
+		
+				<div id="additional-area">
+					<p>추가정보 <small>(선택)</small></p>
+					<hr id="hr">
+		
+					<table>
+						<tr>
+							<th width="70">거주지</th>
+							<td>
+								서울특별시
+								<select name="address" id="selectAddress">
+									<option value="">선택안함</option>
+									<option>강남구</option>
+									<option>강북구</option>
+									<option>강서구</option>
+									<option>강동구</option>
+									<option>관악구</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+		
+				<br>
+		
+				<div id="btn-area" align="center">
+					<button type="submit" class="btn btn-secondary" id="enroll-btn" onclick="return validate();">가입하기</button>
+				</div>
+			</form>
+		<% } else { %>
+			<h2>이미 로그인 상태입니다.</h2>
+		<% } %>
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>

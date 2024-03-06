@@ -21,5 +21,14 @@
 		  AND REST_NO = ?
 	</entry>
 	
+	<entry key="selectImgList">
+		SELECT 
+		       IMG_FILE_NO
+		      ,IMG_ORIGIN_NAME
+		      ,IMG_CHANGE_NAME
+		      ,IMG_FILE_PATH
+		  FROM IMG_FILE
+		 WHERE REF_NO = ?
+	</entry>
 
 </properties>
