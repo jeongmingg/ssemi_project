@@ -300,6 +300,17 @@
 						});
 					});
 				
+					//로그인 한 사람이 admin이면, 닉네임 클릭시 어드민 메인 페이지로 가기
+					
+					var loginUser = "admin";
+					$("#header_3").click(function(){
+						if(loginUser ==="admin"){
+							location.href = "/mm/stat.ad";
+						}else{
+							location.href = "/mm";								
+						}
+					});
+					
 					// 로그인, 회원가입 스타일
 					// $("#navi").children().children().mouseenter("color","#E4910D");
 					$("#header_3 a, #header_4 a").mouseenter(function(){
