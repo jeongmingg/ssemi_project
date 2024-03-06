@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.common.model.vo.PageInfo;
+import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
 
 public class RestDao {
@@ -59,6 +62,171 @@ public class RestDao {
 		}
 			return list;
 		
+		
+	}
+	
+	public ArrayList<Rest> selectAllRestList(Connection conn , PageInfo pi){
+		//데이터 담을 객체 만들기
+		ArrayList<Rest> list = new ArrayList<Rest>();
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_No"),
+									rset.getString("rest_Local_Id"),
+									rset.getString("rest_Name"),
+									rset.getString("ctg_Id"),
+									rset.getString("rest_Address"),
+									rset.getString("rest_Tel"),
+									rset.getInt("rest_Grade")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
+	
+	public int selectRestCount (Connection conn) {
+		int restCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				restCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return restCount;
+		
+		
+	}
+
+	public ArrayList<Rest> selectRestList(Connection conn, String lname) {
+		
+		// select문 => ResultSet(여러행) => ArrayList<Rest>에 담기
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, lname);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("local_name"),
+								  rset.getInt("review_count")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			return list;
+		
+	}
+	
+//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+//		
+//		ArrayList<Rest> list = new ArrayList<Rest>();
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectBannerRestList");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
+		
+	public Rest selectRestDetail(Connection conn, String rpage){
+		Rest r = new Rest();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				 r = new Rest(
+						 	  rset.getString("rest_no"),
+					          rset.getString("local_name"),
+					          rset.getString("rest_name"),
+					          rset.getString("ctg_name"),
+					          rset.getString("rest_address"),
+					          rset.getString("rest_tel"),
+					          rset.getDouble("rest_x"),
+					          rset.getDouble("rest_y"),
+					          rset.getString("rest_parking"),
+					          rset.getInt("rest_grade"),
+					          rset.getString("rest_time"),
+					          rset.getDouble("rest_avg"),
+					          rset.getString("menu_name"),
+					          rset.getString("menu_price"),
+					          rset.getString("dt"),
+					          rset.getString("animal"),
+					          rset.getString("room"),
+					          rset.getString("big_room"));
+				 
+			}
+			
+			System.out.println("dao" + r);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return r;
 		
 	}
 }

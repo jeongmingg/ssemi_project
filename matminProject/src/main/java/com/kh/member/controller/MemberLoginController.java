@@ -24,7 +24,7 @@ public class MemberLoginController extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -40,15 +40,19 @@ public class MemberLoginController extends HttpServlet {
 			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
 			
 		} else {
-			if(loginUser.getEmailAuth() == 1) {
+			if (loginUser.getMemId().equals("admin")) {
 				request.getSession().setAttribute("loginUser", loginUser);
-				response.sendRedirect(request.getContextPath());
-				
+				request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
 			} else {
-				response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
+				if (loginUser.getEmailAuth() == 1) {
+					request.getSession().setAttribute("loginUser", loginUser);
+					response.sendRedirect(request.getContextPath());
+	
+				} else {
+					response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
+				}
 			}
 		}
-		
 	}
 
 	/**

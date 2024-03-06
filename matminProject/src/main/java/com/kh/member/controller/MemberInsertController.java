@@ -37,6 +37,7 @@ public class MemberInsertController extends HttpServlet {
 		String memName = request.getParameter("userName");
 		String nickname = request.getParameter("nickname");
 		String email = request.getParameter("email") + "@" + request.getParameter("domain");
+		int emailAuth = 0;
 		String address = request.getParameter("address");
 		
 		if("".equals(address)) {
@@ -45,34 +46,17 @@ public class MemberInsertController extends HttpServlet {
 			address = "서울특별시 " + address;
 		}
 		
-		Member m = new Member(memId, memPwd, memName, nickname, email, address);
+		Member m = new Member(memId, memPwd, memName, nickname, email, emailAuth, address);
 		
 		int result = new MemberService().insertMember(m);
 		
 		if(result > 0) {
-			System.out.println("============= DB INSERT 완료 =============");
-			
-//			request.setAttribute("memId", memId);	session으로 쏘던지, url에 키-밸류로 쏘던지 해야 될 듯
-//			System.out.println("============= memId: " + memId + "=============");
 			response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + email);
-			
-//			request.setAttribute("email", email);
-//			request.getRequestDispatcher("views/gmail/gmailSendAction.jsp").forward(request, response);
 			
 		} else {
 			request.getSession().setAttribute("alertMsg", "회원가입을 실패했습니다.");
 			response.sendRedirect(request.getContextPath() + "/chooseForm.me");
-		}
-		
-//		if(result > 0) {
-//			request.getSession().setAttribute("alertMsg", "성공적으로 회원가입되었습니다.");
-//			request.getRequestDispatcher("views/member/memberCommonLogin.jsp").forward(request, response);
-//			
-//		} else {
-//			request.getSession().setAttribute("alertMsg", "회원가입을 실패했습니다.");
-//			response.sendRedirect(request.getContextPath() + "/chooseForm.me");
-//		}
-		
+		}		
 	}
 
 	/**

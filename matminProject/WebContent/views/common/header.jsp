@@ -5,6 +5,7 @@
 	String contextPath = request.getContextPath();
 	String alertMsg = (String)session.getAttribute("alertMsg");
 	Member loginUser = (Member)session.getAttribute("loginUser");
+	// 회원번호, 회원아이디, 비밀번호, 이름, 닉네임, 이메일, 이메일인증여부, 주소, 경고횟수, 가입일자, 회원레벨(관리자 or 회원), 회원상태
 %>
 <!DOCTYPE html>
 <html>
@@ -42,9 +43,9 @@
         /* header 비율 */
         #header>div{height: 100%; float: left;}
         #header_1{width: 20%; padding-left: 50px; cursor: pointer;}
-        #header_2{width: 56%;}
-        #header_3{width: 8%;}
-        #header_4{width: 8%;}
+        #header_2{width: 55%;}
+        #header_3{width: 10%;}
+        #header_4{width: 7%;}
         #header_5{
             width: 8%; 
 			padding-top: 50px;
@@ -169,7 +170,7 @@
 	        }
 	
 	        #header_3{padding-left: 80px;}
-	        #header_4{padding-left: 40px;}
+	        #header_4{padding-left: 30px;}
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
@@ -224,7 +225,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 
@@ -299,6 +301,17 @@
 						});
 					});
 				
+					//로그인 한 사람이 admin이면, 닉네임 클릭시 어드민 메인 페이지로 가기
+					
+					var loginUser = "admin";
+					$("#header_3").click(function(){
+						if(loginUser ==="admin"){
+							location.href = "/mm/stat.ad";
+						}else{
+							location.href = "/mm";								
+						}
+					});
+					
 					// 로그인, 회원가입 스타일
 					// $("#navi").children().children().mouseenter("color","#E4910D");
 					$("#header_3 a, #header_4 a").mouseenter(function(){

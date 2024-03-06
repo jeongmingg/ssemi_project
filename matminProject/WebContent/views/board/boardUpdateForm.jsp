@@ -245,7 +245,7 @@
 	<br><br>
 
 	<div class="outer">
-		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
+		<h3 style="font-weight: 700" align="left">맛집등록요청 / 삭제</h3>
 		<div class= "outerin-area" >
 
 		<!-- 맛집 등록 요청시 -->
@@ -260,12 +260,11 @@
 						
 						<% if(b.getBoardType().equals("맛집 등록")){ %>
 						  <label>
-							<input type="radio" name="type" value="enroll" id="enroll" checked readonly>맛집 등록 요청</td>
-						 
+							<input type="radio" name="type" value="enroll" id="enroll" checked readonly>맛집 등록 요청</td>						 
 						  <% } else { %>
 							<input type="radio" name="type" value="delete" id="delete" checked readonly>맛집 삭제 요청</td>
-						   </label>	
 						  <% } %>
+						   </label>	
 						</tr>
 					<tr>
 						<th height="50">제목</th>
@@ -281,7 +280,7 @@
 							</td>
 						<% } %>
 						
-						<th style="text-align: center; width: 150px";>닉네임
+						<th style="text-align: center; width: 150px">닉네임
 							<input type="text" id="name" name="name" value="<%= b.getBoardWriter() %>" style="width: 150px; font-weight: lighter; outline: none;" readonly>
 						</th>
 						
@@ -330,7 +329,8 @@
 						<td colspan="4">	
 						<% if (img != null){ %>
 								<label>
-									<input type="file" id="file" name="file" className="btnOfInput" style="display: none;">
+									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
+									<input type="file" id="originFileNo" name="file" class="btnOfInput" style="display: none;">
 									<span class="file_name">
 										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
 									</span>
@@ -338,11 +338,10 @@
 								</label>
 						<% } else { %>
 								<label>
-									<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
+									<input type="file" id="file" name="file" class="btnOfInput" multiple style="display: none;">
 									<span class="file_name">파일을 선택해주세요</span>
 									<span class="file_btn">파일선택</span>
 								</label>
-							</div>
 						</td>
 						<% } %>
 					</tr>
@@ -370,51 +369,9 @@
        		 })
        })
 
-	   
-
 	</script>
 
-		// 버튼 클릭시 알람
-
-		<script>
-				function updateSuccess(){
-					Swal.fire({
-						title: "수정하시겠습니까?",
-						icon: "warning",
-						showCancelButton: true,
-						confirmButtonColor: "#e4910d",
-						cancelButtonColor: "#gray",
-						confirmButtonText: "수정",
-						cancelButtinText: "취소"
-					 }).then((result) => {
-				            if (result.isConfirmed) {
-				                // 확인 버튼이 클릭되었을 때 페이지를 업데이트
-				                window.location.href = "<%= contextPath %>;
-				            }
-				        });
-				    }
-
-				$($("#btn-delete")).click(function(){
-					Swal.fire({
-						title: "삭제하시겠습니까?",
-						icon: "warning",
-						showCancelButton: true,
-						confirmButtonColor: "#e4910d",
-						cancelButtonColor: "gray",
-						confirmButtonText: "yes"
-						}).then((result) => {
-						if (result.isConfirmed) {
-							Swal.fire({
-							title: "삭제가 완료됐습니다.",
-							icon: "success",
-							confirmButtonColor: "#e4910d"
-							});
-						}
-						});
-				})
-			})
-
-		</script>
+	
 
 		<script>
 			// 필수입력사항 작성안할시 오류 메시지 출력
@@ -470,9 +427,6 @@
 				</g>
 			</svg>
 		</div>
-
-
-	</div>
 
 	<%@ include file="../common/footer.jsp" %>
 </body>

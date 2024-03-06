@@ -201,7 +201,7 @@
 		<div class= "outerin-area" >
 
 		<!-- 맛집 등록 요청시 -->
-			<form action="#">
+		
 				<table class="listView-area" style="width: 1200px">
 					<tr>
 						<th width="100" height="70" >게시판 유형</th>
@@ -291,7 +291,7 @@
 
 				<div id="btn" align="center">
 					<br>
-					<a onclick="history.back()" class="btn btn-sm btn-secondary" id="btn-back">목록가기</a>
+					<a href="<%= contextPath %>/list.bo?cpage=1" class="btn btn-sm btn-secondary" id="btn-back">목록가기</a>
 						
 				<% if(loginUser != null && loginUser.getNickname().equals(b.getBoardWriter())){ %>	
 						<%
@@ -307,13 +307,6 @@
 			</form>
 		</div>
 	</div>
-
-	<script>
-	
-	
-	</script>
-
-
 
 	<script>
 

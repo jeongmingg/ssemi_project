@@ -22,6 +22,25 @@
 		   AND MEM_STATUS = 'Y'
 	</entry>
 	
+	<entry key="kakaoLoginMember">
+		SELECT
+		       MEM_NO
+		     , MEM_ID
+		     , MEM_PWD
+		     , MEM_NAME
+		     , NICKNAME
+		     , EMAIL
+		     , EMAIL_AUTH
+		     , ADDRESS
+		     , MEM_WARNING
+		     , ENROLL_DATE
+		     , MEM_LEVEL
+		     , MEM_STATUS
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+		   AND MEM_STATUS = 'Y'
+	</entry>
+	
 	<entry key="idCheck">
 		SELECT
 		       COUNT(*) "COUNT"
@@ -72,11 +91,13 @@
 		  , MEM_NAME
 		  , NICKNAME
 		  , EMAIL
+		  , EMAIL_AUTH
 		  , ADDRESS
 		  )
 		  VALUES
 		  (
 		    'M' || SEQ_MNO.NEXTVAL
+		  , ?
 		  , ?
 		  , ?
 		  , ?
@@ -90,6 +111,19 @@
 		UPDATE MEMBER
 		   SET EMAIL_AUTH = 1
 		 WHERE EMAIL = ?
+	</entry>
+
+	<entry key="selectMemberList">
+		
+		SELECT 
+		    MEM_NO
+		    ,MEM_ID
+		    ,MEM_NAME
+		    ,NICKNAME
+		    ,MEM_WARNING
+		    ,ENROLL_DATE
+	   	 FROM MEMBER
+		WHERE MEM_LEVEL = 'U'
 	</entry>
 	
 </properties>

@@ -42,21 +42,118 @@
 		    BY REST_NO
 	</entry>
 
+	<entry key="selectRestList">
+		SELECT
+		       REST_NO
+		     , REST_NAME
+		     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
+		     , REST_IMG_URL
+		     , LOCAL_NAME
+		     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+		  FROM (
+		       SELECT
+		              REST_NO
+		            , REST_NAME
+		            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+		            , REST_IMG_URL
+		            , LOCAL_NAME
+		            , REVIEW_NO
+		         FROM REST
+		         LEFT JOIN REVIEW USING(REST_NO)
+		         JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+		       )
+		 GROUP
+		    BY REST_NO
+		     , REST_NAME
+		     , REST_IMG_URL
+		     , LOCAL_NAME
+		HAVING LOCAL_NAME = ?
+		 ORDER
+		    BY REST_AVG DESC , REVIEW_COUNT DESC
+	</entry>
 
+	<entry key="selectAllRestList">
+		SELECT  
+			REST_NO
+			,REST_LOCAL_ID
+			,REST_NAME
+			,CTG_ID
+			,REST_ADDRESS
+			,REST_TEL
+			,REST_GRADE
+		FROM REST
+			WHERE REST_STATUS = 'Y'
+				
+		</entry>
+	
+		<entry key="selectRestCount">
+		SELECT 
+			COUNT(*) count
+			FROM REST
+		WHERE REST_STATUS = 'Y'
+		
+		</entry>
+		
+		<entry key="selectBannerRestList">
+			SELECT
+			       REST_NO
+			     , REST_NAME
+			     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
+			     , REST_IMG_URL
+			     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+			     , MENU_PRICE
+			     , REP_MENU
+			  FROM (
+			       SELECT
+			              REST_NO
+			            , REST_NAME
+			            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+			            , REST_IMG_URL
+			            , REVIEW_NO
+			            , MENU_NO
+			            , MENU_PRICE
+			            , MENU_NAME
+			            , REP_MENU
+			         FROM REVIEW
+			         RIGHT JOIN REST USING(REST_NO)
+			         LEFT JOIN MENU USING(REST_NO)
+			        WHERE REP_MENU = 'Y'
+			       )
+			 GROUP
+			    BY REST_NO
+			     , REST_NAME
+			     , REST_IMG_URL
+			     , MENU_PRICE
+			     , REP_MENU
+			 ORDER
+			    BY REST_AVG DESC , REVIEW_COUNT DESC
+		</entry>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		<!-- 식당상세테이블용 -->
+		<entry key="selectRestDetail">
+		SELECT
+		        REST_NO
+		      , LOCAL_NAME
+		      , REST_NAME
+		      , CTG_NAME
+		      , REST_ADDRESS
+		      , REST_TEL
+		      , REST_X
+		      , REST_Y
+		      , REST_PARKING
+		      , REST_GRADE
+		      , REST_TIME
+		      , REST_AVG
+		      , MENU_NAME
+		      , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
+		      , DT
+		      , ANIMAL
+		      , ROOM
+		      , BIG_ROOM
+		   FROM REST
+		   JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
+		   JOIN CATEGORY USING (CTG_ID)
+		   JOIN MENU USING (REST_NO)
+		  WHERE REST_NO = ?
+		</entry>
 </properties>

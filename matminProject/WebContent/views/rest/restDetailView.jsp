@@ -1,5 +1,28 @@
+
+<%@page import="com.kh.board.model.vo.ImgFile"%>
+<%@page import="com.kh.review.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% Rest r = (Rest)request.getAttribute("r"); 
+   String[] restAdd = r.getRestAddress().split(" ");
+   String rAdd = restAdd.length > 1 ? restAdd[1] : "";
+   
+   /* 별점 채우기위한 퍼센트 변수 */
+   double score = (double)r.getRestAvg();
+   double maxScore = 5.0;
+   double percent = (score/maxScore) * 100;
+	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
+   String star = String.format("%.1f", percent);
+	
+   ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
+   ArrayList<ImgFile> img = (ArrayList<ImgFile>)request.getAttribute("imgList");
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -680,12 +703,12 @@
 		<!-- 식당이름 -->
 		<div class="rest-title">
 			<div class="rest-name">
-				<h1 style="display: contents;">홍루이젠</h1> 
-				<span class="score">4.0</span>
+				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
+				<span class="score"><%= r.getRestAvg() %></span>
 			</div>
 				<span class="short-menu">간단 메뉴 소개</span>
 			<div class="rest-add">
-				<span class="short-add">서울-강남 > 청남동</span>
+				<span class="short-add">서울시- <%= rAdd %> </span>
 				<div class="heart-count-area">
 					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
 					<span>찜꽁(20)</span>
@@ -701,7 +724,7 @@
 
 		<!-- 공유하기 모달 -->
 		
-		<div id="myModal" class="modal">
+		<div id="shareModal" class="modal">
            
             <div class="modal-content" id="share-modal" style="height: 200px; width: 500px; align-items: center;">
                 <div class="modal-content-detail">
@@ -730,24 +753,26 @@
 
 		<div class="rest-detail">
 			<div class="list">
+				<div type="hidden"><%= r.getRestNo() %></div>
+			
 				<div class="list-add">
 					<div class="list-add-1">주소</div>
-					<span>서울특별시 블라블라</span>
+					<span><%= r.getRestAddress() %></span>
 				</div>
 				<div class="list-map">
 					<%@ include file = "../map/restDetailMap.jsp" %>
 				</div>
 				<div class="list-tel">
 					<div class="list-tel-1">연락처</div>
-					<span>02-999-9999</span>
+					<span><%= r.getRestTel() %></span>
 				</div>
 				<div class="list-time">
 					<div class="list-time-1">영업시간</div>
-					<span>09:00 - 17:00</span>
+					<span><%= r.getRestTime() %></span>
 				</div>
 				<div class="list-park">
 					<div class="list-park-1">주차</div>
-					<span>가능</span>
+					<span><%= r.getRestParking() %></span>
 				</div>
 				<div class="list-menu">
 						<div class="list-menu-name">
@@ -758,10 +783,11 @@
 									<div class="menu-list-1">
 										<li>
 											<p class="menu-item">
-												<span class="rest-menu">햄치즈샌드위치</span>
+												<span class="rest-menu"><%= r.getMenuName()%></span>
 												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
+												<span class="menu-price"><%= r.getMenuPrice() %>원</span>
 											</p>
+									<!--  
 										<li>
 											<p class="menu-item">
 												<span class="rest-menu">감자샌드위치</span>
@@ -792,6 +818,7 @@
 											</p>
 										</li>
 									</div>
+									-->
 									<!-- 버튼 클릭시 접기로 변경됨-->
 									<p class="r">
 										<span class="btn-more">더보기</span>
@@ -802,8 +829,8 @@
 				</div>
 			</div>
 			<br>
-
 			
+
 			<div class="review">
 				<div class="review title-area">
 					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
@@ -819,9 +846,9 @@
 					<div class="score-img">				
 						<div class="avg-title">총 별점 평균</div>
 							<span class="star">
-								<i style="width: 70%;"></i>
+								<i style="width: <%= star %>%;"></i>
 							</span>
-						<div class="avg-num">4.5</div>
+						<div class="avg-num"><%= r.getRestAvg() %></div>
 						<div class="star-detail">
 							<ul style="margin-left:6px">
 								<li>맛
@@ -876,6 +903,7 @@
 				</div>
 			</div>
 			<br>
+			
 			<div class="review-detail">
 				<div class="review-div">
 					<div class="rv1">
@@ -887,9 +915,9 @@
 								<div id="writer">차은우지망생</div>
 								<div style="display: flex;">
 									<div id="w-star">
-										<i style="width: 70%;"></i>
+										<i style="width:80%;"></i>
 									</div>
-									<span id="write-date">2024-02-01</span>
+									<span id="write-date">2024-02-05</span>
 								</div>
 							</div>
 							<div class="warn">
@@ -912,18 +940,13 @@
 								</li>
 								<li>서비스
 									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
+									<li id="rv-ser-star">4</li>
 								</li>
 							</ul>
 						</div>
 						<div class="review-content">
 							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
 
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
 							</p>
 						</div>
 						<div class="review-img">
@@ -945,75 +968,30 @@
 					</div>
 				</div>
 			</div>
-		
-			<div class="review-detail">
-				<div class="review-div">
-					<div class="rv1">
-						<div class="profile">
-							<div id="profile-img">
-								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-							</div>
-							<div class="profile-name">
-								<div id="writer">차은우지망생</div>
-								<div style="display: flex;">
-									<div id="w-star">
-										<i style="width: 70%;"></i>
-									</div>
-									<span id="write-date">2024-02-01</span>
-								</div>
-							</div>
-							<div class="warn">
-								<a href="#" id="rv-warn">신고</a>
-								<div class="review-update">
-									<a href="#" id="rv-update">수정</a>
-									<a href="#" id="rv-delete">삭제</a>
-								</div>
-							</div>
-						</div>
-						<div class="w-star-detail">
-							<ul>
-								<li>맛
-									<li class="rv-star-s"></li>
-									<li id="rv-flv-star">5</li>
-								</li>
-								<li>가격
-									<li class="rv-star-s"></li>
-									<li id="rv-pri-star">4</li>
-								</li>
-								<li>서비스
-									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
-								</li>
-							</ul>
-						</div>
-						<div class="review-content">
-							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
-
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
-							</p>
-						</div>
-						<div class="review-like">
-							<div class="like-area">
-								<span id="like">추천 (15)</span>
-							</div>
-							<div class="unlike-area">
-								<span id="unlike">비추천 (15)</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-		
-
-		</div>
-	</div>
-	<br><br><br>
-	</div>
-
+			
+			
+	<script>
+		function selectReviewList(){
+			$.ajax({
+				url:"review.rs",
+				data:{rpage:<%= r.getRestNo()%>},
+				success:function(r, img){
+					
+				console.log("ajax 성공")
+				console.log(r);
+				console.log(img);
+					
+				}, error:function(){
+					console.log("ajax 통신실패")
+				}
+				
+				
+			})
+		}
+			
+	</script>		
+			
+			
 	<script>
 	 
 			$(".btn-more").click(function(){
@@ -1043,7 +1021,7 @@
 		<!-- 공유 모달 -->
 		<script>
 			// Get the modal
-			var modal = document.getElementById("myModal");
+			var modal = document.getElementById("shareModal");
 	
 			// Get the image and insert it inside the modal - use its "alt" text as a caption
 			var btn = document.getElementById("btn-share");
@@ -1058,7 +1036,7 @@
 			// 공유모달닫기버튼
 
 			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
+			var span = document.getElementsByClassName("close")[1];
 	
 			// When the user clicks on <span> (x), close the modal
 			span.onclick = function() { 

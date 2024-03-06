@@ -59,13 +59,15 @@
             font-weight: 1000;
             display: inline-block;
             margin: auto;
+            padding-top: 7px;
+            padding-bottom: 2px;
         }
         
         #banner_2_3>div{
             text-align: center;
             display: flex;
             align-items: center;
-            }
+        }
         
         /* content 비율 */
         #content>div:not(0){height: 100%; float: left;}
@@ -131,12 +133,14 @@
 	            border: none;
 	            color: white;
 	            border-radius: 8px;
+                width: 80px;
+                height: 30px;
 	        }
 	        
 	        #content_bestSearch_title_btn, #content_ko_title_btn, #content_we_title_btn,
 	        #content_ch_title_btn, #content_ja_title_btn
 	        {
-	            padding-left: 120px;
+	            padding-left: 100px;
 	            line-height: 15px;
 	        }
             
@@ -158,6 +162,7 @@
 	            justify-content:center; /* 좌우 기준 중앙정렬 */
                 position: relative;
                 z-index: -2;
+                padding-top: 30px;
 	        }
 	        .swiper-slide img {
 	            /* box-shadow:0 0 5px #555; */
@@ -169,7 +174,11 @@
 	        }
             
             /* 식당이름 스타일 */
-            .swiper-slide figcaption{text-align: left; font-weight: 600; font-size: 14px;}
+            .swiper-slide figcaption{
+                text-align: left; 
+                font-weight: 600; font-size: 14px;
+                padding-top: 2px;
+            }
     </style>
 </head>
 <body>
@@ -203,19 +212,19 @@
                 </div>
                 <div id="banner_2_3">
                     <div id="banner_2_3_1">
-                        <button class="banner_1" id="ban_btn1">사원</button>
+                        <button class="bannerBtn" id="ban_btn1">사원</button>
                     </div>
                     <div id="banner_2_3_2">
-                        <button class="banner_2" id="ban_btn2">대리</button>
+                        <button class="bannerBtn" id="ban_btn2">대리</button>
                     </div>
                     <div id="banner_2_3_3">
-                        <button class="banner_3" id="ban_btn3">과장</button>
+                        <button class="bannerBtn" id="ban_btn3">과장</button>
                     </div>
                     <div id="banner_2_3_4">
-                        <button class="banner_4" id="ban_btn4">차장</button>
+                        <button class="bannerBtn" id="ban_btn4">차장</button>
                     </div>
                     <div id="banner_2_3_5">
-                        <button class="banner_5" id="ban_btn5">부장</button>
+                        <button class="bannerBtn" id="ban_btn5">부장</button>
                     </div>
                 </div>
             </div>
@@ -223,18 +232,20 @@
         </div>
 
         <script>
+
+            // 버튼 호버시 금액뜨는 효과
             // 사원 hover style
-            $(".banner_1").hover(
+            $("#ban_btn1").hover(
                 // mouseenter
                 function () {
-                    $("#ban_btn1").css({
+                    $(this).css({
                         "color": "#E4910D",
-                        "font-size": "20px"
+                        "font-size": "19px"
                     }).text("7000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#ban_btn1").css({
+                    $(this).css({
                         "color": "",
                         "font-size": "25px",
                         "font-weight": 1000
@@ -243,18 +254,20 @@
             );
             
             // 대리 hover style
-            $(".banner_2").hover(
+            $("#ban_btn2").hover(
                 // mouseenter
                 function () {
-                    $("#ban_btn2").css({
+                    $(this).css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("7000원 초과 12000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#ban_btn2").css({
+                    $(this).css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("대리");
@@ -262,18 +275,20 @@
             );
 
             // 과장 hover style
-            $(".banner_3").hover(
+            $("#ban_btn3").hover(
                 // mouseenter
                 function () {
-                    $("#ban_btn3").css({
+                    $(this).css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("12000원 초과 20000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#ban_btn3").css({
+                    $(this).css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("과장");
@@ -281,18 +296,20 @@
             );
 
             // 차장 hover style
-            $(".banner_4").hover(
+            $("#ban_btn4").hover(
                 // mouseenter
                 function () {
-                    $("#ban_btn4").css({
+                    $(this).css({
                         "color": "#E4910D",
-                        "font-size": "16px"
+                        "font-size": "15px",
+                        "padding-bottom": "43px"
                     }).text("20000원 초과 35000원 이하");
                 },
                 // mouseout
                 function () {
-                    $("#ban_btn4").css({
+                    $(this).css({
                         "color": "",
+                        "padding-bottom": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("차장");
@@ -300,23 +317,28 @@
             );
 
             // 부장 hover style
-            $(".banner_5").hover(
+            $("#ban_btn5").hover(
                 // mouseenter
                 function () {
-                    $("#ban_btn5").css({
+                    $(this).css({
                         "color": "#E4910D",
-                        "font-size": "20px"
+                        "font-size": "19px"
                     }).text("35000원 초과");
                 },
                 // mouseout
                 function () {
-                    $("#ban_btn5").css({
+                    $(this).css({
                         "color": "",
                         "font-size": "25px",
                         "font-weight": 1000
                     }).text("부장");
                 }
             );
+
+            // 버튼 클릭시 이동
+            $('.bannerBtn').on('click', function(){
+                window.location.href = '<%= request.getContextPath() %>/banner.rs';
+            });
 
         </script>
        
@@ -951,6 +973,17 @@
                         nextEl : '.swiper-button-next', // 다음 버튼 클래스명
                         prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
                     },
+                });
+
+                $(document).ready(function() {
+                    // 각 버튼 클릭 시 이벤트 처리
+                    $('.bannerBtn').on('click', function() {
+                        // 선택한 버튼의 텍스트 가져오기
+                        var grade = $(this).attr('id');
+
+                        // 맵핑 주소로 이동
+                        window.location.href = '<%= contextPath %>/banner.rs?grade=' + grade;
+                    });
                 });
             </script>
         

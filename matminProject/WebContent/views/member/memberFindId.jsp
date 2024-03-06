@@ -40,36 +40,40 @@
 	    		</svg>
 			</a>
 		</div>
-
-		<div class="result-area">
 		
-		<% if(m != null) { %>
-			<!-- 1. 조회됐을 경우 -->
-			<span><strong>고객님의 정보와 일치하는 아이디입니다.</strong></span>
-			<div id="id-list">
-				<table align="center">
-					<tr>
-						<th width="100"><%= m.getMemId() %></th>
-						<td>가입일자 : <%= m.getEnrollDate() %></td>
-					</tr>
-				</table>
-			</div>
-
-			<div class="btn-area">
-				<a href="<%= contextPath %>/loginForm.me" class="btn btn-sm btn-secondary" id="loginBtn">로그인하기</a>
-				<a href="#" class="btn btn-sm btn-secondary" id="findPwdBtn">비밀번호 찾기</a>
-			</div>
+		<% if(loginUser == null) { %>
+			<div class="result-area">
 			
-		<% } else { %>
-			<!-- 2. 조회되지 않았을 경우 -->
-			<span><strong>고객님의 정보와 일치하는 아이디가 존재하지 않습니다.</strong></span>
-			<div class="btn-area">
-				<a href="<%= contextPath %>/chooseForm.me" class="btn btn-sm btn-secondary" id="enrollBtn">회원가입</a>
-				<a href="<%= contextPath %>/findAccountForm.me" class="btn btn-sm btn-secondary" id="mainPageBtn">ID/PWD 찾기</a>
+			<% if(m != null) { %>
+				<!-- 1. 조회됐을 경우 -->
+				<span><strong>고객님의 정보와 일치하는 아이디입니다.</strong></span>
+				<div id="id-list">
+					<table align="center">
+						<tr>
+							<th width="100"><%= m.getMemId() %></th>
+							<td>가입일자 : <%= m.getEnrollDate() %></td>
+						</tr>
+					</table>
+				</div>
+	
+				<div class="btn-area">
+					<a href="<%= contextPath %>/loginForm.me" class="btn btn-sm btn-secondary" id="loginBtn">로그인하기</a>
+					<a href="#" class="btn btn-sm btn-secondary" id="findPwdBtn">비밀번호 찾기</a>
+				</div>
+				
+			<% } else { %>
+				<!-- 2. 조회되지 않았을 경우 -->
+				<span><strong>고객님의 정보와 일치하는 아이디가 존재하지 않습니다.</strong></span>
+				<div class="btn-area">
+					<a href="<%= contextPath %>/chooseForm.me" class="btn btn-sm btn-secondary" id="enrollBtn">회원가입</a>
+					<a href="<%= contextPath %>/findAccountForm.me" class="btn btn-sm btn-secondary" id="mainPageBtn">ID/PWD 찾기</a>
+				</div>
+			<% } %>
+			
 			</div>
+		<% } else { %>
+			<h3>이미 로그인 상태입니다.</h3>
 		<% } %>
-		
-		</div>
 	</div>
 	
 	<%@ include file="../common/footer.jsp" %>
