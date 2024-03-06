@@ -1,4 +1,7 @@
 
+<%@page import="com.kh.board.model.vo.ImgFile"%>
+<%@page import="com.kh.review.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -13,6 +16,10 @@
    double percent = (score/maxScore) * 100;
 	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
    String star = String.format("%.1f", percent);
+	
+   ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
+   ArrayList<ImgFile> img = (ArrayList<ImgFile>)request.getAttribute("imgList");
+
 %>
 
 
@@ -746,6 +753,8 @@
 
 		<div class="rest-detail">
 			<div class="list">
+				<div type="hidden"><%= r.getRestNo() %></div>
+			
 				<div class="list-add">
 					<div class="list-add-1">주소</div>
 					<span><%= r.getRestAddress() %></span>
@@ -894,7 +903,9 @@
 				</div>
 			</div>
 			<br>
+			
 			<div class="review-detail">
+			<% for (int i=0; i<3; i++){ %>
 				<div class="review-div">
 					<div class="rv1">
 						<div class="profile">
@@ -902,12 +913,12 @@
 								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
 							</div>
 							<div class="profile-name">
-								<div id="writer">차은우지망생</div>
+								<div id="writer"><%= rv.get(i).getReviewWriter()%></div>
 								<div style="display: flex;">
 									<div id="w-star">
-										<i style="width: 70%;"></i>
+										<i style="width:<%= rv.get(i).getRateAvg() %>%;"></i>
 									</div>
-									<span id="write-date">2024-02-01</span>
+									<span id="write-date"><%= rv.get(i).getReviewDate() %></span>
 								</div>
 							</div>
 							<div class="warn">
@@ -922,26 +933,21 @@
 							<ul>
 								<li>맛
 									<li class="rv-star-s"></li>
-									<li id="rv-flv-star">5</li>
+									<li id="rv-flv-star"><%= rv.get(i).getRateTaste() %></li>
 								</li>
 								<li>가격
 									<li class="rv-star-s"></li>
-									<li id="rv-pri-star">4</li>
+									<li id="rv-pri-star"><%= rv.get(i).getRateService() %></li>
 								</li>
 								<li>서비스
 									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
+									<li id="rv-ser-star">4</li>
 								</li>
 							</ul>
 						</div>
 						<div class="review-content">
 							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
 
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
 							</p>
 						</div>
 						<div class="review-img">
@@ -963,110 +969,16 @@
 					</div>
 				</div>
 			</div>
-		
-			<div class="review-detail">
-				<div class="review-div">
-					<div class="rv1">
-						<div class="profile">
-							<div id="profile-img">
-								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-							</div>
-							<div class="profile-name">
-								<div id="writer">차은우지망생</div>
-								<div style="display: flex;">
-									<div id="w-star">
-										<i style="width: 70%;"></i>
-									</div>
-									<span id="write-date">2024-02-01</span>
-								</div>
-							</div>
-							<div class="warn">
-								<a href="#" id="rv-warn">신고</a>
-								<div class="review-update">
-									<a href="#" id="rv-update">수정</a>
-									<a href="#" id="rv-delete">삭제</a>
-								</div>
-							</div>
-						</div>
-						<div class="w-star-detail">
-							<ul>
-								<li>맛
-									<li class="rv-star-s"></li>
-									<li id="rv-flv-star">5</li>
-								</li>
-								<li>가격
-									<li class="rv-star-s"></li>
-									<li id="rv-pri-star">4</li>
-								</li>
-								<li>서비스
-									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
-								</li>
-							</ul>
-						</div>
-						<div class="review-content">
-							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
-
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
-							</p>
-						</div>
-						<div class="review-like">
-							<div class="like-area">
-								<span id="like">추천 (15)</span>
-							</div>
-							<div class="unlike-area">
-								<span id="unlike">비추천 (15)</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-		
-
-		</div>
-	</div>
-	<br><br><br>
-	</div>
-
+			
+			<% }  %>
+			
 	<script>
-	
-	$(function(){
-		selectReviewList();
-		
-		// 최초조회후 1초마다 계속 실행시켜줌 
-		setInterval(selectReviewList, 1000);
-	})
-	
-	function selectReviewList(){
-		$.ajax({
-			url:"review.rs",
-			data:{rpage:<%= r.getRestNo()%>},
-			success:function(){
-				
-				
-				
-				
-				
-				
-				
-			},
-			error:function(){
-				console.log("ajax 통신실패");
-			}
-		});
-	}
-	
-	
-	
-	
-	
-	
-	
-	
+
+			
+	</script>		
+			
+			
+	<script>
 	 
 			$(".btn-more").click(function(){
 				// 현재 상태를 확인하여 숨김/보임을 토글합니다.

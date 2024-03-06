@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.ImgFile;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
+import com.kh.review.model.Service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 /**
  * Servlet implementation class RestDetailViewController
@@ -34,6 +37,11 @@ public class RestDetailViewController extends HttpServlet {
 		String rpage = request.getParameter("rpage");
 		
 		Rest r = new RestService().selectRestDetail(rpage); 
+		ArrayList<Review> rvList = new ReviewService().selectReviewList(rpage);
+		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
+		
+		System.out.println(rvList);
+		System.out.println(imgList);
 		
 		request.setAttribute("rpage", rpage);
 		request.setAttribute("r", r);

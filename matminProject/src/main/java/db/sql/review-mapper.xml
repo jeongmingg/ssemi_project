@@ -14,11 +14,12 @@
 		      , RATE_TASTE
 		      , RATE_PRICE
 		      , RATE_SERVICE
+		      , ROUND(((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3)/5*100, 0) "RATE_AVG"
 		 FROM REVIEW
 		 JOIN MEMBER ON (MEM_NO = REVIEW_WRITER)
 		WHERE REVIEW_STATUS = 'Y'
 		  AND REST_NO = ?
 	</entry>
-
+	
 
 </properties>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.board.model.vo.ImgFile;
 import com.kh.review.model.Service.ReviewService;
 import com.kh.review.model.vo.Review;
@@ -38,11 +39,12 @@ public class RestReviewController extends HttpServlet {
 		ArrayList<Review> rvList = new ReviewService().selectReviewList(rpage);
 		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
 		
-		request.setAttribute("rvList", rvList);
-		request.setAttribute("imgList", imgList);
+		System.out.println(rvList);
+		System.out.println(imgList);
 		
-		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
-
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(rvList, response.getWriter());
+		new Gson().toJson(imgList, response.getWriter());
 	}
 
 	/**

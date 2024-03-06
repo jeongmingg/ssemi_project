@@ -52,8 +52,12 @@ public class ReviewDao {
 						            rset.getInt("review_dislike"),
 						            rset.getDouble("rate_taste"),
 						            rset.getDouble("rate_price"),
-						            rset.getDouble("rate_service")));
+						            rset.getDouble("rate_service"),
+						            rset.getInt("rate_avg")));
+				
 			}
+			
+			System.out.println(list);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

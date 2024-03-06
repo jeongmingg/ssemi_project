@@ -12,16 +12,18 @@ public class Review {
 	private int reviewLike;
 	private int reviewDislike;
 	private int alerNo;
-	private double rateTaste; 
-	private double ratePrice;
-	private double rateService;
+	private int rateTaste; 
+	private int ratePrice;
+	private int rateService;
+	private int rateAvg;
 	private String reviewStatus;
+	
 	
 	public Review() {}
 
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, Date reviewDate,
-			Date updateDate, int reviewLike, int reviewDislike, int alerNo, double rateTaste, double ratePrice,
-			double rateService, String reviewStatus) {
+			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int rateTaste, int ratePrice,
+			int rateService, String reviewStatus) {
 		super();
 		this.reviewNo = reviewNo;
 		this.restNo = restNo;
@@ -40,7 +42,7 @@ public class Review {
 	
 	
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, Date reviewDate,
-			int reviewLike, int reviewDislike, double rateTaste, double ratePrice, double rateService) {
+			int reviewLike, int reviewDislike, int rateTaste, int ratePrice, int rateService, int rateAvg) {
 		super();
 		this.reviewNo = reviewNo;
 		this.restNo = restNo;
@@ -52,6 +54,7 @@ public class Review {
 		this.rateTaste = rateTaste;
 		this.ratePrice = ratePrice;
 		this.rateService = rateService;
+		this.rateAvg = rateAvg;
 	}
 
 
@@ -151,6 +154,14 @@ public class Review {
 		this.rateService = rateService;
 	}
 
+	public int getRateAvg() {
+		return rateAvg;
+	}
+
+	public void setRateAvg(int rateAvg) {
+		this.rateAvg = rateAvg;
+	}
+
 	public String getReviewStatus() {
 		return reviewStatus;
 	}
@@ -158,6 +169,8 @@ public class Review {
 	public void setReviewStatus(String reviewStatus) {
 		this.reviewStatus = reviewStatus;
 	}
+	
+	
 
 	@Override
 	public String toString() {
