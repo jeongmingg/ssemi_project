@@ -259,19 +259,6 @@
 						</thead>
 						<tbody></tbody>
 					</table>
-
-					<script>
-						$(".list-area tbody tr").click(function(){
-							var boardNo = $(this).find('td:first').text();
-							console.log($(this));
-							console.log(boardNo);
-							window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
-						});
-					</script>
-				
-					<br>
-				
-					<br><br>
 				</div>
 			</div>
 	</div>

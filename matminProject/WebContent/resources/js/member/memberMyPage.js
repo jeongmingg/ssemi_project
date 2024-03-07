@@ -93,14 +93,14 @@ function boardList(memNo) {
 
             $("#myBoard>span").text("총 " + result.length + "개");
             $("#myBoard>table>tbody").html(str);
+
+            $(".list-area tbody tr").click(function(){
+                var boardNo = $(this).find('td:first').text();
+                location.href = '/mm/detail.bo?bno=' + boardNo;
+            });
         },
         error: function() {
             console.log("마이페이지(내가 쓴 게시글) ajax 실패");
         }
     });
 }
-
-// $(".list-area tbody tr").click(function(){
-//     var boardNo = $(this).find('td:first').text();
-//     window.location.href = '<%= contextPath %>/detail.bo?bno=' + boardNo;
-// });
