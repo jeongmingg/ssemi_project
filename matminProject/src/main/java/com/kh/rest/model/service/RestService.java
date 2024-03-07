@@ -70,7 +70,7 @@ public class RestService {
 		int result2 = 1;
 		
 		if(at !=null) {
-//			result2 = new RestDao().insertRestAt(conn,at);
+			result2 = new RestDao().insertRestAt(conn,at);
 		}
 		if(result1 >0 && result2 >0) {
 			commit(conn);
