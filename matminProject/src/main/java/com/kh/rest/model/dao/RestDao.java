@@ -1,5 +1,4 @@
 
-
 package com.kh.rest.model.dao;
 
 import java.io.FileInputStream;
@@ -221,6 +220,13 @@ public class RestDao {
 		}
 		 return result;
 		
+	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		return list;
+	}
+	public int insertRestAt(Connection conn, Attachment at) {
+		return 0;
 	}
 	
 	
