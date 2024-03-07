@@ -27,5 +27,15 @@ public class ReviewService {
 		close(conn);
 		return ImgList;
 	}
+	
+	public ArrayList<Review> selectReviewListByMem(String memNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new ReviewDao().selectReviewListByMem(conn, memNo);
+		
+		close(conn);
+		
+		return list;
+	}
 
 }
