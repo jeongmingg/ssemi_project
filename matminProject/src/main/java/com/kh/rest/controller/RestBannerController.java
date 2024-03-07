@@ -33,9 +33,15 @@ public class RestBannerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String selectedGrade = request.getParameter("selectedGrade");
+<<<<<<< HEAD
 				
 		ArrayList<Rest> list = new RestService().selectRestList(selectedGrade);
 		System.out.println("컨트롤러의 " + selectedGrade);
+=======
+		
+		ArrayList<Rest> list = new RestService().selectBannerRestList(selectedGrade);
+		
+>>>>>>> dbe46bf008b0dad9b68b8218b58e89174d952e8f
 		request.setAttribute("selectedGrade", selectedGrade);
 		request.setAttribute("list", list);
 		
