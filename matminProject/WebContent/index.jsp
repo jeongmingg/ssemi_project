@@ -335,11 +335,6 @@
                 }
             );
 
-            // 버튼 클릭시 이동
-            $('.bannerBtn').on('click', function(){
-                window.location.href = '<%= request.getContextPath() %>/banner.rs';
-            });
-
         </script>
        
         <div id="content">
