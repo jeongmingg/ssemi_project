@@ -52,7 +52,7 @@
 						<!-- <a href="#myMark" class="tab">찜꽁 리스트</a> -->
 					</li>
 					<li id="review">
-						<a class="tab">내가 쓴 리뷰</a>
+						<a onclick="reviewList('<%= memNo %>');" class="tab">내가 쓴 리뷰</a>
 						<!-- <a href="#myReview" class="tab">내가 쓴 리뷰</a> -->
 					</li>
 					<li id="board">
@@ -170,75 +170,7 @@
 				<!-- 내가 쓴 리뷰 -->
 				<div id="myReview" class="info">
 					<span>총 2개</span>
-					<div class="review-detail">
-						<div class="review-div">
-							<div class="rv1">
-								<div class="profile">
-									<div id="profile-img">
-										<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-									</div>
-									<div class="profile-name">
-										<div id="writer">차은우지망생</div>
-										<div style="display: flex;">
-											<div id="w-star">
-												<i style="width: 70%;"></i>
-											</div>
-											<span id="write-date">2024-02-01</span>
-										</div>
-									</div>
-									<div class="warn">
-										<a href="#" id="rv-warn">신고</a>
-										<div class="review-update">
-											<a href="#" id="rv-update">수정</a>
-											<a href="#" id="rv-delete">삭제</a>
-										</div>
-									</div>
-								</div>
-								<div class="w-star-detail">
-									<ul>
-										<li>맛
-											<li class="rv-star-s"></li>
-											<li id="rv-flv-star">5</li>
-										</li>
-										<li>가격
-											<li class="rv-star-s"></li>
-											<li id="rv-pri-star">4</li>
-										</li>
-										<li>서비스
-											<li class="rv-star-s"></li>
-											<li id="rv-ser-star">5</li>
-										</li>
-									</ul>
-								</div>
-								<div class="review-content">
-									<p name="rv-content" id="rv-content">
-		지금까지 이런 맛은 없었다. 
-		이것은 갈비인가 통닭인가.
-		강남역 부근에 위치한 불백집입니다
-		혼밥가능하고 가성비있게 저녁먹기 좋습니다.
-	
-		맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
-									</p>
-								</div>
-								<div class="review-img">
-									<div>
-										<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-										<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-										<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-										
-									</div>
-								</div>
-								<div class="review-like">
-									<div class="like-area">
-										<span id="like">추천 (15)</span>
-									</div>
-									<div class="unlike-area">
-										<span id="unlike">비추천 (15)</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<div></div>
 				</div>
 
 				<!-- 작성한 게시글 -->

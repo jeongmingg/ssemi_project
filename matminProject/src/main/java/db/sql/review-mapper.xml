@@ -30,5 +30,21 @@
 		  FROM IMG_FILE
 		 WHERE REF_NO = ?
 	</entry>
+	
+	<entry key="selectReviewListByMem">
+		SELECT
+		       REVIEW_NO
+		     , NICKNAME
+		     , REVIEW_CONT
+		     , REVIEW_DATE
+		     , REVIEW_LIKE
+		     , REVIEW_DISLIKE
+		     , RATE_TASTE
+		     , RATE_PRICE
+		     , RATE_SERVICE
+		  FROM REVIEW
+		  JOIN MEMBER ON (REVIEW_WRITER = MEM_NO)
+		 WHERE REVIEW_WRITER = ?
+	</entry>
 
 </properties>
