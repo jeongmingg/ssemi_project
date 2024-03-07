@@ -35,7 +35,7 @@ public class RestBannerController extends HttpServlet {
 		String selectedGrade = request.getParameter("selectedGrade");
 				
 		ArrayList<Rest> list = new RestService().selectRestList(selectedGrade);
-		
+		System.out.println("컨트롤러의 " + selectedGrade);
 		request.setAttribute("selectedGrade", selectedGrade);
 		request.setAttribute("list", list);
 		
