@@ -32,11 +32,11 @@ public class RestBannerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String grade = request.getParameter("grade");
+		String selectedGrade = request.getParameter("selectedGrade");
 				
-		ArrayList<Rest> list = new RestService().selectRestList(grade);
+		ArrayList<Rest> list = new RestService().selectRestList(selectedGrade);
 		
-		request.setAttribute("grade", grade);
+		request.setAttribute("price", selectedGrade);
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/rest/restBannerSearch.jsp").forward(request, response);

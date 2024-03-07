@@ -267,7 +267,7 @@ public class RestDao {
 		
 	}
 
-	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+	public ArrayList<Rest> selectBannerRestList(Connection conn, String selectedGrade){
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
 		PreparedStatement pstmt = null;
@@ -278,19 +278,23 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, grade);
+			pstmt.setString(1, selectedGrade);
+			pstmt.setString(2, selectedGrade);
+			pstmt.setString(3, selectedGrade);
+			pstmt.setString(4, selectedGrade);
+			pstmt.setString(5, selectedGrade);
 			
 			rset= pstmt.executeQuery();
 			
 			while(rset.next()) {
-//				list.add(new Rest(rset.getString("rest_no"),
-//								  rset.getString("rest_name"),
-//								  rset.getDouble("rest_avg"),
-//								  rset.getString("rest_img_url"),
-//								  rset.getInt("review_count"),
-//								  rset.getString("menu_price"),
-//								  rset.getString("rep_menu")
-//						));
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getInt("review_count"),
+								  rset.getString("menu_price"),
+								  rset.getString("rep_menu")
+						));
 			}
 			
 		} catch (SQLException e) {

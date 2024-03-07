@@ -46,10 +46,10 @@ public class RestService {
 		return list;
 	}
 	
-	public ArrayList<Rest> selectBannerRestList(String grade){
+	public ArrayList<Rest> selectBannerRestList(String selectedGrade){
 		
 		Connection conn = getConnection();
-		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, grade);
+		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, selectedGrade);
 		close(conn); 
 		return list;
 	}

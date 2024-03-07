@@ -982,7 +982,7 @@
                         var grade = $(this).attr('id');
 
                         // 맵핑 주소로 이동
-                        window.location.href = '<%= contextPath %>/banner.rs?grade=' + grade;
+                        window.location.href = '<%= contextPath %>/banner.rs?price=' + price;
                     });
                 });
             </script>
