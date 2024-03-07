@@ -269,21 +269,6 @@
 						<a href="<%= contextPath %>/logout.me">로그아웃</a>
 					</div>
 
-
-
-
-					<!-- <div id="after-login">
-						<div id="userNickname">
-							<p id="nickname"><%= loginUser.getNickname() %>님</p>
-						</div>
-						<div id="nnList-div">
-							<ul id="nnList-ul">
-								<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
-								<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
-								<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
-							</ul>
-						</div>
-					</div> -->
 				<% } %>
 				
 				<div id="header_5">
