@@ -36,7 +36,7 @@ public class RestBannerController extends HttpServlet {
 				
 		ArrayList<Rest> list = new RestService().selectRestList(selectedGrade);
 		
-		request.setAttribute("price", selectedGrade);
+		request.setAttribute("selectedGrade", selectedGrade);
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/rest/restBannerSearch.jsp").forward(request, response);

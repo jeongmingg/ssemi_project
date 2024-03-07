@@ -979,10 +979,10 @@
                     // 각 버튼 클릭 시 이벤트 처리
                     $('.bannerBtn').on('click', function() {
                         // 선택한 버튼의 텍스트 가져오기
-                        var grade = $(this).attr('id');
+                        var selectedGrade = $(this).attr('id');
 
                         // 맵핑 주소로 이동
-                        window.location.href = '<%= contextPath %>/banner.rs?price=' + price;
+                        window.location.href = '<%= contextPath %>/banner.rs?selectedGrade=' + selectedGrade;
                     });
                 });
             </script>

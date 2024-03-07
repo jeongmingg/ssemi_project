@@ -50,6 +50,7 @@ public class RestService {
 		
 		Connection conn = getConnection();
 		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, selectedGrade);
+		System.out.println("service의 "+ selectedGrade);
 		close(conn); 
 		return list;
 	}
