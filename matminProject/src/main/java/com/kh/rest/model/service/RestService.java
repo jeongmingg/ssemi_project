@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.dao.RestDao;
 import com.kh.rest.model.vo.Rest;
@@ -44,14 +46,14 @@ public class RestService {
 		return list;
 	}
 	
-//	public ArrayList<Rest> selectBannerRestList(String grade){
-//		
-//		Connection conn = getConnection();
-//		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, grade);
-//		close(conn); 
-//		return list;
-//	}
-	
+	public ArrayList<Rest> selectBannerRestList(String grade){
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, grade);
+		close(conn); 
+		return list;
+	}
+
 	public Rest selectRestDetail(String rpage){
 		Connection conn = getConnection();
 		Rest r = new RestDao().selectRestDetail(conn, rpage);
