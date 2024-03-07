@@ -1043,8 +1043,6 @@
 		$(function(){
 		    selectReviewList();
 		})
-		
-		
 	
 		function selectReviewList(){
 			$.ajax({
@@ -1078,7 +1076,7 @@
 										<div id="writer">\${rvname}</div>
 										<div style="display: flex;">
 											<div id="w-star">
-												<i style="width:\${rvavg};"></i>
+												<i id="rvstar-avg"></i>
 											</div>
 											<span id="write-date">\${rvdate}</span>
 										</div>
@@ -1122,7 +1120,11 @@
 									</div>
 								</div>
 							</div>
-						</div>`
+						</div>
+						<br>`
+
+				$(".rvstar-avg").css("width", "\${rvavg}%");
+				
 				}
 		            console.log(value);
 
