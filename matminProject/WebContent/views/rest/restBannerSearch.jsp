@@ -352,19 +352,21 @@
 							 case "ban_btn4": grade = "차장"; break; 
 							 case "ban_btn5": grade = "부장"; break; 
 							 default: grade = "기본값"; break; 
+						}
 					} %>
 						<%= grade %> 맛집 ( <%= list.size() %>곳 )
 						
 				</div>
 				<div id="content_2_2_content">
 					<div id="restList1">
+						<% for(Rest r : list) { %>
 						<div class="rest-div">
 							<figure>
 								<img src="<%= r.getRestImgUrl()%>">
 								<figcaption><%= r.getRestName() %></figcaption>
 							</figure>
 						</div>
-					<% } %>
+						<% } %>
 					</div>
 					<div id="moreBtn">
 						<button type="button" id="more-btn">
