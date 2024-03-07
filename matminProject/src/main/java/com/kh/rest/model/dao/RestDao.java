@@ -1,3 +1,4 @@
+
 package com.kh.rest.model.dao;
 
 import java.io.FileInputStream;
@@ -168,6 +169,58 @@ public class RestDao {
 		
 	}
 	
+	public ArrayList<Category> selectCategoryList(Connection conn){
+		
+		ArrayList<Category> list = new ArrayList<Category>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectCategoryList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Category(rset.getInt("ctg_id"),
+										rset.getString("ctg_name")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public int insertRest(Connection conn, Rest r) {
+		
+		int result = 0;
+		 PreparedStatement pstmt = null;
+		 
+		 String sql = prop.getProperty("insertRest");
+		 
+		 try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRestName());
+			pstmt.setString(2, r.getCtgId());
+			pstmt.setString(3, r.getRestAddress());
+			pstmt.setString(4, r.getRestTel());
+			pstmt.setString(5, String.valueOf(r.getRestParking()));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		 return result;
+	}
+	
 //	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
 //		
 //		ArrayList<Rest> list = new ArrayList<Rest>();
@@ -255,4 +308,5 @@ public class RestDao {
 	}
 	
 }
+	
 

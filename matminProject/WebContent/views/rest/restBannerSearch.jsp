@@ -121,16 +121,17 @@
 	#content_2_1>div{width: 100%;}
 	#content_2_1_title{
 		height: 10%;
-		padding-top: 35px;
-		padding-left: 20px;
-		font-size: 20px;
 	}
 
 	#content_2_1_content{
 		height: 90%;
-		padding-left: 6px;
+		padding-top: 30px;
+		padding-left: 20px;
 	}
-
+	#select-location{
+		padding-left: 20px;
+		font-size: 20px;
+	}
 	/* selectBox 스타일*/
 
 	.selectBox * { box-sizing: border-box;}
@@ -291,10 +292,13 @@
 		<div id="content_2">
 			<div id="content_2_1">
 				<div id="content_2_1_title">
-					<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
-					&nbsp;&nbsp;지역 선택
+					
 				</div>
 				<div id="content_2_1_content">
+					<div id="select-location">
+						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
+						&nbsp;&nbsp;지역 선택
+					</div>
 					<div class="box">
 						<div class="selectBox ">
 							<button class="label" type="button">전체 보기</button>
