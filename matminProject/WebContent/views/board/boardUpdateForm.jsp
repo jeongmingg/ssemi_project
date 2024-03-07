@@ -245,7 +245,7 @@
 	<br><br>
 
 	<div class="outer">
-		<h3 style="font-weight: 700" align="legt">맛집등록요청 / 삭제</h3>
+		<h3 style="font-weight: 700" align="left">맛집등록요청 / 삭제</h3>
 		<div class= "outerin-area" >
 
 		<!-- 맛집 등록 요청시 -->
@@ -260,12 +260,11 @@
 						
 						<% if(b.getBoardType().equals("맛집 등록")){ %>
 						  <label>
-							<input type="radio" name="type" value="enroll" id="enroll" checked readonly>맛집 등록 요청</td>
-						 
+							<input type="radio" name="type" value="enroll" id="enroll" checked readonly>맛집 등록 요청</td>						 
 						  <% } else { %>
 							<input type="radio" name="type" value="delete" id="delete" checked readonly>맛집 삭제 요청</td>
-						   </label>	
 						  <% } %>
+						   </label>	
 						</tr>
 					<tr>
 						<th height="50">제목</th>
@@ -281,7 +280,7 @@
 							</td>
 						<% } %>
 						
-						<th style="text-align: center; width: 150px";>닉네임
+						<th style="text-align: center; width: 150px">닉네임
 							<input type="text" id="name" name="name" value="<%= b.getBoardWriter() %>" style="width: 150px; font-weight: lighter; outline: none;" readonly>
 						</th>
 						
@@ -330,7 +329,8 @@
 						<td colspan="4">	
 						<% if (img != null){ %>
 								<label>
-									<input type="file" id="file" name="file" className="btnOfInput" style="display: none;">
+									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
+									<input type="file" id="originFileNo" name="file" class="btnOfInput" style="display: none;">
 									<span class="file_name">
 										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
 									</span>
@@ -338,11 +338,10 @@
 								</label>
 						<% } else { %>
 								<label>
-									<input type="file" id="file" name="file" className="btnOfInput" multiple style="display: none;">
+									<input type="file" id="file" name="file" class="btnOfInput" multiple style="display: none;">
 									<span class="file_name">파일을 선택해주세요</span>
 									<span class="file_btn">파일선택</span>
 								</label>
-							</div>
 						</td>
 						<% } %>
 					</tr>
@@ -428,9 +427,6 @@
 				</g>
 			</svg>
 		</div>
-
-
-	</div>
 
 	<%@ include file="../common/footer.jsp" %>
 </body>

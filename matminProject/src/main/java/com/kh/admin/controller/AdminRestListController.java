@@ -2,7 +2,6 @@ package com.kh.admin.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -61,8 +60,6 @@ public class AdminRestListController extends HttpServlet {
     	}
 		
     	PageInfo pi = new PageInfo(restCount, currentPage,pageLimit,boardLimit,maxPage, startPage,endPage);
-    	
-    	System.out.println(pi);
     	
     	//용청시 전달 값 뽑기
     			//요청처리 응답페이지에 필요한 데이터를 조회

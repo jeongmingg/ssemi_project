@@ -52,6 +52,7 @@ public class MemberLoginController extends HttpServlet {
 					response.sendRedirect(request.getContextPath() + "/gmailSendAction?email=" + loginUser.getEmail());
 				}
 			}
+
 		}
 	}
 

@@ -1,5 +1,13 @@
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.common.model.vo.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% 
+    	ArrayList<Category> list = (ArrayList)request.getAttribute("list");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,64 +22,73 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
-    .outer{
-        border: 1px solid orange;
-        color: orange;
-        width: 1100px;
-        margin: auto;
-        margin-bottom: 50px;
+
+	select{
+	border: 1px solid lightgray;
+    height: 27px;
+    width: 206px;
     }
-    #enroll-form table{margin:auto;}
-    #enroll-form input{margin:10px;}
-    button {
-    background-color:lightgray; 
-    border:1px;
-    cursor: pointer;
-}
+    .outer{
+	border: 2px solid orange;
+	color: orange;
+	width: 1100px;
+	margin: auto;
+	margin-bottom: 50px;
+    }
+	#enroll-form table{margin:auto;}
+	#enroll-form input{margin:10px;}
+	button {
+	background-color:lightgray; 
+	border:1px;
+	cursor: pointer;
+	}
 
-#navi {
-            list-style-type: none;
-            max-width: 1200px;
-            margin: 0;
-            height: 100%;
-        }
+	#navi {
+	list-style-type: none;
+	max-width: 1200px;
+	margin: 0;
+	height: 100%;
+    }
 
-        #navi > li > a {
-            color: orange;
-            font-size: 16px;
-            position: relative;
-            display: block;
-            padding: 15px;
-        }
+	#navi > li > a {
+	color: orange;
+	font-size: 16px;
+	position: relative;
+	display: block;
+	padding: 15px;
+	}
 
-        #navi > li > ul {
-            list-style-type: none;
-            padding: 0;
-            display: none;
-            position: absolute;
-            text-align: center;
-            z-index: 1;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+	#navi > li > ul {
+	list-style-type: none;
+	padding: 0;
+	display: none;
+	position: absolute;
+	text-align: center;
+	z-index: 1;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	}
 
-        #navi > li > ul a {
-            font-size: 15px;
-            color: orange;
-            display: block;
-            padding: 10px;
-            transition: all 0.3s;
-        }
+	#navi > li > ul a {
+	font-size: 15px;
+	color: orange;
+	display: block;
+	padding: 10px;
+	transition: all 0.3s;
+	}
 
-        #navi > li > ul a:hover {
-            background-color: lightgray;
-            color: orange;
-            text-decoration: none;
-        }
+	#navi > li > ul a:hover {
+	background-color: lightgray;
+	color: orange;
+	text-decoration: none;
+	}
 
-        #navi > li:hover > ul {
-            display: block;
-            opacity: 1;
-        }
+	#navi > li:hover > ul {
+	display: block;
+	opacity: 1;
+	}
+	td input{
+	border: 1px solid lightgray;
+	}
 </style>
 </head>
 <body>
@@ -101,9 +118,9 @@
                 </ul>
             </li>
             <li class="nav-item">
-            <a class="nav-link" href="<%= contextPath %>/list.bo" style="color: orange;font-size: 30px;">Board</a>
+            <a class="nav-link" href="<%= contextPath %>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="<%= contextPath %>/list.bo">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%= contextPath %>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
                     <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
             
@@ -118,39 +135,47 @@
         <br>
         <!-- <h2 align="center">식당등록</h2> -->
 
-        <form id="enroll-form" action="<%=contextPath %>/restEnroll.ad" method="post">
+        <form id="enroll-form" action="<%=contextPath %>/restEnroll.ad" method="post" enctype="multipart/form-data">
 
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td>*필수<input type="text" name="restName" maxlength="20" placeholder="- 식당이름 등록"required></td>
+                    <td><input type="text" name="restName" maxlength="20" placeholder="- 식당이름 등록"required></td>
     
                 </tr>
                 <tr>
-                    <td> 카티고리</td>
-                    <td>*필수<input type="text" name="category" maxlength="15" placeholder="- 식당 카테고리"required></td>
+                    <td>카티고리</td>
+                    <td>
+                    	&nbsp;&nbsp;
+						<select name="category" id="">
+                    	<!--  category table로 부터 조회 할꺼임 -->
+                    	<%for (Category c : list) { %>
+                    	<option value="<%=c.getCtgId()%>"><%=c.getCtgName() %></option>
+                    	<%} %>
+                    	</select>
+                    
+                    </td>
                     
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td>*필수<input type="text" maxlength="30" placeholder="- 식당주소"required></td>
+                    <td><input type="text" name="address" maxlength="30" placeholder="- 식당주소"required></td>
                    
                 </tr>
                 <tr>
-                    <td> 식당전화번호</td>
-                    <td>*필수<input type="text" name="restName" maxlength="20" placeholder="- 포함해서 입력"required></td>
+                    <td> 식당번호</td>
+                    <td><input type="text" name="restNo" maxlength="20" placeholder="- 포함해서 입력"required></td>
                    
                 </tr>
                 <tr>
-                    <td>&nbsp;&nbsp;주차여부</td>
-                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="text" name="phone" placeholder="- 'Y' 또는 'N' 입력"></td>
+                    <td>주차여부</td>
+                    <td><input type="text" name="status" placeholder="- 'Y' 또는 'N' 입력"></td>
                     
                 </tr>
 
                 <tr>
                     <th>첨부파일</th>
-                    <td><input type="file" name="upfile"></td>
+                    <td><input type="file" name="upfile" required></td>
                 </tr>
                 
                 <!-- <tr>
