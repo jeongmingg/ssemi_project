@@ -1,4 +1,4 @@
-package com.kh.rest.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
+import com.google.gson.Gson;
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class RestBannerController
+ * Servlet implementation class BoardListByMemController
  */
-@WebServlet("/banner.rs")
-public class RestBannerController extends HttpServlet {
+@WebServlet("/boList.me")
+public class BoardListByMemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestBannerController() {
+    public BoardListByMemController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +32,15 @@ public class RestBannerController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		String memNo = request.getParameter("memNo");
+//		System.out.println(memNo);
 		
-		String selectedGrade = request.getParameter("selectedGrade");
+		ArrayList<Board> list = new BoardService().selectBoardListByMem(memNo);
 		
-		ArrayList<Rest> list = new RestService().selectBannerRestList(selectedGrade);
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 		
-		request.setAttribute("selectedGrade", selectedGrade);
-		request.setAttribute("list", list);
-		
-		request.getRequestDispatcher("views/rest/restBannerSearch.jsp").forward(request, response);
 	}
 
 	/**

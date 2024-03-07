@@ -1,4 +1,4 @@
-package com.kh.rest.controller;
+package com.kh.review.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
+import com.google.gson.Gson;
+import com.kh.review.model.Service.ReviewService;
+import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class RestBannerController
+ * Servlet implementation class ReviewListByMemController
  */
-@WebServlet("/banner.rs")
-public class RestBannerController extends HttpServlet {
+@WebServlet("/rvList.me")
+public class ReviewListByMemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestBannerController() {
+    public ReviewListByMemController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +33,13 @@ public class RestBannerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String selectedGrade = request.getParameter("selectedGrade");
+		String memNo = request.getParameter("memNo");
 		
-		ArrayList<Rest> list = new RestService().selectBannerRestList(selectedGrade);
+		ArrayList<Review> list = new ReviewService().selectReviewListByMem(memNo);
 		
-		request.setAttribute("selectedGrade", selectedGrade);
-		request.setAttribute("list", list);
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 		
-		request.getRequestDispatcher("views/rest/restBannerSearch.jsp").forward(request, response);
 	}
 
 	/**

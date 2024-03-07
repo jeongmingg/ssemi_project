@@ -156,4 +156,17 @@
 			   SET BOARD_STATUS = 'N'
 			 WHERE BOARD_NO = ?
 		</entry>
+		
+		<entry key="selectBoardListByMem">
+			SELECT
+			       BOARD_NO
+			     , NICKNAME
+			     , BOARD_TYPE
+			     , BOARD_TITLE
+			     , BOARD_COUNT
+			     , BOARD_DATE
+			  FROM BOARD
+			  JOIN MEMBER ON (BOARD_WRITER = MEM_NO)
+			 WHERE BOARD_WRITER = ?
+		</entry>
 </properties>

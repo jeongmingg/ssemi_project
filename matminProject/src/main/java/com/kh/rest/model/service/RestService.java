@@ -45,11 +45,12 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
-	
-	public ArrayList<Rest> selectBannerRestList(String grade){
+
+	public ArrayList<Rest> selectBannerRestList(String selectedGrade){
 		
 		Connection conn = getConnection();
-		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, grade);
+		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, selectedGrade);
+		
 		close(conn); 
 		return list;
 	}
@@ -60,5 +61,9 @@ public class RestService {
 		
 		close(conn);
 		return r;
-		}
+	}
+	
+	public int insertRest(Rest r, Attachment at) {
+		return 0;
+	}
 }

@@ -29,7 +29,7 @@ public class Rest {
 	private int reviewCount;
 	private String menuName;
 	private String menuPrice;
-	private char repMenu;
+	private String repMenu;
 	private String dt;
 	private String anmial;
 	private String room;
@@ -82,7 +82,7 @@ public class Rest {
 	}
 	
 	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, String menuPrice,
-			char repMenu) {
+			String repMenu) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
@@ -93,8 +93,6 @@ public class Rest {
 		this.repMenu = repMenu;
 	}
 
-	
-	
 	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
 			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
 			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom) {
@@ -263,11 +261,11 @@ public class Rest {
 		this.menuPrice = menuPrice;
 	}
 
-	public char getRepMenu() {
+	public String getRepMenu() {
 		return repMenu;
 	}
 
-	public void setRepMenu(char repMenu) {
+	public void setRepMenu(String repMenu) {
 		this.repMenu = repMenu;
 	}
 

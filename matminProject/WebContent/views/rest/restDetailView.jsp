@@ -1078,7 +1078,7 @@
 										<div id="writer">\${rvname}</div>
 										<div style="display: flex;">
 											<div id="w-star">
-												<i style="width:\${rv.rateAge};"></i>
+												<i style="width:\${rvavg};"></i>
 											</div>
 											<span id="write-date">\${rvdate}</span>
 										</div>

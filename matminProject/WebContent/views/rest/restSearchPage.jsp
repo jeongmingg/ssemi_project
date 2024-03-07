@@ -462,23 +462,22 @@
                     <div id="category_content">
                         <div id="category_list1">
                         <ul>
-                            <li><input type="radio" name="category" id="rest"><label for="rest">&nbsp;&nbsp;밥집</label></li>
-                            <li><input type="radio" name="category" id="cafe"><label for="cafe">&nbsp;&nbsp;카페</label></li>
                             <li><input type="radio" name="category" id="ko"><label for="ko">&nbsp;&nbsp;한식</label></li>
+                            <li><input type="radio" name="category" id="ja"><label for="ja">&nbsp;&nbsp;일식</label></li>
                             <li><input type="radio" name="category" id="ch"><label for="ch">&nbsp;&nbsp;중식</label></li>
                             <li><input type="radio" name="category" id="we"><label for="we">&nbsp;&nbsp;양식</label></li>
-                            <li><input type="radio" name="category" id="ja"><label for="ja">&nbsp;&nbsp;일식</label></li>
+                            <li><input type="radio" name="category" id="bs"><label for="bs">&nbsp;&nbsp;분식</label></li>
+                            <li><input type="radio" name="category" id="cafe"><label for="cafe">&nbsp;&nbsp;카페</label></li>
                         </ul>
                         </div>
                         
                         <div id="category_list2" style="display: none;">
                         <ul>
-                            <li><input type="radio" name="category" id="bs"><label for="bs">&nbsp;&nbsp;분식</label></li>
-                            <li><input type="radio" name="category" id="vf"><label for="vf">&nbsp;&nbsp;뷔페</label></li>
                             <li><input type="radio" name="category" id="soju"><label for="soju">&nbsp;&nbsp;술집</label></li>
-                            <li><input type="radio" name="category" id="meat"><label for="meat">&nbsp;&nbsp;고깃집</label></li>
                             <li><input type="radio" name="category" id="fish"><label for="fish">&nbsp;&nbsp;횟집</label></li>
-                            <li><input type="radio" name="category" id="ff"><label for="ff">&nbsp;&nbsp;패스트푸드</label></li>
+                            <li><input type="radio" name="category" id="meat"><label for="meat">&nbsp;&nbsp;고깃집</label></li>
+                            <li><input type="radio" name="category" id="vf"><label for="vf">&nbsp;&nbsp;뷔페</label></li>
+                            <li><input type="radio" name="category" id="etc"><label for="etc">&nbsp;&nbsp;기타</label></li>
                         </ul>
                         </div>
                         <div id="list-Btn"><button type="button" id="listBtn" class="btn">펼치기</button></div>

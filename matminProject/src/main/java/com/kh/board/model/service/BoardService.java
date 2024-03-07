@@ -118,4 +118,24 @@ public class BoardService {
 		} return result;
 	}
 	
+	public ArrayList<Board> selectBoardListByMem(String memNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> list = new BoardDao().selectBoardListByMem(conn, memNo);
+		
+		close(conn);
+		
+		return list;
+	}
+
+	
+	public Board selectDetailBoard(int boardNo) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectDetailBoard(conn,boardNo);
+		
+		close(conn);
+		return b;
+	}
+	
 }

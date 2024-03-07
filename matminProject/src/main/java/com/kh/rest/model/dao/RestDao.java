@@ -221,7 +221,23 @@ public class RestDao {
 		 return result;
 	}
 	
-
+//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+//		
+//		ArrayList<Rest> list = new ArrayList<Rest>();
+//		
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String sql = prop.getProperty("selectBannerRestList");
+//		
+//		try {
+//			pstmt = conn.prepareStatement(sql);
+//			
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 		
 	public Rest selectRestDetail(Connection conn, String rpage){
 		Rest r = new Rest();
@@ -267,28 +283,50 @@ public class RestDao {
 		
 	}
 
-	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+	public ArrayList<Rest> selectBannerRestList(Connection conn, String selectedGrade){
 		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBannerRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, selectedGrade);
+			pstmt.setString(2, selectedGrade);
+			pstmt.setString(3, selectedGrade);
+			pstmt.setString(4, selectedGrade);
+			pstmt.setString(5, selectedGrade);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getInt("review_count"),
+								  rset.getString("menu_price"),
+								  rset.getString("rep_menu")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		
 		return list;
 	}
 	
+	public int insertRestAt(Connection conn, Attachment at) {
+		return 0;
+	}
 	
-	
-//	public ArrayList<Category> selectCategoryList(Connection conn){
-//		ArrayList<Category> list = new ArrayList<Category>();
-//		return list;
-//	}
-//	
-//	
-//	public int insertRest(Connection conn, Rest r) {
-//		return 0;
-//	}
-//
-//	public int insertRestAt(Connection conn, Attachment at) {
-//		return 0;
-//	}
-//	
 }
 	
 

@@ -261,29 +261,18 @@
 						<a href="<%= contextPath %>/chooseForm.me">회원가입</a>
 					</div>
 				<% } else { %>
-
 					<div id="header_3">
-						<a href="#"><%= loginUser.getNickname() %>님</a>
+					<% if(loginUser.getMemNo().equals("M1")) { %>
+						<a href="<%= contextPath %>/stat.ad"><%= loginUser.getNickname() %>님</a>
+					<% } else { %>
+						<a href="<%= contextPath %>/myPage.me"><%= loginUser.getNickname() %>님</a>
+					<% } %>
 					</div>
 					<div id="header_4">
 						<a href="<%= contextPath %>/logout.me">로그아웃</a>
 					</div>
 
 
-
-
-					<!-- <div id="after-login">
-						<div id="userNickname">
-							<p id="nickname"><%= loginUser.getNickname() %>님</p>
-						</div>
-						<div id="nnList-div">
-							<ul id="nnList-ul">
-								<li class="hoverNn" id="mypage"><a href="#">마이페이지</a></li>
-								<li class="hoverNn" id="updateInfo"><a href="#">회원정보수정</a></li>
-								<li class="hoverNn" id="logout"><a href="#">로그아웃</a></li>
-							</ul>
-						</div>
-					</div> -->
 				<% } %>
 				
 				<div id="header_5">
@@ -299,17 +288,6 @@
 						$("#logo").click(function(){
 							location.href="/mm";
 						});
-					});
-				
-					//로그인 한 사람이 admin이면, 닉네임 클릭시 어드민 메인 페이지로 가기
-					
-					var loginUser = "admin";
-					$("#header_3").click(function(){
-						if(loginUser ==="admin"){
-							location.href = "/mm/stat.ad";
-						}else{
-							location.href = "/mm";								
-						}
 					});
 					
 					// 로그인, 회원가입 스타일
