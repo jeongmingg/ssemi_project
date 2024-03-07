@@ -93,7 +93,6 @@
 		WHERE REST_STATUS = 'Y'
 		
 		</entry>
-		</entry>
 		
 		<entry key="selectBannerRestList">
 			SELECT
