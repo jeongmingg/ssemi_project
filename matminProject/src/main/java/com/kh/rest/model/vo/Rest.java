@@ -18,24 +18,30 @@ public class Rest {
 	private String restTel;
 	private double restX;
 	private double restY;
-	private char restParking;
+	private String restParking;
 	private int restGrade;
 	private String restTime;
 	private double restAvg;
-	private char restStatus;
+	private String restStatus;
 	private String restImgUrl;
 	private int heart;
 	private String localName;
 	private int reviewCount;
-	private int menuPrice;
-	private char repMenu;
+	private String menuName;
+	private String menuPrice;
+	private String repMenu;
+	private String dt;
+	private String anmial;
+	private String room;
+	private String bigRoom;
+	
 	
 	
 	public Rest() {}
 
 	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
-			double restX, double restY, char restParking, int restGrade, String restTime, double restAvg,
-			char restStatus, String restImgUrl) {
+			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
+			String restStatus, String restImgUrl) {
 		super();
 		this.restNo = restNo;
 		this.restLocalId = restLocalId;
@@ -75,8 +81,8 @@ public class Rest {
 		this.restGrade = restGrade;
 	}
 	
-	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, int menuPrice,
-			char repMenu) {
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, String menuPrice,
+			String repMenu) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
@@ -85,6 +91,30 @@ public class Rest {
 		this.reviewCount = reviewCount;
 		this.menuPrice = menuPrice;
 		this.repMenu = repMenu;
+	}
+
+	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
+			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom) {
+		super();
+		this.restNo = restNo;
+		this.restLocalId = restLocalId;
+		this.restName = restName;
+		this.ctgId = ctgId;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restX = restX;
+		this.restY = restY;
+		this.restParking = restParking;
+		this.restGrade = restGrade;
+		this.restTime = restTime;
+		this.restAvg = restAvg;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.dt = dt;
+		this.anmial = anmial;
+		this.room = room;
+		this.bigRoom = bigRoom;
 	}
 
 	public String getRestNo() {
@@ -151,11 +181,11 @@ public class Rest {
 		this.restY = restY;
 	}
 
-	public char getRestParking() {
+	public String getRestParking() {
 		return restParking;
 	}
 
-	public void setRestParking(char restParking) {
+	public void setRestParking(String restParking) {
 		this.restParking = restParking;
 	}
 
@@ -183,11 +213,11 @@ public class Rest {
 		this.restAvg = restAvg;
 	}
 
-	public char getRestStatus() {
+	public String getRestStatus() {
 		return restStatus;
 	}
 
-	public void setRestStatus(char restStatus) {
+	public void setRestStatus(String restStatus) {
 		this.restStatus = restStatus;
 	}
 
@@ -223,22 +253,64 @@ public class Rest {
 		this.reviewCount = reviewCount;
 	}
 
-	public int getMenuPrice() {
+	public String getMenuPrice() {
 		return menuPrice;
 	}
 
-	public void setMenuPrice(int menuPrice) {
+	public void setMenuPrice(String menuPrice) {
 		this.menuPrice = menuPrice;
 	}
 
-	public char getRepMenu() {
+	public String getRepMenu() {
 		return repMenu;
 	}
 
-	public void setRepMenu(char repMenu) {
+	public void setRepMenu(String repMenu) {
 		this.repMenu = repMenu;
 	}
 
+	
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public String getDt() {
+		return dt;
+	}
+
+	public void setDt(String dt) {
+		this.dt = dt;
+	}
+
+	public String getAnmial() {
+		return anmial;
+	}
+
+	public void setAnmial(String anmial) {
+		this.anmial = anmial;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
+	}
+
+	public String getBigRoom() {
+		return bigRoom;
+	}
+
+	public void setBigRoom(String bigRoom) {
+		this.bigRoom = bigRoom;
+	}
+
+	
 	@Override
 	public String toString() {
 		return "Rest [restNo=" + restNo + ", restLocalId=" + restLocalId + ", restName=" + restName + ", ctgId=" + ctgId

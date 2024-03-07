@@ -1,16 +1,39 @@
+
+<%@page import="com.kh.board.model.vo.ImgFile"%>
+<%@page import="com.kh.review.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% Rest r = (Rest)request.getAttribute("r"); 
+   String[] restAdd = r.getRestAddress().split(" ");
+   String rAdd = restAdd.length > 1 ? restAdd[1] : "";
+   
+   /* 별점 채우기위한 퍼센트 변수 */
+   double score = (double)r.getRestAvg();
+   double maxScore = 5.0;
+   double percent = (score/maxScore) * 100;
+	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
+   String star = String.format("%.1f", percent);
+	
+   ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
+   ArrayList<ImgFile> img = (ArrayList<ImgFile>)request.getAttribute("imgList");
+
+%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 
 <style>
 
@@ -657,7 +680,68 @@
         margin-left: 40px;
         padding-top: 9px;
     }
+	/* 리뷰작성 모달 스타일 */
+	.modal-content {
+		text-align: center;
+	}
+	#reviewModal > .rv-enroll-btn{
+		border-color:#F39C12;
+	}
+	/* 별 창*/
+	.blind {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
+}
 
+.startRadio {
+  display: inline-block;
+  overflow: hidden;
+  height: 40px;
+  &:after {
+    content: "";
+    display: block;
+    position: relative;
+    z-index: 10;
+    height: 40px;
+    background: url("data:image/png;base64,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")
+      repeat-x 0 0;
+    background-size: contain;
+    pointer-events: none;
+   }
+   &__box {
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 20px;
+    height: 40px;
+    cursor: pointer;
+    input {
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+
+      &:checked + .startRadio__img {
+        background-color: #F39C12;
+      }
+    }
+   }
+   &__img {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 500px;
+    height: 40px;
+    pointer-events: none;
+  }
+}
+	
 </style>
 </head>
 <body>
@@ -680,12 +764,12 @@
 		<!-- 식당이름 -->
 		<div class="rest-title">
 			<div class="rest-name">
-				<h1 style="display: contents;">홍루이젠</h1> 
-				<span class="score">4.0</span>
+				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
+				<span class="score"><%= r.getRestAvg() %></span>
 			</div>
 				<span class="short-menu">간단 메뉴 소개</span>
 			<div class="rest-add">
-				<span class="short-add">서울-강남 > 청남동</span>
+				<span class="short-add">서울시- <%= rAdd %> </span>
 				<div class="heart-count-area">
 					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
 					<span>찜꽁(20)</span>
@@ -699,10 +783,9 @@
 		</div>
 		<div class="text-line"></div>
 
-		<!-- 공유하기 모달 -->
+		<!--공유하기 모달-->
 		
-		<div id="myModal" class="modal">
-           
+		<div id="shareModal" class="modal">
             <div class="modal-content" id="share-modal" style="height: 200px; width: 500px; align-items: center;">
                 <div class="modal-content-detail">
                     <span id="share-close-btn" class="close" style="color: gray;">&times;</span>
@@ -730,24 +813,26 @@
 
 		<div class="rest-detail">
 			<div class="list">
+				<div type="hidden"><%= r.getRestNo() %></div>
+			
 				<div class="list-add">
 					<div class="list-add-1">주소</div>
-					<span>서울특별시 블라블라</span>
+					<span><%= r.getRestAddress() %></span>
 				</div>
 				<div class="list-map">
 					<%@ include file = "../map/restDetailMap.jsp" %>
 				</div>
 				<div class="list-tel">
 					<div class="list-tel-1">연락처</div>
-					<span>02-999-9999</span>
+					<span><%= r.getRestTel() %></span>
 				</div>
 				<div class="list-time">
 					<div class="list-time-1">영업시간</div>
-					<span>09:00 - 17:00</span>
+					<span><%= r.getRestTime() %></span>
 				</div>
 				<div class="list-park">
 					<div class="list-park-1">주차</div>
-					<span>가능</span>
+					<span><%= r.getRestParking() %></span>
 				</div>
 				<div class="list-menu">
 						<div class="list-menu-name">
@@ -758,10 +843,11 @@
 									<div class="menu-list-1">
 										<li>
 											<p class="menu-item">
-												<span class="rest-menu">햄치즈샌드위치</span>
+												<span class="rest-menu"><%= r.getMenuName()%></span>
 												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
+												<span class="menu-price"><%= r.getMenuPrice() %>원</span>
 											</p>
+									<!--  
 										<li>
 											<p class="menu-item">
 												<span class="rest-menu">감자샌드위치</span>
@@ -792,6 +878,7 @@
 											</p>
 										</li>
 									</div>
+									-->
 									<!-- 버튼 클릭시 접기로 변경됨-->
 									<p class="r">
 										<span class="btn-more">더보기</span>
@@ -802,14 +889,14 @@
 				</div>
 			</div>
 			<br>
-
 			
+		<!-- 평균 리뷰 창 --->
 			<div class="review">
 				<div class="review title-area">
 					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
 					</div>
 					<div class="btn-review-area">
-					<a href="" id="btn-review" class="btn btn-sm btn-secondary">리뷰작성</a>
+					<button type="button" id="btn-review" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">리뷰작성</button>
 					</div>
 				</div> 
 				<br>
@@ -819,9 +906,9 @@
 					<div class="score-img">				
 						<div class="avg-title">총 별점 평균</div>
 							<span class="star">
-								<i style="width: 70%;"></i>
+								<i style="width: <%= star %>%;"></i>
 							</span>
-						<div class="avg-num">4.5</div>
+						<div class="avg-num"><%= r.getRestAvg() %></div>
 						<div class="star-detail">
 							<ul style="margin-left:6px">
 								<li>맛
@@ -876,6 +963,62 @@
 				</div>
 			</div>
 			<br>
+	
+		<!-- Modal -->
+		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="reviewModal" style="margin: auto; margin-top: 10px;">솔직한 리뷰를 작성해주세요!</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="">
+						<div>
+							<h2>맛은 어땠나요?</h2>
+							<div class="startRadio">
+								<label class="startRadio__box">
+								  <input type="radio" name="star" id="">
+								  <span class="startRadio__img"><span class="blind">별 1개</span></span>
+								</label>
+								<label class="startRadio__box">
+								  <input type="radio" name="star" id="">
+								  <span class="startRadio__img"><span class="blind">별 2개</span></span>
+								</label>
+								<label class="startRadio__box">
+								  <input type="radio" name="star" id="">
+								  <span class="startRadio__img"><span class="blind">별 3개</span></span>
+								</label>
+								<label class="startRadio__box">
+								  <input type="radio" name="star" id="">
+								  <span class="startRadio__img"><span class="blind">별 4개</span></span>
+								</label>
+								<label class="startRadio__box">
+								  <input type="radio" name="star" id="">
+								  <span class="startRadio__img"><span class="blind">별 5개</span></span>
+								</label>
+							  </div>
+							<br>
+							<h2>가격은 어땠나요?</h2>
+							<div id="price-star"></div>
+							<br>
+							<h2>서비스는 어땠나요?</h2>
+							<div id="service-star"></div>
+							<br>
+							<textarea id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style=" width: 100px; font-size: x-large;">취소</button>
+				<button type="button" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
+				</div>
+			</div>
+			</div>
+		</div>
+
+
+		<!-- 세부적인 리뷰 창 -->
 			<div class="review-detail">
 				<div class="review-div">
 					<div class="rv1">
@@ -887,9 +1030,9 @@
 								<div id="writer">차은우지망생</div>
 								<div style="display: flex;">
 									<div id="w-star">
-										<i style="width: 70%;"></i>
+										<i style="width:80%;"></i>
 									</div>
-									<span id="write-date">2024-02-01</span>
+									<span id="write-date">2024-02-05</span>
 								</div>
 							</div>
 							<div class="warn">
@@ -912,18 +1055,13 @@
 								</li>
 								<li>서비스
 									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
+									<li id="rv-ser-star">4</li>
 								</li>
 							</ul>
 						</div>
 						<div class="review-content">
 							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
 
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
 							</p>
 						</div>
 						<div class="review-img">
@@ -945,75 +1083,34 @@
 					</div>
 				</div>
 			</div>
-		
-			<div class="review-detail">
-				<div class="review-div">
-					<div class="rv1">
-						<div class="profile">
-							<div id="profile-img">
-								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-							</div>
-							<div class="profile-name">
-								<div id="writer">차은우지망생</div>
-								<div style="display: flex;">
-									<div id="w-star">
-										<i style="width: 70%;"></i>
-									</div>
-									<span id="write-date">2024-02-01</span>
-								</div>
-							</div>
-							<div class="warn">
-								<a href="#" id="rv-warn">신고</a>
-								<div class="review-update">
-									<a href="#" id="rv-update">수정</a>
-									<a href="#" id="rv-delete">삭제</a>
-								</div>
-							</div>
-						</div>
-						<div class="w-star-detail">
-							<ul>
-								<li>맛
-									<li class="rv-star-s"></li>
-									<li id="rv-flv-star">5</li>
-								</li>
-								<li>가격
-									<li class="rv-star-s"></li>
-									<li id="rv-pri-star">4</li>
-								</li>
-								<li>서비스
-									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">5</li>
-								</li>
-							</ul>
-						</div>
-						<div class="review-content">
-							<p name="rv-content" id="rv-content">
-	지금까지 이런 맛은 없었다. 
-	이것은 갈비인가 통닭인가.
-	강남역 부근에 위치한 불백집입니다
-	혼밥가능하고 가성비있게 저녁먹기 좋습니다.
-
-	맛보다는 강남에서 이가격에 밥한끼 먹는다는것에 의의를 두면 대체적으로 만족하게 됩니다.
-							</p>
-						</div>
-						<div class="review-like">
-							<div class="like-area">
-								<span id="like">추천 (15)</span>
-							</div>
-							<div class="unlike-area">
-								<span id="unlike">비추천 (15)</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>	
-		
-
-		</div>
-	</div>
-	<br><br><br>
+		</div>	
 	</div>
 
+	<br><br>
+		<%@ include file="../common/footer.jsp" %>		
+
+	<script>
+		function selectReviewList(){
+			$.ajax({
+				url:"review.rs",
+				data:{rpage:<%= r.getRestNo()%>},
+				success:function(r, img){
+					
+				console.log("ajax 성공")
+				console.log(r);
+				console.log(img);
+					
+				}, error:function(){
+					console.log("ajax 통신실패")
+				}
+				
+				
+			})
+		}
+			
+	</script>		
+			
+			
 	<script>
 	 
 			$(".btn-more").click(function(){
@@ -1043,7 +1140,7 @@
 		<!-- 공유 모달 -->
 		<script>
 			// Get the modal
-			var modal = document.getElementById("myModal");
+			var modal = document.getElementById("shareModal");
 	
 			// Get the image and insert it inside the modal - use its "alt" text as a caption
 			var btn = document.getElementById("btn-share");
@@ -1058,23 +1155,24 @@
 			// 공유모달닫기버튼
 
 			// Get the <span> element that closes the modal
-			var span = document.getElementsByClassName("close")[0];
+			var span = document.getElementsByClassName("close")[1];
 	
 			// When the user clicks on <span> (x), close the modal
 			span.onclick = function() { 
 			modal.style.display = "none";
 			}
-			</script>
-			<script>
-				$(function(){
-					$("#share-close-btn").click(function(){
-						$("#map").css("display","block");	
-					})
+		</script>
 
-			})
-			</script>
+		<script>
+			$(function(){
+				$("#share-close-btn").click(function(){
+					$("#map").css("display","block");	
+				})
+		})
+		</script>
+			
+
 	
 
-	<%@ include file="../common/footer.jsp" %>
 </body>
 </html>

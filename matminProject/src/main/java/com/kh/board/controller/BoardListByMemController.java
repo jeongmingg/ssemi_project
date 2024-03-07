@@ -1,4 +1,4 @@
-package com.kh.rest.controller;
+package com.kh.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.vo.ImgFile;
-import com.kh.rest.model.service.RestService;
-import com.kh.rest.model.vo.Rest;
-import com.kh.review.model.Service.ReviewService;
-import com.kh.review.model.vo.Review;
+import com.google.gson.Gson;
+import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.Board;
 
 /**
- * Servlet implementation class RestDetailViewController
+ * Servlet implementation class BoardListByMemController
  */
-@WebServlet("/detail.rs")
-public class RestDetailViewController extends HttpServlet {
+@WebServlet("/boList.me")
+public class BoardListByMemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestDetailViewController() {
+    public BoardListByMemController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +32,15 @@ public class RestDetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String rpage = request.getParameter("rpage");
-		
-		Rest r = new RestService().selectRestDetail(rpage); 
 
-		request.setAttribute("rpage", rpage);
-		request.setAttribute("r", r);
-		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
+		String memNo = request.getParameter("memNo");
+//		System.out.println(memNo);
+		
+		ArrayList<Board> list = new BoardService().selectBoardListByMem(memNo);
+		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
+		
 	}
 
 	/**

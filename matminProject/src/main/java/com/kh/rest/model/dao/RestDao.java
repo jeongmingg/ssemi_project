@@ -220,17 +220,99 @@ public class RestDao {
 			close(pstmt);
 		}
 		 return result;
+	}
+		
+	public Rest selectRestDetail(Connection conn, String rpage){
+		Rest r = new Rest();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				 r = new Rest(
+						 	  rset.getString("rest_no"),
+					          rset.getString("local_name"),
+					          rset.getString("rest_name"),
+					          rset.getString("ctg_name"),
+					          rset.getString("rest_address"),
+					          rset.getString("rest_tel"),
+					          rset.getDouble("rest_x"),
+					          rset.getDouble("rest_y"),
+					          rset.getString("rest_parking"),
+					          rset.getInt("rest_grade"),
+					          rset.getString("rest_time"),
+					          rset.getDouble("rest_avg"),
+					          rset.getString("menu_name"),
+					          rset.getString("menu_price"),
+					          rset.getString("dt"),
+					          rset.getString("animal"),
+					          rset.getString("room"),
+					          rset.getString("big_room"));
+				 
+			}
+			
+			System.out.println("dao" + r);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return r;
 		
 	}
-	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
+
+	public ArrayList<Rest> selectBannerRestList(Connection conn, String selectedGrade){
 		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBannerRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			System.out.println("Dao의 "+ selectedGrade);
+			pstmt.setString(1, selectedGrade);
+			pstmt.setString(2, selectedGrade);
+			pstmt.setString(3, selectedGrade);
+			pstmt.setString(4, selectedGrade);
+			pstmt.setString(5, selectedGrade);
+			pstmt.setString(6, selectedGrade);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getInt("review_count"),
+								  rset.getString("menu_price"),
+								  rset.getString("rep_menu")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 		
 		return list;
 	}
-
+	
 	public int insertRestAt(Connection conn, Attachment at) {
 		return 0;
 	}
 	
-	
 }
+	
+

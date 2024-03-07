@@ -51,7 +51,7 @@ public class AdminRestInsertController extends HttpServlet {
 		String ctgId = multiRequst.getParameter("category");
 		String restAddress = multiRequst.getParameter("address");
 		String restTel = multiRequst.getParameter("phone");
-		char restParking = multiRequst.getParameter("parking").charAt(0);
+		String restParking = multiRequst.getParameter("parking");
 		
 		Rest r = new Rest();
 		r.setRestName(restName);

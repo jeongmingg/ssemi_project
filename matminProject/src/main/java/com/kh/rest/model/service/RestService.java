@@ -52,26 +52,32 @@ public class RestService {
 		Connection conn = getConnection();
 		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
 		close(conn);
-		return list;
 	}
-	
-	public int insertRest(Rest r, Attachment at ) {
+	public ArrayList<Rest> selectBannerRestList(String selectedGrade){
 		
 		Connection conn = getConnection();
-		
-		int result1 = new RestDao().insertRest(conn,r);
-		
-		int result2 = 1;
-		
-		if(at !=null) {
-			result2 = new RestDao().insertRestAt(conn,at);
-		}
-		if(result1 >0 && result2 >0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		ArrayList<Rest> list = new RestDao().selectBannerRestList(conn, selectedGrade);
+		System.out.println("service의 "+ selectedGrade);
+		close(conn); 
+		return list;
+	}
+
+	public ArrayList<Category> selectCategoryList(){
+		Connection conn = getConnection();
+		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
 		close(conn);
-		return result1*result2;
+		return list;
+	}
+
+	public Rest selectRestDetail(String rpage){
+		Connection conn = getConnection();
+		Rest r = new RestDao().selectRestDetail(conn, rpage);
+		
+		close(conn);
+		return r;
+	}
+	
+	public int insertRest(Rest r, Attachment at) {
+		return 0;
 	}
 }

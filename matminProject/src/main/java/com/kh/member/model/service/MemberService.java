@@ -126,4 +126,24 @@ public class MemberService {
 		return list;
 	}
 	
+	public Member updateMember(Member m) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMember(conn, m);
+		
+		Member updateMem = null;
+		if(result > 0) {
+			commit(conn);
+			
+			//갱신된 회원 객체 다시 조회해오기
+			updateMem = new MemberDao().selectMember(conn, m.getMemId());
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateMem;
+	}
+	
 }

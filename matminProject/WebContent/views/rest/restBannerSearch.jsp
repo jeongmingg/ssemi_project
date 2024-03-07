@@ -1,5 +1,11 @@
+<%@page import="com.kh.rest.model.vo.Rest"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String selectedGrade = (String)request.getAttribute("selectedGrade");
+	ArrayList<Rest> list = (ArrayList<Rest>)request.getAttribute("list");	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,16 +127,17 @@
 	#content_2_1>div{width: 100%;}
 	#content_2_1_title{
 		height: 10%;
-		padding-top: 35px;
-		padding-left: 20px;
-		font-size: 20px;
 	}
 
 	#content_2_1_content{
 		height: 90%;
-		padding-left: 6px;
+		padding-top: 30px;
+		padding-left: 20px;
 	}
-
+	#select-location{
+		padding-left: 20px;
+		font-size: 20px;
+	}
 	/* selectBox 스타일*/
 
 	.selectBox * { box-sizing: border-box;}
@@ -291,10 +298,13 @@
 		<div id="content_2">
 			<div id="content_2_1">
 				<div id="content_2_1_title">
-					<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
-					&nbsp;&nbsp;지역 선택
+					
 				</div>
 				<div id="content_2_1_content">
+					<div id="select-location">
+						<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
+						&nbsp;&nbsp;지역 선택
+					</div>
 					<div class="box">
 						<div class="selectBox ">
 							<button class="label" type="button">전체 보기</button>
@@ -332,60 +342,29 @@
 			</div>
 			<div id="content_2_2">
 				<div id="content_2_2_title">
-					강남구  < 대리 > 맛집 ( 35곳 )
+					
+					<% String grade = ""; 
+					for(Rest r : list) {	
+						switch(selectedGrade){ 
+							 case "ban_btn1": grade = "사원"; break; 
+							 case "ban_btn2": grade = "대리"; break;
+							 case "ban_btn3": grade = "과장"; break;
+							 case "ban_btn4": grade = "차장"; break; 
+							 case "ban_btn5": grade = "부장"; break; 
+							 default: grade = "기본값"; break; 
+					} %>
+						<%= grade %> 맛집 ( <%= list.size() %>곳 )
+						
 				</div>
 				<div id="content_2_2_content">
-					<div id="restList1">		
+					<div id="restList1">
 						<div class="rest-div">
 							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-								<figcaption>돼지삼겹살</figcaption>
+								<img src="<%= r.getRestImgUrl()%>">
+								<figcaption><%= r.getRestName() %></figcaption>
 							</figure>
 						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
-								<figcaption>양고기엔 칭따오</figcaption>
-							</figure>
-						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
-								<figcaption>나이스샤워</figcaption>
-							</figure>
-						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
-								<figcaption>왕돈가스</figcaption>
-							</figure>
-						</div>
-					</div>
-					<div id="restList2">
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/20231003115336_photo1_8e6b5858a3af.jpg">
-								<figcaption>돼지삼겹살</figcaption>
-							</figure>
-						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20231216120911_photo1_df8d74769f81.jpg">
-								<figcaption>양고기엔 칭따오</figcaption>
-							</figure>
-						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/20230212040901_photo2_7467b46fb0da.jpg">
-								<figcaption>나이스샤워</figcaption>
-							</figure>
-						</div>
-						<div class="rest-div">
-							<figure>
-								<img src="https://d12zq4w4guyljn.cloudfront.net/750_750_20230906025829_photo1_49cacd37483c.jpg">
-								<figcaption>왕돈가스</figcaption>
-							</figure>
-						</div>
+					<% } %>
 					</div>
 					<div id="moreBtn">
 						<button type="button" id="more-btn">
