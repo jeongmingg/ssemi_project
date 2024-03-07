@@ -220,24 +220,6 @@ public class RestDao {
 		}
 		 return result;
 	}
-	
-//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
-//		
-//		ArrayList<Rest> list = new ArrayList<Rest>();
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectBannerRestList");
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 		
 	public Rest selectRestDetail(Connection conn, String rpage){
 		Rest r = new Rest();
@@ -321,18 +303,6 @@ public class RestDao {
 		return list;
 	}
 	
-	
-	
-	public ArrayList<Category> selectCategoryList(Connection conn){
-		ArrayList<Category> list = new ArrayList<Category>();
-		return list;
-	}
-	
-	
-	public int insertRest(Connection conn, Rest r) {
-		return 0;
-	}
-
 	public int insertRestAt(Connection conn, Attachment at) {
 		return 0;
 	}
