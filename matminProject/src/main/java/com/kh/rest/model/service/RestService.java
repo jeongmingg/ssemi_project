@@ -45,7 +45,7 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
-	
+
 	public ArrayList<Rest> selectBannerRestList(String selectedGrade){
 		
 		Connection conn = getConnection();

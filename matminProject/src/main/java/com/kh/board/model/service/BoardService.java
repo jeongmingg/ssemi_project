@@ -127,5 +127,15 @@ public class BoardService {
 		
 		return list;
 	}
+
+	
+	public Board selectDetailBoard(int boardNo) {
+		Connection conn = getConnection();
+		
+		Board b = new BoardDao().selectDetailBoard(conn,boardNo);
+		
+		close(conn);
+		return b;
+	}
 	
 }
