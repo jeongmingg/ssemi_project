@@ -277,7 +277,7 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("Dao의 "+ selectedGrade);
+
 			pstmt.setString(1, selectedGrade);
 			pstmt.setString(2, selectedGrade);
 			pstmt.setString(3, selectedGrade);
