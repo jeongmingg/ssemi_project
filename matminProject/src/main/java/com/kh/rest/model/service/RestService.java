@@ -61,5 +61,9 @@ public class RestService {
 		
 		close(conn);
 		return r;
-		}
+	}
+	
+	public int insertRest(Rest r, Attachment at) {
+		return 0;
+	}
 }
