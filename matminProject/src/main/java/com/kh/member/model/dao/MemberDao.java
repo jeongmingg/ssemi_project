@@ -72,6 +72,47 @@ public class MemberDao {
 		
 	}
 	
+	public Member selectMember(Connection conn, String userId) {
+		Member m = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getString("mem_no"),
+							   rset.getString("mem_id"),
+							   rset.getString("mem_pwd"),
+							   rset.getString("mem_name"),
+							   rset.getString("nickname"),
+							   rset.getString("email"),
+							   rset.getInt("email_auth"),
+							   rset.getString("address"),
+							   rset.getInt("mem_warning"),
+							   rset.getDate("enroll_date"),
+							   rset.getString("mem_level"),
+							   rset.getString("mem_status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+	}
+	
 	public Member kakaoLoginMember(Connection conn, String userId) {
 		Member m = null;
 		
@@ -352,6 +393,34 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int updateMember(Connection conn, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, m.getMemName());
+			pstmt.setString(2, m.getNickname());
+			pstmt.setString(3, m.getAddress());
+			pstmt.setString(4, m.getMemId());
+			pstmt.setString(5, m.getEmail());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }
