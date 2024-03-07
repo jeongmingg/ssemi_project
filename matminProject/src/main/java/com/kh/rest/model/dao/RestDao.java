@@ -219,7 +219,8 @@ public class RestDao {
 			close(pstmt);
 		}
 		 return result;
-		
+	}
+	
 	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
