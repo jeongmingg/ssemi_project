@@ -68,9 +68,14 @@
 
 #myInfo table td{height: 58px;}
 
+#myInfo p{
+    display: inline;
+    color: black;
+}
+
 #myInfo table span{
     display: block;
-    color: black;
+    /* color: black; */
     text-align: left;
     padding-left: 10px;
 }
@@ -81,7 +86,6 @@
     margin: 5px;
     border-radius: 5px;
     border: 1px solid gray;
-    /* border: none; */
     padding-left: 10px;
 }
 
@@ -98,6 +102,12 @@
 #myInfo a{
     color: #E4910D;
     margin: 0px 20px;
+}
+
+.message{
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 .info{

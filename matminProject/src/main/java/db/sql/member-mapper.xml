@@ -22,6 +22,25 @@
 		   AND MEM_STATUS = 'Y'
 	</entry>
 	
+	<entry key="selectMember">
+		SELECT
+		       MEM_NO
+		     , MEM_ID
+		     , MEM_PWD
+		     , MEM_NAME
+		     , NICKNAME
+		     , EMAIL
+		     , EMAIL_AUTH
+		     , ADDRESS
+		     , MEM_WARNING
+		     , ENROLL_DATE
+		     , MEM_LEVEL
+		     , MEM_STATUS
+		  FROM MEMBER
+		 WHERE MEM_ID = ?
+		   AND MEM_STATUS = 'Y'
+	</entry>
+	
 	<entry key="kakaoLoginMember">
 		SELECT
 		       MEM_NO
@@ -114,7 +133,6 @@
 	</entry>
 
 	<entry key="selectMemberList">
-		
 		SELECT 
 		    MEM_NO
 		    ,MEM_ID
@@ -124,6 +142,15 @@
 		    ,ENROLL_DATE
 	   	 FROM MEMBER
 		WHERE MEM_LEVEL = 'U'
+	</entry>
+	
+	<entry key="updateMember">
+		UPDATE MEMBER
+		   SET MEM_NAME = ?
+		     , NICKNAME = ?
+		     , ADDRESS = ?
+		 WHERE MEM_ID = ?
+		   AND EMAIL = ?
 	</entry>
 	
 </properties>
