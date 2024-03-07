@@ -681,10 +681,11 @@
         padding-top: 9px;
     }
 	/* 리뷰작성 모달 스타일 */
-	.rv-modal-content{
+	.rv-modal-content {
 		background-color: white;
-		
+		text-align: center;
 	}
+
 
 </style>
 </head>
@@ -914,11 +915,22 @@
 			<div class="modal-dialog modal-lg">
 				<div class="rv-modal-content">
 					<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<h1 class="modal-title" id="exampleModalLabel" style="margin: auto;">솔직한 리뷰를 작성해주세요!</h1>
+						<!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
 					</div>
 					<div class="modal-body">
-					...
+						<div>
+							<h2>맛</h2>
+							<div id="review-star"></div>
+							<br>
+							<h2>서비스</h2>
+							<div id="review-star"></div>
+							<br>
+							<h2>위치</h2>
+							<div id="review-star"></div>
+							<br>
+							<textarea id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;"></textarea>
+						</div>
 					</div>
 					<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
