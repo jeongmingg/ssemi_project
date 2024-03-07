@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.kh.board.model.vo.ImgFile;
 import com.kh.review.model.Service.ReviewService;
 import com.kh.review.model.vo.Review;
@@ -37,14 +38,21 @@ public class RestReviewController extends HttpServlet {
 		String rpage = request.getParameter("rpage");
 		
 		ArrayList<Review> rvList = new ReviewService().selectReviewList(rpage);
-		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
+		
+//		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
 		
 		System.out.println(rvList);
-		System.out.println(imgList);
-		
+//		System.out.println(imgList);
+//		
+//		JsonObject jsonData = new JsonObject();
+//		jsonData.add("rvList", new Gson().toJsonTree(rvList));
+//		jsonData.add("imgList", new Gson().toJsonTree(imgList));
+//		
 		response.setContentType("application/json; charset=utf-8");
+//		response.getWriter().write(jsonData.toString());
+		
 		new Gson().toJson(rvList, response.getWriter());
-		new Gson().toJson(imgList, response.getWriter());
+//		new Gson().toJson(imgList, response.getWriter());
 	}
 
 	/**

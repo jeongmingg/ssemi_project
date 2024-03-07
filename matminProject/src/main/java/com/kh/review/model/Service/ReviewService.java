@@ -16,6 +16,8 @@ public class ReviewService {
 		
 		ArrayList<Review> list = new ReviewDao().selectReviewList(conn, rpage);
 		
+//		ArrayList<ImgFile> ImgList = new ReviewDao().selectImgFile();
+				
 		close(conn);
 		return list;
 	}

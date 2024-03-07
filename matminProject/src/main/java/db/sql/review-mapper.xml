@@ -3,22 +3,29 @@
 <properties>
 
 	<entry key="selectReviewList">
-		SELECT 
-		        REVIEW_NO
-		      , REST_NO
-		      , NICKNAME
-		      , REVIEW_CONT
-		      , TO_CHAR(REVIEW_DATE, 'YYYY.MM.DD') AS formatted_date "REVIEW_DATE"
-		      , REVIEW_LIKE
-		      , REVIEW_DISLIKE
-		      , RATE_TASTE
-		      , RATE_PRICE
-		      , RATE_SERVICE
-		      , ROUND(((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3)/5*100, 0) "RATE_AVG"
-		 FROM REVIEW
-		 JOIN MEMBER ON (MEM_NO = REVIEW_WRITER)
-		WHERE REVIEW_STATUS = 'Y'
-		  AND REST_NO = ?
+			SELECT *    
+				FROM (SELECT ROWNUM RNUM, A.*
+				     FROM (
+				          SELECT 
+				                    REVIEW_NO
+				                  , REST_NO
+				                  , NICKNAME
+				                  , REVIEW_CONT
+				                  , TO_CHAR(REVIEW_DATE, 'YYYY.MM.DD') AS REVIEW_DATE
+				                  , REVIEW_LIKE
+				                  , REVIEW_DISLIKE
+				                  , RATE_TASTE
+				                  , RATE_PRICE
+				                  , RATE_SERVICE
+				                  , ROUND(((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3)/5*100, 0) "RATE_AVG"
+				             FROM REVIEW
+				             JOIN MEMBER ON (MEM_NO = REVIEW_WRITER)
+				            WHERE REVIEW_STATUS = 'Y'
+				              AND REST_NO = ?
+				            ORDER 
+				               BY TO_NUMBER(REGEXP_REPLACE(REVIEW_NO, '[^0-9]+', '')) DESC
+				        ) A
+       		 )	   
 	</entry>
 	
 	<entry key="selectImgList">
@@ -28,7 +35,7 @@
 		      ,IMG_CHANGE_NAME
 		      ,IMG_FILE_PATH
 		  FROM IMG_FILE
-		 WHERE REF_NO = ?
+		 WHERE REF_NO = 'RV6'
 	</entry>
 
 </properties>

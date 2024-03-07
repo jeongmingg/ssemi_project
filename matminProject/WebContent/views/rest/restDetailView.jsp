@@ -698,6 +698,15 @@
   border: none;
   clip: rect(0, 0, 0, 0);
 }
+.review-write{
+	font-size: large;
+}
+
+
+
+
+
+
 
 .startRadio {
   display: inline-block;
@@ -1006,6 +1015,9 @@
 							<div id="service-star"></div>
 							<br>
 							<textarea id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
+							<div class="count-area" style="text-align: right;">
+								<span id="count">0</span>/300
+							</div>
 						</div>
 					</form>
 				</div>
@@ -1019,97 +1031,121 @@
 
 
 		<!-- 세부적인 리뷰 창 -->
-			<div class="review-detail">
-				<div class="review-div">
-					<div class="rv1">
-						<div class="profile">
-							<div id="profile-img">
-								<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-							</div>
-							<div class="profile-name">
-								<div id="writer">차은우지망생</div>
-								<div style="display: flex;">
-									<div id="w-star">
-										<i style="width:80%;"></i>
-									</div>
-									<span id="write-date">2024-02-05</span>
-								</div>
-							</div>
-							<div class="warn">
-								<a href="#" id="rv-warn">신고</a>
-								<div class="review-update">
-									<a href="#" id="rv-update">수정</a>
-									<a href="#" id="rv-delete">삭제</a>
-								</div>
-							</div>
-						</div>
-						<div class="w-star-detail">
-							<ul>
-								<li>맛
-									<li class="rv-star-s"></li>
-									<li id="rv-flv-star">5</li>
-								</li>
-								<li>가격
-									<li class="rv-star-s"></li>
-									<li id="rv-pri-star">4</li>
-								</li>
-								<li>서비스
-									<li class="rv-star-s"></li>
-									<li id="rv-ser-star">4</li>
-								</li>
-							</ul>
-						</div>
-						<div class="review-content">
-							<p name="rv-content" id="rv-content">
-
-							</p>
-						</div>
-						<div class="review-img">
-							<div>
-								<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-								<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-								<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">
-								
-							</div>
-						</div>
-						<div class="review-like">
-							<div class="like-area">
-								<span id="like">추천 (15)</span>
-							</div>
-							<div class="unlike-area">
-								<span id="unlike">비추천 (15)</span>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="review-detail" name="review-detail">
+				
 			</div>
-		</div>	
-	</div>
 
 	<br><br>
 		<%@ include file="../common/footer.jsp" %>		
 
 	<script>
+	
+		$(function(){
+		    selectReviewList();
+		})
+		
+		
+	
 		function selectReviewList(){
 			$.ajax({
 				url:"review.rs",
-				data:{rpage:<%= r.getRestNo()%>},
-				success:function(r, img){
-					
-				console.log("ajax 성공")
-				console.log(r);
-				console.log(img);
-					
+				data:{rpage:'<%= r.getRestNo()%>'},
+				success:function(rvlist){
+					let value = ''; // Initialize value variable
+		            
+		                console.log(rvlist);
+				
+		            for (let i = 0; i < rvlist.length; i++) {
+		            	
+		                let rv = rvlist[i]; // Fixed variable name
+
+		                console.log(rv.ratePrice);
+		                let rvname = rv.reviewWriter;
+		                let rvdate = rv.reviewDate;
+		                let rvtaste = rv.rateTaste;
+		                let rvprice = rv.ratePrice;
+		                let rvservice = rv.rateService;
+		                let rvcont = rv.reviewCont;
+		                let rvavg = rv.rateAge;
+		                
+		                value += `<div class="review-div">
+							<div class="rv1">
+								<div class="profile">
+									<div id="profile-img">
+										<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
+									</div>
+									<div class="profile-name">
+										<div id="writer">\${rvname}</div>
+										<div style="display: flex;">
+											<div id="w-star">
+												<i style="width:\${rv.rateAge};"></i>
+											</div>
+											<span id="write-date">\${rvdate}</span>
+										</div>
+									</div>
+									<div class="warn">
+										<a href="#" id="rv-warn">신고</a>
+										<div class="review-update">
+											<a href="#" id="rv-update">수정</a>
+											<a href="#" id="rv-delete">삭제</a>
+										</div>
+									</div>
+								</div>
+								<div class="w-star-detail">
+									<ul>
+										<li>맛
+											<li class="rv-star-s"></li>
+											<li id="rv-flv-star">\${rvtaste}</li>
+										</li>
+										<li>가격
+											<li class="rv-star-s"></li>
+											<li id="rv-pri-star">\${rvprice}</li>
+										</li>
+										<li>서비스
+											<li class="rv-star-s"></li>
+											<li id="rv-ser-star">\${rvservice}</li>
+										</li>
+									</ul>
+								</div>
+								<div class="review-content">
+									<p name="rv-content" id="rv-content">
+\${rvcont}
+									</p>
+								</div>
+								
+								<div class="review-like">
+									<div class="like-area">
+										<span id="like">추천 (15)</span>
+									</div>
+									<div class="unlike-area">
+										<span id="unlike">비추천 (15)</span>
+									</div>
+								</div>
+							</div>
+						</div>`
+				}
+		            console.log(value);
+
+				$(".review-detail").html(value);
+				
 				}, error:function(){
 					console.log("ajax 통신실패")
 				}
-				
-				
-			})
+
+			});
 		}
-			
+	
 	</script>		
 			
+	<script>
+		$(function(){
+       		 $("#review-write").keyup(function(){ 
+				let length = $(this).val().length;
+				$("#count").text(length);
+       		 })
+       })
+	</script>
+
 			
 	<script>
 	 

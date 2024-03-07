@@ -30,7 +30,7 @@ public class ReviewDao {
 	
 	public ArrayList<Review> selectReviewList(Connection conn, String rpage){
 		
-		ArrayList<Review> list = null;
+		ArrayList<Review> list = new ArrayList<Review>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -38,9 +38,8 @@ public class ReviewDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);			
-			rset=pstmt.executeQuery();
-			
 			pstmt.setString(1, rpage);			
+			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getString("review_no"),
@@ -55,7 +54,6 @@ public class ReviewDao {
 						            rset.getInt("rate_service"),
 						            rset.getInt("rate_avg")));
 
-			System.out.println("reviewDao" + list);
 			}
 			
 		} catch (SQLException e) {
@@ -64,11 +62,12 @@ public class ReviewDao {
 			close(rset);
 			close(pstmt);
 		} return list;
+		
 
 	}
 	
 	public ArrayList<ImgFile> selectImgFile(Connection conn, String rpage){
-		ArrayList<ImgFile> list = null;
+		ArrayList<ImgFile> list = new ArrayList();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -79,6 +78,7 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			pstmt.setString(1, rpage);
+			
 			
 			while(rset.next()) {
 				list.add(new ImgFile(rset.getString("img_file_no"),
