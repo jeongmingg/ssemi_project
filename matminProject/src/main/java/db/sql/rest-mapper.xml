@@ -120,8 +120,7 @@
 				         LEFT JOIN MENU USING(REST_NO)
 				        WHERE REP_MENU = 'Y'
 				       )
-				 WHERE MENU_PRICE = ?
-				   AND (
+				 WHERE (
 					        ( ? = 'ban_btn1' AND MENU_PRICE <= 7000 ) OR
 					        ( ? = 'ban_btn2' AND MENU_PRICE > 7000 AND MENU_PRICE <= 12000 ) OR
 					        ( ? = 'ban_btn3' AND MENU_PRICE > 12000 AND MENU_PRICE <= 20000) OR

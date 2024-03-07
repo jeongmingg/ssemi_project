@@ -283,7 +283,6 @@ public class RestDao {
 			pstmt.setString(3, selectedGrade);
 			pstmt.setString(4, selectedGrade);
 			pstmt.setString(5, selectedGrade);
-			pstmt.setString(6, selectedGrade);
 			
 			rset= pstmt.executeQuery();
 			
