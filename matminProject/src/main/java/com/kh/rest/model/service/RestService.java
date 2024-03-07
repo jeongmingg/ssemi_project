@@ -55,6 +55,13 @@ public class RestService {
 		return list;
 	}
 
+	public ArrayList<Category> selectCategoryList(){
+		Connection conn = getConnection();
+		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
+		close(conn);
+		return list;
+	}
+
 	public Rest selectRestDetail(String rpage){
 		Connection conn = getConnection();
 		Rest r = new RestDao().selectRestDetail(conn, rpage);
