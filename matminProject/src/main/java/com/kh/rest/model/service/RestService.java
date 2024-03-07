@@ -47,12 +47,6 @@ public class RestService {
 	}
 
 
-	
-	public ArrayList<Category> selectCategoryList(){
-		Connection conn = getConnection();
-		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
-		close(conn);
-	}
 	public ArrayList<Rest> selectBannerRestList(String selectedGrade){
 		
 		Connection conn = getConnection();

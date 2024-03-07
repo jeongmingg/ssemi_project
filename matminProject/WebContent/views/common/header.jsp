@@ -272,10 +272,6 @@
 						<a href="<%= contextPath %>/logout.me">로그아웃</a>
 					</div>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7473fd7e8a412d912411edab934a0183ae291719
 				<% } %>
 				
 				<div id="header_5">
