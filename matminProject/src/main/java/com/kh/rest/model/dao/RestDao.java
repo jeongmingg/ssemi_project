@@ -224,6 +224,36 @@ public class RestDao {
 	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBannerRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, grade);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+//				list.add(new Rest(rset.getString("rest_no"),
+//								  rset.getString("rest_name"),
+//								  rset.getDouble("rest_avg"),
+//								  rset.getString("rest_img_url"),
+//								  rset.getInt("review_count"),
+//								  rset.getString("menu_price"),
+//								  rset.getString("rep_menu")
+//						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
 		return list;
 	}
 	

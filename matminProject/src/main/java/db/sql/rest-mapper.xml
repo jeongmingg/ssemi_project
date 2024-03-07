@@ -125,6 +125,7 @@
 			     , REST_IMG_URL
 			     , MENU_PRICE
 			     , REP_MENU
+			HAVING MENU_PRICE = ?
 			 ORDER
 			    BY REST_AVG DESC , REVIEW_COUNT DESC
 		</entry>
