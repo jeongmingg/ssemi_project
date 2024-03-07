@@ -164,4 +164,31 @@
 		</entry>
 
 
+		<!-- 식당상세테이블용 -->
+		<entry key="selectRestDetail">
+		SELECT
+		        REST_NO
+		      , LOCAL_NAME
+		      , REST_NAME
+		      , CTG_NAME
+		      , REST_ADDRESS
+		      , REST_TEL
+		      , REST_X
+		      , REST_Y
+		      , REST_PARKING
+		      , REST_GRADE
+		      , REST_TIME
+		      , REST_AVG
+		      , MENU_NAME
+		      , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
+		      , DT
+		      , ANIMAL
+		      , ROOM
+		      , BIG_ROOM
+		   FROM REST
+		   JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
+		   JOIN CATEGORY USING (CTG_ID)
+		   JOIN MENU USING (REST_NO)
+		  WHERE REST_NO = ?
+		</entry>
 </properties>

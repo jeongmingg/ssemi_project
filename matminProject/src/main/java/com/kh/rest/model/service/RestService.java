@@ -54,31 +54,11 @@ public class RestService {
 		return list;
 	}
 
-	
-	public ArrayList<Category> selectCategoryList(){
+	public Rest selectRestDetail(String rpage){
 		Connection conn = getConnection();
-		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
+		Rest r = new RestDao().selectRestDetail(conn, rpage);
+		
 		close(conn);
-		return list;
-	}
-	
-	public int insertRest(Rest r, Attachment at ) {
-		
-		Connection conn = getConnection();
-		
-		int result1 = new RestDao().insertRest(conn,r);
-		
-		int result2 = 1;
-		
-		if(at !=null) {
-			result2 = new RestDao().insertRestAt(conn,at);
+		return r;
 		}
-		if(result1 >0 && result2 >0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		return result1*result2;
-	}
 }

@@ -297,8 +297,6 @@ public class BoardDao {
 			pstmt.setString(3, img.getImgChangeName());
 			pstmt.setString(4, img.getImgFilePath());
 			
-			System.out.println("B" + img.getRefNo());
-			
 			result = pstmt.executeUpdate();
 			
 			
@@ -322,8 +320,7 @@ public class BoardDao {
 			pstmt.setString(1, bno);
 			
 			result = pstmt.executeUpdate();
-			
-			System.out.println("boardDao"+result);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
