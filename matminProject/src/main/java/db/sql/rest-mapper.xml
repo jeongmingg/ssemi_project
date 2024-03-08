@@ -204,11 +204,11 @@
 			SELECT 
 			       REST_NO
 			     , REST_NAME
-			     , REST_IMG_URL
+			     , NVL(REST_IMG_URL, '등록된 사진이 없습니다.') "REST_IMG_URL"
 			     , CTG_ID
 			     , CTG_NAME
 			  FROM REST
 			  JOIN CATEGORY USING (CTG_ID)
-			 WHERE CTG_NAME = ?
+			 WHERE CTG_NAME LIKE '%'|| ? ||'%'
 		</entry>
 </properties>

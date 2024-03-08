@@ -332,7 +332,9 @@ public class Rest {
 				+ ", restAddress=" + restAddress + ", restTel=" + restTel + ", restX=" + restX + ", restY=" + restY
 				+ ", restParking=" + restParking + ", restGrade=" + restGrade + ", restTime=" + restTime + ", restAvg="
 				+ restAvg + ", restStatus=" + restStatus + ", restImgUrl=" + restImgUrl + ", heart=" + heart
-				+ ", localName=" + localName + ", reviewCount=" + reviewCount + "]";
+				+ ", localName=" + localName + ", reviewCount=" + reviewCount + ", menuName=" + menuName
+				+ ", menuPrice=" + menuPrice + ", repMenu=" + repMenu + ", dt=" + dt + ", anmial=" + anmial + ", room="
+				+ room + ", bigRoom=" + bigRoom + ", ctgName=" + ctgName + "]";
 	}
-	
+
 }

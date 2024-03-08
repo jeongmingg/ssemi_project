@@ -237,8 +237,7 @@
 						id="navi1">맛집등록/삭제</a></li>
 					<li><button id="navi2" type="button" data-toggle="modal"
 							data-target="#myModal">맛슐랭</button></li>
-					<li><a href="<%=request.getContextPath()%>/recommend.rs"
-						id="navi3">맛집뺑뺑이</a></li>
+					<li><a href="<%=request.getContextPath()%>/recommend.rs" id="navi3">맛집뺑뺑이</a></li>
 				</ul>
 			</div>
 			<div id="navigator_3"></div>

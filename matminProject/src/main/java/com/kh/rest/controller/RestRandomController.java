@@ -14,16 +14,16 @@ import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class RestRecommendController
+ * Servlet implementation class RestRandomController
  */
-@WebServlet("/recommend.rs")
-public class RestRecommendController extends HttpServlet {
+@WebServlet("/random.rs")
+public class RestRandomController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestRecommendController() {
+    public RestRandomController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,8 +33,18 @@ public class RestRecommendController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/rest/restRecommend.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
 		
+		String ctgName = request.getParameter("ctgName");
+		
+		ArrayList<Rest> list = new RestService().rsRecommend(ctgName);
+		
+		request.setAttribute("ctgName", ctgName);
+		request.setAttribute("list", list);
+		
+		response.setContentType("applicaion/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
+
 	}
 
 	/**

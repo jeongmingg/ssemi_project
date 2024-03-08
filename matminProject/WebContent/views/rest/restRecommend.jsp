@@ -105,16 +105,23 @@
 		cursor: pointer;
 	}
 
+	label.ctg{
+		width: 100%;
+		height: 100%;
+		border-radius: 20px;
+		margin: 0;
+	}
+
 	/* 카테고리, 라디오 div */
 	.radioBtn{
 		width: 90px;
 		height: 45px;
 		background-color: rgb(224, 224, 224);
 		border-radius: 20px;
-		padding-top: 12px;
 		margin: 12px;
 		cursor: pointer;
 		font-size: 18px;
+		line-height: 45px;
 	}
 
 
@@ -147,6 +154,14 @@
 	}
 
 	#rsBtn{font-size: 22px;}
+
+	/* 식당 이미지 스타일 */
+	#rest-img{
+		width: 180px;
+		height: 180px;
+		margin-bottom: 10px;
+		border-radius: 15px;
+	}
 
 </style>
 </head>
@@ -203,12 +218,12 @@
 			// 카테고리 클릭이벤트
 			$(document).ready(function() {
 				$(".radioBtn").click(function(){
+					$(".radioBtn>label").removeClass("checked");
 				
-				$(".radioBtn").removeClass("checked");
-
-				if ($(this).find("input").prop("checked")) {
-					$(this).addClass("checked");
-				}
+					if ($(this).find("input").prop("checked")) {
+						$(this).children("label").addClass("checked");
+					}
+					
 				});
 			});
 			
@@ -218,196 +233,31 @@
 				var selectedCategory = $(".ctg.checked").text();
 				
 				$.ajax({
-					url:"recommend.rs",
-					data: { ctgName: selectedCategory },
+					url:"random.rs",
+					type:"post",
+					data: {ctgName: selectedCategory},
 					success:function(result){
 						
-						let value="";
+							let value = "";
+							
+							let randomIndex = Math.floor(Math.random() * result.length);
+				            let randomRestaurant = result[randomIndex];
+							
+					            value += '<div class="rest-div">'
+											+ '<figure>'
+											+ '<img id="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
+											+ '<figcaption>' + randomRestaurant.restName + '</figcaption>'
+									   + '</div>';
+				            	      
+				            $("#menu-p p").html(value);
+						},
 						
-						let randomIndex = Math.floor(Math.random() * result.restaurants.length);
-			            let randomRestaurant = result.restaurants[randomIndex];
-			            
-						for(let i=0; i<result.length; i++){
-							value += '<div class="rest-div">'
-									+ '<figure>'
-									+ '<img src="'+ randomRestaurant.restImgUrl + '">'
-									+ "<figcaption>" + randomRestaurant.restName + "</figcaption>"
-								   + "</div>";
-						}
-						
-						$("#menu-p p").html(value);
-					},
 					  error:function(){
 						  console.log("ajax 통신에 실패했습니다.");
 					  }					
 				});
 			}
 			
-			/*
-			var menuLists = {
-				"한식": ["비빔밥", "불고기", "김치찌개", "된장찌개"],
-				"중식": ["짜장면", "짬뽕", "탕수육", "양장피"],
-				"일식": ["초밥", "라멘", "우동", "돈부리"],
-				"양식": ["스테이크", "파스타", "피자", "버거"],
-				"간식": ["아이스크림", "과자", "케이크", "팝콘"]
-			};
-
-			$(document).ready(function() {
-			// "메뉴 추천" 버튼 클릭 이벤트
-			$("#menuBtn").click(function() {
-				recommendMenu();
-			});
-
-			// "전체" 버튼 클릭 이벤트
-			$("#total1 button").click(function() {
-				recommendMenu("전체");
-			});
-
-			$("#total2 button").click(function() {
-				recommendMenu("전체");
-			});
-
-			// 각 카테고리 버튼 클릭 이벤트
-			$(".category-button button:not(:contains('전체'))").click(function() {
-				recommendMenu($(this).text());
-			});
-
-			function recommendMenu(selectedCategory) {
-				var menuList;
-
-				// "전체" 버튼을 눌렀을 때
-				if (selectedCategory === "전체") {
-					menuList = [];
-					for (var category in menuLists) {
-						menuList = menuList.concat(menuLists[category]);
-					}
-				} else {
-					menuList = menuLists[selectedCategory];
-				}
-
-				if (menuList) {
-					// 추천 메뉴 로직 (예시: 랜덤으로 메뉴 선택)
-					var randomMenu = menuList[Math.floor(Math.random() * menuList.length)];
-
-					// 결과 출력
-					var resultDiv = $("#menu-p p#menuP");
-					resultDiv.html("옵션을 선택하고 <br><br>\"" + selectedCategory + "\" 메뉴 추천: " + randomMenu);
-				} else {
-					alert("메뉴 리스트가 없습니다.");
-				}
-			}
-		});
-		*/
-		
-				/*
-			$(document).ready(function() {
-				// ... (기존 코드)
-
-				// "메뉴 추천" 버튼 클릭 이벤트
-				$("#menu-btn").click(function() {
-					recommendMenu();
-				});
-
-				// 각 카테고리 버튼 클릭 이벤트
-				$(".category-button button").click(function() {
-					$(this).toggleClass("active");
-				});
-
-				function recommendMenu() {
-					var selectedCategory = "";
-
-					// 선택된 카테고리 가져오기
-					var selectedButtons = $('.category-button button.active');
-					selectedButtons.each(function() {
-						selectedCategory += $(this).text() + " ";
-					});
-
-					// 선택된 카테고리에 해당하는 메뉴 리스트 가져오기
-					var menuList = menuLists[selectedCategory.trim()];
-
-					if (menuList) {
-						// 추천 메뉴 로직 (예시: 랜덤으로 메뉴 선택)
-						var randomMenu = menuList[Math.floor(Math.random() * menuList.length)];
-
-						// 결과 출력
-						var resultDiv = $("#menu-p p#menuP");
-						resultDiv.html("옵션을 선택하고 <br><br>\"" + selectedCategory.trim() + "\" 메뉴 추천: " + randomMenu);
-					} else {
-						alert("메뉴 리스트가 없습니다.");
-					}
-				}
-			});
-
-				// "전체" 버튼 클릭 이벤트
-				$("#total1 button").click(function() {
-					recommendMenu("전체");
-				});
-
-				$("#total2 button").click(function() {
-					recommendMenu("전체");
-				});
-				*/
-				
-				
-
-				/*
-				var menuLists = {
-					"한식": ["비빔밥", "불고기", "김치찌개", "된장찌개"],
-					"중식": ["짜장면", "짬뽕", "탕수육", "양장피"],
-					"일식": ["초밥", "라멘", "우동", "돈부리"],
-					"양식": ["스테이크", "파스타", "피자", "버거"],
-					"간식": ["아이스크림", "과자", "케이크", "팝콘"]
-				};
-
-				// 각 카테고리 테이블에 추가
-				$(document).ready(function() {
-					for (var category in menuLists) {
-						var categoryButtons = "";
-						menuLists[category].forEach(function(menu) {
-							categoryButtons += '<button><a href="#">' + menu + '</a></button>';
-						});
-
-						var categoryRow = '<tr><td><button><a href="#">' + category + '</a></button></td>' + categoryButtons + '</tr>';
-						$('#ctgTable').append(categoryRow);
-					}
-
-					// "전체" 버튼 클릭 이벤트
-					$("#ctgTable button:contains('전체')").click(function() {
-						recommendMenu("전체");
-					});
-
-					// 각 카테고리 버튼 클릭 이벤트
-					$("#ctgTable button:not(:contains('전체'))").click(function() {
-						recommendMenu($(this).text());
-					});
-
-					function recommendMenu(selectedCategory) {
-						var menuList;
-
-						// "전체" 버튼을 눌렀을 때
-						if (selectedCategory === "전체") {
-							menuList = [];
-							for (var category in menuLists) {
-								menuList = menuList.concat(menuLists[category]);
-							}
-						} else {
-							menuList = menuLists[selectedCategory];
-						}
-
-						if (menuList) {
-							// 추천 메뉴 로직 (예시: 랜덤으로 메뉴 선택)
-							var randomMenu = menuList[Math.floor(Math.random() * menuList.length)];
-
-							// 결과 출력
-							var resultDiv = $("#menu-p");
-							resultDiv.html("<p>" + selectedCategory + " 추천 메뉴: " + randomMenu + "</p>");
-						} else {
-							alert("메뉴 리스트가 없습니다.");
-						}
-					}
-				}); 
-				*/
-				
 			</script>
 		</div>
 	</div>

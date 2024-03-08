@@ -321,7 +321,11 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, ctgName);
+			if(ctgName.equals("전체")) {
+				pstmt.setString(1, "");
+			}else {
+				pstmt.setString(1, ctgName);
+			}
 			
 			rset= pstmt.executeQuery();
 			
@@ -333,6 +337,7 @@ public class RestDao {
 								  rset.getString("ctg_name")
 						));
 			}
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
