@@ -54,7 +54,8 @@ public class RestDao {
 								  rset.getString("rest_name"),
 								  rset.getDouble("rest_avg"),
 								  rset.getInt("heart"),
-								  rset.getString("rest_img_url")));
+								  rset.getString("rest_img_url"),
+								  rset.getString("rest_address")));
 			}
 			
 		} catch (SQLException e) {
@@ -223,24 +224,6 @@ public class RestDao {
 		}
 		 return result;
 	}
-	
-//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
-//		
-//		ArrayList<Rest> list = new ArrayList<Rest>();
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectBannerRestList");
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 		
 	public Rest selectRestDetail(Connection conn, String rpage){
 		Rest r = new Rest();
@@ -276,6 +259,8 @@ public class RestDao {
 					          rset.getString("big_room"));
 				 
 			}
+			
+			System.out.println("dao" + r);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -330,6 +315,47 @@ public class RestDao {
 		return 0;
 	}
 	
+	public ArrayList<Rest> rsRecommend(Connection conn, String ctgName) {
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("rsRecommend");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(ctgName.equals("전체")) {
+				pstmt.setString(1, "");
+			}else {
+				pstmt.setString(1, ctgName);
+			}
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("ctg_id"),
+								  rset.getString("ctg_name")
+						));
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
 }
 	
 

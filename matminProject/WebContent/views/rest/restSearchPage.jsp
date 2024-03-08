@@ -6,6 +6,16 @@
 <%
 	String keyword = (String)request.getAttribute("keyword");
 	ArrayList<Search> list = (ArrayList<Search>)request.getAttribute("list");
+	
+	ArrayList<String> addrList = new ArrayList<String>();
+	
+	if(!list.isEmpty()) {
+		for(Search s : list) {
+			addrList.add(s.getRestAddress());
+		}
+	}
+	
+	request.setAttribute("addrList", addrList);
 %>
 <!DOCTYPE html>
 <html>
@@ -602,7 +612,7 @@
                             </div>
                         </div>
                         <div id="map">
-                            <img src="resources/search/map.png">
+                        	<%@ include file="../map/restDetailMap.jsp" %>
                         </div>
                         <div id="search-rest">
                             <table id="rest-table" align="center">

@@ -92,4 +92,14 @@ public class RestService {
 		return r;	
 		
 	}
+	
+	public ArrayList<Rest> rsRecommend(String ctgName) {
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().rsRecommend(conn, ctgName);
+		
+		close(conn); 
+		return list;
+		
+	}
 }

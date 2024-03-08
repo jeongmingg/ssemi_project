@@ -113,7 +113,7 @@
 	}
 	
 	#content_2_2_content>div{width: 100%;}
-	#restList1, #restList2{
+	#restList, #restList2{
 		height: 330px;
 		padding-left: 35px;
 		padding-top: 50px;
@@ -225,7 +225,7 @@
 		padding-top: 2px;
 	}
 
-	#restList1>div, #restList2>div{
+	#restList>div, #restList2>div{
 		height: 250px; width: 250px; 
 		float: left;
 	}
@@ -358,14 +358,16 @@
 						
 				</div>
 				<div id="content_2_2_content">
-					<div id="restList1">
+					<div id="restList">
+						<% int count = 0; %>
 						<% for(Rest r : list) { %>
-						<div class="rest-div">
+						<div class="rest-div rest-item">
 							<figure>
 								<img src="<%= r.getRestImgUrl()%>">
 								<figcaption><%= r.getRestName() %></figcaption>
 							</figure>
 						</div>
+						<% count++; %>
 						<% } %>
 					</div>
 					<div id="moreBtn">
@@ -402,6 +404,30 @@
                 selectBox.on('click', function() {
                     optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
                 });
+
+				// 검색결과 더보기 누르면서 무한스크롤
+
+				const restItems = $('.rest-item');
+				const moreBtn = $('#more-btn');
+				const itemsPerPage = 8;
+
+				// Hide restaurants beyond the first 8
+				restItems.slice(itemsPerPage).hide();
+
+				// Handle infinite scroll functionality
+				let currentCount = itemsPerPage;
+
+				moreBtn.on('click', function() {
+					const hiddenItems = restItems.slice(currentCount, currentCount + itemsPerPage);
+					hiddenItems.fadeIn();
+					currentCount += itemsPerPage;
+
+					// If all items are shown, hide the '더보기' button
+					if (currentCount >= restItems.length) {
+						moreBtn.text('조회결과 마지막 식당입니다.').css("color", "black"); // Change the text
+                		moreBtn.prop('disabled', true); // Optionally, disable the button
+					}
+				});
 
 				// 버튼 호버시 금액뜨는 효과
 				// 사원 hover style
