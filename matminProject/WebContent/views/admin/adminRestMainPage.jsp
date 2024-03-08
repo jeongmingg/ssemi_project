@@ -1,5 +1,10 @@
+<%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% Rest r = (Rest)request.getAttribute("r");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,8 +26,10 @@
         margin: auto;
         margin-bottom: 50px;
     }
-        #enroll-form table{margin:auto;}
-        #enroll-form input{margin:10px;}
+        #form table{margin:auto;}
+        #form input{ 
+        border: 1px solid lightgray;
+        margin:10px;}
         button {
         background-color:lightgray; 
         border:1px;
@@ -122,32 +129,32 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="enroll-form" action="<%=contextPath %>/restEnroll.ad" method="post">
+        <form id="form" action="<%=contextPath %>/restEnroll.ad" method="post">
 
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td><input type="text" name="restName"></td>
-                    <td>별점 <input type="text"></td>
+                    <td><input type="text" value= "<%= r.getRestName() %>" ></td>
+                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
                 </tr>
                 <tr>
-                    <td> 카티고리</td>
-                    <td><input type="text" name="category"></td>
-                    <td>찜꽁<input type="text" ></td>
+                    <td> 영업시간</td>
+                    <td><input type="text" value= "<%= r.getRestTime() %>"></td>
+                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td><input type="text"></td>
-                    <td>등급 <input type="text"></td>
+                    <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
+                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" name="restName"></td>
+                    <td><input type="text" value= "<%= r.getRestTel() %>" name="restName"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>주차여부</td>
-                    <td><input type="text" name="phone"></td>
+                    <td><input type="text" value = "<%=r.getRestParking() %>"></td>
                                     
                 </tr>
 

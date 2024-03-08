@@ -367,8 +367,10 @@ public class BoardDao {
 		return list;
 	}
 	
-	
-	
+	public Board selectDetailBoard(Connection conn, int boardNo) {
+		Board b = null;	
+		return b;
+	}
 	
 	
 }
