@@ -45,6 +45,8 @@ public class RestDao {
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
 			
 			rset = pstmt.executeQuery();
 			
@@ -55,7 +57,12 @@ public class RestDao {
 								  rset.getDouble("rest_avg"),
 								  rset.getInt("heart"),
 								  rset.getString("rest_img_url"),
-								  rset.getString("rest_address")));
+								  rset.getString("rest_address"),
+								  rset.getString("local_name"),
+								  rset.getString("menu_name"),
+								  rset.getInt("review_count"),
+								  rset.getString("rep_menu")
+						));
 			}
 			
 		} catch (SQLException e) {
