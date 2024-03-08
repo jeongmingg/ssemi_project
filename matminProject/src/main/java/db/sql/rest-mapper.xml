@@ -199,4 +199,16 @@
 		   JOIN MENU USING (REST_NO)
 		  WHERE REST_NO = ?
 		</entry>
+		
+		<entry key="rsRecommend">
+			SELECT 
+			       REST_NO
+			     , REST_NAME
+			     , REST_IMG_URL
+			     , CTG_ID
+			     , CTG_NAME
+			  FROM REST
+			  JOIN CATEGORY USING (CTG_ID)
+			 WHERE CTG_NAME = ?
+		</entry>
 </properties>

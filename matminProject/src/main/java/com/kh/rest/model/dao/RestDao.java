@@ -309,6 +309,42 @@ public class RestDao {
 		return 0;
 	}
 	
+	public ArrayList<Rest> rsRecommend(Connection conn, String ctgName) {
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("rsRecommend");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ctgName);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("ctg_id"),
+								  rset.getString("ctg_name")
+						));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
 }
 	
 

@@ -1,5 +1,11 @@
+<%@page import="com.kh.rest.model.vo.Rest"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String ctgName = (String)request.getAttribute("ctgName");
+	ArrayList<Rest> list = (ArrayList<Rest>)request.getAttribute("list");	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,7 +194,7 @@
 			</div>
 			<div id="rs-recom-btn">
 				<div id="rs-btn">
-					<button id="rsBtn">맛집&nbsp;&nbsp;&nbsp;추천</button>
+					<button id="rsBtn" onclick="rsRecommend();">맛집&nbsp;&nbsp;&nbsp;추천</button>
 				</div>
 			</div>
 
@@ -205,6 +211,37 @@
 				}
 				});
 			});
+			
+
+			function rsRecommend(){
+				
+				var selectedCategory = $(".ctg.checked").text();
+				
+				$.ajax({
+					url:"recommend.rs",
+					data: { ctgName: selectedCategory },
+					success:function(result){
+						
+						let value="";
+						
+						let randomIndex = Math.floor(Math.random() * result.restaurants.length);
+			            let randomRestaurant = result.restaurants[randomIndex];
+			            
+						for(let i=0; i<result.length; i++){
+							value += '<div class="rest-div">'
+									+ '<figure>'
+									+ '<img src="'+ randomRestaurant.restImgUrl + '">'
+									+ "<figcaption>" + randomRestaurant.restName + "</figcaption>"
+								   + "</div>";
+						}
+						
+						$("#menu-p p").html(value);
+					},
+					  error:function(){
+						  console.log("ajax 통신에 실패했습니다.");
+					  }					
+				});
+			}
 			
 			/*
 			var menuLists = {

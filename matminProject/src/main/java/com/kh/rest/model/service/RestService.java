@@ -66,4 +66,14 @@ public class RestService {
 	public int insertRest(Rest r, Attachment at) {
 		return 0;
 	}
+	
+	public ArrayList<Rest> rsRecommend(String ctgName) {
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().rsRecommend(conn, ctgName);
+		
+		close(conn); 
+		return list;
+		
+	}
 }
