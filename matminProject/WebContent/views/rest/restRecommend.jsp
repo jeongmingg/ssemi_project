@@ -164,6 +164,10 @@
 		border-radius: 15px;
 	}
 
+	#rest-img+figcaption{
+		text-align: center;
+		font-size: 20px;
+	}
 </style>
 </head>
 <body>
