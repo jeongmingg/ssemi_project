@@ -54,7 +54,8 @@ public class RestDao {
 								  rset.getString("rest_name"),
 								  rset.getDouble("rest_avg"),
 								  rset.getInt("heart"),
-								  rset.getString("rest_img_url")));
+								  rset.getString("rest_img_url"),
+								  rset.getString("rest_address")));
 			}
 			
 		} catch (SQLException e) {
