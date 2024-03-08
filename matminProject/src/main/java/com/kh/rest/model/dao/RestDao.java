@@ -220,24 +220,6 @@ public class RestDao {
 		}
 		 return result;
 	}
-	
-//	public ArrayList<Rest> selectBannerRestList(Connection conn, String grade){
-//		
-//		ArrayList<Rest> list = new ArrayList<Rest>();
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectBannerRestList");
-//		
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			
-//			
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
 		
 	public Rest selectRestDetail(Connection conn, String rpage){
 		Rest r = new Rest();
