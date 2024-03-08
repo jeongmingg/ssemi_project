@@ -81,15 +81,16 @@
 		display: flex;
 		justify-content: center;
 		border-radius: 20px;
+		padding-top: 50px;
 	}
 
 	/* 옵션선택 p 멘트 스타일 div h350*/
 	#menu-p>p{
 		text-align: center;
 		font-size: 23px;
-		padding-top: 60px;
 		line-height: 40px;
 		display: block;
+		margin-top: 30px;
 	}
 
 	/* category div 스타일 h200 */
@@ -249,7 +250,7 @@
 											+ '<figcaption>' + randomRestaurant.restName + '</figcaption>'
 									   + '</div>';
 				            	      
-				            $("#menu-p p").html(value);
+				            $("#menu-p").html(value);
 						},
 						
 					  error:function(){
