@@ -147,7 +147,7 @@
 			</thead>
 			
 			<tbody>
-			
+		
 				<% if (list != null && !list.isEmpty()) { %>
 	            		<% for(Member m : list) { %>
 	            

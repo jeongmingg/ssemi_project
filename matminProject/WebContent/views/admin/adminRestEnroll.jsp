@@ -175,7 +175,7 @@
 
                 <tr>
                     <th>첨부파일</th>
-                    <td><input type="file" name="upfile" required></td>
+                    <td><input type="file" name="upfile"></td>
                 </tr>
                 
                 <!-- <tr>

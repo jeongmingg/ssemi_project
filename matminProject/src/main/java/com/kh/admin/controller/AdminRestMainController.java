@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
+
 /**
  * Servlet implementation class AdminRestMainController
  */
@@ -26,6 +29,12 @@ public class AdminRestMainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String restNo = request.getParameter("num");
+		
+		Rest r = new RestService().selectRest(restNo);
+		
+		request.setAttribute("r", r);
+		
 		request.getRequestDispatcher("views/admin/adminRestMainPage.jsp").forward(request, response);
 	}
 

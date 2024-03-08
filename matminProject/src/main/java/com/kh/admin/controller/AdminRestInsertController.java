@@ -43,7 +43,7 @@ public class AdminRestInsertController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resourses/rest_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resourses/board_upfiles/");
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		

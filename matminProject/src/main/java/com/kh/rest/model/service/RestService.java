@@ -70,7 +70,26 @@ public class RestService {
 		return r;
 	}
 	
-	public int insertRest(Rest r, Attachment at) {
-		return 0;
+	public int insertRest(Rest r, Attachment at ) {
+		
+		Connection conn = getConnection();
+		int result = new RestDao().insertRest(conn, r);
+		 if (result > 0){
+			 commit(conn);
+		 }else {
+			 rollback(conn);
+		 }
+		 return result;
+		
+	}
+	
+	public Rest selectRest(String restNo) {
+		Connection conn = getConnection();
+		
+		Rest r = new RestDao().selectRestDetail(conn, restNo);
+		
+		close(conn);
+		return r;	
+		
 	}
 }

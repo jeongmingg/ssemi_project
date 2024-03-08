@@ -194,7 +194,9 @@ public class RestDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(list);
 		return list;
+		
 	}
 	
 	public int insertRest(Connection conn, Rest r) {
