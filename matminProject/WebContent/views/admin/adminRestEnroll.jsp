@@ -135,7 +135,7 @@
         <br>
         <!-- <h2 align="center">식당등록</h2> -->
 
-        <form id="enroll-form" action="<%=contextPath %>/restEnroll.ad" method="post" enctype="multipart/form-data">
+        <form id="enroll-form" action="<%=contextPath %>/insert.rs" method="post" enctype="multipart/form-data">
 
             <table>
                 <tr>
@@ -169,13 +169,13 @@
                 </tr>
                 <tr>
                     <td>주차여부</td>
-                    <td><input type="text" name="status" placeholder="- 'Y' 또는 'N' 입력"></td>
+                    <td><input type="text" name="parking" placeholder="- 'Y' 또는 'N' 입력"></td>
                     
                 </tr>
 
                 <tr>
                     <th>첨부파일</th>
-                    <td><input type="file" name="upfile" required></td>
+                    <td><input type="file" name="upfile"></td>
                 </tr>
                 
                 <!-- <tr>

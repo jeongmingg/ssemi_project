@@ -6,21 +6,24 @@
 		SELECT
 		       REST_NO
 		     , REST_NAME
-		     , REST_AVG
+		     , NVL(ROUND(REST_AVG, 1), 0) "REST_AVG"
 		     , NVL(HEART,0) "HEART"
              , REST_IMG_URL
+             , REST_ADDRESS
 		  FROM (
 		        SELECT
 		               REST_NO
 		             , REST_NAME
 		             , AVG(REVIEW_AVG) "REST_AVG"
                      , REST_IMG_URL
+                     , REST_ADDRESS
 		          FROM (
 		               SELECT
 		                      REST_NO
 		                    , REST_NAME
-		                    , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+		                    , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
                             , REST_IMG_URL
+                            , REST_ADDRESS
 		                 FROM REST
 		                 LEFT JOIN REVIEW USING(REST_NO)
 		               )
@@ -28,6 +31,7 @@
 		            BY REST_NO
 		             , REST_NAME
                      , REST_IMG_URL
+                     , REST_ADDRESS
 		        )
 		  LEFT JOIN (
 		            SELECT
@@ -108,7 +112,7 @@
 				       SELECT
 				              REST_NO
 				            , REST_NAME
-				            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+				            , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
 				            , REST_IMG_URL
 				            , REVIEW_NO
 				            , MENU_NO
@@ -198,5 +202,17 @@
 		   JOIN CATEGORY USING (CTG_ID)
 		   JOIN MENU USING (REST_NO)
 		  WHERE REST_NO = ?
+		</entry>
+		
+		<entry key="rsRecommend">
+			SELECT 
+			       REST_NO
+			     , REST_NAME
+			     , NVL(REST_IMG_URL, '등록된 사진이 없습니다.') "REST_IMG_URL"
+			     , CTG_ID
+			     , CTG_NAME
+			  FROM REST
+			  JOIN CATEGORY USING (CTG_ID)
+			 WHERE CTG_NAME LIKE '%'|| ? ||'%'
 		</entry>
 </properties>

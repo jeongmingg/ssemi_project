@@ -462,19 +462,11 @@
                         </div>
                         
                         <!-- 네비게이션 -->
-<<<<<<< Updated upstream
-                        <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
-                        <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
-						
-                        <!-- 페이징 -->
-                        <div class="swiper-pagination"></div>
-=======
                             <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
                             <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
 
                             <!-- 페이징 -->
                             <div class="swiper-pagination"></div>
->>>>>>> Stashed changes
                     </div>
                 </div>
                 

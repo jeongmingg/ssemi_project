@@ -43,14 +43,14 @@ public class AdminRestInsertController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resourses/rest_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resourses/board_upfiles/");
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
-		String restName = multiRequst.getParameter("rest");
+		String restName = multiRequst.getParameter("restName");
 		String ctgId = multiRequst.getParameter("category");
 		String restAddress = multiRequst.getParameter("address");
-		String restTel = multiRequst.getParameter("phone");
+		String restTel = multiRequst.getParameter("restNo");
 		String restParking = multiRequst.getParameter("parking");
 		
 		Rest r = new Rest();
@@ -73,19 +73,19 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		int result = new RestService().insertRest(r,at);
 		
-		HttpSession session = request.getSession();
 		
 		if(result>0) {
+			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "삭당이 성공적으로 등록됬었습니다");
 			response.sendRedirect(request.getContextPath()+"/rest.list?cpage=1");
 		}else {
 			if(at != null) {
 				new File(savePath + at.getChangeName()).delete();
 			}
-			session.setAttribute("alertMsg","식당등록이 실패했습니다");
-			response.sendRedirect(request.getContextPath()+"rest.list?cpage=1");
+			request.setAttribute("errorMsg","식당등록이 실패했습니다");
+			response.sendRedirect(request.getContextPath() + "/restEnroll.ad");
 		}
-		}
+	  }
 	}
 
 	/**

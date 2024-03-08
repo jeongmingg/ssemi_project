@@ -34,8 +34,7 @@ public class Rest {
 	private String anmial;
 	private String room;
 	private String bigRoom;
-	
-	
+	private String ctgName;
 	
 	public Rest() {}
 
@@ -115,6 +114,15 @@ public class Rest {
 		this.anmial = anmial;
 		this.room = room;
 		this.bigRoom = bigRoom;
+	}
+	
+	public Rest(String restNo, String restName, String restImgUrl, String ctgId, String ctgName) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restImgUrl = restImgUrl;
+		this.ctgId = ctgId;
+		this.ctgName = ctgName;
 	}
 
 	public String getRestNo() {
@@ -309,15 +317,24 @@ public class Rest {
 	public void setBigRoom(String bigRoom) {
 		this.bigRoom = bigRoom;
 	}
-
 	
+	public String getCtgName() {
+		return ctgName;
+	}
+
+	public void setCtgName(String ctgName) {
+		this.ctgName = ctgName;
+	}
+
 	@Override
 	public String toString() {
 		return "Rest [restNo=" + restNo + ", restLocalId=" + restLocalId + ", restName=" + restName + ", ctgId=" + ctgId
 				+ ", restAddress=" + restAddress + ", restTel=" + restTel + ", restX=" + restX + ", restY=" + restY
 				+ ", restParking=" + restParking + ", restGrade=" + restGrade + ", restTime=" + restTime + ", restAvg="
 				+ restAvg + ", restStatus=" + restStatus + ", restImgUrl=" + restImgUrl + ", heart=" + heart
-				+ ", localName=" + localName + ", reviewCount=" + reviewCount + "]";
+				+ ", localName=" + localName + ", reviewCount=" + reviewCount + ", menuName=" + menuName
+				+ ", menuPrice=" + menuPrice + ", repMenu=" + repMenu + ", dt=" + dt + ", anmial=" + anmial + ", room="
+				+ room + ", bigRoom=" + bigRoom + ", ctgName=" + ctgName + "]";
 	}
-	
+
 }

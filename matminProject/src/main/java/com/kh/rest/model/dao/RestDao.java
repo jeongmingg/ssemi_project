@@ -170,6 +170,7 @@ public class RestDao {
 		
 	}
 	
+
 	public ArrayList<Category> selectCategoryList(Connection conn){
 		
 		ArrayList<Category> list = new ArrayList<Category>();
@@ -194,7 +195,9 @@ public class RestDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(list);
 		return list;
+		
 	}
 	
 	public int insertRest(Connection conn, Rest r) {
@@ -312,6 +315,47 @@ public class RestDao {
 		return 0;
 	}
 	
+	public ArrayList<Rest> rsRecommend(Connection conn, String ctgName) {
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("rsRecommend");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(ctgName.equals("전체")) {
+				pstmt.setString(1, "");
+			}else {
+				pstmt.setString(1, ctgName);
+			}
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("ctg_id"),
+								  rset.getString("ctg_name")
+						));
+			}
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+	}
 }
 	
 
