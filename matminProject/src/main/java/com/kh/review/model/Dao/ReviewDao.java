@@ -115,21 +115,21 @@ public class ReviewDao {
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				Review r = new Review();
-				
-				r.setReviewNo(rset.getString("review_no"));
-				r.setReviewWriter(rset.getString("nickname"));
-				r.setReviewCont(rset.getString("review_cont"));
-				r.setReviewDate(rset.getString("review_date"));
-				r.setReviewLike(rset.getInt("review_like"));
-				r.setReviewDislike(rset.getInt("review_dislike"));
-				r.setRateTaste(rset.getInt("rate_taste"));
-				r.setRatePrice(rset.getInt("rate_price"));
-				r.setRateService(rset.getInt("rate_service"));
-				
-				list.add(r);
-			}
+//			while(rset.next()) {
+//				Review r = new Review();
+//				
+//				r.setReviewNo(rset.getString("review_no"));
+//				r.setReviewWriter(rset.getString("nickname"));
+//				r.setReviewCont(rset.getString("review_cont"));
+//				r.setReviewDate(rset.getString("review_date"));
+//				r.setReviewLike(rset.getInt("review_like"));
+//				r.setReviewDislike(rset.getInt("review_dislike"));
+//				r.setRateTaste(rset.getInt("rate_taste"));
+//				r.setRatePrice(rset.getInt("rate_price"));
+//				r.setRateService(rset.getInt("rate_service"));
+//				
+//				list.add(r);
+//			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
