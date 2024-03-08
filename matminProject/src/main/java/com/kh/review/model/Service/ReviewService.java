@@ -43,15 +43,16 @@ public class ReviewService {
 	public int deleteReview(String rvno) {
 		Connection conn = getConnection();
 		int result = new ReviewDao().deleteReview(conn, rvno);
-		
+	
+
 		close(conn);
 		return result;
 	}
 
-	public int insertReview(String rno, int rvwStar, String rvwCont, String nickname) {
+	public int insertReview(String rno,  String memNo, int rvwStar, String rvwCont) {
 		Connection conn = getConnection();
 		
-		int result = new ReviewDao().insertReview(rno, rvwStar, rvwCont, nickname);
+		int result = new ReviewDao().insertReview(conn, rno, memNo, rvwStar, rvwCont);
 		
 		if(result>0) {
 			commit(conn);
