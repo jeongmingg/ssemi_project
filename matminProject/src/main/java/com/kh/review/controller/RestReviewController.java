@@ -39,9 +39,10 @@ public class RestReviewController extends HttpServlet {
 		
 		ArrayList<Review> rvList = new ReviewService().selectReviewList(rpage);
 		
+		System.out.println(rvList);
+		
 //		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
 		
-		System.out.println(rvList);
 //		System.out.println(imgList);
 //		
 //		JsonObject jsonData = new JsonObject();

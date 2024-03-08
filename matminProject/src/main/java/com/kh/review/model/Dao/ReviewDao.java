@@ -37,7 +37,8 @@ public class ReviewDao {
 		String sql = prop.getProperty("selectReviewList");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);			
+			pstmt = conn.prepareStatement(sql);		
+			
 			pstmt.setString(1, rpage);			
 			rset=pstmt.executeQuery();
 			
@@ -49,13 +50,10 @@ public class ReviewDao {
 						            rset.getString("review_date"),
 						            rset.getInt("review_like"),
 						            rset.getInt("review_dislike"),
-						            rset.getInt("rate_taste"),
-						            rset.getInt("rate_price"),
-						            rset.getInt("rate_service"),
-						            rset.getInt("rate_avg")));
+						            rset.getInt("review_rate")));
+				}
+						       
 
-			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -142,6 +140,40 @@ public class ReviewDao {
 		}
 		
 		return list;
+	}
+	
+	public int deleteReview(Connection conn, String rvno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rvno);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}return result;
+	}
+	
+	public int insertReview(Connection conn, String rno, int rvwStar, String rvwCont, String nickname) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertReview");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(pstmt);
+		} return result;
+		
 	}
 	
 }

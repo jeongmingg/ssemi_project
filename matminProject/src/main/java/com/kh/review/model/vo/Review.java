@@ -12,7 +12,7 @@ public class Review {
 	private int reviewLike;
 	private int reviewDislike;
 	private int alerNo;
-	private int rateTaste; 
+	private int reviewRate; 
 	private int ratePrice;
 	private int rateService;
 	private int rateAvg;
@@ -22,7 +22,7 @@ public class Review {
 	public Review() {}
 
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
-			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int rateTaste, int ratePrice,
+			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int reviewRate, int ratePrice,
 			int rateService, String reviewStatus) {
 		super();
 		this.reviewNo = reviewNo;
@@ -34,7 +34,7 @@ public class Review {
 		this.reviewLike = reviewLike;
 		this.reviewDislike = reviewDislike;
 		this.alerNo = alerNo;
-		this.rateTaste = rateTaste;
+		this.reviewRate = reviewRate;
 		this.ratePrice = ratePrice;
 		this.rateService = rateService;
 		this.reviewStatus = reviewStatus;
@@ -42,7 +42,7 @@ public class Review {
 	
 	
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
-			int reviewLike, int reviewDislike, int rateTaste, int ratePrice, int rateService, int rateAvg) {
+			int reviewLike, int reviewDislike, int reviewRate, int ratePrice, int rateService, int rateAvg) {
 		super();
 		this.reviewNo = reviewNo;
 		this.restNo = restNo;
@@ -51,12 +51,27 @@ public class Review {
 		this.reviewDate = reviewDate;
 		this.reviewLike = reviewLike;
 		this.reviewDislike = reviewDislike;
-		this.rateTaste = rateTaste;
+		this.reviewRate = reviewRate;
 		this.ratePrice = ratePrice;
 		this.rateService = rateService;
 		this.rateAvg = rateAvg;
 	}
-
+	
+	
+	
+	
+	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
+			int reviewLike, int reviewDislike, int reviewRate) {
+		super();
+		this.reviewNo = reviewNo;
+		this.restNo = restNo;
+		this.reviewWriter = reviewWriter;
+		this.reviewCont = reviewCont;
+		this.reviewDate = reviewDate;
+		this.reviewLike = reviewLike;
+		this.reviewDislike = reviewDislike;
+		this.reviewRate = reviewRate;
+	}
 
 	public String getReviewNo() {
 		return reviewNo;
@@ -130,12 +145,10 @@ public class Review {
 		this.alerNo = alerNo;
 	}
 
-	public double getRateTaste() {
-		return rateTaste;
-	}
-
-	public void setRateTaste(int rateTaste) {
-		this.rateTaste = rateTaste;
+	
+	public Review(int reviewRate) {
+		super();
+		this.reviewRate = reviewRate;
 	}
 
 	public double getRatePrice() {
@@ -179,7 +192,7 @@ public class Review {
 		return "Review [reviewNo=" + reviewNo + ", restNo=" + restNo + ", reviewWriter=" + reviewWriter
 				+ ", reviewCont=" + reviewCont + ", reviewDate=" + reviewDate + ", updateDate=" + updateDate
 				+ ", reviewLike=" + reviewLike + ", reviewDislike=" + reviewDislike + ", alerNo=" + alerNo
-				+ ", rateTaste=" + rateTaste + ", ratePrice=" + ratePrice + ", rateService=" + rateService
+				+ ", reviewRate=" + reviewRate + ", ratePrice=" + ratePrice + ", rateService=" + rateService
 				+ ", reviewStatus=" + reviewStatus + "]";
 	}
 	
