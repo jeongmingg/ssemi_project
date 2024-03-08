@@ -39,7 +39,8 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);		
 			
-			pstmt.setString(1, rpage);			
+			pstmt.setString(1, rpage);	
+			
 			rset=pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -124,7 +125,7 @@ public class ReviewDao {
 				r.setReviewDate(rset.getString("review_date"));
 				r.setReviewLike(rset.getInt("review_like"));
 				r.setReviewDislike(rset.getInt("review_dislike"));
-				r.setRateTaste(rset.getInt("rate_taste"));
+				r.setRateTable(rset.getInt("rate_taste"));
 				r.setRatePrice(rset.getInt("rate_price"));
 				r.setRateService(rset.getInt("rate_service"));
 				
@@ -152,14 +153,16 @@ public class ReviewDao {
 			pstmt.setString(1, rvno);
 			
 			result = pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		}return result;
+		} return result;
+		
 	}
-	
-	public int insertReview(Connection conn, String rno, int rvwStar, String rvwCont, String nickname) {
+
+	public int insertReview(Connection conn, String rno, String memNo, int rvwStar, String rvwCont) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -167,6 +170,12 @@ public class ReviewDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setString(1, rno);
+			pstmt.setString(2, memNo);
+			pstmt.setString(3, rvwCont);
+			pstmt.setInt(4, rvwStar);
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

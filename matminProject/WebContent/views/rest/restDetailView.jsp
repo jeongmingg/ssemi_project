@@ -814,9 +814,7 @@
 					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
 					</div>
 					<div class="btn-review-area">
-					<% if(loginUser != null){ %>
 					<button type="button" id="btn-review" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">리뷰작성</button>
-					<% } %>
 					</div>
 				</div> 
 				<br>
@@ -880,7 +878,7 @@
 				</div>
                 <br>
 				<div class="modal-body">
-					<form action="<%= contextPath %>/insert.rv">
+					<form class="review_form" id="reviewform" action="<%= contextPath %>/insert.rv">
 						<div>
 							<h2>별점을 남겨주세요!</h2>
                             <br>
@@ -893,8 +891,8 @@
                                 <i class="rating__star far fa-star" id="star3" value="3" onclick="reviewstar(this, 3)"></i>
                                 <i class="rating__star far fa-star" id="star4" value="4" onclick="reviewstar(this, 4)"></i>
                                 <i class="rating__star far fa-star" id="star5" value="5" onclick="reviewstar(this, 5)"></i>
+								<input type="hidden" id="starRating" name="rvwstar" value="">
                             </div>
-							<input type="hidden" id="starRating" name="rvwstar" value="">
                             <br><br>
 							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
 							<div class="count-area" style="text-align: right;">
@@ -905,7 +903,7 @@
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style=" width: 100px; font-size: x-large;">취소</button>
-				<button type="submit" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
+				<button type="submit" id="review-sub" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
 				</div>
 			</div>
 			</div>
@@ -925,6 +923,9 @@
 	
 		$(function(){
 		    selectReviewList();
+		    
+		    
+        	setInterval(selectReviewList, 1000);
 		})
 	
 		function selectReviewList(){
@@ -947,9 +948,6 @@
 		                let rvcont = rv.reviewCont;
 		                let rvrate = rv.reviewRate;
 
-						console.log(rvno);
-						
-		                
 		                value += `<div class="review-div">
 							<div class="rv1">
 								<div class="profile">
@@ -967,7 +965,9 @@
 										</div>
 									</div>
 									<div class="warn">
-										<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(rvno);">삭제</a>
+										<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
+		               					<input type ="hidden" class="reviewNo" value=\${rvno}>
+										<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
 										<div class="review-update">
 										</div>
 									</div>
@@ -990,36 +990,10 @@
 							</div>
 						</div>
 						<br>`
-
-				$(".rvstar-avg").css("width", "\${rvavg}%");
-				
-				}
-		            console.log(value);
+		            }
 
 				$(".review-detail").html(value);
 				
-				function deleteReview(rvno){
-
-				console.log(rvno);
-
-				if (confirm("정말 삭제하시겠습니까?")) {
-					$.ajax({
-						url:"delete.rv",
-						type:"post",
-						data: {rvno},
-						success:function(review){
-							if(review != null){
-								alert("성공적으로 삭제됐습니다!");
-							}
-							console.log("ajax 통신성공!")
-						}, error:function(){
-							console.log("삭제오류 ajax통신오류")
-						}
-					})
-				}
-				}
-
-
 				}, error:function(){
 					console.log("ajax 통신실패")
 				}
@@ -1027,20 +1001,32 @@
 			});
 		}
 		
-		
-	</script>		
+	
+		function deleteReview(ele){
+			/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
+			let rvNo = $(ele).siblings("input").val();
+			
+			console.log(rvNo);
 
-	<!-- 리뷰 별 클릭시 -->
-	<script>
-		 function reviewstar(element, rating) {
-        // 별점을 선택한 값으로 업데이트
-        document.getElementById('starRating').value = rating;
-		 }
-	</script>
-
-
-
-	<!-- 리뷰 별 모달 스크립트 -->
+			if (confirm("정말 삭제하시겠습니까?")) {
+				$.ajax({
+					url:"delete.rv",
+					type:"post",
+					data: {no:rvNo},
+					success:function(review){
+						if(review != null){
+							alert("성공적으로 삭제됐습니다!");
+						}
+						console.log("ajax 통신성공!")
+					}, error:function(){
+						console.log("삭제오류 ajax통신오류")
+					}
+				})
+			}
+			}
+	</script>	
+	
+		<!-- 리뷰 별 모달 스크립트 -->
 	<script>
 		const ratingStars = [...document.getElementsByClassName("rating__star")];
 		const  ratingResult = document.querySelector(".rating__result");
@@ -1072,44 +1058,57 @@
 			}
 			
 			executeRating(ratingStars, ratingResult);
+	</script>	
+
+	<!-- 리뷰 별 클릭시 -->
+	<script>
+		 function reviewstar(element, score) {
+			 console.log("!");
+        // 별점을 선택한 값으로 업데이트
+        	var rate = $(element).val();
+        	
+        	$("#starRating").val(rate);
+        	
+        	console.log("!");
+        	
+        	
+		 }
 	</script>
 
+	<script>
+	
 	<!-- 리뷰 인서트 -->>
 	<script>
-		
-		$(".btn-review").click(function(){
-			insertReviewlist();
-		})
-
-		const checkstar = 
-
-		function insertReviewlist(){
-			$.ajax({
-				url:"insert.rv",
-						data:{
-							rpage:'<%= r.getRestNo()%>',
-							content:$("#review-write").val(),
-						},
-						type:"post",
-						success:function(){
-
-						}, error:function(){
-							console.log("댓글작성용 ajax 통신오류!")
-						}
-
-					})
-				}
-
-
-
-
+	    $(function() {
+	        $("#review-sub").click(function() {
+	            $("#reviewform").submit();
+	        });
+	    });
 	</script>
+	
+	<!-- 로그인 안하고 이용할시 알람창 뜨기 -->
+	<script>
+		$(function(){
+			<% if (loginUser == null) { %>
+				$("#btn-review").click(function(){
+					alert("로그인후 이용해주세요!");
+					$('#reviewModal').on('show.bs.modal', function (e) {
+						  e.preventDefault();
+						})
+					})
+			
+			<% } %>
+		})
+	
+	</script>
+	
+	</script>
+
 
 	<!--리뷰 삭제 --> 
 	
 	<script>
 		&(function(){
-
 		 	$(".delete-review").click(function(){
 		 		e.preventDefault();
 		 		deleteReviewlist();
@@ -1119,43 +1118,45 @@
 	
 	</script>
 		
-	
-	
-	
+	<!-- 리뷰 인서트 -->
 	<script>
 		$(function(){
        		 $("#review-write").keyup(function(){ 
 				let length = $(this).val().length;
 				$("#count").text(length);
        		 })
-       })
+		})
 	</script>
 
 			
 	<script>
 			$(".btn-more").click(function(){
+
 				// 현재 상태를 확인하여 숨김/보임을 토글합니다.
 				if ($(".list-menu-2").is(":visible")) {
 					$(".list-menu-2").hide(); // 보이는 상태라면 숨깁니다.
 					$(".btn-more").text("더보기"); // 버튼 텍스트를 다시 '더보기'로 변경합니다.
 					$(".r").css({'text-align': 'right' 
-								,position: 'relative'
-								,right: '-3px'
-								,background: 'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right'
-								,'background-size': '20px'});
+					,position: 'relative'
+					,right: '-3px'
+					,background: 'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right'
+					,'background-size': '20px'});
 				} else {
 					$(".list-menu-2").show(); // 숨겨진 상태라면 보이게 합니다.
 					$(".btn-more").text("접기"); // 버튼 텍스트를 '접기'로 변경합니다.
 					$(".r").css({background:'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-up@2x.png) no-repeat right'
-								,position: 'relative'
-								,right: '-3px'
-								,'text-align': 'right'
-								,'background-size': '20px'
-								});
+					,position: 'relative'
+					,right: '-3px'
+					,'text-align': 'right'
+					,'background-size': '20px'
+					});
 				}
-			});
-			
+			})
+
 	</script>
+	
+	
+	
 
 		<!-- 공유 모달 -->
 		<script>
