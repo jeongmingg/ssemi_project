@@ -7,9 +7,20 @@ public class Search {
 	private double restAvg;
 	private int heart;
 	private String restImgUrl;
+	private String restAddress;
 	
 	public Search() {}
 	
+	public Search(String restNo, String restName, double restAvg, int heart, String restImgUrl, String restAddress) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.heart = heart;
+		this.restImgUrl = restImgUrl;
+		this.restAddress = restAddress;
+	}
+
 	public Search(String restNo, String restName, double restAvg, int heart, String restImgUrl) {
 		super();
 		this.restNo = restNo;
@@ -60,11 +71,18 @@ public class Search {
 		this.restImgUrl = restImgUrl;
 	}
 
+	public String getRestAddress() {
+		return restAddress;
+	}
+
+	public void setRestAddress(String restAddress) {
+		this.restAddress = restAddress;
+	}
+
 	@Override
 	public String toString() {
 		return "Search [restNo=" + restNo + ", restName=" + restName + ", restAvg=" + restAvg + ", heart=" + heart
-				+ ", restImgUrl=" + restImgUrl + "]";
+				+ ", restImgUrl=" + restImgUrl + ", restAddress=" + restAddress + "]";
 	}
 
-	
 }
