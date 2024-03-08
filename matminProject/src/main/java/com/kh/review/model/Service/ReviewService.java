@@ -39,5 +39,24 @@ public class ReviewService {
 		
 		return list;
 	}
+	
+	public int deleteReview(String rvno) {
+		Connection conn = getConnection();
+		int result = new ReviewDao().deleteReview(conn, rvno);
+		
+		close(conn);
+		return result;
+	}
 
+	public int insertReview(String rno, int rvwStar, String rvwCont, String nickname) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().insertReview(rno, rvwStar, rvwCont, nickname);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		} return result;
+	}
 }

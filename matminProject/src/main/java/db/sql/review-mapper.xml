@@ -14,10 +14,7 @@
 				                  , TO_CHAR(REVIEW_DATE, 'YYYY.MM.DD') AS REVIEW_DATE
 				                  , REVIEW_LIKE
 				                  , REVIEW_DISLIKE
-				                  , RATE_TASTE
-				                  , RATE_PRICE
-				                  , RATE_SERVICE
-				                  , ROUND(((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3)/5*100, 0) "RATE_AVG"
+				                  , REVIEW_RATE
 				             FROM REVIEW
 				             JOIN MEMBER ON (MEM_NO = REVIEW_WRITER)
 				            WHERE REVIEW_STATUS = 'Y'
@@ -54,4 +51,31 @@
 		 WHERE REVIEW_WRITER = ?
 	</entry>
 
+	<entry key="deleteReview">
+		UPDATE REVIEW
+		   SET REVIEW_STATUS ='N'
+		 WHERE REVIEW_NO = ?
+	</entry>
+	
+	<entry key="insertReview">
+		INSERT 
+		  INTO REVIEW
+		       (
+		         REVIEW_NO
+		       , REST_NO
+		       , REVIEW_WRITER
+		       , REVIEW_CONT
+		       , REVIEW_RATE
+		       )
+		VALUES (
+		        'RV'||SEQ_RVNO.NEXTVAL
+		        , ?
+		        , ?
+		        , ?
+                , ?
+		       )
+
+	
+	
+	</entry>
 </properties>

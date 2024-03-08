@@ -26,15 +26,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+</head>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-
 <style>
 
 	/* 전체 클래스 스타일*/
@@ -309,7 +310,7 @@
 
 	/* 리뷰 평점 스타일 */
 	.score-area{
-		height: 150px;
+		height: 120px;
 	}
 	.score-area>div{
 		height: 100%;
@@ -319,6 +320,7 @@
 	/* 별점 이미지 스타일 */
 	.score-img{
 		width: 30%;
+		padding-top: 10PX;
 	}
 
 	/* 별점 그래프 스타일 */
@@ -418,6 +420,7 @@
 		padding-top: 2px;
 	}
 
+
 	/* 각 리뷰 전체 테두리 */
 	.review-div{
 		height: auto;
@@ -460,9 +463,9 @@
 	/* 리뷰 내 별점 스타일 */
 	#w-star{
 		display: inline-block;
-		width:90px;
+		width:20px;
 		height: 18px;
-		background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png) repeat-x left;
+		background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
 		background-size: 18px;
 		margin-top: 2px;
 	}
@@ -470,7 +473,7 @@
 	/* 별점 빈 별 스타일*/
 	#w-star i{
 		display: inline-block;
-		width: 75px;
+		width: 20x;
 		height: 18px;
 		background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
    		background-size: 18px;
@@ -500,12 +503,13 @@
 		text-align: right;	
 		padding: 4px 10px;	
 	}
-	#rv-warn{
+	.warn a{
 		color: gray;
 		text-decoration-line: none;
 	}
-	#rv-warn:hover{
+	.warn a:hover{
 		color: #e4910d;
+		text-decoration-line: none;
 	}
 	.w-star-detail ul{
 		display: flex;
@@ -526,12 +530,18 @@
 	#rv-flv-star, #rv-pri-star{
 		margin-right: 10px;
 	}
+	.rv1{
+		padding-top: 3px;
+	}
 	.review-content{
 		margin-top: -20px;
 		margin-left: 20px;
 	}
 	#rv-content{
 		white-space: pre-wrap; /*p태그 개행*/
+		padding-top: 40px;
+		font-size: large;
+		padding-left: 15px;
 	}
 	.review-img {
     	overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 설정합니다. */
@@ -548,97 +558,10 @@
     	text-decoration: none; /* 텍스트 밑줄 제거 */
 	}
 
-	/* 이미지 팝업창 스타일 */
-			
-		#myImg {
-		border-radius: 5px;
-		cursor: pointer;
-		transition: 0.3s;
-		}
-
-		#myImg:hover {opacity: 0.7;}
-
-		/* The Modal (background) */
-		.modal {
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		padding-top: 400px; /* Location of the box */
-		left: 0;
-		top: 0;
-		width: 100%; /* Full width */
-		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-		}
-
-		/* Modal Content (image) */
-		.modal-content {
-		margin: auto;
-		display: block;
-		width: 80%;
-		max-width: 700px;
-		}
-
-		/* Caption of Modal Image */
-		#caption {
-		margin: auto;
-		display: block;
-		width: 80%;
-		max-width: 700px;
-		text-align: center;
-		color: #ccc;
-		padding: 10px 0;
-		height: 150px;
-		}
-
-		/* Add Animation */
-		.modal-content, #caption {  
-		-webkit-animation-name: zoom;
-		-webkit-animation-duration: 0.6s;
-		animation-name: zoom;
-		animation-duration: 0.6s;
-		}
-
-		@-webkit-keyframes zoom {
-		from {-webkit-transform:scale(0)} 
-		to {-webkit-transform:scale(1)}
-		}
-
-		@keyframes zoom {
-		from {transform:scale(0)} 
-		to {transform:scale(1)}
-		}
-
-		/* The Close Button */
-		.close {
-		position: absolute;
-		top: 15px;
-		right: 35px;
-		color: #f1f1f1;
-		font-size: 40px;
-		font-weight: bold;
-		transition: 0.3s;
-		}
-
-		.close:hover,
-		.close:focus {
-		color: #bbb;
-		text-decoration: none;
-		cursor: pointer;
-		}
-
-		/* 100% Image Width on Smaller Screens */
-		@media only screen and (max-width: 700px){
-		.modal-content {
-			width: 100%;
-		}
-		}
 	.review-like{
 		display: flex;
-		margin-left: 50px;
-		margin-top: 20px;
+		margin-left: 10px;
+		margin-top: 5px;
 	}
 	.review-like>div{
 		margin-right: 10px;
@@ -690,28 +613,18 @@
 	#reviewModal > .rv-enroll-btn{
 		border-color:#F39C12;
 	}
-	/* 별 창*/
-	.blind {
-  position: absolute;
-  overflow: hidden;
-  margin: -1px;
-  padding: 0;
-  width: 1px;
-  height: 1px;
-  border: none;
-  clip: rect(0, 0, 0, 0);
-}
-.review-write{
-	font-size: large;
-}
+	
+	.review-write{
+		font-size: large;
+	}
 
     /* 모달별창 */
-    body {
+    /* body {
    height: 100vh;
    display: grid;
    place-items: center;
    overflow: hidden;
-    }
+    } */
 
     .rating {
     position: relative;
@@ -722,7 +635,6 @@
     align-items: center;
     gap: .6em;
     padding-left: 5px;
-    overflow: hidden;
     margin: auto;
     width: 300px;
     }
@@ -749,7 +661,7 @@
     }
 
 </style>
-</head>
+
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
@@ -819,7 +731,7 @@
 
 		<div class="rest-detail">
 			<div class="list">
-				<div type="hidden"><%= r.getRestNo() %></div>
+				<input type="hidden" value="<%= r.getRestNo() %>">
 			
 				<div class="list-add">
 					<div class="list-add-1">주소</div>
@@ -902,7 +814,9 @@
 					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
 					</div>
 					<div class="btn-review-area">
+					<% if(loginUser != null){ %>
 					<button type="button" id="btn-review" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">리뷰작성</button>
+					<% } %>
 					</div>
 				</div> 
 				<br>
@@ -914,27 +828,46 @@
 							<span class="star">
 								<i style="width: <%= star %>%;"></i>
 							</span>
-						<div class="avg-num"><%= r.getRestAvg() %></div>
-						<div class="star-detail">
-							<ul style="margin-left:6px">
-								<li>맛
-									<li class="star-s"></li>
-									<li id="flv-star">5</li>
-								</li>
-								<li>가격
-									<li class="star-s"></li>
-									<li id="pri-star">4</li>
-								</li>
-								<li>서비스
-									<li class="star-s"></li>
-									<li id="ser-star">5</li>
-								</li>
-							</ul>
-						</div>
+							<div class="avg-num"><%= r.getRestAvg() %></div>
+						
+					</div>
+					<div class="score-graph">
+						<ul class="graph-aria">
+							<li>
+								<p class="btxt">매우만족 (5)</p>
+								<p class="graph">
+									<span style="width:50%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">만족 (10)</p>
+								<p class="graph">
+									<span style="width:37%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">보통 (1)</p>
+								<p class="graph">
+									<span style="width:17%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">불만 (1)</p>
+								<p class="graph">
+									<span style="width:17%"></span>
+								</p>
+							</li>
+							<li>
+								<p class="btxt">매우불만(0)</p>
+								<p class="graph">
+									<span style="width:0%"></span>
+								</p>
+							</li>
+						</ul>
 					</div>
 					</div>
 				</div>
-			</div>
+			
 			<br>
 	
 		<!-- Modal -->
@@ -945,22 +878,25 @@
 					<h1 class="modal-title fs-5" id="reviewModal" style="margin: auto; margin-top: 10px;">솔직한 리뷰를 작성해주세요!</h1>
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
+                <br>
 				<div class="modal-body">
-					<form action="">
+					<form action="<%= contextPath %>/insert.rv">
 						<div>
-							<h2>맛은 어땠나요?</h2>
 							<h2>별점을 남겨주세요!</h2>
                             <br>
+							<input type="hidden" name="restNo" value="<%= r.getRestNo() %>">
+
 							<div class="rating">
                                 <span class="rating__result"></span> 
-                                <i class="rating__star far fa-star"></i>
-                                <i class="rating__star far fa-star"></i>
-                                <i class="rating__star far fa-star"></i>
-                                <i class="rating__star far fa-star"></i>
-                                <i class="rating__star far fa-star"></i>
+                                <i class="rating__star far fa-star" id="star1" value="1" onclick="reviewstar(this, 1)"></i>
+                                <i class="rating__star far fa-star" id="star2" value="2" onclick="reviewstar(this, 2)"></i>
+                                <i class="rating__star far fa-star" id="star3" value="3" onclick="reviewstar(this, 3)"></i>
+                                <i class="rating__star far fa-star" id="star4" value="4" onclick="reviewstar(this, 4)"></i>
+                                <i class="rating__star far fa-star" id="star5" value="5" onclick="reviewstar(this, 5)"></i>
                             </div>
-							<br><br>
-							<textarea id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
+							<input type="hidden" id="starRating" name="rvwstar" value="">
+                            <br><br>
+							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
 							<div class="count-area" style="text-align: right;">
 								<span id="count">0</span>/300
 							</div>
@@ -969,7 +905,7 @@
 				</div>
 				<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style=" width: 100px; font-size: x-large;">취소</button>
-				<button type="button" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
+				<button type="submit" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
 				</div>
 			</div>
 			</div>
@@ -980,7 +916,8 @@
 			<div class="review-detail" name="review-detail">
 				
 			</div>
-
+	</div>
+	</div>
 	<br><br>
 		<%@ include file="../common/footer.jsp" %>		
 
@@ -997,20 +934,21 @@
 				success:function(rvlist){
 					let value = ''; // Initialize value variable
 		            
-		                console.log(rvlist);
-				
 		            for (let i = 0; i < rvlist.length; i++) {
 		            	
 		                let rv = rvlist[i]; // Fixed variable name
 
-		                console.log(rv.ratePrice);
+						let rvno = rv.reviewNo;
 		                let rvname = rv.reviewWriter;
 		                let rvdate = rv.reviewDate;
 		                let rvtaste = rv.rateTaste;
 		                let rvprice = rv.ratePrice;
 		                let rvservice = rv.rateService;
 		                let rvcont = rv.reviewCont;
-		                let rvavg = rv.rateAge;
+		                let rvrate = rv.reviewRate;
+
+						console.log(rvno);
+						
 		                
 		                value += `<div class="review-div">
 							<div class="rv1">
@@ -1024,34 +962,18 @@
 											<div id="w-star">
 												<i id="rvstar-avg"></i>
 											</div>
+											<span id="rvstar-avg-title">\${rvrate}</span>
 											<span id="write-date">\${rvdate}</span>
 										</div>
 									</div>
 									<div class="warn">
-										<a href="#" id="rv-warn">신고</a>
+										<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(rvno);">삭제</a>
 										<div class="review-update">
-											<a href="#" id="rv-update">수정</a>
-											<a href="#" id="rv-delete">삭제</a>
 										</div>
 									</div>
 								</div>
-								<div class="w-star-detail">
-									<ul>
-										<li>맛
-											<li class="rv-star-s"></li>
-											<li id="rv-flv-star">\${rvtaste}</li>
-										</li>
-										<li>가격
-											<li class="rv-star-s"></li>
-											<li id="rv-pri-star">\${rvprice}</li>
-										</li>
-										<li>서비스
-											<li class="rv-star-s"></li>
-											<li id="rv-ser-star">\${rvservice}</li>
-										</li>
-									</ul>
-								</div>
 								<div class="review-content">
+								<br><br>
 									<p name="rv-content" id="rv-content">
 \${rvcont}
 									</p>
@@ -1076,15 +998,130 @@
 
 				$(".review-detail").html(value);
 				
+				function deleteReview(rvno){
+
+				console.log(rvno);
+
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						url:"delete.rv",
+						type:"post",
+						data: {rvno},
+						success:function(review){
+							if(review != null){
+								alert("성공적으로 삭제됐습니다!");
+							}
+							console.log("ajax 통신성공!")
+						}, error:function(){
+							console.log("삭제오류 ajax통신오류")
+						}
+					})
+				}
+				}
+
+
 				}, error:function(){
 					console.log("ajax 통신실패")
 				}
 
 			});
 		}
-	
+		
+		
 	</script>		
+
+	<!-- 리뷰 별 클릭시 -->
+	<script>
+		 function reviewstar(element, rating) {
+        // 별점을 선택한 값으로 업데이트
+        document.getElementById('starRating').value = rating;
+		 }
+	</script>
+
+
+
+	<!-- 리뷰 별 모달 스크립트 -->
+	<script>
+		const ratingStars = [...document.getElementsByClassName("rating__star")];
+		const  ratingResult = document.querySelector(".rating__result");
+		
+		printRatingResult(ratingResult);
+		
+		function executeRating(stars, result) {
+			const starClassActive = "rating__star fas fa-star";
+				const starClassUnactive = "rating__star far fa-star";
+				const starsLength = stars.length;
+				let i;
+				stars.map((star) => {
+					star.onclick = () => {
+						i = stars.indexOf(star);
+						
+						if (star.className.indexOf(starClassUnactive) !== -1) {
+							printRatingResult(result, i + 1);
+							for (i; i >= 0; --i) stars[i].className = starClassActive;
+						} else {
+							printRatingResult(result, i);
+							for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+						}
+					};
+				});
+			}
 			
+			function printRatingResult(result, num = 0) {
+				result.textContent = `${num}/5`;
+			}
+			
+			executeRating(ratingStars, ratingResult);
+	</script>
+
+	<!-- 리뷰 인서트 -->>
+	<script>
+		
+		$(".btn-review").click(function(){
+			insertReviewlist();
+		})
+
+		const checkstar = 
+
+		function insertReviewlist(){
+			$.ajax({
+				url:"insert.rv",
+						data:{
+							rpage:'<%= r.getRestNo()%>',
+							content:$("#review-write").val(),
+						},
+						type:"post",
+						success:function(){
+
+						}, error:function(){
+							console.log("댓글작성용 ajax 통신오류!")
+						}
+
+					})
+				}
+
+
+
+
+	</script>
+
+	<!--리뷰 삭제 --> 
+	
+	<script>
+		&(function(){
+
+		 	$(".delete-review").click(function(){
+		 		e.preventDefault();
+		 		deleteReviewlist();
+	 		});
+		 })
+
+	
+	</script>
+		
+	
+	
+	
 	<script>
 		$(function(){
        		 $("#review-write").keyup(function(){ 
@@ -1094,43 +1131,8 @@
        })
 	</script>
 
-	<!-- 리뷰 별 모달 스크립트 -->
-	 <script>
-		const ratingStars = [...document.getElementsByClassName("rating__star")];
-		const  ratingResult = document.querySelector(".rating__result");
-
-		printRatingResult(ratingResult);
-
-		function executeRating(stars, result) {
-		const starClassActive = "rating__star fas fa-star";
-		const starClassUnactive = "rating__star far fa-star";
-		const starsLength = stars.length;
-		let i;
-		stars.map((star) => {
-			star.onclick = () => {
-				i = stars.indexOf(star);
-
-				if (star.className.indexOf(starClassUnactive) !== -1) {
-					printRatingResult(result, i + 1);
-					for (i; i >= 0; --i) stars[i].className = starClassActive;
-				} else {
-					printRatingResult(result, i);
-					for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
-				}
-			};
-		});
-		}
-
-		function printRatingResult(result, num = 0) {
-		result.textContent = `${num}/5`;
-		}
-
-		executeRating(ratingStars, ratingResult);
-	</script>
-
 			
 	<script>
-	 
 			$(".btn-more").click(function(){
 				// 현재 상태를 확인하여 숨김/보임을 토글합니다.
 				if ($(".list-menu-2").is(":visible")) {

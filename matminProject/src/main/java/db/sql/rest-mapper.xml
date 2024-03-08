@@ -54,7 +54,7 @@
 		       SELECT
 		              REST_NO
 		            , REST_NAME
-		            , NVL(ROUND((RATE_TASTE + RATE_PRICE + RATE_SERVICE)/3, 1), 0) AS "REVIEW_AVG"
+		            , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
 		            , REST_IMG_URL
 		            , LOCAL_NAME
 		            , REVIEW_NO
