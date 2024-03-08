@@ -145,9 +145,11 @@ public class Review {
 		this.alerNo = alerNo;
 	}
 
-	
-	public Review(int reviewRate) {
-		super();
+	public int getReviewRate() {
+		return reviewRate;
+	}
+
+	public void setReviewRate(int reviewRate) {
 		this.reviewRate = reviewRate;
 	}
 
