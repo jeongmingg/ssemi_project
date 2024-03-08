@@ -116,23 +116,8 @@ public class ReviewDao {
 			
 			rset = pstmt.executeQuery();
 			
-<<<<<<< HEAD
-//			while(rset.next()) {
-//				Review r = new Review();
-//				
-//				r.setReviewNo(rset.getString("review_no"));
-//				r.setReviewWriter(rset.getString("nickname"));
-//				r.setReviewCont(rset.getString("review_cont"));
-//				r.setReviewDate(rset.getString("review_date"));
-//				r.setReviewLike(rset.getInt("review_like"));
-//				r.setReviewDislike(rset.getInt("review_dislike"));
-//				r.setRateTaste(rset.getInt("rate_taste"));
-//				r.setRatePrice(rset.getInt("rate_price"));
-//				r.setRateService(rset.getInt("rate_service"));
-//				
-//				list.add(r);
-//			}
-=======
+
+
 			while(rset.next()) {
 				Review r = new Review();
 				
@@ -148,7 +133,7 @@ public class ReviewDao {
 				
 				list.add(r);
 			}
->>>>>>> 04c090efffa12bfd44ac8c576cc8a0b364e5e9a8
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
