@@ -89,7 +89,7 @@
     <%@ include file="../common/header.jsp" %>
     <%@ include file="../common/navigator.jsp" %>
 
-    <div class="container" width="82%">
+    <div class="container outer" width="82%">
         <!-- <p>Justified tabs:</p> -->
         <br><br>
         <ul id="navi" class="nav nav-tabs nav-justified">
@@ -122,10 +122,10 @@
     </div>
 
 
-    <div class="outer" border="1">
+    <div class="outer">
 
         <div class="table1">
-            <table align="center" border="1">
+            <table class="table table-bordered" align="center">
                 <tr>
                     <th width="200">총 등록 식당 수</th>
                     <th width="200">총 회원 수</th>
@@ -139,7 +139,7 @@
 
         <div id="best2" style="float: left;">
             
-            <table border="1">
+            <table class="table table-bordered">
                 <tr>
                     <th>순위</th>
                     <th>식당명</th>

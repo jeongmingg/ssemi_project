@@ -12,28 +12,28 @@
 
 <title>Insert title here</title>
 <style>
-    .outer {
-            border: 1px solid orange;
-            color: gray;
-            width: 1100px;
-            margin: auto;
-            margin-bottom: 50px;
+.outer {
+        border: 1px solid orange;
+        color: gray;
+        width: 1100px;
+        margin: auto;
+        margin-bottom: 50px;
         }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px; /* Adjusted margin */
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px; /* Adjusted margin */
         }
 
         th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
         }
 
         th {
-            background-color: #f2f2f2;
+        background-color: #f2f2f2;
         }
 
     #navi{

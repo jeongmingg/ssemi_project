@@ -28,7 +28,7 @@
             /* border: 1px solid red; */
             margin: 0;
             padding: 0;
-            display: block;
+            /* display: block; */
         }
         .wrap{
             width: 1800px;
