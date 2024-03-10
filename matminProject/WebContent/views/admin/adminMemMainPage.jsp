@@ -21,8 +21,10 @@
     margin: auto;
     margin-bottom: 50px;
     }
-    #enroll-form table{margin:auto;}
-    #enroll-form input{margin:10px;}
+  
+    #form input{
+    border: 1px solid lightgray;
+    margin:10px;}
     button {
     background-color:lightgray; 
     border:1px;
@@ -74,9 +76,7 @@
     }
     table{margin:auto;}
     input{margin:10px;}
-    td{
-        padding: 10px;
-    }
+    
 </style>
 </head>
 <body>
@@ -120,7 +120,7 @@
     <div class="outer" style="text-align: center;">
         <br>
          
-            <table>
+            <table id="form">
                 <tr>
                     <td> 회원이름</td>
                     <td><input type="text" name="MemName"></td>

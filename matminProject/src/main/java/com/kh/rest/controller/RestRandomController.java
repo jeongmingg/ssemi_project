@@ -1,26 +1,29 @@
-package com.kh.admin.controller;
+package com.kh.rest.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class AdminRestMainController
+ * Servlet implementation class RestRandomController
  */
-@WebServlet("/rest.ad")
-public class AdminRestMainController extends HttpServlet {
+@WebServlet("/random.rs")
+public class RestRandomController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminRestMainController() {
+    public RestRandomController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,13 +32,19 @@ public class AdminRestMainController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String restNo = request.getParameter("num");
 		
-		Rest r = new RestService().selectRest(restNo);
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("r", r);
+		String ctgName = request.getParameter("ctgName");
 		
-		request.getRequestDispatcher("views/admin/adminRestMainPage.jsp").forward(request, response);
+		ArrayList<Rest> list = new RestService().rsRecommend(ctgName);
+		
+		request.setAttribute("ctgName", ctgName);
+		request.setAttribute("list", list);
+		
+		response.setContentType("applicaion/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
+
 	}
 
 	/**

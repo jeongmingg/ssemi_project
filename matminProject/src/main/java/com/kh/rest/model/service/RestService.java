@@ -55,6 +55,13 @@ public class RestService {
 		return list;
 	}
 
+	public ArrayList<Category> selectCategoryList(){
+		Connection conn = getConnection();
+		ArrayList<Category> list = new RestDao().selectCategoryList(conn);
+		close(conn);
+		return list;
+	}
+
 	public Rest selectRestDetail(String rpage){
 		Connection conn = getConnection();
 		Rest r = new RestDao().selectRestDetail(conn, rpage);
@@ -63,7 +70,36 @@ public class RestService {
 		return r;
 	}
 	
-	public int insertRest(Rest r, Attachment at) {
-		return 0;
+	public int insertRest(Rest r, Attachment at ) {
+		
+		Connection conn = getConnection();
+		int result = new RestDao().insertRest(conn, r);
+		 if (result > 0){
+			 commit(conn);
+		 }else {
+			 rollback(conn);
+		 }
+		 return result;
+		
+	}
+	
+	public Rest selectRest(String restNo) {
+		Connection conn = getConnection();
+		
+		Rest r = new RestDao().selectRestDetail(conn, restNo);
+		
+		close(conn);
+		return r;	
+		
+	}
+	
+	public ArrayList<Rest> rsRecommend(String ctgName) {
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().rsRecommend(conn, ctgName);
+		
+		close(conn); 
+		return list;
+		
 	}
 }
