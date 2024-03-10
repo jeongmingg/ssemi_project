@@ -925,22 +925,22 @@
 			<br>
 	
 		<!-- 리뷰 별점 Modal -->
-		
-		<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
-		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="reviewModal" style="margin: auto; margin-top: 10px;">솔직한 리뷰를 작성해주세요!</h1>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-                <br>
-				<div class="modal-body">
-					<form class="review_form" id="reviewform" action="<%= contextPath %>/insert.rv">
-						<div>
-							<h2>별점을 남겨주세요!</h2>
-                            <br>
-							<input type="hidden" name="restNo" value="<%= r.getRestNo() %>">
+		<% if(loginUser != null){ %>
+			<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="reviewModal" style="margin: auto; margin-top: 10px;">솔직한 리뷰를 작성해주세요!</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<br>
+						<div class="modal-body">
+							<form class="review_form" id="reviewform" action="<%= contextPath %>/insert.rv">
+								<div>
+									<h2>별점을 남겨주세요!</h2>
+									<br>
+									<input type="hidden" name="restNo" value="<%= r.getRestNo() %>">
+									<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
 
 							<div class="rating">
                                 <span class="rating__result"></span> 
@@ -966,7 +966,7 @@
 			</div>
 			</div>
 		</div>
-		
+		<% } %>
 
 		<!-- 세부적인 리뷰 창 -->
 			<div class="review-detail" name="review-detail">
@@ -1134,13 +1134,20 @@
 
 	<!-- 리뷰 인서트 -->
 
-	<script>
-	    $(function() {
-	        $("#review-sub").click(function() {
-	            $("#reviewform").submit();
-	        });
-	    });
-	</script>
+		<script>
+			$(function() {
+				if(<%= loginUser %> == null){
+					$("#btn-review").click(function(){
+						alert("로그인 후 이용해주세요!");    			
+					})
+				} else if (<%= loginUser %> != null){
+					$("#review-sub").click(function() {
+						$("#reviewform").submit();
+					});
+				}
+				
+			})
+		</script>
 	
 	<!-- 로그인 안하고 이용할시 알람창 뜨기 -->
 	// <script>
