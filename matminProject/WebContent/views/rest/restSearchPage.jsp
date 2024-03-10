@@ -144,7 +144,7 @@
 
     /* 사이드바 location 비율 및 스타일 */
     #location>div{width: 100%; float: left;}
-    #location_content{height: 1100px;}
+    .box{height: 1100px;}
     
     /* 지역검색 스타일 */
 
@@ -498,35 +498,38 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 48 48" data-svg-content="true" fill="rgb(241, 196, 15)"><path d="M36 8H12c-2.21 0-4 1.79-4 4v24c0 2.21 1.79 4 4 4h24c2.21 0 4-1.79 4-4V12c0-2.21-1.79-4-4-4zm0 28H12V12h24v24z"></path></svg>
                         <p>지역</p>
                     </div>
-                    <div id="location_content">
-                        <button class="ll on" onclick="select();">지역 검색</button>
-                            <ul class="location-list" id="location-list">
-                                <li><button class="list">강남구</button></li>
-                                <li><button class="list">강동구</button></li>
-                                <li><button class="list">강북구</button></li>
-                                <li><button class="list">강서구</button></li>
-                                <li><button class="list">관악구</button></li>
-                                <li><button class="list">광진구</button></li>
-                                <li><button class="list">구로구</button></li>
-                                <li><button class="list">금천구</button></li>
-                                <li><button class="list">노원구</button></li>
-                                <li><button class="list">도봉구</button></li>
-                                <li><button class="list">동대문구</button></li>
-                                <li><button class="list">동작구</button></li>
-                                <li><button class="list">마포구</button></li>
-                                <li><button class="list">서대문구</button></li>
-                                <li><button class="list">서초구</button></li>
-                                <li><button class="list">성동구</button></li>
-                                <li><button class="list">성북구</button></li>
-                                <li><button class="list">송파구</button></li>
-                                <li><button class="list">양천구</button></li>
-                                <li><button class="list">영등포구</button></li>
-                                <li><button class="list">용산구</button></li>
-                                <li><button class="list">은평구</button></li>
-                                <li><button class="list">종로구</button></li>
-                                <li><button class="list">중구</button></li>
-                                <li><button class="list">중랑구</button></li>
+                    <div class="box">
+                        <div class="selectBox ">
+                            <button class="label" type="button">지역 선택</button>
+                            <ul class="optionList">
+                                <li class="optionItem">전체</li>
+                                <li class="optionItem">강남구</li>
+                                <li class="optionItem">강동구</li>
+                                <li class="optionItem">강북구</li>
+                                <li class="optionItem">강서구</li>
+                                <li class="optionItem">관악구</li>
+                                <li class="optionItem">광진구</li>
+                                <li class="optionItem">구로구</li>
+                                <li class="optionItem">금천구</li>
+                                <li class="optionItem">노원구</li>
+                                <li class="optionItem">도봉구</li>
+                                <li class="optionItem">동대문구</li>
+                                <li class="optionItem">동작구</li>
+                                <li class="optionItem">마포구</li>
+                                <li class="optionItem">서대문구</li>
+                                <li class="optionItem">서초구</li>
+                                <li class="optionItem">성동구</li>
+                                <li class="optionItem">성북구</li>
+                                <li class="optionItem">송파구</li>
+                                <li class="optionItem">양천구</li>
+                                <li class="optionItem">영등포구</li>
+                                <li class="optionItem">용산구</li>
+                                <li class="optionItem">은평구</li>
+                                <li class="optionItem">종로구</li>
+                                <li class="optionItem">중구</li>
+                                <li class="optionItem">중랑구</li>
                             </ul>
+                        </div>
                     </div>
                 </div>
             
@@ -659,7 +662,8 @@
                     <h5 align="center">찾으시는 식당이 없으신가요?</h5>
                     <br><br>
                     <div id="rsrq-btn-div">
-                    <button id="rest-rq-btn"><a href="<%= contextPath %>/listForm.bo">맛집 등록 요청하기</a></button>
+                    
+                    <button id="rest-rq-btn">맛집 등록 요청하기</button>
                     </div>
                     <br>
                     <p id="rest-rq-p">보통 당일 등록이 이루어지며, 등록시 푸시 알림을 드립니다.</p>
@@ -698,10 +702,106 @@
                         
                     }
                 });
+            });
+                // 지역선택
+                $(document).ready(function() {
+                    const label = $('.label');
+                    const options = $('.optionItem');
+                    const selectBox = $('.selectBox');
+                    const optionList = $('.optionList');
 
-              
-            })
-            
+                    const handleSelect = function(item) {
+                      label.text(item.text());
+                      label.parent().removeClass('active');
+                    }
+
+                    options.on('click', function() {
+                      handleSelect($(this));
+                    });
+
+                    label.on('click', function() {
+                      label.parent().toggleClass('active');
+                    });
+
+                    // 지역 선택 박스를 클릭했을 때 이벤트 처리
+                    selectBox.on('click', function() {
+                      optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
+
+                    // 선택한 지역이름 가지고 페이지 이동하기
+                    // 선택된 지역을 저장할 변수 초기화
+                    var selectedLocation = '';
+
+                    // 목록 아이템 클릭 이벤트 핸들러
+                    $('.optionItem').on('click', function () {
+                        // 클릭된 li의 텍스트를 가져와서 변수에 저장
+                        selectedLocation = $(this).text();
+                        
+                        $.ajax({
+                        	url:"locationSearch.rs",
+        					type:"post",
+        					data: {locationName: selectedLocation},
+        					success:function(result){
+        						
+        						let value = "";
+        						
+        						value += 
+       							<% for(Search s : list) { %>
+	                               '<tr>'
+	                               + '<td rowspan="3" width="120" style="padding-left: 15px; padding-right: 15px;"><img class="rest-img" src="' + <%= s.getRestImgUrl() %> + '"></td>'
+	                               + '<td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">' + <%= s.getRestName() %> + '</td>'
+	                            + '</tr>'
+	                            + '<tr>'
+	                            +    '<td width="85px" style="padding-left: 15px; font-size: 17px;">' + <%= s.getLocalName() %> + '</td>'
+	                            +    '<td>' + 대표메뉴&nbsp;&nbsp; <%= s.getMenuName()%> + '</td>'
+	                            + '</tr>'
+	                            + '<tr>'
+	                                '<td colspan="2" style="padding-left: 15px; font-size: 20px;"> <img id="star" src="' + resources/star, heart/star.png + '">' + &nbsp;&nbsp;<%= s.getRestAvg() %> (<%= s.getReviewCount() %>개)&nbsp;&nbsp;|&nbsp;&nbsp; + '<img id="heart" src="resources/star, heart/heart.png">' + &nbsp; <%= s.getHeart() %> + '</td>'
+	                            + '</tr>'
+	                            + '<tr>'
+	                            + '<td colspan="3">' + <hr> + '</td>'
+	                            + '</tr>'
+                        		<% } %>
+        						
+        						$("#rest-table").html(value);
+        					},
+        					error:function(){
+        						console.log("ajax 통신에 실패했습니다.");
+        					}
+                        	});
+                        }
+                        
+                        
+                    });
+
+                    // 확인 버튼 클릭 시 선택된 지역이름 가지고 페이지 이동
+                    
+                    <%-- $('#modal-btn').on('click', function () {
+                      // 선택된 지역이 있는지 확인
+                      if (selectedLocation) {
+                        // 선택된 지역을 가지고 페이지 이동
+                        window.location.href = '<%= request.getContextPath() %>/select.rs?lname=' + encodeURIComponent(selectedLocation); // 페이지 이동
+                      } else {
+                          // 선택된 지역이 없을 경우 사용자에게 알림 등을 표시하거나 다른 동작 수행
+                          alert('지역을 선택해주세요.');
+                      }
+                    }); --%>
+                    
+             	});
+                
+            $(document).ready(function () {
+                var restRqBtn = $("#rest-rq-btn");
+
+                if (loginUser === null) {
+                    restRqBtn.on("click", function () {
+                        alert("로그인시 이용 가능한 서비스입니다.");
+                        window.location.href = "<%= contextPath %>/loginForm.me";
+                    });
+                } else {
+                    restRqBtn.on("click", function () {
+                        window.location.href = "<%= contextPath %>/listForm.bo";
+                    });
+                }
+            });
         </script>
 		<div id="topBtn">
          <a href="#">

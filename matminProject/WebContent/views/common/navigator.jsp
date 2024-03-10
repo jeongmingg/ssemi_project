@@ -258,21 +258,6 @@
 						<div class="modal-body" style="height: 300px;">
 							<img src="resources/matchelin/matchelin1.png" id="matchelin-logo"> <br>
 							<br>
-							<!-- 위에꺼 -->
-							<!-- <div class="box">
-					                  <div class="selectBox">
-					                    <select name="fruits" class="select">
-					                      <option disabled selected>지역 검색 🍊</option>
-					                      <option value="apple">강남구</option>
-					                      <option value="orange">강동구</option>
-					                      <option value="grape">강북구</option>
-					                      <option value="melon">강서구</option>
-					                    </select>
-					                    <span class="icoArrow"><img src="https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png" alt=""></span>
-					                  </div>
-					                  </div> -->
-
-							<!-- 밑에꺼 -->
 							<div class="box">
 								<div class="selectBox ">
 									<button class="label" type="button">지역 선택</button>
@@ -334,78 +319,58 @@
 					$(this).css("color", "rgb(150, 150, 150)");
 				});
 
-				// select box css1
-				/*
-				const label = document.querySelector('.label');
-				const options = document.querySelectorAll('.optionItem');
-				const handleSelect = function(item) {
-				label.innerHTML = item.textContent;
-				label.parentNode.classList.remove('active');
-				}
-				options.forEach(function(option){
-				option.addEventListener('click', function(){handleSelect(option)})
-				})
 
-				label.addEventListener('click', function(){
-				if(label.parentNode.classList.contains('active')) {
-				    label.parentNode.classList.remove('active');
-				} else {
-				    label.parentNode.classList.add('active');
-				}
-				});
-				 */
-
-        //  modal jQuery
+		        //  modal jQuery
 				$(document).ready(function() {
-          const label = $('.label');
-          const options = $('.optionItem');
-          const selectBox = $('.selectBox');
-          const optionList = $('.optionList');
-          const modalBody = $('.modal-body'); // modal-body 클래스 선택
-
-          const handleSelect = function(item) {
-            label.text(item.text());
-            label.parent().removeClass('active');
-          }
-
-          options.on('click', function() {
-            handleSelect($(this));
-          });
-
-          label.on('click', function() {
-            label.parent().toggleClass('active');
-          });
-
-          // 지역 선택 박스를 클릭했을 때 이벤트 처리
-          selectBox.on('click', function() {
-            optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
-
-            // modal-body 클래스의 높이 변경
-            modalBody.css('height', modalBody.css('height') === '300px' ? '1170px' : '300px');
-          });
-
-          // 선택한 지역이름 가지고 페이지 이동하기
-          // 선택된 지역을 저장할 변수 초기화
-          var selectedLocation = '';
-
-          // 목록 아이템 클릭 이벤트 핸들러
-          $('.optionItem').on('click', function () {
-              // 클릭된 li의 텍스트를 가져와서 변수에 저장
-              selectedLocation = $(this).text();
-          });
-
-          // 확인 버튼 클릭 시 선택된 지역이름 가지고 페이지 이동
-          $('#modal-btn').on('click', function () {
-            // 선택된 지역이 있는지 확인
-            if (selectedLocation) {
-              // 선택된 지역을 가지고 페이지 이동
-              window.location.href = '<%= request.getContextPath() %>/select.rs?lname=' + encodeURIComponent(selectedLocation); // 페이지 이동
-            } else {
-                // 선택된 지역이 없을 경우 사용자에게 알림 등을 표시하거나 다른 동작 수행
-                alert('지역을 선택해주세요.');
-            }
-          });
-        });
+		          const label = $('.label');
+		          const options = $('.optionItem');
+		          const selectBox = $('.selectBox');
+		          const optionList = $('.optionList');
+		          const modalBody = $('.modal-body'); // modal-body 클래스 선택
+		
+		          const handleSelect = function(item) {
+		            label.text(item.text());
+		            label.parent().removeClass('active');
+		          }
+		
+		          options.on('click', function() {
+		            handleSelect($(this));
+		          });
+		
+		          label.on('click', function() {
+		            label.parent().toggleClass('active');
+		          });
+		
+		          // 지역 선택 박스를 클릭했을 때 이벤트 처리
+		          selectBox.on('click', function() {
+		            optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
+		
+		            // modal-body 클래스의 높이 변경
+		            modalBody.css('height', modalBody.css('height') === '300px' ? '1170px' : '300px');
+		          });
+		
+		          // 선택한 지역이름 가지고 페이지 이동하기
+		          // 선택된 지역을 저장할 변수 초기화
+		          var selectedLocation = '';
+		
+		          // 목록 아이템 클릭 이벤트 핸들러
+		          $('.optionItem').on('click', function () {
+		              // 클릭된 li의 텍스트를 가져와서 변수에 저장
+		              selectedLocation = $(this).text();
+		          });
+		
+		          // 확인 버튼 클릭 시 선택된 지역이름 가지고 페이지 이동
+		          $('#modal-btn').on('click', function () {
+		            // 선택된 지역이 있는지 확인
+		            if (selectedLocation) {
+		              // 선택된 지역을 가지고 페이지 이동
+		              window.location.href = '<%= request.getContextPath() %>/select.rs?lname=' + encodeURIComponent(selectedLocation); // 페이지 이동
+		            } else {
+		                // 선택된 지역이 없을 경우 사용자에게 알림 등을 표시하거나 다른 동작 수행
+		                alert('지역을 선택해주세요.');
+		            }
+		          });
+		        });
 			</script>
     </div>
 	</div>
