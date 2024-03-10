@@ -73,20 +73,20 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		int result = new RestService().insertRest(r,at);
 		
+		HttpSession session = request.getSession();
 		
 		if(result>0) {
-			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "삭당이 성공적으로 등록됬었습니다");
 			response.sendRedirect(request.getContextPath()+"/rest.list?cpage=1");
 		}else {
 			if(at != null) {
 				new File(savePath + at.getChangeName()).delete();
 			}
-			request.setAttribute("errorMsg","식당등록이 실패했습니다");
+			session.setAttribute("errorMsg","식당등록이 실패했습니다");
 			response.sendRedirect(request.getContextPath() + "/restEnroll.ad");
 		}
-	  }
 	}
+}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
