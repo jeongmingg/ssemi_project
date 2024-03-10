@@ -13,8 +13,6 @@ public class Review {
 	private int reviewDislike;
 	private int alerNo;
 	private int reviewRate; 
-	private int ratePrice;
-	private int rateService;
 	private int rateAvg;
 	private String reviewStatus;
 	
@@ -22,8 +20,7 @@ public class Review {
 	public Review() {}
 
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
-			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int reviewRate, int ratePrice,
-			int rateService, String reviewStatus) {
+			Date updateDate, int reviewLike, int reviewDislike, int alerNo, int reviewRate, String reviewStatus) {
 		super();
 		this.reviewNo = reviewNo;
 		this.restNo = restNo;
@@ -35,14 +32,12 @@ public class Review {
 		this.reviewDislike = reviewDislike;
 		this.alerNo = alerNo;
 		this.reviewRate = reviewRate;
-		this.ratePrice = ratePrice;
-		this.rateService = rateService;
 		this.reviewStatus = reviewStatus;
 	}
 	
 	
 	public Review(String reviewNo, String restNo, String reviewWriter, String reviewCont, String reviewDate,
-			int reviewLike, int reviewDislike, int reviewRate, int ratePrice, int rateService, int rateAvg) {
+			int reviewLike, int reviewDislike, int reviewRate, int rateAvg) {
 		super();
 		this.reviewNo = reviewNo;
 		this.restNo = restNo;
@@ -52,8 +47,6 @@ public class Review {
 		this.reviewLike = reviewLike;
 		this.reviewDislike = reviewDislike;
 		this.reviewRate = reviewRate;
-		this.ratePrice = ratePrice;
-		this.rateService = rateService;
 		this.rateAvg = rateAvg;
 	}
 	
@@ -153,22 +146,6 @@ public class Review {
 		this.reviewRate = reviewRate;
 	}
 
-	public double getRatePrice() {
-		return ratePrice;
-	}
-
-	public void setRatePrice(int ratePrice) {
-		this.ratePrice = ratePrice;
-	}
-
-	public double getRateService() {
-		return rateService;
-	}
-
-	public void setRateService(int rateService) {
-		this.rateService = rateService;
-	}
-
 	public int getRateAvg() {
 		return rateAvg;
 	}
@@ -184,21 +161,13 @@ public class Review {
 	public void setReviewStatus(String reviewStatus) {
 		this.reviewStatus = reviewStatus;
 	}
-	
-	
-	
-	
 
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", restNo=" + restNo + ", reviewWriter=" + reviewWriter
 				+ ", reviewCont=" + reviewCont + ", reviewDate=" + reviewDate + ", updateDate=" + updateDate
 				+ ", reviewLike=" + reviewLike + ", reviewDislike=" + reviewDislike + ", alerNo=" + alerNo
-				+ ", reviewRate=" + reviewRate + ", ratePrice=" + ratePrice + ", rateService=" + rateService
-				+ ", reviewStatus=" + reviewStatus + "]";
+				+ ", reviewRate=" + reviewRate + ", rateAvg=" + rateAvg + ", reviewStatus=" + reviewStatus + "]";
 	}
-	
-	
-	
-	
+
 }
