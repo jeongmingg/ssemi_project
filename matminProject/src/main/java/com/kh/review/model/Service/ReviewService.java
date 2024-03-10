@@ -49,10 +49,10 @@ public class ReviewService {
 		return result;
 	}
 
-	public int insertReview(String rno,  String memNo, int rvwStar, String rvwCont) {
+	public int insertReview(String rno,  String memNo, int score, String rvwCont) {
 		Connection conn = getConnection();
 		
-		int result = new ReviewDao().insertReview(conn, rno, memNo, rvwStar, rvwCont);
+		int result = new ReviewDao().insertReview(conn, rno, memNo, score, rvwCont);
 		
 		if(result>0) {
 			commit(conn);
