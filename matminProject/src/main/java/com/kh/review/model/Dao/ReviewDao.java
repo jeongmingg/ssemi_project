@@ -162,7 +162,7 @@ public class ReviewDao {
 		
 	}
 
-	public int insertReview(Connection conn, String rno, String memNo, int rvwStar, String rvwCont) {
+	public int insertReview(Connection conn, String rno, String memNo, int score, String rvwCont) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -173,7 +173,7 @@ public class ReviewDao {
 			pstmt.setString(1, rno);
 			pstmt.setString(2, memNo);
 			pstmt.setString(3, rvwCont);
-			pstmt.setInt(4, rvwStar);
+			pstmt.setInt(4, score);
 			
 			result = pstmt.executeUpdate();
 			
