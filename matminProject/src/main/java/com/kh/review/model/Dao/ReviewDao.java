@@ -125,9 +125,7 @@ public class ReviewDao {
 				r.setReviewDate(rset.getString("review_date"));
 				r.setReviewLike(rset.getInt("review_like"));
 				r.setReviewDislike(rset.getInt("review_dislike"));
-				r.setRateTable(rset.getInt("rate_taste"));
-				r.setRatePrice(rset.getInt("rate_price"));
-				r.setRateService(rset.getInt("rate_service"));
+				r.setReviewRate(rset.getInt("review_rate"));
 				
 				list.add(r);
 			}
