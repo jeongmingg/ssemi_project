@@ -8,6 +8,10 @@ public class Search {
 	private int heart;
 	private String restImgUrl;
 	private String restAddress;
+	private String localName;
+	private String menuName;
+	private int reviewCount;
+	private String repMenu;
 	
 	public Search() {}
 	
@@ -28,6 +32,21 @@ public class Search {
 		this.restAvg = restAvg;
 		this.heart = heart;
 		this.restImgUrl = restImgUrl;
+	}
+	
+	public Search(String restNo, String restName, double restAvg, int heart, String restImgUrl, String restAddress,  
+			String localName, String menuName, int reviewCount,  String repMenu) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.heart = heart;
+		this.restImgUrl = restImgUrl;
+		this.restAddress = restAddress;
+		this.localName = localName;
+		this.menuName = menuName;
+		this.reviewCount = reviewCount;
+		this.repMenu = repMenu;
 	}
 
 	public String getRestNo() {
@@ -78,11 +97,44 @@ public class Search {
 	public void setRestAddress(String restAddress) {
 		this.restAddress = restAddress;
 	}
+	
+	public String getLocalName() {
+		return localName;
+	}
+
+	public void setLocalName(String localName) {
+		this.localName = localName;
+	}
+
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
+	public String getRepMenu() {
+		return repMenu;
+	}
+
+	public void setRepMenu(String repMenu) {
+		this.repMenu = repMenu;
+	}
 
 	@Override
 	public String toString() {
 		return "Search [restNo=" + restNo + ", restName=" + restName + ", restAvg=" + restAvg + ", heart=" + heart
-				+ ", restImgUrl=" + restImgUrl + ", restAddress=" + restAddress + "]";
+				+ ", restImgUrl=" + restImgUrl + ", restAddress=" + restAddress + ", localName=" + localName
+				+ ", menuName=" + menuName + ", reviewCount=" + reviewCount + ", repMenu=" + repMenu + "]";
 	}
 
 }

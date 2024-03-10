@@ -606,6 +606,58 @@
         margin-left: 40px;
         padding-top: 9px;
     }
+
+	#shareModal {
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 400px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%; /* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+		}
+
+	.modal-content {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		}
+
+		/* Caption of Modal Image */
+		#caption {
+		margin: auto;
+		display: block;
+		width: 80%;
+		max-width: 700px;
+		text-align: center;
+		color: #ccc;
+		padding: 10px 0;
+		height: 150px;
+		}
+
+		/* The Close Button */
+		.close {
+		position: absolute;
+		top: 15px;
+		right: 35px;
+		color: #f1f1f1;
+		font-size: 40px;
+		font-weight: bold;
+		transition: 0.3s;
+		}
+
+		.close:hover,
+		.close:focus {
+		color: #bbb;
+		text-decoration: none;
+		cursor: pointer;
+		}
+
 	/* 리뷰작성 모달 스타일 */
 	.modal-content {
 		text-align: center;
@@ -618,13 +670,13 @@
 		font-size: large;
 	}
 
-    /* 모달별창 */
-    /* body {
-   height: 100vh;
-   display: grid;
-   place-items: center;
-   overflow: hidden;
-    } */
+    /* 리뷰작성시 모달 별창 */
+	input[type="radio"] {
+		appearance: none;
+		border: none;
+		-webkit-appearance: none; /* Safari 및 Chrome 지원 */
+		-moz-appearance: none; /* Firefox 지원 */
+      }
 
     .rating {
     position: relative;
@@ -637,6 +689,7 @@
     padding-left: 5px;
     margin: auto;
     width: 300px;
+	border: none;
     }
 
     .rating__result {
@@ -647,6 +700,7 @@
     z-index: -9;
     font: 3em Arial, Helvetica, sans-serif;
     pointer-events: none;
+	border: none;
     }
 
     .rating__star {
@@ -654,10 +708,12 @@
     cursor: pointer;
     color: #ff9900d8;
     transition: filter linear .3s;
+	border: none;
     }
 
     .rating__star:hover {
     filter: drop-shadow(1px 1px 4px #ff9900d8);
+	border: none;
     }
 
 </style>
@@ -868,7 +924,9 @@
 			
 			<br>
 	
-		<!-- Modal -->
+		<!-- 리뷰 별점 Modal -->
+		
+		<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
 		<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -886,15 +944,15 @@
 
 							<div class="rating">
                                 <span class="rating__result"></span> 
-                                <i class="rating__star far fa-star" id="star1" value="1" onclick="reviewstar(this, 1)"></i>
-                                <i class="rating__star far fa-star" id="star2" value="2" onclick="reviewstar(this, 2)"></i>
-                                <i class="rating__star far fa-star" id="star3" value="3" onclick="reviewstar(this, 3)"></i>
-                                <i class="rating__star far fa-star" id="star4" value="4" onclick="reviewstar(this, 4)"></i>
-                                <i class="rating__star far fa-star" id="star5" value="5" onclick="reviewstar(this, 5)"></i>
-								<input type="hidden" id="starRating" name="rvwstar" value="">
+                                <input class="rating__star far fa-star" type="radio" id="rating5" name="rating" value="1"><label for="rating5"></label>
+								<input class="rating__star far fa-star" type="radio" id="rating4" name="rating" value="2"><label for="rating4"></label>
+								<input class="rating__star far fa-star" type="radio" id="rating3" name="rating" value="3"><label for="rating3"></label>
+								<input class="rating__star far fa-star" type="radio" id="rating2" name="rating" value="4"><label for="rating2"></label>
+								<input class="rating__star far fa-star" type="radio" id="rating1" name="rating" value="5"><label for="rating1"></label>
+								<input type="hidden" id="hidden-input-stars" value="">
                             </div>
                             <br><br>
-							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)"></textarea>
+							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)" maxlength="300"></textarea>
 							<div class="count-area" style="text-align: right;">
 								<span id="count">0</span>/300
 							</div>
@@ -908,7 +966,7 @@
 			</div>
 			</div>
 		</div>
-
+		
 
 		<!-- 세부적인 리뷰 창 -->
 			<div class="review-detail" name="review-detail">
@@ -919,11 +977,12 @@
 	<br><br>
 		<%@ include file="../common/footer.jsp" %>		
 
+
+	<!-- 리뷰 조회 ajax -->
 	<script>
 	
 		$(function(){
-		    selectReviewList();
-		    
+		    selectReviewList(); 
 		    
         	setInterval(selectReviewList, 1000);
 		})
@@ -1001,7 +1060,7 @@
 			});
 		}
 		
-	
+		/* 리뷰 삭제 ajax*/
 		function deleteReview(ele){
 			/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
 			let rvNo = $(ele).siblings("input").val();
@@ -1062,22 +1121,19 @@
 
 	<!-- 리뷰 별 클릭시 -->
 	<script>
-		 function reviewstar(element, score) {
+		 function reviewstar(element) {
 			 console.log("!");
         // 별점을 선택한 값으로 업데이트
-        	var rate = $(element).val();
-        	
-        	$("#starRating").val(rate);
-        	
-        	console.log("!");
-        	
-        	
+        	var score = $(element).attr('value');
+        	console.log(score);
+
+			$(element).siblings("input").val(score);  	     	
 		 }
 	</script>
 
-	<script>
-	
-	<!-- 리뷰 인서트 -->>
+
+	<!-- 리뷰 인서트 -->
+
 	<script>
 	    $(function() {
 	        $("#review-sub").click(function() {
@@ -1087,28 +1143,24 @@
 	</script>
 	
 	<!-- 로그인 안하고 이용할시 알람창 뜨기 -->
+	// <script>
+	// 	$(function(){
+	// 		<% if (loginUser == null) { %>
+	// 			$("#btn-review").click(function(){
+	// 				alert("로그인후 이용해주세요!");
+	
+	// 				})
+			
+	// 		<% } %>
+	// 	})
+	
+	</script>
+
+
+	<!--리뷰 삭제 로그인시에만 가능하게끔 --> 
+	
 	<script>
 		$(function(){
-			<% if (loginUser == null) { %>
-				$("#btn-review").click(function(){
-					alert("로그인후 이용해주세요!");
-					$('#reviewModal').on('show.bs.modal', function (e) {
-						  e.preventDefault();
-						})
-					})
-			
-			<% } %>
-		})
-	
-	</script>
-	
-	</script>
-
-
-	<!--리뷰 삭제 --> 
-	
-	<script>
-		&(function(){
 		 	$(".delete-review").click(function(){
 		 		e.preventDefault();
 		 		deleteReviewlist();
@@ -1118,7 +1170,7 @@
 	
 	</script>
 		
-	<!-- 리뷰 인서트 -->
+	<!-- 리뷰 인서트시 리뷰작성글 제한 -->
 	<script>
 		$(function(){
        		 $("#review-write").keyup(function(){ 
@@ -1128,7 +1180,7 @@
 		})
 	</script>
 
-			
+	<!-- 식당 메뉴창 더보기 -->		
 	<script>
 			$(".btn-more").click(function(){
 
@@ -1161,7 +1213,7 @@
 		<!-- 공유 모달 -->
 		<script>
 			// Get the modal
-			var modal = document.getElementById("shareModal");
+			var shmodal = document.getElementById("shareModal");
 	
 			// Get the image and insert it inside the modal - use its "alt" text as a caption
 			var btn = document.getElementById("btn-share");
@@ -1169,7 +1221,7 @@
 			var closeBtn = document.getElementById("share-close-btn");
 			btn.onclick = function(){
 			$("#map").css("display","none");	
-			modal.style.display = "block";
+			shmodal.style.display = "block";
 			sharemodal.src = this.src;
 			
 			}
@@ -1180,7 +1232,7 @@
 	
 			// When the user clicks on <span> (x), close the modal
 			span.onclick = function() { 
-			modal.style.display = "none";
+			shmodal.style.display = "none";
 			}
 		</script>
 

@@ -127,9 +127,7 @@ public class ReviewDao {
 				r.setReviewDate(rset.getString("review_date"));
 				r.setReviewLike(rset.getInt("review_like"));
 				r.setReviewDislike(rset.getInt("review_dislike"));
-				r.setRateTable(rset.getInt("rate_taste"));
-				r.setRatePrice(rset.getInt("rate_price"));
-				r.setRateService(rset.getInt("rate_service"));
+				r.setReviewRate(rset.getInt("review_rate"));
 				
 				list.add(r);
 			}
@@ -165,7 +163,7 @@ public class ReviewDao {
 		
 	}
 
-	public int insertReview(Connection conn, String rno, String memNo, int rvwStar, String rvwCont) {
+	public int insertReview(Connection conn, String rno, String memNo, int score, String rvwCont) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -176,7 +174,7 @@ public class ReviewDao {
 			pstmt.setString(1, rno);
 			pstmt.setString(2, memNo);
 			pstmt.setString(3, rvwCont);
-			pstmt.setInt(4, rvwStar);
+			pstmt.setInt(4, score);
 			
 			result = pstmt.executeUpdate();
 			
