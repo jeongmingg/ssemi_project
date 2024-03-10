@@ -54,6 +54,8 @@ public class ReviewService {
 		
 		int result = new ReviewDao().insertReview(conn, rno, memNo, rvwStar, rvwCont);
 		
+		
+		
 		if(result>0) {
 			commit(conn);
 		}else {

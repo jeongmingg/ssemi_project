@@ -116,6 +116,8 @@ public class ReviewDao {
 			
 			rset = pstmt.executeQuery();
 			
+
+
 			while(rset.next()) {
 				Review r = new Review();
 				
@@ -131,6 +133,7 @@ public class ReviewDao {
 				
 				list.add(r);
 			}
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -127,16 +127,38 @@
         <div class="table1">
             <table class="table table-bordered" align="center">
                 <tr>
-                    <th width="200">총 등록 식당 수</th>
+                    <th width="200"><button onclick= "test1()">총식당수</button></th>
                     <th width="200">총 회원 수</th>
                 </tr>
                 <tr>
-                    <th>150개</th>
+                    <th id="total"></th>
                     <th>300명</th>
                 </tr>
             </table>
         </div>
 
+	<script>
+	function test1(){
+		$.ajax({
+			url:"stats.ad",
+			success: function(result){
+				
+				console.log(result);
+				let value = "";
+				
+				console.log(value);
+				$("#total").html(value);
+				
+			},error: function(){
+				console.log("조회되지않았습니다");
+			}
+		})
+		
+	}
+	
+	
+	</script>
+		
         <div id="best2" style="float: left;">
             
             <table class="table table-bordered">

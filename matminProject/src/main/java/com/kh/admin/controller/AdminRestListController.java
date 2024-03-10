@@ -41,7 +41,7 @@ public class AdminRestListController extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		//*listCount : 총 게시글 개수
+		//*listCount : 총 식당 개수
 		restCount = new RestService().selectRestCount();
 		
     	currentPage = Integer.parseInt(request.getParameter("cpage"));

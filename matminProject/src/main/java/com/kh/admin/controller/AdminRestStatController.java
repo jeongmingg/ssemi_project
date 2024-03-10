@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class RestStatsController
+ * Servlet implementation class AdminRestStatController
  */
-@WebServlet("/stats.ad")
-public class RestStatsController extends HttpServlet {
+@WebServlet("/rest.stats")
+public class AdminRestStatController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestStatsController() {
+    public AdminRestStatController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,10 @@ public class RestStatsController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/adnim/adminMainStatsPage.jsp").forward(request, response);
+		
+		
+		response.sendRedirect(request.getContextPath());
+		
 	}
 
 	/**
