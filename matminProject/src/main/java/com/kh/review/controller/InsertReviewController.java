@@ -33,12 +33,15 @@ public class InsertReviewController extends HttpServlet {
 		
 		String rno = request.getParameter("restNo");
 		String memNo = request.getParameter("userNo");
-		int rvwStar = Integer.parseInt(request.getParameter("rvwstar"));
-		
-		System.out.println(rvwStar);
+		int score = Integer.parseInt(request.getParameter("rating"));
 		String rvwCont = request.getParameter("reviewWrite");
 		
-		int result = new ReviewService().insertReview(rno, memNo, rvwStar, rvwCont);
+		System.out.println(rno);
+		System.out.println(memNo);
+		System.out.println(score);
+		System.out.println(rvwCont);
+		
+		int result = new ReviewService().insertReview(rno, memNo, score, rvwCont);
 		
 		HttpSession session = request.getSession();
 		
