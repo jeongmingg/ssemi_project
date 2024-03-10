@@ -82,7 +82,7 @@ public class AdminRestInsertController extends HttpServlet {
 			if(at != null) {
 				new File(savePath + at.getChangeName()).delete();
 			}
-			session.setAttribute("errorMsg","식당등록이 실패했습니다");
+			request.getSession().setAttribute("alertMsg","식당등록이 실패했습니다");
 			response.sendRedirect(request.getContextPath() + "/restEnroll.ad");
 		}
 	}
