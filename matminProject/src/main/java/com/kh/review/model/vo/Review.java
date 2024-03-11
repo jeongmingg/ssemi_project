@@ -15,6 +15,7 @@ public class Review {
 	private int reviewRate; 
 	private int rateAvg;
 	private String reviewStatus;
+	private int reviewCount;
 	
 	
 	public Review() {}
@@ -66,6 +67,13 @@ public class Review {
 		this.reviewRate = reviewRate;
 	}
 
+	public Review(int reviewRate, int reviewCount) {
+		super();
+		this.reviewRate = reviewRate;
+		this.reviewCount = reviewCount;
+	}
+
+	
 	public String getReviewNo() {
 		return reviewNo;
 	}
@@ -162,12 +170,21 @@ public class Review {
 		this.reviewStatus = reviewStatus;
 	}
 
+
+	public int getReviewCount() {
+		return reviewCount;
+	}
+
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", restNo=" + restNo + ", reviewWriter=" + reviewWriter
 				+ ", reviewCont=" + reviewCont + ", reviewDate=" + reviewDate + ", updateDate=" + updateDate
 				+ ", reviewLike=" + reviewLike + ", reviewDislike=" + reviewDislike + ", alerNo=" + alerNo
-				+ ", reviewRate=" + reviewRate + ", rateAvg=" + rateAvg + ", reviewStatus=" + reviewStatus + "]";
+				+ ", reviewRate=" + reviewRate + ", rateAvg=" + rateAvg + ", reviewStatus=" + reviewStatus + ", reviewCount=" + reviewCount + "]";
 	}
 
 }
