@@ -29,7 +29,7 @@
 
     div{
         box-sizing: border-box;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         margin: 0;
         padding: 0;
         display: block;
@@ -615,7 +615,7 @@
                         	<%@ include file="../map/restDetailMap.jsp" %>
                         </div>
                         <div id="search-rest">
-                            <table id="rest-table" align="center" border="1">
+                            <table id="rest-table" align="center">
                             	<% if(list.isEmpty()) { %>
 	                            	<!-- 게시글이 없는 경우 -->
 	                            	<tr>
@@ -628,7 +628,7 @@
 	                            	<!-- 게시글이 있는 경우 -->
                                     <% for(Search s : list) { %>   
                                         <tr>
-                                            <td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px;"><img class="rest-img" src="<%= s.getRestImgUrl() %>"></td>
+                                            <td rowspan="3" width="120" style="padding-left: 15px; padding-right: 15px;"><img class="rest-img" src="<%= s.getRestImgUrl() %>"></td>
                                             <td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;"> <%= s.getRestName() %></td>
                                         </tr>
                                         <tr>
@@ -636,7 +636,6 @@
                                             <td>대표메뉴&nbsp;&nbsp; <%= s.getMenuName()%></td>
                                         </tr>
                                         <tr>
-                                        	<td></td>
                                             <td colspan="2" style="padding-left: 15px; font-size: 20px;"> <img id="star" src="resources/star, heart/star.png">&nbsp;&nbsp;<%= s.getRestAvg() %> (<%= s.getReviewCount() %>개)&nbsp;&nbsp;|&nbsp;&nbsp;<img id="heart" src="resources/star, heart/heart.png">&nbsp; <%= s.getHeart() %></td>
                                         </tr>
                                         <tr>
