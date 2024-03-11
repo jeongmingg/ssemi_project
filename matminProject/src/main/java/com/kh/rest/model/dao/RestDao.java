@@ -319,7 +319,26 @@ public class RestDao {
 	}
 	
 	public int insertRestAt(Connection conn, Attachment at) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertRestAt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, at.getOriginName());
+			pstmt.setString(2, at.getChangeName());
+			pstmt.setString(3, at.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		return 0;
+		
 	}
 	
 	public ArrayList<Rest> rsRecommend(Connection conn, String ctgName) {

@@ -190,7 +190,7 @@
 			)
 			VALUES
 			(
-			SEQ_RNO.NEXTVAL
+			'R'||SEQ_RNO.NEXTVAL
 			,?
 			,?
 			,?
