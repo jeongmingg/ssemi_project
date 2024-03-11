@@ -741,7 +741,7 @@
         					type:"post",
         					data: {locationName: selectedLocation},
         					success:function(result){
-        						
+        						console.log(result);
         						let value = "";
         						
         						value += 
@@ -762,6 +762,7 @@
 	                            + '</tr>'
                         		<% } %>
         						
+                        		console.log(value);
         						$("#rest-table").html(value);
         					},
         					error:function(){
