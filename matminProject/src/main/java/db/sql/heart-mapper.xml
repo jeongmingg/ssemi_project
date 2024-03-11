@@ -5,12 +5,16 @@
 		SELECT
 		       R.REST_NO
 		     , REST_NAME
+		     , LOCAL_NAME
+		     , MENU_NAME
 		     , NVL(ROUND(AVG(REVIEW_RATE)), 0) "REST_AVG"
 		     , COUNT_LIKE
 		     , REST_IMG_URL
 		     , LIKE_DATE
 		  FROM REST R
 		  LEFT JOIN REVIEW RV ON (R.REST_NO = RV.REST_NO)
+		  JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+		  LEFT JOIN MENU M ON (R.REST_NO = M.REST_NO AND M.REP_MENU = 'Y')
 		  JOIN (
 		        SELECT
 		               REST_NO
@@ -34,5 +38,7 @@
 		     , LIKE_DATE
 		     , COUNT_LIKE
 		     , REST_IMG_URL
+		     , LOCAL_NAME
+		     , MENU_NAME
 	</entry>
 </properties>
