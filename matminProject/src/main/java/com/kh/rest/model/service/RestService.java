@@ -106,9 +106,9 @@ public class RestService {
 	public ArrayList<Rest> locationSearch(String locationName){
 		
 		Connection conn = getConnection();
-		ArrayList<Rest> list = new RestDao().locationSearch(conn, locationName);
+		ArrayList<Rest> lcList = new RestDao().locationSearch(conn, locationName);
 		
 		close(conn); 
-		return list;
+		return lcList;
 	}
 }

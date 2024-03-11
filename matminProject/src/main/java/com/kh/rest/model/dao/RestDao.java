@@ -364,7 +364,7 @@ public class RestDao {
 	
 	public ArrayList<Rest> locationSearch(Connection conn, String locationName){
 		
-		ArrayList<Rest> list = new ArrayList<Rest>();
+		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -383,7 +383,7 @@ public class RestDao {
 			rset= pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Rest(rset.getString("rest_no"),
+				lcList.add(new Rest(rset.getString("rest_no"),
 						  rset.getString("rest_name"),
 						  rset.getDouble("rest_avg"),
 						  rset.getInt("heart"),
@@ -402,7 +402,7 @@ public class RestDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return lcList;
 
 	}
 }

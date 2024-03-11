@@ -106,57 +106,7 @@
 
 
     /* 지역검색 selectBox 스타일 */
-    /* 위에꺼 */
-    /* .selectBox {
-  position: relative;
-  width: 150px;
-  height: 35px;
-  border-radius: 4px;
-  border: 2px solid lightcoral;
-}
-.selectBox .select {
-  width: inherit;
-  height: inherit;
-  background: transparent;
-  border: 0 none;
-  outline: 0 none;
-  padding: 0 5px;
-  position: relative;
-  z-index: 3; 
-}
-.selectBox .select option {
-  background: lightcoral;
-  color: #fff;
-  padding: 3px 0;
-  font-size: 16px;
-}
-.selectBox .icoArrow {
-  position: absolute; 
-  top: 0; 
-  right: 0; 
-  z-index: 1; 
-  width: 35px; 
-  height: inherit;
-  border-left: 2px solid lightcoral;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.selectBox .icoArrow img {
-  width: 50%;
-  transition: .3s;
-}
-
-.selectBox .select:focus + .icoArrow img {
-  transform: rotate(180deg);
-}
-
-.selectBox option:hover {
-    background: #E4910D;
-} */
-
-    /* 밑에거 */
     .selectBox * { box-sizing: border-box;}
     .selectBox {
         position: relative;
@@ -320,7 +270,7 @@
 				});
 
 
-		        //  modal jQuery
+		        
 				$(document).ready(function() {
 		          const label = $('.label');
 		          const options = $('.optionItem');
