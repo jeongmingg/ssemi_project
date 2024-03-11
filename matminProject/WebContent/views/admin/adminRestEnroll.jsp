@@ -163,7 +163,7 @@
                    
                 </tr>
                 <tr>
-                    <td> 식당번호</td>
+                    <td> 전화번호</td>
                     <td><input type="text" name="restNo" maxlength="20" placeholder="- 포함해서 입력"required></td>
                    
                 </tr>
