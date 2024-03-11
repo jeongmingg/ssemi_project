@@ -60,4 +60,14 @@ public class ReviewService {
 			rollback(conn);
 		} return result;
 	}
+	
+	public ArrayList<Review> selectReviewRate(String rpage){
+		Connection conn = getConnection();
+		
+		ArrayList<Review> rate = new ReviewDao().selectReviewRate(conn, rpage);
+		
+		close(conn);
+		return rate;
+		
+	}
 }

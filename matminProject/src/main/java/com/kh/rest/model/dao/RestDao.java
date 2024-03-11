@@ -245,26 +245,27 @@ public class RestDao {
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
-				 r = new Rest(
-						 	  rset.getString("rest_no"),
-					          rset.getString("local_name"),
-					          rset.getString("rest_name"),
-					          rset.getString("ctg_name"),
-					          rset.getString("rest_address"),
-					          rset.getString("rest_tel"),
-					          rset.getDouble("rest_x"),
-					          rset.getDouble("rest_y"),
-					          rset.getString("rest_parking"),
-					          rset.getInt("rest_grade"),
-					          rset.getString("rest_time"),
-					          rset.getDouble("rest_avg"),
-					          rset.getString("menu_name"),
-					          rset.getString("menu_price"),
-					          rset.getString("dt"),
-					          rset.getString("animal"),
-					          rset.getString("room"),
-					          rset.getString("big_room"));
-				 
+				r = new Rest(
+						rset.getString("rest_no"),
+						rset.getString("rest_name"),
+						rset.getString("rest_address"),
+						rset.getString("rest_tel"),
+						rset.getDouble("rest_x"),
+						rset.getDouble("rest_y"),
+						rset.getString("rest_parking"),
+						rset.getInt("rest_grade"),
+						rset.getString("rest_time"),
+						rset.getDouble("rest_avg"),
+						rset.getString("local_name"),
+						rset.getInt("review_count"),
+						rset.getString("menu_name"),
+						rset.getString("menu_price"),
+						rset.getString("dt"),
+						rset.getString("animal"),
+						rset.getString("room"),
+						rset.getString("big_room"),
+						rset.getString("ctg_name"));
+				
 			}
 			
 			System.out.println("dao" + r);

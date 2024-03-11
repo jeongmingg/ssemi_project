@@ -80,6 +80,7 @@ public class Rest {
 		this.restGrade = restGrade;
 	}
 	
+	
 	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount, String menuPrice,
 			String repMenu) {
 		super();
@@ -92,14 +93,14 @@ public class Rest {
 		this.repMenu = repMenu;
 	}
 
-	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
-			double restX, double restY, String restParking, int restGrade, String restTime, double restAvg,
-			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom) {
+	
+	
+	public Rest(String restNo, String restName, String restAddress, String restTel, double restX, double restY,
+			String restParking, int restGrade, String restTime, double restAvg, String localName, int reviewCount,
+			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom, String ctgName) {
 		super();
 		this.restNo = restNo;
-		this.restLocalId = restLocalId;
 		this.restName = restName;
-		this.ctgId = ctgId;
 		this.restAddress = restAddress;
 		this.restTel = restTel;
 		this.restX = restX;
@@ -108,14 +109,17 @@ public class Rest {
 		this.restGrade = restGrade;
 		this.restTime = restTime;
 		this.restAvg = restAvg;
+		this.localName = localName;
+		this.reviewCount = reviewCount;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 		this.dt = dt;
 		this.anmial = anmial;
 		this.room = room;
 		this.bigRoom = bigRoom;
+		this.ctgName = ctgName;
 	}
-	
+
 	public Rest(String restNo, String restName, String restImgUrl, String ctgId, String ctgName) {
 		super();
 		this.restNo = restNo;
@@ -341,6 +345,7 @@ public class Rest {
 		this.ctgName = ctgName;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Rest [restNo=" + restNo + ", restLocalId=" + restLocalId + ", restName=" + restName + ", ctgId=" + ctgId

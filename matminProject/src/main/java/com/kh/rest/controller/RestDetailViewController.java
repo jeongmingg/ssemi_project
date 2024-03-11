@@ -37,9 +37,11 @@ public class RestDetailViewController extends HttpServlet {
 		String rpage = request.getParameter("rpage");
 		
 		Rest r = new RestService().selectRestDetail(rpage); 
+		ArrayList<Review> rate = new ReviewService().selectReviewRate(rpage);
 
 		request.setAttribute("rpage", rpage);
 		request.setAttribute("r", r);
+		request.setAttribute("rate", rate);
 		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
 	}
 
