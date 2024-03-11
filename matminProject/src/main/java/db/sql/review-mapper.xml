@@ -74,4 +74,15 @@
 		       )
 
 	</entry>
+	
+	<entry key="selectReviewRate">
+		SELECT 
+		       REVIEW_RATE,
+		       COUNT(REVIEW_RATE) "REVIEW_COUNT"
+		  FROM REVIEW
+		 WHERE REST_NO = ?
+		   AND REVIEW_RATE IN (5, 4, 3, 2, 1)
+		 GROUP
+            BY REVIEW_RATE
+	</entry>
 </properties>

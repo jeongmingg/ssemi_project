@@ -65,6 +65,7 @@ public class ReviewDao {
 
 	}
 	
+	/*
 	public ArrayList<ImgFile> selectImgFile(Connection conn, String rpage){
 		ArrayList<ImgFile> list = new ArrayList();
 		PreparedStatement pstmt = null;
@@ -86,8 +87,6 @@ public class ReviewDao {
 						             rset.getString("img_file_path")));
 			}
 			
-			System.out.println("reviewimgDao" + list);
-			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,11 +94,10 @@ public class ReviewDao {
 			close(rset);
 			close(pstmt);
 		} return list;
-
-		
-		
-		
+	
 	}
+	*/
+	
 	
 	public ArrayList<Review> selectReviewListByMem(Connection conn, String memNo) {
 		ArrayList<Review> list = new ArrayList<Review>();
@@ -184,6 +182,38 @@ public class ReviewDao {
 			close(pstmt);
 		} return result;
 		
+	}
+	
+	public ArrayList<Review> selectReviewRate(Connection conn, String rpage){
+		ArrayList<Review> rate = new ArrayList<Review>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewRate");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Review r = new Review();
+				
+				r.setReviewRate(rset.getInt("review_rate"));
+				r.setReviewCount(rset.getInt("review_count"));
+				
+				rate.add(r);
+				
+			}
+
+			System.out.println("reviewdap" + rate);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+			
+		} return rate;
 	}
 	
 }
