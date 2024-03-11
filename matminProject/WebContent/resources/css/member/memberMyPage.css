@@ -2,334 +2,383 @@
 /* .myPage{height: 700px;} */
 /* #myPage-tab ul li{border: 1px solid black;} */
 
-.myPage{
-    width: 1200px;
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 50px;
+.myPage {
+  width: 1200px;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 50px;
 }
 
-#myPage-tab{
-    height: 40px;
-    border-bottom: 1px solid lightgray;
+#myPage-tab {
+  height: 40px;
+  border-bottom: 1px solid lightgray;
 }
 
-#myPage-tab ul{
-    margin: 0;
-    padding: 0;
-    height: 100%;
+#myPage-tab ul {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-#myPage-tab ul li{
-    list-style-type: none;
-    float: left;
-    width: 220px;
-    height: 100%;
-    text-align: center;
-    line-height: 40px;
+#myPage-tab ul li {
+  list-style-type: none;
+  float: left;
+  width: 220px;
+  height: 100%;
+  text-align: center;
+  line-height: 40px;
 }
 
-#alert{margin-left: 25px;}
-#alert, #mark, #review{margin-right: 25px;}
-
-#myPage-tab ul li a{
-    width: 100%;
-    height: 100%;
-    display: block;
-    text-decoration: none;
-    color: gray;
-    font-size: 20px;
-    cursor: pointer;
+#alert {
+  margin-left: 25px;
+}
+#alert,
+#mark,
+#review {
+  margin-right: 25px;
 }
 
-#myPage-tab ul li a.active{
-    border-radius: 5px 5px 0px 0px;
-    background-color: #E4910D;
-    color: white;
+#myPage-tab ul li a {
+  width: 100%;
+  height: 100%;
+  display: block;
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-#myPage-tab ul li a:hover{
-    border-radius: 5px 5px 0px 0px;
-    background-color: #E4910D;
-    color: white;
+#myPage-tab ul li a.active {
+  border-radius: 5px 5px 0px 0px;
+  background-color: #e4910d;
+  color: white;
+}
+
+#myPage-tab ul li a:hover {
+  border-radius: 5px 5px 0px 0px;
+  background-color: #e4910d;
+  color: white;
 }
 
 /* .myPage-info{height: 500px;} */
 
-#myInfo{text-align: center;}
-
-#myInfo table{
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    color: gray;
-    font-size: 18px;
+#myInfo {
+  text-align: center;
 }
 
-#myInfo table td{height: 58px;}
-
-#myInfo p{
-    display: inline;
-    color: black;
+#myInfo table {
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: gray;
+  font-size: 18px;
 }
 
-#myInfo table span{
-    display: block;
-    /* color: black; */
-    text-align: left;
-    padding-left: 10px;
+#myInfo table td {
+  height: 58px;
 }
 
-#myInfo input{
-    width: 300px;
-    height: 45px;
-    margin: 5px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    padding-left: 10px;
+#myInfo p {
+  display: inline;
+  color: black;
 }
 
-#selectAddress{
-    height: 45px;
-    border-radius: 5px;
-    margin-left: 5px;
+#myInfo table span {
+  display: block;
+  /* color: black; */
+  text-align: left;
+  padding-left: 10px;
 }
 
-#myInfo input:disabled{
-    background-color: lightgray;
+#myInfo input {
+  width: 300px;
+  height: 45px;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding-left: 10px;
 }
 
-#myInfo a{
-    color: #E4910D;
-    margin: 0px 20px;
+#selectAddress {
+  height: 45px;
+  border-radius: 5px;
+  margin-left: 5px;
 }
 
-.message{
-    color: red;
-    font-size: 13px;
-    font-weight: bold;
+#myInfo input:disabled {
+  background-color: lightgray;
 }
 
-.info{
-    display: none;
+#myInfo a {
+  color: #e4910d;
+  margin: 0px 20px;
 }
 
-.info.active{
-    display: block;
+.message {
+  color: red;
+  font-size: 13px;
+  font-weight: bold;
 }
 
-#myBoard, #myReview{
-    padding-top: 50px;
-    padding-bottom: 50px;
+.info {
+  display: none;
 }
 
-#myBoard>span, #myReview>span{
-    display: block;
-    margin: auto;
-    text-align: right;
+.info.active {
+  display: block;
 }
 
-#myReview>span{width: 900px;}
-
-.list-area{
-    width: 1200px;
-    margin: auto;
-    /* margin-top: 50px; */
-    /* margin-bottom: 50px; */
-    height: auto;
-    text-align: center;
-    border-color: rgb(177, 177, 177);
+#myMark,
+#myMark > * {
+  border: 1px solid red;
+  width: 1000px;
+  margin: auto;
 }
 
-.list-area tr{
-    border-top: 1.5px solid darkgray;
-    border-bottom: 1.5px solid darkgray;
+.mark-list {
+  /* margin-top: 50px; */
+  /* margin-bottom: 50px; */
+  margin: auto;
+  height: 500px;
 }
 
-.list-area th{
-    background-color:rgba(231, 231, 231, 0.842)
+.rest-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
 }
 
-.search-area input{
-    border: 1px solid gray;
-    border-radius: 2px;
-    border-width: 0 0 1px;
-    outline: none;
+#star,
+#heart {
+  width: 15px;
+  height: 15px;
 }
-.list-area tr{
-    height: 40px;
+
+#myBoard,
+#myReview,
+#myMark {
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
-.list-area>tbody>tr:hover{
-    background-color: rgba(92, 92, 92, 0.342);
-    cursor:pointer;
-    font-weight: bolder;
+
+#myMark > span,
+#myBoard > span,
+#myReview > span {
+  display: block;
+  margin: auto;
+  text-align: right;
 }
-.paging-area button{
-    margin: 15px;
+
+#myReview > span {
+  width: 900px;
+}
+
+.list-area {
+  width: 1200px;
+  margin: auto;
+  /* margin-top: 50px; */
+  /* margin-bottom: 50px; */
+  height: auto;
+  text-align: center;
+  border-color: rgb(177, 177, 177);
+}
+
+.list-area tr {
+  border-top: 1.5px solid darkgray;
+  border-bottom: 1.5px solid darkgray;
+}
+
+.list-area th {
+  background-color: rgba(231, 231, 231, 0.842);
+}
+
+.search-area input {
+  border: 1px solid gray;
+  border-radius: 2px;
+  border-width: 0 0 1px;
+  outline: none;
+}
+.list-area tr {
+  height: 40px;
+}
+.list-area > tbody > tr:hover {
+  background-color: rgba(92, 92, 92, 0.342);
+  cursor: pointer;
+  font-weight: bolder;
+}
+.paging-area button {
+  margin: 15px;
 }
 
 /* 각 리뷰 전체 테두리 */
-.review-div{
-    height: auto;
-    width: 900px;
-    margin: auto;
-    border-radius: 20px;
-    border: 2px solid rgb(216, 212, 212);
-    padding:30px 40px;
-    margin-top: 10px; /* 각각의 리뷰 테두리사이 띄기*/
+.review-div {
+  height: auto;
+  width: 900px;
+  margin: auto;
+  border-radius: 20px;
+  border: 2px solid rgb(216, 212, 212);
+  padding: 30px 40px;
+  margin-top: 10px; /* 각각의 리뷰 테두리사이 띄기*/
 }
 
 /* 리뷰 프로필 전체 */
-.profile>div{
-    height: 60px;
-    float: left;
-    /* border: 1px solid red; */
+.profile > div {
+  height: 60px;
+  float: left;
+  /* border: 1px solid red; */
 }
 
 /* 리뷰 프로필 사진 스타일 */
-#profile-img{
-    width: 10%
+#profile-img {
+  width: 10%;
 }
-#profile-img>img{
-    width: 60px;
-    height: 60px;
-    margin: auto;
-       display: block;
+#profile-img > img {
+  width: 60px;
+  height: 60px;
+  margin: auto;
+  display: block;
 }
 /* 리뷰 내 이름 칸 스타일*/
-.profile-name{
-    width:48%;
-    padding-left: 10px;
-    padding-top: 5px;
+.profile-name {
+  width: 48%;
+  padding-left: 10px;
+  padding-top: 5px;
 }
-#writer{
-    font-weight: 600;
-    font-size: 20px;
+#writer {
+  font-weight: 600;
+  font-size: 20px;
 }
 
 /* 리뷰 내 별점 스타일 */
-#w-star{
-    display: inline-block;
-    width:90px;
-    height: 18px;
-    background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png) repeat-x left;
-    background-size: 18px;
-    margin-top: 2px;
+#w-star {
+  display: inline-block;
+  width: 90px;
+  height: 18px;
+  background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png)
+    repeat-x left;
+  background-size: 18px;
+  margin-top: 2px;
 }
 
 /* 별점 빈 별 스타일*/
-#w-star i{
-    display: inline-block;
-    width: 75px;
-    height: 18px;
-    background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
-       background-size: 18px;
-    margin-bottom: 2px;
+#w-star i {
+  display: inline-block;
+  width: 75px;
+  height: 18px;
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
+    repeat-x left;
+  background-size: 18px;
+  margin-bottom: 2px;
 }
 
 /* 리뷰 날짜 */
-#write-date{
-    font-size: 15px;
-    padding-left: 10px;
-    line-height:1.8
+#write-date {
+  font-size: 15px;
+  padding-left: 10px;
+  line-height: 1.8;
 }
-.review-update{
-    padding-top: 5px;
-    margin-right: -2px;
+.review-update {
+  padding-top: 5px;
+  margin-right: -2px;
 }
-.review-update>a{
-    padding: 2px;
-    color: gray;
-    text-decoration-line: none;	
-}	
-.review-update>a:hover{
-    color: #e4910d;
+.review-update > a {
+  padding: 2px;
+  color: gray;
+  text-decoration-line: none;
 }
-.warn{
-    width: 42%;
-    text-align: right;	
-    padding: 4px 10px;	
+.review-update > a:hover {
+  color: #e4910d;
 }
-#rv-warn{
-    color: gray;
-    text-decoration-line: none;
+.warn {
+  width: 42%;
+  text-align: right;
+  padding: 4px 10px;
 }
-#rv-warn:hover{
-    color: #e4910d;
+#rv-warn {
+  color: gray;
+  text-decoration-line: none;
 }
-.w-star-detail ul{
-    display: flex;
-    list-style: none;
-    padding: 5px;
-    margin-left: 8px;
+#rv-warn:hover {
+  color: #e4910d;
 }
-.rv-star-s{
-    display: inline-block;
-    width:10px;
-    height: 12px;
-    background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) no-repeat left;
-    background-size: 10px;
-    margin-top: 4px;
-       margin-left: 3px;
-    margin-right: 3px;
+.w-star-detail ul {
+  display: flex;
+  list-style: none;
+  padding: 5px;
+  margin-left: 8px;
 }
-#rv-flv-star, #rv-pri-star{
-    margin-right: 10px;
+.rv-star-s {
+  display: inline-block;
+  width: 10px;
+  height: 12px;
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
+    no-repeat left;
+  background-size: 10px;
+  margin-top: 4px;
+  margin-left: 3px;
+  margin-right: 3px;
 }
-.review-content{
-    margin-top: -20px;
-    margin-left: 20px;
+#rv-flv-star,
+#rv-pri-star {
+  margin-right: 10px;
 }
-#rv-content{
-    white-space: pre-wrap; /*p태그 개행*/
+.review-content {
+  margin-top: -20px;
+  margin-left: 20px;
+}
+#rv-content {
+  white-space: pre-wrap; /*p태그 개행*/
 }
 .review-img {
-    overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 설정합니다. */
-    margin-top: -10px;
+  overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 설정합니다. */
+  margin-top: -10px;
 }
 
 .review-img > div {
-    float: left; /* 이미지를 왼쪽으로 정렬합니다. */
-    margin-right: 8px; /* 이미지 사이의 간격을 설정합니다. */
-    padding-left: 50px;
+  float: left; /* 이미지를 왼쪽으로 정렬합니다. */
+  margin-right: 8px; /* 이미지 사이의 간격을 설정합니다. */
+  padding-left: 50px;
 }
 
-.review-like{
-    display: flex;
-    margin-left: 50px;
-    margin-top: 20px;
+.review-like {
+  display: flex;
+  margin-left: 50px;
+  margin-top: 20px;
 }
-.review-like>div{
-    margin-right: 10px;
+.review-like > div {
+  margin-right: 10px;
 }
-.like-area{
-    color: white;
-    width: 90px;
-    height: 30px;
-    background: url(https://img.icons8.com/material-rounded/24/FFFFFF/thumb-up.png) no-repeat;
-    background-size: 20px;
-    padding-left: 15px;
-    position: relative;
-    background-color: #F39C12;
-    padding-top: 4px;
-    background-position: 6px 5px;
-    border-radius: 8px;
+.like-area {
+  color: white;
+  width: 90px;
+  height: 30px;
+  background: url(https://img.icons8.com/material-rounded/24/FFFFFF/thumb-up.png)
+    no-repeat;
+  background-size: 20px;
+  padding-left: 15px;
+  position: relative;
+  background-color: #f39c12;
+  padding-top: 4px;
+  background-position: 6px 5px;
+  border-radius: 8px;
 }
-.unlike-area{
-    color: white;
-    width: 105px;
-    height: 30px;
-    background: url(https://img.icons8.com/material-rounded/96/FFFFFF/thumbs-down.png) no-repeat;
-    background-size: 20px;
-    padding-left: 15px;
-    position: relative;
-    background-color: #F39C12;
-    padding-top: 4px;
-    background-position: 6px 5px;
-    border-radius: 8px;
+.unlike-area {
+  color: white;
+  width: 105px;
+  height: 30px;
+  background: url(https://img.icons8.com/material-rounded/96/FFFFFF/thumbs-down.png)
+    no-repeat;
+  background-size: 20px;
+  padding-left: 15px;
+  position: relative;
+  background-color: #f39c12;
+  padding-top: 4px;
+  background-position: 6px 5px;
+  border-radius: 8px;
 }
-#like, #unlike{
-    margin-left: 14px;
-    font-size: 16px;
-    cursor: pointer;
+#like,
+#unlike {
+  margin-left: 14px;
+  font-size: 16px;
+  cursor: pointer;
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectHeartListByMem">
+		SELECT
+		       R.REST_NO
+		     , REST_NAME
+		     , NVL(ROUND(AVG(REVIEW_RATE)), 0) "REST_AVG"
+		     , COUNT_LIKE
+		     , REST_IMG_URL
+		     , LIKE_DATE
+		  FROM REST R
+		  LEFT JOIN REVIEW RV ON (R.REST_NO = RV.REST_NO)
+		  JOIN (
+		        SELECT
+		               REST_NO
+		             , LIKE_DATE
+		             , COUNT_LIKE
+		          FROM HEART
+		          JOIN (
+		                SELECT
+		                       REST_NO
+		                     , COUNT(*) "COUNT_LIKE"
+		                  FROM HEART
+		                 GROUP
+		                    BY REST_NO
+		               ) USING(REST_NO)
+		         WHERE MEM_NO = ?
+		       ) T1 ON (R.REST_NO = T1.REST_NO)
+		 WHERE REST_STATUS = 'Y'
+		 GROUP
+		    BY R.REST_NO
+		     , REST_NAME
+		     , LIKE_DATE
+		     , COUNT_LIKE
+		     , REST_IMG_URL
+	</entry>
+</properties>
