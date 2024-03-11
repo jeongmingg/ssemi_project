@@ -7,8 +7,6 @@
     pageEncoding="UTF-8"%>
 
 <% Rest r = (Rest)request.getAttribute("r"); 
-   String[] restAdd = r.getRestAddress().split(" ");
-   String rAdd = restAdd.length > 1 ? restAdd[1] : "";
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
@@ -18,10 +16,10 @@
    String star = String.format("%.1f", percent);
 	
    ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
-   ArrayList<ImgFile> img = (ArrayList<ImgFile>)request.getAttribute("imgList");
+   ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
+   
 
 %>
-
 
 <!DOCTYPE html>
 <html>
@@ -175,7 +173,7 @@
 		padding-left: 35px;
 		box-sizing: border-box;
 		font-size: 18px;
-		margin-bottom: 15px;a
+		margin-bottom: 15px;
 	}
 	.list-add-1, .list-tel-1, .list-time-1, .list-park-1{
 		float: left;
@@ -620,6 +618,9 @@
 		background-color: rgb(0,0,0); /* Fallback color */
 		background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 		}
+	.modal-title{
+		margin-right: 150px;
+	}
 
 	.modal-content {
 		margin: auto;
@@ -664,6 +665,9 @@
 	}
 	#reviewModal > .rv-enroll-btn{
 		border-color:#F39C12;
+	}
+	#reviewModal .modal-content{
+		margin-top: 300px
 	}
 	
 	.review-write{
@@ -715,6 +719,9 @@
     filter: drop-shadow(1px 1px 4px #ff9900d8);
 	border: none;
     }
+	.modal-body .box{
+		margin-left: 105px;
+	}
 
 </style>
 
@@ -741,9 +748,9 @@
 				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
 				<span class="score"><%= r.getRestAvg() %></span>
 			</div>
-				<span class="short-menu">간단 메뉴 소개</span>
+				<span class="short-menu"><%= r.getCtgName() %></span>
 			<div class="rest-add">
-				<span class="short-add">서울시- <%= rAdd %> </span>
+				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
 				<div class="heart-count-area">
 					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
 					<span>찜꽁(20)</span>
@@ -867,7 +874,7 @@
 		<!-- 평균 리뷰 창 --->
 			<div class="review">
 				<div class="review title-area">
-					<div class="review-title" id="like-count">13건의 맛민이들 리뷰
+					<div class="review-title" id="like-count"><%= r.getReviewCount() %>건의 맛민이들 리뷰
 					</div>
 					<div class="btn-review-area">
 					<button type="button" id="btn-review" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">리뷰작성</button>
@@ -887,36 +894,90 @@
 					</div>
 					<div class="score-graph">
 						<ul class="graph-aria">
-							<li>
-								<p class="btxt">매우만족 (5)</p>
-								<p class="graph">
-									<span style="width:50%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">만족 (10)</p>
-								<p class="graph">
-									<span style="width:37%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">보통 (1)</p>
-								<p class="graph">
-									<span style="width:17%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">불만 (1)</p>
-								<p class="graph">
-									<span style="width:17%"></span>
-								</p>
-							</li>
-							<li>
-								<p class="btxt">매우불만(0)</p>
-								<p class="graph">
-									<span style="width:0%"></span>
-								</p>
-							</li>
+						 <% 
+							// 각 평점에 대한 리뷰 있는지 확인
+						    boolean hasReview;
+
+						 	// 각 가능한 리뷰 평가에 대해 5-1까지 반복
+						    for (int rate = 5; rate >= 1; rate--) {
+								// 각 리뷰평가가 없는 상태를 초기화 (외부루프)
+						        hasReview = false;
+
+								// for문 반복하면서 리뷰평가가 있는 목록(ra를 찾음) (내부루프)
+						        for (Review s : ra) {
+
+									// 해당점수에 값이 있을시 목록 ra가 있다고 판단
+						            if (s.getReviewRate() == rate) {
+						                hasReview = true; 
+						    %>
+						        <li>
+						             <!-- 해당 리뷰 평가에 따라 텍스트와 폭을 표시합니다. -->
+						            <p class="btxt">
+						                <!-- 다른 평가에 대한 switch 문을 사용합니다. -->
+
+						                <% switch (rate) {
+						                    case 5: %>
+						                        매우만족 (<%= s.getReviewCount() %>)
+						                        <% break;
+						                    case 4: %>
+						                        만족 (<%= s.getReviewCount() %>)
+						                        <% break;
+						                    case 3: %>
+						                        보통 (<%= s.getReviewCount() %>)
+						                        <% break;
+						                    case 2: %>
+						                        불만 (<%= s.getReviewCount() %>)
+						                        <% break;
+						                    case 1: %>
+						                        매우불만 (<%= s.getReviewCount() %>)
+						                        <% break;
+						                    default:
+						                    	 // 필요한 경우 기본 케이스를 처리합니다
+						                        break;
+						                } %>
+						            </p>
+						            <%-- 리뷰 개수에 따라 폭을 동적으로 계산합니다. --%>
+						            <p class="graph">
+						                 <span style="width: <%= (hasReview ? (double)s.getReviewCount() / r.getReviewCount() * 100 : 0) + "%" %>"></span>
+						            </p>
+						        </li>
+						    <% 
+						            }
+						        } // 리뷰 객체 검색을 위한 내부 반복문 종료
+						        if (!hasReview || ra.isEmpty()) {
+						    %>
+						        <li>
+						           <%-- 리뷰 객체가 없을때는 0을 표시하는 반복문 --%>
+						            <p class="btxt">
+						                 <%-- 다른 평가에 대한 switch 문을 사용합니다. --%>
+						                <% switch (rate) {
+						                    case 5: %>
+						                        매우만족 (0)
+						                        <% break;
+						                    case 4: %>
+						                        만족 (0)
+						                        <% break;
+						                    case 3: %>
+						                        보통 (0)
+						                        <% break;
+						                    case 2: %>
+						                        불만 (0)
+						                        <% break;
+						                    case 1: %>
+						                        매우불만 (0)
+						                        <% break;
+						                    default:
+						                    	// 필요한 경우 기본 케이스를 처리합니다.
+						                        break;
+						                } %>
+						            </p>
+						              <%-- 빈 그래프 막대를 표시합니다. --%>
+						            <p class="graph">
+						                <span style="width: 0%"></span>
+						            </p>
+						        </li>
+						    <% } // 리뷰 객체가 없는 경우에 대한 if 문 종료 %>   
+						    <% } // 리뷰 평가를 위한 외부 반복문 종료 %>
 						</ul>
 					</div>
 					</div>
@@ -934,8 +995,8 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<br>
+						<form class="review_form" id="reviewform" action="<%= contextPath %>/insert.rv">
 						<div class="modal-body">
-							<form class="review_form" id="reviewform" action="<%= contextPath %>/insert.rv">
 								<div>
 									<h2>별점을 남겨주세요!</h2>
 									<br>
@@ -957,13 +1018,13 @@
 								<span id="count">0</span>/300
 							</div>
 						</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style=" width: 100px; font-size: x-large;">취소</button>
+							<button type="submit" id="review-sub" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
+						</div>
 					</form>
 				</div>
-				<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style=" width: 100px; font-size: x-large;">취소</button>
-				<button type="submit" id="review-sub" class="btn btn-primary btn-lg" style="background-color: #F39C12; border-color: #F39C12; width: 100px; font-size: x-large; ">등록</button>
-				</div>
-			</div>
 			</div>
 		</div>
 		<% } %>
@@ -1149,20 +1210,6 @@
 			})
 		</script>
 	
-	<!-- 로그인 안하고 이용할시 알람창 뜨기 -->
-	// <script>
-	// 	$(function(){
-	// 		<% if (loginUser == null) { %>
-	// 			$("#btn-review").click(function(){
-	// 				alert("로그인후 이용해주세요!");
-	
-	// 				})
-			
-	// 		<% } %>
-	// 	})
-	
-	</script>
-
 
 	<!--리뷰 삭제 로그인시에만 가능하게끔 --> 
 	
