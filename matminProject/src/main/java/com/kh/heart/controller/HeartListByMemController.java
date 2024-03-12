@@ -1,4 +1,4 @@
-package com.kh.admin.controller;
+package com.kh.heart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
+import com.google.gson.Gson;
+import com.kh.heart.model.service.HeartService;
+import com.kh.heart.model.vo.Heart;
 
 /**
- * Servlet implementation class AdminMemberMainController
+ * Servlet implementation class HeartListByMem
  */
-@WebServlet("/member.ad")
-public class AdminMemberMainController extends HttpServlet {
+@WebServlet("/mkList.me")
+public class HeartListByMemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberMainController() {
+    public HeartListByMemController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +33,13 @@ public class AdminMemberMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("num");
+		String memNo = request.getParameter("memNo");
 		
-		Member m = new MemberService().selectMember(userId);
+		ArrayList<Heart> list = new HeartService().selectHeartListByMem(memNo);
 		
-		request.setAttribute("m", m);
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 		
-		request.getRequestDispatcher("views/admin/adminMemMainPage.jsp").forward(request, response);
 	}
 
 	/**

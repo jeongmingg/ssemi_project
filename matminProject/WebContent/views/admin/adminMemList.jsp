@@ -173,7 +173,7 @@
     <script>
         $(function(){
             $(".list-area>tbody>tr").click(function(){
-            	const num = $(this).children().eq(0).text();
+            	const num = $(this).children().eq(1).text();
             location.href= '<%= contextPath%>/member.ad?num='+num;
             });
         });
