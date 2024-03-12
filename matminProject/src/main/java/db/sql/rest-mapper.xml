@@ -327,7 +327,12 @@
 			             GROUP
 			                BY REST_NO
 			            ) USING(REST_NO)           
-			 WHERE LOCAL_NAME LIKE '%' || ? || '%'
+			 WHERE (
+					 REST_NAME LIKE '%' || ? || '%'
+				     OR LOCAL_NAME LIKE '%' || ? || '%'
+				     OR MENU_NAME LIKE '%' || ? || '%'
+				   )
+			AND LOCAL_NAME LIKE '%' || ? || '%'
 			 ORDER
 			    BY REST_AVG DESC, REVIEW_COUNT DESC
 		</entry>

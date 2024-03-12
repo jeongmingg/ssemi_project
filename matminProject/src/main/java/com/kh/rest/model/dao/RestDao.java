@@ -363,7 +363,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public ArrayList<Rest> locationSearch(Connection conn, String locationName){
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName){
 		
 		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
@@ -375,10 +375,14 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			
 			if(locationName.equals("전체")) {
-				pstmt.setString(1, "");
+				pstmt.setString(4, "");
 			}else {
-				pstmt.setString(1, locationName);
+				pstmt.setString(4, locationName);
 			}
 			
 			rset= pstmt.executeQuery();

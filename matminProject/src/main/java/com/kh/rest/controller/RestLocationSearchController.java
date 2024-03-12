@@ -33,13 +33,12 @@ public class RestLocationSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(1);
-		
 		request.setCharacterEncoding("UTF-8");
 		
+		String keyword = request.getParameter("keyword");
 		String locationName = request.getParameter("locationName");
 		
-		ArrayList<Rest> lcList = new RestService().locationSearch(locationName);
+		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName);
 		
 		response.setContentType("applicaion/json; charset=utf-8");
 		new Gson().toJson(lcList, response.getWriter());
