@@ -789,14 +789,7 @@ div {
 							</table>
 						</div>
 						<div id="moreBtn">
-							<button type="button" id="more-btn">
-								<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-									viewBox="0 0 48 48" data-svg-content="true" fill="#000000">
-                                <path
-										d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path>
-                              </svg>
-								검색 결과 더보기
-							</button>
+							
 						</div>
 					</div>
 				</div>
