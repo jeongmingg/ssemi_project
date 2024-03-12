@@ -223,7 +223,8 @@ public class RestDao {
 			pstmt.setString(5, r.getRestTime());
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("Dao의 " + r);
+			System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

@@ -73,6 +73,8 @@ public class RestService {
 	public int insertRest(Rest r, Attachment at ) {
 		Connection conn = getConnection();
 		int result1 = new RestDao().insertRest(conn, r);
+		System.out.println("서비스의 " + r);
+		
 		int result2 = 1;
 		if (at !=null){
 			result2 = new RestDao().insertRestAt(conn,at);
