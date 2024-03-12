@@ -150,7 +150,7 @@
 						<select name="category" id="">
                     	<!--  category table로 부터 조회 할꺼임 -->
                     	<%for (Category c : list) { %>
-                    	<option value="<%=c.getCtgId()%>"><%=c.getCtgName() %></option>
+                    	<option value="<%=c.getCtgId()%>"> <%=c.getCtgName( )%></option>
                     	<%} %>
                     	</select>
                     
@@ -163,13 +163,13 @@
                    
                 </tr>
                 <tr>
-                    <td> 식당번호</td>
+                    <td> 전화번호</td>
                     <td><input type="text" name="restNo" maxlength="20" placeholder="- 포함해서 입력"required></td>
                    
                 </tr>
                 <tr>
-                    <td>주차여부</td>
-                    <td><input type="text" name="parking" placeholder="- 'Y' 또는 'N' 입력"></td>
+                    <td>영업시간</td>
+                    <td><input type="text" name="busHour" placeholder=" HH:MM~ HH:MM"></td>
                     
                 </tr>
 
