@@ -33,7 +33,6 @@ public class AdminRestEnrollFormController extends HttpServlet {
 		
 		ArrayList<Category>list = new RestService().selectCategoryList();
 		
-		System.out.println(list);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/views/admin/adminRestEnroll.jsp").forward(request, response);
 	}
