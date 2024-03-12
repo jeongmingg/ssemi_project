@@ -2,22 +2,22 @@ package com.kh.common.model.vo;
 
 public class Category {
 
-	private int ctgId;
+	private String ctgId;
 	private String ctgName;
 	
 	public Category() {}
 
-	public Category(int ctgId, String ctgName) {
+	public Category(String ctgId, String ctgName) {
 		super();
 		this.ctgId = ctgId;
 		this.ctgName = ctgName;
 	}
 
-	public int getCtgId() {
+	public String getCtgId() {
 		return ctgId;
 	}
 
-	public void setCtgId(int ctgId) {
+	public void setCtgId(String ctgId) {
 		this.ctgId = ctgId;
 	}
 
@@ -33,6 +33,8 @@ public class Category {
 	public String toString() {
 		return "Category [ctgId=" + ctgId + ", ctgName=" + ctgName + "]";
 	}
+
+	
 	
 	
 }

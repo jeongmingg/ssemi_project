@@ -43,7 +43,7 @@ public class AdminRestInsertController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resourses/board_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
@@ -51,14 +51,14 @@ public class AdminRestInsertController extends HttpServlet {
 		String ctgId = multiRequst.getParameter("category");
 		String restAddress = multiRequst.getParameter("address");
 		String restTel = multiRequst.getParameter("restNo");
-		String restParking = multiRequst.getParameter("parking");
+		String restTime = multiRequst.getParameter("busHour");
 		
 		Rest r = new Rest();
 		r.setRestName(restName);
 		r.setCtgId(ctgId);
 		r.setRestAddress(restAddress);
 		r.setRestTel(restTel);
-		r.setRestParking(restParking);
+		r.setRestTime(restTime);
 		
 		
 		Attachment at = null;
@@ -67,7 +67,7 @@ public class AdminRestInsertController extends HttpServlet {
 			at = new Attachment();
 			at.setOriginName(multiRequst.getOriginalFileName("upfile"));
 			at.setChangeName(multiRequst.getFilesystemName("upfile"));
-			at.setFilePath("resources/rest_upfiles/");
+			at.setFilePath("resources/board_upfiles/");
 			
 			}
 		
@@ -77,12 +77,12 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "삭당이 성공적으로 등록됬었습니다");
-			response.sendRedirect(request.getContextPath()+"/rest.list?cpage=1");
+			request.getRequestDispatcher("views/admin/adminRestMainPage.jsp");
 		}else {
 			if(at != null) {
 				new File(savePath + at.getChangeName()).delete();
 			}
-			request.getSession().setAttribute("alertMsg","식당등록이 실패했습니다");
+			session.setAttribute("alertMsg","식당등록이 실패했습니다");
 			response.sendRedirect(request.getContextPath() + "/restEnroll.ad");
 		}
 	}
