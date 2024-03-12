@@ -108,4 +108,10 @@ public class RestService {
 		return list;
 		
 	}
+	
+	public int updateRest(Rest r, Attachment at) {
+		Connection conn = getConnection();
+		
+		return 0;
+	}
 }
