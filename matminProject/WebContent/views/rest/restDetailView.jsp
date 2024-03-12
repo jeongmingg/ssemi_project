@@ -1040,12 +1040,22 @@
 
 
 	<!-- 리뷰 조회 ajax -->
+
+	<script>
+		$(function(){	
+			
+		})
+	</script>
+	
+
+
 	<script>
 	
 		$(function(){
 		    selectReviewList(); 
 		    
-        	setInterval(selectReviewList, 1000);
+		   
+        	setInterval(selectReviewList, 50000);
 		})
 	
 		function selectReviewList(){
@@ -1054,7 +1064,8 @@
 				data:{rpage:'<%= r.getRestNo()%>'},
 				success:function(rvlist){
 					let value = ''; // Initialize value variable
-		            
+					
+					
 		            for (let i = 0; i < rvlist.length; i++) {
 		            	
 		                let rv = rvlist[i]; // Fixed variable name
@@ -1067,7 +1078,7 @@
 		                let rvservice = rv.rateService;
 		                let rvcont = rv.reviewCont;
 		                let rvrate = rv.reviewRate;
-
+		                
 		                value += `<div class="review-div">
 							<div class="rv1">
 								<div class="profile">
@@ -1087,7 +1098,12 @@
 									<div class="warn">
 										<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
 		               					<input type ="hidden" class="reviewNo" value=\${rvno}>
-										<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
+		               				
+		               				<% if (loginUser != null ) { %>
+									    <input type="hidden" class="serverNickname" value="<%= loginUser.getNickname() %>">
+									    <input type="hidden" class="rvname" value=\${rvname}>
+		                             	<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
+		                  			<% } %>
 										<div class="review-update">
 										</div>
 									</div>
@@ -1114,20 +1130,35 @@
 
 				$(".review-detail").html(value);
 				
+				 $(".delete-review").each(function() {
+					    var rvname = $(this).siblings('.rvname').val();
+					    console.log("rvname :" + rvname);
+					    
+					    var serverNickname = $(this).siblings().eq(1).val()
+					    console.log("serverNIckname :" + serverNickname);
+					    
+					    if (serverNickname === rvname) {
+					        $(this).show(); // Show the delete button if the condition is met
+					    } else {
+					    	$(this).hide();
+					    }
+					});
+				    
+				
 				}, error:function(){
 					console.log("ajax 통신실패")
 				}
 
 			});
+			
 		}
+	
 		
 		/* 리뷰 삭제 ajax*/
 		function deleteReview(ele){
 			/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
-			let rvNo = $(ele).siblings("input").val();
+			let rvNo = $(ele).siblings("input").val();		
 			
-			console.log(rvNo);
-
 			if (confirm("정말 삭제하시겠습니까?")) {
 				$.ajax({
 					url:"delete.rv",
@@ -1142,8 +1173,10 @@
 						console.log("삭제오류 ajax통신오류")
 					}
 				})
+		
 			}
 			}
+		
 	</script>	
 	
 		<!-- 리뷰 별 모달 스크립트 -->
@@ -1197,11 +1230,14 @@
 
 		<script>
 			$(function() {
-				if(<%= loginUser %> == null){
+				
+				let loginUser = '<%= loginUser.getMemNo() %>';
+				
+				if(!loginUser){
 					$("#btn-review").click(function(){
 						alert("로그인 후 이용해주세요!");    			
 					})
-				} else if (<%= loginUser %> != null){
+				}else{
 					$("#review-sub").click(function() {
 						$("#reviewform").submit();
 					});
@@ -1213,17 +1249,7 @@
 
 	<!--리뷰 삭제 로그인시에만 가능하게끔 --> 
 	
-	<script>
-		$(function(){
-		 	$(".delete-review").click(function(){
-		 		e.preventDefault();
-		 		deleteReviewlist();
-	 		});
-		 })
 
-	
-	</script>
-		
 	<!-- 리뷰 인서트시 리뷰작성글 제한 -->
 	<script>
 		$(function(){
