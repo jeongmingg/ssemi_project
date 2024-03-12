@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.location.model.vo.Location;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -421,6 +423,36 @@ public class MemberDao {
 		}
 		
 		return result;
+	}
+	
+	public ArrayList<Location> selectLocationList(Connection conn) {
+		ArrayList<Location> list = new ArrayList<Location>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLocationList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Location(rset.getString("local_id"),
+									  rset.getString("local_name")
+									  ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 	}
 	
 }

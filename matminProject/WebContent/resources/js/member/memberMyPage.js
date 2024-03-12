@@ -28,6 +28,36 @@ $(function () {
       }
     }
   );
+
+  // 비밀번호 실시간 체크
+  $("input[name=newPwd]").on("propertychange change paste input", function() {
+    // 비밀번호: 영문(대소문자 구분), 숫자, 특수문자(!@#$%^&*) 포함 8자 이상 15자 이내
+    const regExp = /^[a-zA-Z\d!@#$%^&*]{8,15}$/;
+
+    const msg = $("#newPwdMsg");
+
+    if(!regExp.test($(this).val())) {
+        msg.css("display", "block");
+        msg.text("* 비밀번호: 8~15자의 영문 대소문자, 숫자, 특수기호(!@#$%^&*)만 사용 가능합니다.");
+    } else {
+        msg.css("display", "none");
+        msg.text("");
+    }
+});
+
+// 비밀번호 확인 실시간 체크
+$("input[name=newPwd]").siblings("input[type=password]").on("propertychange change paste input", function() {
+    // 비밀번호 확인: 위에 입력한 비밀번호와 동일한지 확인
+    const msg = $("#newPwdCheckMsg");
+
+    if($(this).val() != $("input[name=newPwd]").val()) {
+        msg.css("display", "block");
+        msg.text("* 입력한 비밀번호와 일치하지 않습니다.");
+    } else {
+        msg.css("display", "none");
+        msg.text("");
+    }
+});
 });
 
 // 개인정보 수정하기 버튼 클릭 시, 유효성 검사
@@ -65,6 +95,38 @@ function validate() {
     nicknameInput.select();
 
     return false;
+  }
+}
+
+// 가입하기 버튼 클릭 시, 유효성 검사
+function modalValidate() {
+  const pwdInput = $("input[name=userPwd]");
+  const pwdCheckInput = $("input[name=userPwd]").siblings("input[type=password]");
+
+  // 비밀번호: 영문(대소문자 구분), 숫자, 특수문자(!@#$%^&*) 포함 8자 이상 15자 이내
+  regExp = /^[a-zA-Z\d!@#$%^&*]{8,15}$/;
+
+  msg = $("#pwdMsg");
+
+  if(!regExp.test(pwdInput.val())) {
+      msg.css("display", "block");
+      msg.text("* 비밀번호: 8~15자의 영문 대소문자, 숫자, 특수기호(!@#$%^&*)만 사용 가능합니다.");
+
+      pwdInput.select();
+
+      return false;
+  }
+
+  // 비밀번호 확인: 위에 입력한 비밀번호와 동일한지 확인
+  msg = $("#pwdCheckMsg");
+
+  if(pwdCheckInput.val() != pwdInput.val()) {
+      msg.css("display", "block");
+      msg.text("* 입력한 비밀번호와 일치하지 않습니다.");
+
+      pwdCheckInput.select();
+
+      return false;
   }
 }
 

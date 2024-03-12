@@ -1,11 +1,16 @@
 package com.kh.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.location.model.vo.Location;
+import com.kh.member.model.service.MemberService;
 
 /**
  * Servlet implementation class MemberMyPageFormController
@@ -26,6 +31,10 @@ public class MemberMyPageFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		ArrayList<Location> list = new MemberService().selectLocationList();
+		
+		request.setAttribute("locationList", list);
 		request.getRequestDispatcher("views/member/memberMyPage.jsp").forward(request, response);
 	}
 

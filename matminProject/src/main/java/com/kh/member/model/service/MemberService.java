@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.location.model.vo.Location;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
@@ -144,6 +145,16 @@ public class MemberService {
 		close(conn);
 		
 		return updateMem;
+	}
+	
+	public ArrayList<Location> selectLocationList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Location> list = new MemberDao().selectLocationList(conn);
+		
+		close(conn);
+		
+		return list;
 	}
 	
 }
