@@ -141,44 +141,29 @@ function reviewList(memNo) {
             "</div>" +
             '<div style="display: flex;">' +
             '<div id="w-star">' +
-            '<i style="width: 70%;"></i>' +
+            '<i id="rvstar-avg"></i>' +
             "</div>" +
             '<span id="write-date">' +
+            '<span id="rvstar-avg-title">' +
+            result[i].reviewRate +
+            "</span>" +
             result[i].reviewDate.substr(0, 10) +
             "</span>" +
             "</div>" +
             "</div>" +
             '<div class="warn">' +
-            '<a href="#" id="rv-warn">신고</a>' +
+            '<input type ="hidden" class="reviewNo" value=' +
+            result[i].reviewNo +
+            ">" +
+            '<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this, \'' +
+            memNo +
+            "');\">삭제</a>" +
             '<div class="review-update">' +
-            '<a href="#" id="rv-update">수정</a>' +
-            '<a href="#" id="rv-delete">삭제</a>' +
             "</div>" +
             "</div>" +
-            "</div>" +
-            '<div class="w-star-detail">' +
-            "<ul>" +
-            "<li>맛" +
-            '<li class="rv-star-s"></li>' +
-            '<li id="rv-flv-star">' +
-            result[i].rateTaste +
-            "</li>" +
-            "</li>" +
-            "<li>가격" +
-            '<li class="rv-star-s"></li>' +
-            '<li id="rv-pri-star">' +
-            result[i].ratePrice +
-            "</li>" +
-            "</li>" +
-            "<li>서비스" +
-            '<li class="rv-star-s"></li>' +
-            '<li id="rv-ser-star">' +
-            result[i].rateService +
-            "</li>" +
-            "</li>" +
-            "</ul>" +
             "</div>" +
             '<div class="review-content">' +
+            "<br><br>" +
             '<p name="rv-content" id="rv-content">' +
             result[i].reviewCont +
             "</p>" +
@@ -240,7 +225,7 @@ function markList(memNo) {
       } else {
         for (let i in result) {
           str += `<tr>
-          <td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px">
+          <td rowspan="3" width="120" style="padding-left: 15px; padding-right: 15px">
             <img class="rest-img" src="${result[i].restImgUrl}" />
           </td>
           <td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
@@ -249,14 +234,13 @@ function markList(memNo) {
         </tr>
         <tr>
           <td width="85px" style="padding-left: 15px; font-size: 17px">
-            !!지역이름!!
+            ${result[i].localName}
           </td>
-          <td>대표메뉴&nbsp;&nbsp; !!대표메뉴명!!</td>
+          <td>대표메뉴&nbsp;&nbsp; ${result[i].menuName}</td>
         </tr>
         <tr>
-          <td></td>
           <td colspan="2" style="padding-left: 15px; font-size: 20px">
-            <img id="star" src="resources/star, heart/star.png" />&nbsp;&nbsp;${result[i].restAvg} (리뷰개수)&nbsp;&nbsp;|&nbsp;&nbsp;
+            <img id="star" src="resources/star, heart/star.png" />&nbsp;&nbsp;${result[i].restAvg} (${result[i].reviewCount})&nbsp;&nbsp;|&nbsp;&nbsp;
             <img id="heart" src="resources/star, heart/heart.png" />&nbsp;
             ${result[i].countLike}
           </td>
@@ -279,4 +263,29 @@ function markList(memNo) {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
     },
   });
+}
+
+/* 리뷰 삭제 ajax*/
+function deleteReview(ele, memNo) {
+  /*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
+  let rvNo = $(ele).siblings("input").val();
+
+  console.log(rvNo);
+
+  if (confirm("정말 삭제하시겠습니까?")) {
+    $.ajax({
+      url: "delete.rv",
+      type: "post",
+      data: { no: rvNo },
+      success: function (review) {
+        if (review != null) {
+          alert("성공적으로 삭제됐습니다!");
+          reviewList(memNo);
+        }
+      },
+      error: function () {
+        console.log("삭제오류 ajax통신오류");
+      },
+    });
+  }
 }

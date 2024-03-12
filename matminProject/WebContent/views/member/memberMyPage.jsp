@@ -218,56 +218,7 @@ pageEncoding="UTF-8"%>
         <!-- 찜꽁 리스트 -->
         <div id="myMark" class="info">
           <span></span>
-          <table id="rest-table" align="center" border="1">
-            <!-- 게시글이 없는 경우 -->
-            <tr>
-              <td colspan="3">조회된 결과가 없습니다. 다시 검색해주세요!</td>
-            </tr>
-            <tr>
-              <td colspan="3"><hr /></td>
-            </tr>
-            <!-- 게시글이 있는 경우 -->
-            <!-- <tr>
-              <td
-                rowspan="2"
-                width="120"
-                style="padding-left: 15px; padding-right: 15px"
-              >
-                <img class="rest-img" src="대표이미지경로" />
-              </td>
-              <td
-                colspan="2"
-                style="
-                  width: 100px;
-                  height: 65px;
-                  padding-left: 10px;
-                  font-size: 22px;
-                "
-              >
-                식당이름
-              </td>
-            </tr>
-            <tr>
-              <td width="85px" style="padding-left: 15px; font-size: 17px">
-                지역이름
-              </td>
-              <td>대표메뉴&nbsp;&nbsp; 대표메뉴명</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td colspan="2" style="padding-left: 15px; font-size: 20px">
-                <img
-                  id="star"
-                  src="resources/star, heart/star.png"
-                />&nbsp;&nbsp;별점 (리뷰개수)&nbsp;&nbsp;|&nbsp;&nbsp;
-                <img id="heart" src="resources/star, heart/heart.png" />&nbsp;
-                찜꽁개수
-              </td>
-            </tr>
-            <tr>
-              <td colspan="3"><hr /></td>
-            </tr> -->
-          </table>
+          <table id="rest-table" align="center"></table>
         </div>
 
         <!-- 내가 쓴 리뷰 -->

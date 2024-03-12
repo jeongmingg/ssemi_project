@@ -130,14 +130,11 @@
 
 #myMark,
 #myMark > * {
-  border: 1px solid red;
-  width: 1000px;
+  width: 800px;
   margin: auto;
 }
 
 .mark-list {
-  /* margin-top: 50px; */
-  /* margin-bottom: 50px; */
   margin: auto;
   height: 500px;
 }
@@ -176,8 +173,6 @@
 .list-area {
   width: 1200px;
   margin: auto;
-  /* margin-top: 50px; */
-  /* margin-bottom: 50px; */
   height: auto;
   text-align: center;
   border-color: rgb(177, 177, 177);
@@ -252,9 +247,9 @@
 /* 리뷰 내 별점 스타일 */
 #w-star {
   display: inline-block;
-  width: 90px;
+  width: 20px;
   height: 18px;
-  background: url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/rating-off@2x.png)
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
     repeat-x left;
   background-size: 18px;
   margin-top: 2px;
@@ -263,12 +258,16 @@
 /* 별점 빈 별 스타일*/
 #w-star i {
   display: inline-block;
-  width: 75px;
+  width: 20x;
   height: 18px;
   background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
     repeat-x left;
   background-size: 18px;
   margin-bottom: 2px;
+}
+
+span#rvstar-avg-title {
+  margin-right: 30px;
 }
 
 /* 리뷰 날짜 */
@@ -294,12 +293,13 @@
   text-align: right;
   padding: 4px 10px;
 }
-#rv-warn {
+.warn a {
   color: gray;
   text-decoration-line: none;
 }
-#rv-warn:hover {
+.warn a:hover {
   color: #e4910d;
+  text-decoration-line: none;
 }
 .w-star-detail ul {
   display: flex;
@@ -322,12 +322,18 @@
 #rv-pri-star {
   margin-right: 10px;
 }
+.rv1 {
+  padding-top: 3px;
+}
 .review-content {
   margin-top: -20px;
   margin-left: 20px;
 }
 #rv-content {
   white-space: pre-wrap; /*p태그 개행*/
+  padding-top: 40px;
+  font-size: large;
+  padding-left: 15px;
 }
 .review-img {
   overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 설정합니다. */
@@ -340,10 +346,20 @@
   padding-left: 50px;
 }
 
+.review-img > div {
+  float: left; /* 이미지를 왼쪽으로 정렬합니다. */
+  margin-right: 8px; /* 이미지 사이의 간격을 설정합니다. */
+  padding-left: 50px;
+}
+
+.btn-share > span {
+  text-decoration: none; /* 텍스트 밑줄 제거 */
+}
+
 .review-like {
   display: flex;
-  margin-left: 50px;
-  margin-top: 20px;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 .review-like > div {
   margin-right: 10px;

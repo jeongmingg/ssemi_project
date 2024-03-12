@@ -46,11 +46,14 @@ public class HeartDao {
 			
 			while(rset.next()) {
 				list.add(new Heart(rset.getString("rest_no"),
-							       rset.getString("rest_name"),
-								   rset.getDouble("rest_avg"),
-								   rset.getInt("count_like"),
-								   rset.getString("rest_img_url"),
-								   rset.getDate("like_date")
+					       rset.getString("rest_name"),
+					       rset.getString("local_name"),
+					       rset.getString("menu_name"),
+						   rset.getDouble("rest_avg"),
+						   rset.getInt("count_like"),
+						   rset.getString("rest_img_url"),
+						   rset.getDate("like_date"),
+						   rset.getInt("review_count")
 								   ));
 			}
 			

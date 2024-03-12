@@ -8,6 +8,7 @@
 		     , LOCAL_NAME
 		     , MENU_NAME
 		     , NVL(ROUND(AVG(REVIEW_RATE)), 0) "REST_AVG"
+		     , COUNT(*) "REVIEW_COUNT"
 		     , COUNT_LIKE
 		     , REST_IMG_URL
 		     , LIKE_DATE
@@ -32,6 +33,7 @@
 		         WHERE MEM_NO = ?
 		       ) T1 ON (R.REST_NO = T1.REST_NO)
 		 WHERE REST_STATUS = 'Y'
+		   AND REVIEW_STATUS = 'Y'
 		 GROUP
 		    BY R.REST_NO
 		     , REST_NAME
