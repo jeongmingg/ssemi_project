@@ -32,9 +32,11 @@ public class AdminMemberMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memNo = request.getParameter("num");
+		String userId = request.getParameter("num");
 		
-		ArrayList<Member> m = new MemberService().selectMemberList();
+		Member m = new MemberService().selectMember(userId);
+		
+		request.setAttribute("m", m);
 		
 		request.getRequestDispatcher("views/admin/adminMemMainPage.jsp").forward(request, response);
 	}
