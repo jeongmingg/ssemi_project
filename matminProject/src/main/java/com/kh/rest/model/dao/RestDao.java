@@ -192,7 +192,7 @@ public class RestDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Category(rset.getInt("ctg_id"),
+				list.add(new Category(rset.getString("ctg_id"),
 										rset.getString("ctg_name")));
 			}
 			
@@ -202,7 +202,7 @@ public class RestDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(list);
+	
 		return list;
 		
 	}
@@ -220,10 +220,11 @@ public class RestDao {
 			pstmt.setString(2, r.getCtgId());
 			pstmt.setString(3, r.getRestAddress());
 			pstmt.setString(4, r.getRestTel());
-			pstmt.setString(5, String.valueOf(r.getRestParking()));
+			pstmt.setString(5, r.getRestTime());
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("Dao의 " + r);
+			System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

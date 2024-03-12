@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
     
     <% Rest r = (Rest)request.getAttribute("r");
-    
+    	System.out.println("메인페이지" + r);
     %>
 <!DOCTYPE html>
 <html>
@@ -129,7 +129,7 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/restEnroll.ad" method="post">
+        <form id="form" action="<%=contextPath %>/rest.ad" method="post">
 
             <table>
                 <tr>

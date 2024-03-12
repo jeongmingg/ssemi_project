@@ -113,7 +113,7 @@
 			,REST_GRADE
 		FROM REST
 			WHERE REST_STATUS = 'Y'
-				
+		
 		</entry>
 	
 		<entry key="selectRestCount">
@@ -186,7 +186,7 @@
 			,CTG_ID
 			,REST_ADDRESS
 			,REST_TEL
-			,REST_PARKING			
+			,REST_TIME			
 			)
 			VALUES
 			(
