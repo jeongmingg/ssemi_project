@@ -135,7 +135,7 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
+                    <td>주차<input type="text" value= "<%=r.getRestParking()%>"></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
@@ -145,7 +145,7 @@
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
+                    <td>리뷰 <input type="text" value= "<%= r.getRestAvg() %>"></td>
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
@@ -153,8 +153,8 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>주차여부</td>
-                    <td><input type="text" value = "<%=r.getRestParking() %>"></td>
+                    <td>카태고리</td>
+                    <td><input type="text" value = "<%=r.getCtgName()%>"></td>
                                     
                 </tr>
 

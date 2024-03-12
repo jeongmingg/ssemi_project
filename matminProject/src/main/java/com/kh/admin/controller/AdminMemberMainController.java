@@ -34,7 +34,7 @@ public class AdminMemberMainController extends HttpServlet {
 		
 		String memNo = request.getParameter("num");
 		
-		ArrayList<Member> m = new MemberService().selectMemberList();
+		Member m = new MemberService().selectMember(memNo);
 		
 		request.getRequestDispatcher("views/admin/adminMemMainPage.jsp").forward(request, response);
 	}

@@ -157,7 +157,7 @@
                     <th width="100">Category</th>
                     <th width="100">Address</th>
                     <th width="100">PhoneNumber</th>
-                    <th width="100">Grade</th>
+                    <th width="100">AvgReview</th>
                 </tr>
             </thead>
             <tbody>
@@ -170,7 +170,7 @@
                             <td><%= r.getCtgId() %></td>
                             <td><%= r.getRestAddress() %></td>
                             <td><%= r.getRestTel() %></td>
-                            <td><%= r.getRestGrade() %></td>
+                            <td><%= r.getRestAvg() %></td>
                         </tr>
                     <% } %>
                 <% } else { %>
