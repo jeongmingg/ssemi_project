@@ -146,14 +146,6 @@ public class MemberService {
 		return updateMem;
 	}
 
-	public Member selectMember(String memNo) {
-		Connection conn = getConnection();
-		
-		Member m  = new MemberDao().selectMember(conn, memNo);
-		
-		close(conn);
-		return m;
-	}
 	
 	public Member selectMember(String userId) {
 		Connection conn = getConnection();
