@@ -40,7 +40,7 @@ public class MemberPwdUpdateController extends HttpServlet {
 			request.getSession().setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
 		} else {
 			// 비밀번호 변경 실패(현재 비밀번호를 잘못 입력)
-			request.getSession().setAttribute("alertMsg", "비밀번호 변경에 실패했습니다. 현재 사용 중인 비밀번호를 알맞게 입력해주세요.");
+			request.getSession().setAttribute("alertMsg", "비밀번호 변경에 실패했습니다.\\n현재 사용 중인 비밀번호를 알맞게 입력해주세요.");
 		}
 
 		response.sendRedirect(request.getContextPath() + "/myPage.me");
