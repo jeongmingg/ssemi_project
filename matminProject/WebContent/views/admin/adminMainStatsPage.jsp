@@ -12,6 +12,7 @@
     <style>
     
         .outer {
+            height: 1100px;;
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
@@ -89,7 +90,7 @@
     <%@ include file="../common/header.jsp" %>
     <%@ include file="../common/navigator.jsp" %>
 
-    <div class="container" width="82%">
+    <div class="container outer" width="82%">
         <!-- <p>Justified tabs:</p> -->
         <br><br>
         <ul id="navi" class="nav nav-tabs nav-justified">
@@ -122,46 +123,24 @@
     </div>
 
 
-    <div class="outer" border="1">
+    <div class="outer">
 
         <div class="table1">
-            <table align="center" border="1">
+            <table class="table table-bordered" align="center">
                 <tr>
-                    <th width="200"><button onclick= "test1()">총식당수</button></th>
+                    <th width="200">총 등록 식당 수</th>
                     <th width="200">총 회원 수</th>
                 </tr>
                 <tr>
-                    <th id="total"></th>
+                    <th>150개</th>
                     <th>300명</th>
                 </tr>
             </table>
         </div>
 
-	<script>
-	function test1(){
-		$.ajax({
-			url:"stats.ad",
-			success: function(result){
-				
-				console.log(result);
-				let value = "";
-				
-				console.log(value);
-				$("#total").html(value);
-				
-			},error: function(){
-				console.log("조회되지않았습니다");
-			}
-		})
-		
-	}
-	
-	
-	</script>
-		
         <div id="best2" style="float: left;">
             
-            <table border="1">
+            <table class="table table-bordered">
                 <tr>
                     <th>순위</th>
                     <th>식당명</th>
