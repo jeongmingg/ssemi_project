@@ -116,6 +116,7 @@ public class RestService {
 		return 0;
 	}
 
+
 	public ArrayList<Rest> locationSearch(String keyword, String locationName){
 		
 		Connection conn = getConnection();

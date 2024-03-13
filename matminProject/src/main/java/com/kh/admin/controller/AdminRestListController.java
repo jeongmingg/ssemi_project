@@ -48,7 +48,7 @@ public class AdminRestListController extends HttpServlet {
     	
     	pageLimit = 5;
     	
-    	boardLimit = 5;
+    	boardLimit = 10;
     	
     	maxPage = (int)Math.ceil((double)listCount / boardLimit);
     	
