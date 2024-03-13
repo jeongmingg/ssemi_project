@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.location.model.vo.Location;
 import com.kh.member.model.vo.Member;
 
 public class MemberDao {
@@ -410,6 +412,62 @@ public class MemberDao {
 			pstmt.setString(3, m.getAddress());
 			pstmt.setString(4, m.getMemId());
 			pstmt.setString(5, m.getEmail());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public ArrayList<Location> selectLocationList(Connection conn) {
+		ArrayList<Location> list = new ArrayList<Location>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLocationList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Location(rset.getString("local_id"),
+									  rset.getString("local_name")
+									  ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
+	
+	public int updateMemberPwd(Connection conn, String memNo, String currentPwd, String newPwd) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memNo);
+			pstmt.setString(3, currentPwd);
 			
 			result = pstmt.executeUpdate();
 			

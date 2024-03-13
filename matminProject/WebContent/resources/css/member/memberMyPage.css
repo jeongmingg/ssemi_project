@@ -114,6 +114,15 @@
   margin: 0px 20px;
 }
 
+#myInfo button {
+  margin: 0px 20px;
+  color: #e4910d;
+}
+
+#changePwdTB{
+  margin: auto;
+}
+
 .message {
   color: red;
   font-size: 13px;
