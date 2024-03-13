@@ -1,6 +1,5 @@
 package com.kh.review.model.Dao;
 
-import java.io.Closeable;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -65,7 +64,7 @@ public class ReviewDao {
 
 	}
 	
-	/*
+	
 	public ArrayList<ImgFile> selectImgFile(Connection conn, String rpage){
 		ArrayList<ImgFile> list = new ArrayList();
 		PreparedStatement pstmt = null;
@@ -96,7 +95,7 @@ public class ReviewDao {
 		} return list;
 	
 	}
-	*/
+	
 	
 	
 	public ArrayList<Review> selectReviewListByMem(Connection conn, String memNo) {
