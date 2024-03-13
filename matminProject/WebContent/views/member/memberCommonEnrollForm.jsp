@@ -1,5 +1,10 @@
+<%@page import="com.kh.location.model.vo.Location"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Location> locationList = (ArrayList<Location>)request.getAttribute("locationList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,11 +96,9 @@
 								서울특별시
 								<select name="address" id="selectAddress">
 									<option value="">선택안함</option>
-									<option>강남구</option>
-									<option>강북구</option>
-									<option>강서구</option>
-									<option>강동구</option>
-									<option>관악구</option>
+									<% for(int i = 0; i < locationList.size(); i++) { %>
+				                    	<option><%= locationList.get(i).getLocalName() %></option>
+				                    <% } %>
 								</select>
 							</td>
 						</tr>

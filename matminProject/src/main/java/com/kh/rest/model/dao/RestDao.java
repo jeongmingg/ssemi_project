@@ -87,17 +87,21 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage()-1)* pi.getBoardLimit() +1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Rest(rset.getString("rest_No"),
-									rset.getString("rest_Local_Id"),
-									rset.getString("rest_Name"),
-									rset.getString("ctg_Id"),
-									rset.getString("rest_Address"),
-									rset.getString("rest_Tel"),
-									rset.getInt("rest_Grade")));
+				list.add(new Rest(rset.getString("rest_no"),
+									rset.getString("local_name"),
+									rset.getString("rest_name"),
+									rset.getString("ctg_name"),
+									rset.getString("rest_address"),
+									rset.getString("rest_tel"),
+									rset.getInt("rest_avg")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,7 +111,6 @@ public class RestDao {
 		}
 		
 		return list;
-		
 		
 	}
 	
@@ -223,7 +226,8 @@ public class RestDao {
 			pstmt.setString(5, r.getRestTime());
 			
 			result = pstmt.executeUpdate();
-			
+			System.out.println("Dao의 " + r);
+			System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -380,8 +384,74 @@ public class RestDao {
 		}
 		
 		return list;
+	}
+	
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName){
 		
+		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("locationSearch");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			
+			if(locationName.equals("전체")) {
+				pstmt.setString(4, "");
+			}else {
+				pstmt.setString(4, locationName);
+			}
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				lcList.add(new Rest(rset.getString("rest_no"),
+						  rset.getString("rest_name"),
+						  rset.getDouble("rest_avg"),
+						  rset.getInt("heart"),
+						  rset.getString("rest_img_url"),
+						  rset.getString("rest_address"),
+						  rset.getString("local_name"),
+						  rset.getString("menu_name"),
+						  rset.getInt("review_count"),
+						  rset.getString("rep_menu")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return lcList;
+
+	}
+	
+	public int updateRest(Connection conn, Rest r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateRest");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRestName());
+			pstmt.setString(2, r.getRestTime());
+			pstmt.setString(3, r.getRestAddress());
+			pstmt.setString(4, r.getRestTel());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }
 	

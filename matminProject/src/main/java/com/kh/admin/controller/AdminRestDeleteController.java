@@ -1,28 +1,23 @@
-package com.kh.member.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.location.model.vo.Location;
-import com.kh.member.model.service.MemberService;
-
 /**
- * Servlet implementation class MemberMyPageFormController
+ * Servlet implementation class AdminRestDeleteController
  */
-@WebServlet("/myPage.me")
-public class MemberMyPageFormController extends HttpServlet {
+@WebServlet("/delete.rs")
+public class AdminRestDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberMyPageFormController() {
+    public AdminRestDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +26,8 @@ public class MemberMyPageFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ArrayList<Location> list = new MemberService().selectLocationList();
-		
-		request.setAttribute("locationList", list);
-		request.getRequestDispatcher("views/member/memberMyPage.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

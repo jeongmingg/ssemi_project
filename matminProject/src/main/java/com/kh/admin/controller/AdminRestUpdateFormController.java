@@ -1,28 +1,27 @@
-package com.kh.member.controller;
+package com.kh.admin.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.location.model.vo.Location;
-import com.kh.member.model.service.MemberService;
+import com.kh.common.model.vo.Attachment;
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class MemberMyPageFormController
+ * Servlet implementation class AdminRestUpdateFormController
  */
-@WebServlet("/myPage.me")
-public class MemberMyPageFormController extends HttpServlet {
+@WebServlet("/updateForm.rs")
+public class AdminRestUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberMyPageFormController() {
+    public AdminRestUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +31,15 @@ public class MemberMyPageFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Location> list = new MemberService().selectLocationList();
+		String restNo= request.getParameter("rno");
 		
-		request.setAttribute("locationList", list);
-		request.getRequestDispatcher("views/member/memberMyPage.jsp").forward(request, response);
+		RestService rService = new RestService();
+		
+		Rest r = rService.selectRest(restNo);
+		
+		
+		request.setAttribute("r", r);
+		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

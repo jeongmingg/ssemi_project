@@ -129,7 +129,7 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateForm.rs" method="post">
+        <form id="form" action="<%=contextPath %>/updateRest.ad" method="post">
 
             <table>
                 <tr>
@@ -169,8 +169,8 @@
             <br><br>
 
             <div align="center">
-                <a href="<%= contextPath %>/updateForm.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
-				<a href="<%= contextPath %>/delete.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
+                <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
+				<a href="<%= contextPath %>/rest.ad?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
 				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
             </div>
 
