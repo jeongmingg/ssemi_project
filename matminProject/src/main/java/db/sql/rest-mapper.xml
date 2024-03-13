@@ -264,4 +264,76 @@
 			  JOIN CATEGORY USING (CTG_ID)
 			 WHERE CTG_NAME LIKE '%'|| ? ||'%'
 		</entry>
+		
+		<entry key="locationSearch">
+			SELECT
+			       REST_NO
+			     , REST_NAME
+			     , NVL(ROUND(REST_AVG, 1), 0) "REST_AVG"
+			     , NVL(HEART,0) "HEART"
+			     , REST_IMG_URL
+			     , REST_ADDRESS
+			     , LOCAL_NAME
+			     , MENU_NAME
+			     , REVIEW_COUNT
+			     , REP_MENU
+			  FROM (
+			        SELECT
+			               REST_NO
+			             , REST_NAME
+			             , AVG(REVIEW_AVG) "REST_AVG"
+			             , REST_IMG_URL
+			             , REST_ADDRESS
+			             , LOCAL_NAME
+			             , MENU_NAME
+			             , REP_MENU
+			          FROM (
+			               SELECT
+			                      REST_NO
+			                    , REST_NAME
+			                    , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
+			                    , REST_IMG_URL
+			                    , REST_ADDRESS
+			                    , LOCAL_NAME
+			                    , MENU_NAME
+			                    , REP_MENU
+			                 FROM REST
+			                 LEFT JOIN REVIEW USING(REST_NO)
+			                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
+			                 LEFT JOIN MENU USING(REST_NO)
+			               )
+			         GROUP
+			            BY REST_NO
+			             , REST_NAME
+			             , REST_IMG_URL
+			             , REST_ADDRESS
+			             , LOCAL_NAME
+			             , MENU_NAME
+			             , REP_MENU
+			        )
+			  LEFT JOIN (
+			            SELECT
+			                   REST_NO
+			                 , COUNT(*) "HEART"
+			              FROM HEART
+			             GROUP
+			                BY REST_NO
+			            ) USING(REST_NO)
+			  LEFT JOIN (
+			            SELECT
+			                   REST_NO
+			                 , COUNT(*) "REVIEW_COUNT"
+			              FROM REVIEW
+			             GROUP
+			                BY REST_NO
+			            ) USING(REST_NO)           
+			 WHERE (
+					 REST_NAME LIKE '%' || ? || '%'
+				     OR LOCAL_NAME LIKE '%' || ? || '%'
+				     OR MENU_NAME LIKE '%' || ? || '%'
+				   )
+			AND LOCAL_NAME LIKE '%' || ? || '%'
+			 ORDER
+			    BY REST_AVG DESC, REVIEW_COUNT DESC
+		</entry>
 </properties>

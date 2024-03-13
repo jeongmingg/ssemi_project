@@ -381,8 +381,54 @@ public class RestDao {
 		}
 		
 		return list;
+	}
+	
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName){
 		
+		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("locationSearch");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+			pstmt.setString(3, keyword);
+			
+			if(locationName.equals("전체")) {
+				pstmt.setString(4, "");
+			}else {
+				pstmt.setString(4, locationName);
+			}
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				lcList.add(new Rest(rset.getString("rest_no"),
+						  rset.getString("rest_name"),
+						  rset.getDouble("rest_avg"),
+						  rset.getInt("heart"),
+						  rset.getString("rest_img_url"),
+						  rset.getString("rest_address"),
+						  rset.getString("local_name"),
+						  rset.getString("menu_name"),
+						  rset.getInt("review_count"),
+						  rset.getString("rep_menu")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return lcList;
+
 	}
 }
 	
