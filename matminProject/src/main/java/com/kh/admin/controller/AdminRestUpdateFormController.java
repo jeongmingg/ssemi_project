@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.model.vo.Attachment;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 
@@ -33,7 +34,9 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		String restNo= request.getParameter("rno");
 		
 		RestService rService = new RestService();
+		
 		Rest r = rService.selectRest(restNo);
+		
 		
 		request.setAttribute("r", r);
 		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);

@@ -108,13 +108,25 @@ public class RestService {
 		return list;
 		
 	}
-	
-
 	public int updateRest(Rest r, Attachment at) {
 		Connection conn = getConnection();
-		
-		return 0;
-	}
+		int result = new RestDao().updateRest(conn,r);
+//		int result2= 1;
+//		if(at != null) {
+//			if(at.getRefNo() != null) {
+//				result2 = new RestDao().updateAttFile(conn,at);
+//			}else {
+//				result2 = new RestDao().insertUpdateAttFile(conn,at);
+//			}
+//		}
+//		if(result1 >0 && result2 >0) {
+//			commit(conn);
+//		}else {
+			rollback(conn);
+			close(conn);
+			return result;
+		}
+	
 
 
 	public ArrayList<Rest> locationSearch(String keyword, String locationName){

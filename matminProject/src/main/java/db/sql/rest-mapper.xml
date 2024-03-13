@@ -103,16 +103,25 @@
 	</entry>
 
 	<entry key="selectAllRestList">
-		SELECT  
-			REST_NO
-			,REST_LOCAL_ID
-			,REST_NAME
-			,CTG_ID
-			,REST_ADDRESS
-			,REST_TEL
-			,REST_GRADE
-		FROM REST
-			WHERE REST_STATUS = 'Y'
+		SELECT *
+    FROM (
+        SELECT ROWNUM RNUM , A.*
+        FROM(
+        SELECT
+            REST_NO
+            ,LOCAL_NAME
+            ,REST_NAME
+            ,CTG_NAME
+            ,REST_ADDRESS
+            ,REST_TEL
+            ,REST_AVG
+        FROM REST R
+        JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+        JOIN CATEGORY USING (CTG_ID)
+        WHERE R.REST_STATUS = 'Y'
+            ) A
+            )
+            WHERE RNUM BETWEEN ? AND ?
 		
 		</entry>
 	

@@ -129,7 +129,7 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateRest.ad" method="post">
+        <form id="form" action="<%=contextPath %>/updateForm.rs" method="post">
 
             <table>
                 <tr>

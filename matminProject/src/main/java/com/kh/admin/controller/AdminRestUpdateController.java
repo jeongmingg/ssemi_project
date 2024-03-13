@@ -52,9 +52,9 @@ public class AdminRestUpdateController extends HttpServlet {
 			
 			Rest r = new Rest();
 			r.setRestName(restName);
+			r.setRestTime(restTime);
 			r.setRestAddress(restAddress);
 			r.setRestTel(restTel);
-			r.setRestTime(restTime);
 			
 			Attachment at = null;
 			
@@ -63,7 +63,7 @@ public class AdminRestUpdateController extends HttpServlet {
 //				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 //				
 //				at = new Attachment();
-//				at.setOriginName(multiRequest.getOriginalFileName("file"));
+//				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
 //				at.setChangeName("upfile");
 //				at.setFilePath("resources/board_upfiles/");
 //				at.setFileNo(restNo);
@@ -79,20 +79,20 @@ public class AdminRestUpdateController extends HttpServlet {
 		
 		int result = new RestService().updateRest(r, at);
 		
-		if(result > 0) {
-			System.out.println("here");
-			request.setAttribute("at", at);
-			System.out.println(request.getAttribute("at"));
+		//if(result > 0) {
+//			System.out.println("here");
+//			request.setAttribute("at", at);
+//			System.out.println(request.getAttribute("at"));
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + restNo);
+			response.sendRedirect(request.getContextPath() + "/rest.ad?rno=" + restNo);
 		} else {
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}
 		}
-	}
+	//}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
