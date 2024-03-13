@@ -231,6 +231,7 @@
 	        JOIN MENU USING (REST_NO)
 	       WHERE REST_NO = ?
 	         AND REST_STATUS = 'Y'
+	         AND REVIEW_STATUS = 'Y'
 	       GROUP
 	          BY REST_NO
 	           , REST_NAME

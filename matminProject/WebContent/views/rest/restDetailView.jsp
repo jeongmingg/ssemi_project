@@ -29,6 +29,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 </head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -126,7 +127,7 @@
 		color: white;
 		width: 80px;
 		height: 30px;
-		background: url(https://img.icons8.com/material-rounded/96/FFFFFF/thumbs-down.png) no-repeat;
+		background: url(https://img.icons8.com/fluency-systems-filled/48/FFFFFF/share-3.png) no-repeat;
 		background-size: 20px;
 		padding-left: 18px;
 		position: relative;
@@ -622,6 +623,11 @@
 		margin-right: 150px;
 	}
 
+	#share-ctg{
+		display: flex;
+		margin-top: 25px;
+    	margin-left: 10px;
+	}
 	.modal-content {
 		margin: auto;
 		display: block;
@@ -659,6 +665,9 @@
 		cursor: pointer;
 		}
 
+	#share-ctg > a{
+		text-decoration: none;
+	}
 	/* 리뷰작성 모달 스타일 */
 	.modal-content {
 		text-align: center;
@@ -723,6 +732,9 @@
 		margin-left: 105px;
 	}
 
+	.share-title{
+		margin-top: 30px;
+	}	
 </style>
 
 <body>
@@ -767,26 +779,29 @@
 		<!--공유하기 모달-->
 		
 		<div id="shareModal" class="modal">
-            <div class="modal-content" id="share-modal" style="height: 200px; width: 500px; align-items: center;">
+            <div class="modal-content" id="share-modal" style="height: 250px; width: 500px; align-items: center;">
                 <div class="modal-content-detail">
                     <span id="share-close-btn" class="close" style="color: gray;">&times;</span>
-                    <div id="share-ctg" style="display: flex;">
-                        <a href="" id="kakao" style="margin: auto; margin-top: 50px; margin-right:70px; cursor: pointer;" >
-                            <div style="padding-left: 50px;">
+				</div>
+				<div class="share-title">
+				<h4>공유하기</h4>
+				</div>
+                    <div id="share-ctg">
+                        <a href="" class="kakao" style="margin: auto; margin-right:70px; cursor: pointer;" >
+                            <div style="padding-left: 43px;">
                             <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-free-instant-messaging-app-for-cross-platform-devices-logo-color-tal-revivo.png" width="80px" height="80px">
                             </div>
                             <div id="kakao_btn">
-                                카카오톡 공유
+                                카카오톡
                             </div>
                         </a>
-                        <a href="" id="normal" style="margin: auto; margin-top: 40px; margin-right:95px">
-                            <img src="https://img.icons8.com/sf-regular/192/FAB005/share.png" style="margin-left: 25px;" width="90px" height="90px">
+                        <a href="#" class="normal" style="margin: auto; margin-right:60px" onclick={copyurl}>
+                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="80px" height="80px">
                             <div id="normal_btn">
-                                링크공유
+                                링크
                             </div>
                         </a>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -1039,23 +1054,27 @@
 		<%@ include file="../common/footer.jsp" %>		
 
 
-	<!-- 리뷰 조회 ajax -->
+		<!-- 현재 url 링크 복사 -->
+		<script>
+			 $(".normal").click(function(){
+				const url = window.location.href; // 현재 링크를 가져옴
 
-	<script>
-		$(function(){	
-			
-		})
-	</script>
+				// 클립보드 복사해주는 메소드
+				navigator.clipboard.writeText(url).then(()=>{ // 클립보드에 복사가 완료되면 콜백함수 실행
+					alert("📌 식당의 링크가 클립보드에 복사되었습니다");
+				})
+
+			})
+		</script>
 	
-
+	
+	<!-- 리뷰 조회 ajax -->
 
 	<script>
 	
 		$(function(){
 		    selectReviewList(); 
 		    
-		   
-        	setInterval(selectReviewList, 50000);
 		})
 	
 		function selectReviewList(){
@@ -1099,8 +1118,11 @@
 										<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
 		               					<input type ="hidden" class="reviewNo" value=\${rvno}>
 		               				
+		               				<!-- 로그인시에만 삭제버튼 보이게 1차 제어-->
 		               				<% if (loginUser != null ) { %>
+		               					<!-- 현재 로그인한 유저의 닉네임을 가져옴 -->
 									    <input type="hidden" class="serverNickname" value="<%= loginUser.getNickname() %>">
+									    <!-- 리뷰를 작성한 유저의 닉네임을 가져옴 -->
 									    <input type="hidden" class="rvname" value=\${rvname}>
 		                             	<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
 		                  			<% } %>
@@ -1127,20 +1149,25 @@
 						</div>
 						<br>`
 		            }
-
+					
+		        // 리뷰 div에 ajax로 넘어온 값 전체 넣어줌 
 				$(".review-detail").html(value);
 				
-				 $(".delete-review").each(function() {
-					    var rvname = $(this).siblings('.rvname').val();
-					    console.log("rvname :" + rvname);
+				// 리뷰 삭제 로그인시에만 가능하게끔 
+				 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
 					    
-					    var serverNickname = $(this).siblings().eq(1).val()
+					 	// 리뷰작성자 닉네임을 변수에 담음
+					 	var rvname = $(this).siblings('.rvname').val();
+					    console.log("rvname :" + rvname);
+
+					 	// 현재 로그인한 유저의 닉네임을 변수에 담음
+					    var serverNickname = $(this).siblings('.serverNickname').val()
 					    console.log("serverNIckname :" + serverNickname);
 					    
 					    if (serverNickname === rvname) {
-					        $(this).show(); // Show the delete button if the condition is met
+					        $(this).show(); // 같으면 삭제버튼 보여짐
 					    } else {
-					    	$(this).hide();
+					    	$(this).hide(); // 다르면 삭제버튼 안보여짐
 					    }
 					});
 				    
@@ -1169,6 +1196,7 @@
 							alert("성공적으로 삭제됐습니다!");
 						}
 						console.log("ajax 통신성공!")
+						selectReviewList();
 					}, error:function(){
 						console.log("삭제오류 ajax통신오류")
 					}
@@ -1187,16 +1215,16 @@
 		printRatingResult(ratingResult);
 		
 		function executeRating(stars, result) {
-			const starClassActive = "rating__star fas fa-star";
-				const starClassUnactive = "rating__star far fa-star";
+				const starClassActive = "rating__star fas fa-star"; // 비어있는별
+				const starClassUnactive = "rating__star far fa-star"; // 색칠된별
 				const starsLength = stars.length;
 				let i;
 				stars.map((star) => {
 					star.onclick = () => {
-						i = stars.indexOf(star);
+						i = stars.indexOf(star); // 클릭된별의 인덱스
 						
 						if (star.className.indexOf(starClassUnactive) !== -1) {
-							printRatingResult(result, i + 1);
+							printRatingResult(result, i + 1); 
 							for (i; i >= 0; --i) stars[i].className = starClassActive;
 						} else {
 							printRatingResult(result, i);
@@ -1207,35 +1235,31 @@
 			}
 			
 			function printRatingResult(result, num = 0) {
-				result.textContent = `${num}/5`;
 			}
-			
 			executeRating(ratingStars, ratingResult);
 	</script>	
 
-	<!-- 리뷰 별 클릭시 -->
+	<!-- 리뷰 별 클릭된 value값 -->
 	<script>
 		 function reviewstar(element) {
 			 console.log("!");
         // 별점을 선택한 값으로 업데이트
         	var score = $(element).attr('value');
-        	console.log(score);
 
 			$(element).siblings("input").val(score);  	     	
 		 }
 	</script>
 
 
-	<!-- 리뷰 인서트 -->
+	<!-- 리뷰 인서트시 로그인 유저만 사용하게 제어 -->
 
 		<script>
-			$(function() {
-				
-				let loginUser = '<%= loginUser.getMemNo() %>';
-				
-				if(!loginUser){
+			$(function() {				
+
+				if(<%= loginUser %> === null){
 					$("#btn-review").click(function(){
-						alert("로그인 후 이용해주세요!");    			
+						alert("로그인 후 이용해주세요!");    
+						window.location.href = "<%= contextPath %>/loginForm.me";
 					})
 				}else{
 					$("#review-sub").click(function() {
@@ -1247,10 +1271,7 @@
 		</script>
 	
 
-	<!--리뷰 삭제 로그인시에만 가능하게끔 --> 
-	
-
-	<!-- 리뷰 인서트시 리뷰작성글 제한 -->
+	<!-- 리뷰 인서트시 리뷰작성시 글자수 제한 보여줌 -->
 	<script>
 		$(function(){
        		 $("#review-write").keyup(function(){ 
