@@ -183,7 +183,10 @@ function boardList(memNo) {
 
       $(".list-area tbody tr").click(function () {
         var boardNo = $(this).find("td:first").text();
-        location.href = "/mm/detail.bo?bno=" + boardNo;
+
+        if(boardNo !== "작성한 게시글이 없습니다.") {
+          location.href = "/mm/detail.bo?bno=" + boardNo;
+        }
       });
     },
     error: function () {
@@ -271,11 +274,6 @@ function reviewList(memNo) {
 
       $("#myReview>span").text("총 " + result.length + "개");
       $("#myReview>div").html(str);
-
-      // $(".list-area tbody tr").click(function(){
-      //     var boardNo = $(this).find('td:first').text();
-      //     location.href = '/mm/detail.bo?bno=' + boardNo;
-      // });
     },
     error: function () {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
@@ -292,7 +290,7 @@ function markList(memNo) {
       let str = "";
       if (result.length == 0) {
         str += `<tr>
-                  <td colspan="3">조회된 결과가 없습니다. 다시 검색해주세요!</td>
+                  <td colspan="3">찜꽁한 맛집이 없습니다.</td>
                   </tr>
                   <tr>
                   <td colspan="3"><hr /></td>
@@ -329,10 +327,6 @@ function markList(memNo) {
       $("#myMark>span").text("총 " + result.length + "개");
       $("#myMark>table").html(str);
 
-      // $(".list-area tbody tr").click(function(){
-      //     var boardNo = $(this).find('td:first').text();
-      //     location.href = '/mm/detail.bo?bno=' + boardNo;
-      // });
     },
     error: function () {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
