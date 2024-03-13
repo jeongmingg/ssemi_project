@@ -109,9 +109,21 @@ public class RestService {
 		
 	}
 	
+
 	public int updateRest(Rest r, Attachment at) {
 		Connection conn = getConnection();
 		
 		return 0;
 	}
+
+
+	public ArrayList<Rest> locationSearch(String keyword, String locationName){
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> lcList = new RestDao().locationSearch(conn, keyword, locationName);
+		
+		close(conn); 
+		return lcList;
+	}
 }
+

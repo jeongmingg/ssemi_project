@@ -129,6 +129,21 @@ public class Rest {
 		this.ctgName = ctgName;
 	}
 
+	public Rest(String restNo, String restName, double restAvg, int heart, String restImgUrl, String restAddress,  
+			String localName, String menuName, int reviewCount, String repMenu) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.heart = heart;
+		this.restImgUrl = restImgUrl;
+		this.restAddress = restAddress;
+		this.localName = localName;
+		this.menuName = menuName;
+		this.reviewCount = reviewCount;
+		this.repMenu = repMenu;
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}
