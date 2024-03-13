@@ -14,6 +14,7 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
+import com.kh.common.model.vo.Location;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
@@ -452,6 +453,31 @@ public class RestDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+
+	public ArrayList<Location> selectLocationList(Connection conn){
+		ArrayList<Location> lList = new ArrayList<Location>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLocationList");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+					lList.add(new Location(rset.getString("local_id"),
+											rset.getString("local_name")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return lList;
 	}
 }
 	

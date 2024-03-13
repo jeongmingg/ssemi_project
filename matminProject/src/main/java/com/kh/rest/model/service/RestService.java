@@ -7,6 +7,7 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
+import com.kh.common.model.vo.Location;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.dao.RestDao;
 import com.kh.rest.model.vo.Rest;
@@ -136,6 +137,15 @@ public class RestService {
 		
 		close(conn); 
 		return lcList;
+	}
+	
+	public ArrayList<Location> selectLocationList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Location> lList = new RestDao().selectLocationList(conn);
+		
+		close(conn);
+		return lList;
 	}
 }
 
