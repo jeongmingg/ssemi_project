@@ -173,4 +173,12 @@ public class MemberService {
 		return result;
 	}
 	
+	public Member selectMember(String userId) {
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().selectMember(conn, userId);
+		close(conn);
+		return m;
+	}
+	
 }

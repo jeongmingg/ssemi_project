@@ -71,15 +71,19 @@ public class RestService {
 	}
 	
 	public int insertRest(Rest r, Attachment at ) {
-		
 		Connection conn = getConnection();
-		int result = new RestDao().insertRest(conn, r);
-		 if (result > 0){
+		int result1 = new RestDao().insertRest(conn, r);
+		int result2 = 1;
+		if (at !=null){
+			result2 = new RestDao().insertRestAt(conn,at);
+		}
+		if (result1> 0 && result2>0) {
 			 commit(conn);
 		 }else {
 			 rollback(conn);
 		 }
-		 return result;
+		close(conn);
+		 return result1*result2;
 		
 	}
 	
@@ -101,5 +105,14 @@ public class RestService {
 		close(conn); 
 		return list;
 		
+	}
+	
+	public ArrayList<Rest> locationSearch(String keyword, String locationName){
+		
+		Connection conn = getConnection();
+		ArrayList<Rest> lcList = new RestDao().locationSearch(conn, keyword, locationName);
+		
+		close(conn); 
+		return lcList;
 	}
 }
