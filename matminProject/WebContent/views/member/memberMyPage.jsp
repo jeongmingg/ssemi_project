@@ -179,11 +179,15 @@
 			
 					<!-- Modal body -->
 					<div class="modal-body">
-						<form action="#">
+						<form action="<%= contextPath %>/updatePwd.me" method="post">
+							<input type="hidden" name="memNo" value="<%= memNo %>">
 							<table id="changePwdTB">
 								<tr>
-									<td>현재 비밀번호</td>
-									<td><input type="password" name="currentPwd"></td>
+									<td width="120">현재 비밀번호</td>
+									<td width="210">
+										<input type="password" name="currentPwd">
+										<span id="currentPwdMsg" class="message" style="display: none"></span>
+									</td>
 								</tr>
 								<tr>
 									<td>새 비밀번호</td>
@@ -195,11 +199,12 @@
 								<tr>
 									<td>새 비밀번호 확인</td>
 									<td>
-										<input type="password">
+										<input type="password" id="newPwdCheck">
 										<span id="newPwdCheckMsg" class="message" style="display: none"></span>
 									</td>
 								</tr>
 							</table>
+							<button class="btn btn-sm btn-secondary" type="submit" onclick="return modalValidate();">변경</button>
 						</form>
 					</div>
 			
