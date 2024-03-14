@@ -47,15 +47,11 @@
 		function updateMapData(data) {
 			listData = data;
 			
-			for(var i = 0; i < markers.length; i++) {
-				markers[i].setMap(null);
-			}
+			markers.forEach(item => item.setMap(null));
 			
 			markers = [];
 			
-			for (var i = 0; i < listData.length; i++) {
-	            searchAddressAndSetMarker(listData[i].split(',')[0]);
-	        }
+			listData.forEach(item => searchAddressAndSetMarker(item.split(',')[0]));
 		}
 
 		function searchAddressAndSetMarker(address) {
