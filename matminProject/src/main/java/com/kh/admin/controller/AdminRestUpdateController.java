@@ -48,7 +48,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			String restName = multiRequest.getParameter("restName");
 			String restAddress = multiRequest.getParameter("address");
 			String restTel = multiRequest.getParameter("phone");
-			String restTime = multiRequest.getParameter("busHour");
+			String restTime = multiRequest.getParameter("bizHour");
 			
 			Rest r = new Rest();
 			r.setRestName(restName);
