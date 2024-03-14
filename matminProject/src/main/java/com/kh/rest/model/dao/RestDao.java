@@ -386,7 +386,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName){
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName, String categoryName){
 		
 		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
@@ -402,10 +402,17 @@ public class RestDao {
 			pstmt.setString(2, keyword);
 			pstmt.setString(3, keyword);
 			
-			if(locationName.equals("전체")) {
-				pstmt.setString(4, "");
+			if(locationName != null || categoryName != null) {
+				if(!(locationName.equals("전체")) || !(categoryName.equals("전체"))) {
+					pstmt.setString(4, locationName);
+					pstmt.setString(5, categoryName);
+				}else {
+					pstmt.setString(4, "");
+					pstmt.setString(5, "");
+				}
 			}else {
-				pstmt.setString(4, locationName);
+				pstmt.setString(4, "");
+				pstmt.setString(5, "");
 			}
 			
 			rset= pstmt.executeQuery();
@@ -420,7 +427,8 @@ public class RestDao {
 						  rset.getString("local_name"),
 						  rset.getString("menu_name"),
 						  rset.getInt("review_count"),
-						  rset.getString("rep_menu")));
+						  rset.getString("rep_menu"),
+						  rset.getString("ctg_name")));
 			}
 			
 		} catch (SQLException e) {

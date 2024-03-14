@@ -130,7 +130,7 @@ public class Rest {
 	}
 
 	public Rest(String restNo, String restName, double restAvg, int heart, String restImgUrl, String restAddress,  
-			String localName, String menuName, int reviewCount, String repMenu) {
+			String localName, String menuName, int reviewCount, String repMenu, String ctgName) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
@@ -142,6 +142,7 @@ public class Rest {
 		this.menuName = menuName;
 		this.reviewCount = reviewCount;
 		this.repMenu = repMenu;
+		this.ctgName = ctgName;
 	}
 
 	public String getRestNo() {
