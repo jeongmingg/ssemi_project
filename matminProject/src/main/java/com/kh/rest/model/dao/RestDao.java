@@ -343,7 +343,7 @@ public class RestDao {
 		}finally {
 			close(pstmt);
 		}
-		return 0;
+		return result;
 		
 	}
 	
