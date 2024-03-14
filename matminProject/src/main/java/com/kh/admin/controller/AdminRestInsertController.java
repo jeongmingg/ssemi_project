@@ -47,18 +47,23 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
+		String restLocation = multiRequst.getParameter("location");
 		String restName = multiRequst.getParameter("restName");
 		String ctgId = multiRequst.getParameter("category");
 		String restAddress = multiRequst.getParameter("address");
-		String restTel = multiRequst.getParameter("restNo");
-		String restTime = multiRequst.getParameter("busHour");
+		String restTel = multiRequst.getParameter("phone");
+		String parking = multiRequst.getParameter("parking");
+		String restTime = multiRequst.getParameter("bizHour");
+		String restimg = multiRequst.getParameter("imige");
+		String drivethrue = multiRequst.getParameter("drivethrue");
+		String comAnimal = multiRequst.getParameter("comAnimal");
+		String privaterm = multiRequst.getParameter("prroom");
+		String largerm = multiRequst.getParameter("largerm");
 		
-		Rest r = new Rest();
-		r.setRestName(restName);
-		r.setCtgId(ctgId);
-		r.setRestAddress(restAddress);
-		r.setRestTel(restTel);
-		r.setRestTime(restTime);
+		
+		
+		Rest r = new Rest(restLocation,restName, ctgId, restTime,restAddress,restTel,parking,restimg,drivethrue,comAnimal,privaterm,largerm);
+		
 		
 		System.out.println("컨트롤러의 " + r);
 		Attachment at = null;

@@ -191,15 +191,19 @@
 			INTO REST
 			(
 			REST_NO
+			,REST_LOCAL_ID
 			,REST_NAME
 			,CTG_ID
 			,REST_ADDRESS
 			,REST_TEL
-			,REST_TIME			
+			,REST_TIME
+			,EXTRA			
 			)
 			VALUES
 			(
 			'R'||SEQ_RNO.NEXTVAL
+			,?
+			,?
 			,?
 			,?
 			,?
@@ -352,6 +356,20 @@
 		    LOCAL_ID
 		    ,LOCAL_NAME
 		FROM LOCATION
+		
+		</entry>
+		
+		<entry key="updateRest">
+			UPDATE 
+				REST
+			  SET REST_NAME = ?
+				,REST_TIME = ?
+				,REST_ADDRESS = ?
+				,REST_LOCATION = ?
+				,REST_TEL = ?
+				,REST_CTG = ?
+				,EXTRA = ?
+			WHERE REST_NO = ?
 		
 		</entry>
 		

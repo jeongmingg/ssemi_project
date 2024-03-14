@@ -144,6 +144,16 @@ public class Rest {
 		this.repMenu = repMenu;
 	}
 
+	public Rest(String restNo2, String restName2, String restTime2, String restAddress2, String restLocation,
+			String restTel2, String restCtg, String extra) {
+		
+	}
+
+	public Rest(String restLocation, String restName2, String ctgId2, String restTime2, String restAddress2,
+			String restTel2, String parking, String restimg, String drivethrue, String comAnimal, String privaterm,
+			String largerm) {
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}

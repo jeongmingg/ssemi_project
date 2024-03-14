@@ -147,5 +147,12 @@ public class RestService {
 		close(conn);
 		return lList;
 	}
+	
+	public Attachment selectAttachment(String restNo) {
+		Connection conn = getConnection();
+		Attachment at = new RestDao().selectAttachment(conn,restNo);
+		close(conn);
+		return at;
+	}
 }
 
