@@ -96,7 +96,7 @@ public class Rest {
 	
 	
 	public Rest(String restNo, String restName, String restAddress, String restTel, double restX, double restY,
-			String restParking, int restGrade, String restTime, double restAvg, String localName, int reviewCount,
+			String restParking, int restGrade, String restTime, double restAvg, String restImgUrl, String localName, int reviewCount,
 			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom, String ctgName) {
 		super();
 		this.restNo = restNo;
@@ -109,6 +109,7 @@ public class Rest {
 		this.restGrade = restGrade;
 		this.restTime = restTime;
 		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
 		this.localName = localName;
 		this.reviewCount = reviewCount;
 		this.menuName = menuName;

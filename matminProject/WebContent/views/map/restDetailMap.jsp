@@ -29,7 +29,7 @@
 	
 	<script>
 		var listData = <%= json %>;
-		
+
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center: new kakao.maps.LatLng(37.566535, 126.9779692), // 지도의 중심좌표 (서울시청)
@@ -42,10 +42,22 @@
 		// 마커들을 담을 배열
         var markers = [];
 		
-        for (var i = 0; i < listData.length; i++) {
-            searchAddressAndSetMarker(listData[i]);
-        }
-		
+        updateMapData(listData);
+        
+		function updateMapData(data) {
+			listData = data;
+			
+			for(var i = 0; i < markers.length; i++) {
+				markers[i].setMap(null);
+			}
+			
+			markers = [];
+			
+			for (var i = 0; i < listData.length; i++) {
+	            searchAddressAndSetMarker(listData[i].split(',')[0]);
+	        }
+		}
+
 		function searchAddressAndSetMarker(address) {
 			// 주소-좌표 변환 객체를 생성합니다
 			var geocoder = new kakao.maps.services.Geocoder();
@@ -58,8 +70,6 @@
 	
 					var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 	
-					console.log(1 + " : " + coords);
-					
 					// 결과값으로 받은 위치를 마커로 표시합니다
 					var marker = new kakao.maps.Marker({
 						map: map,

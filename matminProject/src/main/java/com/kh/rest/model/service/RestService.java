@@ -73,6 +73,8 @@ public class RestService {
 	public int insertRest(Rest r, Attachment at ) {
 		Connection conn = getConnection();
 		int result1 = new RestDao().insertRest(conn, r);
+		System.out.println("서비스의 " + r);
+		
 		int result2 = 1;
 		if (at !=null){
 			result2 = new RestDao().insertRestAt(conn,at);
@@ -106,7 +108,27 @@ public class RestService {
 		return list;
 		
 	}
+	public int updateRest(Rest r, Attachment at) {
+		Connection conn = getConnection();
+		int result = new RestDao().updateRest(conn,r);
+//		int result2= 1;
+//		if(at != null) {
+//			if(at.getRefNo() != null) {
+//				result2 = new RestDao().updateAttFile(conn,at);
+//			}else {
+//				result2 = new RestDao().insertUpdateAttFile(conn,at);
+//			}
+//		}
+//		if(result1 >0 && result2 >0) {
+//			commit(conn);
+//		}else {
+			rollback(conn);
+			close(conn);
+			return result;
+		}
 	
+
+
 	public ArrayList<Rest> locationSearch(String keyword, String locationName){
 		
 		Connection conn = getConnection();
@@ -116,3 +138,4 @@ public class RestService {
 		return lcList;
 	}
 }
+
