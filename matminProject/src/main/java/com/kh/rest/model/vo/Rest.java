@@ -145,14 +145,15 @@ public class Rest {
 		this.repMenu = repMenu;
 	}
 
-	public Rest(String restNo2, String restName2, String restTime2, String restAddress2, String restLocation,
-			String restTel2, String restCtg, String extra) {
-		
+	public Rest(String restLocation, String restName, String ctgId, String restAddress, String restTel,
+			String parking, String restTime, String drivethrou, String comAnimal, String prvRoom, String bigRoom) {
+		// TODO Auto-generated constructor stub
 	}
 
-	public Rest(String restLocation, String restName2, String ctgId2, String restTime2, String restAddress2,
-			String restTel2, String parking, String restimg, String drivethrue, String comAnimal, String privaterm,
-			String largerm) {
+	public Rest(String restNo, String restLocation, String restName, String ctgId, String restAddress,
+			String restTel, String parking, String restTime, String drivethrou, String comAnimal, String prvRoom,
+			String bigRoom) {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getRestNo() {

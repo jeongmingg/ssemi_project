@@ -43,7 +43,7 @@ public class AdminRestInsertController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
@@ -54,15 +54,14 @@ public class AdminRestInsertController extends HttpServlet {
 		String restTel = multiRequst.getParameter("phone");
 		String parking = multiRequst.getParameter("parking");
 		String restTime = multiRequst.getParameter("bizHour");
-		String restimg = multiRequst.getParameter("imige");
-		String drivethrue = multiRequst.getParameter("drivethrue");
+		String drivethrou = multiRequst.getParameter("drivethrou");
 		String comAnimal = multiRequst.getParameter("comAnimal");
-		String privaterm = multiRequst.getParameter("prroom");
-		String largerm = multiRequst.getParameter("largerm");
+		String prvRoom = multiRequst.getParameter("prvRoom");
+		String bigRoom = multiRequst.getParameter("bigRoom");
 		
 		
 		
-		Rest r = new Rest(restLocation,restName, ctgId, restTime,restAddress,restTel,parking,restimg,drivethrue,comAnimal,privaterm,largerm);
+		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
 		
 		
 		System.out.println("컨트롤러의 " + r);
@@ -82,7 +81,7 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?num=");
+			response.sendRedirect(request.getContextPath() + "/rest.ad?num="+ r.getRestNo());
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {
 			if(at != null) {

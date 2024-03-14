@@ -199,20 +199,20 @@ td input {
 				<tr>
 					<td>&nbsp;&nbsp;기타여부</td>
 					<td colspan="2">
-					<input type="checkbox" name="grade"id="parking" value="Y" /> 
-					<label for="parkng">주차</label> 
+					<input type="checkbox" name="extra" id="parking" value="Y" /> 
+					<label for="parking">주차</label> 
 					
-					<input type="checkbox" name="grade" id="drivethrough" value="Y" /> 
-					<label for="drivethrough">DT</label> 
+					<input type="checkbox" name="extra" id="drivethrou" value="Y" /> 
+					<label for="drivethrou">DT</label> 
 					
-					<input type="checkbox" name="grade" id="pet" value="Y" />
-					<label for="pet">반려동물</label> 
+					<input type="checkbox" name="extra" id="comAnimal" value="Y" />
+					<label for="comAnimal">반려동물</label> 
 					
-					<input type="checkbox" name="grade" id="prvRoom" value="Y" /> 
+					<input type="checkbox" name="extra" id="prvRoom" value="Y" /> 
 					<label for="prvRoom">개별룸</label> 
 					
-					<input type="checkbox" name="grade" id="" value="Y" />
-					<label for="third">대형룸</label> <br /></td>
+					<input type="checkbox" name="extra" id="bigRoom" value="Y" />
+					<label for="bigroom">대형룸</label> <br /></td>
 				</tr>
 			</table>
 
@@ -232,4 +232,4 @@ td input {
 	<%@ include file="../common/footer.jsp"%>
 </body>
 </html>
-</Category>
+

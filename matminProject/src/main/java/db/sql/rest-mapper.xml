@@ -196,12 +196,20 @@
 			,CTG_ID
 			,REST_ADDRESS
 			,REST_TEL
+			,REST_PARKING
 			,REST_TIME
-			,EXTRA			
+			,DT
+			,ANIMAL
+			,ROOM
+			,BIG_ROOM			
 			)
 			VALUES
 			(
 			'R'||SEQ_RNO.NEXTVAL
+			,?
+			,?
+			,?
+			,?
 			,?
 			,?
 			,?
@@ -365,13 +373,17 @@
 		<entry key="updateRest">
 			UPDATE 
 				REST
-			  SET REST_NAME = ?
-				,REST_TIME = ?
+			  SET 
+			  	REST_LOCAL_ID = ?
+			  	,REST_NAME = ?
+				,CTG_ID = ?
 				,REST_ADDRESS = ?
-				,REST_LOCATION = ?
 				,REST_TEL = ?
-				,REST_CTG = ?
-				,EXTRA = ?
+				,PARKING = ?
+				,REST_TIME = ?
+				,ANIMAL = ?
+				,ROOM = ?
+				,BIG_ROOM = ?
 			WHERE REST_NO = ?
 		
 		</entry>

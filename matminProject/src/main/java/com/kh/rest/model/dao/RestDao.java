@@ -225,11 +225,15 @@ public class RestDao {
 			pstmt.setString(3, r.getCtgId());
 			pstmt.setString(4, r.getRestAddress());
 			pstmt.setString(5, r.getRestTel());
-			pstmt.setString(6, r.getRestTime());
 			pstmt.setString(7, r.getRestParking());
+			pstmt.setString(6, r.getRestTime());
+			pstmt.setString(8, r.getDt());
+			pstmt.setString(9, r.getAnmial());
+			pstmt.setString(10, r.getRoom());
+			pstmt.setString(11, r.getBigRoom());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("Dao의 " + r);
+		//	System.out.println("Dao의 " + r);
 			System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -445,10 +449,17 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, r.getRestName());
-			pstmt.setString(2, r.getRestTime());
-			pstmt.setString(3, r.getRestAddress());
-			pstmt.setString(4, r.getRestTel());
+			
+			pstmt.setString(1, r.getRestLocalId());
+			pstmt.setString(2, r.getRestName());
+			pstmt.setString(3, r.getCtgId());
+			pstmt.setString(4, r.getRestAddress());
+			pstmt.setString(5, r.getRestTel());
+			pstmt.setString(6, r.getRestParking());
+			pstmt.setString(7, r.getRestTime());
+			pstmt.setString(8, r.getAnmial());
+			pstmt.setString(9, r.getRoom());
+			pstmt.setString(10, r.getBigRoom());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
