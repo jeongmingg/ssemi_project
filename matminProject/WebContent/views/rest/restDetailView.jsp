@@ -797,8 +797,8 @@
                                 카카오톡
                             </div>
                         </a>
-                        <a href="#" class="normal" style="margin: auto; margin-right:60px" onclick={copyurl}>
-                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="80px" height="80px">
+                        <a href="#" class="normal" style="margin: auto; margin-right:60px">
+                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="70px" height="70px">
                             <div id="normal_btn">
                                 링크
                             </div>
@@ -1067,8 +1067,6 @@
 		<script>
 		  function shareMessage() {
 			  
-			const imgUrl = '<%= r.getRestImgUrl() %>';		  
-			  
 		    Kakao.Share.sendDefault({
 		      objectType: 'feed',
 		      content: {
@@ -1085,16 +1083,13 @@
 		        {
 		          title: '웹으로 보기',
 		          link: {
-		            webUrl: window.location.href,
+		            webUrl: window.location.href, // 현재주소 불러오기
 		          },
 		        },
 		      ],
 		    });
 		  }
 		</script>
-
-
-
 
 
 		<!-- 현재 url 링크 복사 -->
