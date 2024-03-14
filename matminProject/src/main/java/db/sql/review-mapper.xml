@@ -83,6 +83,7 @@
 		  FROM REVIEW
 		 WHERE REST_NO = ?
 		   AND REVIEW_RATE IN (5, 4, 3, 2, 1)
+		    AND REVIEW_STATUS = 'Y'
 		 GROUP
             BY REVIEW_RATE
 	</entry>

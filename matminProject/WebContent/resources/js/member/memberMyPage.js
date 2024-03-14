@@ -28,6 +28,36 @@ $(function () {
       }
     }
   );
+
+  // 비밀번호 실시간 체크
+  $("input[name=newPwd]").on("propertychange change paste input", function() {
+    // 비밀번호: 영문(대소문자 구분), 숫자, 특수문자(!@#$%^&*) 포함 8자 이상 15자 이내
+    const regExp = /^[a-zA-Z\d!@#$%^&*]{8,15}$/;
+
+    const msg = $("#newPwdMsg");
+
+    if(!regExp.test($(this).val())) {
+        msg.css("display", "block");
+        msg.text("* 8~15자의 영문, 숫자, 특수기호(!@#$%^&*)만 사용 가능합니다.");
+    } else {
+        msg.css("display", "none");
+        msg.text("");
+    }
+  });
+
+// 비밀번호 확인 실시간 체크
+  $("#newPwdCheck").on("propertychange change paste input", function() {
+    // 비밀번호 확인: 위에 입력한 비밀번호와 동일한지 확인
+    const msg = $("#newPwdCheckMsg");
+
+    if($(this).val() != $("input[name=newPwd]").val()) {
+        msg.css("display", "block");
+        msg.text("* 입력한 비밀번호와 일치하지 않습니다.");
+    } else {
+        msg.css("display", "none");
+        msg.text("");
+    }
+  });
 });
 
 // 개인정보 수정하기 버튼 클릭 시, 유효성 검사
@@ -68,6 +98,51 @@ function validate() {
   }
 }
 
+// 변경 버튼 클릭 시, 유효성 검사
+function modalValidate() {
+  const currentPwdInput = $("input[name=currentPwd");
+  const newPwdInput = $("input[name=newPwd]");
+  const newPwdCheckInput = $("#newPwdCheck");
+
+  // 현재 비밀번호 : 비어 있으면 안 된다.
+  let msg = $("#currentPwdMsg");
+
+  if(currentPwdInput.val() === "") {
+    msg.css("display", "block");
+    msg.text("* 현재 비밀번호를 입력해주세요.");
+    
+    currentPwdInput.select();
+
+    return false;
+  }
+
+  // 비밀번호: 영문(대소문자 구분), 숫자, 특수문자(!@#$%^&*) 포함 8자 이상 15자 이내
+  regExp = /^[a-zA-Z\d!@#$%^&*]{8,15}$/;
+
+  msg = $("#newPwdMsg");
+
+  if(!regExp.test(newPwdInput.val())) {
+      msg.css("display", "block");
+      msg.text("* 8~15자의 영문, 숫자, 특수기호(!@#$%^&*)만 사용 가능합니다.");
+
+      newPwdInput.select();
+
+      return false;
+  }
+
+  // 비밀번호 확인: 위에 입력한 비밀번호와 동일한지 확인
+  msg = $("#newPwdCheckMsg");
+
+  if(newPwdCheckInput.val() != newPwdInput.val()) {
+      msg.css("display", "block");
+      msg.text("* 입력한 비밀번호와 일치하지 않습니다.");
+
+      newPwdCheckInput.select();
+
+      return false;
+  }
+}
+
 function boardList(memNo) {
   $.ajax({
     url: "boList.me",
@@ -76,7 +151,7 @@ function boardList(memNo) {
       let str = "";
       if (result.length == 0) {
         str +=
-          "<tr>" + "<td>" + "작성한 게시글이 없습니다." + "</td>" + "</tr>";
+          "<tr>" + "<td colspan='6'>" + "작성한 게시글이 없습니다." + "</td>" + "</tr>";
       } else {
         for (let i in result) {
           str +=

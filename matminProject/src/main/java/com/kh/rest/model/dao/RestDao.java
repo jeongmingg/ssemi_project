@@ -263,6 +263,7 @@ public class RestDao {
 						rset.getInt("rest_grade"),
 						rset.getString("rest_time"),
 						rset.getDouble("rest_avg"),
+						rset.getString("rest_img_url"),
 						rset.getString("local_name"),
 						rset.getInt("review_count"),
 						rset.getString("menu_name"),

@@ -228,6 +228,7 @@
 	           , REST_GRADE
 	           , REST_TIME
 	           , REST_AVG
+	           , REST_IMG_URL
 	           , LOCAL_NAME
 	           , COUNT(*) "REVIEW_COUNT"
 	           , MENU_NAME
@@ -244,6 +245,7 @@
 	        JOIN MENU USING (REST_NO)
 	       WHERE REST_NO = ?
 	         AND REST_STATUS = 'Y'
+	         AND REVIEW_STATUS = 'Y'
 	       GROUP
 	          BY REST_NO
 	           , REST_NAME
@@ -256,6 +258,7 @@
 	           , REST_GRADE
 	           , REST_TIME
 	           , REST_AVG
+	           , REST_IMG_URL
 	           , MENU_NAME
 	           , MENU_PRICE
 	           , DT
