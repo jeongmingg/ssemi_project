@@ -224,6 +224,7 @@
 	           , REST_GRADE
 	           , REST_TIME
 	           , REST_AVG
+	           , REST_IMG_URL
 	           , LOCAL_NAME
 	           , COUNT(*) "REVIEW_COUNT"
 	           , MENU_NAME
@@ -253,6 +254,7 @@
 	           , REST_GRADE
 	           , REST_TIME
 	           , REST_AVG
+	           , REST_IMG_URL
 	           , MENU_NAME
 	           , MENU_PRICE
 	           , DT
