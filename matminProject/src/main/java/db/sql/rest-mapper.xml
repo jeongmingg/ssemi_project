@@ -191,15 +191,27 @@
 			INTO REST
 			(
 			REST_NO
+			,REST_LOCAL_ID
 			,REST_NAME
 			,CTG_ID
 			,REST_ADDRESS
 			,REST_TEL
-			,REST_TIME			
+			,REST_PARKING
+			,REST_TIME
+			,DT
+			,ANIMAL
+			,ROOM
+			,BIG_ROOM			
 			)
 			VALUES
 			(
 			'R'||SEQ_RNO.NEXTVAL
+			,?
+			,?
+			,?
+			,?
+			,?
+			,?
 			,?
 			,?
 			,?
@@ -348,4 +360,32 @@
 			 ORDER
 			    BY REST_AVG DESC, REVIEW_COUNT DESC
 		</entry>
+		
+		<entry key="selectLocationList">
+		
+		SELECT 
+		    LOCAL_ID
+		    ,LOCAL_NAME
+		FROM LOCATION
+		
+		</entry>
+		
+		<entry key="updateRest">
+			UPDATE 
+				REST
+			  SET 
+			  	REST_LOCAL_ID = ?
+			  	,REST_NAME = ?
+				,CTG_ID = ?
+				,REST_ADDRESS = ?
+				,REST_TEL = ?
+				,PARKING = ?
+				,REST_TIME = ?
+				,ANIMAL = ?
+				,ROOM = ?
+				,BIG_ROOM = ?
+			WHERE REST_NO = ?
+		
+		</entry>
+		
 </properties>

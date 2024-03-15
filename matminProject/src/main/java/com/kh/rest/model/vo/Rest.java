@@ -145,6 +145,17 @@ public class Rest {
 		this.repMenu = repMenu;
 	}
 
+	public Rest(String restLocation, String restName, String ctgId, String restAddress, String restTel,
+			String parking, String restTime, String drivethrou, String comAnimal, String prvRoom, String bigRoom) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Rest(String restNo, String restLocation, String restName, String ctgId, String restAddress,
+			String restTel, String parking, String restTime, String drivethrou, String comAnimal, String prvRoom,
+			String bigRoom) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}

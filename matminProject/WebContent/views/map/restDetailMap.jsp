@@ -12,15 +12,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<style>
-		/* #map{
-			width: 1500px;
-			margin: auto;
-			margin-top: 50px;
-			margin-bottom: 50px;
-			text-align: center;
-		} */
-	</style>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=07b8e08ffb38a692cd2c2144e0dfa010&libraries=services,clusterer,drawing"></script>
 </head>
 <body>
@@ -47,15 +38,11 @@
 		function updateMapData(data) {
 			listData = data;
 			
-			for(var i = 0; i < markers.length; i++) {
-				markers[i].setMap(null);
-			}
+			markers.forEach(item => item.setMap(null));
 			
 			markers = [];
 			
-			for (var i = 0; i < listData.length; i++) {
-	            searchAddressAndSetMarker(listData[i].split(',')[0]);
-	        }
+			listData.forEach(item => searchAddressAndSetMarker(item.split(',')[0]));
 		}
 
 		function searchAddressAndSetMarker(address) {
