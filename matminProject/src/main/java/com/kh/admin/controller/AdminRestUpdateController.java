@@ -44,18 +44,20 @@ public class AdminRestUpdateController extends HttpServlet {
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
 			String restNo = (multiRequest.getParameter("rno"));
-			
+			String restLocation = multiRequest.getParameter("location");
 			String restName = multiRequest.getParameter("restName");
+			String ctgId = multiRequest.getParameter("category");
 			String restAddress = multiRequest.getParameter("address");
 			String restTel = multiRequest.getParameter("phone");
-			String restTime = multiRequest.getParameter("busHour");
+			String parking = multiRequest.getParameter("parking");
+			String restTime = multiRequest.getParameter("bizHour");
+			String drivethrou = multiRequest.getParameter("drivethrou");
+			String comAnimal = multiRequest.getParameter("comAnimal");
+			String prvRoom = multiRequest.getParameter("prvroom");
+			String bigRoom = multiRequest.getParameter("bigroom");
 			
-			Rest r = new Rest();
-			r.setRestName(restName);
-			r.setRestTime(restTime);
-			r.setRestAddress(restAddress);
-			r.setRestTel(restTel);
-			
+			Rest r = new Rest(restNo,restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
+				
 			Attachment at = null;
 			
 //			if(multiRequest.getOriginalFileName("upfile") != null) {
