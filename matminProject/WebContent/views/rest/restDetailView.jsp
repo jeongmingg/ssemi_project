@@ -7,6 +7,12 @@
     pageEncoding="UTF-8"%>
 
 <% Rest r = (Rest)request.getAttribute("r"); 
+
+	ArrayList<String> addrList = new ArrayList<String>();
+	if(r != null && r.getRestAddress() != null) {
+		addrList.add(r.getRestAddress());
+	}
+	request.setAttribute("addrList", addrList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
