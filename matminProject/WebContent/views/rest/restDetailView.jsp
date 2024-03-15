@@ -17,7 +17,8 @@
 	
    ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
-   
+   Review rvAvg = (Review)request.getAttribute("rv");
+   ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
 
 %>
 
@@ -230,7 +231,7 @@
 	.list-menu-detail>ul>div>li{
 		list-style: none;
 		border-bottom: dashed 0.8px gray; 
-		padding-top: 5px;
+		padding : 5px;
 	}
 
 	/* 메뉴 추천 버튼 스타일*/
@@ -277,6 +278,7 @@
 		margin: auto;
 		border-radius: 20px;
 		border: 3px solid rgb(216, 212, 212);
+		padding-bottom: 30px;
 	}
 
 	/* 리뷰 전체 스타일 */
@@ -762,13 +764,16 @@
 		<div class="rest-title">
 			<div class="rest-name">
 				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
-				<span class="score"><%= r.getRestAvg() %></span>
+				<span class="score"><%= rvAvg.getReviewAvg() %></span>
 			</div>
 				<span class="short-menu"><%= r.getCtgName() %></span>
 			<div class="rest-add">
 				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
 				<div class="heart-count-area">
-					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
+					<!-- 빈하트 -->
+					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px;"> 
+					<!-- 채워진 하트-->
+					<input type="hidden" img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;"> 
 					<span>찜꽁(20)</span>
 				</div>
 				<div class="btn-share-area">
@@ -839,48 +844,46 @@
 							<div class="list-menu-detail">
 								<ul>
 									<div class="menu-list-1">
+									<% 
+									    for (int i = 0; i < Math.min(mList.size(), 3); i++) { //최대 3개까지 보이게
+									%>
 										<li>
 											<p class="menu-item">
-												<span class="rest-menu"><%= r.getMenuName()%></span>
-												<span class="icon">추천</span>
-												<span class="menu-price"><%= r.getMenuPrice() %>원</span>
-											</p>
-									<!--  
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">감자샌드위치</span>
-												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
+												<span class="rest-menu"><%= mList.get(i).getMenuName() %></span>
+												<% if(mList.get(i).getRepMenu().equals("Y")) { %>
+													<span class="icon">추천</span>
+												<% } %>
+												<span class="menu-price"><%= mList.get(i).getMenuPrice() %>원</span>
 											</p>
 										</li>
-										</li>
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">치즈샌드위치</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
+									<% } %>
+									
 									</div>
+
 									<div class="list-menu-2">
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">토마토샌드위치</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">베이컨샌드위치</span>
-												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
+									
+									<% if(mList.size() > 3){ %>
+									
+										<% for(int i=3; i<mList.size(); i++){ %>
+											<li>
+												<p class="menu-item">
+													<span class="rest-menu"><%= mList.get(i).getMenuName() %></span>
+													<% if(mList.get(i).getRepMenu().equals("Y")) { %>
+														<span class="icon">추천</span>
+													<% } %>
+													<span class="menu-price"><%= mList.get(i).getMenuPrice() %>원</span>
+												</p>
+											</li>
+										<% } %>
+									<% } %>
 									</div>
-									-->
 									<!-- 버튼 클릭시 접기로 변경됨-->
-									<p class="r">
-										<span class="btn-more">더보기</span>
-									</p>
+									
+									<% if(mList.size() > 3){ %>
+										<p class="r">
+											<span class="btn-more">더보기</span>
+										</p>
+									<% } %>
 								</ul>
 							</div>
 						</div>
@@ -906,7 +909,7 @@
 							<span class="star">
 								<i style="width: <%= star %>%;"></i>
 							</span>
-							<div class="avg-num"><%= r.getRestAvg() %></div>
+							<div class="avg-num"><%= rvAvg.getReviewAvg() %></div>
 						
 					</div>
 					<div class="score-graph">
@@ -1071,12 +1074,12 @@
 		      objectType: 'feed',
 		      content: {
 		        title: '<%= r.getRestName() %>',
-		        description: '#<%= r.getCtgName() %> #<%= r.getMenuName() %> #<%= r.getLocalName() %> #서울맛집 #맛집의민족',
+		        description: '#<%= r.getCtgName() %> #대표메뉴 #<%= r.getLocalName() %> #서울맛집 #맛집의민족',
 		        imageUrl:
 		          '<%= r.getRestImgUrl() %>',
 		        link: {
 		          // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
-		          webUrl: 'http://localhost:8085',
+		          webUrl: '',
 		        },
 		      },
 		      buttons: [

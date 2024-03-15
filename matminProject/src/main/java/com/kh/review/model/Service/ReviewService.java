@@ -72,4 +72,13 @@ public class ReviewService {
 		return rate;
 		
 	}
+	
+	public Review selectReviewAvg(String rpage) {
+		Connection conn = getConnection();
+		
+		Review rv = new ReviewDao().selectReviewAvg(conn, rpage);
+		
+		close(conn);
+		return rv;
+	}
 }

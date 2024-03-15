@@ -254,8 +254,6 @@ public class RestDao {
 						rset.getString("rest_name"),
 						rset.getString("rest_address"),
 						rset.getString("rest_tel"),
-						rset.getDouble("rest_x"),
-						rset.getDouble("rest_y"),
 						rset.getString("rest_parking"),
 						rset.getInt("rest_grade"),
 						rset.getString("rest_time"),
@@ -263,8 +261,6 @@ public class RestDao {
 						rset.getString("rest_img_url"),
 						rset.getString("local_name"),
 						rset.getInt("review_count"),
-						rset.getString("menu_name"),
-						rset.getString("menu_price"),
 						rset.getString("dt"),
 						rset.getString("animal"),
 						rset.getString("room"),
@@ -453,6 +449,30 @@ public class RestDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public ArrayList<Rest> selectMenuList(Connection conn, String rpage){
+		ArrayList<Rest> mList = new ArrayList<Rest>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMenuList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				mList.add(new Rest(rset.getString("menu_name"),
+						           rset.getString("menu_price"),
+						           rset.getString("rep_menu")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return mList;
 	}
 }
 	

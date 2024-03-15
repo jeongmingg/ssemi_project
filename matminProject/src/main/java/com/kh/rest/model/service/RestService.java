@@ -137,5 +137,15 @@ public class RestService {
 		close(conn); 
 		return lcList;
 	}
+	
+	public ArrayList<Rest> selectMenuList(String rpage) {
+		Connection conn = getConnection();
+		
+		ArrayList<Rest> mList = new RestDao().selectMenuList(conn, rpage);
+		
+		System.out.println(mList);
+		close(conn);
+		return mList;
+	}
 }
 

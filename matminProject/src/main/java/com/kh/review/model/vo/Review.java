@@ -16,6 +16,7 @@ public class Review {
 	private int rateAvg;
 	private String reviewStatus;
 	private int reviewCount;
+	private Double reviewAvg;
 	
 	
 	public Review() {}
@@ -65,6 +66,21 @@ public class Review {
 		this.reviewLike = reviewLike;
 		this.reviewDislike = reviewDislike;
 		this.reviewRate = reviewRate;
+	}
+	
+	
+
+	public Review(Double reviewAvg) {
+		super();
+		this.reviewAvg = reviewAvg;
+	}
+
+	public Double getReviewAvg() {
+		return reviewAvg;
+	}
+
+	public void setReviewAvg(Double reviewAvg) {
+		this.reviewAvg = reviewAvg;
 	}
 
 	public Review(int reviewRate, int reviewCount) {
