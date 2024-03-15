@@ -172,87 +172,137 @@ ArrayList<Category>
             action="<%=contextPath %>/insert.rs"
             method="post"
             enctype="multipart/form-data">
-			<table>
+            <table>
+              <tr>
+                <td>로케이션</td>
+                <td>
+                  &nbsp;&nbsp;
+                  <select name="location" id="">
+                    <!--  category table로 부터 조회 할꺼임 -->
+                    <% for (Location l : lList) { %>
+                    <option value="<%=l.getLocalId()%>">
+                      <%=l.getLocalName()%>
+                    </option>
+                    <% } %>
+                  </select>
+                </td>
+                <td>메뉴 입력</td>
+                <td>
+                  <input
+                    type="text"
+                    name="menu"
+                    placeholder="-메뉴 입력해주세요"
+                    required />
+                </td>
+                <td>
+                  <a type="button" id="addmenu" onclick="addInput()"
+                    >메뉴추가</a
+                  >
+                </td>
+              </tr>
 
-				<tr>
-					<td>로케이션</td>
-					<td>&nbsp;&nbsp; <select name="location" id="">
-							<!--  category table로 부터 조회 할꺼임 -->
-							<%
-							for (Location l : lList) {
-							%>
-							<option value="<%=l.getLocalId()%>">
-								<%=l.getLocalName()%>
-							</option>
-							<%
-							}
-							%>
-					</select>
-					</td>
-				</tr>
+              <tr>
+                <td>식당이름</td>
+                <td>
+                  <input
+                    type="text"
+                    name="restName"
+                    maxlength="20"
+                    placeholder="- 식당이름 등록"
+                    required />
+                </td>
+                <td>가격 입력</td>
+                <td>
+                  <input
+                    type="number"
+                    step="1000"
+                    name="price"
+                    placeholder="-가격 입력 해주세요"
+                    required />
+                </td>
+              </tr>
+              <tr>
+                <td>카티고리</td>
+                <td>
+                  &nbsp;&nbsp;
+                  <select name="category" id="">
+                    <!--  category table로 부터 조회 할꺼임 -->
+                    <%for (Category c : list) { %>
+                    <option value="<%=c.getCtgId()%>">
+                      <%=c.getCtgName()%>
+                    </option>
+                    <%} %>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>식당주소</td>
+                <td>
+                  <input
+                    type="text"
+                    name="address"
+                    maxlength="30"
+                    placeholder="- 식당주소"
+                    required />
+                </td>
+              </tr>
 
-				<tr>
-					<td>식당이름</td>
-					<td><input type="text" name="restName" maxlength="20"
-						placeholder="- 식당이름 등록" required /></td>
-				</tr>
-				<tr>
-					<td>카티고리</td>
-					<td>&nbsp;&nbsp; <select name="category" id="">
-							<!--  category table로 부터 조회 할꺼임 -->
-							<%for (Category c : list) { %>
-							<option value="<%=c.getCtgId()%>">
-								<%=c.getCtgName( )%>
-							</option>
-							<%} %>
-					</select>
-					</td>
-				</tr>
-				<tr>
-					<td>식당주소</td>
-					<td><input type="text" name="address" maxlength="30"
-						placeholder="- 식당주소" required /></td>
-				</tr>
+              <tr>
+                <td>전화번호</td>
+                <td>
+                  <input
+                    type="text"
+                    name="phone"
+                    maxlength="20"
+                    placeholder="- 포함해서 입력"
+                    required />
+                </td>
+              </tr>
+              <tr>
+                <td>영업시간</td>
+                <td>
+                  <input
+                    type="text"
+                    name="bizHour"
+                    placeholder="-HH:MM~ HH:MM" />
+                </td>
+              </tr>
 
-				
-				<tr>
-					<td>전화번호</td>
-					<td><input type="text" name="phone" maxlength="20"
-						placeholder="- 포함해서 입력" required /></td>
-				</tr>
-				<tr>
-					<td>영업시간</td>
-					<td><input type="text" name="bizHour"
-						placeholder=" HH:MM~ HH:MM" /></td>
-				</tr>
+              <tr>
+                <th>첨부파일</th>
+                <td><input type="file" name="upfile" /></td>
+              </tr>
 
-				<tr>
-					<th>첨부파일</th>
-					<td><input type="file" name="upfile" /></td>
-				</tr>
+              <tr>
+                <td>&nbsp;&nbsp;기타여부</td>
+                <td colspan="2">
+                  <input type="checkbox" name="extra" id="parking" value="Y" />
+                  <label for="parking">주차</label>
 
-				<tr>
-					<td>&nbsp;&nbsp;기타여부</td>
-					<td colspan="2">
-						<input type="checkbox" name="extra" id="parking" value="Y" /> 
-						<label for="parking">주차</label> 
-						
-						<input type="checkbox" name="extra" id="drivethrou" value="Y" /> 
-						<label for="drivethrou">DT</label> 
-						
-						<input type="checkbox" name="extra" id="comAnimal" value="Y" /> 
-						<label for="comAnimal">반려동물</label> 
-						
-						<input type="checkbox" name="extra" id="prvRoom" value="Y" /> 
-						<label for="prvRoom">개별룸</label> 
-						
-						<input type="checkbox" name="extra" id="bigRoom" value="Y" /> 
-						<label for="bigRoom">대형룸</label> <br />
-					</td>
-				</tr>
-			</table>
+                  <input
+                    type="checkbox"
+                    name="extra"
+                    id="drivethrou"
+                    value="Y" />
+                  <label for="drivethrou">DT</label>
 
-			<br />
+                  <input
+                    type="checkbox"
+                    name="extra"
+                    id="comAnimal"
+                    value="Y" />
+                  <label for="comAnimal">반려동물</label>
+
+                  <input type="checkbox" name="extra" id="prvRoom" value="Y" />
+                  <label for="prvRoom">개별룸</label>
+
+                  <input type="checkbox" name="extra" id="bigRoom" value="Y" />
+                  <label for="bigRoom">대형룸</label> <br />
+                </td>
+              </tr>
+            </table>
+
+            <br />
             <br />
 
             <div align="center">
@@ -268,9 +318,22 @@ ArrayList<Category>
               </button>
             </div>
 
+            <script>
+              function addInput() {
+                // Создаем новый элемент input
+                var input = document.createElement("input");
+                input.type = "text"; // Устанавливаем тип поля ввода
+
+                // Добавляем поле ввода в тело документа
+                document.body.table(input);
+              }
+            </script>
+
             <br />
           </form>
         </div>
         <%@ include file="../common/footer.jsp"%>
       </body>
     </html>
+  </Location></Category
+>

@@ -138,7 +138,7 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>별점 <input type="text" value= "<%= r.getHeart() %>" readonly></td>
+                    <td>리뷰수<input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
