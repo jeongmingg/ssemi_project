@@ -874,6 +874,8 @@
 											<li>
 												<p class="menu-item">
 													<span class="rest-menu"><%= mList.get(i).getMenuName() %></span>
+													
+													<!-- 대표메뉴에만 추천 보이게 -->
 													<% if(mList.get(i).getRepMenu().equals("Y")) { %>
 														<span class="icon">추천</span>
 													<% } %>

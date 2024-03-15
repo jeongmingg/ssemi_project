@@ -147,6 +147,8 @@ public class RestService {
 		System.out.println(mList);
 		close(conn);
 		return mList;
+		
+	}
 	public ArrayList<Location> selectLocationList(){
 		Connection conn = getConnection();
 		

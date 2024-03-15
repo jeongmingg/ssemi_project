@@ -487,6 +487,7 @@ public class RestDao {
 			close(rset);
 			close(pstmt);
 		} return mList;
+	}
 
 	public ArrayList<Location> selectLocationList(Connection conn){
 		ArrayList<Location> lList = new ArrayList<Location>();
