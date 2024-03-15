@@ -806,32 +806,57 @@ div {
                       // 선택된 지역을 저장할 변수 초기화
                       var selectedLocation = "";
                       var selectedCategory = "";
+                      var rsFunction = "";
+                      var funcState = "";
 
-                      // 목록 아이템 클릭 이벤트 핸들러
+                      // 지역 클릭 이벤트 핸들러
                       $(".optionItem").on("click", function () {
                     	  let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
                         // 클릭된 li의 텍스트를 가져와서 변수에 저장
-                        handleSelection(checkedCtg);
+                        handleSelection(checkedCtg, rsFunction, funcState);
                       });
 
+					  // 카테고리 클릭시
                       $("input[name='category']").on("change", function () {
                     	  let str = $(this).next().text();
                     	
-                    	 str = str.trimStart();
-                        handleSelection(str);
+                    	 str = str.trimStart(); // 앞에 공백제거하고 반환
+                        handleSelection(str, rsFunction, funcState);
                       });
 
+					  // 편의기능 클릭시
+					  $("input[type='checkbox']").on("click", function(){
+							var rsFunction = $(this).next().text();
+							console.log(rsFunction);
 
-                      function handleSelection(selectedCategory) {
+							var funcState = ""; 
+
+							if($(this).is(":checked")){
+								funcState = "Y";
+							}else{
+								funcState = "N";
+							}
+							console.log(funcState);
+							
+							let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
+							handleSelection(checkedCtg, rsFunction, funcState);
+							
+					  });
+
+                      function handleSelection(selectedCategory, rsFunction, funcState) {
                     	  
                     	 let selectedLocation = $("#selectOption").text();
                     	 selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
                     	  
                     	  $.ajax({
                           url: "locationSearch.rs",
-                          data: {keyword: "<%=keyword%>",
+                          data: {
+                        	  keyword: "<%=keyword%>",
                               locationName: selectedLocation,
-                              categoryName: selectedCategory},
+                              categoryName: selectedCategory,
+                              rsFunction: rsFunction,
+                              funcState: funcState
+                          },
                           success: function (result) {
                             updateTable(result);
                             updateLocation(selectedLocation);
@@ -873,7 +898,7 @@ div {
 							$(".label").text("전체");
 							
 							let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
-							handleSelection(checkedCtg);
+							handleSelection(checkedCtg, rsFunction, funcState);
 						});
 					}
 				});

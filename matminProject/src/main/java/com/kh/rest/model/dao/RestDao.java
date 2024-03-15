@@ -390,7 +390,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName, String categoryName){
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName, String categoryName, String rsFunction, String funcState){
 		
 		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
@@ -398,6 +398,10 @@ public class RestDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("locationSearch");
+			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
+				sql += " AND " + rsFunction + "= ?";	
+			
+	    }
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -418,6 +422,11 @@ public class RestDao {
 				pstmt.setString(5, "");
 			}
 			
+			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
+			
+				pstmt.setString(6, funcState);
+
+			}
 			rset= pstmt.executeQuery();
 			
 			while(rset.next()) {

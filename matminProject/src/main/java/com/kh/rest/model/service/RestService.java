@@ -130,10 +130,10 @@ public class RestService {
 	
 
 
-	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName){
+	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName, String rsFunction, String funcState){
 		
 		Connection conn = getConnection();
-		ArrayList<Rest> lcList = new RestDao().locationSearch(conn, keyword, locationName, categoryName);
+		ArrayList<Rest> lcList = new RestDao().locationSearch(conn, keyword, locationName, categoryName, rsFunction, funcState);
 		
 		close(conn); 
 		return lcList;

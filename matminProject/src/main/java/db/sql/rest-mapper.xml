@@ -293,6 +293,11 @@
 			     , REVIEW_COUNT
 			     , REP_MENU
 			     , CTG_NAME
+			     , REST_PARKING
+			    , DT
+			    , ANIMAL
+			    , ROOM
+			    , BIG_ROOM
 			  FROM (
 			        SELECT
 			               REST_NO
@@ -304,6 +309,11 @@
 			             , MENU_NAME
 			             , REP_MENU
 			             , CTG_NAME
+			             , REST_PARKING
+			            , DT
+			            , ANIMAL
+			            , ROOM
+			            , BIG_ROOM
 			          FROM (
 			               SELECT
 			                      REST_NO
@@ -315,6 +325,11 @@
 			                    , MENU_NAME
 			                    , REP_MENU
 			                    , CTG_NAME
+			                    , REST_PARKING
+			                    , DT
+			                    , ANIMAL
+			                    , ROOM
+			                    , BIG_ROOM
 			                 FROM REST
 			                 LEFT JOIN REVIEW USING(REST_NO)
 			                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
@@ -330,6 +345,11 @@
 			             , MENU_NAME
 			             , REP_MENU
 			             , CTG_NAME
+			             , REST_PARKING
+			            , DT
+			            , ANIMAL
+			            , ROOM
+			            , BIG_ROOM
 			        )
 			  LEFT JOIN (
 			            SELECT
@@ -354,8 +374,7 @@
 			       )
 			AND LOCAL_NAME LIKE '%' || ? || '%'
 			AND CTG_NAME LIKE '%' || ? || '%'
-			 ORDER
-			    BY REST_AVG DESC, REVIEW_COUNT DESC
+
 		</entry>
 		
 		<entry key="selectMenuList">
