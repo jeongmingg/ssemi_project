@@ -193,15 +193,12 @@ div {
 	width: 45%;
 	font-size: 18px;
 	cursor: pointer;
+	padding-left: 15px;
 }
 
 /* 큰div 비율 */
 #search-list>div {
 	width: 100%;
-}
-
-#rs-arr {
-	height: 50px;
 }
 
 #lc-name {
@@ -218,32 +215,23 @@ div {
 	float: left;
 }
 
-#rs-arr1 {
+#rs-arr {
 	width: 80%;
 }
 
-#rs-arr2 {
-	width: 20%;
-}
-
-#rs-arr1-ul>li {
+#rs-arr-ul>li {
 	float: left;
 	width: 14%;
 	height: 100%;
 	line-height: 45px;
 	list-style: none;
+	color: rgb(58, 58, 58);
 }
 
-#rs-arr1-ul a {
-	color: rgb(58, 58, 58);
-	text-decoration: none;
-	font-weight: 800;
+#rs-arr-ul>li:not([id="rest-li1"]){
+	cursor: pointer;
 }
 
-#rs-arr2 a {
-	color: rgb(58, 58, 58);
-	line-height: 45px;
-}
 
 /* 지역이름 버튼 스타일 */
 #lc-name {
@@ -552,13 +540,12 @@ div {
 						<p>편의기능</p>
 					</div>
 					<div id="function_content">
-						<input type="checkbox" id="pk" /><label for="pk">&nbsp;&nbsp;주차</label>
-						<input type="checkbox" id="24" /><label for="24">&nbsp;&nbsp;24시</label>
-						<input type="checkbox" id="er" /><label for="er">&nbsp;&nbsp;개별룸</label>
-						<input type="checkbox" id="br" /><label for="br">&nbsp;&nbsp;대형룸</label>
-						<input type="checkbox" id="dt" /><label for="dt">&nbsp;&nbsp;드라이브
-							스루</label> <input type="checkbox" id="an" /><label for="an">&nbsp;&nbsp;반려동물
-							동반</label>
+						<input type="checkbox" id="pk" /><label for="pk">주차</label>
+						<input type="checkbox" id="24" /><label for="24">24시</label>
+						<input type="checkbox" id="er" /><label for="er">개별룸</label>
+						<input type="checkbox" id="br" /><label for="br">대형룸</label>
+						<input type="checkbox" id="dt" /><label for="dt">드라이브 스루</label>
+						<input type="checkbox" id="an" /><label for="an">반려동물 동반</label>
 					</div>
 				</div>
 				<div id="location">
@@ -573,7 +560,7 @@ div {
 					</div>
 					<div class="box">
 						<div class="selectBox">
-							<button class="label" type="button">지역 선택</button>
+							<button id="selectOption" class="label" type="button">지역 선택</button>
 							<ul class="optionList">
 								<li class="optionItem">전체</li>
 								<li class="optionItem">강남구</li>
@@ -610,17 +597,12 @@ div {
 			<div id="content_2">
 				<div id="search-list">
 					<div id="rs-arr">
-						<div id="rs-arr1">
-							<ul id="rs-arr1-ul">
-								<li><a href="#" id="rest-li1">⇅ 정렬</a></li>
-								<li><a href="#" id="rest-li2">거리순</a></li>
-								<li><a href="#" id="rest-li3">평점순</a></li>
-								<li><a href="#" id="rest-li4">찜꽁많은순</a></li>
-							</ul>
-						</div>
-						<div id="rs-arr2">
-							<a href="#">현위치 : 위치없음</a>
-						</div>
+						<ul id="rs-arr-ul">
+							<li id="rest-li1">⇅ 정렬</li>
+							<li id="rest-li2">평점높은순</li>
+							<li id="rest-li3">리뷰많은순</li>
+							<li id="rest-li4">찜꽁많은순</li>
+						</ul>
 					</div>
 					<div id="lc-name"></div>
 					<div id="rs-content">
@@ -707,7 +689,7 @@ div {
 								<tr>
 									<td rowspan="3" width="120"
 										style="padding-left: 15px; padding-right: 15px;"><img
-										class="rest-img" src="<%=s.getRestImgUrl()%>" /></td>
+										class="rest-img" src="resources/star, heart/star.png" /></td>
 									<td colspan="2"
 										style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
 										<%=s.getRestName()%>
@@ -827,38 +809,40 @@ div {
 
                       // 목록 아이템 클릭 이벤트 핸들러
                       $(".optionItem").on("click", function () {
+                    	  let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
                         // 클릭된 li의 텍스트를 가져와서 변수에 저장
-                        var selectedLocation = $(this).text();
-                        handleSelection(selectedLocation);
+                        handleSelection(checkedCtg);
                       });
 
                       $("input[name='category']").on("change", function () {
-                        var selectedCategory = $(this).text();
-                        handleSelection(selectedCategory);
+                    	  let str = $(this).next().text();
+                    	
+                    	 str = str.trimStart();
+                        handleSelection(str);
                       });
 
-                      var selected = {
-                        keyword: "<%=keyword%>",
-                        locationName: selectedLocation,
-                        categoryName: selectedCategory
-                      };
 
-                      function handleSelection(selected) {
-                        $.ajax({
+                      function handleSelection(selectedCategory) {
+                    	  
+                    	 let selectedLocation = $("#selectOption").text();
+                    	 selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
+                    	  
+                    	  $.ajax({
                           url: "locationSearch.rs",
-                          type: "post",
-                          data: selected,
+                          data: {keyword: "<%=keyword%>",
+                              locationName: selectedLocation,
+                              categoryName: selectedCategory},
                           success: function (result) {
                             updateTable(result);
-                            updateLocation(selected.locationName);
-
+                            updateLocation(selectedLocation);
+							
                             $("#kw-title-p").text(
                               "<%=keyword%>" 
 							  + "검색결과 ( "
 							  + result.length
 							  + " 건 )");
 							
-							  let newAddrList = result.map(item => item.restAddress);
+							let newAddrList = result.map(item => item.restAddress);
 
 							updateMapData(newAddrList);
 							
@@ -869,11 +853,11 @@ div {
 						});
 					}
 
-					function updateLocation(selected.locationName) {
+					function updateLocation(selectedLocation) {
 						var lcName = $("#lc-name");
 						lcName.empty();
 
-						if (selected.locationName != "전체") {
+						if (selectedLocation != "전체") {
 							var value = '<button type="button" id="lc-name-btn">'
 									+ selectedLocation
 									+ '<a href="#">'
@@ -884,14 +868,13 @@ div {
 							lcName.html(value);
 						}
 
-						lcName.on("click", "#lc-name-btn a",
-								function() {
-									$("#lc-name-btn").css(
-											"display", "none");
-									$(".label").text("전체");
-
-									handleSelection("전체");
-								});
+						lcName.on("click", "#lc-name-btn a", function() {
+							$("#lc-name-btn").css("display", "none");
+							$(".label").text("전체");
+							
+							let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
+							handleSelection(checkedCtg);
+						});
 					}
 				});
 

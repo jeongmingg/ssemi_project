@@ -410,16 +410,15 @@ public class RestDao {
 			pstmt.setString(2, keyword);
 			pstmt.setString(3, keyword);
 			
-			if(locationName != null || categoryName != null) {
-				if(!(locationName.equals("전체")) || !(categoryName.equals("전체"))) {
-					pstmt.setString(4, locationName);
-					pstmt.setString(5, categoryName);
-				}else {
-					pstmt.setString(4, "");
-					pstmt.setString(5, "");
-				}
+			if(locationName != null && !locationName.equals("전체")) {
+				pstmt.setString(4, locationName);
 			}else {
 				pstmt.setString(4, "");
+			}
+			
+			if(categoryName != null && !categoryName.equals("전체")) {
+				pstmt.setString(5, categoryName);
+			}else {
 				pstmt.setString(5, "");
 			}
 			
