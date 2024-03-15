@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
@@ -71,14 +72,14 @@ public class RestService {
 		return r;
 	}
 	
-	public int insertRest(Rest r, Attachment at ) {
+	public int insertRest(Rest r, ImgFile img ) {
 		Connection conn = getConnection();
 		int result1 = new RestDao().insertRest(conn, r);
-		System.out.println("서비스의 " + r);
+		System.out.println("서비스의 " + img);
 		
 		int result2 = 1;
-		if (at !=null){
-			result2 = new RestDao().insertRestAt(conn,at);
+		if (img !=null){
+			result2 = new RestDao().insertRestAt(conn,img);
 		}
 		if (result1> 0 && result2>0) {
 			 commit(conn);
@@ -148,11 +149,11 @@ public class RestService {
 		return lList;
 	}
 	
-	public Attachment selectAttachment(String restNo) {
+	public ImgFile selectAttachment(String restNo) {
 		Connection conn = getConnection();
-		Attachment at = new RestDao().selectAttachment(conn,restNo);
+		ImgFile img = new RestDao().selectAttachment(conn,restNo);
 		close(conn);
-		return at;
+		return img;
 	}
 }
 

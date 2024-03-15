@@ -11,9 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
-import com.kh.common.model.vo.Attachment;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.oreilly.servlet.MultipartRequest;
@@ -58,34 +57,30 @@ public class AdminRestInsertController extends HttpServlet {
 		String comAnimal = multiRequst.getParameter("comAnimal");
 		String prvRoom = multiRequst.getParameter("prvRoom");
 		String bigRoom = multiRequst.getParameter("bigRoom");
-		
-		
+
 		
 		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
 		
+		ImgFile img = null;
 		
-		System.out.println("컨트롤러의 " + r);
-		Attachment at = null;
+		if(multiRequst.getOriginalFileName("file") != null) {
+			img = new ImgFile();
+			img.setImgOriginName(multiRequst.getOriginalFileName("file"));
+			img.setImgChangeName(multiRequst.getFilesystemName("file"));
+			img.setImgFilePath("resources/board_upfiles/");
+		}
 		
-		if(multiRequst.getOriginalFileName("upfile") != null) {
-			at = new Attachment();
-			at.setOriginName(multiRequst.getOriginalFileName("upfile"));
-			at.setChangeName(multiRequst.getFilesystemName("upfile"));
-			at.setFilePath("resources/board_upfiles/");
-			
-			}
-		
-		int result = new RestService().insertRest(r,at);
+		int result = new RestService().insertRest(r,img);
 		
 		HttpSession session = request.getSession();
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?num="+ r.getRestNo());
+			response.sendRedirect(request.getContextPath() + "/rest.ad?num=");
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {
-			if(at != null) {
-				new File(savePath + at.getChangeName()).delete();
+			if(img != null) {
+				new File(savePath + img.getImgChangeName()).delete();
 			}
 			session.setAttribute("alertMsg","식당등록에 실패했습니다");
 			response.sendRedirect(request.getContextPath() + "/restEnroll.ad");

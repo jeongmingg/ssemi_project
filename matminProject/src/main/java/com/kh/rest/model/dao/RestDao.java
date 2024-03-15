@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
@@ -225,8 +226,8 @@ public class RestDao {
 			pstmt.setString(3, r.getCtgId());
 			pstmt.setString(4, r.getRestAddress());
 			pstmt.setString(5, r.getRestTel());
-			pstmt.setString(7, r.getRestParking());
-			pstmt.setString(6, r.getRestTime());
+			pstmt.setString(6, r.getRestParking());
+			pstmt.setString(7, r.getRestTime());
 			pstmt.setString(8, r.getDt());
 			pstmt.setString(9, r.getAnmial());
 			pstmt.setString(10, r.getRoom());
@@ -331,7 +332,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public int insertRestAt(Connection conn, Attachment at) {
+	public int insertRestAt(Connection conn, ImgFile img) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -340,11 +341,12 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getChangeName());
-			pstmt.setString(3, at.getFilePath());
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
 			
 			result = pstmt.executeUpdate();
+			System.out.println(img);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -494,34 +496,32 @@ public class RestDao {
 		return lList;
 	}
 	
-	public Attachment selectAttachment(Connection conn,String restNo) {
-		Attachment at = null;
+	public ImgFile selectAttachment(Connection conn, String restNo) {
+		ImgFile img = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		String sql = prop.getProperty("selectAttachment");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, restNo);
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				at = new Attachment();
-				
-				at.setFileNo(rset.getInt("file_no"));
-				at.setOriginName(rset.getString("origin_name"));
-				at.setChangeName(rset.getString("change_name"));
-				at.setFilePath(rset.getString("file_path"));
-			}
+
+				if (rset.next()) {
+					img = new ImgFile(rset.getString("img_file_no"), 
+										rset.getString("img_origin_name"),
+										rset.getString("img_change_name"), 
+										rset.getString("img_file_path"));
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return at;
+		return img;
 	}
 }
 	
