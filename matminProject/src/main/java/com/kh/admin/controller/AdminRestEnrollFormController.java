@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.model.vo.Category;
+import com.kh.common.model.vo.Location;
 import com.kh.rest.model.service.RestService;
 
 /**
@@ -32,8 +33,10 @@ public class AdminRestEnrollFormController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ArrayList<Category>list = new RestService().selectCategoryList();
+		ArrayList<Location>lList =  new RestService().selectLocationList(); 
 		
 		request.setAttribute("list", list);
+		request.setAttribute("lList", lList);
 		request.getRequestDispatcher("/views/admin/adminRestEnroll.jsp").forward(request, response);
 	}
 

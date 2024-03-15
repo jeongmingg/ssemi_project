@@ -7,6 +7,12 @@
     pageEncoding="UTF-8"%>
 
 <% Rest r = (Rest)request.getAttribute("r"); 
+
+	ArrayList<String> addrList = new ArrayList<String>();
+	if(r != null && r.getRestAddress() != null) {
+		addrList.add(r.getRestAddress());
+	}
+	request.setAttribute("addrList", addrList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
@@ -28,6 +34,7 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	
 </head>
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
@@ -35,6 +42,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <style>
 
 	/* 전체 클래스 스타일*/
@@ -787,16 +797,14 @@
 				<h4>공유하기</h4>
 				</div>
                     <div id="share-ctg">
-                        <a href="" class="kakao" style="margin: auto; margin-right:70px; cursor: pointer;" >
-                            <div style="padding-left: 43px;">
-                            <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-free-instant-messaging-app-for-cross-platform-devices-logo-color-tal-revivo.png" width="80px" height="80px">
-                            </div>
+                        <a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" class="kakao" style="margin: auto; margin-right:70px; cursor: pointer;" >
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" style="padding-left: 43px;">
                             <div id="kakao_btn">
                                 카카오톡
                             </div>
                         </a>
-                        <a href="#" class="normal" style="margin: auto; margin-right:60px" onclick={copyurl}>
-                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="80px" height="80px">
+                        <a href="#" class="normal" style="margin: auto; margin-right:60px">
+                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="70px" height="70px">
                             <div id="normal_btn">
                                 링크
                             </div>
@@ -1052,6 +1060,42 @@
 	</div>
 	<br><br>
 		<%@ include file="../common/footer.jsp" %>		
+		
+		
+		<!--  카카오톡 공유하기 -->
+		<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+		  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+		
+		<script>
+		  Kakao.init('e902a8343d65c936edeecf8659c80312'); // 사용하려는 앱의 JavaScript 키 입력
+		</script>
+		
+		<script>
+		  function shareMessage() {
+			  
+		    Kakao.Share.sendDefault({
+		      objectType: 'feed',
+		      content: {
+		        title: '<%= r.getRestName() %>',
+		        description: '#<%= r.getCtgName() %> #<%= r.getMenuName() %> #<%= r.getLocalName() %> #서울맛집 #맛집의민족',
+		        imageUrl:
+		          '<%= r.getRestImgUrl() %>',
+		        link: {
+		          // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+		          webUrl: 'http://localhost:8085',
+		        },
+		      },
+		      buttons: [
+		        {
+		          title: '웹으로 보기',
+		          link: {
+		            webUrl: window.location.href, // 현재주소 불러오기
+		          },
+		        },
+		      ],
+		    });
+		  }
+		</script>
 
 
 		<!-- 현재 url 링크 복사 -->

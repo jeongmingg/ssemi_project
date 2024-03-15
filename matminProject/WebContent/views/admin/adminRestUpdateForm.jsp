@@ -1,8 +1,15 @@
+<%@page import="com.kh.common.model.vo.Attachment"%>
+<%@page import="com.kh.common.model.vo.Location"%>
+<%@page import="com.kh.common.model.vo.Category"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <% Rest r = (Rest)request.getAttribute("r");
+    ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
+    ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
+    Attachment at = (Attachment)request.getAttribute("at");
     	System.out.println("메인페이지" + r);
     %>
 <!DOCTYPE html>
@@ -129,7 +136,7 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateRest.ad" method="post">
+        <form id="form" action="<%=contextPath %>/updateRest.ad?rno=<%=r.getRestNo() %>" method="post">
 
             <table>
                 <tr>
@@ -148,20 +155,62 @@
                     <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
                 </tr>
                 <tr>
+                    <td> 로케이션</td>
+                    <td>&nbsp;&nbsp; <select name="location" id="">
+							<!--  category table로 부터 조회 할꺼임 -->
+							<%for (Location l : lList) { %>
+							<option value="<%=l.getLocalId()%>">
+								<%=l.getLocalName()%>
+							</option>
+							<%} %>
+					</select>
+					</td>
+                    
+                </tr>
+                <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" value= "<%= r.getRestTel() %>" name="restName"></td>
+                    <td><input type="text" value= "<%= r.getRestTel() %>"></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>주차여부</td>
-                    <td><input type="text" value = "<%=r.getRestParking() %>"></td>
+                    <td>카테고리</td>
+                    <td>&nbsp;&nbsp; <select name="category" id="">
+							<!--  category table로 부터 조회 할꺼임 -->
+							<%for (Category c : list) { %>
+							<option value="<%=c.getCtgId()%>">
+								<%=c.getCtgName( )%>
+							</option>
+							<%} %>
+					</select>
+					</td>
                                     
                 </tr>
-
+  
                 <tr>
                     <th>첨부파일</th>
                     <td><input type="file" name="upfile"></td>
                 </tr>
+                
+                 <tr>
+                    <td>&nbsp;&nbsp;기타여부</td>
+                    <td colspan="2">
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">주차</label>
+      
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">DT</label>
+      
+                      <input type="checkbox" name="extra" id="first" value="Y" />
+                      <label for="first">반려동물</label>
+      
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">개별룸</label>
+      
+                      <input type="checkbox" name="extra" id="third" value="Y" />
+                      <label for="third">대형룸</label>
+                      <br />
+                    </td>
+                  </tr>
                 
                
             </table>

@@ -134,27 +134,32 @@
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td><input type="text" value= "<%= r.getRestName() %>" ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
+                    <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
+                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
-                    <td><input type="text" value= "<%= r.getRestTime() %>"></td>
-                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
+                    <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
+                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
+                    <td><input type="text" value= "<%= r.getRestAddress() %>"readonly></td>
+                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
+                </tr>
+                <tr>
+                    <td> 로케이션</td>
+                    <td><input type="text" value= "<%= r.getLocalName() %>"readonly></td>
+                    
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" value= "<%= r.getRestTel() %>" name="restName"></td>
+                    <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>주차여부</td>
-                    <td><input type="text" value = "<%=r.getRestParking() %>"></td>
+                    <td>카테고리</td>
+                    <td><input type="text" value = "<%= r.getCtgName() %>" readonly></td>
                                     
                 </tr>
 
@@ -162,6 +167,27 @@
                     <th>첨부파일</th>
                     <td><input type="file" name="upfile"></td>
                 </tr>
+
+                <tr>
+                    <td>&nbsp;&nbsp;기타여부</td>
+                    <td colspan="2">
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">주차</label>
+      
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">DT</label>
+      
+                      <input type="checkbox" name="extra" id="first" value="Y" />
+                      <label for="first">반려동물</label>
+      
+                      <input type="checkbox" name="extra" id="second" value="Y" />
+                      <label for="second">개별룸</label>
+      
+                      <input type="checkbox" name="extra" id="third" value="Y" />
+                      <label for="third">대형룸</label>
+                      <br />
+                    </td>
+                  </tr>
                 
                
             </table>

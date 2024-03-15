@@ -857,6 +857,11 @@ div {
 							  + "검색결과 ( "
 							  + result.length
 							  + " 건 )");
+							
+							  let newAddrList = result.map(item => item.restAddress);
+
+							updateMapData(newAddrList);
+							
 							},
 							error : function() {
 								console.log("ajax 통신에 실패했습니다.");

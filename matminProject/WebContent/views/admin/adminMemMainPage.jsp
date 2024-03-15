@@ -145,7 +145,7 @@
                 </tr>
                 <tr>
                     <td> 이메일</td>
-                    <td><input type="text" value = <%= m.getEmail() %>"></td>
+                    <td><input type="text" value = <%= m.getEmail() %>></td>
                     <td></td>
                 </tr>
                 <tr>

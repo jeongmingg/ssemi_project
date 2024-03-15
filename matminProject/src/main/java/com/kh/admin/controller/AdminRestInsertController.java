@@ -43,22 +43,26 @@ public class AdminRestInsertController extends HttpServlet {
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10*1024*1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 		
 		MultipartRequest multiRequst = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 		
+		String restLocation = multiRequst.getParameter("location");
 		String restName = multiRequst.getParameter("restName");
 		String ctgId = multiRequst.getParameter("category");
 		String restAddress = multiRequst.getParameter("address");
-		String restTel = multiRequst.getParameter("restNo");
-		String restTime = multiRequst.getParameter("busHour");
+		String restTel = multiRequst.getParameter("phone");
+		String parking = multiRequst.getParameter("parking");
+		String restTime = multiRequst.getParameter("bizHour");
+		String drivethrou = multiRequst.getParameter("drivethrou");
+		String comAnimal = multiRequst.getParameter("comAnimal");
+		String prvRoom = multiRequst.getParameter("prvRoom");
+		String bigRoom = multiRequst.getParameter("bigRoom");
 		
-		Rest r = new Rest();
-		r.setRestName(restName);
-		r.setCtgId(ctgId);
-		r.setRestAddress(restAddress);
-		r.setRestTel(restTel);
-		r.setRestTime(restTime);
+		
+		
+		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
+		
 		
 		System.out.println("컨트롤러의 " + r);
 		Attachment at = null;
@@ -77,7 +81,7 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?num=");
+			response.sendRedirect(request.getContextPath() + "/rest.ad?num="+ r.getRestNo());
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {
 			if(at != null) {
