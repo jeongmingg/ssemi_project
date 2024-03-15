@@ -140,6 +140,7 @@ public class Rest {
 		this.reviewCount = reviewCount;
 		this.repMenu = repMenu;
 		this.ctgName = ctgName;
+	}
 
 	public Rest(String menuName, String menuPrice, String repMenu) {
 		super();
