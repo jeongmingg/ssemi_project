@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% Member m = (Member)request.getAttribute("m"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,32 +125,32 @@
             <table id="form">
                 <tr>
                     <td> 회원이름</td>
-                    <td><input type="text" name="MemName"></td>
-                    <td>리뷰작성 <input type="text"></td>
+                    <td><input type="text" value = <%= m.getMemName() %>></td>
+                    <td>가입일자 <input type="text" value = <%= m.getEnrollDate() %>></td>
                     <td>찜꽁 <input type="text">  </td>
                     <td width="70"> <img src="" alt=""></td>
                 
                 </tr>
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" name="category"></td>
-                    <td>게시글&nbsp;&nbsp;&nbsp;<input type="text" ></td>
+                    <td><input type="text" value = <%= m.getMemId() %>></td>
+                    <td>가입상태&nbsp;&nbsp;&nbsp;<input type="text" value=<%=m.getMemStatus()%> ></td>
                     <td>공유 <input type="text">  </td>
                 </tr>
                 <tr>
                     <td> 닉네임</td>
-                    <td><input type="text"></td>
+                    <td><input type="text" value = <%= m.getNickname() %>></td>
                     <td>신고 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></td>
-                    <td>경고 <input type="text">  </td>
+                    <td>경고 <input type="text" value = <%= m.getMemWarning()%> ></td>
                 </tr>
                 <tr>
                     <td> 이메일</td>
-                    <td><input type="text" name="restName"></td>
+                    <td><input type="text" value = <%= m.getEmail() %>></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>거주지</td>
-                    <td><input type="text" name="phone"></td>
+                    <td><input type="text" value = <%= m.getAddress() %>></td>
                                     
                 </tr>
 

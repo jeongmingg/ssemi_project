@@ -32,7 +32,7 @@ public class AdminRestListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//---------페이징 처리----------
-		int restCount;
+		int listCount;
 		int currentPage;
 		int pageLimit;
 		int boardLimit;
@@ -41,16 +41,16 @@ public class AdminRestListController extends HttpServlet {
 		int startPage;
 		int endPage;
 		
-		//*listCount : 총 게시글 개수
-		restCount = new RestService().selectRestCount();
+		//*listCount : 총 식당 개수
+		listCount = new RestService().selectRestCount();
 		
     	currentPage = Integer.parseInt(request.getParameter("cpage"));
     	
-    	pageLimit = 3;
+    	pageLimit = 5;
     	
-    	boardLimit = 2;
+    	boardLimit = 10;
     	
-    	maxPage = (int)Math.ceil((double)restCount / boardLimit);
+    	maxPage = (int)Math.ceil((double)listCount / boardLimit);
     	
     	startPage = (currentPage -1)/ pageLimit * pageLimit +1;
     	endPage = startPage +pageLimit -1;
@@ -59,7 +59,7 @@ public class AdminRestListController extends HttpServlet {
     		endPage = maxPage;
     	}
 		
-    	PageInfo pi = new PageInfo(restCount, currentPage,pageLimit,boardLimit,maxPage, startPage,endPage);
+    	PageInfo pi = new PageInfo(listCount, currentPage,pageLimit,boardLimit,maxPage, startPage,endPage);
     	
     	//용청시 전달 값 뽑기
     			//요청처리 응답페이지에 필요한 데이터를 조회

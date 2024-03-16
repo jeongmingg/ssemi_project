@@ -162,7 +162,7 @@
 	            <% } %>
 	            <%}else{ %>
 					<tr>
-                        <td colspan="7">No restaurants found</td>
+                        <td colspan="7">No member found</td>
                     </tr>
                 <% } %>
 			</tbody>
@@ -173,7 +173,7 @@
     <script>
         $(function(){
             $(".list-area>tbody>tr").click(function(){
-            	const num = $(this).children().eq(0).text();
+            	var num = $(this).children().eq(1).text();
             location.href= '<%= contextPath%>/member.ad?num='+num;
             });
         });

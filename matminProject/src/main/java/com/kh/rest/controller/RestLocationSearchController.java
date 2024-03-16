@@ -1,4 +1,4 @@
-package com.kh.member.controller;
+package com.kh.rest.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.location.model.vo.Location;
-import com.kh.member.model.service.MemberService;
+import com.google.gson.Gson;
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class MemberMyPageFormController
+ * Servlet implementation class RestLocationSearchController
  */
-@WebServlet("/myPage.me")
-public class MemberMyPageFormController extends HttpServlet {
+@WebServlet("/locationSearch.rs")
+public class RestLocationSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberMyPageFormController() {
+    public RestLocationSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +33,15 @@ public class MemberMyPageFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Location> list = new MemberService().selectLocationList();
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("locationList", list);
-		request.getRequestDispatcher("views/member/memberMyPage.jsp").forward(request, response);
+		String keyword = request.getParameter("keyword");
+		String locationName = request.getParameter("locationName");
+		
+		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName);
+		
+		response.setContentType("applicaion/json; charset=utf-8");
+		new Gson().toJson(lcList, response.getWriter());
 	}
 
 	/**

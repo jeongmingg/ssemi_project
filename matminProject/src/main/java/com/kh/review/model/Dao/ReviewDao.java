@@ -65,7 +65,7 @@ public class ReviewDao {
 
 	}
 	
-	/*
+	
 	public ArrayList<ImgFile> selectImgFile(Connection conn, String rpage){
 		ArrayList<ImgFile> list = new ArrayList();
 		PreparedStatement pstmt = null;
@@ -96,7 +96,7 @@ public class ReviewDao {
 		} return list;
 	
 	}
-	*/
+	
 	
 	
 	public ArrayList<Review> selectReviewListByMem(Connection conn, String memNo) {
@@ -114,6 +114,8 @@ public class ReviewDao {
 			
 			rset = pstmt.executeQuery();
 			
+
+
 			while(rset.next()) {
 				Review r = new Review();
 				
@@ -127,6 +129,7 @@ public class ReviewDao {
 				
 				list.add(r);
 			}
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -211,6 +214,31 @@ public class ReviewDao {
 			close(pstmt);
 			
 		} return rate;
+	}
+	
+	public Review selectReviewAvg(Connection conn, String rpage) {
+		Review rv = new Review();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewAvg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				rv = new Review(rset.getDouble("review_avg"));  
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return rv;
+		
 	}
 	
 }

@@ -7,6 +7,12 @@
     pageEncoding="UTF-8"%>
 
 <% Rest r = (Rest)request.getAttribute("r"); 
+
+	ArrayList<String> addrList = new ArrayList<String>();
+	if(r != null && r.getRestAddress() != null) {
+		addrList.add(r.getRestAddress());
+	}
+	request.setAttribute("addrList", addrList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
@@ -17,7 +23,8 @@
 	
    ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
-   
+   Review rvAvg = (Review)request.getAttribute("rv");
+   ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
 
 %>
 
@@ -28,12 +35,17 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	
 </head>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
 <style>
 
 	/* 전체 클래스 스타일*/
@@ -126,7 +138,7 @@
 		color: white;
 		width: 80px;
 		height: 30px;
-		background: url(https://img.icons8.com/material-rounded/96/FFFFFF/thumbs-down.png) no-repeat;
+		background: url(https://img.icons8.com/fluency-systems-filled/48/FFFFFF/share-3.png) no-repeat;
 		background-size: 20px;
 		padding-left: 18px;
 		position: relative;
@@ -225,7 +237,7 @@
 	.list-menu-detail>ul>div>li{
 		list-style: none;
 		border-bottom: dashed 0.8px gray; 
-		padding-top: 5px;
+		padding : 5px;
 	}
 
 	/* 메뉴 추천 버튼 스타일*/
@@ -272,6 +284,7 @@
 		margin: auto;
 		border-radius: 20px;
 		border: 3px solid rgb(216, 212, 212);
+		padding-bottom: 30px;
 	}
 
 	/* 리뷰 전체 스타일 */
@@ -622,6 +635,11 @@
 		margin-right: 150px;
 	}
 
+	#share-ctg{
+		display: flex;
+		margin-top: 25px;
+    	margin-left: 10px;
+	}
 	.modal-content {
 		margin: auto;
 		display: block;
@@ -659,6 +677,9 @@
 		cursor: pointer;
 		}
 
+	#share-ctg > a{
+		text-decoration: none;
+	}
 	/* 리뷰작성 모달 스타일 */
 	.modal-content {
 		text-align: center;
@@ -723,6 +744,9 @@
 		margin-left: 105px;
 	}
 
+	.share-title{
+		margin-top: 30px;
+	}	
 </style>
 
 <body>
@@ -746,13 +770,16 @@
 		<div class="rest-title">
 			<div class="rest-name">
 				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
-				<span class="score"><%= r.getRestAvg() %></span>
+				<span class="score"><%= rvAvg.getReviewAvg() %></span>
 			</div>
 				<span class="short-menu"><%= r.getCtgName() %></span>
 			<div class="rest-add">
 				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
 				<div class="heart-count-area">
-					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;" >
+					<!-- 빈하트 -->
+					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px;"> 
+					<!-- 채워진 하트-->
+					<input type="hidden" img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;"> 
 					<span>찜꽁(20)</span>
 				</div>
 				<div class="btn-share-area">
@@ -767,26 +794,27 @@
 		<!--공유하기 모달-->
 		
 		<div id="shareModal" class="modal">
-            <div class="modal-content" id="share-modal" style="height: 200px; width: 500px; align-items: center;">
+            <div class="modal-content" id="share-modal" style="height: 250px; width: 500px; align-items: center;">
                 <div class="modal-content-detail">
                     <span id="share-close-btn" class="close" style="color: gray;">&times;</span>
-                    <div id="share-ctg" style="display: flex;">
-                        <a href="" id="kakao" style="margin: auto; margin-top: 50px; margin-right:70px; cursor: pointer;" >
-                            <div style="padding-left: 50px;">
-                            <img src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/96/external-free-instant-messaging-app-for-cross-platform-devices-logo-color-tal-revivo.png" width="80px" height="80px">
-                            </div>
+				</div>
+				<div class="share-title">
+				<h4>공유하기</h4>
+				</div>
+                    <div id="share-ctg">
+                        <a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" class="kakao" style="margin: auto; margin-right:70px; cursor: pointer;" >
+                            <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalksharing/kakaotalk_sharing_btn_medium.png" style="padding-left: 43px;">
                             <div id="kakao_btn">
-                                카카오톡 공유
+                                카카오톡
                             </div>
                         </a>
-                        <a href="" id="normal" style="margin: auto; margin-top: 40px; margin-right:95px">
-                            <img src="https://img.icons8.com/sf-regular/192/FAB005/share.png" style="margin-left: 25px;" width="90px" height="90px">
+                        <a href="#" class="normal" style="margin: auto; margin-right:60px">
+                            <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="70px" height="70px">
                             <div id="normal_btn">
-                                링크공유
+                                링크
                             </div>
                         </a>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -822,48 +850,48 @@
 							<div class="list-menu-detail">
 								<ul>
 									<div class="menu-list-1">
+									<% 
+									    for (int i = 0; i < Math.min(mList.size(), 3); i++) { //최대 3개까지 보이게
+									%>
 										<li>
 											<p class="menu-item">
-												<span class="rest-menu"><%= r.getMenuName()%></span>
-												<span class="icon">추천</span>
-												<span class="menu-price"><%= r.getMenuPrice() %>원</span>
-											</p>
-									<!--  
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">감자샌드위치</span>
-												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
+												<span class="rest-menu"><%= mList.get(i).getMenuName() %></span>
+												<% if(mList.get(i).getRepMenu().equals("Y")) { %>
+													<span class="icon">추천</span>
+												<% } %>
+												<span class="menu-price"><%= mList.get(i).getMenuPrice() %>원</span>
 											</p>
 										</li>
-										</li>
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">치즈샌드위치</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
+									<% } %>
+									
 									</div>
+
 									<div class="list-menu-2">
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">토마토샌드위치</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
-										<li>
-											<p class="menu-item">
-												<span class="rest-menu">베이컨샌드위치</span>
-												<span class="icon">추천</span>
-												<span class="menu-price">3,900원</span>
-											</p>
-										</li>
+									
+									<% if(mList.size() > 3){ %>
+									
+										<% for(int i=3; i<mList.size(); i++){ %>
+											<li>
+												<p class="menu-item">
+													<span class="rest-menu"><%= mList.get(i).getMenuName() %></span>
+													
+													<!-- 대표메뉴에만 추천 보이게 -->
+													<% if(mList.get(i).getRepMenu().equals("Y")) { %>
+														<span class="icon">추천</span>
+													<% } %>
+													<span class="menu-price"><%= mList.get(i).getMenuPrice() %>원</span>
+												</p>
+											</li>
+										<% } %>
+									<% } %>
 									</div>
-									-->
 									<!-- 버튼 클릭시 접기로 변경됨-->
-									<p class="r">
-										<span class="btn-more">더보기</span>
-									</p>
+									
+									<% if(mList.size() > 3){ %>
+										<p class="r">
+											<span class="btn-more">더보기</span>
+										</p>
+									<% } %>
 								</ul>
 							</div>
 						</div>
@@ -889,7 +917,7 @@
 							<span class="star">
 								<i style="width: <%= star %>%;"></i>
 							</span>
-							<div class="avg-num"><%= r.getRestAvg() %></div>
+							<div class="avg-num"><%= rvAvg.getReviewAvg() %></div>
 						
 					</div>
 					<div class="score-graph">
@@ -1037,15 +1065,65 @@
 	</div>
 	<br><br>
 		<%@ include file="../common/footer.jsp" %>		
+		
+		
+		<!--  카카오톡 공유하기 -->
+		<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+		  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+		
+		<script>
+		  Kakao.init('e902a8343d65c936edeecf8659c80312'); // 사용하려는 앱의 JavaScript 키 입력
+		</script>
+		
+		<script>
+		  function shareMessage() {
+			  
+		    Kakao.Share.sendDefault({
+		      objectType: 'feed',
+		      content: {
+		        title: '<%= r.getRestName() %>',
+		        description: '#<%= r.getCtgName() %> #대표메뉴 #<%= r.getLocalName() %> #서울맛집 #맛집의민족',
+		        imageUrl:
+		          '<%= r.getRestImgUrl() %>',
+		        link: {
+		          // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+		          webUrl: '',
+		        },
+		      },
+		      buttons: [
+		        {
+		          title: '웹으로 보기',
+		          link: {
+		            webUrl: window.location.href, // 현재주소 불러오기
+		          },
+		        },
+		      ],
+		    });
+		  }
+		</script>
 
 
+		<!-- 현재 url 링크 복사 -->
+		<script>
+			 $(".normal").click(function(){
+				const url = window.location.href; // 현재 링크를 가져옴
+
+				// 클립보드 복사해주는 메소드
+				navigator.clipboard.writeText(url).then(()=>{ // 클립보드에 복사가 완료되면 콜백함수 실행
+					alert("📌 식당의 링크가 클립보드에 복사되었습니다");
+				})
+
+			})
+		</script>
+	
+	
 	<!-- 리뷰 조회 ajax -->
+
 	<script>
 	
 		$(function(){
 		    selectReviewList(); 
 		    
-        	setInterval(selectReviewList, 1000);
 		})
 	
 		function selectReviewList(){
@@ -1054,7 +1132,8 @@
 				data:{rpage:'<%= r.getRestNo()%>'},
 				success:function(rvlist){
 					let value = ''; // Initialize value variable
-		            
+					
+					
 		            for (let i = 0; i < rvlist.length; i++) {
 		            	
 		                let rv = rvlist[i]; // Fixed variable name
@@ -1067,7 +1146,7 @@
 		                let rvservice = rv.rateService;
 		                let rvcont = rv.reviewCont;
 		                let rvrate = rv.reviewRate;
-
+		                
 		                value += `<div class="review-div">
 							<div class="rv1">
 								<div class="profile">
@@ -1087,7 +1166,15 @@
 									<div class="warn">
 										<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
 		               					<input type ="hidden" class="reviewNo" value=\${rvno}>
-										<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
+		               				
+		               				<!-- 로그인시에만 삭제버튼 보이게 1차 제어-->
+		               				<% if (loginUser != null ) { %>
+		               					<!-- 현재 로그인한 유저의 닉네임을 가져옴 -->
+									    <input type="hidden" class="serverNickname" value="<%= loginUser.getNickname() %>">
+									    <!-- 리뷰를 작성한 유저의 닉네임을 가져옴 -->
+									    <input type="hidden" class="rvname" value=\${rvname}>
+		                             	<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
+		                  			<% } %>
 										<div class="review-update">
 										</div>
 									</div>
@@ -1111,23 +1198,43 @@
 						</div>
 						<br>`
 		            }
-
+					
+		        // 리뷰 div에 ajax로 넘어온 값 전체 넣어줌 
 				$(".review-detail").html(value);
+				
+				// 리뷰 삭제 로그인시에만 가능하게끔 
+				 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
+					    
+					 	// 리뷰작성자 닉네임을 변수에 담음
+					 	var rvname = $(this).siblings('.rvname').val();
+					    console.log("rvname :" + rvname);
+
+					 	// 현재 로그인한 유저의 닉네임을 변수에 담음
+					    var serverNickname = $(this).siblings('.serverNickname').val()
+					    console.log("serverNIckname :" + serverNickname);
+					    
+					    if (serverNickname === rvname) {
+					        $(this).show(); // 같으면 삭제버튼 보여짐
+					    } else {
+					    	$(this).hide(); // 다르면 삭제버튼 안보여짐
+					    }
+					});
+				    
 				
 				}, error:function(){
 					console.log("ajax 통신실패")
 				}
 
 			});
+			
 		}
+	
 		
 		/* 리뷰 삭제 ajax*/
 		function deleteReview(ele){
 			/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
-			let rvNo = $(ele).siblings("input").val();
+			let rvNo = $(ele).siblings("input").val();		
 			
-			console.log(rvNo);
-
 			if (confirm("정말 삭제하시겠습니까?")) {
 				$.ajax({
 					url:"delete.rv",
@@ -1138,12 +1245,15 @@
 							alert("성공적으로 삭제됐습니다!");
 						}
 						console.log("ajax 통신성공!")
+						selectReviewList();
 					}, error:function(){
 						console.log("삭제오류 ajax통신오류")
 					}
 				})
+		
 			}
 			}
+		
 	</script>	
 	
 		<!-- 리뷰 별 모달 스크립트 -->
@@ -1154,16 +1264,16 @@
 		printRatingResult(ratingResult);
 		
 		function executeRating(stars, result) {
-			const starClassActive = "rating__star fas fa-star";
-				const starClassUnactive = "rating__star far fa-star";
+				const starClassActive = "rating__star fas fa-star"; // 비어있는별
+				const starClassUnactive = "rating__star far fa-star"; // 색칠된별
 				const starsLength = stars.length;
 				let i;
 				stars.map((star) => {
 					star.onclick = () => {
-						i = stars.indexOf(star);
+						i = stars.indexOf(star); // 클릭된별의 인덱스
 						
 						if (star.className.indexOf(starClassUnactive) !== -1) {
-							printRatingResult(result, i + 1);
+							printRatingResult(result, i + 1); 
 							for (i; i >= 0; --i) stars[i].className = starClassActive;
 						} else {
 							printRatingResult(result, i);
@@ -1174,34 +1284,33 @@
 			}
 			
 			function printRatingResult(result, num = 0) {
-				result.textContent = `${num}/5`;
 			}
-			
 			executeRating(ratingStars, ratingResult);
 	</script>	
 
-	<!-- 리뷰 별 클릭시 -->
+	<!-- 리뷰 별 클릭된 value값 -->
 	<script>
 		 function reviewstar(element) {
 			 console.log("!");
         // 별점을 선택한 값으로 업데이트
         	var score = $(element).attr('value');
-        	console.log(score);
 
 			$(element).siblings("input").val(score);  	     	
 		 }
 	</script>
 
 
-	<!-- 리뷰 인서트 -->
+	<!-- 리뷰 인서트시 로그인 유저만 사용하게 제어 -->
 
 		<script>
-			$(function() {
-				if(<%= loginUser %> == null){
+			$(function() {				
+
+				if(<%= loginUser %> === null){
 					$("#btn-review").click(function(){
-						alert("로그인 후 이용해주세요!");    			
+						alert("로그인 후 이용해주세요!");    
+						window.location.href = "<%= contextPath %>/loginForm.me";
 					})
-				} else if (<%= loginUser %> != null){
+				}else{
 					$("#review-sub").click(function() {
 						$("#reviewform").submit();
 					});
@@ -1211,20 +1320,7 @@
 		</script>
 	
 
-	<!--리뷰 삭제 로그인시에만 가능하게끔 --> 
-	
-	<script>
-		$(function(){
-		 	$(".delete-review").click(function(){
-		 		e.preventDefault();
-		 		deleteReviewlist();
-	 		});
-		 })
-
-	
-	</script>
-		
-	<!-- 리뷰 인서트시 리뷰작성글 제한 -->
+	<!-- 리뷰 인서트시 리뷰작성시 글자수 제한 보여줌 -->
 	<script>
 		$(function(){
        		 $("#review-write").keyup(function(){ 

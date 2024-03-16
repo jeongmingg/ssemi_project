@@ -54,6 +54,8 @@ public class ReviewService {
 		
 		int result = new ReviewDao().insertReview(conn, rno, memNo, score, rvwCont);
 		
+		
+		
 		if(result>0) {
 			commit(conn);
 		}else {
@@ -69,5 +71,14 @@ public class ReviewService {
 		close(conn);
 		return rate;
 		
+	}
+	
+	public Review selectReviewAvg(String rpage) {
+		Connection conn = getConnection();
+		
+		Review rv = new ReviewDao().selectReviewAvg(conn, rpage);
+		
+		close(conn);
+		return rv;
 	}
 }

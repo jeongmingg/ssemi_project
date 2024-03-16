@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.location.model.vo.Location;
 import com.kh.member.model.dao.MemberDao;
 import com.kh.member.model.vo.Member;
 
@@ -144,6 +145,40 @@ public class MemberService {
 		close(conn);
 		
 		return updateMem;
+	}
+	
+	public ArrayList<Location> selectLocationList() {
+		Connection conn = getConnection();
+		
+		ArrayList<Location> list = new MemberDao().selectLocationList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public int updateMemberPwd(String memNo, String currentPwd, String newPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMemberPwd(conn, memNo, currentPwd, newPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public Member selectMember(String userId) {
+		Connection conn = getConnection();
+		
+		Member m = new MemberDao().selectMember(conn, userId);
+		close(conn);
+		return m;
 	}
 	
 }

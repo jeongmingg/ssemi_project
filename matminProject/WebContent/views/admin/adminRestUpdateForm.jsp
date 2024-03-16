@@ -1,8 +1,15 @@
+<%@page import="com.kh.common.model.vo.Attachment"%>
+<%@page import="com.kh.common.model.vo.Location"%>
+<%@page import="com.kh.common.model.vo.Category"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.rest.model.vo.Rest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <% Rest r = (Rest)request.getAttribute("r");
+    ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
+    ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
+    Attachment at = (Attachment)request.getAttribute("at");
     	System.out.println("메인페이지" + r);
     %>
 <!DOCTYPE html>
@@ -129,46 +136,62 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateForm.rs" method="post">
+        <form id="form" action="<%=contextPath %>/updateRest.ad?rno=<%=r.getRestNo() %>" method="post">
 
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>" readonly></td>
+                    <td><input type="text" value= "<%= r.getRestName() %>" ></td>
+                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
-                    <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
-                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>" readonly></td>
+                    <td><input type="text" value= "<%= r.getRestTime() %>"></td>
+                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td><input type="text" value= "<%= r.getRestAddress() %>"readonly></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
+                    <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
+                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
-                    <td><input type="text" value= "<%= r.getLocalName() %>"readonly></td>
+                    <td>&nbsp;&nbsp; <select name="location" id="">
+							<!--  category table로 부터 조회 할꺼임 -->
+							<%for (Location l : lList) { %>
+							<option value="<%=l.getLocalId()%>">
+								<%=l.getLocalName()%>
+							</option>
+							<%} %>
+					</select>
+					</td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
+                    <td><input type="text" value= "<%= r.getRestTel() %>"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>카테고리</td>
-                    <td><input type="text" value = "<%= r.getCtgName() %>" readonly></td>
+                    <td>&nbsp;&nbsp; <select name="category" id="">
+							<!--  category table로 부터 조회 할꺼임 -->
+							<%for (Category c : list) { %>
+							<option value="<%=c.getCtgId()%>">
+								<%=c.getCtgName( )%>
+							</option>
+							<%} %>
+					</select>
+					</td>
                                     
                 </tr>
-
+  
                 <tr>
                     <th>첨부파일</th>
                     <td><input type="file" name="upfile"></td>
                 </tr>
-
-                <tr>
+                
+                 <tr>
                     <td>&nbsp;&nbsp;기타여부</td>
                     <td colspan="2">
                       <input type="checkbox" name="extra" id="second" value="Y" />
@@ -195,8 +218,8 @@
             <br><br>
 
             <div align="center">
-                <a href="<%= contextPath %>/updateForm.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
-				<a href="<%= contextPath %>/delete.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
+                <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
+				<a href="<%= contextPath %>/rest.ad?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
 				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
             </div>
 

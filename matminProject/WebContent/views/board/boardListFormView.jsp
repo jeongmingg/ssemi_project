@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="resources/assets/css/lithium.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	<link rel="stylesheet" href="resources/arssets/fonts/material-icons/material-icons.css" />
+	
+	
 <style>
 	.outer {
 		width: 1500px;

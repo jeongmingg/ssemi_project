@@ -151,13 +151,13 @@
         <table class="list-area" align="center">
             <thead>
                 <tr>
-                    <th width="100">RestNo</th>
-                    <th width="100">Location</th>
-                    <th width="100">RestName</th>
-                    <th width="100">Category</th>
-                    <th width="100">Address</th>
-                    <th width="100">PhoneNumber</th>
-                    <th width="100">Grade</th>
+                    <th >RestNo</th>
+                    <th >Location</th>
+                    <th >RestName</th>
+                    <th >Category</th>
+                    <th >Address</th>
+                    <th >PhoneNumber</th>
+                    <th >RestAvgRate</th>
                 </tr>
             </thead>
             <tbody>

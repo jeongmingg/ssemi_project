@@ -47,6 +47,7 @@
 		  FROM REVIEW
 		  JOIN MEMBER ON (REVIEW_WRITER = MEM_NO)
 		 WHERE REVIEW_WRITER = ?
+		   AND REVIEW_STATUS = 'Y'
 	</entry>
 
 	<entry key="deleteReview">
@@ -82,7 +83,30 @@
 		  FROM REVIEW
 		 WHERE REST_NO = ?
 		   AND REVIEW_RATE IN (5, 4, 3, 2, 1)
+		    AND REVIEW_STATUS = 'Y'
 		 GROUP
             BY REVIEW_RATE
 	</entry>
+	
+	<entry key="selectReviewAvg">
+	
+	SELECT 
+		MAX(ROUND(REVIEW_SUM/REVIEW_SUM_COUNT, 1)) REVIEW_AVG
+		    FROM
+		       (SELECT 
+			        SUM(REVIEW_RATE*REVIEW_COUNT) OVER() REVIEW_SUM,
+			        SUM(REVIEW_COUNT) OVER() REVIEW_SUM_COUNT
+		                FROM
+			                (SELECT 
+			                       REVIEW_RATE,
+			                       COUNT(REVIEW_RATE) "REVIEW_COUNT"
+			                  FROM REVIEW
+			                 WHERE REST_NO = ?
+			                   AND REVIEW_RATE IN (5, 4, 3, 2, 1)
+			                    AND REVIEW_STATUS = 'Y'
+			                 GROUP
+			                    BY REVIEW_RATE))
+	
+	</entry>
+
 </properties>

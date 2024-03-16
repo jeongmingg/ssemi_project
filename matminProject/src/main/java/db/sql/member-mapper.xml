@@ -153,4 +153,18 @@
 		   AND EMAIL = ?
 	</entry>
 	
+	<entry key="selectLocationList">
+		SELECT
+		       LOCAL_ID
+		     , LOCAL_NAME
+		  FROM LOCATION
+	</entry>
+	
+	<entry key="updateMemberPwd">
+		UPDATE MEMBER
+		   SET MEM_PWD = ?
+		 WHERE MEM_NO = ?
+		   AND MEM_PWD = ?
+	</entry>
+	
 </properties>

@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import com.kh.board.model.dao.BoardDao;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.ImgFile;
+import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.PageInfo;
+import com.kh.rest.model.vo.Rest;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -138,4 +140,13 @@ public class BoardService {
 		return b;
 	}
 	
+	public ArrayList<Board>  boardSearchList(String keyWord) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> sList = new BoardDao().boardSearchList(conn, keyWord);
+		
+		close(conn);
+		return sList;
+	}
+
 }

@@ -9,20 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.member.model.service.MemberService;
-import com.kh.member.model.vo.Member;
+import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Category;
+import com.kh.common.model.vo.Location;
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
 
 /**
- * Servlet implementation class AdminMemberMainController
+ * Servlet implementation class AdminRestUpdateFormController
  */
-@WebServlet("/member.ad")
-public class AdminMemberMainController extends HttpServlet {
+@WebServlet("/updateForm.rs")
+public class AdminRestUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminMemberMainController() {
+    public AdminRestUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,13 +35,22 @@ public class AdminMemberMainController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("num");
+		String restNo= request.getParameter("rno");
 		
-		Member m = new MemberService().selectMember(userId);
+		RestService rService = new RestService();
 		
-		request.setAttribute("m", m);
+		ArrayList<Category> list = rService.selectCategoryList();
+		ArrayList<Location> lList = rService.selectLocationList();
 		
-		request.getRequestDispatcher("views/admin/adminMemMainPage.jsp").forward(request, response);
+		Rest r = rService.selectRest(restNo);
+		
+		Attachment at = rService.selectAttachment(restNo);
+		
+		request.setAttribute("list", list);
+		request.setAttribute("lList", restNo);
+		request.setAttribute("r", r);
+		request.setAttribute("at", at);
+		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);
 	}
 
 	/**
