@@ -577,13 +577,13 @@
 	.review-like>div{
 		margin-right: 10px;
 	}
-	.like-area{
+	.like-area #like{
 		color: white;
 		width: 90px;
 		height: 30px;
 		background: url(https://img.icons8.com/material-rounded/24/FFFFFF/thumb-up.png) no-repeat;
 		background-size: 20px;
-		padding-left: 15px;
+		padding-left: 28px;
 		position: relative;
 		background-color: #F39C12;
 		padding-top: 4px;
@@ -604,7 +604,7 @@
 		border-radius: 8px;
 	}
 	#like, #unlike{
-		margin-left: 14px;
+		margin-left: 16px;
 		font-size: 16px;
 		cursor: pointer;
 	}
@@ -1188,7 +1188,7 @@
 								
 								<div class="review-like">
 									<div class="like-area">
-										<span id="like">추천 (15)</span>
+										<button id="like">추천 (15)</button>
 									</div>
 									<div class="unlike-area">
 										<span id="unlike">비추천 (15)</span>
@@ -1354,11 +1354,47 @@
 					});
 				}
 			})
+	</script>
+
+	<!-- 추천버튼 비회원 막기 -->
+	<script>
+		if(<%= loginUser %> === null){
+			$(document).on("click", "#like", function(){
+				alert("추천버튼은 로그인시에만 이용 가능합니다!");
+			})
+		} else {
+			$(function(){
+			let rvNo = $(ele).siblings("input").val();		
+
+			$("#like").click(function(){
+				$.ajax({
+					url: "like.rv",
+					type:"post",
+					data:{
+						no:rvNo,
+						id:`{<%= loginUser.getMemNo %>}`,
+					},
+					success:function(){
+						console.log("ajax 통신성공");
+					},
+					error:function(){
+						console.log("ajax 통신실패");
+					}
+				})
+
+			})
+		})
+		}
+	</script>
+
+	<!-- 리뷰 추천 버튼 -->
+
+	<script>
 
 	</script>
-	
-	
-	
+
+
+
 
 		<!-- 공유 모달 -->
 		<script>
