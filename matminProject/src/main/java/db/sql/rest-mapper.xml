@@ -417,4 +417,26 @@
 		
 		</entry>
 		
+		<entry key="insertRestAt">
+		
+		INSERT 
+			INTO ATTACHMENT
+			(
+			FILE_NO
+			,REF_BNO
+			,ORIGIN_NAME
+			,CHANGE_NAME
+			,FILE_PATH
+			)
+		VALUES
+			(
+			'F'||SEQ_ATTNO.NEXTVAL
+			,'B'||SEQ_BNO.CURRVAL
+			,?
+			,?
+			,?
+			)
+		
+		</entry>
+		
 </properties>
