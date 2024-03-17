@@ -21,8 +21,10 @@
 <meta charset="UTF-8" />
 <title>식당 검색결과 페이지</title>
 <!-- <link rel="stylesheet" href="resources/assets/css/lithium.css"/> -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
 
 <style>
 div {
@@ -767,8 +769,9 @@ div {
                       // 로그인 안할시 맛집등록요청하기 누르면 로그인 화면으로 이동
                       $("#rest-rq-btn").click(function () {
                         if ("<%=loginUser%>" == "null") {
-                          location.href = "<%=contextPath%>/loginForm.me";
-                        } else {
+							alert("로그인시 이용가능한 서비스입니다.");
+				            location.href = "<%=contextPath%>/loginForm.me";
+						} else {
                           location.href = "<%=contextPath%>/listForm.bo";
                         }
                       });
