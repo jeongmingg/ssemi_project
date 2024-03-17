@@ -217,7 +217,7 @@
 					<button id="rsBtn" onclick="rsRecommend();">맛집&nbsp;&nbsp;&nbsp;추천</button>
 				</div>
 			</div>
-
+			
 			<script>
 
 			// 카테고리 클릭이벤트
