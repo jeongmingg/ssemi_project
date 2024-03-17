@@ -165,5 +165,13 @@ public class RestService {
 		close(conn);
 		return img;
 	}
+
+	public Rest selectRestMain(String restNo) {
+		Connection conn = getConnection();
+		
+		Rest r = new RestDao().selectRestMain(conn, restNo);
+				close(conn);
+		return r;
+	}
 }
 

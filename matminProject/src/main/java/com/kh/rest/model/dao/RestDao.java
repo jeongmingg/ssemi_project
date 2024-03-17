@@ -549,6 +549,55 @@ public class RestDao {
 		}
 		return img;
 	}
+	
+	
+	//관리자 보는 식당 상세패이지
+	public Rest selectRestMain(Connection conn, String restNo){
+		Rest r = new Rest();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestMain");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				r = new Rest(
+						rset.getString("rest_no"),
+						rset.getString("rest_name"),
+						rset.getString("rest_address"),
+						rset.getString("rest_tel"),
+						rset.getString("rest_parking"),
+						rset.getInt("rest_grade"),
+						rset.getString("rest_time"),
+						rset.getDouble("rest_avg"),
+						rset.getString("rest_img_url"),
+						rset.getString("local_name"),
+						rset.getInt("review_count"),
+						rset.getString("dt"),
+						rset.getString("animal"),
+						rset.getString("room"),
+						rset.getString("ctg_name"),
+						rset.getString("big_room"),
+						rset.getInt("heart_count"));
+				
+			}
+			
+			System.out.println("dao" + r);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return r;
+	}		
+	
 }
+
+
 	
 
