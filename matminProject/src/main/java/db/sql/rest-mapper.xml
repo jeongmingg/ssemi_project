@@ -292,6 +292,7 @@
 			     , MENU_NAME
 			     , REVIEW_COUNT
 			     , REP_MENU
+			     , CTG_NAME
 			  FROM (
 			        SELECT
 			               REST_NO
@@ -302,6 +303,7 @@
 			             , LOCAL_NAME
 			             , MENU_NAME
 			             , REP_MENU
+			             , CTG_NAME
 			          FROM (
 			               SELECT
 			                      REST_NO
@@ -312,10 +314,12 @@
 			                    , LOCAL_NAME
 			                    , MENU_NAME
 			                    , REP_MENU
+			                    , CTG_NAME
 			                 FROM REST
 			                 LEFT JOIN REVIEW USING(REST_NO)
 			                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
 			                 LEFT JOIN MENU USING(REST_NO)
+			                 JOIN CATEGORY USING(CTG_ID)
 			               )
 			         GROUP
 			            BY REST_NO
@@ -325,6 +329,7 @@
 			             , LOCAL_NAME
 			             , MENU_NAME
 			             , REP_MENU
+			             , CTG_NAME
 			        )
 			  LEFT JOIN (
 			            SELECT
@@ -343,11 +348,12 @@
 			                BY REST_NO
 			            ) USING(REST_NO)           
 			 WHERE (
-					 REST_NAME LIKE '%' || ? || '%'
-				     OR LOCAL_NAME LIKE '%' || ? || '%'
-				     OR MENU_NAME LIKE '%' || ? || '%'
-				   )
+			         REST_NAME LIKE '%' || ? || '%'
+			         OR LOCAL_NAME LIKE '%' || ? || '%'
+			         OR MENU_NAME LIKE '%' || ? || '%'
+			       )
 			AND LOCAL_NAME LIKE '%' || ? || '%'
+			AND CTG_NAME LIKE '%' || ? || '%'
 			 ORDER
 			    BY REST_AVG DESC, REVIEW_COUNT DESC
 		</entry>
@@ -389,6 +395,28 @@
 				,ROOM = ?
 				,BIG_ROOM = ?
 			WHERE REST_NO = ?
+		
+		</entry>
+		
+		<entry key="insertRestAt">
+		
+		INSERT 
+			INTO ATTACHMENT
+			(
+			FILE_NO
+			,REF_BNO
+			,ORIGIN_NAME
+			,CHANGE_NAME
+			,FILE_PATH
+			)
+		VALUES
+			(
+			'F'||SEQ_ATTNO.NEXTVAL
+			,'B'||SEQ_BNO.CURRVAL
+			,?
+			,?
+			,?
+			)
 		
 		</entry>
 		

@@ -1,8 +1,10 @@
+<%@page import="com.kh.board.model.vo.ImgFile"%>
 <%@page import="com.kh.rest.model.vo.Rest"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <% Rest r = (Rest)request.getAttribute("r");
+    ImgFile img = (ImgFile)request.getAttribute("img"); 
     	System.out.println("메인페이지" + r);
     %>
 <!DOCTYPE html>
@@ -19,6 +21,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
+
     .outer{
         border: 1px solid orange;
         color: orange;
@@ -35,7 +38,7 @@
         border:1px;
         cursor: pointer;
     }
-
+    
     #navi {
         list-style-type: none;
         max-width: 1200px;
@@ -135,7 +138,7 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>" readonly></td>
+                    <td>별점 <input type="text" value= "<%= r.getHeart() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
@@ -157,40 +160,48 @@
                     <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td>카테고리</td>
-                    <td><input type="text" value = "<%= r.getCtgName() %>" readonly></td>
-                                    
-                </tr>
+					<tr>
+						<td>카테고리</td>
+						<td><input type="text" value="<%=r.getCtgName()%>" readonly></td>
 
-                <tr>
-                    <th>첨부파일</th>
-                    <td><input type="file" name="upfile"></td>
-                </tr>
+					</tr>
 
-                <tr>
-                    <td>&nbsp;&nbsp;기타여부</td>
-                    <td colspan="2">
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">주차</label>
-      
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">DT</label>
-      
-                      <input type="checkbox" name="extra" id="first" value="Y" />
-                      <label for="first">반려동물</label>
-      
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">개별룸</label>
-      
-                      <input type="checkbox" name="extra" id="third" value="Y" />
-                      <label for="third">대형룸</label>
-                      <br />
-                    </td>
-                  </tr>
-                
-               
-            </table>
+					<tr>
+						<th height="0">사진</th>
+						<td></td>
+						<td colspan="3">
+							<%if (img == null) {%>
+							<div class="file-area">
+								<span>첨부파일이 없습니다</span>
+								<%} else {%>
+								<a class="uploadFile"
+									download="<%=contextPath%>/<%=img.getImgFilePath() + img.getImgChangeName()%>"><%=img.getImgOriginName()%></a>
+							</div>
+						</td>
+						<%}%>
+					</tr>
+<tr>
+    <td>&nbsp;&nbsp;기타여부</td>
+    <td colspan="2">
+        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked readonly<% } %> />
+        <label for="parking">주차</label>
+        
+        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked  readonly<% } %> /> 
+        <label for="dt">DT</label> 
+        
+        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked readonly <% } %> /> 
+        <label for="pet_friendly">반려동물</label> 
+        
+        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+        <label for="private_room">개별룸</label> 
+        
+        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+        <label for="big_room">대형룸</label> <br />
+    </td>
+</tr>
+
+
+				</table>
 
             <br><br>
 

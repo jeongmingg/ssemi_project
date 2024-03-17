@@ -37,10 +37,11 @@ public class RestLocationSearchController extends HttpServlet {
 		
 		String keyword = request.getParameter("keyword");
 		String locationName = request.getParameter("locationName");
+		String categoryName = request.getParameter("categoryName");
 		
-		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName);
+		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName, categoryName);
 		
-		response.setContentType("applicaion/json; charset=utf-8");
+		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(lcList, response.getWriter());
 	}
 
