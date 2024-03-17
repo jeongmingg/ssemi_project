@@ -49,7 +49,7 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		
 		
 		request.setAttribute("list", list);
-		request.setAttribute("lList", restNo);
+		request.setAttribute("lList", lList);
 		request.setAttribute("r", r);
 		request.setAttribute("img", img);
 		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);

@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.ImgFile"%>
 <%@page import="com.kh.common.model.vo.Attachment"%>
 <%@page import="com.kh.common.model.vo.Location"%>
 <%@page import="com.kh.common.model.vo.Category"%>
@@ -9,8 +10,8 @@
     <% Rest r = (Rest)request.getAttribute("r");
     ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
     ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
-    Attachment at = (Attachment)request.getAttribute("at");
-    	System.out.println("메인페이지" + r);
+    ImgFile img  = (ImgFile)request.getAttribute("img");
+    	System.out.println(" update rest 메인페이지" + r + list + lList);
     %>
 <!DOCTYPE html>
 <html>

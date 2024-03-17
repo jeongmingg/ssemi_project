@@ -195,9 +195,8 @@ ArrayList<Category>
                     required />
                 </td>
                 <td>
-                  <a type="button" id="addmenu" onclick="addInput()"
-                    >메뉴추가</a
-                  >
+                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <label for="mainMenu">대표메뉴</label>
                 </td>
               </tr>
 
@@ -234,6 +233,19 @@ ArrayList<Category>
                     <%} %>
                   </select>
                 </td>
+                <td>메뉴 입력</td>
+                <td>
+                  <input
+                    type="number"
+                    step="1000"
+                    name="price"
+                    placeholder="-메뉴 입력 해주세요"
+                    required />
+                </td>
+                <td>
+                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <label for="mainMenu">대표메뉴</label>
+                </td>
               </tr>
               <tr>
                 <td>식당주소</td>
@@ -243,6 +255,15 @@ ArrayList<Category>
                     name="address"
                     maxlength="30"
                     placeholder="- 식당주소"
+                    required />
+                </td>
+                <td>가격 입력</td>
+                <td>
+                  <input
+                    type="number"
+                    step="1000"
+                    name="price"
+                    placeholder="-가격 입력 해주세요"
                     required />
                 </td>
               </tr>
@@ -257,6 +278,19 @@ ArrayList<Category>
                     placeholder="- 포함해서 입력"
                     required />
                 </td>
+                <td>메뉴 입력</td>
+                <td>
+                  <input
+                    type="number"
+                    step="1000"
+                    name="price"
+                    placeholder="-메뉴 입력 해주세요"
+                    required />
+                </td>
+                <td>
+                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <label for="mainMenu">대표메뉴</label>
+                </td>
               </tr>
               <tr>
                 <td>영업시간</td>
@@ -265,6 +299,15 @@ ArrayList<Category>
                     type="text"
                     name="bizHour"
                     placeholder="-HH:MM~ HH:MM" />
+                </td>
+                <td>가격 입력</td>
+                <td>
+                  <input
+                    type="number"
+                    step="1000"
+                    name="price"
+                    placeholder="-가격 입력 해주세요"
+                    required />
                 </td>
               </tr>
 
@@ -319,14 +362,31 @@ ArrayList<Category>
             </div>
 
             <script>
-              function addInput() {
-                // Создаем новый элемент input
-                var input = document.createElement("input");
-                input.type = "text"; // Устанавливаем тип поля ввода
+            function addInput() {
+        // Создаем новый элемент input
+        var inputMenu = document.createElement("input");
+        inputMenu.type = "text"; // Устанавливаем тип поля ввода
+        inputMenu.name = "menu";
+        inputMenu.placeholder = "-메뉴 입력해주세요";
+        inputMenu.required = true;
 
-                // Добавляем поле ввода в тело документа
-                document.body.table(input);
-              }
+        var inputPrice = document.createElement("input");
+        inputPrice.type = "number"; // Устанавливаем тип поля ввода
+        inputPrice.name = "price";
+        inputPrice.placeholder = "-가격 입력 해주세요";
+        inputPrice.required = true;
+
+        // Находим нужные колонки таблицы
+        var column3 = document.querySelector("table tr:nth-child(3) td:nth-child(2)");
+        var column4 = document.querySelector("table tr:nth-child(4) td:nth-child(2)");
+
+        // Добавляем новые поля ввода в соответствующие колонки
+        column3.appendChild(inputMenu);
+        column4.appendChild(inputPrice);
+    }
+
+document.getElementById("addMenuButton").addEventListener("click", addMenuInput);
+
             </script>
 
             <br />
@@ -335,5 +395,4 @@ ArrayList<Category>
         <%@ include file="../common/footer.jsp"%>
       </body>
     </html>
-  </Location></Category
->
+

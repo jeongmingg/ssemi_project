@@ -183,7 +183,7 @@
 <tr>
     <td>&nbsp;&nbsp;기타여부</td>
     <td colspan="2">
-        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked readonly<% } %> />
+        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked readonly <% } %> />
         <label for="parking">주차</label>
         
         <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked  readonly<% } %> /> 
