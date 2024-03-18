@@ -543,7 +543,6 @@ div {
 					</div>
 					<div id="function_content">
 						<input type="checkbox" id="pk" /><label for="pk">주차</label>
-						<input type="checkbox" id="24" /><label for="24">24시</label>
 						<input type="checkbox" id="er" /><label for="er">개별룸</label>
 						<input type="checkbox" id="br" /><label for="br">대형룸</label>
 						<input type="checkbox" id="dt" /><label for="dt">드라이브 스루</label>

@@ -15,11 +15,11 @@
 
 <style>
 	div{
-            box-sizing: border-box;
-            border: 1px solid red;
-            margin: 0;
-            padding: 0;
-            display: block;
+		box-sizing: border-box;
+		/* border: 1px solid red; */
+		margin: 0;
+		padding: 0;
+		display: block;
         }
 
 	.wrap{
@@ -29,8 +29,8 @@
 	}
 
 	#content{
-		width: 79%;
-		height: 1400px;
+		width: 1300px;
+		height: 1600px;
 		margin: 0 auto;
 		margin-bottom: 50px;
 	}
@@ -42,6 +42,7 @@
 		height: 300px;
 		margin-top: 50px;
 		margin-bottom: 50px;
+		padding: 20px;
 	}
 	#content_2{
 		height: 1100px;
@@ -105,7 +106,7 @@
 		font-size: 25px;
 	}
 	#content_2_2_content{
-		height: 1000px;
+		height: 1100px;
 		padding-top: 100px;
 		padding-bottom: 50px;
 		padding-left: 30px;
@@ -130,9 +131,8 @@
 	}
 
 	#content_2_1_content{
-		height: 90%;
+		height: 1000px;
 		padding-top: 30px;
-		padding-left: 20px;
 	}
 	#select-location{
 		padding-left: 20px;
@@ -307,9 +307,9 @@
 					</div>
 					<div class="box">
 						<div class="selectBox ">
-							<button class="label" type="button">전체 보기</button>
+							<button id="selectOption" class="label" type="button">지역 선택</button>
 							<ul class="optionList">
-								<li class="optionItem">전체 보기</li>
+								<li class="optionItem">전체</li>
 								<li class="optionItem">강남구</li>
 								<li class="optionItem">강동구</li>
 								<li class="optionItem">강북구</li>
@@ -382,52 +382,6 @@
 		<script>
 			
 			$(document).ready(function() {
-                const label = $('.label');
-                const options = $('.optionItem');
-                const selectBox = $('.selectBox');
-                const optionList = $('.optionList');
-
-                const handleSelect = function(item) {
-                    label.text(item.text());
-                    label.parent().removeClass('active');
-                }
-
-                options.on('click', function() {
-                    handleSelect($(this));
-                });
-
-                selectBox.on('click', function() {
-                    optionList.toggleClass('active');
-                });
-
-                // selectBox 클릭 시 max-height 토글
-                selectBox.on('click', function() {
-                    optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
-                });
-
-				// 검색결과 더보기 누르면서 무한스크롤
-
-				const restItems = $('.rest-item');
-				const moreBtn = $('#more-btn');
-				const itemsPerPage = 8;
-
-				// Hide restaurants beyond the first 8
-				restItems.slice(itemsPerPage).hide();
-
-				// Handle infinite scroll functionality
-				let currentCount = itemsPerPage;
-
-				moreBtn.on('click', function() {
-					const hiddenItems = restItems.slice(currentCount, currentCount + itemsPerPage);
-					hiddenItems.fadeIn();
-					currentCount += itemsPerPage;
-
-					// If all items are shown, hide the '더보기' button
-					if (currentCount >= restItems.length) {
-						moreBtn.text('조회결과 마지막 식당입니다.').css("color", "black"); // Change the text
-                		moreBtn.prop('disabled', true); // Optionally, disable the button
-					}
-				});
 
 				// 버튼 호버시 금액뜨는 효과
 				// 사원 hover style
@@ -524,7 +478,114 @@
 						}).text("부장");
 					}
 				);
+				
+				let label = $(".label");
+				let options = $(".optionItem");
+				let selectBox = $(".selectBox");
+				let optionList = $(".optionList");
+
+				let handleSelect = function(item) {
+                    label.text(item.text());
+                    label.parent().removeClass("active");
+                }
+
+                options.on("click", function() {
+                    handleSelect($(this));
+                });
+
+                label.on("click", function() {
+                    label.parent().toggleClass("active");
+                });
+
+                // selectBox 클릭 시 max-height 토글
+                selectBox.on("click", function() {
+                    optionList.css(
+                   		"max-height",
+                   		"optionList.css('max-height') === '1000px' ? '' : '1000px'"
+             		);
+                });
+
+				// 검색결과 더보기 누르면서 무한스크롤
+
+				const restItems = $('.rest-item');
+				const moreBtn = $('#more-btn');
+				const itemsPerPage = 8;
+
+				// Hide restaurants beyond the first 8
+				restItems.slice(itemsPerPage).hide();
+
+				// Handle infinite scroll functionality
+				let currentCount = itemsPerPage;
+
+				moreBtn.on('click', function() {
+					const hiddenItems = restItems.slice(currentCount, currentCount + itemsPerPage);
+					hiddenItems.fadeIn();
+					currentCount += itemsPerPage;
+
+					// If all items are shown, hide the '더보기' button
+					if (currentCount >= restItems.length) {
+						moreBtn.text('조회결과 마지막 식당입니다.').css("color", "black"); // Change the text
+                		moreBtn.prop('disabled', true); // Optionally, disable the button
+					}
+				});
+
+				// 선택된 지역을 저장할 변수 초기화
+                var selectedLocation = "";
+				
+				function handleSelection(){
+					let selectedLocation = $("#selectOption").text();
+               	 	selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
+               	 	
+	               	 $.ajax({
+	               		 
+	               		 url:"",
+	               		 data:{
+	               			locationName: selectedLocation
+	               		 },
+	               		 success: function(result){
+	               			updateTable(result);
+	               			
+	               			$("#content_2_2_title").text(
+							selectedLocation + <%= grade %> + "맛집 ( " + <%= list.size() %> + "곳 ) "
+	            			);
+	               		 },
+	               		 error: function(){
+	               			console.log("ajax 통신에 실패했습니다.");
+	               		 }
+	               		  
+	               	 });               	 	
+				}
+				
 			});
+			
+			function updateTable(result){
+				var restList = $("#restList");
+				restList.empty();
+				
+				if(result.length == 0){
+					var value = 
+						'<div>조회된 결과가 없습니다.</div>';
+					
+					restList.append(value);
+				} else {
+					$.each(
+						result,
+						function(index, restaurant){
+							var value = 
+							'<div class="rest-div rest-item">'
+							+ '<figure>'
+							+ '<img src="' + restaurant.restImgUrl + '">'
+							+ '<figcaption>' + restaurant.restName + '</figcaption>'
+							+ '</figure>'
+							+ '</div>';
+					
+					restList.append(value);
+					
+					});
+				}
+
+			}
+			
         </script>
 		
 	</div>
