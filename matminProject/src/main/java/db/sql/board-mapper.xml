@@ -196,4 +196,13 @@
 			    ) B
 			    )A
 		</entry>
+		
+		<entry key="searchListCount">
+			SELECT 
+			       COUNT(*) BOARD_COUNT
+			  FROM BOARD
+              JOIN MEMBER ON (MEM_NO = BOARD_WRITER)
+              WHERE BOARD_STATUS = 'Y'
+                AND NICKNAME = ?
+		</entry>
 </properties>
