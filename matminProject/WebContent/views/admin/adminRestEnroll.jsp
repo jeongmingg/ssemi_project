@@ -236,9 +236,8 @@ ArrayList<Category>
                 <td>메뉴 입력</td>
                 <td>
                   <input
-                    type="number"
-                    step="1000"
-                    name="price"
+                    type="text"
+                    name="menu"
                     placeholder="-메뉴 입력 해주세요"
                     required />
                 </td>
@@ -281,9 +280,8 @@ ArrayList<Category>
                 <td>메뉴 입력</td>
                 <td>
                   <input
-                    type="number"
-                    step="1000"
-                    name="price"
+                    type="text"
+                    name="menu"
                     placeholder="-메뉴 입력 해주세요"
                     required />
                 </td>
