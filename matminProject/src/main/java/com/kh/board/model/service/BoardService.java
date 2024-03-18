@@ -140,5 +140,13 @@ public class BoardService {
 		return b;
 	}
 	
+	public ArrayList<Board>  boardSearchList(String keyWord) {
+		Connection conn = getConnection();
+		
+		ArrayList<Board> sList = new BoardDao().boardSearchList(conn, keyWord);
+		
+		close(conn);
+		return sList;
+	}
 
 }

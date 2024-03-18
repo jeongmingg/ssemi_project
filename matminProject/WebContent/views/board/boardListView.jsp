@@ -105,14 +105,16 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
                 <td>
                   <input
                     type="text"
+                    id="searchKeyWord"
                     placeholder="닉네임을 입력해주세요"
                     height="100%"
                   />
                 </td>
-                <td><a href="#" class="btn btn-sm btn-secondary">검색</a></td>
+                <td><a href="#" class="btn btn-sm btn-secondary" onclick="searchBoardList();" onkeyup="enterkey();" >검색</a></td>
               </tr>
             </table>
           </div>
+
           <br />
 
           <!-- 게시판 목록-->
@@ -149,13 +151,6 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
             </tbody>
           </table>
 
-          <script>
-            $(".list-area tbody tr").click(function () {
-              var boardNo = $(this).find("td:first").text();
-              window.location.href =
-                "<%= contextPath %>/detail.bo?bno=" + boardNo;
-            });
-          </script>
 
           <br />
 
@@ -235,29 +230,67 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
       </body>
       
       <script>
-      	function boardSearchList {
+        $("#searchKeyWord").on("keyup", function(){
+            if(window.event.keyCode == 13){
+              searchBoardList();
+          }
+        })
+      
+    
+      </script>
+
+      <script>
+      	function searchBoardList() {
       		$.ajax({
       			url:"search.bo",
-      			data:{},
-      			success: function(){
+      			data:{keyWord:$("#searchKeyWord").val()},
+      			success: function(sList){
       				console.log("ajax 통신성공");
+      				console.log(sList);
+      				
+              if(sList.length === 0){ 
+                $(".list-area tbody").html(`<tr><td colspan="6">존재하는 공지사항이 없습니다.</td></tr>`);
+              } else {
+
+      				let value=""
+
+      				for (let i=0; i<sList.length; i++){
+      				
+	      			let s = sList[i];      		
+	      				
+	    				let sno = s.boardNo;
+	    				let stype = s.boardType;
+	    				let stitle = s.boardTitle;
+	    				let swriter = s.boardWriter;
+	    				let scount = s.boardCount;
+	    				let sdate = s.boardDate;
+	    				
+	      				value +=  `<tr>
+				      	                <td>\${sno}</td>
+				      	                <td>\${stype}</td>
+				      	                <td>\${stitle}</td>
+				      	                <td>\${swriter}</td>
+				      	                <td>\${scount}</td>
+				      	                <td>\${sdate}</td>
+					      	         </tr>`
+	      					
+      				}
+      				$(".list-area tbody").html(value);
+              }
+      				
       			},
       			error: function(){
       				console.log("ajax 통신실패");
       			}
-      		})
-      		
-      		
+      		});
       	}
-      
-      
-      
-      
-      
+      		
+      	$(document).on("click", ".list-area tbody tr", function(){
+                var boardNo = $(this).find("td:first").text();
+                window.location.href = "<%= contextPath %>/detail.bo?bno=" + boardNo;
+              });
+
       </script>
-      
-      
-      
       
       
         <%@ include file="../common/footer.jsp" %>
