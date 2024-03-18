@@ -14,16 +14,16 @@ import com.kh.heart.model.service.HeartService;
 import com.kh.heart.model.vo.Heart;
 
 /**
- * Servlet implementation class DeleteHeartByMemController
+ * Servlet implementation class HeartDeleteByRestController
  */
-@WebServlet("/deleteHeart.me")
-public class DeleteHeartByMemController extends HttpServlet {
+@WebServlet("/deleteHeartInRest.me")
+public class HeartDeleteByRestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteHeartByMemController() {
+    public HeartDeleteByRestController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,11 +36,11 @@ public class DeleteHeartByMemController extends HttpServlet {
 		String memNo = request.getParameter("memNo");
 		String restNo = request.getParameter("restNo");
 		
-		ArrayList<Heart> list = new HeartService().deleteHeart(memNo, restNo);
+		ArrayList<Heart> list = new HeartService().deleteHeartByRest(memNo, restNo);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(list, response.getWriter());
-		
+
 	}
 
 	/**

@@ -67,4 +67,18 @@
 		  FROM HEART
 		 WHERE REST_NO = ?
 	</entry>
+	
+	<entry key="insertHeart">
+		INSERT
+		  INTO HEART
+		  (
+		    REST_NO
+		  , MEM_NO
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
 </properties>

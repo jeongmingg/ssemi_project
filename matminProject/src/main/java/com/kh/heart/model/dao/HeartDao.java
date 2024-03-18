@@ -124,5 +124,30 @@ public class HeartDao {
 		
 		return list;
 	}
+	
+	public int insertHeart(Connection conn, String memNo, String restNo) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertHeart");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, restNo);
+			pstmt.setString(2, memNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 }

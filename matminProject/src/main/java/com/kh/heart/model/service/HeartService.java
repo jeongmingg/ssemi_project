@@ -41,10 +41,51 @@ public class HeartService {
 		return list;
 	}
 	
+	public ArrayList<Heart> deleteHeartByRest(String memNo, String restNo) {
+		Connection conn = getConnection();
+		
+		int result = new HeartDao().deleteHeart(conn, memNo, restNo);
+		
+		ArrayList<Heart> list = new ArrayList<Heart>();
+		
+		if(result > 0) {
+			commit(conn);
+			
+			list = new HeartDao().selectHeartByRest(conn, restNo);
+			
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return list;
+	}
+	
 	public ArrayList<Heart> selectHeartByRest(String rpage) {
 		Connection conn = getConnection();
 		
 		ArrayList<Heart> list = new HeartDao().selectHeartByRest(conn, rpage);
+		
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<Heart> insertHeart(String memNo, String restNo) {
+		Connection conn = getConnection();
+		
+		int result = new HeartDao().insertHeart(conn, memNo, restNo);
+		
+		ArrayList<Heart> list = new ArrayList<Heart>();
+		
+		if(result > 0) {
+			commit(conn);
+			
+			list = new HeartDao().selectHeartByRest(conn, restNo);
+		} else {
+			rollback(conn);
+		}
 		
 		close(conn);
 		

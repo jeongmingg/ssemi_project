@@ -781,6 +781,11 @@
 				<div class="heart-count-area">
 				<% 
 					boolean heartFlag = false;
+					String memNo = "";
+					
+					if(loginUser != null) {
+						memNo = loginUser.getMemNo();
+					}
 				
 					for(Heart h : hList) {
 						if(!hList.isEmpty() && loginUser != null && h.getMemNo().equals(loginUser.getMemNo())) {
@@ -791,10 +796,10 @@
 				%>
 				<% if(!heartFlag) { %>
 					<!-- 빈하트 -->
-					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px;"> 
+					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
 				<% } else { %>
 					<!-- 채워진 하트-->
-					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;"> 
+					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
 				<% } %>
 					<span>찜꽁(<%= hList.size() %>)</span>
 				</div>
@@ -1408,6 +1413,44 @@
 					$("#map").css("display","block");	
 				})
 		})
+		</script>
+		
+		<script>
+			function insertHeart(memNo, restNo) {
+				if(<%= loginUser == null %>) {
+					alert("로그인 후 이용 가능한 서비스입니다.");
+					return;
+				} else {
+					$.ajax({
+						url: "insertHeart.me",
+						data: {
+							memNo: memNo,
+							restNo: restNo
+						},
+						success: function(result) {
+							$(".heart-count-area>img").attr("src", "https://img.icons8.com/sf-black-filled/64/f39c12/like.png");
+							$(".heart-count-area>img").attr("onclick", "cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+							$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+						}
+					});
+				}
+				
+			}
+			
+			function cancelHeart(memNo, restNo) {
+				$.ajax({
+					url: "deleteHeartInRest.me",
+					data: {
+						memNo: memNo,
+						restNo: restNo
+					},
+					success: function(result) {
+						$(".heart-count-area>img").attr("src", "https://img.icons8.com/ios/50/e4910d/hearts--v1.png");
+						$(".heart-count-area>img").attr("onclick", "insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+						$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+					}
+				});
+			}
 		</script>
 			
 
