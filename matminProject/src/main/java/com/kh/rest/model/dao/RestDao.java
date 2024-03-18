@@ -401,7 +401,7 @@ public class RestDao {
 		
 		String sql = prop.getProperty("locationSearch");
 			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
-				sql += " AND " + rsFunction + "= ?";	
+				sql += " AND " + rsFunction + "= ?";
 			
 	    }
 		
@@ -558,6 +558,37 @@ public class RestDao {
 		}
 		return img;
 	}
+	
+	public ArrayList<Rest> contentRestList(Connection conn, ArrayList<String> categoryList){
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("contentRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+						  rset.getString("rest_name"),
+						  rset.getString("rest_img_url"),
+						  rset.getString("ctg_name"),
+						  rset.getDouble("rest_avg"),
+						  rset.getInt("review_count")));
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	} 
 }
 	
 

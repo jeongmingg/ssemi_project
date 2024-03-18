@@ -239,7 +239,7 @@
 				
 				$.ajax({
 					url:"random.rs",
-					type:"post",
+					type:"get",
 					data: {ctgName: selectedCategory},
 					success:function(result){
 						
