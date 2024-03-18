@@ -1372,7 +1372,6 @@
 					type:"post",
 					data:{
 						no:rvNo,
-						id:`{<%= loginUser.getMemNo %>}`,
 					},
 					success:function(){
 						console.log("ajax 통신성공");
