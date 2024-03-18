@@ -154,10 +154,14 @@
   border-radius: 10px;
 }
 
-#star,
-#heart {
+#star {
   width: 15px;
   height: 15px;
+}
+
+#heart {
+  width: 20px;
+  height: 20px;
 }
 
 #myBoard,

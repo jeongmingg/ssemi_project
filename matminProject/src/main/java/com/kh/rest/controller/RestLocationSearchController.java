@@ -38,8 +38,24 @@ public class RestLocationSearchController extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		String locationName = request.getParameter("locationName");
 		String categoryName = request.getParameter("categoryName");
+	    String rsFunction = request.getParameter("rsFunction");
+	    String funcState = request.getParameter("funcState");
+	    
+	    String columnName = ""; 
+	    if (rsFunction.equals("주차")) {
+	    	rsFunction = "REST_PARKING";
+	    } else if (rsFunction.equals("드라이브 스루")) {
+	    	rsFunction = "DT";
+	    } else if (rsFunction.equals("반려동물 동반")) {
+	    	rsFunction = "ANIMAL";
+	    } else if (rsFunction.equals("개별룸")) {
+	    	rsFunction = "ROOM";
+	    } else if (rsFunction.equals("대형룸")) {
+	    	rsFunction = "BIG_ROOM";
+	    }
+	    
 		
-		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName, categoryName);
+		ArrayList<Rest> lcList = new RestService().locationSearch(keyword, locationName, categoryName, rsFunction, funcState);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(lcList, response.getWriter());
