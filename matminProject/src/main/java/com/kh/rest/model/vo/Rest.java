@@ -183,6 +183,18 @@ public class Rest {
 		this.bigRoom = bigRoom;
 	}
 
+	
+
+	public Rest(String restNo, String restName, String restImgUrl, String ctgName, double restAvg,  int reviewCount ) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restImgUrl = restImgUrl;
+		this.ctgName = ctgName;
+		this.restAvg = restAvg;
+		this.reviewCount = reviewCount;
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}

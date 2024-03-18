@@ -439,4 +439,24 @@
 		
 		</entry>
 		
+		<entry key="contentRestList">
+			SELECT
+			        REST_NO
+			      , REST_NAME
+			      , REST_IMG_URL
+			      , CTG_NAME
+			      , NVL(ROUND(AVG(REVIEW_RATE), 1), 0) "REST_AVG"
+			      , COUNT(REVIEW_NO) "REVIEW_COUNT"
+			  FROM REST
+			  LEFT JOIN REVIEW USING(REST_NO)
+			  LEFT JOIN CATEGORY USING(CTG_ID)
+			 GROUP BY 
+			        REST_NO
+			      , REST_NAME
+			      , REST_IMG_URL
+			      , CTG_NAME
+			 ORDER
+			    BY REST_AVG DESC, REVIEW_COUNT DESC
+		</entry>
+		
 </properties>
