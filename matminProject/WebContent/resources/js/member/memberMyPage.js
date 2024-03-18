@@ -286,7 +286,6 @@ function markList(memNo) {
     url: "mkList.me",
     data: { memNo: memNo },
     success: function (result) {
-      // console.log(result);
       let str = "";
       if (result.length == 0) {
         str += `<tr>
@@ -338,8 +337,6 @@ function markList(memNo) {
 function deleteReview(ele, memNo) {
   /*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
   let rvNo = $(ele).siblings("input").val();
-
-  // console.log(rvNo);
 
   if (confirm("정말 삭제하시겠습니까?")) {
     $.ajax({
