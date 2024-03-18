@@ -173,9 +173,6 @@
 					<div class="s-star">
 						<img src="resources/matchelin/matchelin3.png" width="120px" height="120px">
 					</div>
-					<div class="s-btn">
-						<button class="moreBtn">더보기</button>
-					</div>
 				</div>
 				<div id="slide1-content" class="s-content">
 					<div class="swiper-container">
@@ -207,9 +204,6 @@
 					<div class="s-star">
 						<img src="resources/matchelin/matchelin2.png" width="120px" height="120px">
 					</div>
-					<div class="s-btn">
-						<button class="moreBtn">더보기</button>
-					</div>
 				</div>
 				<div id="slide2-content" class="s-content">
 					<div class="swiper-container">
@@ -240,9 +234,6 @@
 				<div id="slide3-title" class="s-title">
 					<div class="s-star">
 						<img src="resources/matchelin/matchelin1.png" width="120px" height="120px">
-					</div>
-					<div class="s-btn">
-						<button class="moreBtn">더보기</button>
 					</div>
 				</div>
 				<div id="slide3-content" class="s-content">
