@@ -19,5 +19,26 @@ public class HeartService {
 		
 		return list;
 	}
+	
+	public ArrayList<Heart> deleteHeart(String memNo, String restNo) {
+		Connection conn = getConnection();
+		
+		int result = new HeartDao().deleteHeart(conn, memNo, restNo);
+		
+		ArrayList<Heart> list = new ArrayList<Heart>();
+		
+		if(result > 0) {
+			commit(conn);
+			
+			list = new HeartDao().selectHeartListByMem(conn, memNo);
+			
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return list;
+	}
 
 }
