@@ -92,5 +92,37 @@ public class HeartDao {
 		
 		return result;
 	}
+	
+	public ArrayList<Heart> selectHeartByRest(Connection conn, String rpage) {
+		ArrayList<Heart> list = new ArrayList<Heart>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectHeartByRest");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rpage);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Heart(rset.getString("rest_no"), 
+								   rset.getString("mem_no")
+								   ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 }

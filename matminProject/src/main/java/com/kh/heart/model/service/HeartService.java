@@ -40,5 +40,15 @@ public class HeartService {
 		
 		return list;
 	}
+	
+	public ArrayList<Heart> selectHeartByRest(String rpage) {
+		Connection conn = getConnection();
+		
+		ArrayList<Heart> list = new HeartDao().selectHeartByRest(conn, rpage);
+		
+		close(conn);
+		
+		return list;
+	}
 
 }

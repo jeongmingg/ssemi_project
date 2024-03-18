@@ -59,4 +59,12 @@
 		 WHERE REST_NO = ?
 		   AND MEM_NO = ?
 	</entry>
+	
+	<entry key="selectHeartByRest">
+		SELECT
+		       REST_NO
+		     , MEM_NO
+		  FROM HEART
+		 WHERE REST_NO = ?
+	</entry>
 </properties>
