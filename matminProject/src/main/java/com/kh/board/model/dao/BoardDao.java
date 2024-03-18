@@ -372,6 +372,34 @@ public class BoardDao {
 		return b;
 	}
 	
-	
+	public ArrayList<Board> boardSearchList(Connection conn, String keyWord) {
+		ArrayList<Board> sList = new ArrayList<Board>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("boardSearchList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, keyWord);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				sList.add(new Board(rset.getInt("rnum"),
+						 			rset.getString("board_no"),
+						 			rset.getString("nickname"),
+						            rset.getString("board_type"),
+						            rset.getString("board_title"),
+						            rset.getInt("board_count"),
+						            rset.getString("board_date")));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return sList;
+	}
 }
 

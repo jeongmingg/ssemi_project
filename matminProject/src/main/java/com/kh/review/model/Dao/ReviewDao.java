@@ -216,4 +216,29 @@ public class ReviewDao {
 		} return rate;
 	}
 	
+	public Review selectReviewAvg(Connection conn, String rpage) {
+		Review rv = new Review();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewAvg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				rv = new Review(rset.getDouble("review_avg"));  
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return rv;
+		
+	}
+	
 }

@@ -95,16 +95,14 @@ public class Rest {
 
 	
 	
-	public Rest(String restNo, String restName, String restAddress, String restTel, double restX, double restY,
+	public Rest(String restNo, String restName, String restAddress, String restTel,
 			String restParking, int restGrade, String restTime, double restAvg, String restImgUrl, String localName, int reviewCount,
-			String menuName, String menuPrice, String dt, String anmial, String room, String bigRoom, String ctgName) {
+			String dt, String anmial, String room, String bigRoom, String ctgName) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
 		this.restAddress = restAddress;
 		this.restTel = restTel;
-		this.restX = restX;
-		this.restY = restY;
 		this.restParking = restParking;
 		this.restGrade = restGrade;
 		this.restTime = restTime;
@@ -112,8 +110,6 @@ public class Rest {
 		this.restImgUrl = restImgUrl;
 		this.localName = localName;
 		this.reviewCount = reviewCount;
-		this.menuName = menuName;
-		this.menuPrice = menuPrice;
 		this.dt = dt;
 		this.anmial = anmial;
 		this.room = room;
@@ -131,7 +127,7 @@ public class Rest {
 	}
 
 	public Rest(String restNo, String restName, double restAvg, int heart, String restImgUrl, String restAddress,  
-			String localName, String menuName, int reviewCount, String repMenu) {
+			String localName, String menuName, int reviewCount, String repMenu, String ctgName) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
@@ -143,17 +139,48 @@ public class Rest {
 		this.menuName = menuName;
 		this.reviewCount = reviewCount;
 		this.repMenu = repMenu;
+		this.ctgName = ctgName;
 	}
 
-	public Rest(String restLocation, String restName, String ctgId, String restAddress, String restTel,
-			String parking, String restTime, String drivethrou, String comAnimal, String prvRoom, String bigRoom) {
-		// TODO Auto-generated constructor stub
+	public Rest(String menuName, String menuPrice, String repMenu) {
+		super();
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.repMenu = repMenu;
+	}
+	
+	public Rest(String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			String restParking, String restTime, String dt, String anmial, String room, String bigRoom) {
+		super();
+		this.restLocalId = restLocalId;
+		this.restName = restName;
+		this.ctgId = ctgId;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restParking = restParking;
+		this.restTime = restTime;
+		this.dt = dt;
+		this.anmial = anmial;
+		this.room = room;
+		this.bigRoom = bigRoom;
+
 	}
 
-	public Rest(String restNo, String restLocation, String restName, String ctgId, String restAddress,
-			String restTel, String parking, String restTime, String drivethrou, String comAnimal, String prvRoom,
-			String bigRoom) {
-		// TODO Auto-generated constructor stub
+	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			String restParking, String restTime, String dt, String anmial, String room, String bigRoom) {
+		super();
+		this.restNo = restNo;
+		this.restLocalId = restLocalId;
+		this.restName = restName;
+		this.ctgId = ctgId;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restParking = restParking;
+		this.restTime = restTime;
+		this.dt = dt;
+		this.anmial = anmial;
+		this.room = room;
+		this.bigRoom = bigRoom;
 	}
 
 	public String getRestNo() {

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
@@ -39,17 +40,18 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		
 		RestService rService = new RestService();
 		
+		Rest r = rService.selectRest(restNo);
+		ImgFile img= rService.selectAttachment(restNo);
+
 		ArrayList<Category> list = rService.selectCategoryList();
 		ArrayList<Location> lList = rService.selectLocationList();
 		
-		Rest r = rService.selectRest(restNo);
 		
-		Attachment at = rService.selectAttachment(restNo);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("lList", restNo);
 		request.setAttribute("r", r);
-		request.setAttribute("at", at);
+		request.setAttribute("img", img);
 		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);
 	}
 

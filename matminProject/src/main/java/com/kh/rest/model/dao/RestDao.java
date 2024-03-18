@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
@@ -225,8 +226,8 @@ public class RestDao {
 			pstmt.setString(3, r.getCtgId());
 			pstmt.setString(4, r.getRestAddress());
 			pstmt.setString(5, r.getRestTel());
-			pstmt.setString(7, r.getRestParking());
-			pstmt.setString(6, r.getRestTime());
+			pstmt.setString(6, r.getRestParking());
+			pstmt.setString(7, r.getRestTime());
 			pstmt.setString(8, r.getDt());
 			pstmt.setString(9, r.getAnmial());
 			pstmt.setString(10, r.getRoom());
@@ -261,8 +262,6 @@ public class RestDao {
 						rset.getString("rest_name"),
 						rset.getString("rest_address"),
 						rset.getString("rest_tel"),
-						rset.getDouble("rest_x"),
-						rset.getDouble("rest_y"),
 						rset.getString("rest_parking"),
 						rset.getInt("rest_grade"),
 						rset.getString("rest_time"),
@@ -270,8 +269,6 @@ public class RestDao {
 						rset.getString("rest_img_url"),
 						rset.getString("local_name"),
 						rset.getInt("review_count"),
-						rset.getString("menu_name"),
-						rset.getString("menu_price"),
 						rset.getString("dt"),
 						rset.getString("animal"),
 						rset.getString("room"),
@@ -331,7 +328,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public int insertRestAt(Connection conn, Attachment at) {
+	public int insertRestAt(Connection conn, ImgFile img) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -340,11 +337,12 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, at.getOriginName());
-			pstmt.setString(2, at.getChangeName());
-			pstmt.setString(3, at.getFilePath());
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
 			
 			result = pstmt.executeUpdate();
+			System.out.println(img);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -394,7 +392,7 @@ public class RestDao {
 		return list;
 	}
 	
-	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName){
+	public ArrayList<Rest> locationSearch(Connection conn, String keyword, String locationName, String categoryName, String rsFunction, String funcState){
 		
 		ArrayList<Rest> lcList = new ArrayList<Rest>();
 		
@@ -402,6 +400,10 @@ public class RestDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("locationSearch");
+			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
+				sql += " AND " + rsFunction + "= ?";	
+			
+	    }
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -410,12 +412,23 @@ public class RestDao {
 			pstmt.setString(2, keyword);
 			pstmt.setString(3, keyword);
 			
-			if(locationName.equals("전체")) {
-				pstmt.setString(4, "");
-			}else {
+			if(locationName != null && !locationName.equals("전체")) {
 				pstmt.setString(4, locationName);
+			}else {
+				pstmt.setString(4, "");
 			}
 			
+			if(categoryName != null && !categoryName.equals("전체")) {
+				pstmt.setString(5, categoryName);
+			}else {
+				pstmt.setString(5, "");
+			}
+			
+			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
+			
+				pstmt.setString(6, funcState);
+
+			}
 			rset= pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -428,7 +441,8 @@ public class RestDao {
 						  rset.getString("local_name"),
 						  rset.getString("menu_name"),
 						  rset.getInt("review_count"),
-						  rset.getString("rep_menu")));
+						  rset.getString("rep_menu"),
+						  rset.getString("ctg_name")));
 			}
 			
 		} catch (SQLException e) {
@@ -469,6 +483,29 @@ public class RestDao {
 		return result;
 	}
 	
+	public ArrayList<Rest> selectMenuList(Connection conn, String rpage){
+		ArrayList<Rest> mList = new ArrayList<Rest>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMenuList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rpage);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				mList.add(new Rest(rset.getString("menu_name"),
+						           rset.getString("menu_price"),
+						           rset.getString("rep_menu")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return mList;
+	}
 
 	public ArrayList<Location> selectLocationList(Connection conn){
 		ArrayList<Location> lList = new ArrayList<Location>();
@@ -494,34 +531,32 @@ public class RestDao {
 		return lList;
 	}
 	
-	public Attachment selectAttachment(Connection conn,String restNo) {
-		Attachment at = null;
+	public ImgFile selectAttachment(Connection conn, String restNo) {
+		ImgFile img = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		String sql = prop.getProperty("selectAttachment");
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, restNo);
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				at = new Attachment();
-				
-				at.setFileNo(rset.getInt("file_no"));
-				at.setOriginName(rset.getString("origin_name"));
-				at.setChangeName(rset.getString("change_name"));
-				at.setFilePath(rset.getString("file_path"));
-			}
+
+				if (rset.next()) {
+					img = new ImgFile(rset.getString("img_file_no"), 
+										rset.getString("img_origin_name"),
+										rset.getString("img_change_name"), 
+										rset.getString("img_file_path"));
+				}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return at;
+		return img;
 	}
 }
 	

@@ -191,28 +191,26 @@
                     <td><input type="file" name="upfile"></td>
                 </tr>
                 
-                 <tr>
-                    <td>&nbsp;&nbsp;기타여부</td>
-                    <td colspan="2">
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">주차</label>
-      
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">DT</label>
-      
-                      <input type="checkbox" name="extra" id="first" value="Y" />
-                      <label for="first">반려동물</label>
-      
-                      <input type="checkbox" name="extra" id="second" value="Y" />
-                      <label for="second">개별룸</label>
-      
-                      <input type="checkbox" name="extra" id="third" value="Y" />
-                      <label for="third">대형룸</label>
-                      <br />
-                    </td>
-                  </tr>
-                
-               
+                <tr>
+    <td>&nbsp;&nbsp;기타여부</td>
+    <td colspan="2">
+        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked <% } %> />
+        <label for="parking">주차</label>
+        
+        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
+        <label for="dt">DT</label> 
+        
+        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
+        <label for="pet_friendly">반려동물</label> 
+        
+        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+        <label for="private_room">개별룸</label> 
+        
+        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+        <label for="big_room">대형룸</label> <br />
+    </td>
+</tr>
+
             </table>
 
             <br><br>

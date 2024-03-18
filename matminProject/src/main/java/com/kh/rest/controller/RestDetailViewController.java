@@ -38,10 +38,15 @@ public class RestDetailViewController extends HttpServlet {
 		
 		Rest r = new RestService().selectRestDetail(rpage); 
 		ArrayList<Review> rate = new ReviewService().selectReviewRate(rpage);
+		Review rv = new ReviewService().selectReviewAvg(rpage);
+		ArrayList<Rest> mList = new RestService().selectMenuList(rpage);
+		
 
 		request.setAttribute("rpage", rpage);
 		request.setAttribute("r", r);
 		request.setAttribute("rate", rate);
+		request.setAttribute("rv", rv);
+		request.setAttribute("mList", mList);
 		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
 	}
 

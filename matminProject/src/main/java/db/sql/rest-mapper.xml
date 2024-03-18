@@ -225,56 +225,47 @@
 
 		<!-- 식당상세테이블용 -->
 		 <entry key="selectRestDetail">
-	     SELECT
-	             REST_NO
-	           , REST_NAME
-	           , REST_ADDRESS
-	           , REST_TEL
-	           , REST_X
-	           , REST_Y
-	           , REST_PARKING
-	           , REST_GRADE
-	           , REST_TIME
-	           , REST_AVG
-	           , REST_IMG_URL
-	           , LOCAL_NAME
-	           , COUNT(*) "REVIEW_COUNT"
-	           , MENU_NAME
-	           , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
-	           , DT
-	           , ANIMAL
-	           , ROOM
-	           , BIG_ROOM
-	           , CTG_NAME
-	        FROM REVIEW
-	        JOIN REST USING (REST_NO)
-	        JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
-	        JOIN CATEGORY USING (CTG_ID)
-	        JOIN MENU USING (REST_NO)
-	       WHERE REST_NO = ?
-	         AND REST_STATUS = 'Y'
-	         AND REVIEW_STATUS = 'Y'
-	       GROUP
-	          BY REST_NO
-	           , REST_NAME
-	           , REST_LOCAL_ID
-	           , REST_ADDRESS
-	           , REST_TEL
-	           , REST_X
-	           , REST_Y
-	           , REST_PARKING
-	           , REST_GRADE
-	           , REST_TIME
-	           , REST_AVG
-	           , REST_IMG_URL
-	           , MENU_NAME
-	           , MENU_PRICE
-	           , DT
-	           , ANIMAL
-	           , ROOM
-	           , BIG_ROOM
-	           , LOCAL_NAME
-          	   , CTG_NAME
+		  SELECT
+		       R.REST_NO
+		     , REST_NAME
+		     , REST_ADDRESS
+		     , REST_TEL
+		     , REST_PARKING
+		     , REST_GRADE
+		     , REST_TIME
+		     , REST_AVG
+		     , REST_IMG_URL
+		     , DT
+		     , ANIMAL
+		     , ROOM
+		     , BIG_ROOM
+		     , LOCAL_NAME
+		     , CTG_NAME
+		     , COUNT(REVIEW_NO) "REVIEW_COUNT"
+		  FROM REST R
+		  JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+		  JOIN CATEGORY USING(CTG_ID)
+		  LEFT JOIN REVIEW RV ON (R.REST_NO = RV.REST_NO AND REVIEW_STATUS = 'Y')
+		 WHERE R.REST_NO = ?
+		   AND REST_STATUS = 'Y'
+		 GROUP
+		    BY R.REST_NO
+		     , REST_NAME
+		     , REST_ADDRESS
+		     , REST_TEL
+		     , REST_X
+		     , REST_Y
+		     , REST_PARKING
+		     , REST_GRADE
+		     , REST_TIME
+		     , REST_AVG
+		     , REST_IMG_URL
+		     , DT
+		     , ANIMAL
+		     , ROOM
+		     , BIG_ROOM
+		     , LOCAL_NAME
+		     , CTG_NAME
       </entry>
 		
 		<entry key="rsRecommend">
@@ -301,6 +292,12 @@
 			     , MENU_NAME
 			     , REVIEW_COUNT
 			     , REP_MENU
+			     , CTG_NAME
+			     , REST_PARKING
+			    , DT
+			    , ANIMAL
+			    , ROOM
+			    , BIG_ROOM
 			  FROM (
 			        SELECT
 			               REST_NO
@@ -311,6 +308,12 @@
 			             , LOCAL_NAME
 			             , MENU_NAME
 			             , REP_MENU
+			             , CTG_NAME
+			             , REST_PARKING
+			            , DT
+			            , ANIMAL
+			            , ROOM
+			            , BIG_ROOM
 			          FROM (
 			               SELECT
 			                      REST_NO
@@ -321,10 +324,17 @@
 			                    , LOCAL_NAME
 			                    , MENU_NAME
 			                    , REP_MENU
+			                    , CTG_NAME
+			                    , REST_PARKING
+			                    , DT
+			                    , ANIMAL
+			                    , ROOM
+			                    , BIG_ROOM
 			                 FROM REST
 			                 LEFT JOIN REVIEW USING(REST_NO)
 			                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
 			                 LEFT JOIN MENU USING(REST_NO)
+			                 JOIN CATEGORY USING(CTG_ID)
 			               )
 			         GROUP
 			            BY REST_NO
@@ -334,6 +344,12 @@
 			             , LOCAL_NAME
 			             , MENU_NAME
 			             , REP_MENU
+			             , CTG_NAME
+			             , REST_PARKING
+			            , DT
+			            , ANIMAL
+			            , ROOM
+			            , BIG_ROOM
 			        )
 			  LEFT JOIN (
 			            SELECT
@@ -352,14 +368,27 @@
 			                BY REST_NO
 			            ) USING(REST_NO)           
 			 WHERE (
-					 REST_NAME LIKE '%' || ? || '%'
-				     OR LOCAL_NAME LIKE '%' || ? || '%'
-				     OR MENU_NAME LIKE '%' || ? || '%'
-				   )
+			         REST_NAME LIKE '%' || ? || '%'
+			         OR LOCAL_NAME LIKE '%' || ? || '%'
+			         OR MENU_NAME LIKE '%' || ? || '%'
+			       )
 			AND LOCAL_NAME LIKE '%' || ? || '%'
-			 ORDER
-			    BY REST_AVG DESC, REVIEW_COUNT DESC
+			AND CTG_NAME LIKE '%' || ? || '%'
+
 		</entry>
+		
+		<entry key="selectMenuList">
+		SELECT 
+			    MENU_NAME,
+			    TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE",
+			    REP_MENU
+			FROM REST
+			JOIN MENU USING (REST_NO)
+			WHERE REST_NO = ?
+		</entry>
+		
+		
+		
 		
 		<entry key="selectLocationList">
 		
@@ -385,6 +414,28 @@
 				,ROOM = ?
 				,BIG_ROOM = ?
 			WHERE REST_NO = ?
+		
+		</entry>
+		
+		<entry key="insertRestAt">
+		
+		INSERT 
+			INTO ATTACHMENT
+			(
+			FILE_NO
+			,REF_BNO
+			,ORIGIN_NAME
+			,CHANGE_NAME
+			,FILE_PATH
+			)
+		VALUES
+			(
+			'F'||SEQ_ATTNO.NEXTVAL
+			,'B'||SEQ_BNO.CURRVAL
+			,?
+			,?
+			,?
+			)
 		
 		</entry>
 		
