@@ -166,6 +166,7 @@ public class RestService {
 		return img;
 	}
 
+
 	public Rest selectRestMain(String restNo) {
 		Connection conn = getConnection();
 		
@@ -173,5 +174,12 @@ public class RestService {
 				close(conn);
 		return r;
 	}
+//	public ArrayList<Rest> searchByKeyword(String keyword) {
+//		Connection conn = getConnection();
+//		ArrayList<Rest> rlist = new RestDao().searchByKeyword(conn, keyword);
+//		close(conn); 
+//		return rlist;
+//
+//	}
 }
 

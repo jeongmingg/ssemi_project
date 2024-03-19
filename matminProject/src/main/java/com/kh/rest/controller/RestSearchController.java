@@ -39,11 +39,11 @@ public class RestSearchController extends HttpServlet {
 		
 		ArrayList<Search> list = new RestService().searchKeywordList(keyword);
 		
-		ArrayList<Rest> rlist = new RestService().searchByKeyword(keyword); 
+		//ArrayList<Rest> rlist = new RestService().searchByKeyword(keyword); 
 		
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("list", list);
-		request.setAttribute("rlist", rlist);
+		//request.setAttribute("rlist", rlist);
 		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
