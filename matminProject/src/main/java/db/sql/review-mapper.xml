@@ -108,5 +108,35 @@
 			                    BY REVIEW_RATE))
 	
 	</entry>
+	
+	<entry key="checkLiked">
+	 SELECT *
+	   FROM RVLIKE
+	  WHERE REVIEW_NO = ?
+	    AND NICKNAME = ?
+	</entry>
+	
+	
+	<entry key="insertLike">
+	INSERT
+		  INTO RVLIKE
+		  (
+		    REVIEW_NO
+		  , NICKNAME
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
+	
+	<entry key="deleteLike">
+	DELETE
+		  FROM RVLIKE
+		 WHERE REVIEW_NO = ?
+		   AND NICKNAME = ?
+	</entry>
+
 
 </properties>

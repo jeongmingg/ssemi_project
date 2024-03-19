@@ -241,4 +241,79 @@ public class ReviewDao {
 		
 	}
 	
+	public boolean checkLiked(Connection conn, String rvNo, String logName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		boolean liked = false;
+		
+		String sql = prop.getProperty("checkLiked");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				liked = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rset != null) {
+				close(rset);
+			}
+			if(pstmt != null) {
+				close(pstmt);
+			}
+			return liked;
+		}	
+	}
+	
+	
+	public int insertLike(Connection conn, String rvNo, String logName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			System.out.println("insertLike : " + result);
+		} return result;
+
+	}
+	
+	public int deleteLike(Connection conn, String rvNo, String logName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+	
 }
