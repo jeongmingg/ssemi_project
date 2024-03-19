@@ -10,11 +10,16 @@
 
 <% Rest r = (Rest)request.getAttribute("r"); 
 
-	ArrayList<String> addrList = new ArrayList<String>();
-	if(r != null && r.getRestAddress() != null) {
-		addrList.add(r.getRestAddress());
+	ArrayList<Search> mapList = new ArrayList<Search>();
+	if(r != null && r.getRestAddress() != null && r.getRestName() != null) {
+		Search s = new Search();
+		
+		s.setRestAddress(r.getRestAddress());
+		s.setRestName(r.getRestName());
+		
+		mapList.add(s);
 	}
-	request.setAttribute("addrList", addrList);
+	request.setAttribute("mapList", mapList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
