@@ -174,9 +174,9 @@ public class RestService {
 		return list;
 	}
 	
-	public ArrayList<Rest> bannerSearch(String locationName){
+	public ArrayList<Rest> bannerSearch(String locationName, String selectedGrade){
 		Connection conn = getConnection();
-		ArrayList<Rest> list = new RestDao().bannerSearch(conn, locationName);
+		ArrayList<Rest> list = new RestDao().bannerSearch(conn, locationName, selectedGrade);
 		
 		close(conn); 
 		return list;

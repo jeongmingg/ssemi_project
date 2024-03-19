@@ -518,13 +518,24 @@
 					}
 				);
 
-				/* $('.bannerBtn').on('click', function() {
+				$('.bannerBtn').on('click', function() {
                     // 선택한 버튼의 텍스트 가져오기
                     var selectedGrade = $(this).attr('id');
-					
+                    console.log("Dd" + selectedGrade)
+                    var grade = ""
+                    switch(selectedGrade){ 
+					 case "ban_btn1": grade = "사원"; break; 
+					 case "ban_btn2": grade = "대리"; break;
+					 case "ban_btn3": grade = "과장"; break;
+					 case "ban_btn4": grade = "차장"; break; 
+					 case "ban_btn5": grade = "부장"; break; 
+					 default: grade = "기본값"; break; 
+					}
+ 
+					bannerSelect(selectedGrade);
                    
                    
-                }); */
+                });
 				
                 // 지역 선택
 				let label = $(".label");
@@ -590,18 +601,21 @@
 				function bannerSelect(){
 					let selectedLocation = $("#selectOption").text();
                	 	selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
-               	 	console.log(selectedLocation);
 	               	 
+               	 	var selectedGrade = $(".bannerBtn").text();
+               	 	console.log(selectedGrade);
                	 	$.ajax({
 	               		 
 	               		 url:"bansel.rs",
 	               		 type:"get",
 	               		 data:{
-	               			locationName: selectedLocation
+	               			locationName: selectedLocation,
+	               			selectedGrade: selectedGrade
 	               		 },
 	               		 success: function(result){
-	               			updateTable(result);
+	               			updateTable(result, selectedGrade);
 							console.log(result);
+						
 	               		 },
 	               		 error: function(){
 	               			console.log("ajax 통신에 실패했습니다.");
@@ -610,12 +624,28 @@
 	               	 });               	 	
 				}
 				
-				bannerSelect();	
+				//bannerSelect();	
 			});
 			
-			function updateTable(result){
+			function updateTable(result, selectedGrade){
+					
 				var restTable = $("#rest-table");
 				restTable.empty();
+				
+				var grade = ""
+					alert(selectedGrade);
+                    switch(selectedGrade){ 
+					 case "ban_btn1": grade = "사원"; break; 
+					 case "ban_btn2": grade = "대리"; break;
+					 case "ban_btn3": grade = "과장"; break;
+					 case "ban_btn4": grade = "차장"; break; 
+					 case "ban_btn5": grade = "부장"; break; 
+					 default: grade = "기본값"; break; 
+					}
+				
+				var title = grade + " 맛집 (" + result.length + "곳)";
+				$("#content_2_2_title").html(title);
+				
 				
 				if(result.length == 0){
 					var value = "<tr>"

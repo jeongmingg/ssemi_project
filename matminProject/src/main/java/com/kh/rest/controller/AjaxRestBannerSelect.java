@@ -34,8 +34,9 @@ public class AjaxRestBannerSelect extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String locationName = request.getParameter("locationName");
+		String selectedGrade = request.getParameter("selectedGrade");
 		
-		ArrayList<Rest> list = new RestService().bannerSearch(locationName);
+		ArrayList<Rest> list = new RestService().bannerSearch(locationName, selectedGrade);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(list, response.getWriter());

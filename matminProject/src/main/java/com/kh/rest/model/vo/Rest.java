@@ -195,12 +195,16 @@ public class Rest {
 		this.reviewCount = reviewCount;
 	}
 	
-	public Rest(String restNo, String restName, String restImgUrl, String menuName,
-			String menuPrice, String localName) {
+	
+
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount,
+			String menuName, String menuPrice, String localName) {
 		super();
 		this.restNo = restNo;
 		this.restName = restName;
+		this.restAvg = restAvg;
 		this.restImgUrl = restImgUrl;
+		this.reviewCount = reviewCount;
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 		this.localName = localName;

@@ -460,17 +460,50 @@
 		</entry>
 		
 		<entry key="bannerSearch">
-			SELECT 
-			        REST_NO
-			      , REST_NAME
-			      , REST_IMG_URL
-			      , MENU_NAME
-			      , MENU_PRICE
-			      , LOCAL_NAME
-			  FROM REST
-			  LEFT JOIN MENU USING (REST_NO)
-			  LEFT JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
-			 WHERE LOCAL_NAME = ?
+			<![CDATA[
+				SELECT
+				       REST_NO
+				     , REST_NAME
+				     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
+				     , REST_IMG_URL
+				     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+				     , MENU_NAME
+				     , MENU_PRICE
+				     , LOCAL_NAME
+				    FROM (
+				       SELECT
+				              REST_NO
+				            , REST_NAME
+				            , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
+				            , REST_IMG_URL
+				            , REVIEW_NO
+				            , MENU_NAME
+				            , MENU_PRICE
+				            , LOCAL_NAME
+				         FROM REVIEW
+				         RIGHT JOIN REST USING(REST_NO)
+				         LEFT JOIN MENU USING(REST_NO)
+				         LEFT JOIN LOCATION ON(REST_LOCAL_ID = LOCAL_ID)
+				        WHERE REP_MENU = 'Y'
+				       )
+				     WHERE (
+				                ( ? = 'ban_btn1' AND MENU_PRICE <= 7000 ) OR
+				                ( ? = 'ban_btn2' AND MENU_PRICE > 7000 AND MENU_PRICE <= 12000 ) OR
+				                ( ? = 'ban_btn3' AND MENU_PRICE > 12000 AND MENU_PRICE <= 20000) OR
+				                ( ? = 'ban_btn4' AND MENU_PRICE > 20000 AND MENU_PRICE <= 35000) OR
+				                ( ? = 'ban_btn5' AND MENU_PRICE > 35000)
+				           )
+				      AND LOCAL_NAME = ?
+				    GROUP
+				    BY REST_NO
+				     , REST_NAME
+				     , REST_IMG_URL
+				     , MENU_PRICE
+				     , MENU_NAME
+				     , LOCAL_NAME
+				    ORDER
+				    BY REST_AVG DESC , REVIEW_COUNT DESC
+	     	]]>
 		</entry>
 		
 </properties>

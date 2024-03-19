@@ -590,7 +590,7 @@ public class RestDao {
 		return list;
 	} 
 	
-	public ArrayList<Rest> bannerSearch(Connection conn, String locationName){
+	public ArrayList<Rest> bannerSearch(Connection conn, String locationName, String selectedGrade){
 		
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
@@ -602,10 +602,16 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setString(1, selectedGrade);
+			pstmt.setString(2, selectedGrade);
+			pstmt.setString(3, selectedGrade);
+			pstmt.setString(4, selectedGrade);
+			pstmt.setString(5, selectedGrade);
+			
 			if(locationName != null && !locationName.equals("전체")) {
-				pstmt.setString(1, locationName);
+				pstmt.setString(6, locationName);
 			}else {
-				pstmt.setString(1, "");
+				pstmt.setString(6, "");
 			}
 			
 			rset = pstmt.executeQuery();
@@ -613,7 +619,9 @@ public class RestDao {
 			while(rset.next()) {
 				list.add(new Rest(rset.getString("rest_no"),
 								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
 								  rset.getString("rest_img_url"),
+								  rset.getInt("review_count"),
 								  rset.getString("menu_name"),
 								  rset.getString("menu_price"),
 								  rset.getString("local_name")));
