@@ -183,6 +183,7 @@ public class Rest {
 		this.bigRoom = bigRoom;
 	}
 
+<<<<<<< HEAD
 
 	public Rest(String restNo, String restName, String restAddress, String restTel, String restParking, int restGrade,
 			String restTime, double restAvg, String restImgUrl, String localName, int reviewCount, String dt,
@@ -205,6 +206,18 @@ public class Rest {
 		this.ctgName = ctgName;
 		this.bigRoom = bigRoom;
 		this.heart = heartCount;
+=======
+	
+
+	public Rest(String restNo, String restName, String restImgUrl, String ctgName, double restAvg,  int reviewCount ) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restImgUrl = restImgUrl;
+		this.ctgName = ctgName;
+		this.restAvg = restAvg;
+		this.reviewCount = reviewCount;
+>>>>>>> 25e21cb506f2fdfa234fe59ed273812ef9eb3bd1
 	}
 
 	public String getRestNo() {

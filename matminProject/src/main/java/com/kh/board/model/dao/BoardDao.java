@@ -372,7 +372,7 @@ public class BoardDao {
 		return b;
 	}
 	
-	public ArrayList<Board> boardSearchList(Connection conn, String keyWord) {
+	public ArrayList<Board> boardSearchList(Connection conn, String keyWord, PageInfo pi) {
 		ArrayList<Board> sList = new ArrayList<Board>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -381,7 +381,13 @@ public class BoardDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() -1 ) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit() -1;
+			
 			pstmt.setString(1, keyWord);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -401,5 +407,31 @@ public class BoardDao {
 			close(pstmt);
 		} return sList;
 	}
+	
+	public int searchListCount(Connection conn, String keyWord) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, keyWord);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = rset.getInt("board_count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return result;
+	}
+	
 }
 

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.board.model.vo.ImgFile;
+import com.kh.heart.model.service.HeartService;
+import com.kh.heart.model.vo.Heart;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.kh.review.model.Service.ReviewService;
@@ -40,6 +42,7 @@ public class RestDetailViewController extends HttpServlet {
 		ArrayList<Review> rate = new ReviewService().selectReviewRate(rpage);
 		Review rv = new ReviewService().selectReviewAvg(rpage);
 		ArrayList<Rest> mList = new RestService().selectMenuList(rpage);
+		ArrayList<Heart> hList = new HeartService().selectHeartByRest(rpage);
 		
 
 		request.setAttribute("rpage", rpage);
@@ -47,6 +50,7 @@ public class RestDetailViewController extends HttpServlet {
 		request.setAttribute("rate", rate);
 		request.setAttribute("rv", rv);
 		request.setAttribute("mList", mList);
+		request.setAttribute("hList", hList);
 		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
 	}
 

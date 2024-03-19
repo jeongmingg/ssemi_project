@@ -1,4 +1,6 @@
 
+<%@page import="java.lang.management.MemoryNotificationInfo"%>
+<%@page import="com.kh.heart.model.vo.Heart"%>
 <%@page import="com.kh.board.model.vo.ImgFile"%>
 <%@page import="com.kh.review.model.vo.Review"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,11 +10,16 @@
 
 <% Rest r = (Rest)request.getAttribute("r"); 
 
-	ArrayList<String> addrList = new ArrayList<String>();
-	if(r != null && r.getRestAddress() != null) {
-		addrList.add(r.getRestAddress());
+	ArrayList<Search> mapList = new ArrayList<Search>();
+	if(r != null && r.getRestAddress() != null && r.getRestName() != null) {
+		Search s = new Search();
+		
+		s.setRestAddress(r.getRestAddress());
+		s.setRestName(r.getRestName());
+		
+		mapList.add(s);
 	}
-	request.setAttribute("addrList", addrList);
+	request.setAttribute("mapList", mapList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
@@ -25,6 +32,7 @@
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
    Review rvAvg = (Review)request.getAttribute("rv");
    ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
+   ArrayList<Heart> hList = (ArrayList<Heart>)request.getAttribute("hList");
 
 %>
 
@@ -577,13 +585,13 @@
 	.review-like>div{
 		margin-right: 10px;
 	}
-	.like-area{
+	.like-area #like{
 		color: white;
 		width: 90px;
 		height: 30px;
 		background: url(https://img.icons8.com/material-rounded/24/FFFFFF/thumb-up.png) no-repeat;
 		background-size: 20px;
-		padding-left: 15px;
+		padding-left: 28px;
 		position: relative;
 		background-color: #F39C12;
 		padding-top: 4px;
@@ -604,7 +612,7 @@
 		border-radius: 8px;
 	}
 	#like, #unlike{
-		margin-left: 14px;
+		margin-left: 16px;
 		font-size: 16px;
 		cursor: pointer;
 	}
@@ -776,11 +784,29 @@
 			<div class="rest-add">
 				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
 				<div class="heart-count-area">
+				<% 
+					boolean heartFlag = false;
+					String memNo = "";
+					
+					if(loginUser != null) {
+						memNo = loginUser.getMemNo();
+					}
+				
+					for(Heart h : hList) {
+						if(!hList.isEmpty() && loginUser != null && h.getMemNo().equals(loginUser.getMemNo())) {
+							heartFlag = true;
+							break;
+						}
+					}
+				%>
+				<% if(!heartFlag) { %>
 					<!-- 빈하트 -->
-					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px;"> 
+					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+				<% } else { %>
 					<!-- 채워진 하트-->
-					<input type="hidden" img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;"> 
-					<span>찜꽁(20)</span>
+					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+				<% } %>
+					<span>찜꽁(<%= hList.size() %>)</span>
 				</div>
 				<div class="btn-share-area">
 					<a href="#" class="btn-share" id="btn-share">
@@ -1188,7 +1214,7 @@
 								
 								<div class="review-like">
 									<div class="like-area">
-										<span id="like">추천 (15)</span>
+										<button id="like">추천 (15)</button>
 									</div>
 									<div class="unlike-area">
 										<span id="unlike">비추천 (15)</span>
@@ -1354,11 +1380,46 @@
 					});
 				}
 			})
+	</script>
+
+	<!-- 추천버튼 비회원 막기 -->
+	<script>
+		if(<%= loginUser %> === null){
+			$(document).on("click", "#like", function(){
+				alert("추천버튼은 로그인시에만 이용 가능합니다!");
+			})
+		} else {
+			$(function(){
+			let rvNo = $(ele).siblings("input").val();		
+
+			$("#like").click(function(){
+				$.ajax({
+					url: "like.rv",
+					type:"post",
+					data:{
+						no:rvNo,
+					},
+					success:function(){
+						console.log("ajax 통신성공");
+					},
+					error:function(){
+						console.log("ajax 통신실패");
+					}
+				})
+
+			})
+		})
+		}
+	</script>
+
+	<!-- 리뷰 추천 버튼 -->
+
+	<script>
 
 	</script>
-	
-	
-	
+
+
+
 
 		<!-- 공유 모달 -->
 		<script>
@@ -1392,6 +1453,44 @@
 					$("#map").css("display","block");	
 				})
 		})
+		</script>
+		
+		<script>
+			function insertHeart(memNo, restNo) {
+				if(<%= loginUser == null %>) {
+					alert("로그인 후 이용 가능한 서비스입니다.");
+					return;
+				} else {
+					$.ajax({
+						url: "insertHeart.me",
+						data: {
+							memNo: memNo,
+							restNo: restNo
+						},
+						success: function(result) {
+							$(".heart-count-area>img").attr("src", "https://img.icons8.com/sf-black-filled/64/f39c12/like.png");
+							$(".heart-count-area>img").attr("onclick", "cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+							$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+						}
+					});
+				}
+				
+			}
+			
+			function cancelHeart(memNo, restNo) {
+				$.ajax({
+					url: "deleteHeartInRest.me",
+					data: {
+						memNo: memNo,
+						restNo: restNo
+					},
+					success: function(result) {
+						$(".heart-count-area>img").attr("src", "https://img.icons8.com/ios/50/e4910d/hearts--v1.png");
+						$(".heart-count-area>img").attr("onclick", "insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+						$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+					}
+				});
+			}
 		</script>
 			
 

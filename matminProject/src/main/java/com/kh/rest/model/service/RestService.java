@@ -173,6 +173,7 @@ public class RestService {
 		close(conn);
 		return img;
 	}
+<<<<<<< HEAD
 
 
 	public Rest selectRestMain(String restNo) {
@@ -189,6 +190,16 @@ public class RestService {
 //		return rlist;
 //
 //	}
+=======
+	
+	public ArrayList<Rest> contentRestList(ArrayList<String> categoryList){
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().contentRestList(conn, categoryList);
+		
+		close(conn); 
+		return list;
+	}
+>>>>>>> 25e21cb506f2fdfa234fe59ed273812ef9eb3bd1
 }
 
 
