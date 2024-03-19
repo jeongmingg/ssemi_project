@@ -192,10 +192,10 @@
         <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked readonly <% } %> /> 
         <label for="pet_friendly">반려동물</label> 
         
-        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked  readonly <% } %> /> 
         <label for="private_room">개별룸</label> 
         
-        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked readonly <% } %> /> 
         <label for="big_room">대형룸</label> <br />
     </td>
 </tr>

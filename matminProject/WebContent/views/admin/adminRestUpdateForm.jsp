@@ -137,8 +137,8 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateRest.ad?rno=<%=r.getRestNo() %>" method="post">
-
+        <form id="form" action="<%=contextPath %>/updateRest.ad" method="post" enctype ="multipart/form-data">
+			<input type="hidden" name="rno" value="<%= r.getRestNo() %>">
             <table>
                 <tr>
                     <td> 식당이름</td>
@@ -188,29 +188,47 @@
                 </tr>
   
                 <tr>
-                    <th>첨부파일</th>
-                    <td><input type="file" name="upfile"></td>
-                </tr>
+						<th height="0">사진</th>
+						<td></td>
+						<td colspan="4">	
+						<% if (img != null){ %>
+								<label>
+									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
+									<input type="file" id="originFileNo" name="file" class="btnOfInput" style="display: none;">
+									<span class="file_name">
+										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
+									</span>
+									<span class="file_btn">파일선택</span>
+								</label>
+						<% } else { %>
+								<label>
+									<input type="file" id="file" name="file" class="btnOfInput" multiple style="display: none;">
+									<span class="file_name">파일을 선택해주세요</span>
+									<span class="file_btn">파일선택</span>
+								</label>
+						</td>
+						<% } %>
+					</tr>
                 
                 <tr>
-    <td>&nbsp;&nbsp;기타여부</td>
-    <td colspan="2">
-        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked <% } %> />
-        <label for="parking">주차</label>
-        
-        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
-        <label for="dt">DT</label> 
-        
-        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
-        <label for="pet_friendly">반려동물</label> 
-        
-        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
-        <label for="private_room">개별룸</label> 
-        
-        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
-        <label for="big_room">대형룸</label> <br />
-    </td>
-</tr>
+				    <td>&nbsp;&nbsp;기타여부</td>
+				    <td colspan="2">
+				        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked <% } %> />
+				        <label for="parking">주차</label>
+				        
+				        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
+				        <label for="dt">DT</label> 
+				        
+				        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
+				        <label for="pet_friendly">반려동물</label> 
+				        
+				        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+				        <label for="private_room">개별룸</label> 
+				        
+				        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+				        <label for="big_room">대형룸</label> <br />
+				    </td>
+				</tr>
 
             </table>
 

@@ -13,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
+import com.kh.common.model.vo.Menu;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.oreilly.servlet.MultipartRequest;
@@ -61,16 +62,22 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
 		
+		String menuName = multiRequst.getParameter("menu1");
+		String menuPrice = multiRequst.getParameter("price1");
+		String repMenu = multiRequst.getParameter("extra");
+		
+		Menu menu = new Menu(menuName, menuPrice,repMenu);
+	
 		ImgFile img = null;
 		
-		if(multiRequst.getOriginalFileName("file") != null) {
+		if(multiRequst.getOriginalFileName("upfile") != null) {
 			img = new ImgFile();
-			img.setImgOriginName(multiRequst.getOriginalFileName("file"));
-			img.setImgChangeName(multiRequst.getFilesystemName("file"));
-			img.setImgFilePath("resources/board_upfiles/");
+			img.setImgOriginName(multiRequst.getOriginalFileName("upfile"));
+			img.setImgChangeName(multiRequst.getFilesystemName("upfile"));
+			img.setImgFilePath("resources/rest_upfiles/");
 		}
 		
-		int result = new RestService().insertRest(r,img);
+		int result = new RestService().insertRest(r,img,menu);
 		
 		HttpSession session = request.getSession();
 		

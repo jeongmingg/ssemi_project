@@ -190,12 +190,12 @@ ArrayList<Category>
                 <td>
                   <input
                     type="text"
-                    name="menu"
+                    name="menu1"
                     placeholder="-메뉴 입력해주세요"
-                    required />
+                     />
                 </td>
                 <td>
-                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <input type="radio" name="extra" id="mainMenu" value="Y" />
                   <label for="mainMenu">대표메뉴</label>
                 </td>
               </tr>
@@ -215,9 +215,9 @@ ArrayList<Category>
                   <input
                     type="number"
                     step="1000"
-                    name="price"
+                    name="price1"
                     placeholder="-가격 입력 해주세요"
-                    required />
+                    />
                 </td>
               </tr>
               <tr>
@@ -237,12 +237,12 @@ ArrayList<Category>
                 <td>
                   <input
                     type="text"
-                    name="menu"
+                    name="menu2"
                     placeholder="-메뉴 입력 해주세요"
-                    required />
+                    />
                 </td>
                 <td>
-                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <input type="radio" name="extra" id="mainMenu" value="Y" />
                   <label for="mainMenu">대표메뉴</label>
                 </td>
               </tr>
@@ -263,7 +263,7 @@ ArrayList<Category>
                     step="1000"
                     name="price"
                     placeholder="-가격 입력 해주세요"
-                    required />
+                   />
                 </td>
               </tr>
 
@@ -281,12 +281,12 @@ ArrayList<Category>
                 <td>
                   <input
                     type="text"
-                    name="menu"
+                    name="menu3"
                     placeholder="-메뉴 입력 해주세요"
-                    required />
+                    />
                 </td>
                 <td>
-                  <input type="checkbox" name="extra" id="mainMenu" value="Y" />
+                  <input type="radio" name="extra" id="mainMenu" value="Y" />
                   <label for="mainMenu">대표메뉴</label>
                 </td>
               </tr>
@@ -305,7 +305,7 @@ ArrayList<Category>
                     step="1000"
                     name="price"
                     placeholder="-가격 입력 해주세요"
-                    required />
+                    />
                 </td>
               </tr>
 
@@ -317,27 +317,27 @@ ArrayList<Category>
               <tr>
                 <td>&nbsp;&nbsp;기타여부</td>
                 <td colspan="2">
-                  <input type="checkbox" name="extra" id="parking" value="Y" />
+                  <input type="checkbox" name="parking" id="parking" value="Y" />
                   <label for="parking">주차</label>
 
                   <input
                     type="checkbox"
-                    name="extra"
+                    name="drivethrou"
                     id="drivethrou"
                     value="Y" />
                   <label for="drivethrou">DT</label>
 
                   <input
                     type="checkbox"
-                    name="extra"
+                    name="conAnimal"
                     id="comAnimal"
                     value="Y" />
                   <label for="comAnimal">반려동물</label>
 
-                  <input type="checkbox" name="extra" id="prvRoom" value="Y" />
+                  <input type="checkbox" name="prvRoom" id="prvRoom" value="Y" />
                   <label for="prvRoom">개별룸</label>
 
-                  <input type="checkbox" name="extra" id="bigRoom" value="Y" />
+                  <input type="checkbox" name="bigRoom" id="bigRoom" value="Y" />
                   <label for="bigRoom">대형룸</label> <br />
                 </td>
               </tr>
@@ -361,24 +361,24 @@ ArrayList<Category>
 
             <script>
             function addInput() {
-        // Создаем новый элемент input
+       //add new input
         var inputMenu = document.createElement("input");
-        inputMenu.type = "text"; // Устанавливаем тип поля ввода
+        inputMenu.type = "text"; 
         inputMenu.name = "menu";
         inputMenu.placeholder = "-메뉴 입력해주세요";
         inputMenu.required = true;
 
         var inputPrice = document.createElement("input");
-        inputPrice.type = "number"; // Устанавливаем тип поля ввода
+        inputPrice.type = "number"; 
         inputPrice.name = "price";
         inputPrice.placeholder = "-가격 입력 해주세요";
         inputPrice.required = true;
 
-        // Находим нужные колонки таблицы
+    
         var column3 = document.querySelector("table tr:nth-child(3) td:nth-child(2)");
         var column4 = document.querySelector("table tr:nth-child(4) td:nth-child(2)");
 
-        // Добавляем новые поля ввода в соответствующие колонки
+   
         column3.appendChild(inputMenu);
         column4.appendChild(inputPrice);
     }

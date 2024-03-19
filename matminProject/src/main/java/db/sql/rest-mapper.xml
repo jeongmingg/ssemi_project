@@ -420,24 +420,26 @@
 		<entry key="insertRestAt">
 		
 		INSERT 
-			INTO ATTACHMENT
+			INTO IMG_FILE
 			(
-			FILE_NO
-			,REF_BNO
-			,ORIGIN_NAME
-			,CHANGE_NAME
-			,FILE_PATH
+			 IMG_FILE_NO
+			,REF_NO
+			,IMG_ORIGIN_NAME
+			,IMG_CHANGE_NAME
+			,IMG_FILE_PATH
 			)
 		VALUES
 			(
-			'F'||SEQ_ATTNO.NEXTVAL
-			,'B'||SEQ_BNO.CURRVAL
+			 'F'||SEQ_FNO.NEXTVAL
+			,'R'||SEQ_RNO.CURRVAL
 			,?
 			,?
 			,?
 			)
 		
 		</entry>
+		
+		
 		
 		<entry key="selectRestMain">
 		
@@ -485,4 +487,55 @@
 		
 		</entry>
 		
+		 <entry key = "insertMenu">
+ 
+	INSERT 
+	    INTO MENU
+	        (
+	        MENU_NO
+	        , REST_NO
+	        , MENU_NAME
+	        , MENU_PRICE
+	        , REP_MENU
+	        )
+	    VALUES(
+	         'MN'||SEQ_MNNO.NEXTVAL
+	        ,'R'||SEQ_RNO.CURRVAL
+	        , ?
+	        , ?
+	        , ?
+	        )
+ 
+ 
+ 		</entry>
+ 		
+ 		<entry key="updateRestAt">
+		 UPDATE 
+		        IMG_FILE
+		    SET IMG_ORIGIN_NAME = ?
+		      , IMG_CHANGE_NAME = ?
+		      , IMG_FILE_PATH = ?
+		  WHERE IMG_FILE_NO = ?
+		</entry>
+		
+		<entry key="insertUpdateRestAt">
+			INSERT 
+			       INTO IMG_FILE
+			       (
+			         IMG_FILE_NO
+			       , REF_NO
+			       , IMG_ORIGIN_NAME
+			       , IMG_CHANGE_NAME
+			       , IMG_FILE_PATH
+			       )
+			       VALUES
+			       (
+			         'F'||SEQ_FNO.NEXTVAL
+			       , ?
+			       , ?
+			       , ?
+			       , ?
+			       )
+		
+		</entry>
 </properties>

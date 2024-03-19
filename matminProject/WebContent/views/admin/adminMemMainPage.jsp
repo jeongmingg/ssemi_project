@@ -84,7 +84,7 @@
 <body>
 
     <%@ include file="../common/header.jsp" %>
-	<%@ include file="../common/navigator.jsp" %>
+   <%@ include file="../common/navigator.jsp" %>
 
     <div class="container" width="82%">
         <!-- <p>Justified tabs:</p> -->
@@ -160,8 +160,8 @@
 
             <div align="center">
                 <button type="submit" class="btn btn-warning btn-sm">알림보내기</button>
-				<button type="submit" class="btn btn-danger btn-sm" >강퇴</button>
-				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
+            <button type="submit" class="btn btn-danger btn-sm" >강퇴</button>
+            <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
             </div>
 
             <br>

@@ -16,6 +16,7 @@ import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
+import com.kh.common.model.vo.Menu;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
@@ -377,8 +378,7 @@ public class RestDao {
 								  rset.getString("rest_name"),
 								  rset.getString("rest_img_url"),
 								  rset.getString("ctg_id"),
-								  rset.getString("ctg_name")
-						));
+								  rset.getString("ctg_name")));
 			}
 
 			
@@ -474,7 +474,10 @@ public class RestDao {
 			pstmt.setString(8, r.getAnmial());
 			pstmt.setString(9, r.getRoom());
 			pstmt.setString(10, r.getBigRoom());
+			pstmt.setString(11, r.getRestNo());
 			
+			result = pstmt.executeUpdate();
+			System.out.println("dao의"+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -589,13 +592,12 @@ public class RestDao {
 						rset.getString("dt"),
 						rset.getString("animal"),
 						rset.getString("room"),
-						rset.getString("ctg_name"),
 						rset.getString("big_room"),
+						rset.getString("ctg_name"),
 						rset.getInt("heart_count"));
 				
 			}
 			
-			System.out.println("dao" + r);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -605,8 +607,78 @@ public class RestDao {
 		} return r;
 	}		
 	
-}
+	public int insertMenu(Connection conn, Menu menu) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMenu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, menu.getManuName());
+			pstmt.setString(2, menu.getMenuPrice());
+			pstmt.setString(3, menu.getRepMenu());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateRestAt(Connection conn, ImgFile img) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateRestAt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
+			pstmt.setString(4, img.getImgFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+
+	public int insertUpdateRestAt(Connection conn, ImgFile img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertUpdateRestAt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "R" + img.getRefNo());
+			pstmt.setString(2, img.getImgOriginName());
+			pstmt.setString(3, img.getImgChangeName());
+			pstmt.setString(4, img.getImgFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+} 
 
 
-	
 

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.rest.model.service.RestService;
@@ -44,6 +45,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
 			String restNo = (multiRequest.getParameter("rno"));
+			
 			String restName = multiRequest.getParameter("restName");
 			String restTime = multiRequest.getParameter("bizHour");
 			String restAddress = multiRequest.getParameter("address");
@@ -55,47 +57,50 @@ public class AdminRestUpdateController extends HttpServlet {
 			String comAnimal = multiRequest.getParameter("comAnimal");
 			String prvRoom = multiRequest.getParameter("prvroom");
 			String bigRoom = multiRequest.getParameter("bigroom");
-			String menu = multiRequest.getParameter("menu");
+			//String menu = multiRequest.getParameter("menu");
 			
 			Rest r = new Rest(restNo,restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
 				
-			Attachment at = null;
+			ImgFile img  = null;
+			 
+			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
 			
-//			if(multiRequest.getOriginalFileName("upfile") != null) {
-//				// update
-//				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-//				
-//				at = new Attachment();
-//				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-//				at.setChangeName("upfile");
-//				at.setFilePath("resources/board_upfiles/");
-//				at.setFileNo(restNo);
-//				
-//				if(multiRequest.getParameter("originFileNo") != null) {
-//					at.setFileNo(restNo);
-//			} else {
-//				// insert
-//				at.setRefNo(restNo);
-//			}
-//		
-//		}
-		
-		int result = new RestService().updateRest(r, at);
-		
-		//if(result > 0) {
-//			System.out.println("here");
-//			request.setAttribute("at", at);
-//			System.out.println(request.getAttribute("at"));
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?rno=" + restNo);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
+				System.out.println(multiRequest.getOriginalFileName("upfile"));
+				
+				img = new ImgFile();
+				img.setImgOriginName(multiRequest.getOriginalFileName("upfile"));
+				img.setImgChangeName(multiRequest.getFilesystemName("upfile"));
+				img.setImgFilePath("resources/board_upfiles/");
+				img.setRefNo(restNo);
+				
+				if(multiRequest.getParameter("originFileNo") != null) {
+				
+					img.setImgFileNo(multiRequest.getParameter("originFileNo"));
+					
+				} else {
+					// insert
+					img.setRefNo(restNo);
+				}
+			
+			}
+			
+			int result = new RestService().updateRest(r, img);
+			
+			if(result > 0) {
+				System.out.println("here");
+				request.setAttribute("img", img);
+				System.out.println(request.getAttribute("img"));
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
+				response.sendRedirect(request.getContextPath() + "/rest.ad?rno=" + r.getRestNo());
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
+				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+			}
 		}
-		}
-	//}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
