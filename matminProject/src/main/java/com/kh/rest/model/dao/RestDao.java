@@ -589,6 +589,45 @@ public class RestDao {
 		}
 		return list;
 	} 
+	
+	public ArrayList<Rest> bannerSearch(Connection conn, String locationName){
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("bannerSearch");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(locationName != null && !locationName.equals("전체")) {
+				pstmt.setString(1, locationName);
+			}else {
+				pstmt.setString(1, "");
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getString("rest_img_url"),
+								  rset.getString("menu_name"),
+								  rset.getString("menu_price"),
+								  rset.getString("local_name")));
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 }
 	
 

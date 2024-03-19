@@ -263,9 +263,6 @@
                         </div>
 
                     </div>
-                    <!-- <div id="content_bestSearch_content"> -->
-                        <!-- <div id="content_bestSearch_content_1"> -->
-                            <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-1">
                            <% int count = 0; %>

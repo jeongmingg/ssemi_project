@@ -45,7 +45,8 @@
 		padding: 20px;
 	}
 	#content_2{
-		height: 1100px;
+		height: 1300px;
+		
 	}
 
 	#content_1>div{width: 100%;}
@@ -94,9 +95,14 @@
     }
 	
 	/* 밑에큰 div h1100*/
+	#content_2{padding: 20px;}
 	#content_2>div{height: 100%; float: left;}
 	#content_2_1{width: 20%;}
-	#content_2_2{width: 80%;}
+	#content_2_2{
+		width: 80%; padding: 20px;
+		
+			
+	}
 
 	#content_2_2>div{width: 100%;}
 	#content_2_2_title{
@@ -106,11 +112,13 @@
 		font-size: 25px;
 	}
 	#content_2_2_content{
-		height: 1100px;
+		height: 1200px;
 		padding-top: 100px;
 		padding-bottom: 50px;
 		padding-left: 30px;
 		padding-right: 30px;
+		border: 1px solid #E4910D;
+		border-radius: 20px;
 	}
 	
 	#content_2_2_content>div{width: 100%;}
@@ -230,6 +238,21 @@
 		float: left;
 	}
 
+	#rest-table {
+	/* border: 1px solid blue; */
+	width: 750px;
+	height: 110px;
+	
+	margin-left: 50px;
+	}
+
+	/* 맛집 대표 이미지 */
+	.rest-img {
+		width: 100px;
+		height: 100px;
+		border-radius: 10px;
+	}
+
 	/* 검색결과 더보기 버튼 스타일 */
 	#moreBtn{
 		display: flex; justify-content: center;
@@ -306,7 +329,7 @@
 						&nbsp;&nbsp;지역 선택
 					</div>
 					<div class="box">
-						<div class="selectBox ">
+						<div class="selectBox">
 							<button id="selectOption" class="label" type="button">지역 선택</button>
 							<ul class="optionList">
 								<li class="optionItem">전체</li>
@@ -359,16 +382,32 @@
 				</div>
 				<div id="content_2_2_content">
 					<div id="restList">
-						<% int count = 0; %>
-						<% for(Rest r : list) { %>
-						<div class="rest-div rest-item">
-							<figure>
-								<img src="<%= r.getRestImgUrl()%>">
-								<figcaption><%= r.getRestName() %></figcaption>
-							</figure>
-						</div>
-						<% count++; %>
-						<% } %>
+							<table id="rest-table" align="center">
+							<% int count = 0; %>
+							<% for(Rest r : list){ %>
+							<tr>
+								<td rowspan="2" width="120"
+									style="padding-left: 15px; padding-right: 15px;"><img
+									class="rest-img" src="resources/star, heart/star.png" /></td>
+								<td colspan="2"
+									style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
+									<%= r.getRestName() %>
+								</td>
+							</tr>
+							<tr>
+								<td width="85px" style="padding-left: 15px; font-size: 17px">
+									<%= r.getLocalName() %>
+								</td>
+								<td> <%= r.getMenuName() %>&nbsp;&nbsp;&nbsp;<%= r.getMenuPrice() %>원
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3"><hr></td>
+							</tr>
+							<% count++; %>
+							<% } %>
+							
+						</table>
 					</div>
 					<div id="moreBtn">
 						<button type="button" id="more-btn">
@@ -478,7 +517,16 @@
 						}).text("부장");
 					}
 				);
+
+				/* $('.bannerBtn').on('click', function() {
+                    // 선택한 버튼의 텍스트 가져오기
+                    var selectedGrade = $(this).attr('id');
+					
+                   
+                   
+                }); */
 				
+                // 지역 선택
 				let label = $(".label");
 				let options = $(".optionItem");
 				let selectBox = $(".selectBox");
@@ -532,22 +580,28 @@
 				// 선택된 지역을 저장할 변수 초기화
                 var selectedLocation = "";
 				
-				function handleSelection(){
+                // 지역 클릭 이벤트 핸들러
+                $(".optionItem").on("click", function () {
+              	  
+                  // 클릭된 li의 텍스트를 가져와서 변수에 저장
+                  bannerSelect();
+                });
+				
+				function bannerSelect(){
 					let selectedLocation = $("#selectOption").text();
                	 	selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
-               	 	
-	               	 $.ajax({
+               	 	console.log(selectedLocation);
+	               	 
+               	 	$.ajax({
 	               		 
-	               		 url:"",
+	               		 url:"bansel.rs",
+	               		 type:"get",
 	               		 data:{
 	               			locationName: selectedLocation
 	               		 },
 	               		 success: function(result){
 	               			updateTable(result);
-	               			
-	               			$("#content_2_2_title").text(
-							selectedLocation + <%= grade %> + "맛집 ( " + <%= list.size() %> + "곳 ) "
-	            			);
+							console.log(result);
 	               		 },
 	               		 error: function(){
 	               			console.log("ajax 통신에 실패했습니다.");
@@ -556,30 +610,46 @@
 	               	 });               	 	
 				}
 				
+				bannerSelect();	
 			});
 			
 			function updateTable(result){
-				var restList = $("#restList");
-				restList.empty();
+				var restTable = $("#rest-table");
+				restTable.empty();
 				
 				if(result.length == 0){
-					var value = 
-						'<div>조회된 결과가 없습니다.</div>';
+					var value = "<tr>"
+						+ '<td colspan="3">조회된 결과가 없습니다. </td>'
+						+ "</tr>" + "<tr>" + '<td colspan="3"><hr></td>'
+						+ "</tr>";
 					
-					restList.append(value);
+					restTable.append(value);
 				} else {
 					$.each(
 						result,
 						function(index, restaurant){
 							var value = 
-							'<div class="rest-div rest-item">'
-							+ '<figure>'
-							+ '<img src="' + restaurant.restImgUrl + '">'
-							+ '<figcaption>' + restaurant.restName + '</figcaption>'
-							+ '</figure>'
-							+ '</div>';
+								'<table id="rest-table" align="center">'
+							+ '<tr>'
+							+ '<td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px;">'
+							+ '<img class="rest-img" src="resources/star, heart/star.png" /></td>'
+							+ '<td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">'
+							+ restaurant.restName
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td width="85px" style="padding-left: 15px; font-size: 17px">'
+							+ restaurant.localName
+							+ '</td>'
+							+ '<td>' + restaurant.menuName + restaurant.menuPrice
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td colspan="3"><hr></td>'
+							+ '</tr>'
+							+ '</table>';
 					
-					restList.append(value);
+						restTable.append(value);
 					
 					});
 				}

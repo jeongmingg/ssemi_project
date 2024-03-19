@@ -459,4 +459,18 @@
 			    BY REST_AVG DESC, REVIEW_COUNT DESC
 		</entry>
 		
+		<entry key="bannerSearch">
+			SELECT 
+			        REST_NO
+			      , REST_NAME
+			      , REST_IMG_URL
+			      , MENU_NAME
+			      , MENU_PRICE
+			      , LOCAL_NAME
+			  FROM REST
+			  LEFT JOIN MENU USING (REST_NO)
+			  LEFT JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+			 WHERE LOCAL_NAME = ?
+		</entry>
+		
 </properties>
