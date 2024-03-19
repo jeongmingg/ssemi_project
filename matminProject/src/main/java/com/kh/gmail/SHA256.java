@@ -17,14 +17,12 @@ public class SHA256 {
 			for (byte data : bResult) {
 				System.out.print(data + " ");
 			}
-			System.out.println();
 
 			StringBuffer sb = new StringBuffer();
 			for (byte data : bResult) {
 				sb.append(Integer.toString(data & 0xff, 16));
 			}
 			result = sb.toString();
-			System.out.println(result);
 
 		} catch (Exception e) {
 			e.printStackTrace();

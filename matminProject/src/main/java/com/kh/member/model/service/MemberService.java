@@ -181,4 +181,14 @@ public class MemberService {
 		return m;
 	}
 	
+	public String selectMemberFindPwd(String memName, String memId, String email) {
+		Connection conn = getConnection();
+		
+		String memNo = new MemberDao().selectMemberFindPwd(conn, memName, memId, email);
+		
+		close(conn);
+		
+		return memNo;
+	}
+	
 }

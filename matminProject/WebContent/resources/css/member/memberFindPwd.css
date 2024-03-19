@@ -1,0 +1,42 @@
+.find-pwd-area{
+    width: 1500px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    padding: 80px
+}
+
+.result-area{
+    border: 2px solid #e4910d;
+    border-radius: 5px;
+    width: 1000px;
+    margin: auto;
+    padding: 40px;
+}
+
+.result-area table{
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.btn-area{
+    margin-top: 50px;
+}
+
+#changePwdBtn{
+    background-color: #E4910D;
+    border-color: #E4910D;
+}
+
+#enrollBtn{
+    background-color: #E4910D;
+    border-color: #E4910D;
+    margin-right: 20px;
+}
+
+#mainPageBtn{
+    background-color: white;
+    border-color: darkgray;
+    color: black;
+}

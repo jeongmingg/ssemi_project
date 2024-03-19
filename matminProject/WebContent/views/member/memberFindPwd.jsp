@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% 
+	String memName = (String)request.getAttribute("memName");
+	String memId = (String)request.getAttribute("memId");
+	String email = (String)request.getAttribute("email");
+	String memNo = (String)request.getAttribute("memNo");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +13,8 @@
 	<title>Insert title here</title>
 	
 	<!-- css -->
-	<link rel="stylesheet" href="resources/css/member/memberFindIdPwd.css">
-
+	<link rel="stylesheet" href="resources/css/member/memberFindPwd.css">
+	
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
@@ -23,14 +29,14 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 	<!-- js -->
-	<script src="resources/js/member/memberFindIdPwd.js"></script>
+	<script src="resources/js/member/memberFindPwd.js"></script>
 </head>
 <body>
 
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
-
-	<div class="find-id-pwd">
+	
+	<div class="find-pwd-area">
 		<div id="topBtn">
 			<a href="#">
 				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
@@ -40,50 +46,49 @@
 	    		</svg>
 			</a>
 		</div>
+
+		<script>
+			const memName = '<%= memName %>'
+			const memId = '<%= memId %>'
+			const email = '<%= email %>'
+			const memNo = '<%= memNo %>'
+		</script>
 		
 		<% if(loginUser == null) { %>
-			<div id="findId" align="center">
+			<div class="result-area">
+			<% if(!"".equals(memNo)) { %>
+			<!-- 1. 조회됐을 경우 -->
 				<div>
-	
-					<p><b>아이디 찾기</b></p>
-		
-					<form action="<%= contextPath %>/findId.me" method="post">
-		
-						<input type="text" name="userName" id="nameInput1" placeholder="이름"> <br>
-						<span class="message" id="nameMsg1" style="display: none;"></span>
-	
-						<input type="text" name="email" id="emailInput1" placeholder="이메일"> <br>
-						<span class="message" id="emailMsg1" style="display: none;"></span>
-		
-						<br>
-	
-						<button type="submit" id="findIdBtn" class="btn btn-primary" onclick="return findId();"><b>아이디 찾기</b></button>
-		
+					<form action="#">
+						<table>
+							<tr height="50">
+								<td>인증번호 : </td>
+								<td><input type="text" name="auth"></td>
+								<td><button type="button" class="btn btn-sm btn-secondary">인증하기</button></td>
+							</tr>
+							<tr height="50">
+								<td>새 비밀번호 : </td>
+								<td><input type="password" name="newPwd"></td>
+								<td></td>
+							</tr>
+							<tr height="50">
+								<td>비밀번호 확인 : </td>
+								<td><input type="password" id="checkPwd"></td>
+								<td></td>
+							</tr>
+						</table>
+
+						<button type="submit" class="btn btn-sm btn-secondary" id="changePwdBtn">변경하기</button>
 					</form>
-	
 				</div>
-			</div>
-	
-			<!-- <div style="width: 1px; height: 400px; float: left; border-left: 1px solid gray;"></div> -->
-	
-			<div id="findPwd" align="center">
-				<div>
-	
-					<p><b>비밀번호 찾기</b></p>
-		
-					<form action="<%= contextPath %>/findPwd.me" method="post">
-		
-						<input type="text" name="userName" placeholder="이름"> <br>
-						<input type="text" name="userId" placeholder="아이디"> <br>
-						<input type="text" name="email" placeholder="이메일"> <br>
-		
-						<br>
-	
-						<button type="submit" id="findPwdBtn" class="btn btn-primary"><b>비밀번호 찾기</b></button>
-		
-					</form>
-	
+			<% } else { %>
+			<!-- 2. 조회되지 않았을 경우 -->
+				<span><strong>고객님의 정보와 일치하는 계정이 존재하지 않습니다.</strong></span>
+				<div class="btn-area">
+					<a href="<%= contextPath %>/chooseForm.me" class="btn btn-sm btn-secondary" id="enrollBtn">회원가입</a>
+					<a href="<%= contextPath %>/findAccountForm.me" class="btn btn-sm btn-secondary" id="mainPageBtn">ID/PWD 찾기</a>
 				</div>
+			<% } %>
 			</div>
 		<% } else { %>
 			<h3>이미 로그인 상태입니다.</h3>

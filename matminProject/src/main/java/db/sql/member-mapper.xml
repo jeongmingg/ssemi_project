@@ -167,4 +167,14 @@
 		   AND MEM_PWD = ?
 	</entry>
 	
+	<entry key="selectMemberFindPwd">
+		SELECT
+		       MEM_NO
+		  FROM MEMBER
+		 WHERE MEM_NAME = ?
+		   AND MEM_ID = ?
+		   AND EMAIL = ?
+		   AND MEM_STATUS = 'Y'
+	</entry>
+	
 </properties>

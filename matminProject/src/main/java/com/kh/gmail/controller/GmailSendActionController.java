@@ -27,14 +27,9 @@ public class GmailSendActionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String memId = request.getParameter("memId");
 		String email = request.getParameter("email");
 		
-//		System.out.println("============= GmailSendActionController에서 받아 온 memId : " + memId + "=============");
-		System.out.println("============= GmailSendActionController에서 받아 온 email: " + email + "=============");
-		
 		request.setAttribute("email", email);
-//		request.setAttribute("memId", memId);
 		
 		request.getRequestDispatcher("views/gmail/gmailSendAction.jsp").forward(request, response);
 		
