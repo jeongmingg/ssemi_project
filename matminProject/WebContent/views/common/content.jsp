@@ -194,7 +194,7 @@
        }
 
        .swiper-slide img:hover{
-            transform: scale(1.1); /* 원래 크기의 ()안 %로 확대 */
+            transform: scale(1.03); /* 원래 크기의 ()안 %로 확대 */
             opacity: 0.85;
        }
 
