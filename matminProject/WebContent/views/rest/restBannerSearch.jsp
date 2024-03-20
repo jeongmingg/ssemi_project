@@ -365,7 +365,7 @@
 			</div>
 			<div id="content_2_2">
 				<div id="content_2_2_title">
-					
+				<!-- content.jsp에서 지금 페이지로 넘어왔을때 보이게하는 부분(사원맛집(2곳))-->
 					<% String grade = ""; 
 					for(Rest r : list) {	
 						switch(selectedGrade){ 
@@ -396,9 +396,11 @@
 							</tr>
 							<tr>
 								<td width="85px" style="padding-left: 15px; font-size: 17px">
+
 									<%= r.getLocalName() %>
+
 								</td>
-								<td> <%= r.getMenuName() %>&nbsp;&nbsp;&nbsp;<%= r.getMenuPrice() %>원
+								<td> <%= r.getMenuName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= r.getMenuPrice() %>원
 								</td>
 							</tr>
 							<tr>
@@ -421,7 +423,10 @@
 		<script>
 			
 			$(document).ready(function() {
-
+			
+				 var selectedGrade = "<%= selectedGrade %>";
+			     var locationName = "";
+			     
 				// 버튼 호버시 금액뜨는 효과
 				// 사원 hover style
 				$("#ban_btn1").hover(
@@ -520,21 +525,9 @@
 
 				$('.bannerBtn').on('click', function() {
                     // 선택한 버튼의 텍스트 가져오기
-                    var selectedGrade = $(this).attr('id');
-                    console.log("Dd" + selectedGrade)
-                    var grade = ""
-                    switch(selectedGrade){ 
-					 case "ban_btn1": grade = "사원"; break; 
-					 case "ban_btn2": grade = "대리"; break;
-					 case "ban_btn3": grade = "과장"; break;
-					 case "ban_btn4": grade = "차장"; break; 
-					 case "ban_btn5": grade = "부장"; break; 
-					 default: grade = "기본값"; break; 
-					}
- 
+                    selectedGrade = $(this).attr('id');
+
 					bannerSelect(selectedGrade);
-                   
-                   
                 });
 				
                 // 지역 선택
@@ -592,18 +585,25 @@
                 var selectedLocation = "";
 				
                 // 지역 클릭 이벤트 핸들러
-                $(".optionItem").on("click", function () {
-              	  
-                  // 클릭된 li의 텍스트를 가져와서 변수에 저장
-                  bannerSelect();
+                $(".optionItem").on("click", function (e) {
+      				let selectedLocation = e.target.innerText;
+
+                  bannerSelect(selectedGrade, selectedLocation);
                 });
 				
-				function bannerSelect(){
-					let selectedLocation = $("#selectOption").text();
+				function bannerSelect(selectedGrade, a){
+
+					
+					let selectedLocation = "";
+					
+					if(!a){ // undef
+						selectedLocation = $("#selectOption").text();
+					}else{
+						selectedLocation = a;
+					}
+			
                	 	selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
-	               	 
-               	 	var selectedGrade = $(".bannerBtn").text();
-               	 	console.log(selectedGrade);
+         	 	
                	 	$.ajax({
 	               		 
 	               		 url:"bansel.rs",
@@ -614,7 +614,6 @@
 	               		 },
 	               		 success: function(result){
 	               			updateTable(result, selectedGrade);
-							console.log(result);
 						
 	               		 },
 	               		 error: function(){
@@ -623,17 +622,16 @@
 	               		  
 	               	 });               	 	
 				}
-				
-				//bannerSelect();	
+					
 			});
 			
 			function updateTable(result, selectedGrade){
 					
 				var restTable = $("#rest-table");
 				restTable.empty();
-				
-				var grade = ""
-					alert(selectedGrade);
+
+					var grade = ""
+		
                     switch(selectedGrade){ 
 					 case "ban_btn1": grade = "사원"; break; 
 					 case "ban_btn2": grade = "대리"; break;
@@ -642,11 +640,10 @@
 					 case "ban_btn5": grade = "부장"; break; 
 					 default: grade = "기본값"; break; 
 					}
-				
+
 				var title = grade + " 맛집 (" + result.length + "곳)";
 				$("#content_2_2_title").html(title);
-				
-				
+
 				if(result.length == 0){
 					var value = "<tr>"
 						+ '<td colspan="3">조회된 결과가 없습니다. </td>'

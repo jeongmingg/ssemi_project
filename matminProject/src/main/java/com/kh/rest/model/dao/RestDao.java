@@ -313,8 +313,9 @@ public class RestDao {
 								  rset.getDouble("rest_avg"),
 								  rset.getString("rest_img_url"),
 								  rset.getInt("review_count"),
+								  rset.getString("menu_name"),
 								  rset.getString("menu_price"),
-								  rset.getString("rep_menu")
+								  rset.getString("local_name")
 						));
 			}
 			
@@ -602,18 +603,25 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, selectedGrade);
-			pstmt.setString(2, selectedGrade);
-			pstmt.setString(3, selectedGrade);
-			pstmt.setString(4, selectedGrade);
-			pstmt.setString(5, selectedGrade);
-			
-			if(locationName != null && !locationName.equals("전체")) {
-				pstmt.setString(6, locationName);
+			if(selectedGrade != null) {
+				pstmt.setString(1, selectedGrade);
+				pstmt.setString(2, selectedGrade);
+				pstmt.setString(3, selectedGrade);
+				pstmt.setString(4, selectedGrade);
+				pstmt.setString(5, selectedGrade);
 			}else {
-				pstmt.setString(6, "");
+				pstmt.setString(1, "");
+				pstmt.setString(2, "");
+				pstmt.setString(3, "");
+				pstmt.setString(4, "");
+				pstmt.setString(5, "");
 			}
 			
+			if(locationName.equals("전체")) {
+				pstmt.setString(6, "%");
+			}else {
+				pstmt.setString(6,  "%" +  locationName);
+			}
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {

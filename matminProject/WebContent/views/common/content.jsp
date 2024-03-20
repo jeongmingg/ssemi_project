@@ -177,9 +177,9 @@
            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
            align-items:center; /* 위아래 기준 중앙정렬 */
            justify-content:center; /* 좌우 기준 중앙정렬 */
-              position: relative;
-              z-index: -2;
-              padding-top: 30px;
+           position: relative;
+           z-index: -2;
+           padding-top: 30px;
        }
        .swiper-slide img {
            /* box-shadow:0 0 5px #555; */
