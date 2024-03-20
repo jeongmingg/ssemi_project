@@ -173,8 +173,6 @@ public class RestService {
 		close(conn);
 		return img;
 	}
-<<<<<<< HEAD
-
 
 	public Rest selectRestMain(String restNo) {
 		Connection conn = getConnection();
@@ -190,7 +188,7 @@ public class RestService {
 //		return rlist;
 //
 //	}
-=======
+
 	
 	public ArrayList<Rest> contentRestList(ArrayList<String> categoryList){
 		Connection conn = getConnection();
@@ -199,10 +197,8 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
->>>>>>> 25e21cb506f2fdfa234fe59ed273812ef9eb3bd1
+
 }
-
-
 
 
 

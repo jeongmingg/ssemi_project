@@ -561,8 +561,7 @@ public class RestDao {
 		}
 		return img;
 	}
-<<<<<<< HEAD
-=======
+	
 	
 	public ArrayList<Rest> contentRestList(Connection conn, ArrayList<String> categoryList){
 		ArrayList<Rest> list = new ArrayList<Rest>();
@@ -594,9 +593,7 @@ public class RestDao {
 		}
 		return list;
 	} 
-}
->>>>>>> 25e21cb506f2fdfa234fe59ed273812ef9eb3bd1
-	
+
 	
 	//관리자 보는 식당 상세패이지
 	public Rest selectRestMain(Connection conn, String restNo){
