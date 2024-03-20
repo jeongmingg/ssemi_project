@@ -569,4 +569,12 @@
 		
 		</entry>
 		
+		<entry key="deleteRest">
+      
+      UPDATE REST
+         SET REST_STATUS = 'N'
+      WHERE REST_NO = ?   
+
+      </entry>
+		
 </properties>

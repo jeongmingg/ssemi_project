@@ -2,6 +2,9 @@ package com.kh.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,16 +61,22 @@ public class AdminRestInsertController extends HttpServlet {
 		String comAnimal = multiRequst.getParameter("comAnimal");
 		String prvRoom = multiRequst.getParameter("prvRoom");
 		String bigRoom = multiRequst.getParameter("bigRoom");
+		
+		String[] menuArr = multiRequst.getParameterValues("menu");
+		String[] priceArr = multiRequst.getParameterValues("price");
 
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		
+		for(int i=0; i<menuArr.length; i++) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("menu", menuArr[i]);
+			map.put("price", priceArr[i]);
+			
+			list.add(map);
+		}
+	
 		
 		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
-		
-		String menuName = multiRequst.getParameter("menu1");
-		String menuPrice = multiRequst.getParameter("price1");
-		String repMenu = multiRequst.getParameter("extra");
-		
-		Menu menu = new Menu(menuName, menuPrice,repMenu);
-	
 		ImgFile img = null;
 		
 		if(multiRequst.getOriginalFileName("upfile") != null) {
@@ -77,7 +86,7 @@ public class AdminRestInsertController extends HttpServlet {
 			img.setImgFilePath("resources/rest_upfiles/");
 		}
 		
-		int result = new RestService().insertRest(r,img,menu);
+		int result = new RestService().insertRest(r,img,list);
 		
 		HttpSession session = request.getSession();
 		

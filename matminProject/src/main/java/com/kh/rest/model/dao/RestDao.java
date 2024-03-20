@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 import static com.kh.common.JDBCTemplate.*;
 import com.kh.board.model.vo.ImgFile;
@@ -636,7 +637,7 @@ public class RestDao {
 		} return r;
 	}		
 	
-	public int insertMenu(Connection conn, Menu menu) {
+	public int insertMenu(Connection conn, HashMap<String, String> map, int i) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -644,10 +645,15 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, menu.getManuName());
-			pstmt.setString(2, menu.getMenuPrice());
-			pstmt.setString(3, menu.getRepMenu());
+			pstmt.setString(1, map.get("menu"));
+			pstmt.setString(2, map.get("price"));
 			
+			if(i == 0) {
+				pstmt.setString(3, "Y");
+			}else {
+				pstmt.setString(3, "N");
+			}
+		
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -705,8 +711,26 @@ public class RestDao {
 		} finally {
 			close(pstmt);
 		} return result;
-		
 	}
+	
+	
+	public int deleteRest(Connection conn,String restNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteRest");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+	
 } 
 
 

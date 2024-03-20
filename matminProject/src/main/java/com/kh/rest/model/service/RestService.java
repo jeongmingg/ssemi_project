@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -75,13 +76,15 @@ public class RestService {
 		return r;
 	}
 	
-	public int insertRest(Rest r, ImgFile img, Menu menu ) {
+	public int insertRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list ) {
 		Connection conn = getConnection();
 		 int result1 = new RestDao().insertRest(conn, r );
 		 int result2= 0;
 		 
 		 if (result1 != 0) {
-		    result2 = new RestDao().insertMenu(conn, menu);
+			 for(int i=0; i<list.size(); i++) {				 
+				 result2 = new RestDao().insertMenu(conn, list.get(i), i);
+			 }
 		
 		 if (img !=null){
 			result2 = new RestDao().insertRestAt(conn,img);
@@ -198,6 +201,17 @@ public class RestService {
 		return list;
 	}
 
+	public int deleteRest(String restNo) {
+		Connection conn = getConnection();
+		int result = new RestDao().deleteRest(conn, restNo);
+		if (result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
 
 

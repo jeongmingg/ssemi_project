@@ -27,6 +27,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
+    select {
+    border: 1px solid lightgray;
+    height: 27px;
+    width: 206px;
+    }
     .outer{
         border: 1px solid orange;
         color: orange;
@@ -34,11 +39,13 @@
         margin: auto;
         margin-bottom: 50px;
     }
-        #form table{margin:auto;}
-        #form input{ 
-        border: 1px solid lightgray;
-        margin:10px;}
-        button {
+    #form table{margin:auto;}
+    
+    #form input{ 
+    border: 1px solid lightgray;
+    margin:10px;}
+        
+    button {
         background-color:lightgray; 
         border:1px;
         cursor: pointer;
@@ -143,17 +150,19 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
+                    <td>메뉴 <input type="text" name="menu1" value= ""></td>
+                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
-                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
+                    <td>가격<input type="number" name = "price1"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
+                    <td>메뉴 <input type="text" name="manu2" value= ""></td>
+                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
@@ -166,12 +175,14 @@
 							<%} %>
 					</select>
 					</td>
+                    <td>가격<input type="number" name = "price1"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
-                    <td></td>
+                    <td>메뉴 <input type="text" name="manu2" value= ""></td>
+                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
                 </tr>
                 <tr>
                     <td>카테고리</td>
@@ -184,8 +195,9 @@
 							<%} %>
 					</select>
 					</td>
-                                    
+                    <td>가격<input type="number" name = "price1"></td>               
                 </tr>
+                <br><br>
   
                 <tr>
 						<th height="0">사진</th>
@@ -236,8 +248,8 @@
 
             <div align="center">
                 <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
-				<a href="<%= contextPath %>/rest.ad?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
-				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
+				<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
+				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
 
             <br>

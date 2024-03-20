@@ -183,19 +183,19 @@
 <tr>
     <td>&nbsp;&nbsp;기타여부</td>
     <td colspan="2">
-        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked readonly <% } %> />
+        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked disabled <% } %> />
         <label for="parking">주차</label>
         
         <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked  readonly<% } %> /> 
         <label for="dt">DT</label> 
         
-        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked readonly <% } %> /> 
+        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked disabled <% } %> /> 
         <label for="pet_friendly">반려동물</label> 
         
-        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked  readonly <% } %> /> 
+        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked  disabled <% } %> /> 
         <label for="private_room">개별룸</label> 
         
-        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked readonly <% } %> /> 
+        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked disabled <% } %> /> 
         <label for="big_room">대형룸</label> <br />
     </td>
 </tr>
