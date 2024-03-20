@@ -47,12 +47,12 @@ public class RestSearchController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Member loginUser = (Member)session.getAttribute("loginUser");
-		if (loginUser.getMemNo().equals("M1")) {
-			request.getRequestDispatcher("views/admin/adminRestMainPage.jsp").forward(request, response);
+		//if (loginUser.getMemNo().equals("M1")) {
+			//request.getRequestDispatcher("views/admin/adminRestMainPage.jsp").forward(request, response);
 			
-		}else {
+		//}else {
 			request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
-	}
+	//}
 }
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

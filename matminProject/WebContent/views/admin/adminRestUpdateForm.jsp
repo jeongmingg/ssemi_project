@@ -145,24 +145,26 @@
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
         <form id="form" action="<%=contextPath %>/updateRest.ad" method="post" enctype ="multipart/form-data">
-			<input type="hidden" name="rno" value="<%= r.getRestNo() %>">
+			<input type="hidden" name="num" value="<%= r.getRestNo() %>">
             <table>
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
-                    <td>메뉴 <input type="text" name="menu1" value= ""></td>
-                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
+                    <td>대표메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="menu" value= ""></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
-                    <td>가격<input type="number" name = "price1"></td>
+                    <td>대표메뉴가격 입력<input type="number" name = "price"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
-                    <td>메뉴 <input type="text" name="manu2" value= ""></td>
-                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
+                    <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="manu" value= ""></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
@@ -175,14 +177,17 @@
 							<%} %>
 					</select>
 					</td>
-                    <td>가격<input type="number" name = "price1"></td>
+                    <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="number" name = "price"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
-                    <td>메뉴 <input type="text" name="manu2" value= ""></td>
-                    <td>대표메뉴<input type="radio" name="Y" value="" ></td>
+                    <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="manu" value= ""></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>카테고리</td>
@@ -195,7 +200,9 @@
 							<%} %>
 					</select>
 					</td>
-                    <td>가격<input type="number" name = "price1"></td>               
+                    <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="number" name = "price"></td>               
                 </tr>
                 <br><br>
   
@@ -206,7 +213,7 @@
 						<% if (img != null){ %>
 								<label>
 									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
-									<input type="file" id="originFileNo" name="file" class="btnOfInput" style="display: none;">
+									<input type="file" id="originFileNo" name="upfile" class="btnOfInput" style="display: none;">
 									<span class="file_name">
 										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
 									</span>
@@ -214,7 +221,7 @@
 								</label>
 						<% } else { %>
 								<label>
-									<input type="file" id="file" name="file" class="btnOfInput" multiple style="display: none;">
+									<input type="file" id="file" name="upfile" class="btnOfInput" multiple style="display: none;">
 									<span class="file_name">파일을 선택해주세요</span>
 									<span class="file_btn">파일선택</span>
 								</label>

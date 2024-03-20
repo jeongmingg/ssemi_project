@@ -276,8 +276,6 @@ public class RestDao {
 				
 			}
 			
-			System.out.println("dao" + r);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -698,7 +696,7 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, "R" + img.getRefNo());
+			pstmt.setString(1, img.getRefNo());
 			pstmt.setString(2, img.getImgOriginName());
 			pstmt.setString(3, img.getImgChangeName());
 			pstmt.setString(4, img.getImgFilePath());
@@ -726,11 +724,41 @@ public class RestDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			close(conn);
+			close(pstmt);
 		}
 		return result;
 	}
-	
+
+	public int updateRestMenu(Connection conn, HashMap<String, String> map,String restNo, int i) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			if(i==0) {
+			String sql = prop.getProperty("updateRepMenu");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,map.get("menu"));
+				pstmt.setString(2, map.get("price"));
+				pstmt.setString(3, restNo);
+			
+			result = pstmt.executeUpdate();				
+			}else {
+				String sql = prop.getProperty("updateSubMenu");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "menu");
+				pstmt.setString(2, "price");
+				pstmt.setString(3, restNo);
+			result = pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 } 
 
 

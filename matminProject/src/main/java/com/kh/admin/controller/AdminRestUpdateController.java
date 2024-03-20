@@ -1,6 +1,9 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,7 +47,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
-			String restNo = (multiRequest.getParameter("rno"));
+			String restNo = (multiRequest.getParameter("num"));
 			
 			String restName = multiRequest.getParameter("restName");
 			String restTime = multiRequest.getParameter("bizHour");
@@ -57,7 +60,19 @@ public class AdminRestUpdateController extends HttpServlet {
 			String comAnimal = multiRequest.getParameter("comAnimal");
 			String prvRoom = multiRequest.getParameter("prvRoom");
 			String bigRoom = multiRequest.getParameter("bigRoom");
-			//String menu = multiRequest.getParameter("menu");
+			
+			String[] menuArr = multiRequest.getParameterValues("menu");
+			String[] priceArr = multiRequest.getParameterValues("price");
+			
+			ArrayList <HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+			
+			for(int i=0; i<menuArr.length; i++) {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("menu", menuArr[i]);
+				map.put("price", priceArr[i]);
+				
+				list.add(map);
+			}
 			
 			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
 			
@@ -85,7 +100,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			
 			}
 			
-			int result = new RestService().updateRest(r, img);
+			int result = new RestService().updateRest(r, img, list,restNo);
 			
 			if(result > 0) {
 				System.out.println("here");

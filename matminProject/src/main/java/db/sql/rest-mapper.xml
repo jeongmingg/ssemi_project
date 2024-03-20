@@ -576,5 +576,28 @@
       WHERE REST_NO = ?   
 
       </entry>
+      
+      <entry key="updateRepMenu">
+      
+      UPDATE MENU
+      	SET MENU_NAME = ?,
+      		MENU_PRICE = ?
+      WHERE REST_NO = ?
+      AND REP_MENU = 'Y'		
+      
+      
+      </entry>
+      
+      
+      <entry key="updateSubMenu">
+      
+      UPDATE MENU
+      	SET MENU_NAME = ?,
+      		MENU_PRICE = ?
+      WHERE REST_NO = ?
+      AND REP_MENU = 'N'		
+      
+      
+      </entry>
 		
 </properties>

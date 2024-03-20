@@ -118,17 +118,23 @@ public class RestService {
 		return list;
 		
 	}
-	public int updateRest(Rest r, ImgFile img) {
+	public int updateRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list, String restNo) {
 		Connection conn = getConnection();
 		
-		int result1 = new RestDao().updateRest(conn,r);
+		int result1 = new RestDao().updateRest(conn, r);
 		int result2= 1;
+		int result3= 1;
 		
+		if (result1 != 0){
+			for(int i=0; i<list.size();i++) {
+				result2 = new RestDao().updateRestMenu( conn,list.get(i),restNo, i);
+			}
+		}
 		if(img != null) {
 		if(img.getImgFileNo() != null) {
-				result2 = new RestDao().updateRestAt(conn,img);
+				result3 = new RestDao().updateRestAt(conn,img);
 			}else {
-				result2 = new RestDao().insertUpdateRestAt(conn,img);
+				result3 = new RestDao().insertUpdateRestAt(conn,img);
 			}
 		}
 		if(result1 > 0 && result2 > 0) {
@@ -137,7 +143,7 @@ public class RestService {
 			rollback(conn);
 		} close(conn);
 		
-		return result1 * result2;
+		return result1 * result2* result3;
 		
 	}
 
@@ -212,6 +218,8 @@ public class RestService {
 		close(conn);
 		return result;
 	}
+
+	
 }
 
 
