@@ -1183,6 +1183,7 @@
 			                let rvservice = rv.rateService;
 			                let rvcont = rv.reviewCont;
 			                let rvrate = rv.reviewRate;
+			                let rvlike = rv.reviewLike;
 			                
 			                value += `<div class="review-div">
 								<div class="rv1">
@@ -1226,11 +1227,8 @@
 									<div class="review-like">
 										<div class="like-area">
 											<div class="like"  data-rvno="\${rvno}" data-rvname="\${rvname}">추천 
-												<span>(15)</span>
+												<span>(\${rvlike})</span>
 											</div>
-										</div>
-										<div class="unlike-area">
-											<span class="unlike">비추천 (15)</span>
 										</div>
 									</div>
 								</div>
@@ -1240,7 +1238,70 @@
 						
 			        // 리뷰 div에 ajax로 넘어온 값 전체 넣어줌 
 					$(".review-detail").html(value);
-					
+			        
+					$(document).ready(function(){
+						selectLike();
+					});
+
+			        function selectLike(){
+			        	
+	                    $(".like").each(function() {
+	                    	
+	                    var ele = $(this);
+			    	    var rvno = $(this).data("rvno");
+			    	    var logname = $(this).closest(".rv1").find('.serverNickname').val();
+			    	    
+			    	    console.log(rvno, logname);
+			    	    
+				        $.ajax({
+				        	url:"seLike.rv",
+				        	data:{
+				        		rvno:rvno,
+				        		logname:logname},
+				        		success:function(result){
+				  
+				        				$(".like").each(function(){
+						        			if(result !== null && rvno === result.reviewNo && logname === result.nickName) {
+						                   		ele.attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
+						        		}
+				                  })
+				                  countLike();
+				        	},
+				        	error:function(){
+				        		console.log("ajax 통신실패")
+				        	}
+							});
+				        });
+			        
+			        }
+			        
+					function countLike(){
+						$(".like").each(function() {	
+		                    var ele = $(this);
+				    	    var rvno = $(this).data("rvno");
+
+						$.ajax({
+							url:"coLike.rv",
+							data:{rvno:rvno},
+							success:function(count){
+								console.log(count.likeCount);
+								console.log("countLike : ajax성공");
+								if(count.likeCount !== 0){
+									$(".like").each(function(){
+										if(rvno === ele.data("rvno")){
+											ele.find(".likeCount").val(count.likeCount)
+										}
+										});
+									}
+							},
+
+							error:function(){
+								console.log("ajax실패");
+							}
+							});
+						});
+
+					}
 					// 리뷰 삭제 로그인시에만 가능하게끔 
 					 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
 						    
@@ -1272,6 +1333,7 @@
 												
 				$(".review-detail").on("click", ".like", function(){
 
+					var ele = this;
 					var rvlno = $(this).data("rvno");
 					var rvlname = $(this).data("rvname");
 					var logname = $(this).closest('.rv1').find('.serverNickname').val();
@@ -1284,39 +1346,47 @@
 						alert("로그인 시에만 가능합니다!");
 						return;
 					}else {
-						checkLike(rvlno, rvlname, logname);
+						$(document).ready(function(){
+							checkLike(ele, rvlno, rvlname, logname); 
+						});
 					}
  
 				});
 
-				function checkLike(rvlno, rvlname, logname){
-					$.ajax({
+				function checkLike(ele, rvlno, rvlname, logname){
+					console.log(rvlno);
+					console.log(rvlname);
+					console.log(logname);
+					
+					 $.ajax({
 						url:"inLike.rv",
-						type:"post",
 						data:{
 							rvno:rvlno,
 							rvname:rvlname,
 							logname:logname
 						},
 						success:function(response){
-							console.log("ajax 성공");
-							console.log(response);
-							var result1 = response.result1;
-   							var result2 = response.result2;
-							console.log(result1);
-							console.log(result2);
-							
-							let value = ""
-							
-							if (result1 === 1) {
-								$(this).css({color: "white", background: "#F39C12"});
-							}
+							// console.log(response);					
+							if ('result1' in response) {
+								console.log("인서트돼라!");
+								console.log(ele);
 
+								$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");	
+								
+							} else if('result2' in response){
+				            	console.log("삭제돼라!");
+				            	console.log(ele);
+				            	$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
+
+							}
+			
 						},
 						error:function(){
 							console.log("ajax 실패");
-						} 
-					})
+						}
+						
+					});
+					
 				}
 
 				

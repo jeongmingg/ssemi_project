@@ -36,11 +36,6 @@ public class InsertReviewController extends HttpServlet {
 		int score = Integer.parseInt(request.getParameter("rating"));
 		String rvwCont = request.getParameter("reviewWrite");
 		
-		System.out.println(rno);
-		System.out.println(memNo);
-		System.out.println(score);
-		System.out.println(rvwCont);
-		
 		int result = new ReviewService().insertReview(rno, memNo, score, rvwCont);
 		
 		HttpSession session = request.getSession();

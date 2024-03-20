@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
+import com.google.gson.Gson;
 import com.kh.review.model.Service.ReviewService;
 
 /**
@@ -30,29 +31,28 @@ public class InsertReviewLikeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String rvNo = request.getParameter("rvNo");
-		String rvName = request.getParameter("rvName");
-		String logName = request.getParameter("logName");
-		
+		String rvNo = request.getParameter("rvno");
+		String rvName = request.getParameter("rvname");
+		String logName = request.getParameter("logname");
+
 		boolean liked = new ReviewService().checkLiked(rvNo, logName);
+		
 		
 		JSONObject responseJson = new JSONObject();
 		
 		if(!liked) {
 			int result = new ReviewService().insertLike(rvNo, logName);	
-			System.out.println("result1 : "  + result);
-			responseJson.put("result1", result);
+		    responseJson.put("result1", result);
+		    response.setContentType("application/json; charset=utf-8");
+		    
 		}else {
 			int result2 = new ReviewService().deleteLike(rvNo, logName);
 			responseJson.put("result2", result2);
-			System.out.println(result2);
+		    response.setContentType("application/json; charset=utf-8");
 		}
-		
+
 		response.getWriter().write(responseJson.toString());
-		
-	
-	
-	
+
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

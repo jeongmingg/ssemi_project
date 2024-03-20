@@ -4,6 +4,7 @@ public class RvLike {
 	
 	public String reviewNo;
 	public String nickName;
+	public int likeCount;
 	
 	public RvLike() {}
 
@@ -11,6 +12,25 @@ public class RvLike {
 		super();
 		this.reviewNo = reviewNo;
 		this.nickName = nickName;
+	}
+	
+
+	public int getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public RvLike(int likeCount) {
+		super();
+		this.likeCount = likeCount;
+	}
+
+	public RvLike(String reviewNo) {
+		super();
+		this.reviewNo = reviewNo;
 	}
 
 	public String getReviewNo() {
@@ -31,9 +51,10 @@ public class RvLike {
 
 	@Override
 	public String toString() {
-		return "RvLike [reviewNo=" + reviewNo + ", nickName=" + nickName + "]";
+		return "RvLike [reviewNo=" + reviewNo + ", nickName=" + nickName + ", likeCount=" + likeCount + "]";
 	}
 
+	
 	
 
 }
