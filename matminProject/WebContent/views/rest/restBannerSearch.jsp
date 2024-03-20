@@ -45,7 +45,7 @@
 		padding: 20px;
 	}
 	#content_2{
-		height: 1300px;
+		height: auto;
 		
 	}
 
@@ -112,7 +112,7 @@
 		font-size: 25px;
 	}
 	#content_2_2_content{
-		height: 1200px;
+		height: auto;
 		padding-top: 100px;
 		padding-bottom: 50px;
 		padding-left: 30px;
@@ -123,9 +123,10 @@
 	
 	#content_2_2_content>div{width: 100%;}
 	#restList, #restList2{
-		height: 330px;
+		height: auto;
 		padding-left: 35px;
 		padding-top: 50px;
+		margin-bottom: 50px;
 	}
 
 	#moreBtn{height: 100px;}
@@ -411,12 +412,7 @@
 							
 						</table>
 					</div>
-					<div id="moreBtn">
-						<button type="button" id="more-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg>
-						검색 결과 더보기
-						</button>
-					</div>   
+					
 				</div>
 		</div>
 		
@@ -641,7 +637,7 @@
 					 default: grade = "기본값"; break; 
 					}
 
-				var title = grade + " 맛집 (" + result.length + "곳)";
+				var title = grade + " 맛집 ( " + result.length + "곳 )";
 				$("#content_2_2_title").html(title);
 
 				if(result.length == 0){
@@ -656,8 +652,8 @@
 						result,
 						function(index, restaurant){
 							var value = 
-								'<table id="rest-table" align="center">'
-							+ '<tr>'
+								
+							 '<tr>'
 							+ '<td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px;">'
 							+ '<img class="rest-img" src="resources/star, heart/star.png" /></td>'
 							+ '<td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">'
@@ -668,13 +664,13 @@
 							+ '<td width="85px" style="padding-left: 15px; font-size: 17px">'
 							+ restaurant.localName
 							+ '</td>'
-							+ '<td>' + restaurant.menuName + restaurant.menuPrice
+							+ '<td>' + restaurant.menuName +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "+ restaurant.menuPrice + '원'
 							+ '</td>'
 							+ '</tr>'
 							+ '<tr>'
 							+ '<td colspan="3"><hr></td>'
 							+ '</tr>'
-							+ '</table>';
+							;
 					
 						restTable.append(value);
 					
