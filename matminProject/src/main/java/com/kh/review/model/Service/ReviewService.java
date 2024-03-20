@@ -81,4 +81,40 @@ public class ReviewService {
 		close(conn);
 		return rv;
 	}
+	
+	public boolean checkLiked(String rvNo, String logName) {
+		Connection conn = getConnection();
+		
+		boolean liked = new ReviewDao().checkLiked(conn, rvNo, logName);
+		
+		close(conn);
+		return liked;
+
+	}
+	
+	public int insertLike(String rvNo, String logName) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().insertLike(conn, rvNo, logName);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}return result;
+		}
+	
+	public int deleteLike(String rvNo, String logName) {
+		Connection conn = getConnection();
+		
+		int result = new ReviewDao().deleteLike(conn, rvNo, logName);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
 }

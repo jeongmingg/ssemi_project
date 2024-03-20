@@ -71,7 +71,7 @@
 	
 					<p><b>비밀번호 찾기</b></p>
 		
-					<form action="#" method="post">
+					<form action="<%= contextPath %>/findPwd.me" method="post">
 		
 						<input type="text" name="userName" placeholder="이름"> <br>
 						<input type="text" name="userId" placeholder="아이디"> <br>

@@ -167,4 +167,27 @@
 		   AND MEM_PWD = ?
 	</entry>
 	
+	<entry key="selectMemberFindPwd">
+		SELECT
+		       MEM_NO
+		  FROM MEMBER
+		 WHERE MEM_NAME = ?
+		   AND MEM_ID = ?
+		   AND EMAIL = ?
+		   AND MEM_STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateMemberFindPwd">
+		UPDATE MEMBER
+		   SET MEM_PWD = ?
+		 WHERE MEM_NO = ?
+	</entry>
+	
+	<entry key="deleteMember">
+		UPDATE MEMBER
+		   SET MEM_STATUS = 'N'
+		 WHERE MEM_NO = ?
+		   AND MEM_PWD = ?
+	</entry>
+	
 </properties>

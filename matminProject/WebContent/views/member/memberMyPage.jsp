@@ -164,6 +164,8 @@
 					<button type="button" data-toggle="modal" data-target="#changePwd">비밀번호 변경하기</button>
 					<button type="submit" onclick="return validate();">개인정보 수정하기</button>
 				</form>
+
+				<a id="leaveBtn" data-toggle="modal" data-target="#leaveMem" style="color: rgb(177 177 177); cursor: pointer;">탈퇴하기 ></a>
 			</div>
 
 			<!-- The Modal -->
@@ -205,6 +207,43 @@
 								</tr>
 							</table>
 							<button class="btn btn-sm btn-secondary" type="submit" onclick="return modalValidate();">변경</button>
+						</form>
+					</div>
+			
+					<!-- Modal footer -->
+					<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+			
+				</div>
+				</div>
+			</div>
+
+			<!-- The Modal -->
+			<div class="modal" id="leaveMem">
+				<div class="modal-dialog">
+				<div class="modal-content">
+			
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">회원 탈퇴</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+			
+					<!-- Modal body -->
+					<div class="modal-body">
+						<span style="color: red;">* 탈퇴하고자 한다면, 비밀번호를 입력해주세요.</span>
+						<form action="<%= contextPath %>/delete.me" method="post">
+							<input type="hidden" name="memNo" value="<%= memNo %>">
+							<table id="leaveMemTB">
+								<tr>
+									<td width="100">비밀번호</td>
+									<td width="210">
+										<input type="password" name="userPwd">
+									</td>
+								</tr>
+							</table>
+							<button class="btn btn-sm btn-danger" type="submit">탈퇴하기</button>
 						</form>
 					</div>
 			

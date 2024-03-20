@@ -1,4 +1,4 @@
-package com.kh.gmail.controller;
+package com.kh.review.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONObject;
+
+import com.kh.review.model.Service.ReviewService;
+
 /**
- * Servlet implementation class GmailSendActionController
+ * Servlet implementation class InsertReviewLikeController
  */
-@WebServlet("/gmailSendAction")
-public class GmailSendActionController extends HttpServlet {
+@WebServlet("/inLike.rv")
+public class InsertReviewLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GmailSendActionController() {
+    public InsertReviewLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,15 +30,30 @@ public class GmailSendActionController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String rvNo = request.getParameter("rvNo");
+		String rvName = request.getParameter("rvName");
+		String logName = request.getParameter("logName");
 		
-		String email = request.getParameter("email");
+		boolean liked = new ReviewService().checkLiked(rvNo, logName);
 		
-		request.setAttribute("email", email);
+		JSONObject responseJson = new JSONObject();
 		
-		request.getRequestDispatcher("views/gmail/gmailSendAction.jsp").forward(request, response);
+		if(!liked) {
+			int result = new ReviewService().insertLike(rvNo, logName);	
+			System.out.println("result1 : "  + result);
+			responseJson.put("result1", result);
+		}else {
+			int result2 = new ReviewService().deleteLike(rvNo, logName);
+			responseJson.put("result2", result2);
+			System.out.println(result2);
+		}
 		
+		response.getWriter().write(responseJson.toString());
+		
+	
+	
+	
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
