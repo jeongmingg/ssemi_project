@@ -183,4 +183,11 @@
 		 WHERE MEM_NO = ?
 	</entry>
 	
+	<entry key="deleteMember">
+		UPDATE MEMBER
+		   SET MEM_STATUS = 'N'
+		 WHERE MEM_NO = ?
+		   AND MEM_PWD = ?
+	</entry>
+	
 </properties>

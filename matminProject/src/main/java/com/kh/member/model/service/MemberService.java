@@ -207,4 +207,20 @@ public class MemberService {
 		return result;
 	}
 	
+	public int deleteMember(String memNo, String memPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().deleteMember(conn, memNo, memPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }
