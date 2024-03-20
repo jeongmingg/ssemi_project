@@ -14,6 +14,12 @@ public class RvLike {
 		this.nickName = nickName;
 	}
 	
+	
+	public RvLike(int likeCount, String reviewNo) {
+		super();
+		this.likeCount = likeCount;
+		this.reviewNo = reviewNo;
+	}
 
 	public int getLikeCount() {
 		return likeCount;
