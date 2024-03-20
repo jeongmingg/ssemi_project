@@ -163,13 +163,6 @@
 	                Kakao.API.request({
 	                    url: '/v2/user/me',
 	                    success: function (response) {
-	                        // alert(JSON.stringify(response))
-							// console.log(response);
-							// console.log("아이디 : " + response.id);
-							// console.log("이메일 : " + response.kakao_account.email);
-							// console.log("이름 : " + response.kakao_account.name);
-							// console.log("닉네임 : " + response.properties.nickname);
-							
 							$.ajax({
 								url: 'idCheck.me',
 								data: {checkId: response.id},

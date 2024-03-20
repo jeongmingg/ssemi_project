@@ -1,4 +1,4 @@
-package com.kh.gmail.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+
 /**
- * Servlet implementation class GmailCheckActionController
+ * Servlet implementation class MemberFindPwdController
  */
-@WebServlet("/gmailCheckAction")
-public class GmailCheckActionController extends HttpServlet {
+@WebServlet("/findPwd.me")
+public class MemberFindPwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GmailCheckActionController() {
+    public MemberFindPwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +29,27 @@ public class GmailCheckActionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String email = request.getParameter("email");
-		String code = request.getParameter("code");
+		request.setCharacterEncoding("utf-8");
 		
+		String memName = request.getParameter("userName");
+		String memId = request.getParameter("userId");
+		String email = request.getParameter("email");
+		
+		String memNo = new MemberService().selectMemberFindPwd(memName, memId, email);
+		
+		if("".equals(memNo)) {
+			// 해당하는 회원 없음
+		} else {
+			// 해당하는 회원 있음
+			// 회원 이메일로 인증번호 발송
+		}
+		
+		request.setAttribute("memName", memName);
+		request.setAttribute("memId", memId);
 		request.setAttribute("email", email);
-		request.setAttribute("code", code);
-		request.getRequestDispatcher("views/gmail/gmailCheckAction.jsp").forward(request, response);
+		request.setAttribute("memNo", memNo);
+		
+		request.getRequestDispatcher("views/member/memberFindPwd.jsp").forward(request, response);
 		
 	}
 

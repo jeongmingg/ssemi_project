@@ -44,6 +44,8 @@ public class BoardListController extends HttpServlet {
 		
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
+		int checkNum = 1;
+		
 		pageLimit = 5;
 		
 		boardLimit = 5;
@@ -56,12 +58,15 @@ public class BoardListController extends HttpServlet {
 			   endPage = maxPage;
 		}
 		
+		
+		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		ArrayList<Board> list = new BoardService().selectBoardList(pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("checkNum", checkNum);
 		
 		
 
