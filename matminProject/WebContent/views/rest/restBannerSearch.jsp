@@ -100,8 +100,7 @@
 	#content_2_1{width: 20%;}
 	#content_2_2{
 		width: 80%; padding: 20px;
-		
-			
+		margin-bottom: 200px;
 	}
 
 	#content_2_2>div{width: 100%;}
@@ -141,7 +140,7 @@
 
 	#content_2_1_content{
 		height: 1000px;
-		padding-top: 30px;
+		padding-top: 130px;
 	}
 	#select-location{
 		padding-left: 20px;
