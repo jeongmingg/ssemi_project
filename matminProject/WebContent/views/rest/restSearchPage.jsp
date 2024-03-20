@@ -6,13 +6,20 @@
 <%
 	String keyword = (String) request.getAttribute("keyword");
 	ArrayList<Search> list = (ArrayList<Search>) request.getAttribute("list");
-	ArrayList<String> addrList = new ArrayList<String>();
-	if (!list.isEmpty()) {
-		for (Search s : list) {
-			addrList.add(s.getRestAddress());
+	
+	ArrayList<Search> mapList = new ArrayList<Search>();
+	if(!list.isEmpty()) {
+		for(Search s : list) {
+			Search mapS = new Search();
+			
+			mapS.setRestAddress(s.getRestAddress());
+			mapS.setRestName(s.getRestName());
+			
+			mapList.add(mapS);
 		}
 	}
-	request.setAttribute("addrList", addrList);
+	
+	request.setAttribute("mapList", mapList);
 	ArrayList<Rest> lcList = (ArrayList<Rest>) request.getAttribute("lcList");
 	%>
 <!DOCTYPE html>
@@ -870,9 +877,11 @@ div {
 							  + result.length
 							  + " 건 )");
 							
-							let newAddrList = result.map(item => item.restAddress);
+							let newMapList = result.map(item => {
+							    return { restName: item.restName, restAddress: item.restAddress };
+							});
 
-							updateMapData(newAddrList);
+							updateMapData(newMapList);
 							
 							},
 							error : function() {
