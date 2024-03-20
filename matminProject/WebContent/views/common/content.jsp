@@ -177,9 +177,9 @@
            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
            align-items:center; /* 위아래 기준 중앙정렬 */
            justify-content:center; /* 좌우 기준 중앙정렬 */
-              position: relative;
-              z-index: -2;
-              padding-top: 30px;
+           position: relative;
+           z-index: -2;
+           padding-top: 30px;
        }
        .swiper-slide img {
            /* box-shadow:0 0 5px #555; */
@@ -263,9 +263,6 @@
                         </div>
 
                     </div>
-                    <!-- <div id="content_bestSearch_content"> -->
-                        <!-- <div id="content_bestSearch_content_1"> -->
-                            <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-1">
                            <% int count = 0; %>

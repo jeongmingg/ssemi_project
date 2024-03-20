@@ -1,4 +1,4 @@
-package com.kh.gmail.controller;
+package com.kh.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+
 /**
- * Servlet implementation class GmailCheckActionController
+ * Servlet implementation class MemberFindPwdUpdateController
  */
-@WebServlet("/gmailCheckAction")
-public class GmailCheckActionController extends HttpServlet {
+@WebServlet("/findPwdChange.me")
+public class MemberFindPwdUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GmailCheckActionController() {
+    public MemberFindPwdUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,12 +29,22 @@ public class GmailCheckActionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String email = request.getParameter("email");
-		String code = request.getParameter("code");
+		request.setCharacterEncoding("utf-8");
 		
-		request.setAttribute("email", email);
-		request.setAttribute("code", code);
-		request.getRequestDispatcher("views/gmail/gmailCheckAction.jsp").forward(request, response);
+		String memNo = request.getParameter("memNo");
+		String newPwd = request.getParameter("newPwd");
+		
+		int result = new MemberService().updateMemberFindPwd(memNo, newPwd);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "비밀번호 변경이 완료되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/loginForm.me");
+			
+		} else {
+			request.getSession().setAttribute("alertMsg", "비밀번호 변경을 실패했습니다.");
+			response.sendRedirect(request.getContextPath() + "/findAccountForm.me");
+		}
+		
 		
 	}
 

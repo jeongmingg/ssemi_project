@@ -1,23 +1,29 @@
-package com.kh.gmail.controller;
+package com.kh.rest.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
+
 /**
- * Servlet implementation class GmailCheckActionController
+ * Servlet implementation class AjaxRestBannerSelect
  */
-@WebServlet("/gmailCheckAction")
-public class GmailCheckActionController extends HttpServlet {
+@WebServlet("/bansel.rs")
+public class AjaxRestBannerSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GmailCheckActionController() {
+    public AjaxRestBannerSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,13 +33,13 @@ public class GmailCheckActionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String email = request.getParameter("email");
-		String code = request.getParameter("code");
+		String locationName = request.getParameter("locationName");
+		String selectedGrade = request.getParameter("selectedGrade");
 		
-		request.setAttribute("email", email);
-		request.setAttribute("code", code);
-		request.getRequestDispatcher("views/gmail/gmailCheckAction.jsp").forward(request, response);
+		ArrayList<Rest> list = new RestService().bannerSearch(locationName, selectedGrade);
 		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

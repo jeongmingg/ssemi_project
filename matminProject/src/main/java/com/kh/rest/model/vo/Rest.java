@@ -194,6 +194,21 @@ public class Rest {
 		this.restAvg = restAvg;
 		this.reviewCount = reviewCount;
 	}
+	
+	
+
+	public Rest(String restNo, String restName, double restAvg, String restImgUrl, int reviewCount,
+			String menuName, String menuPrice, String localName) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
+		this.reviewCount = reviewCount;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
+		this.localName = localName;
+	}
 
 	public String getRestNo() {
 		return restNo;

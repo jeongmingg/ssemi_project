@@ -15,11 +15,11 @@
 
 <style>
 	div{
-            box-sizing: border-box;
-            border: 1px solid red;
-            margin: 0;
-            padding: 0;
-            display: block;
+		box-sizing: border-box;
+		/* border: 1px solid red; */
+		margin: 0;
+		padding: 0;
+		display: block;
         }
 
 	.wrap{
@@ -29,8 +29,8 @@
 	}
 
 	#content{
-		width: 79%;
-		height: 1400px;
+		width: 1300px;
+		height: 1600px;
 		margin: 0 auto;
 		margin-bottom: 50px;
 	}
@@ -42,9 +42,11 @@
 		height: 300px;
 		margin-top: 50px;
 		margin-bottom: 50px;
+		padding: 20px;
 	}
 	#content_2{
-		height: 1100px;
+		height: auto;
+		
 	}
 
 	#content_1>div{width: 100%;}
@@ -93,9 +95,13 @@
     }
 	
 	/* 밑에큰 div h1100*/
+	#content_2{padding: 20px;}
 	#content_2>div{height: 100%; float: left;}
 	#content_2_1{width: 20%;}
-	#content_2_2{width: 80%;}
+	#content_2_2{
+		width: 80%; padding: 20px;
+		margin-bottom: 200px;
+	}
 
 	#content_2_2>div{width: 100%;}
 	#content_2_2_title{
@@ -105,18 +111,21 @@
 		font-size: 25px;
 	}
 	#content_2_2_content{
-		height: 1000px;
+		height: auto;
 		padding-top: 100px;
 		padding-bottom: 50px;
 		padding-left: 30px;
 		padding-right: 30px;
+		border: 1px solid #E4910D;
+		border-radius: 20px;
 	}
 	
 	#content_2_2_content>div{width: 100%;}
 	#restList, #restList2{
-		height: 330px;
+		height: auto;
 		padding-left: 35px;
 		padding-top: 50px;
+		margin-bottom: 50px;
 	}
 
 	#moreBtn{height: 100px;}
@@ -130,9 +139,8 @@
 	}
 
 	#content_2_1_content{
-		height: 90%;
-		padding-top: 30px;
-		padding-left: 20px;
+		height: 1000px;
+		padding-top: 130px;
 	}
 	#select-location{
 		padding-left: 20px;
@@ -230,6 +238,21 @@
 		float: left;
 	}
 
+	#rest-table {
+	/* border: 1px solid blue; */
+	width: 750px;
+	height: 110px;
+	
+	margin-left: 50px;
+	}
+
+	/* 맛집 대표 이미지 */
+	.rest-img {
+		width: 100px;
+		height: 100px;
+		border-radius: 10px;
+	}
+
 	/* 검색결과 더보기 버튼 스타일 */
 	#moreBtn{
 		display: flex; justify-content: center;
@@ -306,10 +329,10 @@
 						&nbsp;&nbsp;지역 선택
 					</div>
 					<div class="box">
-						<div class="selectBox ">
-							<button class="label" type="button">전체 보기</button>
+						<div class="selectBox">
+							<button id="selectOption" class="label" type="button">지역 선택</button>
 							<ul class="optionList">
-								<li class="optionItem">전체 보기</li>
+								<li class="optionItem">전체</li>
 								<li class="optionItem">강남구</li>
 								<li class="optionItem">강동구</li>
 								<li class="optionItem">강북구</li>
@@ -342,7 +365,7 @@
 			</div>
 			<div id="content_2_2">
 				<div id="content_2_2_title">
-					
+				<!-- content.jsp에서 지금 페이지로 넘어왔을때 보이게하는 부분(사원맛집(2곳))-->
 					<% String grade = ""; 
 					for(Rest r : list) {	
 						switch(selectedGrade){ 
@@ -359,76 +382,46 @@
 				</div>
 				<div id="content_2_2_content">
 					<div id="restList">
-						<% int count = 0; %>
-						<% for(Rest r : list) { %>
-						<div class="rest-div rest-item">
-							<figure>
-								<img src="<%= r.getRestImgUrl()%>">
-								<figcaption><%= r.getRestName() %></figcaption>
-							</figure>
-						</div>
-						<% count++; %>
-						<% } %>
+							<table id="rest-table" align="center">
+							<% int count = 0; %>
+							<% for(Rest r : list){ %>
+							<tr>
+								<td rowspan="2" width="120"
+									style="padding-left: 15px; padding-right: 15px;"><img
+									class="rest-img" src="resources/star, heart/star.png" /></td>
+								<td colspan="2"
+									style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
+									<%= r.getRestName() %>
+								</td>
+							</tr>
+							<tr>
+								<td width="85px" style="padding-left: 15px; font-size: 17px">
+
+									<%= r.getLocalName() %>
+
+								</td>
+								<td> <%= r.getMenuName() %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= r.getMenuPrice() %>원
+								</td>
+							</tr>
+							<tr>
+								<td colspan="3"><hr></td>
+							</tr>
+							<% count++; %>
+							<% } %>
+							
+						</table>
 					</div>
-					<div id="moreBtn">
-						<button type="button" id="more-btn">
-						<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000"><path d="M6 26h4v-4H6v4zm0 8h4v-4H6v4zm0-16h4v-4H6v4zm8 8h28v-4H14v4zm0 8h28v-4H14v4zm0-20v4h28v-4H14z"></path></svg>
-						검색 결과 더보기
-						</button>
-					</div>   
+					
 				</div>
 		</div>
 		
 		<script>
 			
 			$(document).ready(function() {
-                const label = $('.label');
-                const options = $('.optionItem');
-                const selectBox = $('.selectBox');
-                const optionList = $('.optionList');
-
-                const handleSelect = function(item) {
-                    label.text(item.text());
-                    label.parent().removeClass('active');
-                }
-
-                options.on('click', function() {
-                    handleSelect($(this));
-                });
-
-                selectBox.on('click', function() {
-                    optionList.toggleClass('active');
-                });
-
-                // selectBox 클릭 시 max-height 토글
-                selectBox.on('click', function() {
-                    optionList.css('max-height', optionList.css('max-height') === '900px' ? '' : '900px');
-                });
-
-				// 검색결과 더보기 누르면서 무한스크롤
-
-				const restItems = $('.rest-item');
-				const moreBtn = $('#more-btn');
-				const itemsPerPage = 8;
-
-				// Hide restaurants beyond the first 8
-				restItems.slice(itemsPerPage).hide();
-
-				// Handle infinite scroll functionality
-				let currentCount = itemsPerPage;
-
-				moreBtn.on('click', function() {
-					const hiddenItems = restItems.slice(currentCount, currentCount + itemsPerPage);
-					hiddenItems.fadeIn();
-					currentCount += itemsPerPage;
-
-					// If all items are shown, hide the '더보기' button
-					if (currentCount >= restItems.length) {
-						moreBtn.text('조회결과 마지막 식당입니다.').css("color", "black"); // Change the text
-                		moreBtn.prop('disabled', true); // Optionally, disable the button
-					}
-				});
-
+			
+				 var selectedGrade = "<%= selectedGrade %>";
+			     var locationName = "";
+			     
 				// 버튼 호버시 금액뜨는 효과
 				// 사원 hover style
 				$("#ban_btn1").hover(
@@ -524,7 +517,167 @@
 						}).text("부장");
 					}
 				);
+
+				$('.bannerBtn').on('click', function() {
+                    // 선택한 버튼의 텍스트 가져오기
+                    selectedGrade = $(this).attr('id');
+
+					bannerSelect(selectedGrade);
+                });
+				
+                // 지역 선택
+				let label = $(".label");
+				let options = $(".optionItem");
+				let selectBox = $(".selectBox");
+				let optionList = $(".optionList");
+
+				let handleSelect = function(item) {
+                    label.text(item.text());
+                    label.parent().removeClass("active");
+                }
+
+                options.on("click", function() {
+                    handleSelect($(this));
+                });
+
+                label.on("click", function() {
+                    label.parent().toggleClass("active");
+                });
+
+                // selectBox 클릭 시 max-height 토글
+                selectBox.on("click", function() {
+                    optionList.css(
+                   		"max-height",
+                   		"optionList.css('max-height') === '1000px' ? '' : '1000px'"
+             		);
+                });
+
+				// 검색결과 더보기 누르면서 무한스크롤
+
+				const restItems = $('.rest-item');
+				const moreBtn = $('#more-btn');
+				const itemsPerPage = 8;
+
+				// Hide restaurants beyond the first 8
+				restItems.slice(itemsPerPage).hide();
+
+				// Handle infinite scroll functionality
+				let currentCount = itemsPerPage;
+
+				moreBtn.on('click', function() {
+					const hiddenItems = restItems.slice(currentCount, currentCount + itemsPerPage);
+					hiddenItems.fadeIn();
+					currentCount += itemsPerPage;
+
+					// If all items are shown, hide the '더보기' button
+					if (currentCount >= restItems.length) {
+						moreBtn.text('조회결과 마지막 식당입니다.').css("color", "black"); // Change the text
+                		moreBtn.prop('disabled', true); // Optionally, disable the button
+					}
+				});
+
+				// 선택된 지역을 저장할 변수 초기화
+                var selectedLocation = "";
+				
+                // 지역 클릭 이벤트 핸들러
+                $(".optionItem").on("click", function (e) {
+      				let selectedLocation = e.target.innerText;
+
+                  bannerSelect(selectedGrade, selectedLocation);
+                });
+				
+				function bannerSelect(selectedGrade, a){
+
+					
+					let selectedLocation = "";
+					
+					if(!a){ // undef
+						selectedLocation = $("#selectOption").text();
+					}else{
+						selectedLocation = a;
+					}
+			
+               	 	selectedLocation === "지역 선택" ? selectedLocation = "전체" : null;
+         	 	
+               	 	$.ajax({
+	               		 
+	               		 url:"bansel.rs",
+	               		 type:"get",
+	               		 data:{
+	               			locationName: selectedLocation,
+	               			selectedGrade: selectedGrade
+	               		 },
+	               		 success: function(result){
+	               			updateTable(result, selectedGrade);
+						
+	               		 },
+	               		 error: function(){
+	               			console.log("ajax 통신에 실패했습니다.");
+	               		 }
+	               		  
+	               	 });               	 	
+				}
+					
 			});
+			
+			function updateTable(result, selectedGrade){
+					
+				var restTable = $("#rest-table");
+				restTable.empty();
+
+					var grade = ""
+		
+                    switch(selectedGrade){ 
+					 case "ban_btn1": grade = "사원"; break; 
+					 case "ban_btn2": grade = "대리"; break;
+					 case "ban_btn3": grade = "과장"; break;
+					 case "ban_btn4": grade = "차장"; break; 
+					 case "ban_btn5": grade = "부장"; break; 
+					 default: grade = "기본값"; break; 
+					}
+
+				var title = grade + " 맛집 ( " + result.length + "곳 )";
+				$("#content_2_2_title").html(title);
+
+				if(result.length == 0){
+					var value = "<tr>"
+						+ '<td colspan="3">조회된 결과가 없습니다. </td>'
+						+ "</tr>" + "<tr>" + '<td colspan="3"><hr></td>'
+						+ "</tr>";
+					
+					restTable.append(value);
+				} else {
+					$.each(
+						result,
+						function(index, restaurant){
+							var value = 
+								
+							 '<tr>'
+							+ '<td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px;">'
+							+ '<img class="rest-img" src="resources/star, heart/star.png" /></td>'
+							+ '<td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">'
+							+ restaurant.restName
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td width="85px" style="padding-left: 15px; font-size: 17px">'
+							+ restaurant.localName
+							+ '</td>'
+							+ '<td>' + restaurant.menuName +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "+ restaurant.menuPrice + '원'
+							+ '</td>'
+							+ '</tr>'
+							+ '<tr>'
+							+ '<td colspan="3"><hr></td>'
+							+ '</tr>'
+							;
+					
+						restTable.append(value);
+					
+					});
+				}
+
+			}
+			
         </script>
 		
 	</div>
