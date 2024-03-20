@@ -134,6 +134,7 @@
 		height: 210px;
 		/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
 		border-radius: 10px;
+		transition: transform 0.3s ease-in-out;
 	}
 	
 	/* 식당이름 스타일 */
@@ -145,6 +146,8 @@
 	
 	.restImg:hover{
 		cursor: pointer;
+		transform: scale(1.03);
+		opacity: 0.85;
 	}
 
 </style>
