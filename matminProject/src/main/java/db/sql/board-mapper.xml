@@ -195,6 +195,7 @@
 			        ORDER BY TO_NUMBER(REGEXP_REPLACE(BOARD_NO, '[^0-9]+', '')) DESC
 			    ) B
 			    )A
+			WHERE RNUM BETWEEN ? AND ?
 		</entry>
 		
 		<entry key="searchListCount">
