@@ -142,17 +142,17 @@
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td><input type="text" value= "<%= r.getRestName() %>" ></td>
+                    <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
                     <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
-                    <td><input type="text" value= "<%= r.getRestTime() %>"></td>
+                    <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
                     <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
+                    <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
                     <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
                 </tr>
                 <tr>
@@ -170,7 +170,7 @@
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" value= "<%= r.getRestTel() %>"></td>
+                    <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -179,7 +179,7 @@
 							<!--  category table로 부터 조회 할꺼임 -->
 							<%for (Category c : list) { %>
 							<option value="<%=c.getCtgId()%>">
-								<%=c.getCtgName( )%>
+								<%=c.getCtgName()%>
 							</option>
 							<%} %>
 					</select>
@@ -219,14 +219,14 @@
 				        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
 				        <label for="dt">DT</label> 
 				        
-				        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
-				        <label for="pet_friendly">반려동물</label> 
+				        <input type="checkbox" name="conAnimal" id="comAnimal" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
+				        <label for="conAnimal">반려동물</label> 
 				        
-				        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
-				        <label for="private_room">개별룸</label> 
+				        <input type="checkbox" name="prvRoom" id="prvRoom" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+				        <label for="prvRoom">개별룸</label> 
 				        
-				        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
-				        <label for="big_room">대형룸</label> <br />
+				        <input type="checkbox" name="bigRoom" id="bigRoom" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+				        <label for="bigRoom">대형룸</label> <br />
 				    </td>
 				</tr>
 

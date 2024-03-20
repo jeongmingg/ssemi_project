@@ -53,14 +53,15 @@ public class AdminRestUpdateController extends HttpServlet {
 			String restTel = multiRequest.getParameter("phone");
 			String ctgId = multiRequest.getParameter("category");
 			String parking = multiRequest.getParameter("parking");
-			String drivethrou = multiRequest.getParameter("drivethrou");
+			String drivethrou = multiRequest.getParameter("dt");
 			String comAnimal = multiRequest.getParameter("comAnimal");
-			String prvRoom = multiRequest.getParameter("prvroom");
-			String bigRoom = multiRequest.getParameter("bigroom");
+			String prvRoom = multiRequest.getParameter("prvRoom");
+			String bigRoom = multiRequest.getParameter("bigRoom");
 			//String menu = multiRequest.getParameter("menu");
 			
-			Rest r = new Rest(restNo,restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
-				
+			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
+			
+			System.out.println(r);
 			ImgFile img  = null;
 			 
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
@@ -92,11 +93,11 @@ public class AdminRestUpdateController extends HttpServlet {
 				System.out.println(request.getAttribute("img"));
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/rest.ad?rno=" + r.getRestNo());
+				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + r.getRestNo());
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+				response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 			}
 		}
 		

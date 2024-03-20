@@ -9,11 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
-
 import static com.kh.common.JDBCTemplate.*;
-
 import com.kh.board.model.vo.ImgFile;
-import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
 import com.kh.common.model.vo.Menu;
@@ -134,7 +131,7 @@ public class RestDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}finally {
 			close(rset);
@@ -561,8 +558,7 @@ public class RestDao {
 		}
 		return img;
 	}
-	
-	
+
 	public ArrayList<Rest> contentRestList(Connection conn, ArrayList<String> categoryList){
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
@@ -594,6 +590,7 @@ public class RestDao {
 		return list;
 	} 
 
+	
 	
 	//관리자 보는 식당 상세패이지
 	public Rest selectRestMain(Connection conn, String restNo){
