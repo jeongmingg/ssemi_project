@@ -59,26 +59,42 @@
 			<% if(!"".equals(memNo)) { %>
 			<!-- 1. 조회됐을 경우 -->
 				<div>
-					<form action="#">
+					<form action="<%= contextPath %>/findPwdChange.me" method="post">
+						<input type="hidden" name="memNo" value="<%= memNo %>">
 						<table>
 							<tr height="50">
 								<td>인증번호 : </td>
 								<td><input type="text" name="auth"></td>
-								<td><button type="button" class="btn btn-sm btn-secondary">인증하기</button></td>
+								<td><button type="button" class="btn btn-sm btn-secondary" id="authBtn" onclick="checkAuth();">인증하기</button></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<span class="message" id="authMsg"></span>
+								</td>
 							</tr>
 							<tr height="50">
 								<td>새 비밀번호 : </td>
-								<td><input type="password" name="newPwd"></td>
+								<td><input type="password" name="newPwd" disabled></td>
 								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<span class="message" id="newPwdMsg"></span>
+								</td>
 							</tr>
 							<tr height="50">
 								<td>비밀번호 확인 : </td>
-								<td><input type="password" id="checkPwd"></td>
+								<td><input type="password" id="checkPwd" disabled></td>
 								<td></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<span class="message" id="checkPwdMsg"></span>
+								</td>
 							</tr>
 						</table>
 
-						<button type="submit" class="btn btn-sm btn-secondary" id="changePwdBtn">변경하기</button>
+						<button type="submit" class="btn btn-sm btn-secondary" id="changePwdBtn" onclick="return validate();" disabled>변경하기</button>
 					</form>
 				</div>
 			<% } else { %>

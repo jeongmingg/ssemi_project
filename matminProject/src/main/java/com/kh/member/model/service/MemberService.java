@@ -191,4 +191,20 @@ public class MemberService {
 		return memNo;
 	}
 	
+	public int updateMemberFindPwd(String memNo, String newPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMemberFindPwd(conn, memNo, newPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }

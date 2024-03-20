@@ -513,4 +513,29 @@ public class MemberDao {
 		return memNo;
 	}
 	
+	public int updateMemberFindPwd(Connection conn, String memNo, String newPwd) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateMemberFindPwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newPwd);
+			pstmt.setString(2, memNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
 }

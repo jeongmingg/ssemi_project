@@ -107,6 +107,8 @@ public class FindPwdSendEmailController extends HttpServlet {
 			script.println("history.back();");
 			script.println("</script>");
 		}
+		
+		response.getWriter().print(cNumber);
 
 	}
 

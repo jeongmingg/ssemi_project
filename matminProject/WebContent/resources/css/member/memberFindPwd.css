@@ -20,6 +20,15 @@
     margin-bottom: 10px;
 }
 
+.message{
+    display: none;
+    font-size: 14px;
+}
+
+#newPwdMsg, #checkPwdMsg{
+    color: red;
+}
+
 .btn-area{
     margin-top: 50px;
 }
