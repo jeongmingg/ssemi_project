@@ -5,6 +5,7 @@ import java.sql.Date;
 public class Heart {
 	
 	private String restNo;
+	private String memNo;
     private String restName;
     private String localName;
     private String menuName;
@@ -30,12 +31,41 @@ public class Heart {
 		this.reviewCount = reviewCount;
 	}
 
+	public Heart(String restNo, String memNo, String restName, String localName, String menuName, double restAvg,
+			int countLike, String restImgUrl, Date likeDate, int reviewCount) {
+		super();
+		this.restNo = restNo;
+		this.memNo = memNo;
+		this.restName = restName;
+		this.localName = localName;
+		this.menuName = menuName;
+		this.restAvg = restAvg;
+		this.countLike = countLike;
+		this.restImgUrl = restImgUrl;
+		this.likeDate = likeDate;
+		this.reviewCount = reviewCount;
+	}
+
+	public Heart(String restNo, String memNo) {
+		super();
+		this.restNo = restNo;
+		this.memNo = memNo;
+	}
+
 	public String getRestNo() {
 		return restNo;
 	}
 
 	public void setRestNo(String restNo) {
 		this.restNo = restNo;
+	}
+
+	public String getMemNo() {
+		return memNo;
+	}
+
+	public void setMemNo(String memNo) {
+		this.memNo = memNo;
 	}
 
 	public String getRestName() {
@@ -104,9 +134,9 @@ public class Heart {
 
 	@Override
 	public String toString() {
-		return "Heart [restNo=" + restNo + ", restName=" + restName + ", localName=" + localName + ", menuName="
-				+ menuName + ", restAvg=" + restAvg + ", countLike=" + countLike + ", restImgUrl=" + restImgUrl
-				+ ", likeDate=" + likeDate + ", reviewCount=" + reviewCount + "]";
+		return "Heart [restNo=" + restNo + ", memNo=" + memNo + ", restName=" + restName + ", localName=" + localName
+				+ ", menuName=" + menuName + ", restAvg=" + restAvg + ", countLike=" + countLike + ", restImgUrl="
+				+ restImgUrl + ", likeDate=" + likeDate + ", reviewCount=" + reviewCount + "]";
 	}
     
 }

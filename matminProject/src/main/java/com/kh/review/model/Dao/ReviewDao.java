@@ -14,6 +14,7 @@ import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.board.model.vo.ImgFile;
 import com.kh.review.model.vo.Review;
+import com.kh.review.model.vo.RvLike;
 
 public class ReviewDao {
 	
@@ -239,6 +240,178 @@ public class ReviewDao {
 			close(pstmt);
 		} return rv;
 		
+	}
+	
+	public boolean checkLiked(Connection conn, String rvNo, String logName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		boolean liked = false;
+		
+		String sql = prop.getProperty("checkLiked");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			rset = pstmt.executeQuery();
+						
+			if(rset.next()) {
+				liked = true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}	
+		return liked;
+	}
+	
+	
+	public int insertLike(Connection conn, String rvNo, String logName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("rvNo: " + rvNo);
+	        System.out.println("logName: " + logName);
+			System.out.println(result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			System.out.println("insertLike : " + result);
+		} return result;
+
+	}
+	
+	public int deleteLike(Connection conn, String rvNo, String logName) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+	
+	public RvLike selectLike(Connection conn, String rvNo, String logName) {
+		RvLike result = new RvLike();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rvNo);
+			pstmt.setString(2, logName);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				result = new RvLike(rset.getString("review_no"),
+						            rset.getString("nickname"));
+			}
+	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+		
+	}
+	
+	public int insertRvLike (Connection conn, String rvNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertRvLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+	
+	public int deleteRvLike (Connection conn, String rvNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteRvLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+	
+	public RvLike countLike(Connection conn, String rvNo) {
+		RvLike count = new RvLike();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("countLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, rvNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = new RvLike(rset.getInt("like_count"));
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return count;
 	}
 	
 }

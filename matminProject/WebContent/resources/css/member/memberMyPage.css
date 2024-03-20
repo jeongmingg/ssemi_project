@@ -32,6 +32,7 @@
 #alert {
   margin-left: 25px;
 }
+
 #alert,
 #mark,
 #review {
@@ -119,8 +120,30 @@
   color: #e4910d;
 }
 
-#changePwdTB{
+#leaveBtn{
+  float: right;
+  font-size: 13px;
+}
+
+#changePwdTB, #leaveMemTB{
   margin: auto;
+}
+
+#leaveMem .modal-header>h4{
+  padding-left: 190px;
+  color: red;
+}
+
+#leaveMem .modal-body>span{
+  display: block;
+  text-align: center;
+}
+
+.modal-body button{
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .message {
@@ -154,10 +177,14 @@
   border-radius: 10px;
 }
 
-#star,
-#heart {
+#star {
   width: 15px;
   height: 15px;
+}
+
+#heart {
+  width: 20px;
+  height: 20px;
 }
 
 #myBoard,

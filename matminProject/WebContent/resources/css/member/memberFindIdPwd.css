@@ -1,4 +1,6 @@
 .find-id-pwd{
+    border: 2px solid #e4910d;
+    border-radius: 5px;
     width: 1400px;
     height: 500px;
     margin: auto;
@@ -7,19 +9,28 @@
 }
 
 #findId, #findPwd{
-    /* width: 750px; */
+    /* border: 1px solid red; */
     width: 50%;
     height: 100%;
     float: left;
 }
 
 #findId>div, #findPwd>div{
+    /* border: 1px solid blue; */
     width: 600px;
     height: 400px;
     margin-top: 25px;
     /* border: 2px solid #E4910D; */
     /* border-radius: 20px; */
     padding-top: 30px;
+}
+
+#findId>div{
+    padding-left: 100px;
+}
+
+#findPwd>div{
+    padding-right: 100px;
 }
 
 /* #findId>div{padding-top: 50px;} */
@@ -29,8 +40,8 @@
     background-color: #E4910D;
     border: none;
     width: 300px;
-    height: 50px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 25px;
 }
 
 form>input{

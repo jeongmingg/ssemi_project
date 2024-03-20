@@ -195,5 +195,15 @@
 			        ORDER BY TO_NUMBER(REGEXP_REPLACE(BOARD_NO, '[^0-9]+', '')) DESC
 			    ) B
 			    )A
+			WHERE RNUM BETWEEN ? AND ?
+		</entry>
+		
+		<entry key="searchListCount">
+			SELECT 
+			       COUNT(*) BOARD_COUNT
+			  FROM BOARD
+              JOIN MEMBER ON (MEM_NO = BOARD_WRITER)
+              WHERE BOARD_STATUS = 'Y'
+                AND NICKNAME = ?
 		</entry>
 </properties>

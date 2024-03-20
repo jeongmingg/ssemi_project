@@ -162,12 +162,15 @@
 		height: 180px;
 		margin-bottom: 10px;
 		border-radius: 15px;
+		cursor: pointer;
 	}
 
 	#rest-img+figcaption{
 		text-align: center;
 		font-size: 20px;
 	}
+
+	#img1{width: 100px; height: 100px;}
 </style>
 </head>
 <body>
@@ -212,6 +215,12 @@
 					<input class="ctg" id="we" type="radio" name="nation">
 				</div>
 			</div>
+			 <img src="resources/star, heart/heart.png" id="img1">
+			<!--<img src="resources/star, heart/star.png" id="img1">
+			<img src="resources/matchelin/1.png" id="img1">
+			<img src="resources/matchelin/2.png" id="img1">
+			<img src="resources/matchelin/3.png" id="img1"> -->
+			<input type="button" value="시작하기" onclick="ChangeImage();">
 			<div id="rs-recom-btn">
 				<div id="rs-btn">
 					<button id="rsBtn" onclick="rsRecommend();">맛집&nbsp;&nbsp;&nbsp;추천</button>
@@ -219,50 +228,105 @@
 			</div>
 			
 			<script>
-
-			// 카테고리 클릭이벤트
-			$(document).ready(function() {
-				$(".radioBtn").click(function(){
-					$(".radioBtn>label").removeClass("checked");
+			var obTimeOut; // clearTimeout() 함수를 이용하여 Timeout 을 취소하기위해 사용됨
+			 
+			 
+			 
+			var ObjectArray = new Array ();
+			 
+			ObjectArray[1] = "resources/star, heart/heart.png";
+			ObjectArray[2] = "resources/star, heart/star.png";
+			ObjectArray[3] = "resources/matchelin/1.png";
+			ObjectArray[4] = "resources/matchelin/2.png";
+			ObjectArray[5] = "resources/matchelin/3.png";
+			ObjectArray[6] = "resources/matchelin/4.png";
+			 
+			var nObjectCnt = 0; 
+			 
+			function ShowDefaultRotate() // 스스로 자신을 호출하는 재귀함수 (Recursive Function)
+			{
+			 nObjectCnt++;
+			 
+			 if( nObjectCnt < ObjectArray.length )  // 배열의 갯수 이내일때만 실행
+			 {
+			 document.getElementById("img1").src = ObjectArray[nObjectCnt];  
+			 obTimeOut = setTimeout("ShowDefaultRotate()",1000);  // 1초후에 자기자신을 호출 
+			 }
+			 else
+			 {
+			 clearTimeout(obTimeOut); // 배열의 갯수만큼 반복하여 변환시킨 후에는 Timeout 을 중지시킨다 
+			 } 
+			}
+			 
+			 
+			function startAnimation()
+			{
+			      obTimeOut = window.setTimeout(ShowDefaultRotate,100); // 윈도우 로드 후 0.1초 후에 반복함수를 호출합니다.
+			}
+			 
+			 // window.onload = startAnimation; // 윈도우 로드시 이미지 변환함수 실행
 				
-					if ($(this).find("input").prop("checked")) {
-						$(this).children("label").addClass("checked");
-					}
-					
-				});
-			});
 			
+			
+			
+			
+				/* function ChangeImage(strImage){
+					$("#img1").src = strImage;
+				}
 
-			function rsRecommend(){
+				setTimeout({ChangeImage('resources/star, heart/heart.png')}, 3000);
+				setTimeout({ChangeImage('resources/star, heart/star.png')}, 3000);
+				setTimeout({ChangeImage('resources/matchelin/1.png')}, 3000);
+				setTimeout({ChangeImage('resources/matchelin/2.png')}, 3000);
+				setTimeout({ChangeImage('resources/matchelin/3.png')}, 3000); */
 				
-				var selectedCategory = $(".ctg.checked").text();
-				
-				$.ajax({
-					url:"random.rs",
-					type:"post",
-					data: {ctgName: selectedCategory},
-					success:function(result){
-						
-							let value = "";
-							
-							let randomIndex = Math.floor(Math.random() * result.length);
-				            let randomRestaurant = result[randomIndex];
-							
-					            value += '<div class="rest-div">'
+				// 카테고리 클릭이벤트
+				$(document).ready(function() {
+					$(".radioBtn").click(function() {
+						$(".radioBtn>label").removeClass("checked");
+
+						if ($(this).find("input").prop("checked")) {
+							$(this).children("label").addClass("checked");
+						}
+
+					});
+
+				});
+
+				function rsRecommend() {
+					startAnimation();
+					var selectedCategory = $(".ctg.checked").text();
+
+					$
+							.ajax({
+								url : "random.rs",
+								type : "get",
+								data : {
+									ctgName : selectedCategory
+								},
+								success : function(result) {
+
+									let value = "";
+
+									let randomIndex = Math.floor(Math.random()
+											* result.length);
+									let randomRestaurant = result[randomIndex];
+
+									value += '<div class="rest-div">'
 											+ '<figure>'
 											+ '<img id="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
-											+ '<figcaption>' + randomRestaurant.restName + '</figcaption>'
-									   + '</div>';
-				            	      
-				            $("#menu-p").html(value);
-						},
-						
-					  error:function(){
-						  console.log("ajax 통신에 실패했습니다.");
-					  }					
-				});
-			}
-			
+											+ '<figcaption>'
+											+ randomRestaurant.restName
+											+ '</figcaption>' + '</div>';
+
+									$("#menu-p").html(value);
+								},
+
+								error : function() {
+									console.log("ajax 통신에 실패했습니다.");
+								}
+							});
+				}
 			</script>
 		</div>
 	</div>

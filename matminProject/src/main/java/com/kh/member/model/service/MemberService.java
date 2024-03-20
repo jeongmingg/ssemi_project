@@ -181,4 +181,46 @@ public class MemberService {
 		return m;
 	}
 	
+	public String selectMemberFindPwd(String memName, String memId, String email) {
+		Connection conn = getConnection();
+		
+		String memNo = new MemberDao().selectMemberFindPwd(conn, memName, memId, email);
+		
+		close(conn);
+		
+		return memNo;
+	}
+	
+	public int updateMemberFindPwd(String memNo, String newPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateMemberFindPwd(conn, memNo, newPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
+	public int deleteMember(String memNo, String memPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().deleteMember(conn, memNo, memPwd);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+	
 }

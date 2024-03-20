@@ -165,5 +165,21 @@ public class RestService {
 		close(conn);
 		return img;
 	}
+	
+	public ArrayList<Rest> contentRestList(ArrayList<String> categoryList){
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().contentRestList(conn, categoryList);
+		
+		close(conn); 
+		return list;
+	}
+	
+	public ArrayList<Rest> bannerSearch(String locationName, String selectedGrade){
+		Connection conn = getConnection();
+		ArrayList<Rest> list = new RestDao().bannerSearch(conn, locationName, selectedGrade);
+		
+		close(conn); 
+		return list;
+	}
 }
 

@@ -9,25 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.board.model.vo.ImgFile;
-import com.kh.heart.model.service.HeartService;
-import com.kh.heart.model.vo.Heart;
+import com.google.gson.Gson;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
-import com.kh.review.model.Service.ReviewService;
-import com.kh.review.model.vo.Review;
 
 /**
- * Servlet implementation class RestDetailViewController
+ * Servlet implementation class AjaxRestBannerSelect
  */
-@WebServlet("/detail.rs")
-public class RestDetailViewController extends HttpServlet {
+@WebServlet("/bansel.rs")
+public class AjaxRestBannerSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RestDetailViewController() {
+    public AjaxRestBannerSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,22 +32,14 @@ public class RestDetailViewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String rpage = request.getParameter("rpage");
 		
-		Rest r = new RestService().selectRestDetail(rpage); 
-		ArrayList<Review> rate = new ReviewService().selectReviewRate(rpage);
-		Review rv = new ReviewService().selectReviewAvg(rpage);
-		ArrayList<Rest> mList = new RestService().selectMenuList(rpage);
-		ArrayList<Heart> hList = new HeartService().selectHeartByRest(rpage);
+		String locationName = request.getParameter("locationName");
+		String selectedGrade = request.getParameter("selectedGrade");
 		
-
-		request.setAttribute("rpage", rpage);
-		request.setAttribute("r", r);
-		request.setAttribute("rate", rate);
-		request.setAttribute("rv", rv);
-		request.setAttribute("mList", mList);
-		request.setAttribute("hList", hList);
-		request.getRequestDispatcher("views/rest/restDetailView.jsp").forward(request, response);
+		ArrayList<Rest> list = new RestService().bannerSearch(locationName, selectedGrade);
+		
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(list, response.getWriter());
 	}
 
 	/**

@@ -6,13 +6,20 @@
 <%
 	String keyword = (String) request.getAttribute("keyword");
 	ArrayList<Search> list = (ArrayList<Search>) request.getAttribute("list");
-	ArrayList<String> addrList = new ArrayList<String>();
-	if (!list.isEmpty()) {
-		for (Search s : list) {
-			addrList.add(s.getRestAddress());
+	
+	ArrayList<Search> mapList = new ArrayList<Search>();
+	if(!list.isEmpty()) {
+		for(Search s : list) {
+			Search mapS = new Search();
+			
+			mapS.setRestAddress(s.getRestAddress());
+			mapS.setRestName(s.getRestName());
+			
+			mapList.add(mapS);
 		}
 	}
-	request.setAttribute("addrList", addrList);
+	
+	request.setAttribute("mapList", mapList);
 	ArrayList<Rest> lcList = (ArrayList<Rest>) request.getAttribute("lcList");
 	%>
 <!DOCTYPE html>
@@ -543,7 +550,6 @@ div {
 					</div>
 					<div id="function_content">
 						<input type="checkbox" id="pk" /><label for="pk">주차</label>
-						<input type="checkbox" id="24" /><label for="24">24시</label>
 						<input type="checkbox" id="er" /><label for="er">개별룸</label>
 						<input type="checkbox" id="br" /><label for="br">대형룸</label>
 						<input type="checkbox" id="dt" /><label for="dt">드라이브 스루</label>
@@ -870,9 +876,11 @@ div {
 							  + result.length
 							  + " 건 )");
 							
-							let newAddrList = result.map(item => item.restAddress);
+							let newMapList = result.map(item => {
+							    return { restName: item.restName, restAddress: item.restAddress };
+							});
 
-							updateMapData(newAddrList);
+							updateMapData(newMapList);
 							
 							},
 							error : function() {

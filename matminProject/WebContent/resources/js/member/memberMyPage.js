@@ -183,7 +183,10 @@ function boardList(memNo) {
 
       $(".list-area tbody tr").click(function () {
         var boardNo = $(this).find("td:first").text();
-        location.href = "/mm/detail.bo?bno=" + boardNo;
+
+        if(boardNo !== "작성한 게시글이 없습니다.") {
+          location.href = "/mm/detail.bo?bno=" + boardNo;
+        }
       });
     },
     error: function () {
@@ -271,11 +274,6 @@ function reviewList(memNo) {
 
       $("#myReview>span").text("총 " + result.length + "개");
       $("#myReview>div").html(str);
-
-      // $(".list-area tbody tr").click(function(){
-      //     var boardNo = $(this).find('td:first').text();
-      //     location.href = '/mm/detail.bo?bno=' + boardNo;
-      // });
     },
     error: function () {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
@@ -288,11 +286,10 @@ function markList(memNo) {
     url: "mkList.me",
     data: { memNo: memNo },
     success: function (result) {
-      console.log(result);
       let str = "";
       if (result.length == 0) {
         str += `<tr>
-                  <td colspan="3">조회된 결과가 없습니다. 다시 검색해주세요!</td>
+                  <td colspan="3">찜꽁한 맛집이 없습니다.</td>
                   </tr>
                   <tr>
                   <td colspan="3"><hr /></td>
@@ -316,7 +313,7 @@ function markList(memNo) {
         <tr>
           <td colspan="2" style="padding-left: 15px; font-size: 20px">
             <img id="star" src="resources/star, heart/star.png" />&nbsp;&nbsp;${result[i].restAvg} (${result[i].reviewCount})&nbsp;&nbsp;|&nbsp;&nbsp;
-            <img id="heart" src="resources/star, heart/heart.png" />&nbsp;
+            <img id="heart" src="https://img.icons8.com/ios-filled/50/e4910d/like--v1.png" width="100" height="100" onclick="cancelHeart('${memNo}', '${result[i].restNo}');" />&nbsp;
             ${result[i].countLike}
           </td>
         </tr>
@@ -329,10 +326,6 @@ function markList(memNo) {
       $("#myMark>span").text("총 " + result.length + "개");
       $("#myMark>table").html(str);
 
-      // $(".list-area tbody tr").click(function(){
-      //     var boardNo = $(this).find('td:first').text();
-      //     location.href = '/mm/detail.bo?bno=' + boardNo;
-      // });
     },
     error: function () {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
@@ -344,8 +337,6 @@ function markList(memNo) {
 function deleteReview(ele, memNo) {
   /*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
   let rvNo = $(ele).siblings("input").val();
-
-  console.log(rvNo);
 
   if (confirm("정말 삭제하시겠습니까?")) {
     $.ajax({
@@ -363,4 +354,21 @@ function deleteReview(ele, memNo) {
       },
     });
   }
+}
+
+function cancelHeart(memNo, restNo) {
+  $.ajax({
+    url: "deleteHeart.me",
+    data: {
+      memNo: memNo,
+      restNo: restNo
+    },
+    success: function() {
+      alert("찜꽁 해제가 완료되었습니다.");
+      markList(memNo);
+    },
+    error: function() {
+      console.log("찜꽁 해제 ajax 호출 실패");
+    }
+  });
 }

@@ -1,4 +1,6 @@
 
+<%@page import="java.lang.management.MemoryNotificationInfo"%>
+<%@page import="com.kh.heart.model.vo.Heart"%>
 <%@page import="com.kh.board.model.vo.ImgFile"%>
 <%@page import="com.kh.review.model.vo.Review"%>
 <%@page import="java.util.ArrayList"%>
@@ -8,11 +10,16 @@
 
 <% Rest r = (Rest)request.getAttribute("r"); 
 
-	ArrayList<String> addrList = new ArrayList<String>();
-	if(r != null && r.getRestAddress() != null) {
-		addrList.add(r.getRestAddress());
+	ArrayList<Search> mapList = new ArrayList<Search>();
+	if(r != null && r.getRestAddress() != null && r.getRestName() != null) {
+		Search s = new Search();
+		
+		s.setRestAddress(r.getRestAddress());
+		s.setRestName(r.getRestName());
+		
+		mapList.add(s);
 	}
-	request.setAttribute("addrList", addrList);
+	request.setAttribute("mapList", mapList);
    
    /* 별점 채우기위한 퍼센트 변수 */
    double score = (double)r.getRestAvg();
@@ -25,6 +32,7 @@
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
    Review rvAvg = (Review)request.getAttribute("rv");
    ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
+   ArrayList<Heart> hList = (ArrayList<Heart>)request.getAttribute("hList");
 
 %>
 
@@ -451,10 +459,10 @@
 	}
 
 	/* 리뷰 프로필 사진 스타일 */
-	#profile-img{
+	.profile-img{
 		width: 10%
 	}
-	#profile-img>img{
+	.profile-img>img{
 		width: 60px;
 		height: 60px;
 		margin: auto;
@@ -466,13 +474,13 @@
 		padding-left: 10px;
 		padding-top: 5px;
 	}
-	#writer{
+	.writer{
 		font-weight: 600;
 		font-size: 20px;
 	}
 
 	/* 리뷰 내 별점 스타일 */
-	#w-star{
+	.w-star{
 		display: inline-block;
 		width:20px;
 		height: 18px;
@@ -482,7 +490,7 @@
 	}
 
 	/* 별점 빈 별 스타일*/
-	#w-star i{
+	.w-star i{
 		display: inline-block;
 		width: 20x;
 		height: 18px;
@@ -492,7 +500,7 @@
 	}
 
 	/* 리뷰 날짜 */
-	#write-date{
+	.write-date{
 		font-size: 15px;
 		padding-left: 10px;
 		line-height:1.8
@@ -538,7 +546,7 @@
    		margin-left: 3px;
     	margin-right: 3px;
 	}
-	#rv-flv-star, #rv-pri-star{
+	.rv-flv-star, .rv-pri-star{
 		margin-right: 10px;
 	}
 	.rv1{
@@ -548,7 +556,7 @@
 		margin-top: -20px;
 		margin-left: 20px;
 	}
-	#rv-content{
+	.rv-content{
 		white-space: pre-wrap; /*p태그 개행*/
 		padding-top: 40px;
 		font-size: large;
@@ -573,40 +581,50 @@
 		display: flex;
 		margin-left: 10px;
 		margin-top: 5px;
+		justify-content: flex-end;
+		align-content: stretch;
+		flex-direction: row;
 	}
 	.review-like>div{
 		margin-right: 10px;
 	}
-	.like-area{
-		color: white;
-		width: 90px;
-		height: 30px;
-		background: url(https://img.icons8.com/material-rounded/24/FFFFFF/thumb-up.png) no-repeat;
+	.like-area a {
+		text-decoration: none;
+	}
+	.like-area .like{
+		color: #F39C12;
+		width: 100px;
+		height: 35px;
+		background: url(https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png) no-repeat;
 		background-size: 20px;
-		padding-left: 15px;
+		padding-left: 28px;
 		position: relative;
-		background-color: #F39C12;
-		padding-top: 4px;
-		background-position: 6px 5px;
-		border-radius: 8px;
+		padding-top: 5px;
+		background-position: 8px 5.5px;
+		border-radius: 15px;
+		border: 1px solid rgb(221 221 221);
 	}
 	.unlike-area{
-		color: white;
-		width: 105px;
-		height: 30px;
+		color: #F39C12;
+		width: 110px;
+		height: 35px;
 		background: url(https://img.icons8.com/material-rounded/96/FFFFFF/thumbs-down.png) no-repeat;
 		background-size: 20px;
 		padding-left: 15px;
 		position: relative;
-		background-color: #F39C12;
-		padding-top: 4px;
-		background-position: 6px 5px;
-		border-radius: 8px;
+		padding-top: 5px;
+		background-position: 8px 5.5px;
+		border: 1px solid rgb(221 221 221);
+		border-radius: 15px;
 	}
-	#like, #unlike{
-		margin-left: 14px;
+	.like, .unlike{
+		margin-left: 16px;
 		font-size: 16px;
 		cursor: pointer;
+	}
+
+	.like span{
+		font-size: 16px;
 	}
 
 	/* 공유하기 모달 스타일 */
@@ -776,11 +794,29 @@
 			<div class="rest-add">
 				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
 				<div class="heart-count-area">
+				<% 
+					boolean heartFlag = false;
+					String memNo = "";
+					
+					if(loginUser != null) {
+						memNo = loginUser.getMemNo();
+					}
+				
+					for(Heart h : hList) {
+						if(!hList.isEmpty() && loginUser != null && h.getMemNo().equals(loginUser.getMemNo())) {
+							heartFlag = true;
+							break;
+						}
+					}
+				%>
+				<% if(!heartFlag) { %>
 					<!-- 빈하트 -->
-					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px;"> 
+					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+				<% } else { %>
 					<!-- 채워진 하트-->
-					<input type="hidden" img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px;"> 
-					<span>찜꽁(20)</span>
+					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+				<% } %>
+					<span>찜꽁(<%= hList.size() %>)</span>
 				</div>
 				<div class="btn-share-area">
 					<a href="#" class="btn-share" id="btn-share">
@@ -1117,248 +1153,374 @@
 		</script>
 	
 	
-	<!-- 리뷰 조회 ajax -->
-
-	<script>
+		<!-- 리뷰 조회 ajax -->
 	
-		$(function(){
-		    selectReviewList(); 
-		    
-		})
-	
-		function selectReviewList(){
-			$.ajax({
-				url:"review.rs",
-				data:{rpage:'<%= r.getRestNo()%>'},
-				success:function(rvlist){
-					let value = ''; // Initialize value variable
-					
-					
-		            for (let i = 0; i < rvlist.length; i++) {
-		            	
-		                let rv = rvlist[i]; // Fixed variable name
+		<script>
+		
+			$(function(){
+			    selectReviewList(); 
+			    
+			})
 
-						let rvno = rv.reviewNo;
-		                let rvname = rv.reviewWriter;
-		                let rvdate = rv.reviewDate;
-		                let rvtaste = rv.rateTaste;
-		                let rvprice = rv.ratePrice;
-		                let rvservice = rv.rateService;
-		                let rvcont = rv.reviewCont;
-		                let rvrate = rv.reviewRate;
-		                
-		                value += `<div class="review-div">
-							<div class="rv1">
-								<div class="profile">
-									<div id="profile-img">
-										<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
-									</div>
-									<div class="profile-name">
-										<div id="writer">\${rvname}</div>
-										<div style="display: flex;">
-											<div id="w-star">
-												<i id="rvstar-avg"></i>
+
+			function selectReviewList(){
+
+				$.ajax({
+					url:"review.rs",
+					data:{rpage:'<%= r.getRestNo()%>'},
+					success:function(rvlist){
+						let value = ''; // Initialize value variable
+
+			            for (let i = 0; i < rvlist.length; i++) {
+			            	
+			                let rv = rvlist[i]; // Fixed variable name
+	
+							let rvno = rv.reviewNo;
+			                let rvname = rv.reviewWriter;
+			                let rvdate = rv.reviewDate;
+			                let rvtaste = rv.rateTaste;
+			                let rvprice = rv.ratePrice;
+			                let rvservice = rv.rateService;
+			                let rvcont = rv.reviewCont;
+			                let rvrate = rv.reviewRate;
+			                let rvlike = rv.reviewLike;
+			                
+			                value += `<div class="review-div">
+								<div class="rv1">
+									<div class="profile">
+										<div class="profile-img">
+											<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">
+										</div>
+										<div class="profile-name">
+											<div class="writer">\${rvname}</div>
+											<div style="display: flex;">
+												<div class="w-star">
+													<i class="rvstar-avg"></i>
+												</div>
+												<span class="rvstar-avg-title">\${rvrate}</span>
+												<span class="write-date">\${rvdate}</span>
 											</div>
-											<span id="rvstar-avg-title">\${rvrate}</span>
-											<span id="write-date">\${rvdate}</span>
+										</div>
+										<div class="warn">
+											<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
+			               					<input type ="hidden" class="reviewNo" value=\${rvno}>
+			               				
+			               				<!-- 로그인시에만 삭제버튼 보이게 1차 제어-->
+			               				<% if (loginUser != null ) { %>
+			               					<!-- 현재 로그인한 유저의 닉네임을 가져옴 -->
+										    <input type="hidden" class="serverNickname" value="<%= loginUser.getNickname() %>">
+										    <!-- 리뷰를 작성한 유저의 닉네임을 가져옴 -->
+										    <input type="hidden" class="rvname" value=\${rvname}>
+			                             	<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
+			                  			<% } %>
+											<div class="review-update">
+											</div>
 										</div>
 									</div>
-									<div class="warn">
-										<!--rvno를 가져오기위해서 hidden 으로 숨겨놓기 (모를때 text로 확인해보기)-->
-		               					<input type ="hidden" class="reviewNo" value=\${rvno}>
-		               				
-		               				<!-- 로그인시에만 삭제버튼 보이게 1차 제어-->
-		               				<% if (loginUser != null ) { %>
-		               					<!-- 현재 로그인한 유저의 닉네임을 가져옴 -->
-									    <input type="hidden" class="serverNickname" value="<%= loginUser.getNickname() %>">
-									    <!-- 리뷰를 작성한 유저의 닉네임을 가져옴 -->
-									    <input type="hidden" class="rvname" value=\${rvname}>
-		                             	<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this);">삭제</a>
-		                  			<% } %>
-										<div class="review-update">
+									<div class="review-content">
+									<br><br>
+										<p name="rv-content" class="rv-content">
+	\${rvcont}
+										</p>
+									</div>
+									
+									<div class="review-like">
+										<div class="like-area">
+											<div class="like"  data-rvno="\${rvno}" data-rvname="\${rvname}">추천 
+												<span>(\${rvlike})</span>
+											</div>
 										</div>
-									</div>
-								</div>
-								<div class="review-content">
-								<br><br>
-									<p name="rv-content" id="rv-content">
-\${rvcont}
-									</p>
-								</div>
-								
-								<div class="review-like">
-									<div class="like-area">
-										<span id="like">추천 (15)</span>
-									</div>
-									<div class="unlike-area">
-										<span id="unlike">비추천 (15)</span>
 									</div>
 								</div>
 							</div>
-						</div>
-						<br>`
-		            }
-					
-		        // 리뷰 div에 ajax로 넘어온 값 전체 넣어줌 
-				$(".review-detail").html(value);
-				
-				// 리뷰 삭제 로그인시에만 가능하게끔 
-				 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
-					    
-					 	// 리뷰작성자 닉네임을 변수에 담음
-					 	var rvname = $(this).siblings('.rvname').val();
-					    console.log("rvname :" + rvname);
-
-					 	// 현재 로그인한 유저의 닉네임을 변수에 담음
-					    var serverNickname = $(this).siblings('.serverNickname').val()
-					    console.log("serverNIckname :" + serverNickname);
-					    
-					    if (serverNickname === rvname) {
-					        $(this).show(); // 같으면 삭제버튼 보여짐
-					    } else {
-					    	$(this).hide(); // 다르면 삭제버튼 안보여짐
-					    }
+							<br>`
+			            }
+						
+			        // 리뷰 div에 ajax로 넘어온 값 전체 넣어줌 
+					$(".review-detail").html(value);
+			        
+					$(document).ready(function(){
+						selectLike();
 					});
-				    
-				
-				}, error:function(){
-					console.log("ajax 통신실패")
+
+			        function selectLike(){
+			        	
+	                    $(".like").each(function() {
+	                    	
+	                    var ele = $(this);
+			    	    var rvno = $(this).data("rvno");
+			    	    var logname = $(this).closest(".rv1").find('.serverNickname').val();
+			    	    
+			    	    console.log(rvno, logname);
+			    	    
+				        $.ajax({
+				        	url:"seLike.rv",
+				        	data:{
+				        		rvno:rvno,
+				        		logname:logname},
+				        		success:function(result){
+				  
+				        				$(".like").each(function(){
+						        			if(result !== null && rvno === result.reviewNo && logname === result.nickName) {
+						                   		ele.attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
+						        		}
+				                  })
+				                  countLike();
+				        	},
+				        	error:function(){
+				        		console.log("ajax 통신실패")
+				        	}
+							});
+				        });
+			        
+			        }
+			        
+					function countLike(){
+						$(".like").each(function() {	
+		                    var ele = $(this);
+				    	    var rvno = $(this).data("rvno");
+
+						$.ajax({
+							url:"coLike.rv",
+							data:{rvno:rvno},
+							success:function(count){
+								console.log(count.likeCount);
+								console.log("countLike : ajax성공");
+								if(count.likeCount !== 0){
+									$(".like").each(function(){
+										if(rvno === ele.data("rvno")){
+											ele.find(".likeCount").val(count.likeCount)
+										}
+										});
+									}
+							},
+
+							error:function(){
+								console.log("ajax실패");
+							}
+							});
+						});
+
+					}
+					// 리뷰 삭제 로그인시에만 가능하게끔 
+					 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
+						    
+						 	// 리뷰작성자 닉네임을 변수에 담음
+						 	var rvname = $(this).siblings('.rvname').val();
+						    console.log("rvname :" + rvname);
+	
+						 	// 현재 로그인한 유저의 닉네임을 변수에 담음
+						    var serverNickname = $(this).siblings('.serverNickname').val()
+						    console.log("serverNIckname :" + serverNickname);
+						    
+						    if (serverNickname === rvname) {
+						        $(this).show(); // 같으면 삭제버튼 보여짐
+								
+						    } else {
+						    	$(this).hide(); // 다르면 삭제버튼 안보여짐
+								
+						    }
+						});
+					    
+					
+					
+					}, error:function(){
+						console.log("ajax 통신실패")
+					}
+	
+				});
+
+												
+				$(".review-detail").on("click", ".like", function(){
+
+					var ele = this;
+					var rvlno = $(this).data("rvno");
+					var rvlname = $(this).data("rvname");
+					var logname = $(this).closest('.rv1').find('.serverNickname').val();
+
+					// console.log(rvlno);
+					// console.log(rvlname);
+					// console.log(logname);
+
+					if(<%= loginUser == null %>){
+						alert("로그인 시에만 가능합니다!");
+						return;
+					}else {
+						$(document).ready(function(){
+							checkLike(ele, rvlno, rvlname, logname); 
+						});
+					}
+ 
+				});
+
+				function checkLike(ele, rvlno, rvlname, logname){
+					console.log(rvlno);
+					console.log(rvlname);
+					console.log(logname);
+					
+					 $.ajax({
+						url:"inLike.rv",
+						data:{
+							rvno:rvlno,
+							rvname:rvlname,
+							logname:logname
+						},
+						success:function(response){
+							// console.log(response);					
+							if ('result1' in response) {
+								console.log("인서트돼라!");
+								console.log(ele);
+
+								$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");	
+								
+							} else if('result2' in response){
+				            	console.log("삭제돼라!");
+				            	console.log(ele);
+				            	$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
+
+							}
+			
+						},
+						error:function(){
+							console.log("ajax 실패");
+						}
+						
+					});
+					
 				}
 
-			});
+				
+			}
 			
-		}
-	
-		
-		/* 리뷰 삭제 ajax*/
-		function deleteReview(ele){
-			/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
-			let rvNo = $(ele).siblings("input").val();		
-			
-			if (confirm("정말 삭제하시겠습니까?")) {
-				$.ajax({
-					url:"delete.rv",
-					type:"post",
-					data: {no:rvNo},
-					success:function(review){
-						if(review != null){
-							alert("성공적으로 삭제됐습니다!");
+			/* 리뷰 삭제 ajax*/
+			function deleteReview(ele){
+				/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
+				let rvNo = $(ele).siblings("input").val();		
+				console.log(rvNo);
+				
+				if (confirm("정말 삭제하시겠습니까?")) {
+					$.ajax({
+						url:"delete.rv",
+						type:"post",
+						data: {no:rvNo},
+						success:function(review){
+							if(review != null){
+								alert("성공적으로 삭제됐습니다!");
+							}
+							console.log("ajax 통신성공!")
+							selectReviewList();
+						}, error:function(){
+							console.log("삭제오류 ajax통신오류")
 						}
-						console.log("ajax 통신성공!")
-						selectReviewList();
-					}, error:function(){
-						console.log("삭제오류 ajax통신오류")
-					}
-				})
-		
+					})
+			
+				}
 			}
-			}
-		
-	</script>	
-	
+
+
+		</script>	
+
+
+
+
 		<!-- 리뷰 별 모달 스크립트 -->
-	<script>
-		const ratingStars = [...document.getElementsByClassName("rating__star")];
-		const  ratingResult = document.querySelector(".rating__result");
-		
-		printRatingResult(ratingResult);
-		
-		function executeRating(stars, result) {
-				const starClassActive = "rating__star fas fa-star"; // 비어있는별
-				const starClassUnactive = "rating__star far fa-star"; // 색칠된별
-				const starsLength = stars.length;
-				let i;
-				stars.map((star) => {
-					star.onclick = () => {
-						i = stars.indexOf(star); // 클릭된별의 인덱스
-						
-						if (star.className.indexOf(starClassUnactive) !== -1) {
-							printRatingResult(result, i + 1); 
-							for (i; i >= 0; --i) stars[i].className = starClassActive;
-						} else {
-							printRatingResult(result, i);
-							for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
-						}
-					};
-				});
-			}
+		<script>
+			const ratingStars = [...document.getElementsByClassName("rating__star")];
+			const  ratingResult = document.querySelector(".rating__result");
 			
-			function printRatingResult(result, num = 0) {
-			}
-			executeRating(ratingStars, ratingResult);
-	</script>	
+			printRatingResult(ratingResult);
+			
+			function executeRating(stars, result) {
+					const starClassActive = "rating__star fas fa-star"; // 비어있는별
+					const starClassUnactive = "rating__star far fa-star"; // 색칠된별
+					const starsLength = stars.length;
+					let i;
+					stars.map((star) => {
+						star.onclick = () => {
+							i = stars.indexOf(star); // 클릭된별의 인덱스
+							
+							if (star.className.indexOf(starClassUnactive) !== -1) {
+								printRatingResult(result, i + 1); 
+								for (i; i >= 0; --i) stars[i].className = starClassActive;
+							} else {
+								printRatingResult(result, i);
+								for (i; i < starsLength; ++i) stars[i].className = starClassUnactive;
+							}
+						};
+					});
+				}
+				
+				function printRatingResult(result, num = 0) {
+				}
+				executeRating(ratingStars, ratingResult);
+		</script>	
 
-	<!-- 리뷰 별 클릭된 value값 -->
-	<script>
-		 function reviewstar(element) {
-			 console.log("!");
-        // 별점을 선택한 값으로 업데이트
-        	var score = $(element).attr('value');
+		<!-- 리뷰 별 클릭된 value값 -->
+		<script>
+			 function reviewstar(element) {
+				 console.log("!");
+	        // 별점을 선택한 값으로 업데이트
+	        	var score = $(element).attr('value');
+	
+				$(element).siblings("input").val(score);  	     	
+			 }
+		</script>
 
-			$(element).siblings("input").val(score);  	     	
-		 }
-	</script>
 
-
-	<!-- 리뷰 인서트시 로그인 유저만 사용하게 제어 -->
+		<!-- 리뷰 인서트시 로그인 유저만 사용하게 제어 -->
 
 		<script>
 			$(function() {				
-
-				if(<%= loginUser %> === null){
+				if(<%= loginUser %> == null){
 					$("#btn-review").click(function(){
 						alert("로그인 후 이용해주세요!");    
 						window.location.href = "<%= contextPath %>/loginForm.me";
-					})
-				}else{
+					});
+				} else {
 					$("#review-sub").click(function() {
 						$("#reviewform").submit();
 					});
 				}
-				
 			})
 		</script>
 	
 
-	<!-- 리뷰 인서트시 리뷰작성시 글자수 제한 보여줌 -->
-	<script>
-		$(function(){
-       		 $("#review-write").keyup(function(){ 
-				let length = $(this).val().length;
-				$("#count").text(length);
-       		 })
-		})
-	</script>
-
-	<!-- 식당 메뉴창 더보기 -->		
-	<script>
-			$(".btn-more").click(function(){
-
-				// 현재 상태를 확인하여 숨김/보임을 토글합니다.
-				if ($(".list-menu-2").is(":visible")) {
-					$(".list-menu-2").hide(); // 보이는 상태라면 숨깁니다.
-					$(".btn-more").text("더보기"); // 버튼 텍스트를 다시 '더보기'로 변경합니다.
-					$(".r").css({'text-align': 'right' 
-					,position: 'relative'
-					,right: '-3px'
-					,background: 'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right'
-					,'background-size': '20px'});
-				} else {
-					$(".list-menu-2").show(); // 숨겨진 상태라면 보이게 합니다.
-					$(".btn-more").text("접기"); // 버튼 텍스트를 '접기'로 변경합니다.
-					$(".r").css({background:'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-up@2x.png) no-repeat right'
-					,position: 'relative'
-					,right: '-3px'
-					,'text-align': 'right'
-					,'background-size': '20px'
-					});
-				}
+		<!-- 리뷰 인서트시 리뷰작성시 글자수 제한 보여줌 -->
+		<script>
+			$(function(){
+	       		 $("#review-write").keyup(function(){ 
+					let length = $(this).val().length;
+					$("#count").text(length);
+	       		 })
 			})
+		</script>
 
-	</script>
+		<!-- 식당 메뉴창 더보기 -->		
+		<script>
+				$(".btn-more").click(function(){
 	
-	
-	
+					// 현재 상태를 확인하여 숨김/보임을 토글합니다.
+					if ($(".list-menu-2").is(":visible")) {
+						$(".list-menu-2").hide(); // 보이는 상태라면 숨깁니다.
+						$(".btn-more").text("더보기"); // 버튼 텍스트를 다시 '더보기'로 변경합니다.
+						$(".r").css({'text-align': 'right' 
+						,position: 'relative'
+						,right: '-3px'
+						,background: 'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-down@2x.png) no-repeat right'
+						,'background-size': '20px'});
+					} else {
+						$(".list-menu-2").show(); // 숨겨진 상태라면 보이게 합니다.
+						$(".btn-more").text("접기"); // 버튼 텍스트를 '접기'로 변경합니다.
+						$(".r").css({background:'url(https://s3-ap-northeast-1.amazonaws.com/dcicons/new/images/web/common/list-more-up@2x.png) no-repeat right'
+						,position: 'relative'
+						,right: '-3px'
+						,'text-align': 'right'
+						,'background-size': '20px'
+						});
+					}
+				})
+		</script>
+
 
 		<!-- 공유 모달 -->
 		<script>
@@ -1376,7 +1538,7 @@
 			
 			}
 			// 공유모달닫기버튼
-
+	
 			// Get the <span> element that closes the modal
 			var span = document.getElementsByClassName("close")[1];
 	
@@ -1392,6 +1554,44 @@
 					$("#map").css("display","block");	
 				})
 		})
+		</script>
+		
+		<script>
+			function insertHeart(memNo, restNo) {
+				if(<%= loginUser == null %>) {
+					alert("로그인 후 이용 가능한 서비스입니다.");
+					return;
+				} else {
+					$.ajax({
+						url: "insertHeart.me",
+						data: {
+							memNo: memNo,
+							restNo: restNo
+						},
+						success: function(result) {
+							$(".heart-count-area>img").attr("src", "https://img.icons8.com/sf-black-filled/64/f39c12/like.png");
+							$(".heart-count-area>img").attr("onclick", "cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+							$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+						}
+					});
+				}
+				
+			}
+			
+			function cancelHeart(memNo, restNo) {
+				$.ajax({
+					url: "deleteHeartInRest.me",
+					data: {
+						memNo: memNo,
+						restNo: restNo
+					},
+					success: function(result) {
+						$(".heart-count-area>img").attr("src", "https://img.icons8.com/ios/50/e4910d/hearts--v1.png");
+						$(".heart-count-area>img").attr("onclick", "insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');");
+						$(".heart-count-area>span").text("찜꽁(" + result.length + ")");
+					}
+				});
+			}
 		</script>
 			
 

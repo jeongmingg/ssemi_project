@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.member.model.service.MemberService;
 
 /**
- * Servlet implementation class MemberPwdUpdateController
+ * Servlet implementation class MemberDeleteController
  */
-@WebServlet("/updatePwd.me")
-public class MemberPwdUpdateController extends HttpServlet {
+@WebServlet("/delete.me")
+public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdUpdateController() {
+    public MemberDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,21 +29,21 @@ public class MemberPwdUpdateController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String memNo = request.getParameter("memNo");
-		String currentPwd = request.getParameter("currentPwd");
-		String newPwd = request.getParameter("newPwd");
+		request.setCharacterEncoding("utf-8");
 		
-		int result = new MemberService().updateMemberPwd(memNo, currentPwd, newPwd);
+		String memNo = request.getParameter("memNo");
+		String memPwd = request.getParameter("userPwd");
+		
+		int result = new MemberService().deleteMember(memNo, memPwd);
 		
 		if(result > 0) {
-			// 비밀번호 변경 성공
-			request.getSession().setAttribute("alertMsg", "비밀번호가 변경되었습니다.");
+			request.getSession().setAttribute("alertMsg", "회원 탈퇴가 완료되었습니다.\\n그동안 맛집의 민족을 이용해주셔서 감사합니다.");
+			request.getSession().removeAttribute("loginUser");
+			response.sendRedirect(request.getContextPath());
 		} else {
-			// 비밀번호 변경 실패(현재 비밀번호를 잘못 입력)
-			request.getSession().setAttribute("alertMsg", "비밀번호 변경에 실패했습니다.\\n현재 사용 중인 비밀번호를 알맞게 입력해주세요.");
+			request.getSession().setAttribute("alertMsg", "비밀번호가 일치하지 않습니다.\\n다시 시도해주세요.");
+			response.sendRedirect(request.getContextPath() + "/myPage.me");
 		}
-
-		response.sendRedirect(request.getContextPath() + "/myPage.me");
 		
 	}
 

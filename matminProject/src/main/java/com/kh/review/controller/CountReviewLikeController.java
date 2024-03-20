@@ -6,21 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.kh.review.model.Service.ReviewService;
+import com.kh.review.model.vo.RvLike;
 
 /**
- * Servlet implementation class InsertReviewController
+ * Servlet implementation class CountReviewLikeController
  */
-@WebServlet("/insert.rv")
-public class InsertReviewController extends HttpServlet {
+@WebServlet("/coLike.rv")
+public class CountReviewLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertReviewController() {
+    public CountReviewLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,24 +30,14 @@ public class InsertReviewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		String rvNo = request.getParameter("rvno");
 		
-		String rno = request.getParameter("restNo");
-		String memNo = request.getParameter("userNo");
-		int score = Integer.parseInt(request.getParameter("rating"));
-		String rvwCont = request.getParameter("reviewWrite");
+		RvLike count = new ReviewService().countLike(rvNo);
+		System.out.println("rvcount : " + count);
 		
-		int result = new ReviewService().insertReview(rno, memNo, score, rvwCont);
-		
-		HttpSession session = request.getSession();
-		
-		if(result>0) {
-			session.setAttribute("alertMsg", "리뷰남겨주셔서 감사합니다!");
-			response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + rno);
-//			request.getRequestDispatcher(request.getContextPath() + "detail.rs?rpage=rno").forward(request, response);
-		}
-		
-		}
+		response.setContentType("application/json; charset=utf-8");
+		new Gson().toJson(count, response.getWriter());
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

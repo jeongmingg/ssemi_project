@@ -313,8 +313,9 @@ public class RestDao {
 								  rset.getDouble("rest_avg"),
 								  rset.getString("rest_img_url"),
 								  rset.getInt("review_count"),
+								  rset.getString("menu_name"),
 								  rset.getString("menu_price"),
-								  rset.getString("rep_menu")
+								  rset.getString("local_name")
 						));
 			}
 			
@@ -401,7 +402,7 @@ public class RestDao {
 		
 		String sql = prop.getProperty("locationSearch");
 			if (rsFunction != null && !rsFunction.isEmpty() && funcState != null && !funcState.isEmpty()) {
-				sql += " AND " + rsFunction + "= ?";	
+				sql += " AND " + rsFunction + "= ?";
 			
 	    }
 		
@@ -557,6 +558,91 @@ public class RestDao {
 			close(pstmt);
 		}
 		return img;
+	}
+	
+	public ArrayList<Rest> contentRestList(Connection conn, ArrayList<String> categoryList){
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("contentRestList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset= pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+						  rset.getString("rest_name"),
+						  rset.getString("rest_img_url"),
+						  rset.getString("ctg_name"),
+						  rset.getDouble("rest_avg"),
+						  rset.getInt("review_count")));
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	} 
+	
+	public ArrayList<Rest> bannerSearch(Connection conn, String locationName, String selectedGrade){
+		
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("bannerSearch");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(selectedGrade != null) {
+				pstmt.setString(1, selectedGrade);
+				pstmt.setString(2, selectedGrade);
+				pstmt.setString(3, selectedGrade);
+				pstmt.setString(4, selectedGrade);
+				pstmt.setString(5, selectedGrade);
+			}else {
+				pstmt.setString(1, "");
+				pstmt.setString(2, "");
+				pstmt.setString(3, "");
+				pstmt.setString(4, "");
+				pstmt.setString(5, "");
+			}
+			
+			if(locationName.equals("전체")) {
+				pstmt.setString(6, "%");
+			}else {
+				pstmt.setString(6,  "%" +  locationName);
+			}
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Rest(rset.getString("rest_no"),
+								  rset.getString("rest_name"),
+								  rset.getDouble("rest_avg"),
+								  rset.getString("rest_img_url"),
+								  rset.getInt("review_count"),
+								  rset.getString("menu_name"),
+								  rset.getString("menu_price"),
+								  rset.getString("local_name")));
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 }
 	

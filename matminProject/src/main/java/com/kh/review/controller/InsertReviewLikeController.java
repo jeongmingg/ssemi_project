@@ -6,21 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+
+import com.google.gson.Gson;
 import com.kh.review.model.Service.ReviewService;
 
 /**
- * Servlet implementation class InsertReviewController
+ * Servlet implementation class InsertReviewLikeController
  */
-@WebServlet("/insert.rv")
-public class InsertReviewController extends HttpServlet {
+@WebServlet("/inLike.rv")
+public class InsertReviewLikeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertReviewController() {
+    public InsertReviewLikeController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +31,29 @@ public class InsertReviewController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
+		String rvNo = request.getParameter("rvno");
+		String rvName = request.getParameter("rvname");
+		String logName = request.getParameter("logname");
+
+		boolean liked = new ReviewService().checkLiked(rvNo, logName);
 		
-		String rno = request.getParameter("restNo");
-		String memNo = request.getParameter("userNo");
-		int score = Integer.parseInt(request.getParameter("rating"));
-		String rvwCont = request.getParameter("reviewWrite");
 		
-		int result = new ReviewService().insertReview(rno, memNo, score, rvwCont);
+		JSONObject responseJson = new JSONObject();
 		
-		HttpSession session = request.getSession();
-		
-		if(result>0) {
-			session.setAttribute("alertMsg", "리뷰남겨주셔서 감사합니다!");
-			response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + rno);
-//			request.getRequestDispatcher(request.getContextPath() + "detail.rs?rpage=rno").forward(request, response);
-		}
-		
+		if(!liked) {
+			int result = new ReviewService().insertLike(rvNo, logName);	
+		    responseJson.put("result1", result);
+		    response.setContentType("application/json; charset=utf-8");
+		    
+		}else {
+			int result2 = new ReviewService().deleteLike(rvNo, logName);
+			responseJson.put("result2", result2);
+		    response.setContentType("application/json; charset=utf-8");
 		}
 
+		response.getWriter().write(responseJson.toString());
+
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
