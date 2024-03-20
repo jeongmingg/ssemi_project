@@ -187,8 +187,17 @@
            width: 210px;
            height: 210px;
            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-              border-radius: 10px;
+           border-radius: 10px;
+           cursor: pointer;
+           transition: transform 0.3s ease-in-out; /* 부드럽게 확대, ease-in-out : 시작과 끝에서 천천히, 중간에서 빠르게 */
+           
        }
+
+       .swiper-slide img:hover{
+            transform: scale(1.1); /* 원래 크기의 ()안 %로 확대 */
+            opacity: 0.85;
+       }
+
           
           /* 식당이름 스타일 */
           .swiper-slide figcaption{
@@ -272,6 +281,7 @@
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% if(count == 25){break;} %>
@@ -302,7 +312,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -336,7 +347,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -370,7 +382,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -404,7 +417,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -564,6 +578,11 @@
 
                 
             });
+            
+            $('.swiper-slide').click(function(){
+       		 var restNo = $(this).find('.restNo').text();
+       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
+       	 	});
 
         </script>
         
