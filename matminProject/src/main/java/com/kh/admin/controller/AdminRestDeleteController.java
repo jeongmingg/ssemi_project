@@ -33,7 +33,7 @@ public class AdminRestDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String restNo = request.getParameter("rno");
+		String restNo = request.getParameter("num");
 		
 		int result = new RestService().deleteRest(restNo);
 		

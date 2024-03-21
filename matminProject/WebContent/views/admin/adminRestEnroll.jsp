@@ -319,7 +319,7 @@ ArrayList<Category>
 
                   <input
                     type="checkbox"
-                    name="conAnimal"
+                    name="comAnimal"
                     id="comAnimal"
                     value="Y" />
                   <label for="comAnimal">반려동물</label>

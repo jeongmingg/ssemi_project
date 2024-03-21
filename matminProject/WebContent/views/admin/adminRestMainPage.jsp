@@ -206,8 +206,8 @@
             <br><br>
 
             <div align="center">
-                <a href="<%= contextPath %>/updateForm.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
-				<a href="<%= contextPath %>/delete.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
+                <a href="<%= contextPath %>/updateForm.rs?num=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
+				<a href="<%= contextPath %>/delete.rs?num=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
 				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
             </div>
 

@@ -696,7 +696,7 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, img.getRefNo());
+			pstmt.setString(1, "R"+ img.getRefNo());
 			pstmt.setString(2, img.getImgOriginName());
 			pstmt.setString(3, img.getImgChangeName());
 			pstmt.setString(4, img.getImgFilePath());

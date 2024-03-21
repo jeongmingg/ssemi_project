@@ -103,12 +103,11 @@ public class AdminRestUpdateController extends HttpServlet {
 			int result = new RestService().updateRest(r, img, list,restNo);
 			
 			if(result > 0) {
-				System.out.println("here");
 				request.setAttribute("img", img);
 				System.out.println(request.getAttribute("img"));
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + r.getRestNo());
+				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + restNo);
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");

@@ -92,6 +92,8 @@ public class AdminRestInsertController extends HttpServlet {
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
+			
+			System.out.println("controller"+ r);
 			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {

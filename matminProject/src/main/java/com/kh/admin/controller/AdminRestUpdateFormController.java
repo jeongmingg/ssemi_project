@@ -36,7 +36,7 @@ public class AdminRestUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String restNo= request.getParameter("rno");
+		String restNo= request.getParameter("num");
 		
 		RestService rService = new RestService();
 		
