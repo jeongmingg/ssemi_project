@@ -73,13 +73,18 @@
 		
 					<form action="<%= contextPath %>/findPwd.me" method="post">
 		
-						<input type="text" name="userName" placeholder="이름"> <br>
-						<input type="text" name="userId" placeholder="아이디"> <br>
-						<input type="text" name="email" placeholder="이메일"> <br>
+						<input type="text" name="userName" id="nameInput2" placeholder="이름"> <br>
+						<span class="message" id="nameMsg2" style="display: none;"></span>
+
+						<input type="text" name="userId" id="idInput" placeholder="아이디"> <br>
+						<span class="message" id="idMsg" style="display: none;"></span>
+
+						<input type="text" name="email" id="emailInput2" placeholder="이메일"> <br>
+						<span class="message" id="emailMsg2" style="display: none;"></span>
 		
 						<br>
 	
-						<button type="submit" id="findPwdBtn" class="btn btn-primary"><b>비밀번호 찾기</b></button>
+						<button type="submit" id="findPwdBtn" class="btn btn-primary" onclick="return findPwd();"><b>비밀번호 찾기</b></button>
 		
 					</form>
 	

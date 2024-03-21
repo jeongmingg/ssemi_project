@@ -50,15 +50,20 @@
 				<div id="id-list">
 					<table align="center">
 						<tr>
-							<th width="100"><%= m.getMemId() %></th>
+							<th width="120"><%= m.getMemId() %></th>
 							<td>가입일자 : <%= m.getEnrollDate() %></td>
 						</tr>
+						<% if(Character.isDigit(m.getMemId().charAt(0))) { %>
+							<tr>
+								<th colspan="2" style="font-size: 16px"><br>* 회원님은 카카오 로그인 회원입니다.<br>카카오 로그인을 진행해주세요.</th>
+							</tr>
+						<% } %>
 					</table>
 				</div>
 	
 				<div class="btn-area">
 					<a href="<%= contextPath %>/loginForm.me" class="btn btn-sm btn-secondary" id="loginBtn">로그인하기</a>
-					<a href="#" class="btn btn-sm btn-secondary" id="findPwdBtn">비밀번호 찾기</a>
+					<a href="<%= contextPath %>/findAccountForm.me" class="btn btn-sm btn-secondary" id="findPwdBtn">비밀번호 찾기</a>
 				</div>
 				
 			<% } else { %>
