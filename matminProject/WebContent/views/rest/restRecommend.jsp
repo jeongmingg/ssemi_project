@@ -170,7 +170,12 @@
 		font-size: 20px;
 	}
 
-	#img1{width: 100px; height: 100px;}
+	#img1{
+	width: 180px; height: 180px;
+	border-radius : 10px;
+	}
+	
+	
 </style>
 </head>
 <body>
@@ -191,6 +196,7 @@
 				<div id="menu-p">
 					<p>옵션을 선택하고 <br><br>
 					"맛집 추천" 버튼을 눌러주세요!</p>
+					
 				</div>
 			</div>
 			<div id="category">
@@ -215,12 +221,6 @@
 					<input class="ctg" id="we" type="radio" name="nation">
 				</div>
 			</div>
-			 <img src="resources/star, heart/heart.png" id="img1">
-			<!--<img src="resources/star, heart/star.png" id="img1">
-			<img src="resources/matchelin/1.png" id="img1">
-			<img src="resources/matchelin/2.png" id="img1">
-			<img src="resources/matchelin/3.png" id="img1"> -->
-			<input type="button" value="시작하기" onclick="ChangeImage();">
 			<div id="rs-recom-btn">
 				<div id="rs-btn">
 					<button id="rsBtn" onclick="rsRecommend();">맛집&nbsp;&nbsp;&nbsp;추천</button>
@@ -229,56 +229,79 @@
 			
 			<script>
 			var obTimeOut; // clearTimeout() 함수를 이용하여 Timeout 을 취소하기위해 사용됨
-			 
-			 
-			 
-			var ObjectArray = new Array ();
-			 
-			ObjectArray[1] = "resources/star, heart/heart.png";
-			ObjectArray[2] = "resources/star, heart/star.png";
-			ObjectArray[3] = "resources/matchelin/1.png";
-			ObjectArray[4] = "resources/matchelin/2.png";
-			ObjectArray[5] = "resources/matchelin/3.png";
-			ObjectArray[6] = "resources/matchelin/4.png";
-			 
+			
+			var ObjectArray = [
+			"resources/restIcon2/1.png",
+			"resources/restIcon2/30.png",
+			"resources/restIcon2/23.png",
+			"resources/restIcon2/5.png",
+			"resources/restIcon2/25.png",
+			"resources/restIcon2/29.png",
+			"resources/restIcon2/4.png",
+			"resources/restIcon2/3.png",
+			"resources/restIcon2/21.png",
+			"resources/restIcon2/27.png",
+			"resources/restIcon2/22.png",
+			"resources/restIcon2/6.png",
+			"resources/restIcon2/31.png",
+			"resources/restIcon2/2.png",
+			"resources/restIcon2/26.png",
+			"resources/restIcon2/24.png",
+			"resources/restIcon2/28.png",
+			"resources/restIcon2/1.png",
+			"resources/restIcon2/30.png",
+			"resources/restIcon2/23.png",
+			"resources/restIcon2/5.png",
+			"resources/restIcon2/25.png",
+			"resources/restIcon2/29.png",
+			"resources/restIcon2/4.png",
+			"resources/restIcon2/3.png",
+			"resources/restIcon2/21.png",
+			"resources/restIcon2/27.png",
+			"resources/restIcon2/22.png",
+			"resources/restIcon2/6.png",
+			"resources/restIcon2/31.png",
+			"resources/restIcon2/2.png",
+			"resources/restIcon2/26.png",
+			"resources/restIcon2/24.png",
+			"resources/restIcon2/28.png",
+			"resources/restIcon2/1.png",
+			"resources/restIcon2/3.png",
+			"resources/restIcon2/5.png",
+			"resources/restIcon2/6.png",
+			"resources/restIcon2/1.png"
+			];2
+
+			
+			
+			
 			var nObjectCnt = 0; 
-			 
-			function ShowDefaultRotate() // 스스로 자신을 호출하는 재귀함수 (Recursive Function)
-			{
-			 nObjectCnt++;
-			 
-			 if( nObjectCnt < ObjectArray.length )  // 배열의 갯수 이내일때만 실행
-			 {
-			 document.getElementById("img1").src = ObjectArray[nObjectCnt];  
-			 obTimeOut = setTimeout("ShowDefaultRotate()",1000);  // 1초후에 자기자신을 호출 
-			 }
-			 else
-			 {
-			 clearTimeout(obTimeOut); // 배열의 갯수만큼 반복하여 변환시킨 후에는 Timeout 을 중지시킨다 
-			 } 
-			}
-			 
-			 
-			function startAnimation()
-			{
-			      obTimeOut = window.setTimeout(ShowDefaultRotate,100); // 윈도우 로드 후 0.1초 후에 반복함수를 호출합니다.
-			}
-			 
-			 // window.onload = startAnimation; // 윈도우 로드시 이미지 변환함수 실행
-				
-			
-			
-			
-			
-				/* function ChangeImage(strImage){
-					$("#img1").src = strImage;
+		
+				function ShowDefaultRotate() // 스스로 자신을 호출하는 재귀함수 (Recursive Function)
+				{
+					nObjectCnt++;
+
+					if (nObjectCnt < ObjectArray.length) // 배열의 갯수 이내일때만 실행
+					{
+						$("#menu-p img").attr("src", ObjectArray[nObjectCnt]); // 이미지 URL 변경
+						obTimeOut = setTimeout(ShowDefaultRotate, 100); // 0.1초후에 자기자신을 호출 
+					} else {
+						nObjectCnt = 0; // 배열의 끝에 도달하면 nObjectCnt를 다시 0으로 설정
+						clearTimeout(obTimeOut); // 배열의 갯수만큼 반복하여 변환시킨 후에는 Timeout 을 중지시킨다 
+						
+						// obTimeOut = setTimeout(ShowDefaultRotate, 100); // 0.1초 후 자기 자신 호출
+					}
 				}
 
-				setTimeout({ChangeImage('resources/star, heart/heart.png')}, 3000);
-				setTimeout({ChangeImage('resources/star, heart/star.png')}, 3000);
-				setTimeout({ChangeImage('resources/matchelin/1.png')}, 3000);
-				setTimeout({ChangeImage('resources/matchelin/2.png')}, 3000);
-				setTimeout({ChangeImage('resources/matchelin/3.png')}, 3000); */
+				function startAnimation() {
+					nObjectCnt = 0; // nObjectCnt 초기화
+					// obTimeOut = window.setTimeout(ShowDefaultRotate, 100); // 윈도우 로드 후 0.1초 후에 반복함수를 호출합니다.
+					ShowDefaultRotate(); // 첫 애니메이션 시작
+					
+					obTimeOut = setTimeout(ShowDefaultRotate, 100);
+				
+				}
+				
 				
 				// 카테고리 클릭이벤트
 				$(document).ready(function() {
@@ -294,38 +317,50 @@
 				});
 
 				function rsRecommend() {
-					startAnimation();
+					let value = "";
+
 					var selectedCategory = $(".ctg.checked").text();
+					$("#menu-p").html("");
+					
+					value += '<img id="img1" src="resources/rest/1.jfif">';
+					
+					$("#menu-p").html(value);
+					startAnimation(); // 이미지 애니메이션 시작
+					
+					
+					setTimeout(function(){ // 3초 후 실행
+						$.ajax({
+							url : "random.rs",
+							type : "get",
+							data : {
+								ctgName : selectedCategory
+							},
+							success : function(result) {
+								
+								clearTimeout(obTimeOut); // 애니메이션 중지
+								
 
-					$
-							.ajax({
-								url : "random.rs",
-								type : "get",
-								data : {
-									ctgName : selectedCategory
-								},
-								success : function(result) {
+								let randomIndex = Math.floor(Math.random()
+										* result.length);
+								let randomRestaurant = result[randomIndex];
+								
+								value = '<div class="rest-div">'
+										+ '<figure>'
+										+ '<img id="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
+										+ '<figcaption>'
+										+ randomRestaurant.restName
+										+ '</figcaption>' + '</div>';
 
-									let value = "";
+				
+								$("#menu-p").html(value);
+							},
 
-									let randomIndex = Math.floor(Math.random()
-											* result.length);
-									let randomRestaurant = result[randomIndex];
-
-									value += '<div class="rest-div">'
-											+ '<figure>'
-											+ '<img id="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
-											+ '<figcaption>'
-											+ randomRestaurant.restName
-											+ '</figcaption>' + '</div>';
-
-									$("#menu-p").html(value);
-								},
-
-								error : function() {
-									console.log("ajax 통신에 실패했습니다.");
-								}
-							});
+							error : function() {
+								console.log("ajax 통신에 실패했습니다.");
+							}
+						});
+					}, 2000); 
+					
 				}
 			</script>
 		</div>
