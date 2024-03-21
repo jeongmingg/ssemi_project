@@ -36,7 +36,7 @@ public class AdminRestUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String restNo= request.getParameter("rno");
+		String restNo= request.getParameter("num");
 		
 		RestService rService = new RestService();
 		
@@ -49,7 +49,7 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		
 		
 		request.setAttribute("list", list);
-		request.setAttribute("lList", restNo);
+		request.setAttribute("lList", lList);
 		request.setAttribute("r", r);
 		request.setAttribute("img", img);
 		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);

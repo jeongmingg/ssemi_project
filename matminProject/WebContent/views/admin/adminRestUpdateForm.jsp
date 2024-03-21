@@ -1,3 +1,4 @@
+<%@page import="com.kh.board.model.vo.ImgFile"%>
 <%@page import="com.kh.common.model.vo.Attachment"%>
 <%@page import="com.kh.common.model.vo.Location"%>
 <%@page import="com.kh.common.model.vo.Category"%>
@@ -9,8 +10,8 @@
     <% Rest r = (Rest)request.getAttribute("r");
     ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
     ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
-    Attachment at = (Attachment)request.getAttribute("at");
-    	System.out.println("메인페이지" + r);
+    ImgFile img  = (ImgFile)request.getAttribute("img");
+    	System.out.println(" update rest 메인페이지" + r + list + lList);
     %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <style>
+    select {
+    border: 1px solid lightgray;
+    height: 27px;
+    width: 206px;
+    }
     .outer{
         border: 1px solid orange;
         color: orange;
@@ -33,11 +39,13 @@
         margin: auto;
         margin-bottom: 50px;
     }
-        #form table{margin:auto;}
-        #form input{ 
-        border: 1px solid lightgray;
-        margin:10px;}
-        button {
+    #form table{margin:auto;}
+    
+    #form input{ 
+    border: 1px solid lightgray;
+    margin:10px;}
+        
+    button {
         background-color:lightgray; 
         border:1px;
         cursor: pointer;
@@ -136,23 +144,27 @@
         
         <!-- <h2 align="center">식당등록</h2> -->
         <div>
-        <form id="form" action="<%=contextPath %>/updateRest.ad?rno=<%=r.getRestNo() %>" method="post">
-
+        <form id="form" action="<%=contextPath %>/updateRest.ad" method="post" enctype ="multipart/form-data">
+			<input type="hidden" name="num" value="<%= r.getRestNo() %>">
             <table>
                 <tr>
                     <td> 식당이름</td>
-                    <td><input type="text" value= "<%= r.getRestName() %>" ></td>
-                    <td>별점 <input type="text" value= "<%= r.getRestAvg() %>"></td>
+                    <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
+                    <td>대표메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="menu" value= ""></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
-                    <td><input type="text" value= "<%= r.getRestTime() %>"></td>
-                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>"></td>
+                    <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
+                    <td>대표메뉴가격 입력<input type="number" name = "price"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
-                    <td><input type="text" value= "<%= r.getRestAddress() %>"></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>"></td>
+                    <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
+                    <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="manu" value= ""></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
@@ -165,11 +177,16 @@
 							<%} %>
 					</select>
 					</td>
+                    <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="number" name = "price"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
-                    <td><input type="text" value= "<%= r.getRestTel() %>"></td>
+                    <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
+                    <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" name="manu" value= ""></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -178,38 +195,59 @@
 							<!--  category table로 부터 조회 할꺼임 -->
 							<%for (Category c : list) { %>
 							<option value="<%=c.getCtgId()%>">
-								<%=c.getCtgName( )%>
+								<%=c.getCtgName()%>
 							</option>
 							<%} %>
 					</select>
 					</td>
-                                    
+                    <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="number" name = "price"></td>               
                 </tr>
+                <br><br>
   
                 <tr>
-                    <th>첨부파일</th>
-                    <td><input type="file" name="upfile"></td>
-                </tr>
+						<th height="0">사진</th>
+						<td></td>
+						<td colspan="4">	
+						<% if (img != null){ %>
+								<label>
+									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
+									<input type="file" id="originFileNo" name="upfile" class="btnOfInput" style="display: none;">
+									<span class="file_name">
+										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
+									</span>
+									<span class="file_btn">파일선택</span>
+								</label>
+						<% } else { %>
+								<label>
+									<input type="file" id="file" name="upfile" class="btnOfInput" multiple style="display: none;">
+									<span class="file_name">파일을 선택해주세요</span>
+									<span class="file_btn">파일선택</span>
+								</label>
+						</td>
+						<% } %>
+					</tr>
                 
                 <tr>
-    <td>&nbsp;&nbsp;기타여부</td>
-    <td colspan="2">
-        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked <% } %> />
-        <label for="parking">주차</label>
-        
-        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
-        <label for="dt">DT</label> 
-        
-        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
-        <label for="pet_friendly">반려동물</label> 
-        
-        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
-        <label for="private_room">개별룸</label> 
-        
-        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
-        <label for="big_room">대형룸</label> <br />
-    </td>
-</tr>
+				    <td>&nbsp;&nbsp;기타여부</td>
+				    <td colspan="2">
+				        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked <% } %> />
+				        <label for="parking">주차</label>
+				        
+				        <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked <% } %> /> 
+				        <label for="dt">DT</label> 
+				        
+				        <input type="checkbox" name="conAnimal" id="comAnimal" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked <% } %> /> 
+				        <label for="conAnimal">반려동물</label> 
+				        
+				        <input type="checkbox" name="prvRoom" id="prvRoom" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+				        <label for="prvRoom">개별룸</label> 
+				        
+				        <input type="checkbox" name="bigRoom" id="bigRoom" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+				        <label for="bigRoom">대형룸</label> <br />
+				    </td>
+				</tr>
 
             </table>
 
@@ -217,8 +255,8 @@
 
             <div align="center">
                 <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
-				<a href="<%= contextPath %>/rest.ad?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
-				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
+				<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
+				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
 
             <br>

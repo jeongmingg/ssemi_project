@@ -26,6 +26,7 @@ pageEncoding="UTF-8"%>
 
       .table1 {
         margin: 20px auto;
+        text-align: center;
       }
 
       table {
