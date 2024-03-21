@@ -132,11 +132,38 @@
 	</entry>
 	
 	<entry key="deleteLike">
-	DELETE
+		DELETE
 		  FROM RVLIKE
 		 WHERE REVIEW_NO = ?
 		   AND NICKNAME = ?
 	</entry>
+	
+	<entry key="selectLike">
+	  SELECT *
+		FROM RVLIKE
+	   WHERE REVIEW_NO = ?
+	     AND NICKNAME = ?
+	</entry>
 
-
+	<entry key="insertRvLike">
+	UPDATE REVIEW
+	   SET REVIEW_LIKE = REVIEW_LIKE  + 1
+     WHERE REVIEW_NO = ?
+	</entry>
+	
+	<entry key="deleteRvLike">
+	UPDATE REVIEW
+	   SET REVIEW_LIKE = REVIEW_LIKE  - 1
+     WHERE REVIEW_NO = ?
+	</entry>
+	
+	<entry key="countLike">
+	SELECT 
+	        COUNT(REVIEW_NO) LIKE_COUNT,
+            REVIEW_NO
+      FROM  RVLIKE
+     WHERE REVIEW_NO = ?
+     GROUP
+        BY REVIEW_NO
+	</entry>
 </properties>

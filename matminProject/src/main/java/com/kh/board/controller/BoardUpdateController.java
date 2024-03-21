@@ -93,11 +93,11 @@ public class BoardUpdateController extends HttpServlet {
 				request.setAttribute("img", img);
 				System.out.println(request.getAttribute("img"));
 				HttpSession session = request.getSession();
-				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
+				session.setAttribute("alertMsg", "수정에 성공하셨습니다 😀");
 				response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + bno);
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
+				session.setAttribute("alertMsg", "🚨 수정에 실패하셨습니다");
 				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
 			}
 		}

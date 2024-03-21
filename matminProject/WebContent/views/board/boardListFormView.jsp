@@ -272,7 +272,7 @@
 						<td></td>
 						<td colspan="4" align="left">
 							<!-- 라디오 버튼클릭시 변경-->
-							<textarea id="content" name="content" maxlength="300" placeholder="추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>	
+							<textarea class="content" id="content" name="content" maxlength="300" placeholder="추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)"  required></textarea>	
 						</td>
 					</tr>
 
@@ -316,7 +316,13 @@
        		 })
        })
 
-
+	   $(function(){
+		var text = $(".content").val();
+		if(text.length()>300){
+			text = text.substring(0, 300);
+			text.focus();
+		}
+	   })
 		</script>
 
 	<script>

@@ -1,6 +1,9 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.board.model.service.BoardService;
+import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
 import com.kh.rest.model.service.RestService;
@@ -43,58 +47,75 @@ public class AdminRestUpdateController extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
-			String restNo = (multiRequest.getParameter("rno"));
-			String restLocation = multiRequest.getParameter("location");
+			String restNo = (multiRequest.getParameter("num"));
+			
 			String restName = multiRequest.getParameter("restName");
-			String ctgId = multiRequest.getParameter("category");
-			String restAddress = multiRequest.getParameter("address");
-			String restTel = multiRequest.getParameter("phone");
-			String parking = multiRequest.getParameter("parking");
 			String restTime = multiRequest.getParameter("bizHour");
-			String drivethrou = multiRequest.getParameter("drivethrou");
+			String restAddress = multiRequest.getParameter("address");
+			String restLocation = multiRequest.getParameter("location");
+			String restTel = multiRequest.getParameter("phone");
+			String ctgId = multiRequest.getParameter("category");
+			String parking = multiRequest.getParameter("parking");
+			String drivethrou = multiRequest.getParameter("dt");
 			String comAnimal = multiRequest.getParameter("comAnimal");
-			String prvRoom = multiRequest.getParameter("prvroom");
-			String bigRoom = multiRequest.getParameter("bigroom");
+			String prvRoom = multiRequest.getParameter("prvRoom");
+			String bigRoom = multiRequest.getParameter("bigRoom");
 			
-			Rest r = new Rest(restNo,restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
+			String[] menuArr = multiRequest.getParameterValues("menu");
+			String[] priceArr = multiRequest.getParameterValues("price");
+			
+			ArrayList <HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
+			
+			for(int i=0; i<menuArr.length; i++) {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("menu", menuArr[i]);
+				map.put("price", priceArr[i]);
 				
-			Attachment at = null;
+				list.add(map);
+			}
 			
-//			if(multiRequest.getOriginalFileName("upfile") != null) {
-//				// update
-//				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-//				
-//				at = new Attachment();
-//				at.setOriginName(multiRequest.getOriginalFileName("upfile"));
-//				at.setChangeName("upfile");
-//				at.setFilePath("resources/board_upfiles/");
-//				at.setFileNo(restNo);
-//				
-//				if(multiRequest.getParameter("originFileNo") != null) {
-//					at.setFileNo(restNo);
-//			} else {
-//				// insert
-//				at.setRefNo(restNo);
-//			}
-//		
-//		}
-		
-		int result = new RestService().updateRest(r, at);
-		
-		//if(result > 0) {
-//			System.out.println("here");
-//			request.setAttribute("at", at);
-//			System.out.println(request.getAttribute("at"));
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?rno=" + restNo);
-		} else {
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
-			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
+			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
+			
+			System.out.println(r);
+			ImgFile img  = null;
+			 
+			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
+			
+				System.out.println(multiRequest.getOriginalFileName("upfile"));
+				
+				img = new ImgFile();
+				img.setImgOriginName(multiRequest.getOriginalFileName("upfile"));
+				img.setImgChangeName(multiRequest.getFilesystemName("upfile"));
+				img.setImgFilePath("resources/board_upfiles/");
+				img.setRefNo(restNo);
+				
+				if(multiRequest.getParameter("originFileNo") != null) {
+				
+					img.setImgFileNo(multiRequest.getParameter("originFileNo"));
+					
+				} else {
+					// insert
+					img.setRefNo(restNo);
+				}
+			
+			}
+			
+			int result = new RestService().updateRest(r, img, list,restNo);
+			
+			if(result > 0) {
+				request.setAttribute("img", img);
+				System.out.println(request.getAttribute("img"));
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
+				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + restNo);
+			} else {
+				HttpSession session = request.getSession();
+				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
+				response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
+			}
 		}
-		}
-	//}
+		
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

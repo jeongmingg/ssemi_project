@@ -155,10 +155,11 @@
 		color: white;
 		height: 40px;
 		width: 100px;
-		padding-top: 0.6em;
 		display: inline-block;
 		margin-right: 118px;
 		padding-left: 22px;
+    	padding-top: 10px;
+		vertical-align: top
 	}
 	/* #file_label{
 		cursor: pointer;
@@ -334,7 +335,9 @@
 									<span class="file_name">
 										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
 									</span>
-									<span class="file_btn">파일선택</span>
+									<span class="file_btn">
+										<p>파일선택</p>
+									</span>
 								</label>
 						<% } else { %>
 								<label>
@@ -361,7 +364,6 @@
 	<script>
 
 		// 내용 밑에 글자수 세기
-
 		$(function(){
        		 $("#content").keyup(function(){ 
 				let length = $(this).val().length;

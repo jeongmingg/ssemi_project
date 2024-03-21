@@ -36,17 +36,12 @@ public class InsertReviewController extends HttpServlet {
 		int score = Integer.parseInt(request.getParameter("rating"));
 		String rvwCont = request.getParameter("reviewWrite");
 		
-		System.out.println(rno);
-		System.out.println(memNo);
-		System.out.println(score);
-		System.out.println(rvwCont);
-		
 		int result = new ReviewService().insertReview(rno, memNo, score, rvwCont);
 		
 		HttpSession session = request.getSession();
 		
 		if(result>0) {
-			session.setAttribute("alertMsg", "리뷰남겨주셔서 감사합니다!");
+			session.setAttribute("alertMsg", "리뷰남겨주셔서 감사합니다! 😉");
 			response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + rno);
 //			request.getRequestDispatcher(request.getContextPath() + "detail.rs?rpage=rno").forward(request, response);
 		}
