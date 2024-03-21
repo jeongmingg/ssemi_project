@@ -646,5 +646,35 @@
       
       
       </entry>
+      
+      <entry key="insertAddMenu">
+      
+      INSERT 
+      	INTO MENU 
+        	(
+             MENU_NO
+            , REST_NO
+            , MENU_NAME
+            , MENU_PRICE
+            , REP_MENU
+            )
+            VALUES
+            (
+            'MN'||SEQ_MNNO.NEXTVAL
+            , ?
+            , ?
+            , ?
+            , ?
+            )
+        
+      
+      </entry>
+      
+      <entry key="selectMenuCount">
+      	SELECT
+		       COUNT(REST_NO) "MENU_COUNT"
+		  FROM MENU
+		 WHERE REST_NO = ?
+      </entry>
 		
 </properties>

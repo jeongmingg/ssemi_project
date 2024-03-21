@@ -5,7 +5,6 @@
     
     <% Rest r = (Rest)request.getAttribute("r");
     ImgFile img = (ImgFile)request.getAttribute("img"); 
-    	System.out.println("메인페이지" + r);
     %>
 <!DOCTYPE html>
 <html>

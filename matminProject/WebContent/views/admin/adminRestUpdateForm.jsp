@@ -11,7 +11,6 @@
     ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
     ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
     ImgFile img  = (ImgFile)request.getAttribute("img");
-    	System.out.println(" update rest 메인페이지" + r + list + lList);
     %>
 <!DOCTYPE html>
 <html>
@@ -163,7 +162,7 @@
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="manu" value= ""></td>
+                    <input type="text" name="menu" value= ""></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -186,7 +185,7 @@
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="manu" value= ""></td>
+                    <input type="text" name="menu" value= ""></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -258,6 +257,17 @@
 				<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
 				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
+            
+            <script>
+		
+		$(function() {
+			 $("input[type=file]").on("change", function() {
+			        const fileName = $(this).val().split("\\").pop();
+			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
+		 	});
+		});
+		
+		</script>
 
             <br>
 

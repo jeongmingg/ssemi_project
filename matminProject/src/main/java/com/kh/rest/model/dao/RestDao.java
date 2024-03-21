@@ -474,7 +474,7 @@ public class RestDao {
 			pstmt.setString(11, r.getRestNo());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("dao의"+result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -642,7 +642,7 @@ public class RestDao {
 		}
 			return list;
 		} 
-	}		
+		
 	
 	public int insertMenu(Connection conn, HashMap<String, String> map, int i) {
 		int result = 0;
@@ -705,7 +705,7 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, "R"+ img.getRefNo());
+			pstmt.setString(1, img.getRefNo());
 			pstmt.setString(2, img.getImgOriginName());
 			pstmt.setString(3, img.getImgChangeName());
 			pstmt.setString(4, img.getImgFilePath());
@@ -751,14 +751,16 @@ public class RestDao {
 				pstmt.setString(2, map.get("price"));
 				pstmt.setString(3, restNo);
 			
-			result = pstmt.executeUpdate();				
+				result = pstmt.executeUpdate();	
+
 			}else {
 				String sql = prop.getProperty("updateSubMenu");
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, "menu");
-				pstmt.setString(2, "price");
+				pstmt.setString(1, map.get("menu"));
+				pstmt.setString(2, map.get("price"));
 				pstmt.setString(3, restNo);
-			result = pstmt.executeUpdate();
+				
+				result = pstmt.executeUpdate();
 			}
 			
 		} catch (SQLException e) {
@@ -812,8 +814,64 @@ public class RestDao {
 		}
 		return r;
 	}
-} 
 
+	public int insertAddMenu(Connection conn, String restNo, HashMap<String, String> map, int i) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAddMenu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			pstmt.setString(2, map.get("menu"));
+			pstmt.setString(3, map.get("price"));
+			
+			if(i == 0) {
+				pstmt.setString(4, "Y");
+			}else {
+				pstmt.setString(4, "N");
+			}
+			System.out.println(i + ", " + restNo + ", " + map.get("menu") + ", " + map.get("price"));
+		
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int selectMenuCount(Connection conn, String restNo) {
+		int menuCnt = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMenuCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, restNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				menuCnt = rset.getInt("menu_count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return menuCnt;
+	}
+} 
 
 
 
