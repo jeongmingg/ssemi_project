@@ -421,6 +421,12 @@ div {
 	width: 120px;
 	height: 120px;
 	border-radius: 10px;
+	cursor: pointer;
+}
+
+.rest-img:hover{
+	transform: scale(1.03); /* 원래 크기의 ()안 %로 확대 */
+	opacity: 0.85;
 }
 
 /* 리뷰별 이미지 */
@@ -696,8 +702,8 @@ div {
 								%>
 								<tr>
 									<td rowspan="3" width="120"
-										style="padding-left: 15px; padding-right: 15px;"><img
-										class="rest-img" src="<%= s.getRestImgUrl() %>" /></td>
+										style="padding-left: 15px; padding-right: 15px;">
+										<img class="rest-img" src="<%= s.getRestImgUrl() %>" /></td>
 									<td colspan="2"
 										style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
 										<%=s.getRestName()%>
@@ -716,6 +722,9 @@ div {
 										(<%=s.getReviewCount()%>개)&nbsp;&nbsp;|&nbsp;&nbsp;<img
 										id="heart" src="resources/star, heart/heart.png" />&nbsp; <%=s.getHeart()%>
 									</td>
+								</tr>
+								<tr>
+									<td><div class="restNo" style="display:none;"><%= s.getRestNo() %></div></td>
 								</tr>
 								<tr>
 									<td colspan="3"><hr /></td>
@@ -960,12 +969,35 @@ div {
 										+ "<tr>"
 										+ '<td colspan="3">'
 										+ "<hr>"
-										+ "</td>" + "</tr>";
+										+ "</td>" + "</tr>"
+										+ "<tr>"
+										+ "<td><div class='restNo' style='display:none;'>" + restaurant.restNo + "</div></td>"
+										+ "</tr>";
 	
 								restTable.append(value);
 							});
+					// ajax 호출시 상세페이지 이동
+					$('.rest-img').click(function(){
+						const restImgArr = $(".rest-img");
+						const restIndex = restImgArr.index(this);
+						
+			       		var restNo = $('.restNo').eq(restIndex).text();
+						 
+			       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo;
+			       	 	});
 				}
 			}
+			
+			// 메인에서 검색결과 들어왔을때 상세페이지 이동
+			$('.rest-img').click(function(){
+				const restImgArr = $(".rest-img");
+				const restIndex = restImgArr.index(this);
+				
+	       		var restNo = $('.restNo').eq(restIndex).text();
+				
+	       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo;
+	       	 	});
+			
 		</script>
 		<div id="topBtn">
 			<a href="#"> <svg xmlns="http://www.w3.org/2000/svg"
