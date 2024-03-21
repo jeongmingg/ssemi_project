@@ -82,14 +82,51 @@
 		width: 15%;
 	}
 
+	.rest-img{
+		height: 450px;
+	}
+
 	/* 식당 제목 스타일 */
 	.rest-title{
-		height: 140px;
+		height: 600px;
 		margin: auto;
 		width: 900px;
-		
-		
 	}
+
+	.rest-main-img{
+		width: 100%;
+		height: 100%;
+		margin: auto;
+		position: static;
+		background-size: cover;
+    	background-position: center;
+		border-radius: 8px;
+	}
+
+	.rest-s-title{
+		margin: -64px auto 0;
+		padding-bottom: 4px;
+		width: 850px;
+		z-index: 10;
+		background-color: white;
+		border-radius: 10px;
+		border: solid 1px rgba(255, 253, 253, 0.76);
+		box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+	}
+
+	.rest-s-title .rest-s-detail{
+		min-height: 187px;
+		padding: 28px;
+	}
+	.rest-s-detail .rest-name{
+		text-align: center;
+	}
+	.rest-s-detail .short-menu{
+		text-align: center;
+	}
+
+
+
 	h1{
 		font-size: 35px;
 		font-weight: 700;
@@ -116,6 +153,10 @@
 
 	.rest-add{
 		display: flex;
+		text-align: center;
+		justify-content: flex-start;
+		flex-direction: column;
+		margin-bottom: 3px
 	}
 	/*식당 부제목 위치 스타일*/
 	.short-add{
@@ -128,8 +169,8 @@
 		padding: 0px px;
 	}
 	.heart-count-area{
-		padding-left: 580px;
-		padding-top: 4px;
+		padding-left: 300px;
+		padding-top: 5px;
 		font-weight: 700px;
 		color: rgb(88, 88, 88);
 	}
@@ -140,6 +181,7 @@
 		padding-left: 30px;
 		display: flex;
 		padding-top: 4px;
+		display: inline-flex;
 	}
 	.btn-share{
 		text-decoration-line: none;
@@ -167,12 +209,12 @@
 	}
 
 	/* 구분선 */
-	.text-line{
+	/* .text-line{
 		border-top: 1.5px solid rgb(161, 161, 161);
 		width: 920px;
 		margin: auto;
 		margin-top: -10px;
-	}
+	} */
 
 	/* 식당상세정보 전체 클래스 스타일 */
 	.rest-detail{
@@ -235,7 +277,12 @@
 		
 	}
 	
-	
+	.text-line {
+		border-top: 1.5px solid rgb(161, 161, 161);
+		width: 920px;
+		margin: auto;
+		margin-top: -10px;
+	}
 	/* 메뉴 스타일 */
 	.menu-item{
 		margin: 2px;
@@ -821,50 +868,59 @@
 
 	<!-- 식당 전체 감싸는 틀-->
 	<div class="rest-all">
-		<br><br>
+	<br><br><br>
 
 		<!-- 식당이름 -->
 		<div class="rest-title">
-			<div class="rest-name">
-				<h1 style="display: contents;"><%= r.getRestName() %></h1> 
-				<span class="score"><%= rvAvg.getReviewAvg() %></span>
+			<div class="rest-img">
+				<div class="rest-main-img" style="background-image:url('<%= r.getRestImgUrl() %>');"></div>
 			</div>
-				<span class="short-menu"><%= r.getCtgName() %></span>
-			<div class="rest-add">
-				<span class="short-add">서울시- <%= r.getLocalName() %> </span>
-				<div class="heart-count-area">
-				<% 
-					boolean heartFlag = false;
-					String memNo = "";
-					
-					if(loginUser != null) {
-						memNo = loginUser.getMemNo();
-					}
+			<div class="rest-s-title">
+				<div class="rest-s-detail">
+					<div class="rest-name">
+						<h1 style="display: contents;"><%= r.getRestName() %></h1> 
+						<span class="score"><%= rvAvg.getReviewAvg() %></span>
+					</div>
+						<span class="short-menu"><%= r.getCtgName() %></span>				
+					<div class="rest-add">
+						<span class="short-add">서울시- <%= r.getLocalName() %> </span>
+					</div>
 				
-					for(Heart h : hList) {
-						if(!hList.isEmpty() && loginUser != null && h.getMemNo().equals(loginUser.getMemNo())) {
-							heartFlag = true;
-							break;
-						}
-					}
-				%>
-				<% if(!heartFlag) { %>
-					<!-- 빈하트 -->
-					<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
-				<% } else { %>
-					<!-- 채워진 하트-->
-					<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
-				<% } %>
-					<span>찜꽁(<%= hList.size() %>)</span>
-				</div>
-				<div class="btn-share-area">
-					<a href="#" class="btn-share" id="btn-share">
-						<span>공유</span>
-					</a>
+					<div class="add-area">
+						<div class="heart-count-area">
+						<% 
+							boolean heartFlag = false;
+							String memNo = "";
+							
+							if(loginUser != null) {
+								memNo = loginUser.getMemNo();
+							}
+						
+							for(Heart h : hList) {
+								if(!hList.isEmpty() && loginUser != null && h.getMemNo().equals(loginUser.getMemNo())) {
+									heartFlag = true;
+									break;
+								}
+							}
+						%>
+						<% if(!heartFlag) { %>
+							<!-- 빈하트 -->
+							<img src="https://img.icons8.com/ios/50/e4910d/hearts--v1.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="insertHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+						<% } else { %>
+							<!-- 채워진 하트-->
+							<img src="https://img.icons8.com/sf-black-filled/64/f39c12/like.png" width="25px" style="padding-bottom: 4px; cursor: pointer;" onclick="cancelHeart('<%= memNo %>', '<%= r.getRestNo() %>');"> 
+						<% } %>
+							<span>찜꽁(<%= hList.size() %>)</span>
+						</div>
+						<div class="btn-share-area">
+							<a href="#" class="btn-share" id="btn-share">
+								<span>공유</span>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="text-line"></div>
 
 		<!--공유하기 모달-->
 		
