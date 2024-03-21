@@ -1372,7 +1372,6 @@
 					    }
 					});
 					    
-					
 						
 				}, error:function(){
 					console.log("ajax 통신실패")
@@ -1380,7 +1379,6 @@
 					
 				});
 
-					
 				
 				// 리뷰 추천 로그인시에만 가능하게 제어
 				
@@ -1497,6 +1495,7 @@
 						success:function(review){
 							if(review != null){
 								alert("성공적으로 삭제됐습니다! 😀");
+								selectReviewList();
 							}
 							
 						}, error:function(){
