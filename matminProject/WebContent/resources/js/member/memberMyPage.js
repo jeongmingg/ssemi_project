@@ -58,6 +58,16 @@ $(function () {
         msg.text("");
     }
   });
+
+  $("#changePwdBtn").on('click', function () {
+    $("#changePwdTB input").val("");
+    $("#changePwdTB span").text("");
+  });
+
+  $("#leaveBtn").on("click", function() {
+    $("#leaveMemTB input").val("");
+    $("#leaveMemTB span").text("");
+  })
 });
 
 // 개인정보 수정하기 버튼 클릭 시, 유효성 검사
