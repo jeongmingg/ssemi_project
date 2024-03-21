@@ -1,11 +1,17 @@
 package com.kh.admin.controller;
 
 import java.io.IOException;
+
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.rest.model.service.RestService;
+import com.kh.rest.model.vo.Rest;
 
 /**
  * Servlet implementation class AdminRestDeleteController
@@ -26,8 +32,18 @@ public class AdminRestDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String restNo = request.getParameter("num");
+		
+		int result = new RestService().deleteRest(restNo);
+		
+		HttpSession session = request.getSession();
+		if (result>0) {
+			session.setAttribute("alertMsg", "식당이 성공적으로 삭제가 되었습니다");
+		}else {
+			session.setAttribute("alertMsg", "식당 삭제에 실패하앴습니다");
+		}
+		response.sendRedirect(request.getContextPath()+"/rest.list?cpage=1");
 	}
 
 	/**

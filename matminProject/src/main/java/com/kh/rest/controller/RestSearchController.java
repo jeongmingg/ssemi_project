@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.kh.member.model.vo.Member;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
@@ -37,12 +39,21 @@ public class RestSearchController extends HttpServlet {
 		
 		ArrayList<Search> list = new RestService().searchKeywordList(keyword);
 		
+		//ArrayList<Rest> rlist = new RestService().searchByKeyword(keyword); 
+		
 		request.setAttribute("keyword", keyword);
 		request.setAttribute("list", list);
+		//request.setAttribute("rlist", rlist);
 		
-		request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
-	}
-
+		HttpSession session = request.getSession();
+		Member loginUser = (Member)session.getAttribute("loginUser");
+		//if (loginUser.getMemNo().equals("M1")) {
+			//request.getRequestDispatcher("views/admin/adminRestMainPage.jsp").forward(request, response);
+			
+		//}else {
+			request.getRequestDispatcher("views/rest/restSearchPage.jsp").forward(request, response);
+	//}
+}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

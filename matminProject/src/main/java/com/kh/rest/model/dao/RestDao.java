@@ -8,14 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
-
 import static com.kh.common.JDBCTemplate.*;
-
 import com.kh.board.model.vo.ImgFile;
-import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
+import com.kh.common.model.vo.Menu;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.vo.Rest;
 import com.kh.search.model.vo.Search;
@@ -133,7 +132,7 @@ public class RestDao {
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}finally {
 			close(rset);
@@ -277,8 +276,6 @@ public class RestDao {
 				
 			}
 			
-			System.out.println("dao" + r);
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -378,8 +375,7 @@ public class RestDao {
 								  rset.getString("rest_name"),
 								  rset.getString("rest_img_url"),
 								  rset.getString("ctg_id"),
-								  rset.getString("ctg_name")
-						));
+								  rset.getString("ctg_name")));
 			}
 
 			
@@ -475,7 +471,10 @@ public class RestDao {
 			pstmt.setString(8, r.getAnmial());
 			pstmt.setString(9, r.getRoom());
 			pstmt.setString(10, r.getBigRoom());
+			pstmt.setString(11, r.getRestNo());
 			
+			result = pstmt.executeUpdate();
+			System.out.println("dao의"+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -559,7 +558,7 @@ public class RestDao {
 		}
 		return img;
 	}
-	
+
 	public ArrayList<Rest> contentRestList(Connection conn, ArrayList<String> categoryList){
 		ArrayList<Rest> list = new ArrayList<Rest>();
 		
@@ -636,14 +635,185 @@ public class RestDao {
 			}
 			
 		} catch (SQLException e) {
+		e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			return list;
+		} 
+	}		
+	
+	public int insertMenu(Connection conn, HashMap<String, String> map, int i) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertMenu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, map.get("menu"));
+			pstmt.setString(2, map.get("price"));
+			
+			if(i == 0) {
+				pstmt.setString(3, "Y");
+			}else {
+				pstmt.setString(3, "N");
+			}
+		
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
+	public int updateRestAt(Connection conn, ImgFile img) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateRestAt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, img.getImgOriginName());
+			pstmt.setString(2, img.getImgChangeName());
+			pstmt.setString(3, img.getImgFilePath());
+			pstmt.setString(4, img.getImgFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+
+	public int insertUpdateRestAt(Connection conn, ImgFile img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertUpdateRestAt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, "R"+ img.getRefNo());
+			pstmt.setString(2, img.getImgOriginName());
+			pstmt.setString(3, img.getImgChangeName());
+			pstmt.setString(4, img.getImgFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+	
+	
+	public int deleteRest(Connection conn,String restNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteRest");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateRestMenu(Connection conn, HashMap<String, String> map,String restNo, int i) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			if(i==0) {
+			String sql = prop.getProperty("updateRepMenu");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,map.get("menu"));
+				pstmt.setString(2, map.get("price"));
+				pstmt.setString(3, restNo);
+			
+			result = pstmt.executeUpdate();				
+			}else {
+				String sql = prop.getProperty("updateSubMenu");
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, "menu");
+				pstmt.setString(2, "price");
+				pstmt.setString(3, restNo);
+			result = pstmt.executeUpdate();
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	//관리자 보는 식당 상세패이지
+	public Rest selectRestMain(Connection conn, String restNo){
+		Rest r = new Rest();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestMain");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			rset = pstmt.executeQuery();
+
+			if(rset.next()) {
+				r = new Rest(
+						rset.getString("rest_no"),
+						rset.getString("rest_name"),
+						rset.getString("rest_address"),
+						rset.getString("rest_tel"),
+						rset.getString("rest_parking"),
+						rset.getInt("rest_grade"),
+						rset.getString("rest_time"),
+						rset.getDouble("rest_avg"),
+						rset.getString("rest_img_url"),
+						rset.getString("local_name"),
+						rset.getInt("review_count"),
+						rset.getString("dt"),
+						rset.getString("animal"),
+						rset.getString("room"),
+						rset.getString("big_room"),
+						rset.getString("ctg_name"),
+						rset.getInt("heart_count"));
+				
+			}
+				
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		return list;
+		return r;
 	}
-}
-	
+} 
+
+
+
 

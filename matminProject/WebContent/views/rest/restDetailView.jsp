@@ -20,19 +20,19 @@
 		mapList.add(s);
 	}
 	request.setAttribute("mapList", mapList);
-   
-   /* 별점 채우기위한 퍼센트 변수 */
-   double score = (double)r.getRestAvg();
-   double maxScore = 5.0;
-   double percent = (score/maxScore) * 100;
-	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
-   String star = String.format("%.1f", percent);
 	
    ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
    Review rvAvg = (Review)request.getAttribute("rv");
    ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
    ArrayList<Heart> hList = (ArrayList<Heart>)request.getAttribute("hList");
+   
+   /* 별점 채우기위한 퍼센트 변수 */
+   double score = (double)rvAvg.getReviewAvg();
+   double maxScore = 5.0;
+   double percent = (score/maxScore) * 100;
+	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
+   String star = String.format("%.1f", percent);
 
 %>
 
@@ -41,12 +41,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="/examples/media/expand_style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-	
 </head>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -128,7 +128,7 @@
 		padding: 0px px;
 	}
 	.heart-count-area{
-		padding-left: 560px;
+		padding-left: 600px;
 		padding-top: 4px;
 		font-weight: 700px;
 		color: rgb(88, 88, 88);
@@ -597,11 +597,11 @@
 		height: 35px;
 		background: url(https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png) no-repeat;
 		background-size: 20px;
-		padding-left: 28px;
+		padding-left: 38px;
 		position: relative;
-		padding-top: 5px;
-		background-position: 8px 5.5px;
-		border-radius: 15px;
+		padding-top: 7px;
+		background-position: 12px 6px;
+		border-radius: 30px;
 		border: 1px solid rgb(221 221 221);
 	}
 	.unlike-area{
@@ -765,20 +765,50 @@
 	.share-title{
 		margin-top: 30px;
 	}	
+
+	.like-area .rvhover {
+		visibility: hidden;
+		width: 180px;
+		height: 47px;
+		background-color: #3c3c3c99;
+		border-radius : 10px;
+		padding: 0;
+		color: white;
+		text-align: center;
+		position :absolute;
+		z-index: 1;
+		bottom: 180%;
+		left: 50%;
+		margin-left: -90px;
+		margin-bottom: -10px;
+	}
+	.like-area .rvhover::after {
+		content: " ";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -10px;
+		border-width: 10px;
+		border-style: solid;
+		border-color: #3c3c3c99 transparent transparent transparent;
+	}
+	.like-area:hover .rvhover { visibility: visible; }
+
 </style>
 
 <body>
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 	<br>
-
+<!-- 
 	<div class="outer">
 		<div class="slide-area">
 			<div class="btn-left"></div>
 			<div class="img-slide"></div>
 			<div class="btn-right"></div>
 		</div>
-		<br><br>
+		-->
+		<br><br><br><br> 
 
 	<!-- 식당 전체 감싸는 틀-->
 	<div class="rest-all">
@@ -1146,20 +1176,19 @@
 
 				// 클립보드 복사해주는 메소드
 				navigator.clipboard.writeText(url).then(()=>{ // 클립보드에 복사가 완료되면 콜백함수 실행
-					alert("📌 식당의 링크가 클립보드에 복사되었습니다");
+					alert("식당의 링크가 클립보드에 복사되었습니다😊");
 				})
 
 			})
 		</script>
 	
 	
-		<!-- 리뷰 조회 ajax -->
-	
+		<!-- 리뷰 전체 조회 ajax -->
+		
 		<script>
 		
 			$(function(){
 			    selectReviewList(); 
-			    
 			})
 
 
@@ -1227,7 +1256,10 @@
 									<div class="review-like">
 										<div class="like-area">
 											<div class="like"  data-rvno="\${rvno}" data-rvname="\${rvname}">추천 
-												<span>(\${rvlike})</span>
+												<span class="likeCount">(\${rvlike})</span>
+												<div class="rvhover">
+													<p style="line-height:50px; margin : auto;">리뷰가 도움이 되었나요?</p>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -1243,107 +1275,86 @@
 						selectLike();
 					});
 
-			        function selectLike(){
-			        	
-	                    $(".like").each(function() {
-	                    	
-	                    var ele = $(this);
-			    	    var rvno = $(this).data("rvno");
-			    	    var logname = $(this).closest(".rv1").find('.serverNickname').val();
-			    	    
-			    	    console.log(rvno, logname);
-			    	    
-				        $.ajax({
-				        	url:"seLike.rv",
-				        	data:{
-				        		rvno:rvno,
-				        		logname:logname},
-				        		success:function(result){
-				  
-				        				$(".like").each(function(){
-						        			if(result !== null && rvno === result.reviewNo && logname === result.nickName) {
-						                   		ele.attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
-						        		}
-				                  })
-				                  countLike();
-				        	},
-				        	error:function(){
-				        		console.log("ajax 통신실패")
-				        	}
+					
+			      // 리뷰 좋아요 조회 ajax
+			
+			      function selectLike(){ 	
+			        $(".like").each(function() {
+			                	
+				        var ele = $(this);
+				  	    var rvno = $(this).data("rvno");
+				  	    var rvname = $(this).data("rvname");
+				  	    var logname = $(this).closest(".rv1").find('.serverNickname').val();
+				  	    
+				  	   console.log(rvno, logname);
+					       $.ajax({
+					       	url:"seLike.rv",
+					       	data:{
+					       		rvno:rvno,
+					       		logname:logname},
+					       	success:function(result){
+			       				$(".like").each(function(){
+				        			if(result !== null && rvno === result.reviewNo && logname === result.nickName) {
+				                   		ele.attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/FFFFFF/facebook-like.png') no-repeat; background-size: 20px; background-position: 12px 6px; background-color:#f5a424; color:white; border solid 0px");
+				        			}
+			                	 });  
+					       	},
+					       	error:function(){
+					       		console.log("ajax 통신실패")
+					       	}
 							});
-				        });
-			        
-			        }
-			        
-					function countLike(){
-						$(".like").each(function() {	
-		                    var ele = $(this);
-				    	    var rvno = $(this).data("rvno");
-
-						$.ajax({
-							url:"coLike.rv",
-							data:{rvno:rvno},
-							success:function(count){
-								console.log(count.likeCount);
-								console.log("countLike : ajax성공");
-								if(count.likeCount !== 0){
-									$(".like").each(function(){
-										if(rvno === ele.data("rvno")){
-											ele.find(".likeCount").val(count.likeCount)
-										}
-										});
-									}
-							},
-
-							error:function(){
-								console.log("ajax실패");
-							}
-							});
-						});
-
-					}
-					// 리뷰 삭제 로그인시에만 가능하게끔 
-					 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
-						    
-						 	// 리뷰작성자 닉네임을 변수에 담음
-						 	var rvname = $(this).siblings('.rvname').val();
-						    console.log("rvname :" + rvname);
-	
-						 	// 현재 로그인한 유저의 닉네임을 변수에 담음
-						    var serverNickname = $(this).siblings('.serverNickname').val()
-						    console.log("serverNIckname :" + serverNickname);
-						    
-						    if (serverNickname === rvname) {
-						        $(this).show(); // 같으면 삭제버튼 보여짐
-								
-						    } else {
-						    	$(this).hide(); // 다르면 삭제버튼 안보여짐
-								
-						    }
-						});
+					  });
+			       }
+			       
+					
+			     // 리뷰 삭제버튼 작성자에게만 보이게 제어
+			       
+				 $(".delete-review").each(function() { // .delete-review안의 함수를 계속 돌려줌
+					    
+					 	// 리뷰작성자 닉네임을 변수에 담음
+					 	var rvname = $(this).siblings('.rvname').val();
+				
+					 	// 현재 로그인한 유저의 닉네임을 변수에 담음
+					    var serverNickname = $(this).siblings('.serverNickname').val()
+					    
+					    if (serverNickname === rvname) {
+					        $(this).show(); // 같으면 삭제버튼 보여짐
+							
+					    } else {
+					    	$(this).hide(); // 다르면 삭제버튼 안보여짐
+							
+					    }
+					});
 					    
 					
+						
+				}, error:function(){
+					console.log("ajax 통신실패")
+				}
 					
-					}, error:function(){
-						console.log("ajax 통신실패")
-					}
-	
 				});
 
-												
+					
+				
+				// 리뷰 추천 로그인시에만 가능하게 제어
+				
 				$(".review-detail").on("click", ".like", function(){
 
-					var ele = this;
+					var ele = $(this);
 					var rvlno = $(this).data("rvno");
 					var rvlname = $(this).data("rvname");
 					var logname = $(this).closest('.rv1').find('.serverNickname').val();
 
+					console.log(ele);
 					// console.log(rvlno);
 					// console.log(rvlname);
 					// console.log(logname);
 
 					if(<%= loginUser == null %>){
-						alert("로그인 시에만 가능합니다!");
+						alert("로그인후 이용해주세요😀");
+						return;
+					}else if (logname === rvlname){
+						alert("📌 본인에겐 추천 할 수 없습니다");
 						return;
 					}else {
 						$(document).ready(function(){
@@ -1352,69 +1363,102 @@
 					}
  
 				});
+			}
 
-				function checkLike(ele, rvlno, rvlname, logname){
-					console.log(rvlno);
-					console.log(rvlname);
-					console.log(logname);
-					
-					 $.ajax({
-						url:"inLike.rv",
-						data:{
-							rvno:rvlno,
-							rvname:rvlname,
-							logname:logname
-						},
-						success:function(response){
-							// console.log(response);					
-							if ('result1' in response) {
-								console.log("인서트돼라!");
-								console.log(ele);
+			// 리뷰 추천 인서트 및 삭제 
+			function checkLike(ele, rvlno, rvlname, logname){
+				console.log(rvlno);
+				console.log(rvlname);
+				console.log(logname);
+				
+					$.ajax({
+					url:"inLike.rv",
+					data:{
+						rvno:rvlno,
+						rvname:rvlname,
+						logname:logname
+					},
+					success:function(response){
+						// console.log(response);					
+						if ('result1' in response) {
+							console.log("인서트돼라!");
+							console.log(ele);
 
-								$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/f39c12/facebook-like.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");	
-								
-							} else if('result2' in response){
-				            	console.log("삭제돼라!");
-				            	console.log(ele);
-				            	$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png') no-repeat; background-size: 20px; background-position: 8px 5.5px;");
+							$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/FFFFFF/facebook-like.png') no-repeat; background-size: 20px; background-position: 12px 6px; background-color:#f5a424; color:white; border solid 0px");	
+							
+						} else if('result2' in response){
+							console.log("삭제돼라!");
+							console.log(ele);
+							$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png') no-repeat; background-size: 20px; background-position: 12px 6px;");
 
-							}
-			
-						},
-						error:function(){
-							console.log("ajax 실패");
 						}
+						countLike();
 						
-					});
+					},
+					error:function(){
+						console.log("ajax 실패");
+					}
 					
-				}
-
+				});
 				
 			}
 			
+			// 리뷰 추천수 조회
+			function countLike(){
+				$(".like").each(function() {	
+                    var ele = $(this);
+		    	    var rvno = $(this).data("rvno");
+
+				$.ajax({
+					url:"coLike.rv",
+					data:{rvno:rvno},
+					success:function(count){
+						console.log("countLike : ajax성공");
+						var likeCount = count.likeCount
+						
+							$(".like").each(function(){
+								if(count.likeCount > 0 && count.reviewNo === rvno){
+									var span = ele.find(".likeCount").text();
+									
+									console.log("span : " + span)
+									ele.find(".likeCount").text("(" + likeCount + ")");
+								
+								}else {
+									ele.find(".likeCount").text("(" + 0 + ")");
+								}
+								});
+					},
+
+					error:function(){
+						console.log("ajax실패");
+					}
+					});
+				});
+
+			}
+
 			/* 리뷰 삭제 ajax*/
 			function deleteReview(ele){
 				/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
 				let rvNo = $(ele).siblings("input").val();		
 				console.log(rvNo);
 				
-				if (confirm("정말 삭제하시겠습니까?")) {
+				if (confirm("정말 삭제하시겠습니까? 😭")) {
 					$.ajax({
 						url:"delete.rv",
 						type:"post",
 						data: {no:rvNo},
 						success:function(review){
 							if(review != null){
-								alert("성공적으로 삭제됐습니다!");
+								alert("성공적으로 삭제됐습니다! 😀");
 							}
-							console.log("ajax 통신성공!")
-							selectReviewList();
+							
 						}, error:function(){
 							console.log("삭제오류 ajax통신오류")
 						}
 					})
 			
-				}
+				} 
 			}
 
 
@@ -1473,7 +1517,7 @@
 			$(function() {				
 				if(<%= loginUser %> == null){
 					$("#btn-review").click(function(){
-						alert("로그인 후 이용해주세요!");    
+						alert("📌 로그인 후 이용가능합니다!");    
 						window.location.href = "<%= contextPath %>/loginForm.me";
 					});
 				} else {

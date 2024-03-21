@@ -100,7 +100,7 @@
             <a href="<%= contextPath %>/rest.list?cpage=1" class="nav-link active" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
                     <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
-                    <li><a href="<%= contextPath %>/rest.list?cpage=1">식당전체조회</a></li>
+                    <!-- <li><a href="<%= contextPath %>/rest.list?cpage=1">식당전체조회</a></li> -->
                 </ul>
             </li>
             <li class="nav-item">
@@ -114,7 +114,7 @@
             <a class="nav-link" href="<%= contextPath %>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
                     <li><a href="<%= contextPath %>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
-                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
+                    <!-- <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li> -->
                 </ul>
             
             </li>
@@ -138,22 +138,22 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>별점 <input type="text" value= "<%= r.getHeart() %>" readonly></td>
+                    <td>리뷰<input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
-                    <td>찜꽁<input type="text" value = "<%= r.getReviewCount() %>" readonly></td>
+                    <td>찜꽁<input type="text" value = "<%=r.getHeart() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" value= "<%= r.getRestAddress() %>"readonly></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
+                    <td>별점<input type="text" value = "<%= r.getRestAvg() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
                     <td><input type="text" value= "<%= r.getLocalName() %>"readonly></td>
-                    
+                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
@@ -183,19 +183,19 @@
 <tr>
     <td>&nbsp;&nbsp;기타여부</td>
     <td colspan="2">
-        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked readonly<% } %> />
+        <input type="checkbox" name="parking" id="parking" value="Y" <% if ("Y".equals(r.getRestParking())) { %> checked disabled <% } %> />
         <label for="parking">주차</label>
         
         <input type="checkbox" name="dt" id="dt" value="Y" <% if ("Y".equals(r.getDt())) { %> checked  readonly<% } %> /> 
         <label for="dt">DT</label> 
         
-        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked readonly <% } %> /> 
+        <input type="checkbox" name="pet_friendly" id="pet_friendly" value="Y" <% if ("Y".equals(r.getAnmial())) { %> checked disabled <% } %> /> 
         <label for="pet_friendly">반려동물</label> 
         
-        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked <% } %> /> 
+        <input type="checkbox" name="private_room" id="private_room" value="Y" <% if ("Y".equals(r.getRoom())) { %> checked  disabled <% } %> /> 
         <label for="private_room">개별룸</label> 
         
-        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked <% } %> /> 
+        <input type="checkbox" name="big_room" id="big_room" value="Y" <% if ("Y".equals(r.getBigRoom())) { %> checked disabled <% } %> /> 
         <label for="big_room">대형룸</label> <br />
     </td>
 </tr>
@@ -206,8 +206,8 @@
             <br><br>
 
             <div align="center">
-                <a href="<%= contextPath %>/updateForm.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
-				<a href="<%= contextPath %>/delete.rs?rno=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
+                <a href="<%= contextPath %>/updateForm.rs?num=<%= r.getRestNo() %>" class="btn btn-sm btn-warning">수정</a>
+				<a href="<%= contextPath %>/delete.rs?num=<%= r.getRestNo() %>" class="btn btn-sm btn-danger">삭제</a>
 				<button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
             </div>
 

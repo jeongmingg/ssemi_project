@@ -2,6 +2,9 @@ package com.kh.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +16,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
+import com.kh.common.model.vo.Menu;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.oreilly.servlet.MultipartRequest;
@@ -57,26 +61,40 @@ public class AdminRestInsertController extends HttpServlet {
 		String comAnimal = multiRequst.getParameter("comAnimal");
 		String prvRoom = multiRequst.getParameter("prvRoom");
 		String bigRoom = multiRequst.getParameter("bigRoom");
+		
+		String[] menuArr = multiRequst.getParameterValues("menu");
+		String[] priceArr = multiRequst.getParameterValues("price");
 
+		ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String,String>>();
+		
+		for(int i=0; i<menuArr.length; i++) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("menu", menuArr[i]);
+			map.put("price", priceArr[i]);
+			
+			list.add(map);
+		}
+	
 		
 		Rest r = new Rest(restLocation,restName, ctgId,restAddress,restTel, parking, restTime,drivethrou,comAnimal,prvRoom,bigRoom);
-		
 		ImgFile img = null;
 		
-		if(multiRequst.getOriginalFileName("file") != null) {
+		if(multiRequst.getOriginalFileName("upfile") != null) {
 			img = new ImgFile();
-			img.setImgOriginName(multiRequst.getOriginalFileName("file"));
-			img.setImgChangeName(multiRequst.getFilesystemName("file"));
-			img.setImgFilePath("resources/board_upfiles/");
+			img.setImgOriginName(multiRequst.getOriginalFileName("upfile"));
+			img.setImgChangeName(multiRequst.getFilesystemName("upfile"));
+			img.setImgFilePath("resources/rest_upfiles/");
 		}
 		
-		int result = new RestService().insertRest(r,img);
+		int result = new RestService().insertRest(r,img,list);
 		
 		HttpSession session = request.getSession();
 		
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
-			response.sendRedirect(request.getContextPath() + "/rest.ad?num=");
+			
+			System.out.println("controller"+ r);
+			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {
 			if(img != null) {

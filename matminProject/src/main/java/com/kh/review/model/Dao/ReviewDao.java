@@ -403,7 +403,8 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				count = new RvLike(rset.getInt("like_count"));
+				count = new RvLike(rset.getInt("like_count"),
+						           rset.getString("review_no"));
 			}
 
 		} catch (SQLException e) {

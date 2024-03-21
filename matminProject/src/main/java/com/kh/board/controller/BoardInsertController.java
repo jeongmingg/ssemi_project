@@ -86,7 +86,7 @@ public class BoardInsertController extends HttpServlet {
 			HttpSession session = request.getSession();
 			
 			if(result > 0){
-				session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다.");
+				session.setAttribute("alertMsg", "게시글 작성에 성공하셨습니다 😀");
 				response.sendRedirect(request.getContextPath()+"/list.bo?cpage=1");
 			
 			} else {
@@ -96,7 +96,7 @@ public class BoardInsertController extends HttpServlet {
 				if(img != null) {
 					new File(savePath + img.getImgChangeName()).delete(); 
 				}
-				session.setAttribute("alertMsg", "게시글 작성에 실패하셨습니다.");
+				session.setAttribute("alertMsg", "🚨 게시글 작성에 실패하셨습니다");
 				response.sendRedirect(request.getContextPath()+"list.bo?cpage=1");
 			}
 		}
