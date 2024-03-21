@@ -1,7 +1,10 @@
 package com.kh.rest.model.service;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.kh.common.JDBCTemplate.*;
 
@@ -9,6 +12,7 @@ import com.kh.board.model.vo.ImgFile;
 import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
+import com.kh.common.model.vo.Menu;
 import com.kh.common.model.vo.PageInfo;
 import com.kh.rest.model.dao.RestDao;
 import com.kh.rest.model.vo.Rest;
@@ -72,24 +76,28 @@ public class RestService {
 		return r;
 	}
 	
-	public int insertRest(Rest r, ImgFile img ) {
+	public int insertRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list ) {
 		Connection conn = getConnection();
-		int result1 = new RestDao().insertRest(conn, r);
-		System.out.println("서비스의 " + img);
+		 int result1 = new RestDao().insertRest(conn, r );
+		 int result2= 0;
+		 
+		 if (result1 != 0) {
+			 for(int i=0; i<list.size(); i++) {				 
+				 result2 = new RestDao().insertMenu(conn, list.get(i), i);
+			 }
 		
-		int result2 = 1;
-		if (img !=null){
+		 if (img !=null){
 			result2 = new RestDao().insertRestAt(conn,img);
-		}
-		if (result1> 0 && result2>0) {
+		 }
+		 if (result1> 0 && result2>0) {
 			 commit(conn);
 		 }else {
 			 rollback(conn);
 		 }
-		close(conn);
-		 return result1*result2;
-		
+		close(conn);		
 	}
+		return result1*result2;
+}
 	
 	public Rest selectRest(String restNo) {
 		Connection conn = getConnection();
@@ -110,25 +118,34 @@ public class RestService {
 		return list;
 		
 	}
-	public int updateRest(Rest r, Attachment at) {
+	public int updateRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list, String restNo) {
 		Connection conn = getConnection();
-		int result = new RestDao().updateRest(conn,r);
-//		int result2= 1;
-//		if(at != null) {
-//			if(at.getRefNo() != null) {
-//				result2 = new RestDao().updateAttFile(conn,at);
-//			}else {
-//				result2 = new RestDao().insertUpdateAttFile(conn,at);
-//			}
-//		}
-//		if(result1 >0 && result2 >0) {
-//			commit(conn);
-//		}else {
-			rollback(conn);
-			close(conn);
-			return result;
+		
+		int result1 = new RestDao().updateRest(conn, r);
+		int result2= 1;
+		int result3= 1;
+		
+		if (result1 != 0){
+			for(int i=0; i<list.size();i++) {
+				result2 = new RestDao().updateRestMenu( conn,list.get(i),restNo, i);
+			}
 		}
-	
+		if(img != null) {
+		if(img.getImgFileNo() != null) {
+				result3 = new RestDao().updateRestAt(conn,img);
+			}else {
+				result3 = new RestDao().insertUpdateRestAt(conn,img);
+			}
+		}
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} close(conn);
+		
+		return result1 * result2* result3;
+		
+	}
 
 
 	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName, String rsFunction, String funcState){
@@ -165,6 +182,22 @@ public class RestService {
 		close(conn);
 		return img;
 	}
+
+	public Rest selectRestMain(String restNo) {
+		Connection conn = getConnection();
+		
+		Rest r = new RestDao().selectRestMain(conn, restNo);
+				close(conn);
+		return r;
+	}
+//	public ArrayList<Rest> searchByKeyword(String keyword) {
+//		Connection conn = getConnection();
+//		ArrayList<Rest> rlist = new RestDao().searchByKeyword(conn, keyword);
+//		close(conn); 
+//		return rlist;
+//
+//	}
+
 	
 	public ArrayList<Rest> contentRestList(ArrayList<String> categoryList){
 		Connection conn = getConnection();
@@ -181,5 +214,41 @@ public class RestService {
 		close(conn); 
 		return list;
 	}
+
+	public int deleteRest(String restNo) {
+		Connection conn = getConnection();
+		int result = new RestDao().deleteRest(conn, restNo);
+		if (result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

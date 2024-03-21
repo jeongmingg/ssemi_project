@@ -31,7 +31,7 @@ public class AdminRestMainController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String restNo = request.getParameter("num");
 		
-		Rest r = new RestService().selectRest(restNo);
+		Rest r = new RestService().selectRestMain(restNo);
 		
 		request.setAttribute("r", r);
 		
