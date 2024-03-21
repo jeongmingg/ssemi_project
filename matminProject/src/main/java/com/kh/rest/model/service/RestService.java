@@ -162,7 +162,7 @@ public class RestService {
 		
 		ArrayList<Rest> mList = new RestDao().selectMenuList(conn, rpage);
 		
-		System.out.println(mList);
+		//System.out.println(mList);
 		close(conn);
 		return mList;
 		

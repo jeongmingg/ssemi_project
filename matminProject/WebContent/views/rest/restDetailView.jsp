@@ -1203,16 +1203,29 @@
 
 		<!-- 현재 url 링크 복사 -->
 		<script>
-			 $(".normal").click(function(){
+			$(".normal").click(function(){
 				const url = window.location.href; // 현재 링크를 가져옴
-
-				// 클립보드 복사해주는 메소드
-				// 클립보드에 복사가 완료되면 콜백함수 실행
-				navigator.clipboard.writeText(url).then(()=>{ 
+				const textArea = document.createElement('textarea');
+				textArea.value = url;
+				document.body.appendChild(textArea);
+				textArea.select();
+				try {
+					document.execCommand('copy');
 					alert("식당의 링크가 클립보드에 복사되었습니다😊");
-				})
+				} catch (err) {
+					alert('클립보드 복사에 실패했습니다. 수동으로 복사해주세요.');
+				}
+				document.body.removeChild(textArea);
+			});
+						
+				
+				// 클립보드 복사해주는 메소드 (배포되는환경에선 사용못함 )
+				// 클립보드에 복사가 완료되면 콜백함수 실행
+				//window.navigator.clipboard.writeText(url).then(()=>{ 
+				//	alert("식당의 링크가 클립보드에 복사되었습니다😊");
+				//})
+				
 
-			})
 		</script>
 	
 	
@@ -1319,7 +1332,7 @@
 				  	    var rvname = $(this).data("rvname");
 				  	    var logname = $(this).closest(".rv1").find('.serverNickname').val();
 				  	    
-				  	   console.log(rvno, logname);
+				  	   //console.log(rvno, logname);
 					       $.ajax({
 					       	url:"seLike.rv",
 					       	data:{
@@ -1378,7 +1391,7 @@
 					var rvlname = $(this).data("rvname");
 					var logname = $(this).closest('.rv1').find('.serverNickname').val();
 
-					console.log(ele);
+					//console.log(ele);
 					// console.log(rvlno);
 					// console.log(rvlname);
 					// console.log(logname);
@@ -1400,9 +1413,9 @@
 
 			// 리뷰 추천 인서트 및 삭제 
 			function checkLike(ele, rvlno, rvlname, logname){
-				console.log(rvlno);
-				console.log(rvlname);
-				console.log(logname);
+				//console.log(rvlno);
+				//console.log(rvlname);
+				//console.log(logname);
 				
 					$.ajax({
 					url:"inLike.rv",
@@ -1414,14 +1427,14 @@
 					success:function(response){
 						// console.log(response);					
 						if ('result1' in response) {
-							console.log("인서트돼라!");
-							console.log(ele);
+							//console.log("인서트돼라!");
+							//console.log(ele);
 
 							$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-filled/48/FFFFFF/facebook-like.png') no-repeat; background-size: 20px; background-position: 12px 6px; background-color:#f5a424; color:white; border solid 0px");	
 							
 						} else if('result2' in response){
-							console.log("삭제돼라!");
-							console.log(ele);
+							//console.log("삭제돼라!");
+							//console.log(ele);
 							$(ele).attr("style", "background: url('https://img.icons8.com/fluency-systems-regular/48/f39c12/facebook-like--v1.png') no-repeat; background-size: 20px; background-position: 12px 6px;");
 
 						}
@@ -1446,14 +1459,14 @@
 					url:"coLike.rv",
 					data:{rvno:rvno},
 					success:function(count){
-						console.log("countLike : ajax성공");
+						//console.log("countLike : ajax성공");
 						var likeCount = count.likeCount
 						
 							$(".like").each(function(){
 								if(count.likeCount > 0 && count.reviewNo === rvno){
 									var span = ele.find(".likeCount").text();
 									
-									console.log("span : " + span)
+									//console.log("span : " + span)
 									ele.find(".likeCount").text("(" + likeCount + ")");
 								
 								}else {
@@ -1463,7 +1476,7 @@
 					},
 
 					error:function(){
-						console.log("ajax실패");
+						//console.log("ajax실패");
 					}
 					});
 				});
@@ -1474,7 +1487,7 @@
 			function deleteReview(ele){
 				/*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
 				let rvNo = $(ele).siblings("input").val();		
-				console.log(rvNo);
+				//console.log(rvNo);
 				
 				if (confirm("정말 삭제하시겠습니까? 😭")) {
 					$.ajax({
@@ -1535,7 +1548,7 @@
 		<!-- 리뷰 별 클릭된 value값 -->
 		<script>
 			 function reviewstar(element) {
-				 console.log("!");
+				 
 	        // 별점을 선택한 값으로 업데이트
 	        	var score = $(element).attr('value');
 	

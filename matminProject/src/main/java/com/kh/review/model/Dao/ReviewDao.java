@@ -206,7 +206,7 @@ public class ReviewDao {
 				
 			}
 
-			System.out.println("reviewdap" + rate);
+			//System.out.println("reviewdap" + rate);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -285,15 +285,15 @@ public class ReviewDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("rvNo: " + rvNo);
-	        System.out.println("logName: " + logName);
-			System.out.println(result);
+			//System.out.println("rvNo: " + rvNo);
+	        //System.out.println("logName: " + logName);
+			//System.out.println(result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			System.out.println("insertLike : " + result);
+			//System.out.println("insertLike : " + result);
 		} return result;
 
 	}

@@ -251,14 +251,14 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
       			data:{keyWord:$("#searchKeyWord").val()
       				, cpage:cpage},
       			success: function(map){
-      				console.log("ajax 통신성공");
-      				console.log(map);
+      				//console.log("ajax 통신성공");
+      				//console.log(map);
       				
       				let pi = map.pi;
       				let sList = map.sList;
       				
       				
-      				console.log(pi);
+      				//console.log(pi);
       				let currentPage = pi.currentPage;
       				let startPage = pi.startPage;
       				let endPage = pi.endPage;

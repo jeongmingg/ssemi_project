@@ -234,7 +234,7 @@ public class RestDao {
 			
 			result = pstmt.executeUpdate();
 		//	System.out.println("Dao의 " + r);
-			System.out.println("Dao의 " + result);
+		//	System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -340,7 +340,7 @@ public class RestDao {
 			pstmt.setString(3, img.getImgFilePath());
 			
 			result = pstmt.executeUpdate();
-			System.out.println(img);
+			//System.out.println(img);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -474,7 +474,7 @@ public class RestDao {
 			pstmt.setString(11, r.getRestNo());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("dao의"+result);
+			//System.out.println("dao의"+result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

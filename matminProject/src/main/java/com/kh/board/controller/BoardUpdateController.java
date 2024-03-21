@@ -66,8 +66,8 @@ public class BoardUpdateController extends HttpServlet {
 			
 
 			if(multiRequest.getOriginalFileName("file") != null) { // 넘어온 첨부파일 있을 경우
-				System.out.println("!@#$#%^^");
-				System.out.println(multiRequest.getOriginalFileName("file"));
+				//System.out.println("!@#$#%^^");
+				//System.out.println(multiRequest.getOriginalFileName("file"));
 				
 				img = new ImgFile();
 				img.setImgOriginName(multiRequest.getOriginalFileName("file"));
@@ -89,9 +89,9 @@ public class BoardUpdateController extends HttpServlet {
 			int result = new BoardService().updateBoard(b, img);
 			
 			if(result > 0) {
-				System.out.println("here");
+				//System.out.println("here");
 				request.setAttribute("img", img);
-				System.out.println(request.getAttribute("img"));
+				//System.out.println(request.getAttribute("img"));
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다 😀");
 				response.sendRedirect(request.getContextPath() + "/detail.bo?bno=" + bno);

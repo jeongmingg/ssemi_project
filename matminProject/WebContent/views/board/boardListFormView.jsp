@@ -334,7 +334,7 @@
 			$("input[type=radio]").on("click", function(){
 				var chkValue = $("input[type=radio]:checked").val();
 				
-				console.log(chkValue);
+				//console.log(chkValue);
 				if(chkValue == "맛집 삭제"){
 					// $("#title").attr("value", "  맛집 삭제 요청합니다");
 					$("#title").val("맛집 삭제 요청합니다")
