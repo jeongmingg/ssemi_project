@@ -54,7 +54,7 @@
 					<p>기본정보 <small>(필수)</small></p>
 					<hr id="hr">
 					<div>
-						<input type="text" name="userId" placeholder="아이디" oninput="idCheck();"> <br>
+						<input type="text" name="userId" placeholder="아이디" oninput="idCheck();" autocomplete="off"> <br>
 						<span id="idMsg" class="message" style="display: none;"></span>
 	
 						<input type="password" name="userPwd" placeholder="비밀번호"> <br>
@@ -63,15 +63,15 @@
 						<input type="password" placeholder="비밀번호 확인"> <br>
 						<span id="pwdCheckMsg" class="message" style="display: none;"></span>
 	
-						<input type="text" name="userName" placeholder="이름"> <br>
+						<input type="text" name="userName" placeholder="이름" autocomplete="off"> <br>
 						<span id="nameMsg" class="message" style="display: none;"></span>
 	
-						<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();"> <br>
+						<input type="text" name="nickname" placeholder="닉네임" oninput="nickCheck();" autocomplete="off"> <br>
 						<span id="nicknameMsg" class="message" style="display: none;"></span>
 	
-						<input type="text" name="email" placeholder="이메일" oninput="emailCheck();">
+						<input type="text" name="email" placeholder="이메일" oninput="emailCheck();" autocomplete="off">
 						@
-						<input type="text" name="domain" oninput="emailCheck();">
+						<input type="text" name="domain" oninput="emailCheck();" autocomplete="off">
 						<select id="selectDomain" onchange="input_domain();">
 							<option value="input-self">직접입력</option>
 							<option value="naver.com">naver.com</option>
