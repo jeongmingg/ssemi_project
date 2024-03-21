@@ -20,10 +20,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
 <style>
 	.main-content{
       width: 1800px;
@@ -32,7 +43,7 @@
     }
         
       /* 전체 구조 비율 */
-      #banner{height: 450px; margin-bottom: 20px; margin-top: 10px;}
+      #banner{height: 480px; margin-bottom: 20px; margin-top: 10px;}
       #content{height: 1620px;}
 
       /* banner 비율 */
@@ -40,17 +51,16 @@
       #banner_1, #banner_3{width: 10%;}
       #banner_2{width: 80%;}
 
-      #banner_2>div{width: 100%; float: left;}
+      #banner_2>div{width: 100%; float: left; margin-left: 180px; margin-top: 5px;}
       #banner_2_1{height: 60%;}
       #banner_2_2{height: 25%;}
       #banner_2_3{height: 15%;}
 
-      #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left;}
+      #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left; height: 15%;}
       
       /* banner 스타일 */
       #banner{
           background-color: rgb(255, 170, 28);
-          padding-top: 10px;
           padding-bottom: 10px;
       }
 
@@ -199,59 +209,97 @@
        }
 
           
-          /* 식당이름 스타일 */
-          .swiper-slide figcaption{
-              text-align: left; 
-              font-weight: 600; font-size: 14px;
-              padding-top: 2px;
-          }
+        /* 식당이름 스타일 */
+        .swiper-slide figcaption{
+            text-align: left; 
+            font-weight: 600; font-size: 14px;
+            padding-top: 2px;
+        }
+
+        .carousel-item{
+            width:1800px; 
+            height:480px;
+        }
+        .carousel-inner img {
+            height: 100%;
+        }
+        .carousel-indicators{
+            bottom: -20px;
+        }
+        
 </style>
 </head>
 <body>
 	<div class="main-content">
         <div id="banner">
-            <div id="banner_1"></div>
-            <div id="banner_2">
-                <div id="banner_2_1">
-                    <img id="ban_img0" src="resources/banner/walet-small.png">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+                <ul class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ul>
+
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div id="banner_1"></div>
+                        <div id="banner_2">
+                            <div id="banner_2_1">
+                                <img id="ban_img0" src="resources/banner/walet-small.png">
+                            </div>
+                            <div id="banner_2_2">
+                                <div id="banner_2_2_1">
+                                    <img class="banner_1" id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
+                                </div>
+                                <div id="banner_2_2_2">
+                                    <img class="banner_2" id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
+                                </div>
+                                <div id="banner_2_2_3">
+                                    <img class="banner_3"id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
+                                </div>
+                                <div id="banner_2_2_4">
+                                    <img class="banner_4" id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
+                                </div>
+                                <div id="banner_2_2_5">
+                                    <img class="banner_5" id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
+                                </div>
+                            </div>
+                            <div id="banner_2_3">
+                                <div id="banner_2_3_1">
+                                    <button class="bannerBtn" id="ban_btn1">사원</button>
+                                </div>
+                                <div id="banner_2_3_2">
+                                    <button class="bannerBtn" id="ban_btn2">대리</button>
+                                </div>
+                                <div id="banner_2_3_3">
+                                    <button class="bannerBtn" id="ban_btn3">과장</button>
+                                </div>
+                                <div id="banner_2_3_4">
+                                    <button class="bannerBtn" id="ban_btn4">차장</button>
+                                </div>
+                                <div id="banner_2_3_5">
+                                    <button class="bannerBtn" id="ban_btn5">부장</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="resources/banner/고민하지마라탕.jpg" alt="mara" width="1800px" height="480px">
+                    </div>
+                        <div class="carousel-item">
+                            <img src="resources/banner/personal.jpg.jpg" alt="New York" width="1800px" height="480px">
+                        </div>
+                    </div>
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#myCarousel" data-slide="next"> 
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
                 </div>
-                <div id="banner_2_2">
-                    <div id="banner_2_2_1">
-                        <img class="banner_1" id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
-                    </div>
-                    <div id="banner_2_2_2">
-                        <img class="banner_2" id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
-                    </div>
-                    <div id="banner_2_2_3">
-                        <img class="banner_3"id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
-                    </div>
-                    <div id="banner_2_2_4">
-                        <img class="banner_4" id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
-                    </div>
-                    <div id="banner_2_2_5">
-                        <img class="banner_5" id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
-                    </div>
-                </div>
-                <div id="banner_2_3">
-                    <div id="banner_2_3_1">
-                        <button class="bannerBtn" id="ban_btn1">사원</button>
-                    </div>
-                    <div id="banner_2_3_2">
-                        <button class="bannerBtn" id="ban_btn2">대리</button>
-                    </div>
-                    <div id="banner_2_3_3">
-                        <button class="bannerBtn" id="ban_btn3">과장</button>
-                    </div>
-                    <div id="banner_2_3_4">
-                        <button class="bannerBtn" id="ban_btn4">차장</button>
-                    </div>
-                    <div id="banner_2_3_5">
-                        <button class="bannerBtn" id="ban_btn5">부장</button>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+               </div> 
+         </div>
         
         <div id="content">
             <div id="topBtn">
