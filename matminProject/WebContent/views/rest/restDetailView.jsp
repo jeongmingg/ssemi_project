@@ -721,6 +721,15 @@
 		-moz-appearance: none; /* Firefox 지원 */
       }
 
+	.img-area{
+		display: block;
+		border: 1px dashed  #c5c5c5;
+		height: 60px;
+	}
+	.file_name{
+		line-height: 60px;
+	}
+	
     .rating {
     position: relative;
     width: 180px;
@@ -1111,6 +1120,12 @@
 							<div class="count-area" style="text-align: right;">
 								<span id="count">0</span>/300
 							</div>
+							<br>
+							<label class="img-area">
+								<input type="file" id="file" name="file" class="imgFile" multiple style="display: none;">
+								<span class="file_name">📷사진을 첨부해주세요</span>
+								
+							</label>
 						</div>
 						</div>
 						<div class="modal-footer">
@@ -1154,7 +1169,7 @@
 		  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
 		
 		<script>
-		  Kakao.init('e902a8343d65c936edeecf8659c80312'); // 사용하려는 앱의 JavaScript 키 입력
+		  Kakao.init("e902a8343d65c936edeecf8659c80312"); // 사용하려는 앱의 JavaScript 키 입력
 		 			 
 		</script>
 		
@@ -1192,7 +1207,8 @@
 				const url = window.location.href; // 현재 링크를 가져옴
 
 				// 클립보드 복사해주는 메소드
-				navigator.clipboard.writeText(url).then(()=>{ // 클립보드에 복사가 완료되면 콜백함수 실행
+				// 클립보드에 복사가 완료되면 콜백함수 실행
+				navigator.clipboard.writeText(url).then(()=>{ 
 					alert("식당의 링크가 클립보드에 복사되었습니다😊");
 				})
 
