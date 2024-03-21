@@ -25,14 +25,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<link rel="stylesheet"
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<script
-    src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 <style>
@@ -43,7 +37,7 @@
     }
         
       /* 전체 구조 비율 */
-      #banner{height: 480px; margin-bottom: 20px; margin-top: 10px;}
+      #banner{height: 500px; margin-bottom: 20px; margin-top: 10px;}
       #content{height: 1620px;}
 
       /* banner 비율 */
@@ -51,12 +45,13 @@
       #banner_1, #banner_3{width: 10%;}
       #banner_2{width: 80%;}
 
-      #banner_2>div{width: 100%; float: left; margin-left: 180px; margin-top: 5px;}
+      #banner_2>div{width: 100%; float: left;}
       #banner_2_1{height: 60%;}
       #banner_2_2{height: 25%;}
-      #banner_2_3{height: 15%;}
+      #banner_2_3{height: 15%; margin-top: -15px;}
 
-      #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left; height: 15%;}
+      #banner_2_2>div{height: 100%; width: 20%; float: left; margin-top: 5px;}
+      #banner_2_3>div{height: 100%; width: 20%; float: left;}
       
       /* banner 스타일 */
       #banner{
@@ -66,7 +61,7 @@
 
       #banner_2_1, #banner_2_2 {text-align: center;}
 
-      #ban_img0{margin-top: 6px;}
+      #ban_img0{margin-top: 14px;}
       #banner_2_2 img{
           width: 100px;
           height: 100px;
@@ -76,18 +71,18 @@
       }
 
       #banner_2_3 button{
-          width: 50%;
-          height: 70%;
+          width: 50%; 
+          height: 70%;    
           background-color: white;
           color: rgb(118, 114, 115);
-          
           border-radius: 30px;
           font-size: 25px;
-          font-weight: 1000;
+          font-weight:1000;
           display: inline-block;
           margin: auto;
           padding-top: 7px;
           padding-bottom: 2px;
+          word-spacing: 8px;
       }
       
       #banner_2_3>div{
@@ -187,9 +182,9 @@
            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
            align-items:center; /* 위아래 기준 중앙정렬 */
            justify-content:center; /* 좌우 기준 중앙정렬 */
-           position: relative;
-           z-index: -2;
-           padding-top: 30px;
+              position: relative;
+              z-index: -2;
+              padding-top: 30px;
        }
        .swiper-slide img {
            /* box-shadow:0 0 5px #555; */
@@ -197,18 +192,15 @@
            width: 210px;
            height: 210px;
            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-           border-radius: 10px;
-           cursor: pointer;
-           transition: transform 0.3s ease-in-out; /* 부드럽게 확대, ease-in-out : 시작과 끝에서 천천히, 중간에서 빠르게 */
-           
+              border-radius: 10px;
        }
-
+        
        .swiper-slide img:hover{
             transform: scale(1.03); /* 원래 크기의 ()안 %로 확대 */
             opacity: 0.85;
        }
 
-          
+
         /* 식당이름 스타일 */
         .swiper-slide figcaption{
             text-align: left; 
@@ -218,30 +210,31 @@
 
         .carousel-item{
             width:1800px; 
-            height:480px;
+            height:500px;
         }
         .carousel-inner img {
             height: 100%;
         }
         .carousel-indicators{
-            bottom: -20px;
+            bottom: -15px;
         }
-        
+
+
 </style>
 </head>
 <body>
 	<div class="main-content">
-        <div id="banner">
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ul> 
 
-                <ul class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
-                </ul>
-
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div id="banner">
                         <div id="banner_1"></div>
                         <div id="banner_2">
                             <div id="banner_2_1">
@@ -282,34 +275,34 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="resources/banner/고민하지마라탕.jpg" alt="mara" width="1800px" height="480px">
-                    </div>
-                        <div class="carousel-item">
-                            <img src="resources/banner/personal.jpg.jpg" alt="New York" width="1800px" height="480px">
-                        </div>
-                    </div>
-                    <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </a>
-                    <a class="carousel-control-next" href="#myCarousel" data-slide="next"> 
-                        <span class="carousel-control-next-icon"></span>
-                    </a>
+                   </div>
                 </div>
-               </div> 
-         </div>
-        
+                <div class="carousel-item">
+                    <img src="resources/banner/banner_subway.jpg" alt="subway" width="1800px" height="500px">
+                </div>
+                <div class="carousel-item">
+                        <img src="resources/banner/banner-grade.jpg" alt="grade" width="1800px" height="500px">
+                </div>
+                <div class="carousel-item">
+                    <img src="resources/banner/banner_personal3.jpg" alt="personal" width="1800px" height="500px">
+                 </div>
+                 <!-- Left and right controls -->
+                 <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next"> 
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+        </div>
+        <br>
         <div id="content">
             <div id="topBtn">
-            	<a href="#">
-                	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
                     <g>
                         <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
                     </g>
-                	</svg>
-              </a>  
+                </svg>
             </div>
             
             <div id="content_left">
@@ -322,6 +315,9 @@
                         </div>
 
                     </div>
+                    <!-- <div id="content_bestSearch_content"> -->
+                        <!-- <div id="content_bestSearch_content_1"> -->
+                            <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-1">
                            <% int count = 0; %>
@@ -331,7 +327,6 @@
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption> 
-		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% if(count == 25){break;} %>
@@ -362,8 +357,7 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption>
-		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
+		                                    <figcaption><%= r.getRestName() %></figcaption> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -397,8 +391,7 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption>
-		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
+		                                    <figcaption><%= r.getRestName() %></figcaption> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -432,8 +425,7 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption>
-		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
+		                                    <figcaption><%= r.getRestName() %></figcaption> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -467,8 +459,7 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption>
-		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div> 
+		                                    <figcaption><%= r.getRestName() %></figcaption> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -628,11 +619,6 @@
 
                 
             });
-            
-            $('.swiper-slide').click(function(){
-       		 var restNo = $(this).find('.restNo').text();
-       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
-       	 	});
 
         </script>
         
