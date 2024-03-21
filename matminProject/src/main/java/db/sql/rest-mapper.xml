@@ -142,7 +142,8 @@
 				     , REST_IMG_URL
 				     , COUNT(REVIEW_NO) AS REVIEW_COUNT
 				     , MENU_PRICE
-				     , REP_MENU
+				     , MENU_NAME
+				     , LOCAL_NAME
 				  FROM (
 				       SELECT
 				              REST_NO
@@ -150,28 +151,29 @@
 				            , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
 				            , REST_IMG_URL
 				            , REVIEW_NO
-				            , MENU_NO
 				            , MENU_PRICE
 				            , MENU_NAME
-				            , REP_MENU
+				            , LOCAL_NAME
 				         FROM REVIEW
 				         RIGHT JOIN REST USING(REST_NO)
 				         LEFT JOIN MENU USING(REST_NO)
+				         LEFT JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
 				        WHERE REP_MENU = 'Y'
 				       )
 				 WHERE (
-					        ( ? = 'ban_btn1' AND MENU_PRICE <= 7000 ) OR
-					        ( ? = 'ban_btn2' AND MENU_PRICE > 7000 AND MENU_PRICE <= 12000 ) OR
-					        ( ? = 'ban_btn3' AND MENU_PRICE > 12000 AND MENU_PRICE <= 20000) OR
-					        ( ? = 'ban_btn4' AND MENU_PRICE > 20000 AND MENU_PRICE <= 35000) OR
-					        ( ? = 'ban_btn5' AND MENU_PRICE > 35000)
-					   )
+				            ( ? = 'ban_btn1' AND MENU_PRICE <= 7000 ) OR
+				            ( ? = 'ban_btn2' AND MENU_PRICE > 7000 AND MENU_PRICE <= 12000 ) OR
+				            ( ? = 'ban_btn3' AND MENU_PRICE > 12000 AND MENU_PRICE <= 20000) OR
+				            ( ? = 'ban_btn4' AND MENU_PRICE > 20000 AND MENU_PRICE <= 35000) OR
+				            ( ? = 'ban_btn5' AND MENU_PRICE > 35000)
+				       )
 				 GROUP
 				    BY REST_NO
 				     , REST_NAME
 				     , REST_IMG_URL
 				     , MENU_PRICE
-				     , REP_MENU
+				     , MENU_NAME
+				     , LOCAL_NAME
 				 ORDER
 				    BY REST_AVG DESC , REVIEW_COUNT DESC
 	     	]]>
