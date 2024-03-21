@@ -697,7 +697,7 @@ div {
 								<tr>
 									<td rowspan="3" width="120"
 										style="padding-left: 15px; padding-right: 15px;"><img
-										class="rest-img" src="resources/star, heart/star.png" /></td>
+										class="rest-img" src="<%= s.getRestImgUrl() %>" /></td>
 									<td colspan="2"
 										style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
 										<%=s.getRestName()%>
