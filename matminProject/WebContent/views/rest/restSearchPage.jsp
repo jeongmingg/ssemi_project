@@ -375,11 +375,12 @@ div {
 
 #kakao, #copy {
 	height: 30px;
-	font-weight: 500;
 	font-size: 16px;
 	text-align: center;
+	color: gray;
 }
 
+#copy{padding-right:10px;}
 #kakaoImg {
 	width: 60px;
 	height: 60px;
@@ -397,10 +398,12 @@ div {
 	align-items: center;
 }
 
-#copySvg {
-	width: 30px;
-	height: 30px;
+#copyImg {
+	width: 55px;
+	height: 55px;
 	cursor: pointer;
+	margin-left:20px;
+	
 }
 
 /* 공유버튼 스타일 */
@@ -611,12 +614,12 @@ div {
 			<div id="content_2">
 				<div id="search-list">
 					<div id="rs-arr">
-						<ul id="rs-arr-ul">
+						<!-- <ul id="rs-arr-ul">
 							<li id="rest-li1">⇅ 정렬</li>
 							<li id="rest-li2">평점높은순</li>
 							<li id="rest-li3">리뷰많은순</li>
 							<li id="rest-li4">찜꽁많은순</li>
-						</ul>
+						</ul> -->
 					</div>
 					<div id="lc-name"></div>
 					<div id="rs-content">
@@ -634,7 +637,7 @@ div {
 								<div id="icon">
 									<div id="kakao-div">
 										<div id="kakao-icon">
-											<a href="#"> <img id="kakaoImg"
+											<a id="kakaotalk-sharing-btn" href="javascript:shareMessage()" class="kakao"> <img id="kakaoImg"
 												src="resources/logo/kakao-logo.png" />
 											</a>
 										</div>
@@ -642,15 +645,9 @@ div {
 									</div>
 									<div id="copy-div">
 										<div id="copy-icon">
-											<svg id="copySvg" xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink"
-												viewBox="0 0 32.06999969482422 33.58000183105469"
-												fill="rgb(228, 145, 13)" data-svg-content="true">
-                                      <g>
-                                        <path
-													d="M 7.54,15.77c 1.278,1.278, 3.158,1.726, 4.868,1.216L 2.96,7.54C 2.652,7.232, 2.49,6.786, 2.49,6.254 c0-0.88, 0.46-2.004, 1.070-2.614c 0.8-0.8, 2.97-1.686, 3.98-0.682l 9.446,9.448c 0.138-0.462, 0.208-0.942, 0.208-1.422 c0-1.304-0.506-2.526-1.424-3.446L 9.364,1.134C 7.44-0.79, 3.616-0.068, 1.734,1.814C 0.642,2.906-0.036,4.598-0.036,6.23 c0,1.268, 0.416,2.382, 1.17,3.136L 7.54,15.77zM 24.46,16.23c-1.278-1.278-3.158-1.726-4.868-1.216l 9.448,9.448c 0.308,0.308, 0.47,0.752, 0.47,1.286 c0,0.88-0.46,2.004-1.070,2.614c-0.8,0.8-2.97,1.686-3.98,0.682L 15.014,19.594c-0.138,0.462-0.208,0.942-0.208,1.422 c0,1.304, 0.506,2.526, 1.424,3.446l 6.404,6.404c 1.924,1.924, 5.748,1.202, 7.63-0.68c 1.092-1.092, 1.77-2.784, 1.77-4.416 c0-1.268-0.416-2.382-1.17-3.136L 24.46,16.23zM 9.164,9.162C 8.908,9.416, 8.768,9.756, 8.768,10.116s 0.14,0.698, 0.394,0.952l 11.768,11.77 c 0.526,0.524, 1.38,0.524, 1.906,0c 0.256-0.254, 0.394-0.594, 0.394-0.954s-0.14-0.698-0.394-0.952L 11.068,9.162 C 10.544,8.638, 9.688,8.638, 9.164,9.162z"></path>
-                                      </g>
-                                    </svg>
+											<a href="#" class="normal" style="margin: auto; margin-right:60px">
+	                           					<img id="copyImg" src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png">		
+	                                    	</a>
 										</div>
 										<div id="copy">링크복사</div>
 									</div>
@@ -713,7 +710,9 @@ div {
 									<td width="85px" style="padding-left: 15px; font-size: 17px">
 										<%=s.getLocalName()%>
 									</td>
+									<% if(s.getMenuName() != null){ %>
 									<td>대표메뉴&nbsp;&nbsp; <%=s.getMenuName()%>
+									<% } %>
 									</td>
 								</tr>
 								<tr>
@@ -752,7 +751,62 @@ div {
 				</div>
 			</div>
 		</div>
-
+		
+	<!--  카카오톡 공유하기 -->
+		<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"
+		  integrity="sha384-dpu02ieKC6NUeKFoGMOKz6102CLEWi9+5RQjWSV0ikYSFFd8M3Wp2reIcquJOemx" crossorigin="anonymous"></script>
+		
+		<script>
+		  Kakao.init("e902a8343d65c936edeecf8659c80312"); // 사용하려는 앱의 JavaScript 키 입력
+		 			 
+		</script>
+		
+		<script>
+		  function shareMessage() {
+			  
+		    Kakao.Share.sendDefault({
+		      objectType: 'feed',
+		      content: {
+		        title: '맛집의 민족',
+		        description: '오늘 뭐먹을지 매일 고민되시죠? 저희가 해결해드릴게요!',
+		        imageUrl:
+		          'https://postfiles.pstatic.net/MjAyNDAyMjBfOTUg/MDAxNzA4NDI4NjY2NTg1.cyPebz4LZBNcuqXMrfz6vCCTwqOoLTUfSpII4Zk3J3Ig.VsIL3oYomeIfE08wBJNpYNcc0_QNxc4Ne_9br53mM_Ug.PNG/%ED%88%AC%EB%AA%85%EB%B0%B0%EA%B2%BD%EB%A1%9C%EA%B3%A0.png?type=w966',
+		        link: {
+		          // [내 애플리케이션] > [플랫폼] 에서 등록한 사이트 도메인과 일치해야 함
+		          webUrl: 'e902a8343d65c936edeecf8659c80312',
+		        },
+		      },
+		      buttons: [
+		        {
+		          title: '웹으로 보기',
+		          link: {
+		            webUrl: window.location.href, // 현재주소 불러오기
+		          },
+		        },
+		      ],
+		    });
+		  }
+		</script>
+		
+		<!-- 현재 url 링크 복사 -->
+		<script>
+			$(".normal").click(function(){
+				const url = window.location.href; // 현재 링크를 가져옴
+				const textArea = document.createElement('textarea');
+				textArea.value = url;
+				document.body.appendChild(textArea);
+				textArea.select();
+				try {
+					document.execCommand('copy');
+					alert("식당의 링크가 클립보드에 복사되었습니다😊");
+				} catch (err) {
+					alert('클립보드 복사에 실패했습니다. 수동으로 복사해주세요.');
+				}
+				document.body.removeChild(textArea);
+			});
+		</script>
+		
+		
 		<script>
                     $(function () {
                       // 카테고리 리스트 펼치기 버튼 눌렀을때
@@ -781,6 +835,11 @@ div {
                         }
                       });
 
+                      
+                      
+                      
+                      
+                      
                       // 로그인 안할시 맛집등록요청하기 누르면 로그인 화면으로 이동
                       $("#rest-rq-btn").click(function () {
                         if ("<%=loginUser%>" == "null") {
@@ -952,8 +1011,10 @@ div {
 										+ "</td>"
 										+ "<td>"
 										+ "대표메뉴&nbsp;&nbsp; "
-										+ restaurant.menuName
-										+ "</td>"
+										if(s.getMenuName() != null){ 
+										value += restaurant.menuName											
+										}
+										value += "</td>"
 										+ "</tr>"
 										+ "<tr>"
 										+ '<td colspan="2" style="padding-left: 15px; font-size: 20px;"> <img id="star" src="resources/star, heart/star.png">'
