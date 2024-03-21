@@ -20,19 +20,19 @@
 		mapList.add(s);
 	}
 	request.setAttribute("mapList", mapList);
-   
-   /* 별점 채우기위한 퍼센트 변수 */
-   double score = (double)r.getRestAvg();
-   double maxScore = 5.0;
-   double percent = (score/maxScore) * 100;
-	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
-   String star = String.format("%.1f", percent);
 	
    ArrayList<Review> rv = (ArrayList<Review>)request.getAttribute("rvList");
    ArrayList<Review> ra = ( ArrayList<Review>)request.getAttribute("rate");
    Review rvAvg = (Review)request.getAttribute("rv");
    ArrayList<Rest> mList = (ArrayList<Rest>)request.getAttribute("mList");
    ArrayList<Heart> hList = (ArrayList<Heart>)request.getAttribute("hList");
+   
+   /* 별점 채우기위한 퍼센트 변수 */
+   double score = (double)rvAvg.getReviewAvg();
+   double maxScore = 5.0;
+   double percent = (score/maxScore) * 100;
+	// 소수점 한 자리까지 반올림하여 문자열로 변환(css 속성으로 받으려면 문자열만가능)
+   String star = String.format("%.1f", percent);
 
 %>
 
@@ -1313,11 +1313,9 @@
 					    
 					 	// 리뷰작성자 닉네임을 변수에 담음
 					 	var rvname = $(this).siblings('.rvname').val();
-					    console.log("rvname :" + rvname);
 				
 					 	// 현재 로그인한 유저의 닉네임을 변수에 담음
 					    var serverNickname = $(this).siblings('.serverNickname').val()
-					    console.log("serverNIckname :" + serverNickname);
 					    
 					    if (serverNickname === rvname) {
 					        $(this).show(); // 같으면 삭제버튼 보여짐
@@ -1454,14 +1452,13 @@
 							if(review != null){
 								alert("성공적으로 삭제됐습니다! 😀");
 							}
-							console.log("ajax 통신성공!")
-							selectReviewList();
+							
 						}, error:function(){
 							console.log("삭제오류 ajax통신오류")
 						}
 					})
 			
-				}
+				} 
 			}
 
 
@@ -1520,7 +1517,7 @@
 			$(function() {				
 				if(<%= loginUser %> == null){
 					$("#btn-review").click(function(){
-						alert("📌 로그인 후 이용해주세요!");    
+						alert("📌 로그인 후 이용가능합니다!");    
 						window.location.href = "<%= contextPath %>/loginForm.me";
 					});
 				} else {
