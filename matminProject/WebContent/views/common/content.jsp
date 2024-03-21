@@ -29,6 +29,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
+
 <style>
 	.main-content{
       width: 1800px;
@@ -37,7 +38,7 @@
     }
         
       /* 전체 구조 비율 */
-      #banner{height: 500px; margin-bottom: 20px; margin-top: 10px;}
+      #banner{height: 500px; margin-bottom: 20px; margin-top: 10px; background-image: url('resources/banner/banner-title5.jpg');}
       #content{height: 1620px;}
 
       /* banner 비율 */
@@ -238,7 +239,7 @@
                         <div id="banner_1"></div>
                         <div id="banner_2">
                             <div id="banner_2_1">
-                                <img id="ban_img0" src="resources/banner/walet-small.png">
+                                <!--<img id="ban_img0" src="resources/banner/walet-small.png">-->
                             </div>
                             <div id="banner_2_2">
                                 <div id="banner_2_2_1">
