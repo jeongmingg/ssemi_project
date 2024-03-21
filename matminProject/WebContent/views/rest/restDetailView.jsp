@@ -128,7 +128,7 @@
 		padding: 0px px;
 	}
 	.heart-count-area{
-		padding-left: 600px;
+		padding-left: 580px;
 		padding-top: 4px;
 		font-weight: 700px;
 		color: rgb(88, 88, 88);
@@ -1116,9 +1116,9 @@
 								<input type="hidden" id="hidden-input-stars" value="">
                             </div>
                             <br><br>
-							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)" maxlength="300"></textarea>
+							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)" maxlength="200"></textarea>
 							<div class="count-area" style="text-align: right;">
-								<span id="count">0</span>/300
+								<span id="count">0</span>/200
 							</div>
 							<br>
 							<label class="img-area">
@@ -1294,7 +1294,7 @@
 									</div>
 									<div class="review-content">
 									<br><br>
-										<p name="rv-content" class="rv-content">
+										<p name="rv-content" class="rv-content" maxlength="182">
 	\${rvcont}
 										</p>
 									</div>
@@ -1583,7 +1583,17 @@
 					$("#count").text(length);
 	       		 })
 			})
+
+
+			$(function(){
+				var text = $("#review-write").val();
+				if(text.length()>200){
+					text = text.substring(0, 200);
+					text.focus();
+				}
+			   })
 		</script>
+
 
 		<!-- 식당 메뉴창 더보기 -->		
 		<script>
