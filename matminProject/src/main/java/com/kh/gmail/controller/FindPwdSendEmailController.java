@@ -46,7 +46,7 @@ public class FindPwdSendEmailController extends HttpServlet {
 		// 1) 2단계 인증 추가
 		// 2) 앱 비밀번호 생성(메일, 서버컴퓨터 OS) -> 저장해두기
 
-		String host = "http://localhost:8085" + request.getContextPath();
+		String host = "http://192.168.20.27:8085" + request.getContextPath();
 		String from = "works.jhnam@gmail.com";
 		String to = (String)request.getParameter("email");
 		
@@ -90,7 +90,6 @@ public class FindPwdSendEmailController extends HttpServlet {
 		try{
 			Authenticator auth = new Gmail();
 			Session ses = Session.getInstance(p, auth);
-			ses.setDebug(true);
 			MimeMessage msg = new MimeMessage(ses);
 			msg.setSubject(subject);
 			Address fromAddr = new InternetAddress(from);

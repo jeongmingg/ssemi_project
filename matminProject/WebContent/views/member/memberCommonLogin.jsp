@@ -57,11 +57,9 @@
 				
 					<input type="text" name="userId" placeholder="ID"> <br>
 					<input type="password" name="userPwd" placeholder="Password"> <br>
-					<input type="checkbox" name="autoLogin" id="autoLogin" style="cursor: pointer;">
-					<label for="autoLogin" style="font-size: 13px; cursor: pointer;">자동 로그인</label> <br>
 	
 					<% if(loginSuccess != null && loginSuccess.equals("실패")) { 	%>
-						<span id="message" style="display: block;">아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
+						<span id="message" style="display: block;">* 아이디 또는 비밀번호를 잘못 입력했습니다.<br>입력하신 내용을 다시 확인해주세요.</span>
 					<% } %>
 					<span id="message" style="display: none;"></span>
 					

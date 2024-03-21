@@ -37,7 +37,7 @@
 		                 FROM REST
 		                 LEFT JOIN REVIEW USING(REST_NO)
 		                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
-		                 LEFT JOIN MENU USING(REST_NO)
+		                 LEFT JOIN MENU USING (REST_NO)
 		               )
 		         GROUP
 		            BY REST_NO

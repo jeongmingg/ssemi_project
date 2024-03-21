@@ -59,6 +59,8 @@
 			<% if(!"".equals(memNo)) { %>
 			<!-- 1. 조회됐을 경우 -->
 				<div>
+					<span><strong>이메일로 인증번호가 발송되었습니다.<br>인증번호를 입력 후, 비밀번호 변경을 완료해주세요.</strong></span>
+					
 					<form action="<%= contextPath %>/findPwdChange.me" method="post">
 						<input type="hidden" name="memNo" value="<%= memNo %>">
 						<table>
@@ -68,7 +70,8 @@
 								<td><button type="button" class="btn btn-sm btn-secondary" id="authBtn" onclick="checkAuth();">인증하기</button></td>
 							</tr>
 							<tr>
-								<td colspan="3">
+								<td></td>
+								<td colspan="2">
 									<span class="message" id="authMsg"></span>
 								</td>
 							</tr>

@@ -20,9 +20,18 @@
     margin-bottom: 10px;
 }
 
+.result-area>div>span {
+    display: block;
+    margin-bottom: 10px;
+}
+
 .message{
     display: none;
     font-size: 14px;
+}
+
+#authMsg{
+    text-align: left;
 }
 
 #newPwdMsg, #checkPwdMsg{
