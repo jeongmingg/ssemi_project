@@ -6,8 +6,8 @@ $(function() {
             url: "findPwdSendEmail",
             data: {email: email},
             success: function(cNumber) {
-                alert("이메일로 인증번호가 발송되었습니다.\n인증번호를 입력 후, 인증을 완료해주세요.");
                 cNum = cNumber;
+                $("input[name=auth]").focus();
             },
             error: function() {
                 console.log("mail 발송 ajax 실패");
@@ -25,7 +25,7 @@ function checkAuth() {
     const checkPwdInput = $("#checkPwd");
     const changePwdBtn = $("#changePwdBtn");
     
-    if(authInput.val() === cNum) {
+    if(cNum !== "" && authInput.val() === cNum) {
         authMsg.css('display', 'block');
         authMsg.text("인증이 완료되었습니다.");
         authMsg.css('color', 'green');
