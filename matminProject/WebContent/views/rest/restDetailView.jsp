@@ -1560,7 +1560,7 @@
 
 		<script>
 			$(function() {				
-				if(<%= loginUser %> == null){
+				if("<%= loginUser %>" == "null"){
 					$("#btn-review").click(function(){
 						alert("📌 로그인 후 이용가능합니다!");    
 						window.location.href = "<%= contextPath %>/loginForm.me";
@@ -1586,7 +1586,7 @@
 
 			$(function(){
 				var text = $("#review-write").val();
-				if(text.length()>200){
+				if(text.length>200){
 					text = text.substring(0, 200);
 					text.focus();
 				}
