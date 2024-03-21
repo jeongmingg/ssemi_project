@@ -158,8 +158,12 @@
 	</entry>
 	
 	<entry key="countLike">
-	SELECT COUNT(REVIEW_NO) LIKE_COUNT
-	  FROM RVLIKE
-	 WHERE REVIEW_NO = ?
+	SELECT 
+	        COUNT(REVIEW_NO) LIKE_COUNT,
+            REVIEW_NO
+      FROM  RVLIKE
+     WHERE REVIEW_NO = ?
+     GROUP
+        BY REVIEW_NO
 	</entry>
 </properties>
