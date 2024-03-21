@@ -1,4 +1,6 @@
 $(function() {
+    $("input[name=userId]").focus();
+
     // 비밀번호 실시간 체크
     $("input[name=userPwd]").on("propertychange change paste input", function() {
         // 비밀번호: 영문(대소문자 구분), 숫자, 특수문자(!@#$%^&*) 포함 8자 이상 15자 이내
