@@ -134,7 +134,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
               <% if(list.isEmpty()){ %>
               <!-- 게시글 없을 경우 -->
               <tr>
-                <td colspan="6">존재하는 공지사항이 없습니다.</td>
+                <td colspan="6">🔉 존재하는 공지사항이 없습니다<td>
               </tr>
               <% }else{ %>
               <!--  게시글 있을 경우 -->
@@ -230,6 +230,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
       </body>
       
+      <!-- 엔터시에도 검색가능하도록 제어 -->
       <script>
         $("#searchKeyWord").on("keyup", function(){
             if(window.event.keyCode == 13){
@@ -240,7 +241,8 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
       </script>
 
-
+	  
+	  <!-- 닉네임 검색을 통한 게시글 조회 기능 -->
       <script>
      
       	function searchBoardList(cpage) {
@@ -285,7 +287,7 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 		              if(sList.length === 0 || $("#searchKeyWord").val() === null){ 
-		                $(".list-area tbody").html(`<tr><td colspan="6">존재하는 공지사항이 없습니다.</td></tr>`);
+		                $(".list-area tbody").html(`<tr><td colspan="6">🔉 존재하는 공지사항이 없습니다</td></tr>`);
 		                $paging.empty();
 		              } else {
 		
@@ -322,7 +324,8 @@ contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
       			}
       		});
       	}
-      		
+      	
+ 		// 글번호 클릭시 게시글로 이동
       	$(document).on("click", ".list-area tbody tr", function(){
                 var boardNo = $(this).find("td:first").text();
                 window.location.href = "<%= contextPath %>/detail.bo?bno=" + boardNo;

@@ -49,7 +49,7 @@ public class BoardDetailController extends HttpServlet {
 			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
 			
 		} else {
-			request.setAttribute("alertMsg", "조회를 실패하였습니다.");
+			request.setAttribute("alertMsg", "🚨 조회에 실패하였습니다");
 			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
 			
 		}
