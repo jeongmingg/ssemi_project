@@ -850,6 +850,12 @@
 	}
 	.like-area:hover .rvhover { visibility: visible; }
 
+	.rest-name>a{
+		float: right;
+		background-color: #e4910d;
+		color: white;
+	}
+
 </style>
 
 <body>
@@ -880,6 +886,9 @@
 					<div class="rest-name">
 						<h1 style="display: contents;"><%= r.getRestName() %></h1> 
 						<span class="score"><%= rvAvg.getReviewAvg() %></span>
+						<%if (loginUser != null && loginUser.getMemNo().equals("M1")) {%>
+							<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm">수정</a>
+						<%}%>
 					</div>
 						<span class="short-menu"><%= r.getCtgName() %></span>				
 					<div class="rest-add">

@@ -296,10 +296,18 @@ ArrayList<Category>
               </tr>
 
               <tr>
-                <th>첨부파일</th>
-                <td><input type="file" name="upfile" /></td>
-              </tr>
-
+				<th height="0">사진</th>
+				<td></td>
+				<td colspan="4">	
+					<div class="file-area">
+						<label>
+							<input type="file" id="file" name="file" className="btnOfInput"  style="display: none;">
+							<span class="file_name">파일을 선택해주세요</span>
+							<span class="file_btn">파일선택</span>
+						</label>
+					</div>
+				</td>
+					</tr>
               <tr>
                 <td>&nbsp;&nbsp;기타여부</td>
                 <td colspan="2">
@@ -356,6 +364,18 @@ ArrayList<Category>
                 뒤로가기
               </button>
             </div>
+            
+            <script>
+		
+		$(function() {
+			 $("input[type=file]").on("change", function() {
+			        const fileName = $(this).val().split("\\").pop();
+			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
+		 	});
+		});
+		
+		</script>
+            
 
             <script>
               function addInput() {
