@@ -48,6 +48,8 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		
 		ArrayList<Rest> menuList = rService.selectMenuByAdmin(restNo);
 		
+		System.out.println(lList);
+		
 		request.setAttribute("list", list);
 		request.setAttribute("lList", lList);
 		request.setAttribute("r", r);
