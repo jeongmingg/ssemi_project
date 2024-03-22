@@ -33,7 +33,6 @@ public class AdminRestUpdateController extends HttpServlet {
      */
     public AdminRestUpdateController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
