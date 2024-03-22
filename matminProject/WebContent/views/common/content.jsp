@@ -223,6 +223,22 @@
         .carousel-indicators{
             bottom: -15px;
         }
+        .swiper-button-prev{
+            background-image: url('resources/banner/less-than.png');
+            background-size: 150%;
+            left: 5px;
+            right: auto;
+        }
+        .swiper-button-next{
+            background-image: url('resources/banner/more-than.png');
+            background-size: 150%;
+            right: 5px;
+            left: auto;
+        }
+        .swiper-pagination-bullet-active{
+            opacity: 1;
+            background: #E4910D;
+        }
 
 
 </style>
@@ -474,13 +490,14 @@
 			                    
 			                    <% if(count == 25){break;} %>
                            <% } %>
+                        </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
                         <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
 
                         <!-- 페이징 -->
                         <div class="swiper-pagination"></div>
-                        </div>
+                    </div>
                 </div>
             </div>
             <div id="content_right">
