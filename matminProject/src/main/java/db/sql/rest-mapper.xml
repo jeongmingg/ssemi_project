@@ -140,8 +140,8 @@
 				     , ROUND(AVG(REVIEW_AVG), 1) "REST_AVG"
 				     , REST_IMG_URL
 				     , COUNT(REVIEW_NO) AS REVIEW_COUNT
-				     , MENU_PRICE
 				     , MENU_NAME
+				     , MENU_PRICE
 				     , LOCAL_NAME
 				  FROM (
 				       SELECT
@@ -150,8 +150,8 @@
 				            , NVL(ROUND(REVIEW_RATE, 1), 0) AS "REVIEW_AVG"
 				            , REST_IMG_URL
 				            , REVIEW_NO
-				            , MENU_PRICE
 				            , MENU_NAME
+				            , MENU_PRICE
 				            , LOCAL_NAME
 				         FROM REVIEW
 				         RIGHT JOIN REST USING(REST_NO)
@@ -170,8 +170,8 @@
 				    BY REST_NO
 				     , REST_NAME
 				     , REST_IMG_URL
-				     , MENU_PRICE
 				     , MENU_NAME
+				     , MENU_PRICE
 				     , LOCAL_NAME
 				 ORDER
 				    BY REST_AVG DESC , REVIEW_COUNT DESC
