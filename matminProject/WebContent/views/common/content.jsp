@@ -20,10 +20,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
 <style>
 	.main-content{
       width: 1800px;
@@ -32,7 +38,7 @@
     }
         
       /* 전체 구조 비율 */
-      #banner{height: 450px; margin-bottom: 20px; margin-top: 10px;}
+      #banner{height: 500px; margin-bottom: 20px; margin-top: 10px; background-image: url('resources/banner/banner-title5.jpg');}
       #content{height: 1620px;}
 
       /* banner 비율 */
@@ -43,20 +49,20 @@
       #banner_2>div{width: 100%; float: left;}
       #banner_2_1{height: 60%;}
       #banner_2_2{height: 25%;}
-      #banner_2_3{height: 15%;}
+      #banner_2_3{height: 15%; margin-top: -15px;}
 
-      #banner_2_2>div, #banner_2_3>div{height: 100%; width: 20%; float: left;}
+      #banner_2_2>div{height: 100%; width: 20%; float: left; margin-top: 5px;}
+      #banner_2_3>div{height: 100%; width: 20%; float: left;}
       
       /* banner 스타일 */
       #banner{
           background-color: rgb(255, 170, 28);
-          padding-top: 10px;
           padding-bottom: 10px;
       }
 
       #banner_2_1, #banner_2_2 {text-align: center;}
 
-      #ban_img0{margin-top: 6px;}
+      #ban_img0{margin-top: 14px;}
       #banner_2_2 img{
           width: 100px;
           height: 100px;
@@ -66,18 +72,18 @@
       }
 
       #banner_2_3 button{
-          width: 50%;
-          height: 70%;
+          width: 50%; 
+          height: 70%;    
           background-color: white;
           color: rgb(118, 114, 115);
-          
           border-radius: 30px;
           font-size: 25px;
-          font-weight: 1000;
+          font-weight:1000;
           display: inline-block;
           margin: auto;
           padding-top: 7px;
           padding-bottom: 2px;
+          word-spacing: 8px;
       }
       
       #banner_2_3>div{
@@ -198,70 +204,110 @@
             opacity: 0.85;
        }
 
-          
-          /* 식당이름 스타일 */
-          .swiper-slide figcaption{
-              text-align: left; 
-              font-weight: 600; font-size: 14px;
-              padding-top: 2px;
-          }
+
+        /* 식당이름 스타일 */
+        .swiper-slide figcaption{
+            text-align: left; 
+            font-weight: 600; font-size: 14px;
+            padding-top: 2px;
+        }
+
+        /* 배너 슬라이드 스타일*/
+        .carousel-item{
+            width:1800px; 
+            height:500px;
+        }
+        .carousel-inner img {
+            height: 100%;
+        }
+        .carousel-indicators{
+            bottom: -15px;
+        }
+
+
 </style>
 </head>
 <body>
 	<div class="main-content">
-        <div id="banner">
-            <div id="banner_1"></div>
-            <div id="banner_2">
-                <div id="banner_2_1">
-                    <img id="ban_img0" src="resources/banner/walet-small.png">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ul class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ul> 
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div id="banner">
+                        <div id="banner_1"></div>
+                        <div id="banner_2">
+                            <div id="banner_2_1">
+                                <!--<img id="ban_img0" src="resources/banner/walet-small.png">-->
+                            </div>
+                            <div id="banner_2_2">
+                                <div id="banner_2_2_1">
+                                    <img class="banner_1" id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
+                                </div>
+                                <div id="banner_2_2_2">
+                                    <img class="banner_2" id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
+                                </div>
+                                <div id="banner_2_2_3">
+                                    <img class="banner_3"id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
+                                </div>
+                                <div id="banner_2_2_4">
+                                    <img class="banner_4" id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
+                                </div>
+                                <div id="banner_2_2_5">
+                                    <img class="banner_5" id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
+                                </div>
+                            </div>
+                            <div id="banner_2_3">
+                                <div id="banner_2_3_1">
+                                    <button class="bannerBtn" id="ban_btn1">사원</button>
+                                </div>
+                                <div id="banner_2_3_2">
+                                    <button class="bannerBtn" id="ban_btn2">대리</button>
+                                </div>
+                                <div id="banner_2_3_3">
+                                    <button class="bannerBtn" id="ban_btn3">과장</button>
+                                </div>
+                                <div id="banner_2_3_4">
+                                    <button class="bannerBtn" id="ban_btn4">차장</button>
+                                </div>
+                                <div id="banner_2_3_5">
+                                    <button class="bannerBtn" id="ban_btn5">부장</button>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
                 </div>
-                <div id="banner_2_2">
-                    <div id="banner_2_2_1">
-                        <img class="banner_1" id="ban_img1" src="resources/banner/rank/KakaoTalk_20240212_182633118_02.png">
-                    </div>
-                    <div id="banner_2_2_2">
-                        <img class="banner_2" id="ban_img2" src="resources/banner/rank/KakaoTalk_20240212_182633118_04.png">
-                    </div>
-                    <div id="banner_2_2_3">
-                        <img class="banner_3"id="ban_img3" src="resources/banner/rank/KakaoTalk_20240212_182633118.png">
-                    </div>
-                    <div id="banner_2_2_4">
-                        <img class="banner_4" id="ban_img4" src="resources/banner/rank/KakaoTalk_20240212_182633118_01.png">
-                    </div>
-                    <div id="banner_2_2_5">
-                        <img class="banner_5" id="ban_img5" src="resources/banner/rank/KakaoTalk_20240212_182633118_03.png">
-                    </div>
+                <div class="carousel-item">
+                    <img src="resources/banner/banner_subway.jpg" alt="subway" width="1800px" height="500px">
                 </div>
-                <div id="banner_2_3">
-                    <div id="banner_2_3_1">
-                        <button class="bannerBtn" id="ban_btn1">사원</button>
-                    </div>
-                    <div id="banner_2_3_2">
-                        <button class="bannerBtn" id="ban_btn2">대리</button>
-                    </div>
-                    <div id="banner_2_3_3">
-                        <button class="bannerBtn" id="ban_btn3">과장</button>
-                    </div>
-                    <div id="banner_2_3_4">
-                        <button class="bannerBtn" id="ban_btn4">차장</button>
-                    </div>
-                    <div id="banner_2_3_5">
-                        <button class="bannerBtn" id="ban_btn5">부장</button>
-                    </div>
+                <div class="carousel-item">
+                        <img src="resources/banner/banner-grade.jpg" alt="grade" width="1800px" height="500px">
                 </div>
+                <div class="carousel-item">
+                    <img src="resources/banner/banner_personal3.jpg" alt="personal" width="1800px" height="500px">
+                 </div>
+                 <!-- Left and right controls -->
+                 <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" data-slide="next"> 
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
-            
         </div>
-        
+        <br>
         <div id="content">
             <div id="topBtn">
-            	<a href="#">
-                	<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 32 32" fill="rgb(230, 126, 34)" data-svg-content="true">
                     <g>
                         <path d="M 17,2C 8.716,2, 2,8.716, 2,17S 8.716,32, 17,32S 32,25.284, 32,17S 25.284,2, 17,2z M 23.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0L 18,11.414L 18,27 C 18,27.552, 17.552,28, 17,28S 16,27.552, 16,27L 16,11.414 L 11.708,15.708 c-0.39,0.39-1.024,0.39-1.414,0c-0.39-0.39-0.39-1.024,0-1.414l 6-6C 16.296,8.29, 16.298,8.29, 16.3,8.288 c 0.090-0.088, 0.198-0.162, 0.316-0.21c 0.244-0.102, 0.52-0.102, 0.764,0C 17.504,8.128, 17.614,8.2, 17.708,8.292l 6,6 C 24.098,14.684, 24.098,15.316, 23.708,15.708z"></path>
                     </g>
-                	</svg>
-              </a>  
+                </svg>
             </div>
             
             <div id="content_left">
@@ -274,6 +320,7 @@
                         </div>
 
                     </div>
+                  
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-1">
                            <% int count = 0; %>
@@ -339,7 +386,7 @@
                         </div>
                     </div>
 
-                    <!-- 클래스명은 변경하면 안 됨 -->
+                      <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-3">
                             <% count = 0; %>
@@ -374,7 +421,7 @@
                         </div>
                     </div>
 
-                    <!-- 클래스명은 변경하면 안 됨 -->
+                       <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-4">
                             <% count = 0; %>
@@ -427,7 +474,6 @@
 			                    
 			                    <% if(count == 25){break;} %>
                            <% } %>
-                        </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
                         <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
@@ -577,14 +623,14 @@
                     // 맵핑 주소로 이동
                     window.location.href = ' <%= request.getContextPath() %>/banner.rs?selectedGrade=' + selectedGrade;
                 });
-
-                
+ 
             });
-            
+
             $('.swiper-slide').click(function(){
        		 var restNo = $(this).find('.restNo').text();
        		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
        	 	});
+
 
         </script>
         
