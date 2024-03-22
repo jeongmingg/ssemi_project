@@ -1171,15 +1171,15 @@
 									<input type="hidden" name="restNo" value="<%= r.getRestNo() %>">
 									<input type="hidden" name="userNo" value="<%= loginUser.getMemNo() %>">
 
-							<div class="rating">
-                                <span class="rating__result"></span> 
-                                <input class="rating__star far fa-star" type="radio" id="rating5" name="rating" value="1"><label for="rating5"></label>
-								<input class="rating__star far fa-star" type="radio" id="rating4" name="rating" value="2"><label for="rating4"></label>
-								<input class="rating__star far fa-star" type="radio" id="rating3" name="rating" value="3"><label for="rating3"></label>
-								<input class="rating__star far fa-star" type="radio" id="rating2" name="rating" value="4"><label for="rating2"></label>
-								<input class="rating__star far fa-star" type="radio" id="rating1" name="rating" value="5"><label for="rating1"></label>
-								<input type="hidden" id="hidden-input-stars" value="">
-                            </div>
+									<div class="rating">
+										<span class="rating__result"></span> 
+										<input class="rating__star far fa-star" type="radio" id="rating5" name="rating" value="1" required><label for="rating5"></label>
+										<input class="rating__star far fa-star" type="radio" id="rating4" name="rating" value="2"><label for="rating4"></label>
+										<input class="rating__star far fa-star" type="radio" id="rating3" name="rating" value="3"><label for="rating3"></label>
+										<input class="rating__star far fa-star" type="radio" id="rating2" name="rating" value="4"><label for="rating2"></label>
+										<input class="rating__star far fa-star" type="radio" id="rating1" name="rating" value="5"><label for="rating1"></label>
+										<input type="hidden" id="hidden-input-stars" value="">
+									</div>
                             <br><br>
 							<textarea name="reviewWrite" id="review-write" cols="70" rows="10" style="resize: none; border: 1px solid gainsboro;" required placeholder="매장에 대한 리뷰를 남겨주세요! (필수)" maxlength="200"></textarea>
 							<div class="count-area" style="text-align: right;">
@@ -1618,6 +1618,16 @@
 	
 				$(element).siblings("input").val(score);  	     	
 			 }
+
+			 // 별점 선택안할시 폼 제출 안되게 제어
+			 $(document).ready(function() {
+				$('form').submit(function(event) {
+					if ($('input[name="rating"]:checked').length === 0) {
+						event.preventDefault(); // Prevent form submission if no rating is selected
+					}
+				});
+			});
+
 		</script>
 
 
