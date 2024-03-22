@@ -251,6 +251,7 @@
 		width: 100px;
 		height: 100px;
 		border-radius: 10px;
+		cursor:pointer;
 	}
 
 	/* 검색결과 더보기 버튼 스타일 */
@@ -388,7 +389,7 @@
 							<tr>
 								<td rowspan="2" width="120"
 									style="padding-left: 15px; padding-right: 15px;"><img
-									class="rest-img" src="resources/star, heart/star.png" /></td>
+									class="rest-img" src="<%= r.getRestImgUrl() %>" /></td>
 								<td colspan="2"
 									style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">
 									<%= r.getRestName() %>
@@ -405,6 +406,9 @@
 							</tr>
 							<tr>
 								<td colspan="3"><hr></td>
+							</tr>
+							<tr>
+								<td><div class="restNo" style="display:none;"><%= r.getRestNo() %></div></td>
 							</tr>
 							<% count++; %>
 							<% } %>
@@ -654,7 +658,7 @@
 								
 							 '<tr>'
 							+ '<td rowspan="2" width="120" style="padding-left: 15px; padding-right: 15px;">'
-							+ '<img class="rest-img" src="resources/star, heart/star.png" /></td>'
+							+ '<img class="rest-img" src="'+ restaurant.restImgUrl + '" /></td>'
 							+ '<td colspan="2" style="width: 100px; height: 65px; padding-left: 10px; font-size: 22px;">'
 							+ restaurant.restName
 							+ '</td>'
@@ -669,14 +673,37 @@
 							+ '<tr>'
 							+ '<td colspan="3"><hr></td>'
 							+ '</tr>'
+							+ "<tr>"
+							+ "<td><div class='restNo' style='display:none;'>" + restaurant.restNo + "</div></td>"
+							+ "</tr>"
 							;
 					
 						restTable.append(value);
 					
 					});
+					
+					// ajax 호출시 상세페이지 이동
+					$('.rest-img').click(function(){
+						const restImgArr = $(".rest-img");
+						const restIndex = restImgArr.index(this);
+						
+			       		var restNo = $('.restNo').eq(restIndex).text();
+						 
+			       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo;
+			       	 	});
 				}
 
 			}
+			
+			// 메인에서 검색결과 들어왔을때 상세페이지 이동
+			$('.rest-img').click(function(){
+				const restImgArr = $(".rest-img");
+				const restIndex = restImgArr.index(this);
+				
+	       		var restNo = $('.restNo').eq(restIndex).text();
+				
+	       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo;
+	       	 	});
 			
         </script>
 		
