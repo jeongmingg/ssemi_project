@@ -84,8 +84,12 @@ public class AdminRestUpdateController extends HttpServlet {
 		
 			 
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
-				r.setRestImgUrl("resources/rest/" + multiRequest.getFilesystemName("upfile") );
-					
+				r.setRestImgUrl("resources/rest/" + multiRequest.getFilesystemName("upfile") );			
+			}else {
+				
+				String imgUrl = new RestService().selectRestImg(restNo);
+				r.setRestImgUrl(imgUrl);
+				
 			}
 			
 			int result = new RestService().updateRest(r, list,restNo);

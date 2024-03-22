@@ -701,5 +701,12 @@
 		  FROM MENU
 		 WHERE REST_NO = ?
       </entry>
+      
+      <entry key="selectRestImg">
+      SELECT 
+             REST_IMG_URL 
+        FROM REST
+       WHERE REST_NO = ?
+      </entry>
 		
 </properties>

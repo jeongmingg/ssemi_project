@@ -279,6 +279,16 @@ public class RestService {
 		return list;
 	}
 
+	public String selectRestImg(String restNo) {
+		Connection conn = getConnection();
+		
+		String imgUrl = new RestDao().selectRestImg(conn, restNo);
+		
+		close(conn);
+		
+		return imgUrl;
+	}
+
 }
 
 

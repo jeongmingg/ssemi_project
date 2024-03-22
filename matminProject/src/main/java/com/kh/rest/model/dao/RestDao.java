@@ -911,6 +911,35 @@ public class RestDao {
 		
 		return list;
 	}
+
+	public String selectRestImg(Connection conn, String restNo) {
+		String imgUrl = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectRestImg");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				imgUrl = rset.getString("REST_IMG_URL");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return imgUrl;
+		
+		
+	}
 } 
 
 
