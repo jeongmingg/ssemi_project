@@ -976,7 +976,7 @@
 				</div>
 				<div class="list-time">
 					<div class="list-time-1">영업시간</div>
-					<% if(r.getRestTime().equals("null")) { %>
+					<% if(r.getRestTime()== null) { %>
 					<span>정보없음</span>
 					<% }else { %>
 					<span><%= r.getRestTime() %></span>
