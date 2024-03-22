@@ -240,12 +240,12 @@
 						<th height="0">사진</th>
 						
 						<td colspan="4">	
-						<% if (img != null){ %>
+						<% if (r.getRestImgUrl() != null){ %>
 								<label>
 									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
 									<input type="file" id="originFileNo" name="upfile" class="btnOfInput" style="display: none;">
 									<span class="file_name">
-										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
+										<a class="file" href="<%= r.getRestImgUrl()%>" >대표이미지 확인하기</a>							
 									</span>
 									<span class="file_btn">파일선택</span>
 								</label>
@@ -289,7 +289,12 @@
 				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
             
-            <script>
+         
+            <br>
+
+        </form>
+        
+           <script>
 		
 		$(function() {
 			 $("input[type=file]").on("change", function() {
@@ -299,10 +304,7 @@
 		});
 		
 		</script>
-
-            <br>
-
-        </form>
+        
     
 
 

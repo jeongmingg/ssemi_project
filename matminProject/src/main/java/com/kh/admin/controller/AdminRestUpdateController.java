@@ -81,39 +81,24 @@ public class AdminRestUpdateController extends HttpServlet {
 			
 			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
 			
-			ImgFile img  = null;
+		
 			 
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
-			
-				img = new ImgFile();
-				img.setImgOriginName(multiRequest.getOriginalFileName("upfile"));
-				img.setImgChangeName(multiRequest.getFilesystemName("upfile"));
-				img.setImgFilePath("resources/rest/");
-				img.setRefNo(restNo);
-				
-				if(multiRequest.getParameter("originFileNo") != null) {
-				
-					img.setImgFileNo(multiRequest.getParameter("originFileNo"));
+				r.setRestImgUrl("resources/rest/" + multiRequest.getFilesystemName("upfile") );
 					
-				} else {
-					// insert
-					img.setRefNo(restNo);
-				}
-			
 			}
 			
-			int result = new RestService().updateRest(r, img, list,restNo);
+			int result = new RestService().updateRest(r, list,restNo);
 			
 			if(result > 0) {
-				request.setAttribute("img", img);
+			
 			 
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + restNo);
+				response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + restNo);
 			} else {
 				HttpSession session = request.getSession();
-				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
+				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");	
 			}
 		}
 		

@@ -120,7 +120,7 @@ public class RestService {
 	}
 
 
-	public int updateRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list, String restNo) {
+	public int updateRest(Rest r, ArrayList<HashMap<String, String>> list, String restNo) {
 		Connection conn = getConnection();
 		int result1 = 0;
 	    int result2 = 1;
@@ -148,6 +148,7 @@ public class RestService {
 			}
 	    }
 	    // 미이지 수정
+	    /*
 	    if (img != null) {
 	        if (img.getImgFileNo() != null) {
 	            result3 = new RestDao().updateRestAt(conn, img);
@@ -155,6 +156,7 @@ public class RestService {
 	            result3 = new RestDao().insertUpdateRestAt(conn, img);
 	        }
 	    }
+	    */
 	    
 	    if(result1 * result2 * result3 > 0) {
 	    	commit(conn);
