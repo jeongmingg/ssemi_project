@@ -99,8 +99,10 @@ ArrayList<Category>
         </style>
       </head>
       <body>
-        <%@ include file="../common/header.jsp"%> <%@ include
-        file="../common/navigator.jsp"%>
+        <%@ include file="../common/header.jsp"%> 
+        <%@ include file="../common/navigator.jsp"%>
+
+		<% if (loginUser != null && loginUser.getMemNo().equals("M1")) { %>
 
         <div class="container" width="82%">
           <!-- <p>Justified tabs:</p> -->
@@ -411,6 +413,11 @@ ArrayList<Category>
             <br />
           </form>
         </div>
+        
+         <% } else { %>
+		<h2>관리자만 볼수 있는 페이지입니다.</h2>
+	<% } %>
+        
         <%@ include file="../common/footer.jsp"%>
       </body>
     </html>
