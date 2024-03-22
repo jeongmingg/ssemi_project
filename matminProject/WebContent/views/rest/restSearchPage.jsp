@@ -1009,14 +1009,14 @@ div {
 										+ '<td width="85px" style="padding-left: 15px; font-size: 17px;">'
 										+ restaurant.localName
 										+ "</td>"
-										+ "<td>"
-										+ "대표메뉴&nbsp;&nbsp; "
-										if(s.getMenuName() != null){ 
-										value += restaurant.menuName											
+										+ "<td>";
+										if(restaurant.menuName != null){
+											value += "대표메뉴&nbsp;&nbsp; "
+										+ restaurant.menuName										
+										+ "</td>";
 										}
-										value += "</td>"
-										+ "</tr>"
-										+ "<tr>"
+										value += "</tr>"
+										+  "<tr>"
 										+ '<td colspan="2" style="padding-left: 15px; font-size: 20px;"> <img id="star" src="resources/star, heart/star.png">'
 										+ "&nbsp;&nbsp;"
 										+ restaurant.restAvg
