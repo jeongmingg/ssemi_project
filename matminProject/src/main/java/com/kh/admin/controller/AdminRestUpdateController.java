@@ -44,7 +44,7 @@ public class AdminRestUpdateController extends HttpServlet {
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			int maxSize = 10* 1024* 1024;
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/rest/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath,maxSize,"UTF-8", new MyFileRenamePolicy());
 			
 			String restNo = (multiRequest.getParameter("num"));
@@ -61,6 +61,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			String prvRoom = multiRequest.getParameter("prvRoom");
 			String bigRoom = multiRequest.getParameter("bigRoom");
 			
+						
 			String[] menuArr = multiRequest.getParameterValues("menu");
 			String[] priceArr = multiRequest.getParameterValues("price");
 			
@@ -68,25 +69,32 @@ public class AdminRestUpdateController extends HttpServlet {
 			
 			for(int i=0; i<menuArr.length; i++) {
 				HashMap<String, String> map = new HashMap<String, String>();
-				map.put("menu", menuArr[i]);
-				map.put("price", priceArr[i]);
 				
-				list.add(map);
+				if(!menuArr[i].equals("")) {
+					map.put("menu", menuArr[i]);
+					map.put("price", priceArr[i]);
+					
+					list.add(map);
+				}
 			}
+			
+			int menuCnt = new RestService().selectMenuCount(restNo);
+			
+			if (!list.isEmpty() && menuCnt == 0) {
+				int result = new RestService().insertAddMenu(restNo, list);
+			}
+			System.out.println("updateController : " + list);
 			
 			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
 			
-			System.out.println(r);
 			ImgFile img  = null;
 			 
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
 			
-				System.out.println(multiRequest.getOriginalFileName("upfile"));
-				
 				img = new ImgFile();
 				img.setImgOriginName(multiRequest.getOriginalFileName("upfile"));
 				img.setImgChangeName(multiRequest.getFilesystemName("upfile"));
-				img.setImgFilePath("resources/board_upfiles/");
+				img.setImgFilePath("resources/rest/");
 				img.setRefNo(restNo);
 				
 				if(multiRequest.getParameter("originFileNo") != null) {
@@ -101,10 +109,12 @@ public class AdminRestUpdateController extends HttpServlet {
 			}
 			
 			int result = new RestService().updateRest(r, img, list,restNo);
+			//System.out.println("updateControllerRest"+r);
+			//System.out.println("updateControllerMenu"+list);
 			
 			if(result > 0) {
 				request.setAttribute("img", img);
-				System.out.println(request.getAttribute("img"));
+			 
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
 				response.sendRedirect(request.getContextPath() + "/rest.ad?num=" + restNo);

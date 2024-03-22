@@ -83,7 +83,7 @@ public class AdminRestInsertController extends HttpServlet {
 			img = new ImgFile();
 			img.setImgOriginName(multiRequst.getOriginalFileName("upfile"));
 			img.setImgChangeName(multiRequst.getFilesystemName("upfile"));
-			img.setImgFilePath("resources/rest_upfiles/");
+			img.setImgFilePath("resources/rest/");
 		}
 		
 		int result = new RestService().insertRest(r,img,list);
@@ -93,7 +93,6 @@ public class AdminRestInsertController extends HttpServlet {
 		if(result>0) {
 			session.setAttribute("alertMsg", "식당이 성공적으로 등록됐습니다");
 			
-			System.out.println("controller"+ r);
 			response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 			//response.sendRedirect(request.getContextPath() + "/rest.list?cpage=1");
 		}else {

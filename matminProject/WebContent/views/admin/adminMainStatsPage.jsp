@@ -19,9 +19,13 @@ pageEncoding="UTF-8"%>
         padding: 20px;
       }
 
-      #best2,
+      #best2{
+      padding-left: 150px;
+      margin-top: 20px;
+      }
       #best3 {
-        margin-top: 20px;
+      
+      padding-right: 100px;
       }
 
       .table1 {

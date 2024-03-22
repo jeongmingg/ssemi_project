@@ -118,36 +118,41 @@ public class RestService {
 		return list;
 		
 	}
+
+
 	public int updateRest(Rest r, ImgFile img, ArrayList<HashMap<String, String>> list, String restNo) {
 		Connection conn = getConnection();
-		
-		int result1 = new RestDao().updateRest(conn, r);
-		int result2= 1;
-		int result3= 1;
-		
-		if (result1 != 0){
-			for(int i=0; i<list.size();i++) {
-				result2 = new RestDao().updateRestMenu( conn,list.get(i),restNo, i);
-			}
-		}
-		if(img != null) {
-		if(img.getImgFileNo() != null) {
-				result3 = new RestDao().updateRestAt(conn,img);
-			}else {
-				result3 = new RestDao().insertUpdateRestAt(conn,img);
-			}
-		}
-		if(result1 > 0 && result2 > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		} close(conn);
-		
-		return result1 * result2* result3;
-		
+		int result1 = 0;
+	    int result2 = 1;
+	    int result3 = 1;
+
+	    // 식당 정보 수정
+	    if (r != null) {
+	        result1 = new RestDao().updateRest(conn,r);
+	    }
+
+	    // 메뉴수정
+	    if (list != null && !list.isEmpty()) {
+	        for (int i = 0; i < list.size(); i++) {
+	            result2 = new RestDao().updateRestMenu(conn,list.get(i), restNo, i);
+	        }
+	    }
+	    // 미이지 수정
+	    if (img != null) {
+	        if (img.getImgFileNo() != null) {
+	            result3 = new RestDao().updateRestAt(conn, img);
+	        } else {
+	            result3 = new RestDao().insertUpdateRestAt(conn, img);
+	        }
+	    }
+	    close(conn);
+	    
+	    System.out.println(result1 + ", " + result2 + ", " + result3);
+	    return result1 * result2 * result3;
 	}
 
-
+	
+	
 	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName, String rsFunction, String funcState){
 		
 		Connection conn = getConnection();
@@ -227,7 +232,31 @@ public class RestService {
 		return result;
 	}
 
+	public int insertAddMenu(String restNo, ArrayList<HashMap<String, String>> list) {
+		
+		Connection conn = getConnection();
+		int result = 0;
+		    for(int i=0; i<list.size(); i++) {				 
+			result = new RestDao().insertAddMenu(conn, restNo, list.get(i), i);
+			 }
+		if (result> 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 	
+	public int selectMenuCount(String restNo) {
+		Connection conn = getConnection();
+		
+		int menuCnt = new RestDao().selectMenuCount(conn, restNo);
+		
+		close(conn);
+		
+		return menuCnt;
+	}
 }
 
 
