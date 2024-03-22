@@ -15,7 +15,6 @@ public class SHA256 {
 			byte[] bResult = md.digest();
 
 			for (byte data : bResult) {
-				System.out.print(data + " ");
 			}
 
 			StringBuffer sb = new StringBuffer();

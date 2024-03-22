@@ -148,7 +148,6 @@ public class ReviewService {
 		
 		RvLike count = new ReviewDao().countLike(conn, rvNo);
 		
-		//System.out.println("rvLikeSERVICE : " + count);
 		close(conn);
 		return count;
 	}

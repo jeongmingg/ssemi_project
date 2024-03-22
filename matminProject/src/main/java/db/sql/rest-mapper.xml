@@ -414,6 +414,8 @@
 				, ANIMAL = ?
 				, ROOM = ?
 				, BIG_ROOM = ?
+				, DT = ?
+				, REST_IMG_URL = ?
 			WHERE REST_NO = ?
 		
 		</entry>
@@ -643,7 +645,7 @@
       UPDATE MENU
       	SET MENU_NAME = ?,
       		MENU_PRICE = ?
-      WHERE REST_NO = ?
+      WHERE MENU_NO = ?
       AND REP_MENU = 'Y'		
       
       
@@ -655,7 +657,7 @@
       UPDATE MENU
       	SET MENU_NAME = ?,
       		MENU_PRICE = ?
-      WHERE REST_NO = ?
+      WHERE MENU_NO = ?
       AND REP_MENU = 'N'		
       
       
@@ -699,6 +701,26 @@
 		     , REP_MENU
 		  FROM MENU
 		 WHERE REST_NO = ?
+      </entry>
+      
+      <entry key="selectRestImg">
+      SELECT 
+             REST_IMG_URL 
+        FROM REST
+       WHERE REST_NO = ?
+      </entry>
+      
+      <entry key="selectMenuNo">
+	      SELECT 
+		       MENU_NO
+		  FROM MENU
+		 WHERE REST_NO = ?  
+      </entry>
+      
+      <entry key="deleteRestMenu">
+	       DELETE
+			 FROM MENU
+			WHERE MENU_NO = ? 
       </entry>
 		
 </properties>
