@@ -159,7 +159,6 @@ ArrayList<Category>
                     >식당 등록/삭제 게시판</a
                   >
                 </li>
-                <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
               </ul>
             </li>
           </ul>
