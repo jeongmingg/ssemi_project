@@ -52,7 +52,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-			cursor: pointer;
 		}
 		
 		/* header 스타일 - 로고, 검색창, 로그인, 회원가입, 최근본식당 */
@@ -174,6 +173,8 @@
 
 			#header_5{padding-bottom: 20px; padding-right: 30px;}
 
+			#recentBtn{cursor: pointer;}
+
 			#nnList-div{
 				display: none;
 			}
@@ -276,7 +277,7 @@
 				<% } %>
 				
 				<div id="header_5">
-					<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
+					<svg id="recentBtn" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
 						<path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
 					</svg>
 				</div>
