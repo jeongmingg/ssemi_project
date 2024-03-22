@@ -23,6 +23,10 @@
 	<%@ include file="../common/header.jsp"%>
 	<%@ include file="../common/navigator.jsp"%>
 
+	<script>
+		const contextPath = '<%= contextPath %>';
+	</script>
+
 	<div class="myPage">
 		<div id="topBtn">
 			<a href="#">
@@ -46,10 +50,6 @@
 				<li id="info">
 					<a class="tab active">내정보</a>
 					<!-- <a href="#myInfo" class="tab active">내정보</a> -->
-				</li>
-				<li id="alert">
-					<a class="tab">알림</a>
-					<!-- <a href="#myAlert" class="tab">알림</a> -->
 				</li>
 				<li id="mark">
 					<a onclick="markList('<%= memNo %>');" class="tab">찜꽁 리스트</a>
@@ -256,9 +256,6 @@
 				</div>
 			</div>
 
-			<!-- 알림 -->
-			<div id="myAlert" class="info"></div>
-
 			<!-- 찜꽁 리스트 -->
 			<div id="myMark" class="info">
 				<span></span>
@@ -278,12 +275,12 @@
 				<table class="list-area" align="center">
 					<thead>
 						<tr>
-							<th width="150">작성번호</th>
-							<th width="300">게시판유형</th>
+							<th width="100">작성번호</th>
+							<th width="200">게시판유형</th>
 							<th width="350">제목</th>
-							<th width="150">작성자</th>
-							<th>조회수</th>
-							<th>작성일자</th>
+							<th width="100">작성자</th>
+							<th width="100">조회수</th>
+							<th width="150">작성일자</th>
 						</tr>
 					</thead>
 					<tbody></tbody>

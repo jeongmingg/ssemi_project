@@ -3,7 +3,7 @@
 /* #myPage-tab ul li{border: 1px solid black;} */
 
 .myPage {
-  width: 1200px;
+  width: 1000px;
   margin: auto;
   margin-top: 80px;
   margin-bottom: 50px;
@@ -29,14 +29,13 @@
   line-height: 40px;
 }
 
-#alert {
-  margin-left: 25px;
+#mark {
+  margin-left: 40px;
 }
 
-#alert,
 #mark,
 #review {
-  margin-right: 25px;
+  margin-right: 40px;
 }
 
 #myPage-tab ul li a {
@@ -207,7 +206,7 @@
 }
 
 .list-area {
-  width: 1200px;
+  width: 1000px;
   margin: auto;
   height: auto;
   text-align: center;
