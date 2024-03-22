@@ -219,6 +219,46 @@
 				height: 50%;
 			}
 
+			/* 오버레이 스타일 */
+			.overlay {
+				position: fixed; /* 화면에 고정 */
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.5); /* 반투명 검정색 배경 */
+				z-index: 10; /* 다른 요소들보다 위에 표시 */
+				display: none; /* 기본적으로는 숨김 */
+			}
+
+			/* 모달 내용 스타일 */
+			#modalContent {
+				width: 200px;
+				height: 780px;
+				position: relative;
+				top: 57%;
+				left: 42%;
+				
+				transform: translate(-50%, -50%); /* 중앙 정렬 */
+				background-color: white;
+				padding: 20px;
+				z-index: 11;
+				border-radius: 5px;
+				
+			}
+			
+			#restImg{
+				width: 100px; height: 100px;
+				border-radius: 10px;
+				margin-bottom: 8px;
+			}
+			#recentRest figcaption{
+				font-size: 13px;
+			}
+			#recentP{
+				font-size: 20px;
+				color: rgb(58, 58, 58);
+			}
 
 </style>
 
@@ -226,7 +266,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -280,6 +319,12 @@
 					<svg id="recentBtn" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 48 48" data-svg-content="true" fill="#000000" style="margin-right: 30px;">
 						<path d="M6 10H2v32c0 2.21 1.79 4 4 4h32v-4H6V10zm36-8H14c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V6 c0-2.21-1.79-4-4 -4zm0 32H14V6h28v28z"></path>
 					</svg>
+					<div id="overlay" class="overlay">
+
+						<div class="modal-content" id="modalContent">
+							
+						</div>
+					</div>
 				</div>
 				<script>
 				
@@ -328,6 +373,116 @@
 					// $(".hoverNn>a").hover(function(){
 					// 	$("#nnList-div").css("display", "block");
 					// })
+
+					// 최근 본 식당
+					function getCookie(cookieName) {
+						var name = cookieName + '=';
+						var decodedCookie = decodeURIComponent(document.cookie);
+						var cookieArray = decodedCookie.split(';');
+
+						for (var i = 0; i < cookieArray.length; i++) {
+							var cookie = cookieArray[i];
+							while (cookie.charAt(0) == ' ') {
+							cookie = cookie.substring(1);
+							}
+							if (cookie.indexOf(name) == 0) {
+							return cookie.substring(name.length, cookie.length);
+							}
+						}
+						return '';
+					}
+	
+					$(document).ready(function(){
+					    $("#recentBtn").click(function(){
+
+							$("#overlay").show();
+
+					        // 쿠키에서 최근 본 식당 목록을 읽어옵니다.
+					        var recentRests = getCookie('recent_rests');
+					        if(recentRests) {
+					            var restNos = recentRests.split('/');
+					            
+					            console.log("recentRests : " + recentRests);
+					            console.log("restNos : " + restNos);
+					            
+					            $("#modalContent").html("<p id='recentP'>최근 본 식당</p>"); // 식당 정보 표시 영역을 초기화
+					            restNos.forEach(function(restNo) {
+					                // 각 식당 번호에 대해 서버에 정보 요청
+					                $.ajax({
+					                    url: "recent.rs",
+					                    type: "get",
+					                    data:{restNo : restNo},
+					                    success: function(result) {
+											console.log("result : " + result.restNo);
+											if(result.length == 0){
+												var value = "<div>최근 본 식당이 없습니다.</div>";
+												$("#modalContent").append(value);
+											}else {
+												value = 
+													 "<div id='recentRest'>"
+													+ "<figure>"
+													+ '<img id="restImg" src="' + result.restImgUrl + '" alt="식당사진">'
+													+ '<figcaption>' + result.restName + '</figcaption>'							
+													+ "</figure>"
+													+ "</div>";
+												
+												/* $.each(result, function(index, restaurant){
+														value += "<div>"
+															+ "<figure>"
+															+ '<img src="' + restaurant.restImgUrl + '" alt="식당사진">'
+															+ '<figcaption>' + restaurant.restName + '</figcaption>'							
+															+ "</figure>"
+															+ "</div>";
+													}); */
+												$("#modalContent").append(value);
+												
+											}
+					                    },
+					                    error: function(xhr, status, error) {
+					                        // 요청 실패 시 에러 처리
+					                        console.error("ajax 통신 에러");
+					                    }
+					                });
+					            });
+					        }
+					    });
+
+						$("#overlay").click(function(){
+							$(this).hide();
+						})
+					});
+
+
+					// 최근 본 식당 
+					// function showRecentRs(memNo) {
+					// 	let recentList = getCookie(memNo) ? JSON.parse(getCookie(memNo)) : [];
+					// 	// recentList를 사용해서 화면에 보여줄 수 있도록 구현합니다.
+					// 	// 예를 들어, 각 식당의 상세 페이지로 이동할 수 있는 링크 목록을 만듭니다.
+					
+					// 	function fetchAndDisplayRecentRestaurants(memNo) {
+					// 		let recentList = getCookie(memNo) ? JSON.parse(getCookie(memNo)) : [];
+					// 		$.ajax({
+					// 			url: '/get-restaurants-info', // 서버의 해당 정보를 조회하는 엔드포인트
+					// 			type: 'POST',
+					// 			contentType: 'application/json',
+					// 			data: JSON.stringify({restNos: recentList}),
+					// 			success: function(response) {
+					// 			// response는 서버에서 보낸 식당 정보 목록입니다.
+					// 			// 여기서는 각 식당의 이름과 이미지 URL이 포함되어 있다고 가정합니다.
+					// 			response.forEach(function(restaurant) {
+					// 				$('#recentRestaurants').append(
+					// 				`<div>
+					// 					<img src="${restaurant.restImgUrl}" alt="${restaurant.restName}">
+					// 					<p>${restaurant.restName}</p>
+					// 				</div>`
+					// 				);
+					// 			});
+					// 			}
+					// 		});
+					// 	}
+
+					
+					// }
 
 				</script>
 			</div>

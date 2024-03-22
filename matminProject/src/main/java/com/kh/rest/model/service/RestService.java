@@ -338,6 +338,14 @@ public class RestService {
 
 		return list;
 	}
+	
+	public Rest recentRestList(String restNo){
+		Connection conn = getConnection();
+		Rest r = new RestDao().recentRestList(conn, restNo);
+		
+		close(conn); 
+		return r;
+	}
 
 	public String selectRestImg(String restNo) {
 		Connection conn = getConnection();
