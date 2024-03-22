@@ -977,11 +977,20 @@
 				</div>
 				<div class="list-time">
 					<div class="list-time-1">영업시간</div>
+					<% if(r.getRestTime().equals("null")) { %>
+					<span>정보없음</span>
+					<% }else { %>
 					<span><%= r.getRestTime() %></span>
+					<% } %>
 				</div>
 				<div class="list-park">
 					<div class="list-park-1">주차</div>
+					
+					<% if(r.getRestParking() == null) { %>
+					<span>정보없음</span>
+					<% }else { %>
 					<span><%= r.getRestParking() %></span>
+					<% } %>
 				</div>
 				<div class="list-menu">
 						<div class="list-menu-name">
