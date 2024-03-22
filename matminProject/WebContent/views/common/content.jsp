@@ -183,9 +183,9 @@
            display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
            align-items:center; /* 위아래 기준 중앙정렬 */
            justify-content:center; /* 좌우 기준 중앙정렬 */
-              position: relative;
-              z-index: -2;
-              padding-top: 30px;
+           position: relative;
+           z-index: -2;
+           padding-top: 30px;
        }
        .swiper-slide img {
            /* box-shadow:0 0 5px #555; */
@@ -193,9 +193,12 @@
            width: 210px;
            height: 210px;
            /* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-              border-radius: 10px;
+           border-radius: 10px;
+           cursor: pointer;
+           transition: transform 0.3s ease-in-out; /* 부드럽게 확대, ease-in-out : 시작과 끝에서 천천히, 중간에서 빠르게 */
+           
        }
-        
+
        .swiper-slide img:hover{
             transform: scale(1.03); /* 원래 크기의 ()안 %로 확대 */
             opacity: 0.85;
@@ -209,6 +212,7 @@
             padding-top: 2px;
         }
 
+        /* 배너 슬라이드 스타일*/
         .carousel-item{
             width:1800px; 
             height:500px;
@@ -316,9 +320,7 @@
                         </div>
 
                     </div>
-                    <!-- <div id="content_bestSearch_content"> -->
-                        <!-- <div id="content_bestSearch_content_1"> -->
-                            <!-- 클래스명은 변경하면 안 됨 -->
+                  
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-1">
                            <% int count = 0; %>
@@ -328,6 +330,7 @@
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
 		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% if(count == 25){break;} %>
@@ -358,7 +361,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -382,7 +386,7 @@
                         </div>
                     </div>
 
-                    <!-- 클래스명은 변경하면 안 됨 -->
+                      <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-3">
                             <% count = 0; %>
@@ -392,7 +396,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -416,7 +421,7 @@
                         </div>
                     </div>
 
-                    <!-- 클래스명은 변경하면 안 됨 -->
+                       <!-- 클래스명은 변경하면 안 됨 -->
                     <div class="swiper-container">
                         <div class="swiper-wrapper" id="content-4">
                             <% count = 0; %>
@@ -426,7 +431,8 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div>
 		                                </figure>
 			                         </div>
 			                    <% } %>
@@ -460,14 +466,14 @@
 	                           		<div class="swiper-slide">
 		                                <figure>
 		                                    <img class="restImg" src="<%= r.getRestImgUrl()%>">
-		                                    <figcaption><%= r.getRestName() %></figcaption> 
+		                                    <figcaption><%= r.getRestName() %></figcaption>
+		                                    <div class="restNo" style="display:none;"><%= r.getRestNo() %></div> 
 		                                </figure>
 			                         </div>
 			                    <% } %>
 			                    
 			                    <% if(count == 25){break;} %>
                            <% } %>
-                        </div>
                         <!-- 네비게이션 -->
                         <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
                         <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
@@ -617,9 +623,14 @@
                     // 맵핑 주소로 이동
                     window.location.href = ' <%= request.getContextPath() %>/banner.rs?selectedGrade=' + selectedGrade;
                 });
-
-                
+ 
             });
+
+            $('.swiper-slide').click(function(){
+       		 var restNo = $(this).find('.restNo').text();
+       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
+       	 	});
+
 
         </script>
         
