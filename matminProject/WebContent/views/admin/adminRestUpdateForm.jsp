@@ -11,6 +11,37 @@
     ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
     ArrayList<Location> lList = (ArrayList<Location>)request.getAttribute("lList");
     ImgFile img  = (ImgFile)request.getAttribute("img");
+    ArrayList<Rest> menuList = (ArrayList<Rest>)request.getAttribute("menuList");
+    
+    String mainMenuName = "";
+    String mainMenuPrice = "";
+    
+    for(int i = 0; i < menuList.size(); i++) {
+    	// 대표 메뉴
+    	if(menuList.get(i).getRepMenu().equals("Y")) {
+    		mainMenuName = menuList.get(i).getMenuName();
+    		mainMenuPrice = menuList.get(i).getMenuPrice();
+    		
+    		menuList.remove(i);
+    		
+    		break;
+    	}
+    }
+    
+    String sideMenuName1 = "";
+    String sideMenuPrice1 = "";
+    String sideMenuName2 = "";
+    String sideMenuPrice2 = "";
+    
+    for(int i = 0; i < menuList.size(); i++) {
+    	if(i == 0) {
+    		sideMenuName1 = menuList.get(i).getMenuName();
+    		sideMenuPrice1 = menuList.get(i).getMenuPrice();
+    	} else if(i == 1) {
+    		sideMenuName2 = menuList.get(i).getMenuName();
+    		sideMenuPrice2 = menuList.get(i).getMenuPrice();
+    	}
+    }
     %>
 <!DOCTYPE html>
 <html>
@@ -150,19 +181,19 @@
                     <td> 식당이름</td>
                     <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
                     <td>대표메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= ""></td>
+                    <input type="text" name="menu" value= "<%= mainMenuName %>"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
-                    <td>대표메뉴가격 입력<input type="number" name = "price"></td>
+                    <td>대표메뉴가격 입력<input type="number" name = "price" value="<%= mainMenuPrice %>"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= ""></td>
+                    <input type="text" name="menu" value= "<%= sideMenuName1 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -178,14 +209,14 @@
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price"></td>
+                    <input type="number" name = "price" value="<%= sideMenuPrice1 %>"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= ""></td>
+                    <input type="text" name="menu" value= "<%= sideMenuName2 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -201,7 +232,7 @@
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price"></td>               
+                    <input type="number" name = "price" value="<%= sideMenuPrice2 %>"></td>               
                 </tr>
                 <br><br>
   

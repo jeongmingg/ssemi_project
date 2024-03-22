@@ -871,6 +871,43 @@ public class RestDao {
 		
 		return menuCnt;
 	}
+	
+	public ArrayList<Rest> selectMenuByAdmin(Connection conn, String restNo) {
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMenuByAdmin");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, restNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Rest r = new Rest();
+				
+				r.setRestNo(rset.getString("rest_no"));
+				r.setMenuName(rset.getString("menu_name"));
+				r.setMenuPrice(rset.getString("menu_price"));
+				r.setRepMenu(rset.getString("rep_menu"));
+				
+				list.add(r);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 } 
 
 

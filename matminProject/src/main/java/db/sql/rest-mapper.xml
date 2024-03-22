@@ -675,5 +675,15 @@
 		  FROM MENU
 		 WHERE REST_NO = ?
       </entry>
+      
+      <entry key="selectMenuByAdmin">
+      	SELECT
+		       REST_NO
+		     , MENU_NAME
+		     , MENU_PRICE
+		     , REP_MENU
+		  FROM MENU
+		 WHERE REST_NO = ?
+      </entry>
 		
 </properties>

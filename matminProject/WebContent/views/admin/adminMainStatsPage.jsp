@@ -95,8 +95,10 @@ pageEncoding="UTF-8"%>
     </style>
   </head>
   <body>
-    <%@ include file="../common/header.jsp" %> <%@ include
-    file="../common/navigator.jsp" %>
+    <%@ include file="../common/header.jsp" %> 
+    <%@ include file="../common/navigator.jsp" %>
+    
+    <% if (loginUser != null && loginUser.getMemNo().equals("M1")) { %>
 
     <div class="container outer" width="82%">
       <!-- <p>Justified tabs:</p> -->
@@ -468,7 +470,11 @@ pageEncoding="UTF-8"%>
           ctx.restore();
         }
       </script>
-      <%@ include file="../common/footer.jsp"%>
     </div>
+     <% } else { %>
+		<h2>관리자만 볼수 있는 페이지입니다.</h2>
+	<% } %>
+    
+      <%@ include file="../common/footer.jsp"%>
   </body>
 </html>
