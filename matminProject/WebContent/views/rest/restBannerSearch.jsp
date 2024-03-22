@@ -39,10 +39,10 @@
 
 	/* 직급선택 div */
 	#content_1{
-		height: 300px;
+		height: 360px;
 		margin-top: 50px;
-		margin-bottom: 50px;
 		padding: 20px;
+		background-image: url('resources/banner/banner-wallet02.jpg');
 	}
 	#content_2{
 		height: auto;
@@ -50,8 +50,8 @@
 	}
 
 	#content_1>div{width: 100%;}
-	#content_1_1{height: 200px;}
-	#content_1_2{height: 100px;}
+	#content_1_1{height: 200px; padding-top: 199px;}
+	#content_1_2{height: 100px; padding-top: 65px;}
 
 	#content_1_1>div, #content_1_2>div{height: 100%; width: 20%; float: left;}
 	
