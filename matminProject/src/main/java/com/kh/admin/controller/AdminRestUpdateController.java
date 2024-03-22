@@ -57,11 +57,12 @@ public class AdminRestUpdateController extends HttpServlet {
 			String ctgId = multiRequest.getParameter("category");
 			String parking = multiRequest.getParameter("parking");
 			String drivethrou = multiRequest.getParameter("dt");
-			String comAnimal = multiRequest.getParameter("comAnimal");
+			String comAnimal = multiRequest.getParameter("conAnimal");
 			String prvRoom = multiRequest.getParameter("prvRoom");
 			String bigRoom = multiRequest.getParameter("bigRoom");
 			
-						
+			System.out.println("updateController : " + drivethrou);
+			
 			String[] menuArr = multiRequest.getParameterValues("menu");
 			String[] priceArr = multiRequest.getParameterValues("price");
 			
