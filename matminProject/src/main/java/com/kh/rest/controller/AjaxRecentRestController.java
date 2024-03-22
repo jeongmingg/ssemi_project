@@ -34,8 +34,7 @@ public class AjaxRecentRestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String restNo = request.getParameter("restNo");
-		System.out.println("컨트롤러 : restNos" + restNo);
-		
+
 		Rest r = new RestService().recentRestList(restNo);
 		
 		response.setContentType("application/json; charset=utf-8");
