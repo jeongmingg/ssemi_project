@@ -25,6 +25,14 @@ public class Menu {
 		this.menuPrice = menuPrice;
 		this.repMenu = repMenu;
 	}
+	
+	
+
+	public Menu(String manuName, String menuPrice) {
+		super();
+		this.manuName = manuName;
+		this.menuPrice = menuPrice;
+	}
 
 	public String getMenuNo() {
 		return menuNo;

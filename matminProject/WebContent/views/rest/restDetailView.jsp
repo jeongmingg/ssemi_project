@@ -1,4 +1,3 @@
-
 <%@page import="java.lang.management.MemoryNotificationInfo"%>
 <%@page import="com.kh.heart.model.vo.Heart"%>
 <%@page import="com.kh.board.model.vo.ImgFile"%>
