@@ -156,7 +156,6 @@
             <a class="nav-link" href="<%= contextPath %>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
                     <li><a href="<%= contextPath %>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
-                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
             
             </li>
@@ -181,19 +180,19 @@
                     <td> 식당이름</td>
                     <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
                     <td>대표메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= mainMenuName %>"></td>
+                    <input type="text" name="menuName1" value= "<%= mainMenuName %>" required placeholder="필수 입력"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
-                    <td>대표메뉴가격 입력<input type="number" name = "price" value="<%= mainMenuPrice %>"></td>
+                    <td>대표메뉴가격 입력<input type="number" name = "menuPrice1" value="<%= mainMenuPrice %>" required placeholder="필수 입력"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= sideMenuName1 %>"></td>
+                    <input type="text" name="menuName2" value= "<%= sideMenuName1 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -209,14 +208,14 @@
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price" value="<%= sideMenuPrice1 %>"></td>
+                    <input type="number" name = "menuPrice2" value="<%= sideMenuPrice1 %>"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= sideMenuName2 %>"></td>
+                    <input type="text" name="menuName3" value= "<%= sideMenuName2 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -224,15 +223,13 @@
                     <td>&nbsp;&nbsp; <select name="category" id="">
 							<!--  category table로 부터 조회 할꺼임 -->
 							<%for (Category c : list) { %>
-							<option value="<%=c.getCtgId()%>">
-								<%=c.getCtgName()%>
-							</option>
+							<option value="<%=c.getCtgId()%>"><%=c.getCtgName()%></option>
 							<%} %>
 					</select>
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price" value="<%= sideMenuPrice2 %>"></td>               
+                    <input type="number" name = "menuPrice3" value="<%= sideMenuPrice2 %>"></td>               
                 </tr>
                 <br><br>
   
@@ -240,12 +237,11 @@
 						<th height="0">사진</th>
 						
 						<td colspan="4">	
-						<% if (img != null){ %>
+						<% if (r.getRestImgUrl() != null){ %>
 								<label>
-									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
 									<input type="file" id="originFileNo" name="upfile" class="btnOfInput" style="display: none;">
 									<span class="file_name">
-										<a class="file" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>							
+										<a class="file" href="<%= r.getRestImgUrl()%>" >대표이미지 확인하기</a>							
 									</span>
 									<span class="file_btn">파일선택</span>
 								</label>
@@ -285,24 +281,44 @@
 
             <div align="center">
                 <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
-				<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
+				<a href="<%= contextPath %>/detail.rs?rpage=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
 				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
             
-            <script>
+         
+            <br>
+
+        </form>
+        
+           <script>
 		
 		$(function() {
 			 $("input[type=file]").on("change", function() {
 			        const fileName = $(this).val().split("\\").pop();
 			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
 		 	});
+			 
+				let location = document.querySelector("select[name=location]").options;
+				for (let i=0; i<location.length; i++) {
+				    if (location[i].label == '<%= r.getLocalName() %>'){
+				    	location[i].selected = true;
+				    }
+				}
+				
+				let category = document.querySelector("select[name=category]").options;
+				for (let i=0; i<category.length; i++) {
+					console.log(category[i].innerText)
+				    if (category[i].innerText == '<%= r.getCtgName() %>'){
+				    	category[i].selected = true;
+				    }
+				}
 		});
 		
+	
+		
+		
 		</script>
-
-            <br>
-
-        </form>
+        
     
 
 

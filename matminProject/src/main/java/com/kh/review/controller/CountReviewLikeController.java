@@ -31,10 +31,8 @@ public class CountReviewLikeController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String rvNo = request.getParameter("rvno");
-		//System.out.println("rvcount"+ rvNo);
 		
 		RvLike count = new ReviewService().countLike(rvNo);
-		//System.out.println("rvcount : " + count);
 		
 		response.setContentType("application/json; charset=utf-8");
 		new Gson().toJson(count, response.getWriter());

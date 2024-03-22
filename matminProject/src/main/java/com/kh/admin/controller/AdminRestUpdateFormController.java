@@ -48,8 +48,6 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		
 		ArrayList<Rest> menuList = rService.selectMenuByAdmin(restNo);
 		
-		System.out.println(lList);
-		
 		request.setAttribute("list", list);
 		request.setAttribute("lList", lList);
 		request.setAttribute("r", r);
@@ -62,7 +60,6 @@ public class AdminRestUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
