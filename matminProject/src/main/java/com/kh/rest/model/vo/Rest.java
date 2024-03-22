@@ -183,28 +183,7 @@ public class Rest {
 		this.bigRoom = bigRoom;
 	}
 
-	public Rest(String restNo, String restName, String restAddress, String restTel, String restParking, int restGrade,
-			String restTime, double restAvg, String restImgUrl, String localName, int reviewCount, String dt,
-			String anmial, String room, String bigRoom, String ctgName ,  int heartCount) {
-		super();
-		this.restNo = restNo;
-		this.restName = restName;
-		this.restAddress = restAddress;
-		this.restTel = restTel;
-		this.restParking = restParking;
-		this.restGrade = restGrade;
-		this.restTime = restTime;
-		this.restAvg = restAvg;
-		this.restImgUrl = restImgUrl;
-		this.localName = localName;
-		this.reviewCount = reviewCount;
-		this.dt = dt;
-		this.anmial = anmial;
-		this.room = room;
-		this.ctgName = ctgName;
-		this.bigRoom = bigRoom;
-		this.heart = heartCount;
-	}
+	
 	public Rest(String restNo, String restName, String restImgUrl, String ctgName, double restAvg,  int reviewCount ) {
 		super();
 		this.restNo = restNo;
@@ -229,6 +208,31 @@ public class Rest {
 		this.menuName = menuName;
 		this.menuPrice = menuPrice;
 		this.localName = localName;
+	}
+
+	public Rest(String restNo, String restName, String restAddress, String restTel, String restParking, int restGrade,
+			String restTime, double restAvg, String restImgUrl, String localName, int reviewCount, String dt,
+			String anmial, String room, String bigRoom, String ctgName ,  int heartCount, String menuName, String menuPrice) {
+		super();
+		this.restNo = restNo;
+		this.restName = restName;
+		this.restAddress = restAddress;
+		this.restTel = restTel;
+		this.restParking = restParking;
+		this.restGrade = restGrade;
+		this.restTime = restTime;
+		this.restAvg = restAvg;
+		this.restImgUrl = restImgUrl;
+		this.localName = localName;
+		this.reviewCount = reviewCount;
+		this.dt = dt;
+		this.anmial = anmial;
+		this.room = room;
+		this.ctgName = ctgName;
+		this.bigRoom = bigRoom;
+		this.heart = heartCount;
+		this.menuName = menuName;
+		this.menuPrice = menuPrice;
 	}
 
 	public String getRestNo() {

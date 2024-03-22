@@ -238,7 +238,7 @@
   
                 <tr>
 						<th height="0">사진</th>
-						<td></td>
+						
 						<td colspan="4">	
 						<% if (img != null){ %>
 								<label>
