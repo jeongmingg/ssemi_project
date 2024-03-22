@@ -772,21 +772,21 @@ public class RestDao {
 	}
 
 	//관리자 보는 식당 상세패이지
-	public Rest selectRestMain(Connection conn, String restNo){
-		Rest r = new Rest();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectRestMain");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, restNo);
-			rset = pstmt.executeQuery();
+	public Rest selectRestMain(Connection conn, String restNo) {
+	    Rest r = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
 
-			if(rset.next()) {
-				r = new Rest(
-						rset.getString("rest_no"),
+	    String sql = prop.getProperty("selectRestMain");
+
+	    try {
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1, restNo);
+	        rset = pstmt.executeQuery();
+
+	        if (rset.next()) {
+	            r = new Rest(
+	            		rset.getString("rest_no"),
 						rset.getString("rest_name"),
 						rset.getString("rest_address"),
 						rset.getString("rest_tel"),
@@ -802,19 +802,20 @@ public class RestDao {
 						rset.getString("room"),
 						rset.getString("big_room"),
 						rset.getString("ctg_name"),
-						rset.getInt("heart_count"));
-				
-			}
-				
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return r;
+						rset.getInt("heart_count"),
+						rset.getString("menu_name"),
+						rset.getString("menu_price"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(rset);
+	        close(pstmt);
+	    }
+	    return r;
 	}
 
+	
 	public int insertAddMenu(Connection conn, String restNo, HashMap<String, String> map, int i) {
 		int result = 0;
 		PreparedStatement pstmt = null;

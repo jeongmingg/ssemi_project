@@ -39,8 +39,8 @@
     }
      table tr td:nth-child(3) {
         padding-left: 150px;
-}
-    
+	}
+	
     #navi {
         list-style-type: none;
         max-width: 1200px;
@@ -144,37 +144,46 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>리뷰&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
+                    <td>리뷰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
-                    <td>찜꽁&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value = "<%=r.getHeart() %>" readonly></td>
+                    <td>찜꽁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value = "<%=r.getHeart() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" value= "<%= r.getRestAddress() %>"readonly></td>
-                    <td>별점&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value = "<%= r.getRestAvg() %>" readonly></td>
+                    <td>별점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value = "<%= r.getRestAvg() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
                     <td><input type="text" value= "<%= r.getLocalName() %>"readonly></td>
-                    <td>등급 &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
+                    <td>등급 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
-                    <td>대표메뉴<input type="text" value="" readonly></td>
+                    <td>대표메뉴 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value="<%= r.getMenuName() %>" readonly></td>
                 </tr>
 					<tr>
 						<td>카테고리</td>
 						<td><input type="text" value="<%=r.getCtgName()%>" readonly></td>
-                        <td>대표메뉴 가격<input type="text" value="" readonly></td>
+                        <td>대표메뉴 가격<input type="text" value="<%=r.getMenuPrice() %>" readonly></td>
 					</tr>
 
 					<tr>
 						<th height="0">사진</th>
-						<td></td>
+						
 						<td colspan="3" style="padding: 0;">
 							<%if (img == null) {%>
 							<div class="file-area">
