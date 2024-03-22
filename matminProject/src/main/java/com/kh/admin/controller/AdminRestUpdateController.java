@@ -78,13 +78,6 @@ public class AdminRestUpdateController extends HttpServlet {
 				}
 			}
 			
-			int menuCnt = new RestService().selectMenuCount(restNo);
-			
-			if (!list.isEmpty() && menuCnt == 0) {
-				int result = new RestService().insertAddMenu(restNo, list);
-			}
-			System.out.println("updateController : " + list);
-			
 			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
 			
 			ImgFile img  = null;
@@ -109,8 +102,6 @@ public class AdminRestUpdateController extends HttpServlet {
 			}
 			
 			int result = new RestService().updateRest(r, img, list,restNo);
-			//System.out.println("updateControllerRest"+r);
-			//System.out.println("updateControllerMenu"+list);
 			
 			if(result > 0) {
 				request.setAttribute("img", img);

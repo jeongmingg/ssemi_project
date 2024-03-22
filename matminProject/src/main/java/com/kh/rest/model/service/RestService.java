@@ -132,10 +132,20 @@ public class RestService {
 	    }
 
 	    // 메뉴수정
-	    if (list != null && !list.isEmpty()) {
-	        for (int i = 0; i < list.size(); i++) {
-	            result2 = new RestDao().updateRestMenu(conn,list.get(i), restNo, i);
-	        }
+	    if (!list.isEmpty()) {
+	    	
+	    	int menuCnt = new RestDao().selectMenuCount(conn, restNo);
+			
+			if (menuCnt == 0) {
+				for(int i = 0; i < list.size(); i++) {
+					result2 = new RestDao().insertAddMenu(conn, restNo, list.get(i), i);
+				}
+
+			} else {
+				for (int i = 0; i < list.size(); i++) {
+					result2 = new RestDao().updateRestMenu(conn,list.get(i), restNo, i);
+				}
+			}
 	    }
 	    // 미이지 수정
 	    if (img != null) {
@@ -145,9 +155,15 @@ public class RestService {
 	            result3 = new RestDao().insertUpdateRestAt(conn, img);
 	        }
 	    }
+	    
+	    if(result1 * result2 * result3 > 0) {
+	    	commit(conn);
+	    } else {
+	    	rollback(conn);
+	    }
+	    
 	    close(conn);
 	    
-	    System.out.println(result1 + ", " + result2 + ", " + result3);
 	    return result1 * result2 * result3;
 	}
 
@@ -257,6 +273,17 @@ public class RestService {
 		
 		return menuCnt;
 	}
+	
+	public ArrayList<Rest> selectMenuByAdmin(String restNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Rest> list = new RestDao().selectMenuByAdmin(conn, restNo);
+		
+		close(conn);
+		
+		return list;
+	}
+
 }
 
 

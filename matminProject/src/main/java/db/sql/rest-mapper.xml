@@ -441,48 +441,63 @@
 		</entry>
 
 		<entry key="selectRestMain">
-		
 			SELECT
-			    R.REST_NO,
-			    REST_NAME,
-			    REST_ADDRESS,
-			    REST_TEL,
-			    REST_PARKING,
-			    REST_GRADE,
-			    REST_TIME,
-			    REST_AVG,
-			    REST_IMG_URL,
-			    LOCAL_NAME,
-			    COUNT(RV.REVIEW_NO) AS REVIEW_COUNT,
-			    DT,
-			    ANIMAL,
-			    ROOM,
-			    BIG_ROOM,
-			    CTG_NAME,
-			    COUNT(H.MEM_NO) AS HEART_COUNT
-			FROM REST R
-			JOIN LOCATION L ON R.REST_LOCAL_ID = L.LOCAL_ID
-			JOIN CATEGORY C ON R.CTG_ID = C.CTG_ID
-			LEFT JOIN REVIEW RV ON R.REST_NO = RV.REST_NO AND RV.REVIEW_STATUS = 'Y'
-			LEFT JOIN HEART H ON R.REST_NO = H.REST_NO
-			WHERE R.REST_NO = ?
-			    AND R.REST_STATUS = 'Y'
-			GROUP BY
-			    R.REST_NO,
-			    REST_NAME,
-			    REST_ADDRESS,
-			    REST_TEL,
-			    REST_PARKING,
-			    REST_GRADE,
-			    REST_TIME,
-			    REST_AVG,
-			    REST_IMG_URL,
-			    DT,
-			    ANIMAL,
-			    ROOM,
-			    BIG_ROOM,
-			    LOCAL_NAME,
-			    CTG_NAME
+					 R.REST_NO
+		           , REST_NAME
+		           , REST_ADDRESS
+		           , REST_TEL
+		           , REST_PARKING
+		           , REST_GRADE
+		           , REST_TIME
+		           , REST_AVG
+		           , REST_IMG_URL
+		           , LOCAL_NAME
+		           , COUNT(REVIEW_NO) "REVIEW_COUNT"
+		           , DT
+		           , ANIMAL
+		           , ROOM
+		           , BIG_ROOM
+		           , CTG_NAME
+		           , COUNT(H.MEM_NO) AS "HEART_COUNT"
+		           , MENU_NAME
+		           , TO_CHAR(MENU_PRICE, 'FM999,999') "MENU_PRICE"
+		        FROM REST R
+		        JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
+		        JOIN CATEGORY USING(CTG_ID)
+		        LEFT JOIN REVIEW RV ON (R.REST_NO = RV.REST_NO AND REVIEW_STATUS = 'Y')
+		        LEFT JOIN HEART H ON R.REST_NO = H.REST_NO
+		        LEFT JOIN (
+		                   SELECT
+		                          MENU_NO
+		                        , REST_NO
+		                        , MENU_NAME
+		                        , MENU_PRICE
+		                        , REP_MENU
+		                     FROM MENU
+		                     WHERE REP_MENU = 'Y'
+		             ) TB1 ON (R.REST_NO = TB1.REST_NO)
+		       WHERE R.REST_NO = ?
+		         AND REST_STATUS = 'Y'
+		       GROUP
+		          BY R.REST_NO
+		           , REST_NAME
+		           , REST_ADDRESS
+		           , REST_TEL
+		           , REST_PARKING
+		           , REST_GRADE
+		           , REST_TIME
+		           , REST_AVG
+		           , REST_IMG_URL
+		           , DT
+		           , ANIMAL
+		           , ROOM
+		           , BIG_ROOM
+		           , LOCAL_NAME
+		           , CTG_NAME
+		           , MENU_NAME
+		           , MENU_PRICE
+		           , REP_MENU
+		
 		
 		</entry>
 		
@@ -672,6 +687,16 @@
       <entry key="selectMenuCount">
       	SELECT
 		       COUNT(REST_NO) "MENU_COUNT"
+		  FROM MENU
+		 WHERE REST_NO = ?
+      </entry>
+      
+      <entry key="selectMenuByAdmin">
+      	SELECT
+		       REST_NO
+		     , MENU_NAME
+		     , MENU_PRICE
+		     , REP_MENU
 		  FROM MENU
 		 WHERE REST_NO = ?
       </entry>

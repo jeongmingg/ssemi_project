@@ -37,7 +37,10 @@
         border:1px;
         cursor: pointer;
     }
-    
+     table tr td:nth-child(3) {
+        padding-left: 150px;
+	}
+	
     #navi {
         list-style-type: none;
         max-width: 1200px;
@@ -87,6 +90,10 @@
 
     <%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
+	
+	
+		<% if (loginUser != null && loginUser.getMemNo().equals("M1")) { %>
+		
 
     <div class="container" width="82%">
         <!-- <p>Justified tabs:</p> -->
@@ -137,38 +144,47 @@
                 <tr>
                     <td> 식당이름</td>
                     <td><input type="text" value= "<%= r.getRestName() %>" readonly ></td>
-                    <td>리뷰<input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
+                    <td>리뷰&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value= "<%= r.getReviewCount() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
-                    <td>찜꽁<input type="text" value = "<%=r.getHeart() %>" readonly></td>
+                    <td>찜꽁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value = "<%=r.getHeart() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" value= "<%= r.getRestAddress() %>"readonly></td>
-                    <td>별점<input type="text" value = "<%= r.getRestAvg() %>" readonly></td>
+                    <td>별점&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value = "<%= r.getRestAvg() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 로케이션</td>
                     <td><input type="text" value= "<%= r.getLocalName() %>"readonly></td>
-                    <td>등급 <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
+                    <td>등급 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value= "<%= r.getRestGrade() %>" readonly></td>
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
-                    <td></td>
+                    <td>대표메뉴 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="text" value="<%= r.getMenuName() %>" readonly></td>
                 </tr>
 					<tr>
 						<td>카테고리</td>
 						<td><input type="text" value="<%=r.getCtgName()%>" readonly></td>
-
+                        <td>대표메뉴 가격<input type="text" value="<%=r.getMenuPrice() %>" readonly></td>
 					</tr>
 
 					<tr>
 						<th height="0">사진</th>
-						<td></td>
-						<td colspan="3">
+						
+						<td colspan="3" style="padding: 0;">
 							<%if (img == null) {%>
 							<div class="file-area">
 								<span>첨부파일이 없습니다</span>
@@ -217,6 +233,10 @@
 
 
     </div>
+    <% } else { %>
+		<h2>관리자만 볼수 있는 페이지입니다.</h2>
+	<% } %>
+    
  <%@ include file="../common/footer.jsp" %>
 
 </body>

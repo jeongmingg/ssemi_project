@@ -31,6 +31,16 @@
 
 
 <style>
+
+	.modal-body{
+		padding-top:50px;
+		
+		}
+
+	.modal-footer{
+		justify-content: center;
+	}
+	
 	.main-content{
       width: 1800px;
       margin: auto;
