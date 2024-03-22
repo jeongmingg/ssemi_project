@@ -740,30 +740,26 @@ public class RestDao {
 		return result;
 	}
 
-	public int updateRestMenu(Connection conn, HashMap<String, String> map,String restNo, int i) {
+	public int updateRestMenu(Connection conn, Menu m,String restNo, int i, String menuNo) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
+		String sql = "";
 		
 		try {
-			if(i==0) {
-			String sql = prop.getProperty("updateRepMenu");
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,map.get("menu"));
-				pstmt.setString(2, map.get("price"));
-				pstmt.setString(3, restNo);
-			
-				result = pstmt.executeUpdate();	
-
+			if(i==0) { // 대표 메뉴인 경우
+				sql = prop.getProperty("updateRepMenu");
 			}else {
-				String sql = prop.getProperty("updateSubMenu");
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, map.get("menu"));
-				pstmt.setString(2, map.get("price"));
-				pstmt.setString(3, restNo);
-				
-				result = pstmt.executeUpdate();
+				// 서브메뉴1, 서브메뉴2 인 경우
+				sql=prop.getProperty("updateSubMenu");
 			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,m.getManuName());
+			pstmt.setString(2, m.getMenuPrice());
+			pstmt.setString(3, menuNo);
+		
+			result = pstmt.executeUpdate();	
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -818,7 +814,7 @@ public class RestDao {
 	}
 
 	
-	public int insertAddMenu(Connection conn, String restNo, HashMap<String, String> map, int i) {
+	public int insertAddMenu(Connection conn, String restNo, Menu m, int i) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("insertAddMenu");
@@ -826,16 +822,14 @@ public class RestDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, restNo);
-			pstmt.setString(2, map.get("menu"));
-			pstmt.setString(3, map.get("price"));
+			pstmt.setString(2, m.getManuName());
+			pstmt.setString(3, m.getMenuPrice());
 			
 			if(i == 0) {
 				pstmt.setString(4, "Y");
 			}else {
 				pstmt.setString(4, "N");
 			}
-			System.out.println(i + ", " + restNo + ", " + map.get("menu") + ", " + map.get("price"));
-		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -938,6 +932,51 @@ public class RestDao {
 		
 		return imgUrl;
 		
+		
+	}
+
+	public ArrayList<String> selectMenuNo(Connection conn, String restNo) {
+		ArrayList<String> list = new ArrayList<String>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMenuNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, restNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(rset.getString("MENU_NO"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int deleteRestMenu(Connection conn, String restNo, String menuNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteRestMenu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, menuNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 		
 	}
 } 

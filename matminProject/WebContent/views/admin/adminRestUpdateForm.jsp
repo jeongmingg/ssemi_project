@@ -181,19 +181,19 @@
                     <td> 식당이름</td>
                     <td><input type="text" name="restName" value= "<%= r.getRestName() %>" ></td>
                     <td>대표메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= mainMenuName %>"></td>
+                    <input type="text" name="menuName1" value= "<%= mainMenuName %>" required placeholder="필수 입력"></td>
                     <td></td>
                 </tr>
                 <tr>
                     <td> 영업시간</td>
                     <td><input type="text" name="bizHour" value= "<%= r.getRestTime() %>"></td>
-                    <td>대표메뉴가격 입력<input type="number" name = "price" value="<%= mainMenuPrice %>"></td>
+                    <td>대표메뉴가격 입력<input type="number" name = "menuPrice1" value="<%= mainMenuPrice %>" required placeholder="필수 입력"></td>
                 </tr>
                 <tr>
                     <td> 식당주소</td>
                     <td><input type="text" name="address" value= "<%= r.getRestAddress() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= sideMenuName1 %>"></td>
+                    <input type="text" name="menuName2" value= "<%= sideMenuName1 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -209,14 +209,14 @@
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price" value="<%= sideMenuPrice1 %>"></td>
+                    <input type="number" name = "menuPrice2" value="<%= sideMenuPrice1 %>"></td>
                     
                 </tr>
                 <tr>
                     <td> 식당전화번호</td>
                     <td><input type="text" name="phone" value= "<%= r.getRestTel() %>"></td>
                     <td>추가메뉴 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="text" name="menu" value= "<%= sideMenuName2 %>"></td>
+                    <input type="text" name="menuName3" value= "<%= sideMenuName2 %>"></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -230,7 +230,7 @@
 					</td>
                     <td>가격 입력&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="number" name = "price" value="<%= sideMenuPrice2 %>"></td>               
+                    <input type="number" name = "menuPrice3" value="<%= sideMenuPrice2 %>"></td>               
                 </tr>
                 <br><br>
   

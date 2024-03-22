@@ -17,6 +17,7 @@ import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.ImgFile;
 import com.kh.common.MyFileRenamePolicy;
 import com.kh.common.model.vo.Attachment;
+import com.kh.common.model.vo.Menu;
 import com.kh.rest.model.service.RestService;
 import com.kh.rest.model.vo.Rest;
 import com.oreilly.servlet.MultipartRequest;
@@ -61,48 +62,44 @@ public class AdminRestUpdateController extends HttpServlet {
 			String prvRoom = multiRequest.getParameter("prvRoom");
 			String bigRoom = multiRequest.getParameter("bigRoom");
 			
-			System.out.println("updateController : " + drivethrou);
+			String menuName1 = multiRequest.getParameter("menuName1");
+			String menuName2 = multiRequest.getParameter("menuName2");
+			String menuName3 = multiRequest.getParameter("menuName3");
+			String menuPrice1 = multiRequest.getParameter("menuPrice1");
+			String menuPrice2 = multiRequest.getParameter("menuPrice2");
+			String menuPrice3 = multiRequest.getParameter("menuPrice3");
 			
-			String[] menuArr = multiRequest.getParameterValues("menu");
-			String[] priceArr = multiRequest.getParameterValues("price");
-			
-			ArrayList <HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
-			
-			for(int i=0; i<menuArr.length; i++) {
-				HashMap<String, String> map = new HashMap<String, String>();
-				
-				if(!menuArr[i].equals("")) {
-					map.put("menu", menuArr[i]);
-					map.put("price", priceArr[i]);
-					
-					list.add(map);
-				}
-			}
-			
-			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);
+			ArrayList<Menu> menuList = new ArrayList<Menu>();// 앞에서 받아온 대표 + 서브 메뉴 리스트
+			menuList.add(new Menu(menuName1, menuPrice1));
+			menuList.add(new Menu(menuName2, menuPrice2));
+			menuList.add(new Menu(menuName3, menuPrice3));
+		
 			
 		
-			 
+			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);	
+		
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
 				r.setRestImgUrl("resources/rest/" + multiRequest.getFilesystemName("upfile") );			
-			}else {
+			}else { // 넘어온 첨부파일 없을 경우 (즉, 사진 수정 안했을 경우)
 				
+				// 원래있던 사진이름을 가져와서 세팅해줌.
 				String imgUrl = new RestService().selectRestImg(restNo);
 				r.setRestImgUrl(imgUrl);
-				
 			}
 			
-			int result = new RestService().updateRest(r, list,restNo);
+			// r: rest관련, menuList: 메뉴정보(메뉴이름 + 가격)
+			int result = new RestService().updateRest(r, menuList);
 			
 			if(result > 0) {
 			
 			 
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + restNo);
+				response.sendRedirect(request.getContextPath() + "/updateForm.rs?num=" + restNo);
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");	
+				response.sendRedirect(request.getContextPath() + "/updateForm.rs?num=" + restNo);
 			}
 		}
 		
