@@ -297,7 +297,6 @@
 						<%
 						// 기존 boardNo 문자열에서 숫자만 추출
 						String boardNo =  b.getBoardNo().replaceAll("\\D", "");
-						// System.out.println(extractedNumber);
 						%>
 					
 					<a href="<%= contextPath %>/updateForm.bo?bno=<%= boardNo %>" class="btn btn-sm btn-secondary" id="btn-update">수정</a>

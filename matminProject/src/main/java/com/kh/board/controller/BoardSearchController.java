@@ -49,8 +49,6 @@ public class BoardSearchController extends HttpServlet {
 
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
 		
-		//System.out.println(currentPage);
-
 		pageLimit = 5;
 		boardLimit = 5;
 		

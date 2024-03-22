@@ -48,8 +48,6 @@ public class BoardUpdateFormController extends HttpServlet {
 		request.setAttribute("b", b);
 		request.setAttribute("img", img);
 		
-		//System.out.println(request.getAttribute("img"));
-		
 		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 

@@ -34,7 +34,6 @@ public class BoardListByMemController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String memNo = request.getParameter("memNo");
-//		System.out.println(memNo);
 		
 		ArrayList<Board> list = new BoardService().selectBoardListByMem(memNo);
 		
