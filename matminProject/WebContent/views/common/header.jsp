@@ -402,9 +402,6 @@
 					        if(recentRests) {
 					            var restNos = recentRests.split('/');
 					            
-					            console.log("recentRests : " + recentRests);
-					            console.log("restNos : " + restNos);
-					            
 					            $("#modalContent").html("<p id='recentP'>최근 본 식당</p>"); // 식당 정보 표시 영역을 초기화
 					            restNos.forEach(function(restNo) {
 					                // 각 식당 번호에 대해 서버에 정보 요청
@@ -413,7 +410,7 @@
 					                    type: "get",
 					                    data:{restNo : restNo},
 					                    success: function(result) {
-											console.log("result : " + result.restNo);
+											
 											if(result.length == 0){
 												var value = "<div>최근 본 식당이 없습니다.</div>";
 												$("#modalContent").append(value);
