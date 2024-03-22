@@ -243,7 +243,7 @@ public class RestDao {
 		 return result;
 	}
 		
-	public Rest selectRestDetail(Connection conn, String rpage){
+	public Rest selectRestDetail(Connection conn, String restNo){
 		Rest r = new Rest();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -252,7 +252,7 @@ public class RestDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, rpage);
+			pstmt.setString(1, restNo);
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
@@ -281,7 +281,8 @@ public class RestDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-		} return r;
+		} 
+		return r;
 		
 	}
 

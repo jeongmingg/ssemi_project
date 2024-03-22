@@ -224,9 +224,7 @@
                     <td>&nbsp;&nbsp; <select name="category" id="">
 							<!--  category table로 부터 조회 할꺼임 -->
 							<%for (Category c : list) { %>
-							<option value="<%=c.getCtgId()%>">
-								<%=c.getCtgName()%>
-							</option>
+							<option value="<%=c.getCtgId()%>"><%=c.getCtgName()%></option>
 							<%} %>
 					</select>
 					</td>
@@ -242,7 +240,6 @@
 						<td colspan="4">	
 						<% if (r.getRestImgUrl() != null){ %>
 								<label>
-									<input type="hidden" name="originFileNo" value="<%= img.getImgFileNo() %>">
 									<input type="file" id="originFileNo" name="upfile" class="btnOfInput" style="display: none;">
 									<span class="file_name">
 										<a class="file" href="<%= r.getRestImgUrl()%>" >대표이미지 확인하기</a>							
@@ -301,7 +298,25 @@
 			        const fileName = $(this).val().split("\\").pop();
 			        $(this).siblings(".file_name").text(fileName || "파일을 선택해주세요.");
 		 	});
+			 
+				let location = document.querySelector("select[name=location]").options;
+				for (let i=0; i<location.length; i++) {
+				    if (location[i].label == '<%= r.getLocalName() %>'){
+				    	location[i].selected = true;
+				    }
+				}
+				
+				let category = document.querySelector("select[name=category]").options;
+				for (let i=0; i<category.length; i++) {
+					console.log(category[i].innerText)
+				    if (category[i].innerText == '<%= r.getCtgName() %>'){
+				    	category[i].selected = true;
+				    }
+				}
 		});
+		
+	
+		
 		
 		</script>
         

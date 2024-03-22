@@ -103,8 +103,10 @@ public class RestService {
 		Connection conn = getConnection();
 		
 		Rest r = new RestDao().selectRestDetail(conn, restNo);
+		System.out.println(restNo);
 		
 		close(conn);
+		System.out.println(r.getLocalName());
 		return r;	
 		
 	}
@@ -147,16 +149,7 @@ public class RestService {
 				}
 			}
 	    }
-	    // 미이지 수정
-	    /*
-	    if (img != null) {
-	        if (img.getImgFileNo() != null) {
-	            result3 = new RestDao().updateRestAt(conn, img);
-	        } else {
-	            result3 = new RestDao().insertUpdateRestAt(conn, img);
-	        }
-	    }
-	    */
+
 	    
 	    if(result1 * result2 * result3 > 0) {
 	    	commit(conn);
