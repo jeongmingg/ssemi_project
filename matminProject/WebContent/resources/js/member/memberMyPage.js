@@ -306,7 +306,7 @@ function markList(memNo) {
                   </tr>`;
       } else {
         for (let i in result) {
-          str += `<tr>
+          str += `<tr class="${result[i].restNo}" style="cursor: pointer">
           <td rowspan="3" width="120" style="padding-left: 15px; padding-right: 15px">
             <img class="rest-img" src="${result[i].restImgUrl}" />
           </td>
@@ -314,16 +314,16 @@ function markList(memNo) {
             ${result[i].restName}
           </td>
         </tr>
-        <tr>
+        <tr class="${result[i].restNo}" style="cursor: pointer">
           <td width="85px" style="padding-left: 15px; font-size: 17px">
             ${result[i].localName}
           </td>
           <td>대표메뉴&nbsp;&nbsp; ${result[i].menuName}</td>
         </tr>
-        <tr>
+        <tr class="${result[i].restNo}" style="cursor: pointer">
           <td colspan="2" style="padding-left: 15px; font-size: 20px">
             <img id="star" src="resources/star, heart/star.png" />&nbsp;&nbsp;${result[i].restAvg} (${result[i].reviewCount})&nbsp;&nbsp;|&nbsp;&nbsp;
-            <img id="heart" src="https://img.icons8.com/ios-filled/50/e4910d/like--v1.png" width="100" height="100" onclick="cancelHeart('${memNo}', '${result[i].restNo}');" />&nbsp;
+            <img id="heart" src="https://img.icons8.com/ios-filled/50/e4910d/like--v1.png" width="100" height="100" onclick="cancelHeart(event, '${memNo}', '${result[i].restNo}');" />&nbsp;
             ${result[i].countLike}
           </td>
         </tr>
@@ -335,6 +335,12 @@ function markList(memNo) {
 
       $("#myMark>span").text("총 " + result.length + "개");
       $("#myMark>table").html(str);
+
+      $("#rest-table>tr").on("click", function() {
+        if($(this).attr("class") !== undefined) {
+          location.href = contextPath + "/detail.rs?rpage=" + $(this).attr("class");
+        }
+      })
 
     },
     error: function () {
@@ -366,7 +372,7 @@ function deleteReview(ele, memNo) {
   }
 }
 
-function cancelHeart(memNo, restNo) {
+function cancelHeart(event, memNo, restNo) {
   $.ajax({
     url: "deleteHeart.me",
     data: {
@@ -381,4 +387,7 @@ function cancelHeart(memNo, restNo) {
       console.log("찜꽁 해제 ajax 호출 실패");
     }
   });
+
+  // 이벤트 버블링 방지
+  event.stopPropagation();
 }

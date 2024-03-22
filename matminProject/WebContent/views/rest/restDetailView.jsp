@@ -861,6 +861,7 @@
 	<%@ include file="../common/header.jsp" %>
 	<%@ include file="../common/navigator.jsp" %>
 	<br>
+
 <!-- 
 	<div class="outer">
 		<div class="slide-area">
@@ -976,7 +977,7 @@
 				</div>
 				<div class="list-time">
 					<div class="list-time-1">영업시간</div>
-					<% if(r.getRestTime().equals("null")) { %>
+					<% if(r.getRestTime()== null) { %>
 					<span>정보없음</span>
 					<% }else { %>
 					<span><%= r.getRestTime() %></span>
@@ -1775,6 +1776,109 @@
 				});
 			}
 		</script>
+		
+		<!-- 최근 본 식당 -->
+
+		<script>
+			function onPageLoad(){
+
+				var url = window.location.href;
+				
+				var restNo = getRestNoFromURL(url);
+				console.log("restNo" + restNo);
+
+				if (restNo) {
+					var recentRests = getCookie('recent_rests');
+					var recentRestNos = recentRests ? recentRests.split('/') : [];
+					
+					console.log("recentRests : " + recentRests);
+					console.log("recentRestNos : " + recentRestNos);
+
+					if (!recentRestNos.includes(restNo)) {
+						recentRestNos.push(restNo);
+					}
+
+					// 최대 5개까지 유지
+					if (recentRestNos.length > 5) {
+						recentRestNos.shift();
+					}
+
+					recentRests = recentRestNos.join('/');
+					
+					console.log("recentRests : " + recentRests);
+
+					// 24시간 후의 시간 객체 생성
+					var expirationDate = new Date();
+					expirationDate.setTime(expirationDate.getTime() + (24 * 60 * 60 * 1000));
+					console.log("expirationDate::" + expirationDate);
+
+					// 쿠키에 recent_rests 저장 (유효기간: 24시간)
+					setCookie('recent_rests', recentRests, expirationDate);
+					console.log("Current cookie: " + document.cookie);
+				}
+			}
+
+			// 페이지 로드 이벤트 리스너 등록
+			window.addEventListener('load', onPageLoad);
+
+			function setCookie(cookieName, value, expirationDate) {
+				var cookieValue = escape(value) + ((expirationDate == null) ? '' : '; expires=' + expirationDate.toUTCString());
+				document.cookie = cookieName + '=' + cookieValue;
+			}
+
+			
+
+			//url에서 restNo를 가져오는 함수
+			function getRestNoFromURL(url) {
+				var regex = /[?&]rpage=(\w+)/;
+				// 정규표현식, rpage파라미터값을 찾는거.
+	
+				var match = regex.exec(url);
+				// regex를 사용해서 정규표현식에 일치하는 부분 찾는 exec메소드
+				if (match && match[1]) {
+					return match[1];
+				}
+				return null; // 값이 없으면 null
+			}
+
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+		<!-- <script>
+
+			function addRsCookie(memNo, restNo) {
+
+				// 쿠키에서 현재 사용자의 최근 식당 목록을 가져옵니다.
+				let currentList = getCookie(memNo) ? JSON.parse(getCookie(memNo)) : [];
+
+				// 현재 방문한 식당을 목록에 추가합니다.
+				if (!currentList.includes(restNo)) {
+					currentList.push(restNo);
+
+					// 목록이 너무 길어지지 않도록 최신 5개 식당만 저장합니다.
+					if (currentList.length > 5) {
+					currentList.shift(); // 가장 오래된 식당을 제거합니다.
+					}
+				}
+				// 쿠키를 업데이트합니다.
+				setCookie(memNo, JSON.stringify(currentList), 7); // 예: 7일 동안 유효
+			}
+
+			
+
+
+
+
+		</script> -->
 			
 
 	

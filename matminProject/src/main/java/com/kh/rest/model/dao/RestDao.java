@@ -903,6 +903,43 @@ public class RestDao {
 		
 		return list;
 	}
+	
+	public Rest recentRestList(Connection conn, String restNo){
+		
+		Rest r = new Rest();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("recentRestList");
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, restNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				r.setRestNo(rset.getString("rest_no"));
+				r.setRestName(rset.getString("rest_name"));
+				r.setRestImgUrl(rset.getString("rest_img_url"));
+				
+				
+				System.out.println("Dao : " + r);
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			return r;
+	}
+
 
 	public String selectRestImg(Connection conn, String restNo) {
 		String imgUrl = "";
@@ -927,7 +964,7 @@ public class RestDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+
 		return imgUrl;
 		
 		
