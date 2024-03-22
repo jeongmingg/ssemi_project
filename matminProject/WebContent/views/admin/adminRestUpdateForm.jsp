@@ -156,7 +156,6 @@
             <a class="nav-link" href="<%= contextPath %>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
                     <li><a href="<%= contextPath %>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
-                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
             
             </li>
@@ -282,7 +281,7 @@
 
             <div align="center">
                 <button type="submit" class="btn btn-sm btn-warning" id="btn-update">수정</button>
-				<a href="<%= contextPath %>/rest.ad?num=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
+				<a href="<%= contextPath %>/detail.rs?rpage=<%= r.getRestNo() %>" class="btn btn-sm btn-secondary">취소</a>
 				<!-- <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button> -->
             </div>
             

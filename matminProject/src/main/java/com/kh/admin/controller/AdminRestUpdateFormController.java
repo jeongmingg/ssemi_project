@@ -41,16 +41,12 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		RestService rService = new RestService();
 		
 		Rest r = rService.selectRest(restNo);
-		System.out.println("여기서");
-		System.out.println(r.getLocalName());
 		ImgFile img= rService.selectAttachment(restNo);
 
 		ArrayList<Category> list = rService.selectCategoryList();
 		ArrayList<Location> lList = rService.selectLocationList();
 		
 		ArrayList<Rest> menuList = rService.selectMenuByAdmin(restNo);
-		
-		System.out.println(lList);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("lList", lList);

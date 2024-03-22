@@ -233,8 +233,6 @@ public class RestDao {
 			pstmt.setString(11, r.getBigRoom());
 			
 			result = pstmt.executeUpdate();
-		//	System.out.println("Dao의 " + r);
-		//	System.out.println("Dao의 " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -341,7 +339,6 @@ public class RestDao {
 			pstmt.setString(3, img.getImgFilePath());
 			
 			result = pstmt.executeUpdate();
-			//System.out.println(img);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

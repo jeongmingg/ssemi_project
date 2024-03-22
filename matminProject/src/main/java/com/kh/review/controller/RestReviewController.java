@@ -41,7 +41,6 @@ public class RestReviewController extends HttpServlet {
 		
 //		ArrayList<ImgFile> imgList = new ReviewService().selectImgFile(rpage);
 		
-//		System.out.println(imgList);
 //		
 //		JsonObject jsonData = new JsonObject();
 //		jsonData.add("rvList", new Gson().toJsonTree(rvList));

@@ -111,7 +111,6 @@
                 <a class="nav-link active" href="<%= contextPath%>/list.bo?cpage=1" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
                     <li align="center"><a href="<%= contextPath%>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
-                    <li><a href="<%= contextPath %>/report.bo"> 신고 게시판</a></li>
                 </ul>
 
             </li>

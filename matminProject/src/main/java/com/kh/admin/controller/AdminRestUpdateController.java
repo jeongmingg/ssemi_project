@@ -69,11 +69,18 @@ public class AdminRestUpdateController extends HttpServlet {
 			String menuPrice3 = multiRequest.getParameter("menuPrice3");
 			
 			ArrayList<Menu> menuList = new ArrayList<Menu>();// 앞에서 받아온 대표 + 서브 메뉴 리스트
-			menuList.add(new Menu(menuName1, menuPrice1));
-			menuList.add(new Menu(menuName2, menuPrice2));
-			menuList.add(new Menu(menuName3, menuPrice3));
-		
 			
+			if(!menuName1.equals("") && !menuPrice1.equals("")) {
+				menuList.add(new Menu(menuName1, menuPrice1));
+			}
+			
+			if(!menuName2.equals("") && !menuPrice2.equals("")) {				
+				menuList.add(new Menu(menuName2, menuPrice2));
+			}
+			
+			if(!menuName3.equals("") && !menuPrice3.equals("")) {		
+				menuList.add(new Menu(menuName3, menuPrice3));
+			}
 		
 			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);	
 		
@@ -94,11 +101,11 @@ public class AdminRestUpdateController extends HttpServlet {
 			 
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 성공하셨습니다.");
-				response.sendRedirect(request.getContextPath() + "/updateForm.rs?num=" + restNo);
+				response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + restNo);
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("alertMsg", "수정에 실패하셨습니다.");	
-				response.sendRedirect(request.getContextPath() + "/updateForm.rs?num=" + restNo);
+				response.sendRedirect(request.getContextPath() + "/detail.rs?rpage=" + restNo);
 			}
 		}
 		

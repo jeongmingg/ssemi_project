@@ -103,10 +103,8 @@ public class RestService {
 		Connection conn = getConnection();
 
 		Rest r = new RestDao().selectRestDetail(conn, restNo);
-		System.out.println(restNo);
 
 		close(conn);
-		System.out.println(r.getLocalName());
 		return r;
 
 	}
@@ -133,7 +131,6 @@ public class RestService {
 		if (r != null) {
 			result1 = new RestDao().updateRest(conn, r);
 		}
-
 		// 메뉴수정
 		if (!menuList.get(0).getManuName().equals("")) { // 대표메뉴라도 하나 입력 된 경우에만 진행
 
@@ -142,7 +139,6 @@ public class RestService {
 
 			// 메뉴를 한 번도 등록하지 않은 경우
 			if (menuCnt == 0) {
-				System.out.println("여긴 메뉴가 하나도 없을 때");
 				for (int i = 0; i < menuList.size(); i++) {
 					if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 insert
 						result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
@@ -153,7 +149,6 @@ public class RestService {
 				ArrayList<String> menuNoList = new RestDao().selectMenuNo(conn, r.getRestNo());
 				// 기존에 몇개의 메뉴가 등록되어있는지 조회
 				int count = menuNoList.size();
-
 				for (int i = 0; i < menuList.size(); i++) {
 					switch (count) {
 					case 1: // 대표메뉴만 입력된 경우(한개만 입력돼있는 경우 => 한개는 update, 나머지 insert)
@@ -189,10 +184,18 @@ public class RestService {
 
 					default: // 대표메뉴, 서브메뉴1, 서브메뉴2가 전부다 원래 입력돼있던 경우
 						if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 update
-							result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i,
-									menuNoList.get(i));
+							for(int j=0; j<menuNoList.size(); j++) {
+								if(i==j) {
+									result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i,
+											menuNoList.get(i));
+								}else {
+									result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(j));
+								}
+							}
+							
 						}else {
 							// 원래 있던 메뉴를 지우는 경우 => "delete"
+							
 							result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
 						}
 					}
@@ -200,10 +203,10 @@ public class RestService {
 				}
 			}
 			
-			System.out.println("r1 : " + result1);
-			System.out.println("r2 : " + result2);
-			System.out.println("r3 : " + result3);
-
+			System.out.println(result1);
+			System.out.println(result2);
+			System.out.println(result3);
+			
 			if (result1 * result2 * result3 > 0) {
 				commit(conn);
 			} else {
@@ -234,7 +237,6 @@ public class RestService {
 
 		ArrayList<Rest> mList = new RestDao().selectMenuList(conn, rpage);
 
-		// System.out.println(mList);
 		close(conn);
 		return mList;
 
