@@ -700,5 +700,14 @@
 		  FROM MENU
 		 WHERE REST_NO = ?
       </entry>
+      
+      <entry key="recentRestList">
+      	SELECT
+		        REST_NO
+		      , REST_NAME
+		      , REST_IMG_URL
+		  FROM REST
+		 WHERE REST_NO = ?
+      </entry>
 		
 </properties>
