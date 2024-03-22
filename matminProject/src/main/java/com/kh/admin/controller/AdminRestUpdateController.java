@@ -60,7 +60,7 @@ public class AdminRestUpdateController extends HttpServlet {
 			String prvRoom = multiRequest.getParameter("prvRoom");
 			String bigRoom = multiRequest.getParameter("bigRoom");
 			
-			System.out.println("updateController : " + drivethrou);
+			//System.out.println("updateController : " + drivethrou);
 			
 			String[] menuArr = multiRequest.getParameterValues("menu");
 			String[] priceArr = multiRequest.getParameterValues("price");

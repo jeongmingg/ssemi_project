@@ -210,6 +210,7 @@ public class Rest {
 		this.localName = localName;
 	}
 
+	//관리자가 보는 식당 상세페이지
 	public Rest(String restNo, String restName, String restAddress, String restTel, String restParking, int restGrade,
 			String restTime, double restAvg, String restImgUrl, String localName, int reviewCount, String dt,
 			String anmial, String room, String bigRoom, String ctgName ,  int heartCount, String menuName, String menuPrice) {

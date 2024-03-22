@@ -1,5 +1,12 @@
+<%@page import="com.kh.rest.model.vo.Rest"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
+
+<p>Total Active Members: <%= request.getAttribute("memCount") %></p>
+<p>Total Active Restaurants: <%= request.getAttribute("restCount") %></p>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -163,10 +170,14 @@ pageEncoding="UTF-8"%>
             <th width="200">총 등록 식당 수</th>
             <th width="200">총 회원 수</th>
           </tr>
+   
           <tr>
-            <th>150개</th>
+            <th>579개</th>
             <th>300명</th>
           </tr>
+    	 
+    
+     
         </table>
       </div>
 
