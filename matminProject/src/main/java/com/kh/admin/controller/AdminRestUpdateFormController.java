@@ -46,12 +46,13 @@ public class AdminRestUpdateFormController extends HttpServlet {
 		ArrayList<Category> list = rService.selectCategoryList();
 		ArrayList<Location> lList = rService.selectLocationList();
 		
-		
+		ArrayList<Rest> menuList = rService.selectMenuByAdmin(restNo);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("lList", lList);
 		request.setAttribute("r", r);
 		request.setAttribute("img", img);
+		request.setAttribute("menuList", menuList);
 		request.getRequestDispatcher("views/admin/adminRestUpdateForm.jsp").forward(request, response);
 	}
 

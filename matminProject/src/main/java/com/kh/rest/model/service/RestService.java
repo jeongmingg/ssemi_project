@@ -257,6 +257,17 @@ public class RestService {
 		
 		return menuCnt;
 	}
+	
+	public ArrayList<Rest> selectMenuByAdmin(String restNo) {
+		Connection conn = getConnection();
+		
+		ArrayList<Rest> list = new RestDao().selectMenuByAdmin(conn, restNo);
+		
+		close(conn);
+		
+		return list;
+	}
+
 }
 
 
