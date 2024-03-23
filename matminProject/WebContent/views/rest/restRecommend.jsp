@@ -152,12 +152,13 @@
 		text-align: center;
 		padding-top: 12px;
 		border-radius: 15px;
+		cursor:pointer;
 	}
 
 	#rsBtn{font-size: 22px;}
 
 	/* 식당 이미지 스타일 */
-	#rest-img{
+	.rest-img{
 		width: 180px;
 		height: 180px;
 		margin-bottom: 10px;
@@ -165,7 +166,7 @@
 		cursor: pointer;
 	}
 
-	#rest-img+figcaption{
+	.rest-img+figcaption{
 		text-align: center;
 		font-size: 20px;
 	}
@@ -231,8 +232,8 @@
 				</div>
 			</div>
 			<div id="rs-recom-btn">
-				<div id="rs-btn">
-					<button id="rsBtn" onclick="rsRecommend();">맛집&nbsp;&nbsp;&nbsp;추천</button>
+				<div id="rs-btn" onclick="rsRecommend();">
+					<button id="rsBtn">맛집&nbsp;&nbsp;&nbsp;추천</button>
 				</div>
 			</div>
 			
@@ -314,6 +315,9 @@
 				
 				// 카테고리 클릭이벤트
 				$(document).ready(function() {
+					// 페이지 로드시 전체가 체크 되어있도록 설정
+					$("label[for='allNation']").addClass("checked");
+					
 					$(".radioBtn").click(function() {
 						$(".radioBtn>label").removeClass("checked");
 
@@ -355,20 +359,30 @@
 								
 								value = '<div class="rest-div">'
 										+ '<figure>'
-										+ '<img id="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
+										+ '<img class="rest-img" src="'+ randomRestaurant.restImgUrl  +'">'
 										+ '<figcaption>'
 										+ randomRestaurant.restName
-										+ '</figcaption>' + '</div>';
-
-				
+										+ '</figcaption>'
+										+ '<div class="restNo" style="display:none;">' + randomRestaurant.restNo + '</div>'
+										+ '</div>';
+		
 								$("#menu-p").html(value);
+								
+								$(".rest-img").click(function(){
+									var restNo = $(this).siblings('.restNo').text();
+									// find는 하위요소를 선택할대, siblings 는 형제요소
+									 console.log(restNo);
+						       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
+								});
 							},
 
 							error : function() {
 								console.log("ajax 통신에 실패했습니다.");
 							}
 						});
-					}, 2000); 
+					}, 2000);
+					
+					
 					
 				}
 			</script>
