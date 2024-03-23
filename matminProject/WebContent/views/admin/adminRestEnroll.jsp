@@ -298,7 +298,6 @@ ArrayList<Category>
 
               <tr>
 				<th height="0">사진</th>
-				<td></td>
 				<td colspan="4">	
 					<div class="file-area">
 						<label>
