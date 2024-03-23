@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardListViewController
@@ -21,7 +24,6 @@ public class BoardListViewController extends HttpServlet {
      */
     public BoardListViewController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -42,11 +44,9 @@ public class BoardListViewController extends HttpServlet {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String currentDate = today.format(formatter);
+        request.setAttribute("currentDate", currentDate);	
         
-		request.setAttribute("currentDate", currentDate);	
-		request.getRequestDispatcher("views/board/boardListFormView.jsp").forward(request, response);
-	}
-
+}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
