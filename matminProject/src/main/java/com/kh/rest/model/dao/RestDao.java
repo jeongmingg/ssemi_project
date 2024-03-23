@@ -926,8 +926,6 @@ public class RestDao {
 				r.setRestName(rset.getString("rest_name"));
 				r.setRestImgUrl(rset.getString("rest_img_url"));
 				
-				
-				System.out.println("Dao : " + r);
 			}
 			
 		} catch (SQLException e) {
