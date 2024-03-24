@@ -55,8 +55,6 @@ public class KakaoInsertController extends HttpServlet {
 				request.getSession().setAttribute("loginUser", loginUser);
 				response.sendRedirect(request.getContextPath());
 			}
-		} else {
-			
 		}
 		
 	}
