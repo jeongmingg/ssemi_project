@@ -67,6 +67,7 @@
  WHERE (REST_NAME LIKE '%' || ? || '%'
     OR LOCAL_NAME LIKE '%' || ? || '%'
     OR MENU_NAME LIKE '%' || ? || '%')
+   AND REST_STATUS = 'Y'
  ORDER
     BY REST_AVG DESC, REVIEW_COUNT DESC
 	</entry>
