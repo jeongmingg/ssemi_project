@@ -121,6 +121,7 @@ public class ReviewDao {
 				Review r = new Review();
 				
 				r.setReviewNo(rset.getString("review_no"));
+				r.setRestNo(rset.getString("rest_no"));
 				r.setReviewWriter(rset.getString("nickname"));
 				r.setReviewCont(rset.getString("review_cont"));
 				r.setReviewDate(rset.getString("review_date"));
