@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% request.getAttribute("restCount"); 
+<% session.getAttribute("restCount"); 
 request.getAttribute("nameCount");
 %>
 
@@ -150,7 +150,7 @@ request.getAttribute("nameCount");
         </tr>
 
         <tr>
-          <th><%= request.getAttribute("restCount") %>개</th>
+          <th><%= session.getAttribute("restCount") %>개</th>
           <th><%= request.getAttribute("memCount") %>명</th>
         </tr>
  

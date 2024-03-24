@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.member.model.service.MemberService;
 import com.kh.rest.model.service.RestService;
@@ -33,7 +34,11 @@ public class AdminStatController extends HttpServlet {
 		int restCount = new RestService().selectRestCount();
 		int memCount = new MemberService().selectMemCount();
 		
-		request.setAttribute("restCount", restCount);
+		HttpSession session = request.getSession();
+		session.setAttribute("restCount", restCount);
+		
+		
+		//request.setAttribute("restCount", restCount);
 		request.setAttribute("memCount", memCount);
 
 		request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
