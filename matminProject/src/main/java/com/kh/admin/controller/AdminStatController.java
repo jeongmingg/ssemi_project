@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.member.model.service.MemberService;
+import com.kh.rest.model.service.RestService;
+
 /**
  * Servlet implementation class AdminStatController
  */
@@ -27,6 +30,12 @@ public class AdminStatController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int restCount = new RestService().selectRestCount();
+		int memCount = new MemberService().selectMemCount();
+		
+		request.setAttribute("restCount", restCount);
+		request.setAttribute("memCount", memCount);
+
 		request.getRequestDispatcher("views/admin/adminMainStatsPage.jsp").forward(request, response);
 	}
 

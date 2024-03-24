@@ -2,6 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<% request.getAttribute("restCount"); 
+request.getAttribute("nameCount");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -146,8 +150,8 @@
         </tr>
 
         <tr>
-          <th>579개</th>
-          <th>300명</th>
+          <th><%= request.getAttribute("restCount") %>개</th>
+          <th><%= request.getAttribute("memCount") %>명</th>
         </tr>
  
       </table>

@@ -3,6 +3,8 @@ package com.kh.member.model.service;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import org.apache.catalina.connector.Connector;
+
 import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.location.model.vo.Location;
@@ -221,6 +223,15 @@ public class MemberService {
 		close(conn);
 		
 		return result;
+	}
+
+	
+	
+	public int selectMemCount() {
+		Connection conn = getConnection();
+		int memCount = new MemberDao().selectMemCount(conn);
+		close(conn);
+		return memCount;
 	}
 	
 }

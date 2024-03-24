@@ -136,7 +136,7 @@
 	
 		<entry key="selectRestCount">
 		SELECT 
-			COUNT(*) count
+			COUNT(*) restCount
 			FROM REST
 		WHERE REST_STATUS = 'Y'
 		

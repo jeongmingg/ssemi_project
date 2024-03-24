@@ -128,7 +128,7 @@ public class RestDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				restCount = rset.getInt("count");
+				restCount = rset.getInt("restCount");
 			}
 			
 		} catch (SQLException e) {
@@ -450,7 +450,7 @@ public class RestDao {
 		return lcList;
 
 	}
-	
+	//update
 	public int updateRest(Connection conn, Rest r) {
 		int result = 0;
 		PreparedStatement pstmt = null;

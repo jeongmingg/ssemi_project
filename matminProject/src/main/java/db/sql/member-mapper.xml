@@ -190,4 +190,13 @@
 		   AND MEM_PWD = ?
 	</entry>
 	
+	
+	<entry key="selectMemCount">
+		SELECT 
+			COUNT(*) memCount
+			FROM MEMBER
+		WHERE MEM_STATUS = 'Y'
+	
+	</entry>
+	
 </properties>

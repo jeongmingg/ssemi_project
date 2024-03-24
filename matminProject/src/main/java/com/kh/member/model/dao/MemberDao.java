@@ -562,5 +562,27 @@ public class MemberDao {
 		
 		return result;
 	}
-	
+
+	public int selectMemCount(Connection conn) {
+		int memCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectMemCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				memCount = rset.getInt("memCount");
+			}
+		}	catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memCount;
+	}
 }
