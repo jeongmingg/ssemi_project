@@ -108,7 +108,7 @@
             <a href="<%= contextPath %>/rest.list?cpage=1" class="nav-link" style="color: orange;font-size: 30px;">Restaurants</a>
                 <ul>
                     <li><a href="<%= contextPath %>/restEnroll.ad">식당등록</a></li>
-                    <li><a href="<%= contextPath %>/rest.list?cpage=1">식당전체조회</a></li>
+            
                 </ul>
             </li>
             <li class="nav-item">

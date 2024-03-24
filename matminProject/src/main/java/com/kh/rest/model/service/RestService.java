@@ -202,10 +202,6 @@ public class RestService {
 				}
 			}
 			
-			System.out.println(result1);
-			System.out.println(result2);
-			System.out.println(result3);
-			
 			if (result1 * result2 * result3 > 0) {
 				commit(conn);
 			} else {

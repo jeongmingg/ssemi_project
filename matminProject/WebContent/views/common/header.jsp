@@ -402,9 +402,6 @@
 					        if(recentRests) {
 					            var restNos = recentRests.split('/');
 					            
-					            console.log("recentRests : " + recentRests);
-					            console.log("restNos : " + restNos);
-					            
 					            $("#modalContent").html("<p id='recentP'>최근 본 식당</p>"); // 식당 정보 표시 영역을 초기화
 					            restNos.forEach(function(restNo) {
 					                // 각 식당 번호에 대해 서버에 정보 요청
@@ -413,7 +410,7 @@
 					                    type: "get",
 					                    data:{restNo : restNo},
 					                    success: function(result) {
-											console.log("result : " + result.restNo);
+											
 											if(result.length == 0){
 												var value = "<div>최근 본 식당이 없습니다.</div>";
 												$("#modalContent").append(value);
@@ -426,14 +423,7 @@
 													+ "</figure>"
 													+ "</div>";
 												
-												/* $.each(result, function(index, restaurant){
-														value += "<div>"
-															+ "<figure>"
-															+ '<img src="' + restaurant.restImgUrl + '" alt="식당사진">'
-															+ '<figcaption>' + restaurant.restName + '</figcaption>'							
-															+ "</figure>"
-															+ "</div>";
-													}); */
+												
 												$("#modalContent").append(value);
 												
 											}
@@ -451,38 +441,6 @@
 							$(this).hide();
 						})
 					});
-
-
-					// 최근 본 식당 
-					// function showRecentRs(memNo) {
-					// 	let recentList = getCookie(memNo) ? JSON.parse(getCookie(memNo)) : [];
-					// 	// recentList를 사용해서 화면에 보여줄 수 있도록 구현합니다.
-					// 	// 예를 들어, 각 식당의 상세 페이지로 이동할 수 있는 링크 목록을 만듭니다.
-					
-					// 	function fetchAndDisplayRecentRestaurants(memNo) {
-					// 		let recentList = getCookie(memNo) ? JSON.parse(getCookie(memNo)) : [];
-					// 		$.ajax({
-					// 			url: '/get-restaurants-info', // 서버의 해당 정보를 조회하는 엔드포인트
-					// 			type: 'POST',
-					// 			contentType: 'application/json',
-					// 			data: JSON.stringify({restNos: recentList}),
-					// 			success: function(response) {
-					// 			// response는 서버에서 보낸 식당 정보 목록입니다.
-					// 			// 여기서는 각 식당의 이름과 이미지 URL이 포함되어 있다고 가정합니다.
-					// 			response.forEach(function(restaurant) {
-					// 				$('#recentRestaurants').append(
-					// 				`<div>
-					// 					<img src="${restaurant.restImgUrl}" alt="${restaurant.restName}">
-					// 					<p>${restaurant.restName}</p>
-					// 				</div>`
-					// 				);
-					// 			});
-					// 			}
-					// 		});
-					// 	}
-
-					
-					// }
 
 				</script>
 			</div>
