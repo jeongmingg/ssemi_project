@@ -82,14 +82,14 @@ public class AdminRestUpdateController extends HttpServlet {
 				menuList.add(new Menu(menuName3, menuPrice3));
 			}
 		
-			Rest r = new Rest(restNo, restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom);	
+			String imgUrl = new RestService().selectRestImg(restNo);
+			Rest r = new Rest(restLocation, restName, ctgId, restAddress, restTel, parking, restTime, drivethrou,comAnimal, prvRoom, bigRoom, imgUrl, restNo);	
 		
 			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일 있을 경우
 				r.setRestImgUrl("resources/rest/" + multiRequest.getFilesystemName("upfile") );			
 			}else { // 넘어온 첨부파일 없을 경우 (즉, 사진 수정 안했을 경우)
 				
 				// 원래있던 사진이름을 가져와서 세팅해줌.
-				String imgUrl = new RestService().selectRestImg(restNo);
 				r.setRestImgUrl(imgUrl);
 			}
 			

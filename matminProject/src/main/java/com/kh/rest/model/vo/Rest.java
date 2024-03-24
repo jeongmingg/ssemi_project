@@ -166,8 +166,8 @@ public class Rest {
 
 	}
 //update생성자
-	public Rest(String restNo, String restLocalId, String restName, String ctgId, String restAddress, String restTel,
-			String restParking, String restTime, String dt, String anmial, String room, String bigRoom) {
+	public Rest( String restLocalId, String restName, String ctgId, String restAddress, String restTel,
+			String restParking, String restTime,  String anmial,  String room, String bigRoom, String dt, String restImgUrl,String restNo) {
 		super();
 		this.restNo = restNo;
 		this.restLocalId = restLocalId;
@@ -181,6 +181,7 @@ public class Rest {
 		this.anmial = anmial;
 		this.room = room;
 		this.bigRoom = bigRoom;
+		this.restImgUrl = restImgUrl; 
 	}
 
 	
