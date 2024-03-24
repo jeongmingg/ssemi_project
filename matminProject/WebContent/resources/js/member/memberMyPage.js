@@ -216,7 +216,7 @@ function reviewList(memNo) {
       } else {
         for (let i in result) {
           str +=
-            '<div class="review-detail" id="'+ result[i].restNo + '">' +
+            '<div class="review-detail" id="'+ result[i].restNo + '" style="cursor: pointer;">' +
             '<div class="review-div">' +
             '<div class="rv1">' +
             '<div class="profile">' +
@@ -239,7 +239,7 @@ function reviewList(memNo) {
             '<input type ="hidden" class="reviewNo" value=' +
             result[i].reviewNo +
             ">" +
-            '<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this, \'' +
+            '<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(event, this, \'' +
             memNo +
             "');\">삭제</a>" +
             '<div class="review-update">' +
@@ -253,7 +253,7 @@ function reviewList(memNo) {
             "</p>" +
             "</div>" +
             '<div class="review-like">' +
-            '<div class="like-area">' +
+            '<div class="like-area" onclick="clickLike(event);">' +
             '<span id="like">' +
             "추천 (" +
             result[i].reviewLike +
@@ -338,7 +338,7 @@ function markList(memNo) {
 }
 
 /* 리뷰 삭제 ajax*/
-function deleteReview(ele, memNo) {
+function deleteReview(event, ele, memNo) {
   /*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
   let rvNo = $(ele).siblings("input").val();
 
@@ -358,6 +358,8 @@ function deleteReview(ele, memNo) {
       },
     });
   }
+
+  event.stopPropagation();
 }
 
 function cancelHeart(event, memNo, restNo) {
@@ -375,6 +377,13 @@ function cancelHeart(event, memNo, restNo) {
       console.log("찜꽁 해제 ajax 호출 실패");
     }
   });
+
+  // 이벤트 버블링 방지
+  event.stopPropagation();
+}
+
+function clickLike(event) {
+  alert("본인이 작성한 리뷰는 추천할 수 없습니다.");
 
   // 이벤트 버블링 방지
   event.stopPropagation();
