@@ -90,14 +90,17 @@
             display: block;
             opacity: 1;
         }
+        .container{
+        padding-top: 50px;
+        }
     </style>
 </head>
 <body>
     <%@ include file="../common/header.jsp" %>
     <%@ include file="../common/navigator.jsp" %>
 
-    
-    <div class="container" width="82%">
+    <br><br><br><br>
+    <div class="container" stylewidth="82%">
         <!-- <p>Justified tabs:</p> -->
         <br><br>
         <ul id="navi" class="nav nav-tabs nav-justified">
