@@ -9,7 +9,6 @@ import java.util.HashMap;
 import static com.kh.common.JDBCTemplate.*;
 
 import com.kh.board.model.vo.ImgFile;
-import com.kh.common.model.vo.Attachment;
 import com.kh.common.model.vo.Category;
 import com.kh.common.model.vo.Location;
 import com.kh.common.model.vo.Menu;
