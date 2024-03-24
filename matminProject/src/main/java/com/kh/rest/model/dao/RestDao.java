@@ -470,7 +470,8 @@ public class RestDao {
 			pstmt.setString(9, r.getRoom());
 			pstmt.setString(10, r.getBigRoom());
 			pstmt.setString(11, r.getDt());
-			pstmt.setString(12, r.getRestNo());
+			pstmt.setString(12, r.getRestImgUrl());
+			pstmt.setString(13, r.getRestNo());
 			
 			result = pstmt.executeUpdate();
 			
