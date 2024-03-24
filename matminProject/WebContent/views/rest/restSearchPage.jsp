@@ -904,7 +904,6 @@ div {
 					  // 편의기능 클릭시
 					  $("input[type='checkbox']").on("click", function(){
 							var rsFunction = $(this).next().text();
-							console.log(rsFunction);
 
 							var funcState = ""; 
 
@@ -913,7 +912,6 @@ div {
 							}else{
 								funcState = "N";
 							}
-							console.log(funcState);
 							
 							let checkedCtg = $("input[name=category]:checked").next().text().trimStart();
 							handleSelection(checkedCtg, rsFunction, funcState);
