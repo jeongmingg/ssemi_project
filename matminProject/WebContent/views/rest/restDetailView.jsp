@@ -948,6 +948,7 @@
                             <div id="kakao_btn">
                                 카카오톡
                             </div>
+	
                         </a>
                         <a href="#" class="normal" style="margin: auto; margin-right:60px">
                             <img src="https://img.icons8.com/external-bearicons-glyph-bearicons/64/737373/external-Link-essential-collection-bearicons-glyph-bearicons.png" style="margin-left: 40px;" width="70px" height="70px">
@@ -1657,7 +1658,18 @@
 				}
 			})
 		</script>
-	
+		<script>
+			$('#reviewModal').on('hidden.bs.modal', function (e) {
+				var radio = $($(this).find('.review_form input[type=radio]'));
+				console.log(radio);
+				$(this).find('.review_form input[type=radio][name="rating"]').removeAttr()
+				var form = $(this).find('form')[0];
+				
+				form.reset();
+				
+				});
+		
+		</script>
 
 		<!-- 리뷰 인서트시 리뷰작성시 글자수 제한 보여줌 -->
 		<script>
