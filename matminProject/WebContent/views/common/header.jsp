@@ -247,10 +247,11 @@
 				
 			}
 			
-			#restImg{
+			.restImg{
 				width: 100px; height: 100px;
 				border-radius: 10px;
 				margin-bottom: 8px;
+				cursor: pointer;
 			}
 			#recentRest figcaption{
 				font-size: 13px;
@@ -418,13 +419,20 @@
 												value = 
 													 "<div id='recentRest'>"
 													+ "<figure>"
-													+ '<img id="restImg" src="' + result.restImgUrl + '" alt="식당사진">'
+													+ '<img class="restImg" src="' + result.restImgUrl + '" alt="식당사진">'
 													+ '<figcaption>' + result.restName + '</figcaption>'							
+													+ '<div class="restNo" style="display:none;">' + result.restNo + '</div>'
 													+ "</figure>"
 													+ "</div>";
 												
 												
 												$("#modalContent").append(value);
+												$(".restImg").click(function(){
+													var restNo = $(this).siblings('.restNo').text();
+													// find는 하위요소를 선택할대, siblings 는 형제요소
+													 
+										       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
+												});
 												
 											}
 					                    },

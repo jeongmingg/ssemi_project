@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here ww</title>
+	<title>맛집의 민족</title>
 
 	<!-- css -->
 	<link rel="stylesheet" href="resources/css/member/memberChooseEnrollForm.css">
@@ -217,6 +217,7 @@
 					nickname: nickname
 				},
 				success: function() {
+					alert(nickname + "님, 회원가입이 완료되었습니다.");
 					location.href="<%= contextPath %>";
 				},
 				error: function() {

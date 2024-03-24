@@ -370,8 +370,8 @@
 								
 								$(".rest-img").click(function(){
 									var restNo = $(this).siblings('.restNo').text();
-									// find는 하위요소를 선택할대, siblings 는 형제요소
-									 console.log(restNo);
+									// find는 하위요소를 선택할 때, siblings 는 형제요소
+									 
 						       		 window.location.href = '<%= request.getContextPath() %>/detail.rs?rpage=' + restNo
 								});
 							},

@@ -117,105 +117,50 @@ public class RestService {
 		return list;
 
 	}
-
 	public int updateRest(Rest r, ArrayList<Menu> menuList) {
-		// r: rest관련, menuList: 메뉴정보(메뉴이름 + 가격)
+	    Connection conn = getConnection();
+	    int result1 = 1; 
+	    int result2 = 1; 
+	    int result3 = 1; 
 
-		Connection conn = getConnection();
-		int result1 = 0;
-		int result2 = 1;
-		int result3 = 1;
+	    if (r != null) {
+	        result1 = new RestDao().updateRest(conn, r);
+	    }
 
-		// 식당 정보 수정
-		if (r != null) {
-			result1 = new RestDao().updateRest(conn, r);
-		}
-		// 메뉴수정
-		if (!menuList.get(0).getManuName().equals("")) { // 대표메뉴라도 하나 입력 된 경우에만 진행
+	    if (!menuList.isEmpty()) {
+	        int menuCount = new RestDao().selectMenuCount(conn, r.getRestNo());
 
-			// 원래 해당 메뉴가 몇개가 있었는지 조회
-			int menuCnt = new RestDao().selectMenuCount(conn, r.getRestNo());
+	        if (menuCount == 0) {
+	            for (int i = 0; i < menuList.size(); i++) {
+	                result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
+	            }
+	        } else {
+	            ArrayList<String> menuNoList = new RestDao().selectMenuNo(conn, r.getRestNo());
+	            for (int i = 0; i < menuList.size(); i++) {
+	                if (i < menuNoList.size()) {
+	                    result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i, menuNoList.get(i));
+	                } else {
+	                    result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
+	                }
+	            }
+	            for (int i = menuList.size(); i < menuNoList.size(); i++) {
+	                result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
+	            }
+	        }
+	    }
+	    
+	    if (result1 > 0 || result2 > 0 || result3 > 0) {
+	        commit(conn);
+	    } else {
+	        rollback(conn);
+	    }
 
-			// 메뉴를 한 번도 등록하지 않은 경우
-			if (menuCnt == 0) {
-				for (int i = 0; i < menuList.size(); i++) {
-					if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 insert
-						result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
-					}
-				}
+	    close(conn);
 
-			} else { // 메뉴가 하나라도 있는 경우
-				ArrayList<String> menuNoList = new RestDao().selectMenuNo(conn, r.getRestNo());
-				// 기존에 몇개의 메뉴가 등록되어있는지 조회
-				int count = menuNoList.size();
-				for (int i = 0; i < menuList.size(); i++) {
-					switch (count) {
-					case 1: // 대표메뉴만 입력된 경우(한개만 입력돼있는 경우 => 한개는 update, 나머지 insert)
-
-						if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 insert
-							if (i == 0) { // 대표메뉴는 update
-								result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i,
-										menuNoList.get(i));
-							} else { // 서브메뉴1은 insert
-								result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
-							}
-
-						}else {
-							// 원래 있던 메뉴를 지우는 경우 => "delete"
-							result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
-						}
-						break;
-
-					case 2: // 대표메뉴, 서브메뉴1이 입력된 경우
-						if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 insert
-							if (i == 0 || i == 1) { // 대표메뉴, 서브메뉴1은 update
-								result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i,
-										menuNoList.get(i));
-							} else { // 서브메뉴2는 insert
-								result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
-							}
-						}
-						else {
-							// 원래 있던 메뉴를 지우는 경우 => "delete"
-							result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
-						}
-						break;
-
-					default: // 대표메뉴, 서브메뉴1, 서브메뉴2가 전부다 원래 입력돼있던 경우
-						if (!menuList.get(i).getManuName().equals("")) { // 메뉴 입력된 경우에만 update
-							for(int j=0; j<menuNoList.size(); j++) {
-								if(i==j) {
-									result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i,
-											menuNoList.get(i));
-								}else {
-									result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(j));
-								}
-							}
-							
-						}else {
-							// 원래 있던 메뉴를 지우는 경우 => "delete"
-							
-							result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
-						}
-					}
-
-				}
-			}
-			
-			if (result1 * result2 * result3 > 0) {
-				commit(conn);
-			} else {
-				rollback(conn);
-			}
-		}
-
-		close(conn);
-
-		
-
-		return result1 * result2 * result3;
+	    return result1 * result2 * result3;
 	}
-
+	
+	
 	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName, String rsFunction,
 			String funcState) {
 
