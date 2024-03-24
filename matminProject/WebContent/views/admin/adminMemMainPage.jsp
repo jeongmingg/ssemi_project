@@ -110,7 +110,7 @@
             <li class="nav-item">
             <a class="nav-link" href="<%= contextPath %>/list.bo" style="color: orange;font-size: 30px;">Board</a>
                 <ul>
-                    <li><a href="<%= contextPath %>/list.bo">식당 등록/삭제 게시판</a></li>
+                    <li><a href="<%= contextPath %>/list.bo?cpage=1">식당 등록/삭제 게시판</a></li>
                 </ul>
             
             </li>
