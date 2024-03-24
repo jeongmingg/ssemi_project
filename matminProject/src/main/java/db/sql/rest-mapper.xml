@@ -14,6 +14,7 @@
      , MENU_NAME
      , REVIEW_COUNT
      , REP_MENU
+     , REST_STATUS
   FROM (
         SELECT
                REST_NO
@@ -24,6 +25,7 @@
              , LOCAL_NAME
              , MENU_NAME
              , REP_MENU
+             , REST_STATUS
           FROM (
                SELECT
                       REST.REST_NO
@@ -34,6 +36,7 @@
                     , LOCAL_NAME
                     , MENU_NAME
                     , REP_MENU
+                    , REST_STATUS
                  FROM REST
                  LEFT JOIN REVIEW ON (REST.REST_NO = REVIEW.REST_NO)
                  JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
@@ -47,6 +50,7 @@
              , LOCAL_NAME
              , MENU_NAME
              , REP_MENU
+             , REST_STATUS
         )
   LEFT JOIN (
             SELECT
@@ -67,6 +71,7 @@
  WHERE (REST_NAME LIKE '%' || ? || '%'
     OR LOCAL_NAME LIKE '%' || ? || '%'
     OR MENU_NAME LIKE '%' || ? || '%')
+   AND REST_STATUS = 'Y' 
  ORDER
     BY REST_AVG DESC, REVIEW_COUNT DESC
 	</entry>
@@ -79,6 +84,7 @@
 		     , REST_IMG_URL
 		     , LOCAL_NAME
 		     , COUNT(REVIEW_NO) AS REVIEW_COUNT
+		     , REST_STATUS
 		  FROM (
 		       SELECT
 		              REST_NO
@@ -87,6 +93,7 @@
 		            , REST_IMG_URL
 		            , LOCAL_NAME
 		            , REVIEW_NO
+		            , REST_STATUS
 		         FROM REST
 		         LEFT JOIN REVIEW USING(REST_NO)
 		         JOIN LOCATION ON (REST_LOCAL_ID = LOCAL_ID)
@@ -96,7 +103,9 @@
 		     , REST_NAME
 		     , REST_IMG_URL
 		     , LOCAL_NAME
+		     , REST_STATUS
 		HAVING LOCAL_NAME = ?
+		   AND REST_STATUS = 'Y'
 		 ORDER
 		    BY REST_AVG DESC , REVIEW_COUNT DESC
 	</entry>
@@ -143,6 +152,7 @@
 				     , MENU_NAME
 				     , MENU_PRICE
 				     , LOCAL_NAME
+				     , REST_STATUS
 				  FROM (
 				       SELECT
 				              REST_NO
@@ -153,6 +163,7 @@
 				            , MENU_NAME
 				            , MENU_PRICE
 				            , LOCAL_NAME
+				            , REST_STATUS
 				         FROM REVIEW
 				         RIGHT JOIN REST USING(REST_NO)
 				         LEFT JOIN MENU USING(REST_NO)
@@ -166,6 +177,7 @@
 				            ( ? = 'ban_btn4' AND MENU_PRICE > 20000 AND MENU_PRICE <= 35000) OR
 				            ( ? = 'ban_btn5' AND MENU_PRICE > 35000)
 				       )
+				   AND REST_STATUS = 'Y'
 				 GROUP
 				    BY REST_NO
 				     , REST_NAME
@@ -276,9 +288,11 @@
 			     , REST_IMG_URL
 			     , CTG_ID
 			     , CTG_NAME
+			     , REST_STATUS
 			  FROM REST
 			  JOIN CATEGORY USING (CTG_ID)
 			 WHERE CTG_NAME LIKE '%'|| ? ||'%'
+			   AND REST_STATUS = 'Y'
 		</entry>
 		
 		<entry key="locationSearch">
@@ -299,6 +313,8 @@
 			    , ANIMAL
 			    , ROOM
 			    , BIG_ROOM
+			    , REST_STATUS
+			    
 			  FROM (
 			        SELECT
 			               REST_NO
@@ -315,6 +331,7 @@
 			            , ANIMAL
 			            , ROOM
 			            , BIG_ROOM
+			            , REST_STATUS
 			          FROM (
 			               SELECT
 			                      REST.REST_NO
@@ -331,6 +348,7 @@
 			                    , ANIMAL
 			                    , ROOM
 			                    , BIG_ROOM
+			                    , REST_STATUS
 			                 FROM REST
 			                 LEFT JOIN REVIEW ON(REST.REST_NO = REVIEW.REST_NO)
 			                 JOIN LOCATION ON (LOCAL_ID = REST_LOCAL_ID)
@@ -351,6 +369,7 @@
 			            , ANIMAL
 			            , ROOM
 			            , BIG_ROOM
+			            , REST_STATUS
 			        )
 			  LEFT JOIN (
 			            SELECT
@@ -375,6 +394,7 @@
 			       )
 			AND LOCAL_NAME LIKE '%' || ? || '%'
 			AND CTG_NAME LIKE '%' || ? || '%'
+			AND REST_STATUS = 'Y'
 
 		</entry>
 		
@@ -415,7 +435,6 @@
 				, ROOM = ?
 				, BIG_ROOM = ?
 				, DT = ?
-				, REST_IMG_URL = ?
 			WHERE REST_NO = ?
 		
 		</entry>
@@ -562,14 +581,17 @@
 			      , CTG_NAME
 			      , NVL(ROUND(AVG(REVIEW_RATE), 1), 0) "REST_AVG"
 			      , COUNT(REVIEW_NO) "REVIEW_COUNT"
+			      , REST_STATUS
 			  FROM REST
 			  LEFT JOIN REVIEW USING(REST_NO)
 			  LEFT JOIN CATEGORY USING(CTG_ID)
+			 WHERE REST_STATUS = 'Y'
 			 GROUP BY 
 			        REST_NO
 			      , REST_NAME
 			      , REST_IMG_URL
 			      , CTG_NAME
+			      , REST_STATUS
 			 ORDER
 			    BY REST_AVG DESC, REVIEW_COUNT DESC
 		</entry>
@@ -585,6 +607,7 @@
 				     , MENU_NAME
 				     , MENU_PRICE
 				     , LOCAL_NAME
+				     , REST_STATUS
 				    FROM (
 				       SELECT
 				              REST_NO
@@ -595,6 +618,7 @@
 				            , MENU_NAME
 				            , MENU_PRICE
 				            , LOCAL_NAME
+				            , REST_STATUS
 				         FROM REVIEW
 				         RIGHT JOIN REST USING(REST_NO)
 				         LEFT JOIN MENU USING(REST_NO)
@@ -608,6 +632,7 @@
 				                ( ? = 'ban_btn4' AND MENU_PRICE > 20000 AND MENU_PRICE <= 35000) OR
 				                ( ? = 'ban_btn5' AND MENU_PRICE > 35000)
 				           )
+				      AND REST_STATUS = 'Y'
 				      AND LOCAL_NAME LIKE ?
 				    GROUP
 				    BY REST_NO
