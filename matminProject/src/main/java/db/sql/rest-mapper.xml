@@ -415,7 +415,6 @@
 				, ROOM = ?
 				, BIG_ROOM = ?
 				, DT = ?
-				, REST_IMG_URL = ?
 			WHERE REST_NO = ?
 		
 		</entry>
