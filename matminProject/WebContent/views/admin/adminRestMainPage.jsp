@@ -149,7 +149,11 @@
                 </tr>
                 <tr>
                     <td> 영업시간</td>
-                    <td><input type="text" value= "<%= r.getRestTime() %>" readonly></td>
+                    <% if(r.getRestTime()== null) { %>
+                    <td><input type="text" value= "정보없음" readonly></td>
+                    <% }else { %>
+                     <td><input type="text" value=<%= r.getRestTime() %> readonly></td>
+                     <% } %>
                     <td>찜꽁&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="text" value = "<%=r.getHeart() %>" readonly></td>
@@ -172,12 +176,22 @@
                     <td> 식당전화번호</td>
                     <td><input type="text" value= "<%= r.getRestTel() %>" readonly></td>
                     <td>대표메뉴 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      <% if(r.getMenuName()== null) { %>
+                     <input type="text" value="정보없음" readonly></td>
+                     <% }else { %>
                     <input type="text" value="<%= r.getMenuName() %>" readonly></td>
+                    <% } %>
                 </tr>
 					<tr>
 						<td>카테고리</td>
 						<td><input type="text" value="<%=r.getCtgName()%>" readonly></td>
-                        <td>대표메뉴 가격<input type="text" value="<%=r.getMenuPrice() %>" readonly></td>
+						
+                        <td>대표메뉴 가격
+                        <% if(r.getMenuPrice()== null) { %>
+                        <input type="text" value="정보없음" readonly></td>
+                        <% }else { %>
+                        <input type="text" value="<%=r.getMenuPrice() %>" readonly></td>
+                        <% } %>
 					</tr>
 
 					<tr>

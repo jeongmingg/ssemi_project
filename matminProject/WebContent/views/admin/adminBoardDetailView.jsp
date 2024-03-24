@@ -1,4 +1,13 @@
 
+<%@page import="com.kh.board.model.vo.ImgFile"%>
+<%@page import="com.kh.board.model.vo.Board"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%
+	Board b = (Board)request.getAttribute("b");
+    ImgFile img = (ImgFile)request.getAttribute("img");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,42 +134,55 @@
         <table id="detail-area"  border="1" align="center">
             <tr>
                 <th width="70">글번호</th>
-                <td width="70">01</td>
+                <td width="70"><%= b.getBoardNo()%></td>
                 <th width="70">글유형</th>
-                <td width="350">신고</td>
+                <td width="350"><%= b.getBoardType()%></td>
             </tr>
             <tr>
                 <th width="70">작성자</th>
-                <td width="70">matmin01</td>
+                <td width="70"><%= b.getBoardWriter()%></td>
                 <th width="70">제목</th>
-                <td width="350">허위사실 확인부탁드립니다</td>
+                <td width="350"><%= b.getBoardTitle()%></td>
             </tr>
             <tr>
                 <th>식당이름</th>
-                <td>한우사랑</td>
+                <td><%= b.getRestName()%></td>
                 <th>작성일</th>
-                <td>2024.02.02</td>
+                <td><%= b.getBoardDate()%></td>
             </tr>
             <tr>
+                <th>식당주소</th>
+                <td><%= b.getRestAddress()%></td>
+        
+            </tr>
+            
+            <tr> 
                 <th>내용</th>
                 <td colspan="3">
-                    <p style="height:100px;">안녕하세요! 한우사랑 식당 리뷰에 보시면 맞지 않은 정보가 기재되어있습니다. <br>
-                        확인 부탁드립니다!감사합니다!</p>
+                  <span id="content" name="content" maxlength="300" required readonly><%= b.getBoardContent() %></span>	
                 </td>
+                
             </tr>
+            
             <tr>
                 <th>첨부파일</th>
                 <td colspan="3">
+             <% if (img == null){ %>
+							<div class="file-area">
+								<span>첨부파일이 없습니다</span>
+						<% } else { %>
+								<a class="uploadFile" href="<%= contextPath %>/<%= img.getImgFilePath() + img.getImgChangeName()%>" ><%= img.getImgOriginName() %></a>
+							</div>
+						</td>
+						<% } %>   
                 
-                </td>    
             </tr>
         </table>
-        
         <br>
 
         <div align="center">
             <button type="submit" class="btn btn-warning btn-sm">알림보내기</button>
-            <button type="submit" class="btn btn-danger btn-sm" >삭제</button>
+            <a href="<%= contextPath %>/restEnroll.ad" class="btn btn-sm btn-secondary">등록하기</a>
             <button type="button" class="btn btn-dark btn-sm" onclick="history.back();">뒤로가기</button>
         </div>
 

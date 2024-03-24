@@ -6,10 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.board.model.service.BoardService;
 import com.kh.board.model.vo.Board;
 import com.kh.board.model.vo.ImgFile;
+import com.kh.member.model.vo.Member;
 
 /**
  * Servlet implementation class BoardDetailController
@@ -45,8 +47,15 @@ public class BoardDetailController extends HttpServlet {
 			
 			request.setAttribute("b", b);
 			request.setAttribute("img", img);
+			
 
-			request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			Member loginUser = (Member)session.getAttribute("loginUser");
+			if (loginUser != null && loginUser.getMemNo().equals("M1")) {
+				request.getRequestDispatcher("views/admin/adminBoardDetailView.jsp").forward(request, response);
+			}else {
+				request.getRequestDispatcher("views/board/boardListDetailView.jsp").forward(request, response);			
+		}
 			
 		} else {
 			request.setAttribute("alertMsg", "🚨 조회에 실패하였습니다");
