@@ -160,7 +160,9 @@
 							</td>
 						</tr>
 					</table>
-					<button type="button" id="changePwdBtn" data-toggle="modal" data-target="#changePwd">비밀번호 변경하기</button>
+					<% if(!Character.isDigit(loginUser.getMemId().charAt(0))) { %>
+						<button type="button" id="changePwdBtn" data-toggle="modal" data-target="#changePwd">비밀번호 변경하기</button>
+					<% } %>
 					<button type="submit" onclick="return validate();">개인정보 수정하기</button>
 				</form>
 
