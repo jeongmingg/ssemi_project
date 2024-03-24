@@ -34,6 +34,7 @@ public class BoardSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int listCount; // 총 게시글 수
 		int currentPage; // 현재페이지
 		int pageLimit; // 하단 페이징바 개수
