@@ -252,7 +252,7 @@
 }
 
 /* 리뷰 프로필 전체 */
-.profile > div {
+.profile>div {
   height: 60px;
   float: left;
   /* border: 1px solid red; */
@@ -262,7 +262,7 @@
 #profile-img {
   width: 10%;
 }
-#profile-img > img {
+.profile-img>img {
   width: 60px;
   height: 60px;
   margin: auto;
@@ -274,39 +274,33 @@
   padding-left: 10px;
   padding-top: 5px;
 }
-#writer {
+.writer {
   font-weight: 600;
   font-size: 20px;
 }
 
 /* 리뷰 내 별점 스타일 */
-#w-star {
+.w-star {
   display: inline-block;
   width: 20px;
   height: 18px;
-  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
-    repeat-x left;
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
   background-size: 18px;
   margin-top: 2px;
 }
 
 /* 별점 빈 별 스타일*/
-#w-star i {
+.w-star i {
   display: inline-block;
   width: 20x;
   height: 18px;
-  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
-    repeat-x left;
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) repeat-x left;
   background-size: 18px;
   margin-bottom: 2px;
 }
 
-span#rvstar-avg-title {
-  margin-right: 30px;
-}
-
 /* 리뷰 날짜 */
-#write-date {
+.write-date {
   font-size: 15px;
   padding-left: 10px;
   line-height: 1.8;
@@ -346,17 +340,13 @@ span#rvstar-avg-title {
   display: inline-block;
   width: 10px;
   height: 12px;
-  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png)
-    no-repeat left;
+  background: url(https://dcicons.s3.ap-northeast-1.amazonaws.com/new/images/mobile/common_react/review__newstar__img.png) no-repeat left;
   background-size: 10px;
   margin-top: 4px;
   margin-left: 3px;
   margin-right: 3px;
 }
-#rv-flv-star,
-#rv-pri-star {
-  margin-right: 10px;
-}
+
 .rv1 {
   padding-top: 3px;
 }
@@ -364,37 +354,20 @@ span#rvstar-avg-title {
   margin-top: -20px;
   margin-left: 20px;
 }
-#rv-content {
+.rv-content {
   white-space: pre-wrap; /*p태그 개행*/
   padding-top: 40px;
   font-size: large;
   padding-left: 15px;
-}
-.review-img {
-  overflow: hidden; /* 이미지가 부모 요소를 벗어나지 않도록 설정합니다. */
-  margin-top: -10px;
-}
-
-.review-img > div {
-  float: left; /* 이미지를 왼쪽으로 정렬합니다. */
-  margin-right: 8px; /* 이미지 사이의 간격을 설정합니다. */
-  padding-left: 50px;
-}
-
-.review-img > div {
-  float: left; /* 이미지를 왼쪽으로 정렬합니다. */
-  margin-right: 8px; /* 이미지 사이의 간격을 설정합니다. */
-  padding-left: 50px;
-}
-
-.btn-share > span {
-  text-decoration: none; /* 텍스트 밑줄 제거 */
 }
 
 .review-like {
   display: flex;
   margin-left: 10px;
   margin-top: 5px;
+  justify-content: flex-end;
+  align-content: stretch;
+  flex-direction: row;
 }
 .review-like > div {
   margin-right: 10px;

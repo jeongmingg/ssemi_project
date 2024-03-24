@@ -38,6 +38,7 @@
 	<entry key="selectReviewListByMem">
 		SELECT
 		       REVIEW_NO
+		     , REST_NO
 		     , NICKNAME
 		     , REVIEW_CONT
 		     , REVIEW_DATE

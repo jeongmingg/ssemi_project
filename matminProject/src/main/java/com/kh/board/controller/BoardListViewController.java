@@ -44,7 +44,9 @@ public class BoardListViewController extends HttpServlet {
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String currentDate = today.format(formatter);
-        request.setAttribute("currentDate", currentDate);	
+        
+		request.setAttribute("currentDate", currentDate);	
+		request.getRequestDispatcher("views/board/boardListFormView.jsp").forward(request, response);	
         
 }
 	/**

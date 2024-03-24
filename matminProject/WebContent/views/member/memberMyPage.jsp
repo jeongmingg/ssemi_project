@@ -14,8 +14,7 @@
 	<link rel="stylesheet" href="resources/css/member/memberMyPage.css" />
 	<!-- jQuery library -->
 	<!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script> -->
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<!-- js -->
 	<script src="resources/js/member/memberMyPage.js"></script>
 </head>

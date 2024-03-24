@@ -195,7 +195,7 @@ function boardList(memNo) {
         var boardNo = $(this).find("td:first").text();
 
         if(boardNo !== "작성한 게시글이 없습니다.") {
-          location.href = "/mm/detail.bo?bno=" + boardNo;
+          location.href = contextPath + "/detail.bo?bno=" + boardNo;
         }
       });
     },
@@ -216,34 +216,30 @@ function reviewList(memNo) {
       } else {
         for (let i in result) {
           str +=
-            '<div class="review-detail">' +
+            '<div class="review-detail" id="'+ result[i].restNo + '" style="cursor: pointer;">' +
             '<div class="review-div">' +
             '<div class="rv1">' +
             '<div class="profile">' +
-            '<div id="profile-img">' +
+            '<div class="profile-img">' +
             '<img src="https://img.icons8.com/ios-filled/100/737373/user-male-circle.png">' +
             "</div>" +
             '<div class="profile-name">' +
-            '<div id="writer">' +
+            '<div class="writer">' +
             result[i].reviewWriter +
             "</div>" +
             '<div style="display: flex;">' +
-            '<div id="w-star">' +
-            '<i id="rvstar-avg"></i>' +
+            '<div class="w-star">' +
+            '<i class="rvstar-avg"></i>' +
             "</div>" +
-            '<span id="write-date">' +
-            '<span id="rvstar-avg-title">' +
-            result[i].reviewRate +
-            "</span>" +
-            result[i].reviewDate.substr(0, 10) +
-            "</span>" +
+            '<span class="rvstar-avg-title">' + result[i].reviewRate + '</span>' +
+            '<span class="write-date">' + result[i].reviewDate.substr(0, 10) + '</span>' + 
             "</div>" +
             "</div>" +
             '<div class="warn">' +
             '<input type ="hidden" class="reviewNo" value=' +
             result[i].reviewNo +
             ">" +
-            '<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(this, \'' +
+            '<a href="#" class="delete-review" id="rv-delete" onclick="deleteReview(event, this, \'' +
             memNo +
             "');\">삭제</a>" +
             '<div class="review-update">' +
@@ -252,27 +248,15 @@ function reviewList(memNo) {
             "</div>" +
             '<div class="review-content">' +
             "<br><br>" +
-            '<p name="rv-content" id="rv-content">' +
+            '<p name="rv-content" class="rv-content" maxlength="182">' +
             result[i].reviewCont +
             "</p>" +
             "</div>" +
-            '<div class="review-img">' +
-            "<div>" +
-            '<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">' +
-            '<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">' +
-            '<img id="rvImg" src="https://d12zq4w4guyljn.cloudfront.net/20191021050027_photo1_yWq7n26CqVPd.jpg" data-nickname="맛쟁이" data-date="2019년 11월 3일" style="width:160px; height:160px; overflow:hidden; float:left; border-radius: 5px; margin-right:8px;">' +
-            "</div>" +
-            "</div>" +
             '<div class="review-like">' +
-            '<div class="like-area">' +
+            '<div class="like-area" onclick="clickLike(event);">' +
             '<span id="like">' +
             "추천 (" +
             result[i].reviewLike +
-            ")</span>" +
-            "</div>" +
-            '<div class="unlike-area">' +
-            '<span id="unlike">비추천 (' +
-            result[i].reviewDislike +
             ")</span>" +
             "</div>" +
             "</div>" +
@@ -284,6 +268,10 @@ function reviewList(memNo) {
 
       $("#myReview>span").text("총 " + result.length + "개");
       $("#myReview>div").html(str);
+
+      $(".review-detail").on("click", function() {
+        location.href = contextPath + "/detail.rs?rpage=" + $(this).attr("id");
+      })
     },
     error: function () {
       console.log("마이페이지(내가 쓴 게시글) ajax 실패");
@@ -350,7 +338,7 @@ function markList(memNo) {
 }
 
 /* 리뷰 삭제 ajax*/
-function deleteReview(ele, memNo) {
+function deleteReview(event, ele, memNo) {
   /*클릭된 this 객체 $(ele)의 형재태그인 input의 value에 값을 넣어놨음*/
   let rvNo = $(ele).siblings("input").val();
 
@@ -370,6 +358,8 @@ function deleteReview(ele, memNo) {
       },
     });
   }
+
+  event.stopPropagation();
 }
 
 function cancelHeart(event, memNo, restNo) {
@@ -387,6 +377,13 @@ function cancelHeart(event, memNo, restNo) {
       console.log("찜꽁 해제 ajax 호출 실패");
     }
   });
+
+  // 이벤트 버블링 방지
+  event.stopPropagation();
+}
+
+function clickLike(event) {
+  alert("본인이 작성한 리뷰는 추천할 수 없습니다.");
 
   // 이벤트 버블링 방지
   event.stopPropagation();
