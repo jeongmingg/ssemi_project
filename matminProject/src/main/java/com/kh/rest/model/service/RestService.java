@@ -132,19 +132,19 @@ public class RestService {
 
 	        if (menuCount == 0) {
 	            for (int i = 0; i < menuList.size(); i++) {
-	                result2 *= new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
+	                result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
 	            }
 	        } else {
 	            ArrayList<String> menuNoList = new RestDao().selectMenuNo(conn, r.getRestNo());
 	            for (int i = 0; i < menuList.size(); i++) {
 	                if (i < menuNoList.size()) {
-	                    result2 *= new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i, menuNoList.get(i));
+	                    result2 = new RestDao().updateRestMenu(conn, menuList.get(i), r.getRestNo(), i, menuNoList.get(i));
 	                } else {
-	                    result2 *= new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
+	                    result2 = new RestDao().insertAddMenu(conn, r.getRestNo(), menuList.get(i), i);
 	                }
 	            }
 	            for (int i = menuList.size(); i < menuNoList.size(); i++) {
-	                result2 *= new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
+	                result2 = new RestDao().deleteRestMenu(conn, r.getRestNo(), menuNoList.get(i));
 	            }
 	        }
 	    }
@@ -159,6 +159,8 @@ public class RestService {
 
 	    return result1 * result2 * result3;
 	}
+	
+	
 	public ArrayList<Rest> locationSearch(String keyword, String locationName, String categoryName, String rsFunction,
 			String funcState) {
 
