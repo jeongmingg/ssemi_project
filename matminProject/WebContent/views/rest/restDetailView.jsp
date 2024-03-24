@@ -1633,7 +1633,7 @@
 			 // 별점 선택안할시 폼 제출 안되게 제어
 			 $(document).ready(function() {
 				$('form').submit(function(event) {
-					if ($('input[name="rating"]:checked').length === 0) {
+					if ($('input[name="rating"]:checked').length === 0 || $('#review-write').val().trim() === '') {
 						event.preventDefault(); // Prevent form submission if no rating is selected
 					}
 				});
