@@ -1786,14 +1786,11 @@
 				var url = window.location.href;
 				
 				var restNo = getRestNoFromURL(url);
-				console.log("restNo" + restNo);
 
 				if (restNo) {
 					var recentRests = getCookie('recent_rests');
 					var recentRestNos = recentRests ? recentRests.split('/') : [];
 					
-					console.log("recentRests : " + recentRests);
-					console.log("recentRestNos : " + recentRestNos);
 
 					if (!recentRestNos.includes(restNo)) {
 						recentRestNos.push(restNo);
@@ -1806,16 +1803,13 @@
 
 					recentRests = recentRestNos.join('/');
 					
-					console.log("recentRests : " + recentRests);
 
 					// 24시간 후의 시간 객체 생성
 					var expirationDate = new Date();
 					expirationDate.setTime(expirationDate.getTime() + (24 * 60 * 60 * 1000));
-					console.log("expirationDate::" + expirationDate);
 
 					// 쿠키에 recent_rests 저장 (유효기간: 24시간)
 					setCookie('recent_rests', recentRests, expirationDate);
-					console.log("Current cookie: " + document.cookie);
 				}
 			}
 
