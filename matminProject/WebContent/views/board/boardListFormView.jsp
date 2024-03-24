@@ -341,7 +341,7 @@
 					$("#content").attr("placeholder", "식당 삭제 요청 이유를 자유롭게 적어주세요(300자 이내).");
 					lastCheckedValue = "delete"; // 'delete' 값 기억
 				} else{
-					if(lastCheckedValue == "맛집 삭제"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
+					if(lastCheckedValue == "delete"){ // 마지막으로 체크된 값이 'delete'인 경우에만 처리
 						$("#title").val("맛집 등록 요청합니다") // 다른 라디오 버튼이 선택될 때 기존 값을 초기화
 						$("#content").attr("placeholder", "추천메뉴, 식당 전화번호 등 식당 정보를 자유롭게 적어주세요(300자 이내)")
 					}
