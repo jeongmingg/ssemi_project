@@ -103,13 +103,9 @@ ERD Cloud :
 
 ### 💛 조원 : 김도현
 
-<details>
-<summary>이미지 보기</summary>
+- 슬라이드 이미지 구현 <br/>
 ![슬라이드구현](https://github.com/jeongmingg/ssemi_project/assets/151509557/9ba1977c-c882-4f3b-a7be-0925245dd9bf)
 
-<img src="이미지 URL" alt="설명">
-
-</details>
   
 
 <br/>
