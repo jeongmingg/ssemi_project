@@ -25,6 +25,8 @@
 # 🌱 구성원 및 역할
 
 💗 조장 : 노정민
+![메인페이지](https://github.com/jeongmingg/ssemi_project/assets/151510057/dc17faf8-1c87-4234-b192-1286144de0d3)
+
    - 메인페이지
    - 최근 본 식당 목록(쿠키 사용)
    - 키워드, 카테고리, 지역별, 기능별 선택을 통한 식당 검색페이지
@@ -88,14 +90,13 @@ ERD Cloud :
 # 📽 프로젝트 구현
 
 ### 💗 조장 : 노정민
-<details>
-  <summary>주요 기능</summary> 
-  <div markdown = "1">
-  여기에 작성
+
+  주요 기능 <br />
+  ◽ 메인페이지
      ![메인페이지](https://github.com/jeongmingg/ssemi_project/assets/151510057/e564f798-ef9c-4286-96d3-31d6e5b8242d)
 
-  </div>
-</details>
+
+
 <br/>
 
 ### 💛 조원 : 김도현
@@ -128,10 +129,7 @@ ERD Cloud :
 <br/><br/>
 
 # 📚 최종보고서
-<details>
-  <summary>최종보고서 확인</summary> 
-  <pre>
+
 [최종보고서](https://drive.google.com/file/d/1p-7MY-ICvuHByL8M-Rqj7zGDIYHQqrwK/view?usp=sharing)
-  </pre>
-</details>
+
      
