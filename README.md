@@ -105,6 +105,8 @@ ERD Cloud :
 
 - 슬라이드 이미지 구현 <br/>
 ![슬라이드구현](https://github.com/jeongmingg/ssemi_project/assets/151509557/9ba1977c-c882-4f3b-a7be-0925245dd9bf)
+- 식당상세페이지 <br/>
+![Uploading 식당상세페이지.gif…]()
 
 
   
