@@ -80,14 +80,16 @@ ERD Cloud :
 ### 💗 조장 : 노정민
      <details>
      <summary>접기/펼치기</summary> 
-     접은 내용(ex 소스 코드)
+     <div markdown = "1">
+     </div>
      </details>
 <br/>
 
 ### 💛 조원 : 김도현
      <details>
      <summary>접기/펼치기</summary> 
-     접은 내용(ex 소스 코드)
+     <div markdown = "1">
+     </div>
      </details>
 
 <br/>
@@ -95,21 +97,24 @@ ERD Cloud :
 ### 💙 조원 : 남지혜
      <details>
      <summary>접기/펼치기</summary> 
-     접은 내용(ex 소스 코드)
+     <div markdown = "1">
+     </div>
      </details>
 <br/>
 
 ### 💜 조원 : 신나리
      <details>
      <summary>접기/펼치기</summary> 
-     접은 내용(ex 소스 코드)
+     <div markdown = "1">
+     </div>
      </details>
 <br/><br/>
 
 # 📚 최종보고서
      <details>
      <summary>접기/펼치기</summary> 
-     접은 내용(ex 소스 코드)
+     <div markdown = "1">
+     </div>
      </details>
 <br/><br/>
 
