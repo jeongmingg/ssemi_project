@@ -92,6 +92,8 @@ ERD Cloud :
   <summary>주요 기능</summary> 
   <div markdown = "1">
   여기에 작성
+     ![메인페이지](https://github.com/jeongmingg/ssemi_project/assets/151510057/e564f798-ef9c-4286-96d3-31d6e5b8242d)
+
   </div>
 </details>
 <br/>
