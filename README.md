@@ -79,46 +79,47 @@ ERD Cloud :
 
 ### 💗 조장 : 노정민
      <details>
-     <summary>주요 기능</summary> 
-     <div markdown = "1">
-     여기에 작성
-     </div>
+        <summary>주요 기능</summary> 
+        <div markdown = "1">
+        여기에 작성
+        </div>
      </details>
 <br/>
 
 ### 💛 조원 : 김도현
      <details>
-     <summary>주요 기능</summary> 
-     <div markdown = "1">
-     여기에 작성
-     </div>
+        <summary>주요 기능</summary> 
+        <div markdown = "1">
+        여기에 작성
+        </div>
      </details>
 
 <br/>
 
 ### 💙 조원 : 남지혜
      <details>
-     <summary>주요 기능</summary> 
-     <div markdown = "1">
-     여기에 작성
-     </div>
+        <summary>주요 기능</summary> 
+        <div markdown = "1">
+        여기에 작성
+        </div>
      </details>
 <br/>
 
 ### 💜 조원 : 신나리
      <details>
-     <summary>주요 기능</summary> 
-     <div markdown = "1">
-     여기에 작성
-     </div>
+        <summary>주요 기능</summary> 
+        <div markdown = "1">
+        여기에 작성
+        </div>
      </details>
+     
 <br/><br/>
 
 # 📚 최종보고서
      <details>
-     <summary>최종보고서 확인</summary> 
-     <div markdown = "1">
-     </div>
+        <summary>최종보고서 확인</summary> 
+        <div markdown = "1">
+        여기에 작성
+        </div>
      </details>
-<br/><br/>
-
+     
