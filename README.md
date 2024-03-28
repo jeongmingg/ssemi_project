@@ -81,7 +81,7 @@
 
 # ✔ 설계
 ERD Cloud : 
-
+![ERD Cloud](https://file.notion.so/f/f/87d71406-9469-4a04-834b-dc12ba2349e9/3793a43d-0a0b-4b21-9170-c5cbf9f5cd39/%EB%A7%9B%EC%A7%91%EC%9D%98_%EB%AF%BC%EC%A1%B1_ERD.png?id=90bb3dc5-b9c1-4504-8d54-471e55606221&table=block&spaceId=87d71406-9469-4a04-834b-dc12ba2349e9&expirationTimestamp=1711756800000&signature=cMKH8_wlhnK02YkQHbmfzuk56gu7TxTfTJHXVmYZ5hk)
 
 <br/><br/>
 
