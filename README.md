@@ -111,6 +111,8 @@ ERD Cloud :
 ![식당메뉴정보](https://github.com/jeongmingg/ssemi_project/assets/151509557/262c05fb-a78d-4149-8ee1-287e239890f5)
 - 리뷰작성<br/>
 ![리뷰작성](https://github.com/jeongmingg/ssemi_project/assets/151509557/58cc6571-d17f-4d64-af7b-9da8cc32c3d3)
+- 리뷰삭제<br/>
+![리뷰삭제](https://github.com/jeongmingg/ssemi_project/assets/151509557/2e960c56-6e03-4a82-82a6-0bd289aa25e1)
 
 
 
