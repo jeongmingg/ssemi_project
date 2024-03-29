@@ -124,13 +124,27 @@ ERD Cloud :
 - 식당상세페이지 중 메뉴정보<br/>
 ![식당메뉴정보](https://github.com/jeongmingg/ssemi_project/assets/151509557/262c05fb-a78d-4149-8ee1-287e239890f5)
 - 리뷰작성<br/>
-![리뷰작성](https://github.com/jeongmingg/ssemi_project/assets/151509557/58cc6571-d17f-4d64-af7b-9da8cc32c3d3)
+![리뷰작성](https://github.com/jeongmingg/ssemi_project/assets/151509557/a9fba064-d4d7-4a27-b5e3-896e9892b339)
 - 리뷰삭제<br/>
-![리뷰삭제](https://github.com/jeongmingg/ssemi_project/assets/151509557/2e960c56-6e03-4a82-82a6-0bd289aa25e1)
+![리뷰삭제](https://github.com/jeongmingg/ssemi_project/assets/151509557/7a300c78-2b0c-4225-8fe1-69412c7ad1b9)
+- 리뷰추천<br/>
+![리뷰추천](https://github.com/jeongmingg/ssemi_project/assets/151509557/7d5732da-5a1c-4e85-b3dd-a59dbdfe1ce3)
+- 리뷰공유 중 일반링크복사<br/>
+![리뷰 일반공유](https://github.com/jeongmingg/ssemi_project/assets/151509557/0f33e5ea-4bf2-4145-9bfa-737023cac36e)
+- 리뷰공유 중 일반링크복사<br/>
+![리뷰카카오톡공유](https://github.com/jeongmingg/ssemi_project/assets/151509557/893db431-1103-4750-93ea-4bb07ee8b536)
+- 맛집등록요청/삭제 게시판 키워드 검색<br/>
+![맛집게시판 검색](https://github.com/jeongmingg/ssemi_project/assets/151509557/922df193-344d-47ba-bc04-2dbfbfe982ee)
+- 맛집등록요청/삭제 게시판 세부조회<br/>
+![맛집게시판세부조회](https://github.com/jeongmingg/ssemi_project/assets/151509557/140331cf-51ef-4ce4-9fd7-2271f70debe7)
+- 맛집등록요청/삭제 게시판 작성<br/>
+![맛집등록요청작성](https://github.com/jeongmingg/ssemi_project/assets/151509557/fffc06b5-9e8b-4cbe-a768-ff6c864e3e12)
+- 맛집등록요청/삭제 게시판 수정<br/>
+![맛집등록 수정](https://github.com/jeongmingg/ssemi_project/assets/151509557/486f94e1-5718-424b-851f-6418b8454509)
+- 맛집등록요청/삭제 게시판 삭제<br/>
+![맛집등록삭제](https://github.com/jeongmingg/ssemi_project/assets/151509557/f8006bac-9277-4410-9341-5e02504c0776)
 
 
-
-  
 
 <br/>
 
