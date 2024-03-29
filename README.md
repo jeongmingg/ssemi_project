@@ -92,11 +92,23 @@ ERD Cloud :
    ◽ 메인페이지 <br />
      ![메인페이지](https://github.com/jeongmingg/ssemi_project/assets/151510057/e564f798-ef9c-4286-96d3-31d6e5b8242d) <br />
    ◽ 검색창 통합검색결과 페이지 <br />
-   ◽ 배너 메뉴 가격별 직급 결과페이지 <br />
-   ◽ 최근 본 식당 <br />
-   ◽ 맛슐랭 <br />
+      ▪ 로그인, 비로그인시 검색창 결과페이지 <br />
+      ![검색창 결과페이지(로그인,비로그인)](https://github.com/jeongmingg/ssemi_project/assets/151510057/cede3072-90fc-481a-9897-d1650dab7a33) <br />
+      ▪ 카테고리, 편의기능, 지역 선택 검색창 결과페이지 <br />
+      ![검색창 카테고리, 편의기능, 지역 선택 결과](https://github.com/jeongmingg/ssemi_project/assets/151510057/6143746e-46a1-44e3-80fb-c5cc64165c79) <br />
+
+   ◽ 배너 메뉴 가격별 오늘의 직급 결과페이지 <br />
+       ▪ 오늘의 직급 결과페이지 <br />
+      ![배너 오늘의 직급검색결과 페이지](https://github.com/jeongmingg/ssemi_project/assets/151510057/01e1a630-75d4-4191-a0f2-f33740b8f069) <br />
+       ▪ 오늘의 직급 지역선택 결과 <br />
+      ![배너 오늘의 직급 지역검색](https://github.com/jeongmingg/ssemi_project/assets/151510057/fe5a1604-5774-4f1a-b4af-e0a5bc982556)  <br />
+      <br /> 
+   ◽ 최근 본 식당, 맛슐랭 <br />
+      ![맛슐랭, 최근 본 식당](https://github.com/jeongmingg/ssemi_project/assets/151510057/08200423-57b1-4f6d-b051-d452fb509756) <br />
+
    ◽ 맛집뺑뺑이 <br />
-      
+       ![맛집뺑뺑이](https://github.com/jeongmingg/ssemi_project/assets/151510057/4f47b4be-fe57-4117-9227-20c5b333fbfb) <br />
+
 
 
 <br/>
@@ -134,6 +146,6 @@ ERD Cloud :
 
 # 📚 최종보고서
 
-[최종보고서](https://drive.google.com/file/d/1p-7MY-ICvuHByL8M-Rqj7zGDIYHQqrwK/view?usp=sharing)
+[최종보고서 링크](https://drive.google.com/file/d/1p-7MY-ICvuHByL8M-Rqj7zGDIYHQqrwK/view?usp=sharing)
 
      
