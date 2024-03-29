@@ -147,7 +147,8 @@ ERD Cloud :
  ![시당 등록](https://github.com/jeongmingg/ssemi_project/assets/133949316/e49c303f-eefd-4970-bf50-c38b0fbae937)
 - 관리자 보는 식당 상세 페이지<br>
 ![관리자 보는 식당 상세페이지](https://github.com/jeongmingg/ssemi_project/assets/133949316/6d52cd52-27c7-47a8-9275-499e8524b4c0)
-
+- 회원으로 부터 요청 식당 등록 및 삭제<br/>
+![Honeycam 2024-03-29 20-21-42](https://github.com/jeongmingg/ssemi_project/assets/133949316/76ef6d1d-55f2-49b2-9318-373a5f2b3153)
 
   
      
