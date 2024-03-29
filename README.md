@@ -131,7 +131,7 @@ ERD Cloud :
 ![리뷰추천](https://github.com/jeongmingg/ssemi_project/assets/151509557/7d5732da-5a1c-4e85-b3dd-a59dbdfe1ce3)
 - 리뷰공유 중 일반링크복사<br/>
 ![리뷰 일반공유](https://github.com/jeongmingg/ssemi_project/assets/151509557/0f33e5ea-4bf2-4145-9bfa-737023cac36e)
-- 리뷰공유 중 일반링크복사<br/>
+- 리뷰공유 중 카카토옥 공유<br/>
 ![리뷰카카오톡공유](https://github.com/jeongmingg/ssemi_project/assets/151509557/893db431-1103-4750-93ea-4bb07ee8b536)
 - 맛집등록요청/삭제 게시판 키워드 검색<br/>
 ![맛집게시판 검색](https://github.com/jeongmingg/ssemi_project/assets/151509557/922df193-344d-47ba-bc04-2dbfbfe982ee)
