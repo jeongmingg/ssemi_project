@@ -143,6 +143,8 @@ ERD Cloud :
 
 - 관리자 메인페이지, 식당 목록조회 <br/>
 ![관리자메인페이지, 식당 목록조회](https://github.com/jeongmingg/ssemi_project/assets/133949316/a19f4d14-c92d-443b-b023-847c19af6983)
+- 새로운 삭당 등록 <br/>
+- ![시당 등록](https://github.com/jeongmingg/ssemi_project/assets/133949316/e49c303f-eefd-4970-bf50-c38b0fbae937)
 
   
      
