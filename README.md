@@ -107,6 +107,8 @@ ERD Cloud :
 ![슬라이드구현](https://github.com/jeongmingg/ssemi_project/assets/151509557/9ba1977c-c882-4f3b-a7be-0925245dd9bf)
 - 식당상세페이지 <br/>
 ![식당상세페이지](https://github.com/jeongmingg/ssemi_project/assets/151509557/5e4f88bf-ed20-43f3-95fa-3f95f54863ff)
+- 식당상세페이지 중 메뉴정보<br/>
+![식당메뉴정보](https://github.com/jeongmingg/ssemi_project/assets/151509557/262c05fb-a78d-4149-8ee1-287e239890f5)
 
 
 
