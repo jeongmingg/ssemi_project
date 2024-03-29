@@ -149,6 +149,8 @@ ERD Cloud :
 ![관리자 보는 식당 상세페이지](https://github.com/jeongmingg/ssemi_project/assets/133949316/6d52cd52-27c7-47a8-9275-499e8524b4c0)
 - 회원으로 부터 요청 식당 등록 및 삭제<br/>
 ![Honeycam 2024-03-29 20-21-42](https://github.com/jeongmingg/ssemi_project/assets/133949316/76ef6d1d-55f2-49b2-9318-373a5f2b3153)
+- 식당 상세정보 수정<br>
+![Honeycam 2024-03-29 21-32-59](https://github.com/jeongmingg/ssemi_project/assets/133949316/97ef6255-0989-4164-a886-7e5ffd4df53a)
 
   
      
