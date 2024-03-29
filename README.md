@@ -136,7 +136,7 @@ ERD Cloud :
 - 맛집등록요청/삭제 게시판 키워드 검색<br/>
 ![맛집게시판 검색](https://github.com/jeongmingg/ssemi_project/assets/151509557/922df193-344d-47ba-bc04-2dbfbfe982ee)
 - 맛집등록요청/삭제 게시판 세부조회<br/>
-![맛집게시판세부조회](https://github.com/jeongmingg/ssemi_project/assets/151509557/140331cf-51ef-4ce4-9fd7-2271f70debe7)
+![맛집게시판세부조회](https://github.com/jeongmingg/ssemi_project/assets/151509557/cb22ab55-f909-45a9-8be2-18a03fd8076e)
 - 맛집등록요청/삭제 게시판 작성<br/>
 ![맛집등록요청작성](https://github.com/jeongmingg/ssemi_project/assets/151509557/fffc06b5-9e8b-4cbe-a768-ff6c864e3e12)
 - 맛집등록요청/삭제 게시판 수정<br/>
